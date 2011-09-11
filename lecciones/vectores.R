@@ -6,7 +6,15 @@
 # indexados usando [ ].
  
 # Un vector es una colección de uno o más objetos del mismo tipo (e.g.
-# caracteres, números); esta es una restricción importante.
+# caracteres, números); esta es una restricción importante. Un objeto de este 
+# tipo no tiene dimensión, más allá de que en un sentido matemático tienen
+# dimensión 1:
+dim(1:10) # NULL
+
+# Tal vez sea contraintuitivo, pero objetos con un sólo elemento también son
+# vectores:
+is.vector(9)
+is.vector('a')
 
 # Existen varias formas de hacer un vector en R. Muchas funciones
 # devuelven vectores cuyos tamaños son determinados por el usuario, como
@@ -51,7 +59,7 @@ class(x) # logical (valores lógicos, TRUE/FALSE)
 
 # Al generar una secuencia, R también devuelve un vector. Para generar una
 # secuencia de enteros se usa ":", por ejemplo:
-x <- 0:10  # secuencia del 0 al 10
+x <- 0:10 # secuencia del 0 al 10
 x <- 10:-5 # secuencia del 10 al -5
 
 # Hay que tener un poco de cuidado:
@@ -82,7 +90,7 @@ x <- seq(0, 1, length=5)
  
 # Hagamos un vector:
 x <- 5:-2
-x # [1]  5  4  3  2  1  0 -1 -2
+x # [1] 5 4 3 2 1 0 -1 -2
  
 # Para acceder al segundo valor:
 x[2] # [1] 4
@@ -104,9 +112,9 @@ x[sample(8)] # Elementos desoredenados al azar...
 
 # Si usamos un signo de menos, la salida es un vector sin los elementos
 # restados...
-x[-1] # [1]  4  3  2  1  0 -1 -2
+x[-1] # [1] 4 3 2 1 0 -1 -2
 a <- x[-(1:4)]
-a # [1]  1  0 -1 -2
+a     # [1] 1 0 -1 -2
 # Como a tiene valores negativos y el 0, si pedimos:
 x[a]
 #Error in x[a] : only 0's may be mixed with negative subscripts
@@ -122,17 +130,17 @@ x[a] # Deben ser sólo los elementos de x mayores que 1
 # simples. Una forma alternativa es usar directamente el vector lógico
 # dentro de los paréntesis rectos:
 (y <- x > 1) # Este es un vector "logical", los TRUE se corresponden con
-x[y]         # los elementos de "x" que cumplen con la condición (> 1)
+x[y] # los elementos de "x" que cumplen con la condición (> 1)
 # o
-x[x > 1]     # Lo mismo, pero en un sólo paso
+x[x > 1] # Lo mismo, pero en un sólo paso
  
 # Los índices también se pueden usar para modificar al vector:
 x[1] <- 8000
-x # [1] 8000    4    3    2    1    0   -1   -2
+x # [1] 8000 4 3 2 1 0 -1 -2
 x[1:3] <- 8000:8002
-x # [1] 8000 8001 8002    2    1    0   -1   -2
+x # [1] 8000 8001 8002 2 1 0 -1 -2
 x[c(3, 6)] <- c(55, 66)
-x # [1] 8000 8001   55    2    1   66   -1   -2
+x # [1] 8000 8001 55 2 1 66 -1 -2
  
 # NOTA: En RStudio se puede modificar vectores cliqueando el nombre del
 # vector en la ventana de workspace (panel 3, arr. der.)
@@ -141,15 +149,15 @@ x # [1] 8000 8001   55    2    1   66   -1   -2
 # Al poner un vector dentro de una fórmula, aplica la fórmula a todos los
 # elementos independientemente
 x <- 0:5
-x # [1] 0 1 2 3 4 5
-2 * x # [1]  0  2  4  6  8 10
-x ^ 2 # [1]  0  1  4  9 16 25 # acá estamos elevando al cuadrado
+x     # [1] 0 1 2 3 4 5
+2 * x # [1] 0 2 4 6 8 10
+x ^ 2 # [1] 0 1 4 9 16 25 # acá estamos elevando al cuadrado
  
  
 y <- x ^ 2 + log(pi / 2)
 # la fórmula puede ser todo lo complicada que se quiera...
 y
-# [1]  0.4515827  1.4515827  4.4515827  9.4515827 16.4515827 25.4515827
+# [1] 0.4515827 1.4515827 4.4515827 9.4515827 16.4515827 25.4515827
 # ...pero de esta manera se aplica a todo el vector
  
 # Al sumar/multiplicar/elevar entre dos vectores, la operación se hace con
@@ -208,4 +216,9 @@ plot(y ~ x)
 # relación entre los vectores es importante para la aplicación de funciones
 # o análisis como las regresiones, por ejemplo.
 
-#### AGREGAR RESUMEN
+# En definitiva, los vectores son la estructura más básica que tenemos para
+# manejar la información en R. Es importante notar que muchos objetos están
+# compuestos por vectores: las columnas o filas de una matriz, las variables en
+# una data.frames o una lista, etc. Para trabajar con R es necesario comprender
+# cómo los vectores trabajan con operadores y funciones, y buscar aprovechar las
+# facilidades de la vectorización cada vez que se pueda.
