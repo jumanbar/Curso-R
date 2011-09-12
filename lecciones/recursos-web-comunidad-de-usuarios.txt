@@ -1,0 +1,35 @@
+Recursos en la web o la importancia de la comunidad de usuarios de R:
+
+- Muchas preguntas se pueden responder simplemente "googleando" (o usando el
+  buscador de preferencia). En general se obtienen más y mejores resultados en
+  inglés.
+
+- Hay muchos libros, manuales y tutoriales muy buenos en la red que sin dudas
+  que pueden ser de gran utilidad, tanto para aprender cosas básicas como
+  tópicos especializados.
+
+- Grupos de R: grupos regionales de personas con intereses común, en
+  particular la promoción y el aprendizaje de esta herramienta. Incluso hay uno
+  en Uruguay, aunque no tiene demasiada fuerza (¡por ahora!).
+
+- Hacer preguntas: a veces las soluciones no se pueden encontrar fácilmente en
+  la web o manuales. Generalmente es una buena idea formular la pregunta que
+  tenemos en los ámbitos pensados para ello:
+  - Lista de mail de ayuda de R: r-help@R-project.org
+  - Stackoverflow, tag "r" (http://stackoverflow.com/tags/r)
+
+  Ambos recursos nuclean a una enorme comunidad de usuarios de todo el mundo y
+  muchas veces las respuestas son sumamente rápidas, aunque esto también
+  depende de la claridad de la exposición del problema y de otros factores.
+  Debido a este caracter internacional, las preguntas se deben hacer y
+  responder en inglés. Probalemente existan sitios especializados en usuarios
+  de habla hispana, pero no estamos al tanto de ellos.
+
+  Hay que tener en cuenta que al hacer preguntas, y obtener respuestas, estamos
+  beneficiándonos de la buena voluntad y el esfuerzo de otra gente, sin costo
+  alguno. Por lo tanto, es esperable de nosotros que sigamos ciertas reglas de
+  etiqueta, tales como amabilidad y claridad al explicar nuestra pregunta.
+  Respecto a estos temas, recomendamos mirar la guía de publicación de
+  preguntas de la lista de ayuda de R: http://www.r-project.org/posting-guide.html
+
+- Recursos recomendables para principiantes: ver "algunos links de interés"

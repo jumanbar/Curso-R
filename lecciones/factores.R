@@ -61,6 +61,7 @@ edades <- rpois(150, 25)
 # En la consola podemos ver en qué rango de edades cae cada observación y
 # cuáles son estos rangos ("Levels").
 
+# Resumen:
 # En definitiva, los factores son una construcción útil de R que está
 # pensada para trabajar con variables categóricas. En el curso se va a
 # profundizar en los usos de los factores, particularmente en los temas
@@ -70,6 +71,6 @@ edades <- rpois(150, 25)
 # character, sobre todo cuando uno está aprendiendo R (y en particular
 # luego de importar matrices o data.frames). Por esto se recomienda
 # estar atento a la salida que R imprime en la consola (si es un factor
-# se imprimen los "Levels:..." al final. En el caso de importación de
+# se imprimen los "Levels:..." al final). En el caso de importación de
 # datos, la opción por defecto es que las columnas con texto se interpetan
-# como factores. Esto se puede evitar usando "stringsAsFactor=FALSE"
+# como factores. Esto se puede evitar usando "stringsAsFactor=FALSE".
