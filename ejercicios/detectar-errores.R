@@ -1,3 +1,5 @@
+## Para la semana I
+
 ## Detectar el error:
 
 cos()                   # Falta un argumento
