@@ -8,16 +8,16 @@
 ?"else"
 
 ## Estructura básica:
-if(condición) comando
+if (condición) comando
 ## Se ejecuta el comando si la condición es TRUE
  
 ## Entonces:
-if(3 > 2) print('imprime')
-if(3 < 2) print('no imprime')
+if (3 > 2) print('imprime')
+if (3 < 2) print('no imprime')
  
 ## Al igual que vimos antes, se pueden usar las { } para insertar varios
 ## comandos juntos:
-if(3 > 2) {
+if (3 > 2) {
   print('Es verdadero!')
   print('imprime')
 }
@@ -29,11 +29,11 @@ Se cumple la condición? |
                         \ No -----> comando2
  
 ## La estructura básica de if / else es:
-if(condición) comando1 else comando2
+if (condición) comando1 else comando2
  ## Cuando se cumple una condición dada, se ejecuta el comando1, en caso
 ## contrario, se ejecuta el comando2
 ## Estructura básica, pero usando {}:
-if(condición) {
+if (condición) {
   comando1 ## Si la condición se cumple (TRUE)
 } else {
   comando2 ## Si la condición no se cumple (FALSE)
@@ -43,7 +43,7 @@ if(condición) {
 ## Clasificación de números del 1 al 10 en 2 grupos
 clasif <- numeric(10) # Acá voy a guardar el resultado
 for(i in 1:10) {
-  if(i > 5) { ## Se si se cumple, entonces es "grande"
+  if (i > 5) { ## Se si se cumple, entonces es "grande"
     texto <- paste(i, 'grande')
     print(texto)
     clasif[i] <- texto ## *1
@@ -78,12 +78,12 @@ clasif
 ## Ejemplo: Clasificación en tres grupos
 clasif <- numeric(10)
 for(i in 1:10) {
-  if(i > 5) {
+  if (i > 5) {
     texto <- paste(i, 'grande')
     print(texto)
     clasif[i] <- texto
   } else { ## Dentro de este "else" se anida una nueva combinación if / else
-    if(i > 2) {
+    if (i > 2) {
       texto <- paste(i, 'mediano')
       print(texto)
       clasif[i] <- texto
