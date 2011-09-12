@@ -1,4 +1,6 @@
-#### Cohercionadores
+#### Cohercionadores & Identificadores
+
+## Cohercionadores
 
 # Muchas veces nos interesa convertir un vector de una clase a otra. Existe
 # en R una serie de funciones que sirven para hacer estas transformaciones.
@@ -45,7 +47,7 @@ as.list
 as.vector
 
 
-#### Identificadores
+## Identificadores
 # De manera similar, existen funciones que sirven para identificar las
 # clases de los objetos.
 
@@ -93,3 +95,10 @@ is.null(x) # TRUE
  
 y <- c(5, x, 6, 7)
 y # El x ni siquiera aparece...
+
+# Resumen:
+# Los cohercionadores son funciones de gran utilidad cuando necesitamos
+# aplicar ciertos métodos que no están para las clases que tengo a
+# disposición. Los identificadores sirven para determinar si un objeto
+# pertenece o no a una clase en particular. Ambos conjuntos de funciones
+# siguen una convención de nombres para facilitar el uso de las mismas.
