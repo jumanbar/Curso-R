@@ -31,7 +31,12 @@ length(x[[2]]) # 20
 
 # Esta misma información la podemos obtener usando la función str:
 str(x)
- 
+
+# La misma lista se puede crear a partir de una lista vacía:
+x <- vector('list', 2) # Lista vacía, con 2 elementos.
+x[[1]] <- rep('pepe', 3)
+x[[2]] <- 1:20
+
 # Las listas son útiles para agrupar varios tipos de datos en un sólo objeto, ya
 # que no es tan restrictivo como las matrices o los vectores normales.
 
