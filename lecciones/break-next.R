@@ -24,9 +24,40 @@ for (i in 1:10) {
     break
 }
 
+## Combinar "break" con "repeat"
+
+# Como se mencionó brevemente, el comando "repeat" es otro tipo de loop que se
+# puede usar en R. Es el más simple de todos: se limita a repetir un comando
+# hasta que el usuario de una orden de finalización. Una forma de determinar
+# la finalización es usando un "break". Usando uno de los ejemplos de la
+# lección de "while", la serie que tiende a cero:
+# f( n ) = f(n - 1) / n
+# f( 0 ) = 5
+# Se puede expresar así con "repeat":
+f <- 5 # Valor inicial
+n <- 0
+repeat {
+  n <- n + 1
+  f <- f / n
+  print(f)
+  if(f <= 0.001)
+    break
+}
+
+# Esto debería hacer exactamente lo mismo que el ejemplo dado en la lección
+# mencionada:
+f <- 5 # Valor inicial
+n <- 0
+while(f > 0.001) {
+  n <- n + 1
+  f <- f / n
+  print(f)
+}
+
+## Comando "next"
 
 # El comando "next" también genera una interrupción, pero no de todo el
-loop, si no de la iteración en la que se encuentra el mismo.
+# loop, si no de la iteración en la que se encuentra el mismo.
 ?"next"
 
 # Por ejemplo, usando un if + next se puede modificar el ejemplo inicial
