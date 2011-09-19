@@ -186,6 +186,8 @@ SEM <- function(datos, na.rm = FALSE) {
     VAR <- datos   # Instrucciones por defecto ('else', es el alternativo
                    # al 'if'), donde 'VAR' va a ser simplemente los datos
                    # de la entrada.
+  # Nota: se va a profundizar en el uso de if/else en otras lecciones del
+  # curso, bajo el tema "Estructuras de Control".
   SD <- sd(VAR)    # Calculamos el desvío estándar de 'VAR'
   N <- length(VAR) # 'N' va a ser la cantidad de observaciones que tenemos
   SD / sqrt(N - 1) # Y, finalmente, introducimos la ecuación de la que
@@ -299,8 +301,9 @@ source("/camino/hacia/el/script.R")
 
 
 ##########################
-# Apéndice: ejemplo de objeto presente en el ambiente de una función,
-# a pesar de estar definido por fuera de las instrucciones y los argumentos.
+# Apéndice: se muestra un ejemplo de una función con un objeto presente en el
+# ambiente de la misma, a pesar de estar definido por fuera de las
+# instrucciones y los argumentos:
 y <- 5
 edad <- function(x) {
   texto <- paste("Vengo de Melmac, tengo", x, "años y", y,"meses.\n")
@@ -308,4 +311,7 @@ edad <- function(x) {
 }
 
 edad(8)
-# Vengo de Melmac, tengo 8 años y  5 meses.
+# Vengo de Melmac, tengo 8 años y 5 meses.
+
+# Como se puede ver, el objeto "y" es usado por la función para completar la
+# frase de salida.
