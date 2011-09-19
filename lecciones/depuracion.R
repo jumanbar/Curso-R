@@ -17,7 +17,10 @@ source('estimaPi.R') # suponiendo que está en el directorio de trabajo actual.
  
 # Para hacer más fácil este ejemplo, se incluyen aquí las líneas necesarias 
 # para definir la función "estimaPi" en nuestra área de trabajo:
- 
+
+
+
+
 ############ FUNCIÓN estimaPi #####################
 estimaPi <- function(n=5, error=0.01, show=TRUE) { # linea 13
 # Estima el valor de pi usando la serie de Leibniz
