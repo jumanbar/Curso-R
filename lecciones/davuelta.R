@@ -8,18 +8,11 @@ davuelta <- function(x) {
   len <- length(x)
   if(len %% 2 != 0)
     stop('x no tienen un número par de elementos')
-    # 
+    # La función sólo funciona con vectores con longitud par. Este es el 
+    # mensaje de error que va a mostrar si esta condición no se cumple.
   mitad <- len / 2
-  print('mitad:')
-  print(mitad)
   x1  <- x[1:mitad]
-  print('x1')
-  print(x1)
-  print(pa
-#   x2  <- x[(mitad + 1):len]
-  x2  <- x[mitad:len]
-  print(paste('x2:', x2))
-#   out <- c(x2, x1)
-  out <- c(x2, x1)
+  x2  <- x[mitad:Len]
+  out <- (x2, x1)
   return(out)
 }
