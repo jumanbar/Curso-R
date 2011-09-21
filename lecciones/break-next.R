@@ -1,6 +1,6 @@
 #### break / next
 
-# Comando "break"
+## Comando "break"
 
 # Debido a que es un comando especial, es necesario usar comillas para
 # acceder a la ayuda:
