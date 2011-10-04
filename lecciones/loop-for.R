@@ -81,8 +81,10 @@ for (i in 1:10) { # Es buena práctica poner el { inicial aquí
 
 
 ## GUARDANDO EL RESULTADO
-# Muchas veces el resultado obtenido con el loop debe ser guardado en algún
-# objeto. Para este cometido, se puede usar un esquema de tipo:
+# IMPORTANTE!!! Muchas veces, antes de comenzar el loop se debe crear un vector
+# "vacio" (entindase como un vector lleno de ceros).
+# Este vector sirve para guardar los números creados. Para este cometido, se
+# puede usar un esquema de tipo:
 valores <- numeric(n)
 # Hasta aquí "valores" es un vector de ceros, con "n" elementos.
 for (i in 1:n) {
@@ -111,6 +113,7 @@ valores <- numeric(100) # Crea un vector con 100 ceros, luego los voy a ir
 for (i in 1:99) {
   nuevoValor <- valores[i] + 3
   valores[i + 1] <- nuevoValor
+}
 # Sustituye, en cada iteración, (i + 1)ésimo valor de "valores" (que es un cero
 # inicialmente) por la suma del iésimo valor de "valores" + 3
 
@@ -179,7 +182,7 @@ plot(fibo)
 plot(fibo, log='y', type='o')
 
 
-## loops anidados
+## Bonus: loops anidados
 # Aunque suene horrible, no es otra cosa que más de lo mismo:
 mat <- matrix(1:20, 4, 5)
 for (i in 1:4) {        # i será el índice de las filas de mat
