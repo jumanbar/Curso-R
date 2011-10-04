@@ -63,8 +63,8 @@ rowSums(iris[,-5])
 iris2 <- cbind(iris, rep('hola', nuevaCol=nrow(iris)))
 head(iris2)
  
-## En R, por defecto, los vectores de la clase "character" son interpretados como "factor"
-## al ser agregados a una "data.frame":
+# En R, por defecto, los vectores de la clase "character" son interpretados
+# como "factor" al ser agregados a una "data.frame":
 class(iris2$nuevaCol) # "factor"
  
 ## Para cambiar la clase de esta columna se pueden usar cohercionadores. Esto es suponiendo
