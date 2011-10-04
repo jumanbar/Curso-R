@@ -16,65 +16,39 @@
 # repetición con un estado mutable.
 
 # Los comandos más universales para hacer loops en programación son "for" y
-# "while", en R no es distinto.
+# "while", y en R esto no es distinto.
 
-## Comando "for"
-?"for"
-# Para abrir esta ayuda hay que poner comillas, ya que es un comando especial
 
-# Si de antemano sabemos cuántas iteraciones vamos a realizar, entonces "for"
-# es el comando que necesitamos. De los dos loops que vamos a mostrar en el
-# curso (hay un tercero, "repeat", el cual se va a mencionar brevemente).
-for(variable in secuencia)
+## SINTÁXIS BÁSICA
+#  "for" es usado cuando de antemano sabemos el número de iteraciones.
+
+# La siguiente es una descripción, lo más general posible, de la sintaxis del
+# for; debe tenerse en cuenta que "variable" es simplemente un nombre
+# (usualmente es una sóla letra, como "i" o "j") y "secuencia" es un vector
+# cualquiera (generalmente es una secuencia del tipo 1:n):
+
+for (variable in secuencia)
   comando
-# Con este código, R ejecuta este comando n veces (n = length(secuencia)),
-# y en cada iteración el valor de "variable" va cambiando, recorriendo los
-# valores de "secuencia".
 
-# Nota: en muchos lugares van a ver escrito lo mismo pero en un sólo renglón:
-for(variable in secuencia)
-  comando
-# Este formato no es incorrecto, pero 
- 
-# Ejemplo: la secuencia va a ser 1:10
-for(variable in 1:10)
-  print(variable)
-# variable va tomando los valores 1, 2, 3 etc... en orden
-variable # es 10
- 
-# Ejemplo: Quiero hacer una secuencia de 100 números que vayan aumentando de a
-# 3, empezando por el 0 (haciendo de cuenta que no existe la función "seq").
+# Con este código, R ejecuta este "comando" n veces (en donde n es la longitud
+# del vector "secuencia"). En cada iteración el valor de "variable" va
+# cambiando, tomando uno a uno los valores del vector "secuencia".
 
-# La variable será "i"
-# La secuencia será 1:99
 
-# Nótese que termina en el 99, debido a la forma en que voy a escribir el
-# comando (abajo). Para guardar los números creados, antes de ejecutar el loop
-# debo crear un vector en donde voy a poner estos valores.
-out <- numeric(100) # Crea un vector con 100 ceros, luego los voy a ir
-                    # sustituyendo (excepto al primero).
-for(i in 1:99)
-  out[i + 1] <- out[i] + 3
-# Sustituye, en cada iteración, (i + 1)ésimo valor de out (que es un cero
-# inicialmente) por la suma del iésimo valor de out + 3
-out
-plot(out)
-i # es 99
- 
-# Ejemplo: interés en el banco.
-# Si la tasa de interés es "t":
-# f(n + 1) = f( n ) * t
-plata.inicial <- 500    # ¿cuánto hay?
-tasa.interes  <- 0.05   # 5%
-out <- numeric(10)      # 10 años de interés
-out[1] <- plata.inicial # Hay que ingresar "manualmente" el valor inicial
-                        # *antes* del loop
-for(i in 1:9)
-  out[i + 1] <- out[i] + out[i] * tasa.interes
- 
-## Hasta ahora hicimos for con un sólo comando, vamos a ver cómo
-## hacer cosas un poco más elaboradas.
- 
+# Un ejemplo sumamente simple:
+for (i in 1:10)
+  print(i)
+
+# Aquí usamos "i" y 1:10 en lugar de "variable" y "secuencia" respectivamente.
+# Nuestro comando es "print(i)".
+
+# El resultado de este código es que se imprimen los números del 1 al 10 en
+# la consola. Además el objeto "i", luego de ejecutar esto, ahora es el
+# número 10:
+i
+
+
+## MÁS DE UN COMANDO
 # Si queremos hacer varios comandos en cada iteración usamos { }. Esto es
 # lo que se conoce como bloque de código: tódo lo que está entre { y } se
 # ejecuta como si fuera una misma línea de comando. Esto implica que hasta
@@ -82,49 +56,134 @@ for(i in 1:9)
 # los comandos internos.
 
 # Estructura:
-for(variable in secuencia) {
+for (variable in secuencia) {
    comando1
    comando2
    ...etc
 }
 
 # Ejemplo:
-for(i in 1:10) { # Es buena práctica poner el { inicial aquí
-   print('Extremos:')         # Es deseable, por un tema de facilidad de
-                              # lectura, que los comandos interiores a los
-                              # {} estén adelantados una distancia fija,
-   print(paste(0 - i, 0 + i)) # por ejemplo un "tab" (a esto se le llama
-                              # "indentación").
+for (i in 1:10) { # Es buena práctica poner el { inicial aquí
+   print('Extremos:')         
+   print(paste(0 - i, 0 + i))
 } # Es buena práctica poner el } final aquí
 
+# Es deseable, por un tema de facilidad de lectura, que los comandos interiores
+# a los {} estén adelantados una distancia fija, por ejemplo un "tab" o
+# tabulación (a esto se le llama "indentación"; ver wikipedia para mayor
+# profundidad).
+
 # (Nota: es un error muy común olvidarse de poner las llaves al principio y
-# final del bloque de instrucciones, por ejemplo luego de un "if()" o
-# "for(...)". Para evitar estos errores, una actitud "agresiva" de programación
+# final del bloque de instrucciones, por ejemplo luego de un "if ()" o
+# "for (...)". Para evitar estos errores, una actitud "agresiva" de programación
 # defensiva es usar siempre llaves para los comandos for, while, repeat, if y
 # else.
- 
-# Ejemplo: serie de Fibonacci, la cual es así
-# 1 1 2 3 5 8 13 21 34 55 89 ...
-# Es decir:
-# f(n + 2) = f(n + 1) + f( n )
-out <- numeric(20)
-out[1:2] <- 1 # Los dos primeros valores debemos agregarlos nosotros (nótese
-head(out)     # que haciendo: "out <- numeric(20) + 1" evitamos este paso...
-for(i in 1:18) {
-# En vez de "1:18" ¿podría usar "1 : (length(out) - 2)"?¿y "1:length(out) - 2"?
-   n1 <- out[i]
-   n2 <- out[i + 1]
-   out[i + 2] <- n1 + n2
+
+
+## GUARDANDO EL RESULTADO
+# Muchas veces el resultado obtenido con el loop debe ser guardado en algún
+# objeto. Para este cometido, se puede usar un esquema de tipo:
+valores <- numeric(n)
+# Hasta aquí "valores" es un vector de ceros, con "n" elementos.
+for (i in 1:n) {
+  nuevoValor <- comando
+  valores[i] <- nuevoValor
 }
-out
-plot(out)
-plot(out, log='y')
+
+# Aquí "n" es el número de iteraciones que necesito, "valores" es el objeto
+# (en este caso un vector) en el que se almacenan los resultados.
+
+# Nótese que se usa la variable "i" para indicar la posición del vector
+# "valores" en la cual insertamos el nuevo valor obtenido en cada iteración.
+
+
+# Ejemplo: Quiero hacer una secuencia de 100 números que vayan aumentando de a
+# 3, empezando por el 0 (haciendo de cuenta que no existe la función "seq").
+
+# La variable será "i"
+# La secuencia será 1:99
+
+# Nótese que termina en el 99, debido a la forma en que voy a escribir el
+# comando (ver abajo).
+
+valores <- numeric(100) # Crea un vector con 100 ceros, luego los voy a ir
+                        # sustituyendo (excepto al primero).
+for (i in 1:99) {
+  nuevoValor <- valores[i] + 3
+  valores[i + 1] <- nuevoValor
+# Sustituye, en cada iteración, (i + 1)ésimo valor de "valores" (que es un cero
+# inicialmente) por la suma del iésimo valor de "valores" + 3
+
+valores
+plot(valores)
+i # es 99
+
+# En este caso se observaron algunas variantes respecto al esquema general
+# planteado, lo cual no es raro, ya que cada tarea requiere ajustar detalles.
+# Por ejemplo, no es raro utilizar matrices o listas, en lugar de vectores,
+# para almacenar los valores obtenidos en nuestro loop.
+
+
+## LOOPS OBLIGADOS (O NO)
+# En el caso anterior, no era necesario utilizar un loop, ya que el comando
+# "seq" puede realizar la misma tarea e incluso con mayor eficiencia. No es
+# raro que se utilicen loops existiendo otros comandos que hacen lo mismo,
+# debido a la cantidad de funciones que existen en R.
+
+# Sin embargo hay ocasiones en que es realmente necesario utilizar un loop. Un
+# caso paradigmático es cuando "el valor siguiente depende del anterior". Por
+# ejemplo, si consideramos el aumento de un depósito bancaro bajo una tasa de
+# interés determinada.
+
+# Si la tasa de interés es "t" y la cantidad depositada es "d":
+# d( n + 1 ) = d( n ) + d( n ) * t
+
+# (Se indica entre paréntesis el año).
+# En este caso, para calcular d( n + 1 ) necesito saber cuanto es d( n ), para
+# lo cual debo conocer d( n - 1), etc... Por lo tanto, lo que necesito es
+# saber el valor inicial d( 0 ).
+
+# Entonces, para calcular d( n ) a partir de un depósito inicial podemos usar
+# el siguiente código:
+plata.inicial <- 500         # ¿depósito inicial?
+tasa.interes  <- 0.05        # tasa de interés, 5%
+deposito <- numeric(10)      # 10 años/iteraciones
+deposito[1] <- plata.inicial # Hay que ingresar "manualmente" el valor inicial
+                             # *antes* del loop
+for (i in 1:9) {
+  plata <- deposito[i] + deposito[i] * tasa.interes
+  out[i + 1] <- plata
+}
  
+ 
+# Otro ejemplo: serie de Fibonacci
+# La serie de Fibonacci empieza con dos 1 y se calcula cada valor siguiente
+# sumando los dos anteriores.
+
+# Es decir, si f( n ) es el enésimo valor de la serie, una forma de describir
+# la serie es (empezando por n=3):
+# f( n ) = f(n - 1) + f(n - 2)
+
+# Los primeros valores son:
+# 1 1 2 3 5 8 13 21 34 55 89 ...
+
+# Calculemos los primeros 20 elementos de la serie:
+
+fibo <- numeric(20) + 1
+# "fibo" es un vector para rellenar.
+for (n in 3:20) {
+  fibo[n] <- fibo[n - 1] + fibo[n - 2]
+}
+fibo
+plot(fibo)
+plot(fibo, log='y', type='o')
+
+
 ## loops anidados
 # Aunque suene horrible, no es otra cosa que más de lo mismo:
 mat <- matrix(1:20, 4, 5)
-for(i in 1:4) {        # i será el índice de las filas de mat
-   for(j in 1:5) {     # j será el índice de las columnas de mat
+for (i in 1:4) {        # i será el índice de las filas de mat
+   for (j in 1:5) {     # j será el índice de las columnas de mat
       print(mat[i, j]) # Nótese que se usan letras distintas, para evitar
    }                   # confusiones. También se ajusta la indentación
 }                      # respetando los blóques de código.
@@ -137,8 +196,8 @@ coords <- cbind(x, y) # Lista de coordenadas
 # puntos y guardarlos en una matriz M (5x5), en donde M[i,j] = dist.
 # entre los puntos i y j...
 M <- matrix(0, 5, 5)  # Una matriz en donde guardar los valores
-for(i in 1:5) {
-   for(j in 1:5) {
+for (i in 1:5) {
+   for (j in 1:5) {
       x0 <- coords[i, 1]
       x1 <- coords[j, 1]
       y0 <- coords[i, 2]
