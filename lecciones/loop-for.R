@@ -182,31 +182,67 @@ plot(fibo)
 plot(fibo, log='y', type='o')
 
 
-## Bonus: loops anidados
-# Aunque suene horrible, no es otra cosa que más de lo mismo:
+## Bonus: LOOPS ANIDADOS
+# Aunque suene horrible, no es otra cosa que más de lo mismo. La idea es que
+# se hace un loop adentro de otro loop. Usando dos loops anidados podemos
+# recorrer los elementos de un objeto de dos dimensiones, como es una matriz:
 mat <- matrix(1:20, 4, 5)
-for (i in 1:4) {        # i será el índice de las filas de mat
-   for (j in 1:5) {     # j será el índice de las columnas de mat
-      print(mat[i, j]) # Nótese que se usan letras distintas, para evitar
-   }                   # confusiones. También se ajusta la indentación
-}                      # respetando los blóques de código.
- 
-# Ejemplo: supongamos que x e y son longitud y latutid de sitios:
+for (i in 1:4) {       # i será el índice de las filas de mat
+   for (j in 1:5) {    # j será el índice de las columnas de mat
+      print(mat[i, j]) # (es necesario usar letras distintas).
+}
+
+# Ejemplo: tomando un conjunto de coordenadas cartesianas podemos hacer el
+# calculo de la distancia entre cualquier par de puntos, usando la distancia
+# euclidiana, que no es otra cosa que una aplicación del teorema de pitágoras:
+# h ^ 2 = a ^ 2 + b ^ 2   <==>   h = sqrt(a ^ 2 + b ^ 2)
+# (h: hipotenusa y a,b: catetos, de un triángulo rectángulo).
+# La distancia euclidiana se calcula sustituyendo "a" por la resta de las
+# coordenadas de dos puntos en uno de los ejes, haciendo lo mismo para "b" y
+# despejando para la hipotenusa.
+
+# Si el punto A es (x0, y0) y B es (x1, y1), la distancia entre ambos es:
+# d = sqrt((x0 - x1) ^ 2 + (y0 - y1) ^ 2)
+
+# Nuestros puntos van a estar representados por una matriz de dos columnas,
+# las coordenadas de  "longitud" y "latitud" respectivamente:
 x <- rnorm(5)
 y <- rnorm(5)
-coords <- cbind(x, y) # Lista de coordenadas
-# Quiero calcular las distancias euclidianas entre todos los pares de
-# puntos y guardarlos en una matriz M (5x5), en donde M[i,j] = dist.
-# entre los puntos i y j...
-M <- matrix(0, 5, 5)  # Una matriz en donde guardar los valores
+coords <- cbind(x, y)
+
+# Haremos una pequeña función para calcular la distancia entre 2 puntos
+# cualesquiera, teniendo en cuenta el formato que le dimos a las coordenadas:
+
+euc <- function(a, b, puntos) {
+# Calcula la distancia entre los puntos "a" y "b", incluidos en la matriz
+# "puntos"
+# a,b: dos números enteros, entre 1 y el número de filas de "puntos".
+# puntos: una matriz numérica de dos columnas.
+  resta <- puntos[a,] - puntos[b,] # (x0 - x1, y0 - y1) = (a, b)
+  return(sqrt(sum(resta ^ 2)))     # sqrt(a ^ 2 + b ^ 2)
+}
+
+# Finalmente, quiero calcular las distancias euclidianas entre todos los pares
+# de puntos y guardarlos en una matriz M (5x5), en donde M[i,j] = dist.
+# entre los puntos i y j ... Para esto lo primero será crear una matriz
+# "vacía" para rellenar con los valores de las distancias:
+M <- matrix(0, 5, 5)
+# Ahora se hacen dos "for" anidados, ambos de 1:5
 for (i in 1:5) {
    for (j in 1:5) {
-      x0 <- coords[i, 1]
-      x1 <- coords[j, 1]
-      y0 <- coords[i, 2]
-      y1 <- coords[j, 2]
-      M[i, j] <- sqrt((x1 - x0) ^ 2 + (y1 - y0) ^ 2)
+      M[i, j] <- euc(i, j, coords)
+      # Aquí relleno el elemento i,j de M con la distancia entre esos puntos.
    }
-} # (hay formas más "elegantes" y eficientes de hacerlo)
-M # La diagonal de M son ceros
+}
+M # La diagonal de M deben ser ceros
 diag(M)
+# M debe ser simétrica respecto a la diagonal, lo cual se puede comprobar:
+M1 <- M - t(M)
+sum(M1) # Debe dar 0
+
+# Nota: existen formas más "elegantes" y eficientes de hacerlo, e incluso hay
+# una función nativa de R para cacular matrices de distancia ("dist").
+
+
+## RESUMEN
+# Hemos visto el tipo de loop más 
