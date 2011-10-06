@@ -12,7 +12,7 @@ for (i in 1:10) {
   print(i)
   break
 }
-i
+i 
 # Imprime sólo el primer valor, luego es interrumpido.
  
 # Combinado con if, sirve para interrumpir en el momento que ocurre
@@ -37,10 +37,11 @@ for (i in 1:10) {
 f <- 5 # Valor inicial
 n <- 0
 repeat {
-  n <- n + 1
-  f <- f / n
+  n <- n + 1 # n es el número de elementos + 1, actua como un contador, el cual
+  # comienza en 0
+  f <- f / n # f depende del valor del f anterior el cual se relaciona con n
   print(f)
-  if(f <= 0.001)
+  if(f <= 0.001) # en este caso el límite se lo da el comado if
     break
 }
 
@@ -48,7 +49,8 @@ repeat {
 # mencionada:
 f <- 5 # Valor inicial
 n <- 0
-while(f > 0.001) {
+while(f > 0.001) { # en este caso el límite lo hace por defecto el comando
+                   # while
   n <- n + 1
   f <- f / n
   print(f)
@@ -56,7 +58,7 @@ while(f > 0.001) {
 
 ## Comando "next"
 
-# El comando "next" también genera una interrupción, pero no de todo el
+# El comando "next" también genera una interrupción, pero no en todo el
 # loop, si no de la iteración en la que se encuentra el mismo.
 ?"next"
 
