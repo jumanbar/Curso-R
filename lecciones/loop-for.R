@@ -250,7 +250,7 @@ sum(M1) # Debe dar 0
 # 'for' no requiere de condiciones para su ejecución, más allá de la especi-
 # ficación de la cantidad de iteraciones deseadas.
 # Los ejemplos empleados dan cuenta de varias situaciones en que podemos
-# emplear esta herramienta, pero no está limitada a éstas. Siendo particular-
+# utilizar esta herramienta, pero no está limitada a éstas. Siendo particular-
 # mente útil al realizar simulaciones con modelos o aplicar análisis a grandes
 # series de datos, su combinación dentro de funciones y con otras estructuras
 # de control (ej: condicionales) se hace más importante, y resulta fundamental
