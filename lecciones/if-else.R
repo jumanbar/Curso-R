@@ -111,7 +111,7 @@ clasif
 (i > 5)? |                    / Sí -----> "mediano"
          \ No -----> (i > 2)? |
                                  \ No -----> "chico"
-
+# A modo de resumen:
 # Estos comandos son muy útiles cuando queremos separar datos frente a una
 # condicion que nosotros le marcamos. Otro uso sería cuando necesitamos saber
 # cuales datos se encuentran por debajo de cierta condición la cual podría
