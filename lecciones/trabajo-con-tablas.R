@@ -1,5 +1,6 @@
 ## TRABAJO CON TABLAS: UNA INTRODUCCIÓN
 
+
 # En esta lección se van a mostrar algunos métodos básicos y muy útiles
 # para resolver problemas comunes asociados al trabajo con tablas de datos.
 # Se cubren aspectos sencillos, tal como obtener información, efectuar
@@ -25,7 +26,11 @@ colnames(USArrests)
 # Los nombres de las filas en cambio son independientes:
 rownames(USArrests)
  
+
 ### ACTUALIZACIÓN ###
+
+##### ACTUALIZACIÓN #####
+
 # Una función muy útil para listas o data.frames es str:
 str(USArrests)
 # 'data.frame':	50 obs. of  4 variables:
@@ -33,6 +38,10 @@ str(USArrests)
 #  $ Assault : int  236 263 294 190 276 204 110 238 335 211 ...
 #  $ UrbanPop: int  58 48 80 50 91 78 77 72 80 60 ...
 #  $ Rape    : num  21.2 44.5 31 19.5 40.6 38.7 11.1 15.8 31.9 25.8 ...
+
+
+
+
 # Lo primero que indica es la clase del objeto, en este caso "data.frame", junto con
 # las dimensiones del mismo (50 observaciones/filas, 4 variables/columnas)
 # Luego muestra las variables que componen al set de datos, usando el símbolo "$" para
@@ -46,6 +55,8 @@ str(iris)
 x <- matrix(sample(20), 5, 4)
 str(x)
 # int [1:5, 1:4] 17 3 9 5 16 2 13 14 10 19 ...
+
+
 # Aquí la clase del objeto es "matrix", pero sólo muestra "int", indicando que los valores
 # del objeto son todos "integer".
 # Las dimensiones de la matriz aparecen entre paréntesis recto (1:5 en filas y 1:4 en columnas,
@@ -56,6 +67,10 @@ str(propios)
 # List of 2
 #  $ values : num [1:5] 5.20e+01 1.36e+01 8.83 5.18e-01 -1.61e-14
 #  $ vectors: num [1:5, 1:5] -0.559 -0.223 -0.397 -0.456 -0.521 ...
+
+
+
+
 # En este caso el objeto evaluado es una lista, cuyos elementos son "values" y "vectors"
 # El primero es un vector numérico, de 5 valores (indicado por los [ ])
 # El segundo es una matriz, de 5x5, también indicado por los [ ].
@@ -76,9 +91,16 @@ str(HairEyeColor)
 #   ..$ Hair: chr [1:4] "Black" "Brown" "Red" "Blond"
 #   ..$ Eye : chr [1:4] "Brown" "Blue" "Hazel" "Green"
 #   ..$ Sex : chr [1:2] "Male" "Female"
+
 # En este caso estamos frente a un objeto particular: es de la clase "table" y en este caso
 # tiene 3 dimensiones (ver los [ ]). Es un caso particular de la clase "array".
 ### ACTUALIZACIÓN ###
+
+
+# En este caso estamos frente a un objeto particular: es de la clase "table" y en este caso
+# tiene 3 dimensiones (ver los [ ]). Es un caso particular de la clase "array".
+##### FIN DE ACTUALIZACIÓN #####
+
  
 # Resumen
 ?summary
@@ -105,7 +127,11 @@ table(iris$Species)    # Tienen nombres; clase "table"
  
 # APLICAR FUNCIONES
  
+
 # Funcion apply:
+
+## Funcion apply:
+
 # La función "apply" y sus variantes sirven para evaluar funciones a un conjunto
 # de vectores, objetos, etc. La función puede ser una ya existente o una creada por el
 # usuario.
@@ -168,6 +194,8 @@ out <- with(lista, {
               y
             })
 out
+
+
 # La salida es el último comando de los que están entre las { }.
 # Es deseable separar una línea por comando y usar la indentación para indicar las líneas
 # que se encuentran dentro de las llaves, como en este caso.
@@ -175,10 +203,13 @@ out
 # La función within devuelve una versión modifiada de la lista de entrada:
 iris2 <- within(iris, Sepal.Ratio <- Sepal.Length / Sepal.Width)
 head(iris2)
- 
- 
- 
+
+
 ### FUNCIONES tapply, by y aggregate
+
+## FUNCIONES tapply, by y aggregate
+
+
 # Estas tres funciones sirven para agrupar observaciones dentro de una tabla y aplicar
 # una función ("FUN") determinada a dicho grupo.
  
