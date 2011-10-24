@@ -6,10 +6,10 @@
 # Para ver la ayuda de R al respecto se pueden usar los comandos:
 ?Control
 
-# Los "loops" (lazos en español) son comandos especiales que sirven para hacer
+# Los "loops" ("lazos" en español) son comandos especiales que sirven para hacer
 # una cantidad arbitraria de iteraciones.
 
-# Según wikipedia:
+# Iteración, según wikipedia:
 # En programación, Iteración es la repetición de una serie de instrucciones en
 # un programa de computadora. Puede usarse tanto como un término genérico (como
 # sinónimo de repetición) así como para describir una forma específica de
@@ -27,8 +27,7 @@
 # (usualmente es una sóla letra, como "i" o "j") y "secuencia" es un vector
 # cualquiera (generalmente es una secuencia del tipo 1:n):
 
-for (variable in secuencia)
-  comando
+for (variable in secuencia) comando
 
 # Con este código, R ejecuta este "comando" n veces (en donde n es la longitud
 # del vector "secuencia"). En cada iteración el valor de "variable" va
@@ -47,6 +46,10 @@ for (i in 1:10)
 # número 10:
 i
 
+# Nota: en general se considera más "apropiado" escribir los comandos en una
+# línea aparte. En las lecciones se van a usar las dos formas, pero se 
+# recomenda usar este estilo".
+
 
 ## MÁS DE UN COMANDO
 # Si queremos hacer varios comandos en cada iteración usamos { }. Esto es
@@ -63,26 +66,28 @@ for (variable in secuencia) {
 }
 
 # Ejemplo:
-for (i in 1:10) { # Es buena práctica poner el { inicial aquí
+for (i in 1:10) {
    print('Extremos:')         
    print(paste(0 - i, 0 + i))
-} # Es buena práctica poner el } final aquí
+}
+# El lugar de las llaves de inicio y fin, { & }, no es importante para R, pero 
+# es aconsejable usar este estilo ya que es la práctica más común.
+
+# Nota: es un error muy común olvidarse de poner las llaves al principio y
+# final del bloque de instrucciones, por ejemplo luego de un "if ()" o
+# "for (...)". Para evitar estos errores, una actitud "agresiva" de programación
+# defensiva es usar siempre llaves para los comandos for, while, repeat, if y
+# else.
 
 # Es deseable, por un tema de facilidad de lectura, que los comandos interiores
 # a los {} estén adelantados una distancia fija, por ejemplo un "tab" o
 # tabulación (a esto se le llama "indentación"; ver wikipedia para mayor
 # profundidad).
 
-# (Nota: es un error muy común olvidarse de poner las llaves al principio y
-# final del bloque de instrucciones, por ejemplo luego de un "if ()" o
-# "for (...)". Para evitar estos errores, una actitud "agresiva" de programación
-# defensiva es usar siempre llaves para los comandos for, while, repeat, if y
-# else.
-
 
 ## GUARDANDO EL RESULTADO
-# IMPORTANTE!!! Muchas veces, antes de comenzar el loop se debe crear un vector
-# "vacio" (entindase como un vector lleno de ceros).
+# IMPORTANTE!!!: Muchas veces, antes de comenzar el loop se debe crear un vector
+# "vacio" (entindase como un vector lleno de ceros, aunque puede ser diferente).
 # Este vector sirve para guardar los números creados. Para este cometido, se
 # puede usar un esquema de tipo:
 valores <- numeric(n)
@@ -114,8 +119,8 @@ for (i in 1:99) {
   nuevoValor <- valores[i] + 3
   valores[i + 1] <- nuevoValor
 }
-# Sustituye, en cada iteración, (i + 1)ésimo valor de "valores" (que es un cero
-# inicialmente) por la suma del iésimo valor de "valores" + 3
+# Sustituye, en cada iteración, al (i + 1)ésimo valor de "valores" (que es un
+# cero inicialmente) por la suma del iésimo valor + 3.
 
 valores
 plot(valores)
@@ -123,7 +128,7 @@ i # es 99
 
 # En este caso se observaron algunas variantes respecto al esquema general
 # planteado, lo cual no es raro, ya que cada tarea requiere ajustar detalles.
-# Por ejemplo, no es raro utilizar matrices o listas, en lugar de vectores,
+# Por ejemplo, es común utilizar matrices o listas, en lugar de vectores,
 # para almacenar los valores obtenidos en nuestro loop.
 
 
@@ -143,19 +148,19 @@ i # es 99
 
 # (Se indica entre paréntesis el año).
 # En este caso, para calcular d( n + 1 ) necesito saber cuanto es d( n ), para
-# lo cual debo conocer d( n - 1), etc... Por lo tanto, lo que necesito es
+# lo cual debo conocer d( n - 1 ), etc... Por lo tanto, lo que necesito es
 # saber el valor inicial d( 0 ).
 
 # Entonces, para calcular d( n ) a partir de un depósito inicial podemos usar
 # el siguiente código:
-plata.inicial <- 500         # ¿depósito inicial?
+plata.inicial <- 500         # depósito inicial
 tasa.interes  <- 0.05        # tasa de interés, 5%
 deposito <- numeric(10)      # 10 años/iteraciones
 deposito[1] <- plata.inicial # Hay que ingresar "manualmente" el valor inicial
                              # *antes* del loop
 for (i in 1:9) {
   plata <- deposito[i] + deposito[i] * tasa.interes
-  out[i + 1] <- plata
+  deposito[i + 1] <- plata
 }
  
  
@@ -176,6 +181,7 @@ fibo <- numeric(20) + 1
 # "fibo" es un vector para rellenar.
 for (n in 3:20) {
   fibo[n] <- fibo[n - 1] + fibo[n - 2]
+  # Esta viene a ser la ecuación de más arriba...
 }
 fibo
 plot(fibo)
@@ -227,6 +233,7 @@ euc <- function(a, b, puntos) {
 # entre los puntos i y j ... Para esto lo primero será crear una matriz
 # "vacía" para rellenar con los valores de las distancias:
 M <- matrix(0, 5, 5)
+# Nota: 5 podría ser sustituído por nrow(coords)
 # Ahora se hacen dos "for" anidados, ambos de 1:5
 for (i in 1:5) {
    for (j in 1:5) {
@@ -238,14 +245,17 @@ M # La diagonal de M deben ser ceros
 diag(M)
 # M debe ser simétrica respecto a la diagonal, lo cual se puede comprobar:
 M1 <- M - t(M)
-sum(M1) # Debe dar 0
+sum(M1)      # Debe dar 0
+all(M1 == 0) # Debe dar tfinal
 
 # Nota: existen formas más "elegantes" y eficientes de hacerlo, e incluso hay
 # una función nativa de R para cacular matrices de distancia ("dist").
 
 
 ## RESUMEN
-# Hemos visto el tipo de loop más comunmente utilizado en programación.
+# Hemos visto el tipo de loop más comunmente utilizado en programación. El 
+# loop 'for' se utiliza cuando sabemos de antemano el número de iteraciones
+# que necesitamos.
 # Destacamos que a diferencia del loop 'while', que veremos luego, el loop
 # 'for' no requiere de condiciones para su ejecución, más allá de la especi-
 # ficación de la cantidad de iteraciones deseadas.
@@ -255,3 +265,4 @@ sum(M1) # Debe dar 0
 # series de datos, su combinación dentro de funciones y con otras estructuras
 # de control (ej: condicionales) se hace más importante, y resulta fundamental
 # como herramienta para cualquier programador.
+

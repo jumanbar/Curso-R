@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # GRÁFICOS: UNA INTRODUCCIÓN
 # Aclaramos que se trata de una introducción al conocimiento en general, ya que
 # el universo de los gráficos posibles en R es muy, muy vasto. Pueden
@@ -50,12 +51,58 @@ xlab="ejemplo", ylab="numeros", main="Ejem-plot")
 # En caso de no entender el uso o las opciones posibles, en la ayuda de "par" o
 # "plot" van a poder encontrar la documentación necesaria.
 par(op) # vuelven los parámetros anteriores a la ventana de gráficos.
+=======
+## GRÁFICOS: UNA INTRODUCCIÓN
+
+# Aclaramos que se trata de una introducción, ya que el universo de los gráficos posibles en R es muy,
+# muy vasto. Pueden profundizar sobre este tema a través de los "links de interés" dispuestos en la
+# sección "recursos".
+# El objetivo de esta lección es brindar los elementos más básicos y universales posibles para trabajar
+# con gráficos en R.
+ 
+# Una práctica recomendable es la de escribir los pasos necesarios para lograr el gráfico que deseamos
+# en un script de R (con extensión ".R"), de forma tal que se pueden hacer cambios paso por paso y
+# lograr resultados bastante complejos y reproducibles. 
+ 
+# Para abrir una nueva ventana:
+# X11() under UNIX
+# windows() under Windows
+# and quartz() under Mac OS X
+ 
+# PARÁMETROS DE GRÁFICOS
+# par
+# Es el conjunto de los parámetros gráficos, las funciones de plot le pasan sus argumentos, la
+# mayoría a través del argumento especial "...", cuando se ejecutan.
+#
+?par
+ 
+# Creo un vector para plotear
+x <- sort(rnorm(100))
+# Uso "mar" para agrandar el margen izquierdo... "mar" es un argumento que acepta como opción un
+# vector numérico con 4 valores (por defecto mar=c(5, 4, 4, 2) + .1).
+op <- par(mar=c(5, 6, 4, 2)) # Es común guardar en un objeto la salida para volver a usar los
+                             # parámetros anteriores luego
+# Un ejemplo en el que se ajustan muchos parámetros...
+plot(x, cex=1.5, cex.axis=1.2, cex.lab=2.1, col.lab='green', type='o', lwd=3, xlab="ejemplo", ylab="numeros", main="Ejem-plot")
+# Jugando con los valores de cada uno pueden ver el significado de cada uno (en general los nombres
+# buscan ser informativos).
+# En caso de no entender el uso o las opciones posibles, en la ayuda de "par" o "plot" van a poder
+# encontrar la documentación necesaria.
+par(op) # vuelven los parámetros anteriores a la ventana de gráficos.
+
+
+# Ahora quiero agregar nuevos puntos al gráfico
+y <- sort(rnorm(100, 1))
+points(y, col='green', lwd=6)
+lines(y, col='red', lwd=3)
+>>>>>>> origin/master
  
 # Ahora quiero agregar nuevos puntos al gráfico...
 y <- sort(rnorm(100, 1))
 points(y, col='green', lwd=6) # Agrega un nuevo conjunto de puntos.
 lines(y, col='red', lwd=3) # Líena que une puntos.
  
+<<<<<<< HEAD
  
 # COLORES EN LOS GRAFICOS
 # El parámetro "col", usado dentro de la función "plot" (u otras funciones de
@@ -66,6 +113,17 @@ palette()
  
 # Hay muchos nombres de colores posibles, los cuales se pueden conocer con la
 # funcion "colors":
+=======
+# COLORES EN LOS GRAFICOS
+# El parámetro "col", usado dentro de la función "plot" (u otras funciones de gráficos) establece
+# el color de lo graficado. Es un parámetro versátil, ya que acepta números, strings (palabras) o
+# códigos RGB...
+ 
+# Si se usan los enteros del 1 al 8 los colores ploteados son estos:
+palette()
+ 
+# Hay muchos nombres de colores posibles, los cuales se pueden conocer con la funcion "colors":
+>>>>>>> origin/master
 ?colors
 colors()
  
@@ -74,8 +132,12 @@ length(colors()) # 657
 mat <- matrix(1:(26 * 26), 26, 26)
 image(mat, col=colors())
  
+<<<<<<< HEAD
 # También existen algunas funciones que generan gradientes de colores
 # preestablecidos, por ejemplo:
+=======
+# También existen algunas funciones que generan gradientes de colores preestablecidos, por ejemplo:
+>>>>>>> origin/master
 # gray, rainbow, terrain.colors, heat.colors
 image(mat, col=terrain.colors(26 * 26))
 image(mat, col=terrain.colors(26 * 26))
@@ -83,6 +145,7 @@ image(mat, col=rainbow(26 * 26))
 image(mat, col=gray(seq(0, 1, , 26 * 26))) # este necesita valores entre 0 y 1
 image(mat, col=heat.colors(26 * 26))
  
+<<<<<<< HEAD
 # Es posible usar colores definidos por códigos de RGB. Estos se escriben con un
 # "#" y 3 valores en hexagesimal (son 6 dígitos, 2 para Red, 2 para Green y 2
 # para Blue).
@@ -93,6 +156,16 @@ curve(sin(x) / x, from=-20, to=20, lwd=15, col='#5D5EB6')
 # RGB:
 browseURL('http://www.colorpicker.com/')
  
+=======
+# Es posible usar colores definidos por códigos de RGB. Estos se escriben con un "#" y 3 valores
+# en hexagesimal (son 6 dígitos, 2 para Red, 2 para Green y 2 para Blue).
+# Ejemplo:
+curve(sin(x) / x, from=-20, to=20, lwd=15, col='#5D5EB6')
+# Existen programas y páginas web para elegir colores que devuelven el código RGB:
+browseURL('http://www.colorpicker.com/')
+ 
+ 
+>>>>>>> origin/master
 # Algunos parámetros se pueden sólo manejar con par directamente
 # "ask",
 # "fig", "fin",
@@ -172,10 +245,13 @@ curve(cos(x), from=-5, to=5, add=TRUE, col=2, n=6)
 # Hay varios tipos de funciones de plot especializadas:
 coplot(Sepal.Length ~ Sepal.Width | Species, data=iris)
  
+<<<<<<< HEAD
 matplot(iris[,-5], type='l', lwd=2, lty=1)
 
 ############################## 
 # BONUS
+=======
+>>>>>>> origin/master
 # RStudio viene con la función manipulate, que sirve para hacer gráficos
 # más interactivos. Es necesario cargar el paquete homónimo primero...
 library(manipulate)
@@ -221,6 +297,7 @@ manipulate(
 # sofisticados que los gráficos por defecto de R, uno de ellos es "ggplot2",
 # sobre el cual no vamos a profundizar en este curso.
  
+<<<<<<< HEAD
 # Para terminar la lección les mostramos un ejemplo de las cosas que pueden
 # encontrarse hoy en día y que cualquiera puede empezar a usar con un poco de
 # maña y cabeza:
@@ -238,6 +315,58 @@ fish.html')
  
 # Cargar estos paquetes (si no están instalados usar RStudio o install.packages
 # ("paquete") para instalarlos).
+=======
+# Hay varios tipos de funciones de plot especializadas:
+coplot(Sepal.Length ~ Sepal.Width | Species, data=iris)
+ 
+matplot(iris[,-5], type='l', lwd=2, lty=1)
+ 
+# Usando el argumento "mfcol" o "mfrow", dentro de "par" podemos hacer varios plots juntos:
+op <- par(mfrow=c(2, 2))
+# Esto inicia una ventana gráfica con 4 lugares, 2 filas y 2 columnas
+# Al usar mfrow los gráficos van llenando la ventana por fila
+boxplot(Sepal.Width ~ Species, data=iris)
+boxplot(Sepal.Length ~ Species, data=iris)
+boxplot(Petal.Width ~ Species, data=iris)
+boxplot(Petal.Length ~ Species, data=iris)
+par(op)
+ 
+# Visualización de la normalidad de un conjunto de datos:
+x <- rnorm(100)
+qqnorm(x) # Cuantiles teóricamente esperados vs. cuantiles observados
+qqline(x) # Línea 1:1
+ 
+# dotchart
+countries <- c("South Africa", "Egypt", "Nigeria", "Algeria",
+"Morocco", "Angola", "Libya", "Tunisia", "Kenya", "Ethiopia",
+"Ghana", "Cameroon")
+gdp <- c(285.4, 188.4, 173, 140.6, 91.4, 75.5, 62.3,
+39.6, 29.4, 28.5, 26.2, 22.2)
+dotchart(rev(gdp), rev(countries),
+    xlab="GDP in billions of US dollars",
+    main="African Countries by GDP",
+    xlim=max(gdp)*c(.038,1.02), pch=20)
+ 
+ 
+# Otras herramientas gráficas existen y se crean todo el tiempo en la comunidad R. Existen muchos
+# muy populares que son bastante más sofisticados que los gráficos por defecto de R, uno de ellos
+# es "ggplot2", sobre el cual no vamos a profundizar en este curso.
+ 
+# Para terminar la lección les mostramos un ejemplo de las cosas que pueden encontrarse hoy en día
+# y que cualquiera puede empezar a usar con un poco de maña y cabeza:
+ 
+# Se trata de un paquete creado por google (sí, google además de usar muchísimo R para analizar las
+# ingentes cantidades de información que otiene de nosotros, los usuarios, también genera paquetes
+# de R muy interesantes):
+ 
+# (fuente original)
+browseURL('http://r-ecology.blogspot.com/2011/01/r-and-google-visualization-api-fish.html')
+ 
+# Bajar la "Tabla de pesquerías" dispuesta en el EVA, guardarla en el directorio de trabajo actual de R
+ 
+# Cargar estos paquetes (si no están instalados usar RStudio o install.packages("paquete") para
+# instalarlos).
+>>>>>>> origin/master
 library(ggplot2)
 library(googleVis)
 library(Hmisc)
