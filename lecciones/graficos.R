@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # GRÁFICOS: UNA INTRODUCCIÓN
 # Aclaramos que se trata de una introducción al conocimiento en general, ya que
 # el universo de los gráficos posibles en R es muy, muy vasto. Pueden
@@ -51,7 +51,7 @@ xlab="ejemplo", ylab="numeros", main="Ejem-plot")
 # En caso de no entender el uso o las opciones posibles, en la ayuda de "par" o
 # "plot" van a poder encontrar la documentación necesaria.
 par(op) # vuelven los parámetros anteriores a la ventana de gráficos.
-=======
+
 ## GRÁFICOS: UNA INTRODUCCIÓN
 
 # Aclaramos que se trata de una introducción, ya que el universo de los gráficos posibles en R es muy,
@@ -95,14 +95,14 @@ par(op) # vuelven los parámetros anteriores a la ventana de gráficos.
 y <- sort(rnorm(100, 1))
 points(y, col='green', lwd=6)
 lines(y, col='red', lwd=3)
->>>>>>> origin/master
+
  
 # Ahora quiero agregar nuevos puntos al gráfico...
 y <- sort(rnorm(100, 1))
 points(y, col='green', lwd=6) # Agrega un nuevo conjunto de puntos.
 lines(y, col='red', lwd=3) # Líena que une puntos.
  
-<<<<<<< HEAD
+
  
 # COLORES EN LOS GRAFICOS
 # El parámetro "col", usado dentro de la función "plot" (u otras funciones de
@@ -113,7 +113,7 @@ palette()
  
 # Hay muchos nombres de colores posibles, los cuales se pueden conocer con la
 # funcion "colors":
-=======
+
 # COLORES EN LOS GRAFICOS
 # El parámetro "col", usado dentro de la función "plot" (u otras funciones de gráficos) establece
 # el color de lo graficado. Es un parámetro versátil, ya que acepta números, strings (palabras) o
@@ -123,7 +123,7 @@ palette()
 palette()
  
 # Hay muchos nombres de colores posibles, los cuales se pueden conocer con la funcion "colors":
->>>>>>> origin/master
+
 ?colors
 colors()
  
@@ -132,12 +132,12 @@ length(colors()) # 657
 mat <- matrix(1:(26 * 26), 26, 26)
 image(mat, col=colors())
  
-<<<<<<< HEAD
+
 # También existen algunas funciones que generan gradientes de colores
 # preestablecidos, por ejemplo:
-=======
+
 # También existen algunas funciones que generan gradientes de colores preestablecidos, por ejemplo:
->>>>>>> origin/master
+
 # gray, rainbow, terrain.colors, heat.colors
 image(mat, col=terrain.colors(26 * 26))
 image(mat, col=terrain.colors(26 * 26))
@@ -145,7 +145,7 @@ image(mat, col=rainbow(26 * 26))
 image(mat, col=gray(seq(0, 1, , 26 * 26))) # este necesita valores entre 0 y 1
 image(mat, col=heat.colors(26 * 26))
  
-<<<<<<< HEAD
+
 # Es posible usar colores definidos por códigos de RGB. Estos se escriben con un
 # "#" y 3 valores en hexagesimal (son 6 dígitos, 2 para Red, 2 para Green y 2
 # para Blue).
@@ -156,7 +156,7 @@ curve(sin(x) / x, from=-20, to=20, lwd=15, col='#5D5EB6')
 # RGB:
 browseURL('http://www.colorpicker.com/')
  
-=======
+
 # Es posible usar colores definidos por códigos de RGB. Estos se escriben con un "#" y 3 valores
 # en hexagesimal (son 6 dígitos, 2 para Red, 2 para Green y 2 para Blue).
 # Ejemplo:
@@ -165,7 +165,7 @@ curve(sin(x) / x, from=-20, to=20, lwd=15, col='#5D5EB6')
 browseURL('http://www.colorpicker.com/')
  
  
->>>>>>> origin/master
+
 # Algunos parámetros se pueden sólo manejar con par directamente
 # "ask",
 # "fig", "fin",
@@ -245,13 +245,13 @@ curve(cos(x), from=-5, to=5, add=TRUE, col=2, n=6)
 # Hay varios tipos de funciones de plot especializadas:
 coplot(Sepal.Length ~ Sepal.Width | Species, data=iris)
  
-<<<<<<< HEAD
+
 matplot(iris[,-5], type='l', lwd=2, lty=1)
 
 ############################## 
 # BONUS
-=======
->>>>>>> origin/master
+
+
 # RStudio viene con la función manipulate, que sirve para hacer gráficos
 # más interactivos. Es necesario cargar el paquete homónimo primero...
 library(manipulate)
@@ -260,8 +260,8 @@ library(manipulate)
 # Trabaja con tres funciones llamadas "slider", "picker" y "checkbox"
 # que sirven para variables continuas, listas de opciones y cajas de chequeo
 manipulate(
-	curve(sin(a * x) * x, from=-5, to=5),
- 	a = slider(1, 15)
+  curve(sin(a * x) * x, from=-5, to=5),
+   a = slider(1, 15)
 )
  
 # Para ver como funcionan:
@@ -272,24 +272,24 @@ manipulate(
 # Si me interesa puedo agregar otro parámetro para manipular,
 # se agrega con comas.
 manipulate(
-	curve(sin(a * x) * x, from=-5, to=5, n=b), # Atención a las comas y
- 	a = slider(1, 30),                         # paréntesis
- 	b = slider(101, 3001) # Acá no va coma...
+  curve(sin(a * x) * x, from=-5, to=5, n=b), # Atención a las comas y
+   a = slider(1, 30),                         # paréntesis
+   b = slider(101, 3001) # Acá no va coma...
 )
  
 # Ejemplo con picker
 manipulate(
-	curve(dnorm(x, sd=a), from=-20, to=20, col=b),
- 	a = slider(1, 10),
- 	b = picker(2, 3, 'blue')
+  curve(dnorm(x, sd=a), from=-20, to=20, col=b),
+   a = slider(1, 10),
+   b = picker(2, 3, 'blue')
 )
  
 # Ejemplo con checkbox
 x <- rnorm(1e4)
 manipulate(
-	hist(x, breaks=a, freq=b),
- 	a = slider(10, 100),
- 	b = checkbox(FALSE)
+  hist(x, breaks=a, freq=b),
+   a = slider(10, 100),
+   b = checkbox(FALSE)
 )
 
 # Otras herramientas gráficas existen y se crean todo el tiempo en la
@@ -297,7 +297,7 @@ manipulate(
 # sofisticados que los gráficos por defecto de R, uno de ellos es "ggplot2",
 # sobre el cual no vamos a profundizar en este curso.
  
-<<<<<<< HEAD
+
 # Para terminar la lección les mostramos un ejemplo de las cosas que pueden
 # encontrarse hoy en día y que cualquiera puede empezar a usar con un poco de
 # maña y cabeza:
@@ -315,7 +315,7 @@ fish.html')
  
 # Cargar estos paquetes (si no están instalados usar RStudio o install.packages
 # ("paquete") para instalarlos).
-=======
+
 # Hay varios tipos de funciones de plot especializadas:
 coplot(Sepal.Length ~ Sepal.Width | Species, data=iris)
  
@@ -366,7 +366,7 @@ browseURL('http://r-ecology.blogspot.com/2011/01/r-and-google-visualization-api-
  
 # Cargar estos paquetes (si no están instalados usar RStudio o install.packages("paquete") para
 # instalarlos).
->>>>>>> origin/master
+
 library(ggplot2)
 library(googleVis)
 library(Hmisc)
@@ -379,8 +379,8 @@ fish2 <- data.frame(fish2, year) # reemplaza year con valores reales
  
 # Google visusalization API
 fishdata <- data.frame(subset(fish2, fish2$var == "quantity_1000lbs", -4),
-											 value_1000dollars=subset(fish2, fish2$var ==
-											 "value_1000dollars", -4)[,4])
+                       value_1000dollars=subset(fish2, fish2$var ==
+                       "value_1000dollars", -4)[,4])
 names(fishdata)[4] <- "quantity_1000lbs"
 fishharvest <- gvisMotionChart(fishdata, idvar="species", timevar="year")
 plot(fishharvest) # El plot se abre en un navegador web automáticamente
