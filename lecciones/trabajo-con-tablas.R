@@ -29,7 +29,13 @@ names(USArrests)
 colnames(USArrests)
 # En este caso names y colnames devuelven lo mismo, por las características de
 # las data.frames.
-# Los nombres de las filas en cambio son independientes:
+
+# Nota: en R y RStudio se pueden autocompletar los nombres de los elementos
+# usando la tecla tab inmediatamente después del operador $, por ejemplo:
+# iris$ + tab
+# Esto nos sirve para ver el nombre de los componentes de la tabla o lista. 
+
+# Los nombres de las filas se consiguen o modifican con:
 rownames(USArrests)
 
 # Estructura (str):
@@ -135,6 +141,14 @@ x['setosa']
 # Nota: esto puede darse para confusiones si las categorías mismas son
 # números enteros, 1, 2, 3, etc...
 
+# Alternativa: paquete plyr
+# La función "count" del paquete plyr sirve para hacer conteos por
+# categorías, devolviendo el resultado en un formato diferente (requiere
+# instalar el paquete plyr):
+library(plyr)
+count(iris$Sepal.Width)
+count(as.vector(iris$Species))
+  
  
 # APLICAR FUNCIONES
 # En R existen algunas funciones útiles que hacen cálculos por columna o fila

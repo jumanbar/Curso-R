@@ -1,5 +1,5 @@
-
 # GRÁFICOS: UNA INTRODUCCIÓN
+
 # Aclaramos que se trata de una introducción al conocimiento en general, ya que
 # el universo de los gráficos posibles en R es muy, muy vasto. Pueden
 # profundizar sobre este tema a través de los "links de interés" dispuestos en
@@ -17,7 +17,7 @@
 # windows() under Windows
 # and quartz() under Mac OS X
 # Esto sirve para poder visualizar mas de un gráfico en R.
- 
+
 # PARÁMETROS DE GRÁFICOS
 # par
 # Es el conjunto de los parámetros gráficos, las funciones de plot de los
@@ -33,140 +33,30 @@ x <- sort(rnorm(100))
 # acepta como opción un vector numérico con 4 valores
 # (por defecto mar=c(5, 4, 4, 2) + .1). Este vector define el tamaño de los 4
 # márgenes de la ventana del gráfico.
-op <- par(mar=c(5, 6, 4, 2)) # Aća estoy cambiando el tamaño de los margenes
-                             # del gráfico. En este caso estoy cambiando los dos
-                             # primeros valores que equivalen al margen
-                             # inferior y al margen izquierdo. El oreden de
-                             # los margenes es a partir del inferior en sentido
-                             # horario.
-                             # Es común guardar en un objeto (en este caso "op")
-                             # la salida para volver a usar los parámetros
-                             # anteriores luego.
-                             
-# Un ejemplo en el que se ajustan muchos parámetros...
+op <- par(mar=c(5, 6, 4, 2))
+
+# Aća estoy cambiando el tamaño de los margenes del gráfico. En este caso
+# sólamente los dos primeros valores que equivalen al margen inferior y al
+# margen izquierdo.
+# Estos números están puestos en sentido horario, empezando por el margen
+# inferior (inf, izq., arr, der).
+# Es común guardar en un objeto (en este caso "op") la salida para volver a usar
+# los parámetros originales luego.
+
+# Un ejemplo en el que se manipulan muchos parámetros...
 plot(x, cex=1.5, cex.axis=1.2, cex.lab=2.1, col.lab='green', type='o', lwd=3,
 xlab="ejemplo", ylab="numeros", main="Ejem-plot")
-# Jugando con los valores de cada uno pueden ver el significado de cada uno
+
+# Jugando con los valores de cada uno se puede ver el significado de los mismos
 # (en general los nombres buscan ser informativos).
+
 # En caso de no entender el uso o las opciones posibles, en la ayuda de "par" o
 # "plot" van a poder encontrar la documentación necesaria.
-par(op) # vuelven los parámetros anteriores a la ventana de gráficos.
 
-## GRÁFICOS: UNA INTRODUCCIÓN
+# Si guaramos la salida de par, podemos recuperar los parámetros originales:
+par(op)
 
-# Aclaramos que se trata de una introducción, ya que el universo de los gráficos posibles en R es muy,
-# muy vasto. Pueden profundizar sobre este tema a través de los "links de interés" dispuestos en la
-# sección "recursos".
-# El objetivo de esta lección es brindar los elementos más básicos y universales posibles para trabajar
-# con gráficos en R.
- 
-# Una práctica recomendable es la de escribir los pasos necesarios para lograr el gráfico que deseamos
-# en un script de R (con extensión ".R"), de forma tal que se pueden hacer cambios paso por paso y
-# lograr resultados bastante complejos y reproducibles. 
- 
-# Para abrir una nueva ventana:
-# X11() under UNIX
-# windows() under Windows
-# and quartz() under Mac OS X
- 
-# PARÁMETROS DE GRÁFICOS
-# par
-# Es el conjunto de los parámetros gráficos, las funciones de plot le pasan sus argumentos, la
-# mayoría a través del argumento especial "...", cuando se ejecutan.
-#
-?par
- 
-# Creo un vector para plotear
-x <- sort(rnorm(100))
-# Uso "mar" para agrandar el margen izquierdo... "mar" es un argumento que acepta como opción un
-# vector numérico con 4 valores (por defecto mar=c(5, 4, 4, 2) + .1).
-op <- par(mar=c(5, 6, 4, 2)) # Es común guardar en un objeto la salida para volver a usar los
-                             # parámetros anteriores luego
-# Un ejemplo en el que se ajustan muchos parámetros...
-plot(x, cex=1.5, cex.axis=1.2, cex.lab=2.1, col.lab='green', type='o', lwd=3, xlab="ejemplo", ylab="numeros", main="Ejem-plot")
-# Jugando con los valores de cada uno pueden ver el significado de cada uno (en general los nombres
-# buscan ser informativos).
-# En caso de no entender el uso o las opciones posibles, en la ayuda de "par" o "plot" van a poder
-# encontrar la documentación necesaria.
-par(op) # vuelven los parámetros anteriores a la ventana de gráficos.
-
-
-# Ahora quiero agregar nuevos puntos al gráfico
-y <- sort(rnorm(100, 1))
-points(y, col='green', lwd=6)
-lines(y, col='red', lwd=3)
-
- 
-# Ahora quiero agregar nuevos puntos al gráfico...
-y <- sort(rnorm(100, 1))
-points(y, col='green', lwd=6) # Agrega un nuevo conjunto de puntos.
-lines(y, col='red', lwd=3) # Líena que une puntos.
- 
-
- 
-# COLORES EN LOS GRAFICOS
-# El parámetro "col", usado dentro de la función "plot" (u otras funciones de
-# gráficos) establece el color de lo graficado. Es un parámetro versátil, ya que
-# acepta números, strings (palabras) o códigos RGB...
-# Si se usan los enteros del 1 al 8 los colores ploteados son estos:
-palette()
- 
-# Hay muchos nombres de colores posibles, los cuales se pueden conocer con la
-# funcion "colors":
-
-# COLORES EN LOS GRAFICOS
-# El parámetro "col", usado dentro de la función "plot" (u otras funciones de gráficos) establece
-# el color de lo graficado. Es un parámetro versátil, ya que acepta números, strings (palabras) o
-# códigos RGB...
- 
-# Si se usan los enteros del 1 al 8 los colores ploteados son estos:
-palette()
- 
-# Hay muchos nombres de colores posibles, los cuales se pueden conocer con la funcion "colors":
-
-?colors
-colors()
- 
-# Para visualizarlos:
-length(colors()) # 657
-mat <- matrix(1:(26 * 26), 26, 26)
-image(mat, col=colors())
- 
-
-# También existen algunas funciones que generan gradientes de colores
-# preestablecidos, por ejemplo:
-
-# También existen algunas funciones que generan gradientes de colores preestablecidos, por ejemplo:
-
-# gray, rainbow, terrain.colors, heat.colors
-image(mat, col=terrain.colors(26 * 26))
-image(mat, col=terrain.colors(26 * 26))
-image(mat, col=rainbow(26 * 26))
-image(mat, col=gray(seq(0, 1, , 26 * 26))) # este necesita valores entre 0 y 1
-image(mat, col=heat.colors(26 * 26))
- 
-
-# Es posible usar colores definidos por códigos de RGB. Estos se escriben con un
-# "#" y 3 valores en hexagesimal (son 6 dígitos, 2 para Red, 2 para Green y 2
-# para Blue).
-
-# Ejemplo:
-curve(sin(x) / x, from=-20, to=20, lwd=15, col='#5D5EB6')
-# Existen programas y páginas web para elegir colores que devuelven el código
-# RGB:
-browseURL('http://www.colorpicker.com/')
- 
-
-# Es posible usar colores definidos por códigos de RGB. Estos se escriben con un "#" y 3 valores
-# en hexagesimal (son 6 dígitos, 2 para Red, 2 para Green y 2 para Blue).
-# Ejemplo:
-curve(sin(x) / x, from=-20, to=20, lwd=15, col='#5D5EB6')
-# Existen programas y páginas web para elegir colores que devuelven el código RGB:
-browseURL('http://www.colorpicker.com/')
- 
- 
-
-# Algunos parámetros se pueden sólo manejar con par directamente
+# Algunos parámetros se pueden sólo manejar con par directamente:
 # "ask",
 # "fig", "fin",
 # "lheight",
@@ -179,10 +69,10 @@ browseURL('http://www.colorpicker.com/')
  
 # Argumentos de uso común:
 # col (.axis, .lab, .main, .sub) // colores
-# lwd // line width // ancho de la línea
-# pch // point character // tipo de punto
-# type // tipo...
-# lty // line type // tipo de línea
+# lwd // line width // ancho de la línea (número)
+# pch // point character // tipo de punto (números o caracteres entre comillas)
+# type // tipo... ('p', 'l', 'b', 'o', 'n', 's' y otros)
+# lty // line type // tipo de línea (1, 2, 3, ...)
 # xlab // x axis label // grosor del eje x
 # ylab // y axis label // grosor del eje x
 # main // main title // título principal
@@ -190,27 +80,79 @@ browseURL('http://www.colorpicker.com/')
 # cex (.axis, .lab, .main, .sub) // magnificación
 # mar=c(bottom, left, top, right) // margin // margenes
 # oma=c(bottom, left, top, right) // outer margin // orden de aparición de los
-                                                   # margenes
+                      # margenes
 # mfcol, mfrow // "matrix figure" // varios gráficos en una sola ventana
 # log // escala logarítmica ?
 # xlog // escala log en eje x?
 # ylog // escala log en eje y?
 
+
+# OTRAS OPCIONES COMUNES
+
+# Pasamos ahora a hacer una pequeña recorrida por dos de los parámetros que se
+# usan con más frecuencia en R: col y mfcol/mfrow
+
+# Colores en los gráficos
+# El parámetro "col", usado dentro de la función "plot" (u otras funciones de
+# gráficos) establece el color de lo graficado. Es un parámetro versátil, ya que
+# acepta números, strings (palabras) o códigos RGB...
+# Si se usan los enteros del 1 al 8 los colores ploteados son estos:
+palette()
+ 
+# Hay muchos nombres de colores posibles, los cuales se pueden conocer con la
+# funcion "colors":
+?colors
+colors()
+ 
+# Para visualizarlos:
+length(colors()) # 657
+mat <- matrix(1:(26 * 26), 26, 26)
+image(mat, col=colors())
+ 
+# También existen algunas funciones que generan gradientes de colores
+# preestablecidos, por ejemplo "gray", "rainbow", "terrain.colors",
+# "heat.colors":
+image(mat, col=terrain.colors(26 * 26))
+image(mat, col=terrain.colors(26 * 26))
+image(mat, col=rainbow(26 * 26))
+image(mat, col=gray(seq(0, 1, , 26 * 26))) # este necesita valores entre 0 y 1
+image(mat, col=heat.colors(26 * 26))
+
+# Es posible usar colores definidos por códigos de RGB. Estos se escriben con un
+# "#" y 3 valores en hexagesimal (son 6 dígitos, 2 para Red, 2 para Green y 2
+# para Blue).
+
+# Ejemplo:
+curve(sin(x) / x, from=-20, to=20, lwd=15, col='#5D5EB6')
+# Existen programas y páginas web para elegir colores que devuelven el código
+# RGB:
+browseURL('http://www.colorpicker.com/')
+ 
+# Número de plots contenidos en la ventana de gráficos:
 # Usando el argumento "mfcol" o "mfrow", dentro de "par" podemos hacer varios
 # plots juntos:
 op <- par(mfrow=c(2, 2))
+
 # Esto inicia una ventana gráfica con 4 lugares, 2 filas y 2 columnas
-# Al usar mfrow los gráficos van llenando la ventana por fila
+# Al usar mfrow los gráficos van llenando la ventana por fila:
 boxplot(Sepal.Width ~ Species, data=iris)
 boxplot(Sepal.Length ~ Species, data=iris)
 boxplot(Petal.Width ~ Species, data=iris)
 boxplot(Petal.Length ~ Species, data=iris)
 par(op)
 
-##############################
+
+# PLOTS DE ALTO Y BAJO NIVEL
+
 # High level y Low level plots:
 # HL hacen plots nuevos.
 # LL agregan cosas a plots existentes: líneas, leyendas, texto, polígonos...
+
+# Ahora quiero agregar nuevos puntos al gráfico...
+y <- sort(rnorm(100, 1))
+points(y, col='green', lwd=6) # Agrega un nuevo conjunto de puntos.
+lines(y, col='red', lwd=3) # Líena que une puntos.
+
  
 # Primero genero un vector que va a ser utilizado para establecer los colores de
 iris$Species -> spp
@@ -372,7 +314,7 @@ library(googleVis)
 library(Hmisc)
  
 fish  <- read.csv("fishharvest.csv") # leer los datos (suponiendo que están en
-                                     # el directorio correcto)
+        # el directorio correcto)
 fish2 <- melt(fish, id=1:3, measure=4:24) # melt table
 year  <- rep(1985:2005, each = 117)
 fish2 <- data.frame(fish2, year) # reemplaza year con valores reales
