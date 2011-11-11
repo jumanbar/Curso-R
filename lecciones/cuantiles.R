@@ -89,3 +89,11 @@ quantile (vec, prob = c(0.025, 0.975))  # (redefinir varias veces "vec" y volver
 # a intentarlo, no da siempre lo mismo)
 # Por cierto, vuelvan a calcular los cuartiles con los dos métodos que vimos, 
 # utilizando este nuevo vector de datos "vec": la diferencia es ahora menor.
+
+
+# Por último, algunas de las distribuciones que estuvimos viendo anteriormente
+# tienen funciones específicas para trabajar con cuantiles. En el caso de la
+# distribución Normal, por ejemplo, existen las funciones "qqnorm" y "qqline",
+# que sirven para comparar los cuantiles observados en un conjunto de datos con
+# los esperados teóricamente para esta distribución (pero ver la lección anterior
+# sobre distribuciones).
