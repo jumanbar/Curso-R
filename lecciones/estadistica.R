@@ -1,54 +1,88 @@
-################################################################################################################
-# Una de las funcionalidades primarias de R es trabajar con estadística, por esta razón los métodos y
-# funciones existentes en R en este campo son inabarcables para cualquier curso. Sin embargo hay ciertos
-# elementos comunes a la mayoría de los análisis, sobre todo en los más populares o tradicionales. Nos vamos a
-# enfocar en estas características extendidas, utilizando algunos ejemplos sencillos de regresión lineal,
-# regresión no lineal, glm y anova. También se muestra un pequeño ejemplo de análisis de cluster y algunos tests
-# estadísticos comunes.
-#
-# Para profundizar en estos temas se pueden encontrar recursos y libros muy buenos en la web.
-# 
-# Para trabajar con modelos en R existen los objetos de clase "formula", los cuales tienen una sintaxis muy
-# particular, hecha para facilitar la interacción entre el usuario y la función de R que hace el análisis. Sin
-# embargo no es del todo intuitiva al principio dicha sintaxis, así que es necesario estar familiarizado con
-# la misma antes de proseguir con esta lección. La lección fórmula está puesta para este fin.
-#
-# También es muy importante estar familiarizado con la forma en que actúan los factores, así que recomendamos
-# ir a la lección homónima antes de continuar. Los factores son una representación de datos categóricos, los
-# cuales tienen una notable facilidad para ser confundidos con vectores de clase "character". En particular las
-# columnas de data.frames que uno puede pensar que son del tipo "character" son muchas veces "factor". A veces
-# esta diferencia no importa mucho... a veces es fundamental no hacer la confusión.
-################################################################################################################
+################################################################################
+# Una de las funcionalidades primarias de R es trabajar con datos y realizar
+# análisis estadísticos, por esta razón los métodos y funciones existentes en R
+# en este campo son inabarcables para cualquier curso. Sin embargo hay ciertos
+# elementos comunes a la mayoría de los análisis, sobre todo en los más
+# populares o tradicionales. Nos vamos a enfocar en estas características
+# extendidas, utilizando algunos ejemplos sencillos de regresión lineal,
+# regresión no lineal, glm y anova.
+#  También se muestra un pequeño ejemplo de análisis de cluster y algunos tests
+# estadísticos comunes. Para profundizar en estos temas se pueden encontrar
+# recursos y libros muy buenos en la web.
+
+# Para trabajar con modelos en R existen los objetos de clase "formula", los
+# cuales tienen una sintaxis muy particular, hecha para facilitar la interacción
+# entre el usuario y la función de R que hace el análisis. Sin embargo no es del
+# todo intuitiva al principio dicha sintaxis, así que es necesario estar
+# familiarizado con la misma antes de proseguir con esta lección.
+# La lección fórmula está puesta para este fin.
+
+# También es muy importante estar familiarizado con la forma en que actúan los
+# factores, así que recomendamos ir a la lección homónima antes de continuar.
+# Los factores son una representación de datos categóricos, los cuales tienen
+# una notable facilidad para ser confundidos con vectores de clase "character".
+# En particular las columnas de data.frames que uno puede pensar que son del
+# tipo "character" son muchas veces "factor". A veces esta diferencia no importa
+# mucho...
+# a veces es fundamental no hacer la confusión.
+################################################################################
  
-################################################################################################################
-## REGRESIÓN LINEAL
-# Empezemos con la regresión lineal, una de las tareas más comunes y que sirve como referencia para otros
-# análisis en general.
+################################################################################
+# REGRESIÓN LINEAL
+# Empezemos con la regresión lineal, una de las tareas más comunes y que sirve
+# como referencia para otros análisis en general.
  
-# usando la sintaxis de las fórmulas (que necesariamente incluyen el "~"), se puede hacer un plot entre
-# distintas variables:
-plot(dist ~ speed, data=cars)
-# Exactamente la misma sintaxis se puede usar, pero esta vez con la función "lm", para hacer la regresión
-# entre esas variables: 
+# usando la sintaxis de las fórmulas (que necesariamente incluyen el "~"), se
+# puede hacer un plot entre distintas variables numéricas:
+plot(dist ~ speed, data=cars) # cars es una base de datos que viene por
+                              # defecto dentro del R y presenta dos variables:
+                              # 'dist' y 'speed'
+# Exactamente la misma sintaxis se puede usar, pero esta vez con la función
+# "lm", para hacer la regresión lineal entre esas variables: 
 ml <- lm(dist ~ speed, data=cars)
-# usando la función gráfica LL "abline" podemos agregar la recta al gráfico:
-abline(ml)
+# usando la función gráfica llamada "abline" podemos agregar la recta al gráfico:
+abline(ml) # agrega una línea recta que utiliza como referencia los valores de
+           # los parámetros del modelo propuesto, en este caso es una recta que
+           # pasa por el valor del intercepto y presenta un tasa de crecimiento
+           # igual a la pendiente.
  
 # Veamos el objeto generado:
 ml # print.lm
  
 # Call:
-# lm(formula = dist ~ speed, data = cars)
+# lm(formula = dist ~ speed, data = cars) # fórmula de la regresión lineal
 # 
-# Coefficients:
+# Coefficients: # los coeficientes de la regresión son el intercepto y la
+                # pendiente (speed)
 # (Intercept)        speed  
 #     -17.579        3.932
  
-# Una de las funciones más útiles para ver por arriba al objeto es "summary":
+# Una de las funciones más útiles para ver por arriba al objeto generado es
+# "summary":
 summary(ml)
+
+# Call:
+# lm(formula = dist ~ speed, data = cars) # fórmula
+# 
+# Residuals:  # valores de los cuantiles
+#     Min      1Q  Median      3Q     Max 
+# -29.069  -9.525  -2.272   9.215  43.201 
+# 
+# Coefficients: # valores estimados de los coeficientes con su p-valor
+#             Estimate Std. Error t value Pr(>|t|)    
+# (Intercept) -17.5791     6.7584  -2.601   0.0123 *  
+# speed         3.9324     0.4155   9.464 1.49e-12 ***
+# ---
+# Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+# 
+# Residual standard error: 15.38 on 48 degrees of freedom
+# Multiple R-squared: 0.6511,	Adjusted R-squared: 0.6438 # R cuadrado
+# F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12 
+
  
-# El objeto que devuelve la regresión, en este caso "ml", es de la clase "lm" (linear model). A pesar de la
-# poca información que imprime en la consola inicialmente, en verdad es mucho más que eso:
+# El objeto que devuelve la regresión, en este caso "ml", es de la clase "lm"
+# (linear model). A pesar de la poca información que imprime en la consola
+# inicialmente, en verdad es mucho más que eso:
 str(ml)
 # List of 12
 #  $ coefficients : Named num [1:2] -17.58 3.93
@@ -57,26 +91,29 @@ str(ml)
 #   ..- attr(*, "names")= chr [1:50] "1" "2" "3" "4" ...
 #  y mucho más...
  
-# "ml" es una estructura con características de lista, así que contiene muchos objetos internos que pueden
-# ser de varias clases. Usando el operador "$" se puede acceder a los mismos, aunque también se pueden usar
-# los paréntesis rectos dobles:
+# "ml" es una estructura con características de lista, así que contiene muchos
+# objetos internos que pueden ser de varias clases. Usando el operador "$" se
+# puede acceder a los mismos, aunque también se pueden usar los paréntesis
+# rectos dobles:
 ml$coefficients
 ml[[1]]
  
-# usando la función "names" (o el autocompletar de RStudio) se pueden ver los nombres de los objetos incluidos
-# (sólo a 1 nivel de "profundidad"):
+# usando la función "names" (o el autocompletar de RStudio) se pueden ver los
+# nombres de los objetos incluidos (sólo a 1 nivel de "profundidad"):
 names(ml)
 #  [1] "coefficients"  "residuals"     "effects"       "rank"         
 #  [5] "fitted.values" "assign"        "qr"            "df.residual"  
 #  [9] "xlevels"       "call"          "terms"         "model"
  
-# Algunos de estos objetos tienen complejas series de "atributos", a los cuales se puede acceder usando la
-# función "attributes":
+# Algunos de estos objetos tienen complejas series de "atributos", a los cuales
+# se puede acceder usando la función "attributes":
 attributes(ml)        # nombres y clase
-attributes(ml$terms)  # devuelve un objeto tipo lista con un montón de información
+attributes(ml$terms)  # devuelve un objeto tipo lista con un montón de
+                      # información
  
-# Existe un montón de funciones creadas especialmente para trabajar con modelos o tests estadísticos, algunos
-# nombres son: fitted, predict, resid, coef, rstandard, rstudent, logLik, deviance, formula, anova, coef, confint, vcov
+# Existe un montón de funciones creadas especialmente para trabajar con modelos
+# o tests estadísticos, algunos nombres son: fitted, predict, resid, coef,
+# rstandard, rstudent, logLik, deviance, formula, anova, coef, confint, vcov
 fitted(ml)     # valores ajustados, equivale a ml$fitted.values
 resid(ml)      # residuos, equivale a ml$residuals
 coef(ml)       # coeficientes, equivale a ml$coefficients
@@ -88,11 +125,12 @@ logLik(ml)     # log likelihood
 AIC(ml)        # criterio de información de Akaike
 anova(ml)      # significancia de la influencia de las variables
  
-# Así como summary puede trabajar con varias clases de objeto, plot también es una función genérica, que sirve
-# con "lm" también:
+# Así como summary puede trabajar con varias clases de objeto, plot también es
+# una función genérica, que sirve con "lm" también:
 plot(ml)
-# Tira diagnósticos de la regresión, sirve para ver si se cumplen supuestos del análisis. Con otros tipos de
-# objetos, como análisis de varianza, también se puede usar plot.
+# Tira diagnósticos de la regresión, sirve para ver si se cumplen supuestos
+# de la normalidad del análisis. Con otros tipos de objetos, como análisis de
+# varianza, también se puede usar plot.
  
 # ¿Qué es lo que está haciendo? Dado que
 class(ml)  # es "lm"
@@ -102,21 +140,23 @@ class(ml)  # es "lm"
 # Lo mismo ocurre con las funciones print y summary (y muchas más)
  
  
-################################################################################################################
-## REGRESIONES NO LINEALES, CON MÍNIMOS CUADRADOS
+################################################################################
+# REGRESIONES NO LINEALES, CON MÍNIMOS CUADRADOS
  
 ?nls  # non-linear least squares
  
 mnl <- nls(dist ~ int + a * speed ^ b, data=cars, start=list(int=0, a=1, b=1))
-# La fórmula usada aquí incluye una variable, "speed", y dos parámetros "a" y "b". A pesar de que en las
-# fórmulas los operadores "*" y "^" tienen significados particulares al trabajar con variables, al usar
-# parámetros funcionan en su sentido aritmético "normal". Por lo tanto, en este caso no es necesario usar la
-# función "I".
+# La fórmula usada aquí incluye una variable, "speed", y dos parámetros "a" y
+# "b". A pesar de que en las fórmulas los operadores "*" y "^" tienen
+# significados particulares al trabajar con variables, al usar parámetros
+# funcionan en su sentido aritmético "normal". Por lo tanto, en este caso no es
+# necesario usar la función "I".
  
-# El método de "nls" es iterativo y busca minimizar la suma de los cuadrados de los residuos ("least squares").
-# Por esta razón la elección de los valores iniciales de los parámetros tiene influencia en el resultado final,
-# ya que pueden existir distintos atractores locales para el método. El argumento "start" es una lista con
-# los nombres de los parámetros y sus valores iniciales.
+# El método de "nls" es iterativo y busca minimizar la suma de los cuadrados de
+# los residuos ("least squares"). Por esta razón la elección de los valores
+# iniciales de los parámetros tiene influencia en el resultado final, ya que
+# pueden existir distintos atractores locales para el método. El argumento
+# "start" es una lista con los nombres de los parámetros y sus valores iniciales.
  
 # Para examinar el objeto mnl varias funciones se pueden volver a usar:
 mnl
@@ -146,22 +186,24 @@ logLik(mnl)
 AIC(ml)
 AIC(mnl)
  
-# Las funciones de regresión, así como muchas otras que están pensadas para trabajar con data.frames, tienen
-# muchas veces la opción "subset" para filtrar los valores de las variables:
+# Las funciones de regresión, así como muchas otras que están pensadas para
+# trabajar con data.frames, tienen muchas veces la opción "subset" para filtrar
+# los valores de las variables:
 ml2 <- lm(dist ~ speed, data=cars, subset=dist > 20)
 # Hace la regresión pero sólo con las observaciones tales que dist > 20
  
  
-################################################################################################################
-## MODELOS LINEALES GENERALIZADOS (REGRESIÓN LOGIT)
+################################################################################
+# MODELOS LINEALES GENERALIZADOS (REGRESIÓN LOGIT)
  
-# Los modelos lineales generalizados en R se implementan (por defecto) con la función "glm", usando la
-# estructura básica:
+# Los modelos lineales generalizados en R se implementan (por defecto) con la
+# función "glm", usando la estructura básica:
  
-modelo <- glm(mi.forumla, family=una.familia)
+modelo <- glm(mi.forumla, family=una.familia, data=mi.data.frame)
  
-# Es decir, usamos una fórmula, como hemos visto ya, y además especificamos la familia a la que pertenece
-# el modelo que nos interesa. Se pueden ver las posibles familias en el documento de ayuda:
+# Es decir, usamos una fórmula, como hemos visto ya, y además especificamos la
+# familia a la que pertenece el modelo que nos interesa. Se pueden ver las
+# posibles familias en el documento de ayuda:
 ?family
  
 # Resumiendo:
@@ -176,10 +218,12 @@ modelo <- glm(mi.forumla, family=una.familia)
  
 # (de http://data.princeton.edu/R/glms.html)
  
-# En esta lección nos vamos a limitar a la familia "binomial", usando la función link "logit"
+# En esta lección nos vamos a limitar a la familia "binomial", usando la función
+# link de conexión "logit"
 # (ver http://en.wikipedia.org/wiki/Logit, por ejemplo).
  
-# Para hacer un ejemplo de glm binomial-logit, vamos a usar el ejemplo planteado en esta página:
+# Para hacer un ejemplo de glm binomial-logit, vamos a usar el ejemplo planteado
+# en esta página:
 # http://www.ats.ucla.edu/stat/r/dae/logit.htm
  
 # Para ingresar la tabla a R pueden usar este comando (con conexión a internet):
@@ -188,11 +232,12 @@ candidatos <- read.csv(url("http://www.ats.ucla.edu/stat/r/dae/binary.csv"))
  
 names(candidatos)  # Estas son las variables
  
-# La tabla tiene una variable binaria, "admit", la cual muestra la admisión (o no) de los candidatos a entrar
-# a una determinada escuela de graduados. Esta será la variable dependiente o de respuesta, mientras que
-# GRE (Graduate Record Exam; puntaje en un examen de postuación (?)), GPA (Grade Point Average; escolaridad)
-# son las variables explicativas o independientes y rank (prestigio de la universidad en donde se graduó: 1 es
-# el máximo)
+# La tabla tiene una variable binaria, "admit", la cual muestra la admisión
+# (o no) de los candidatos a entrar a una determinada escuela de graduados.
+# Esta será la variable dependiente o de respuesta, mientras que GRE (Graduate
+# Record Exam; puntaje en un examen de postuación (?)), GPA (Grade Point Average;
+# escolaridad) son las variables explicativas o independientes y rank (prestigio
+# de la universidad en donde se graduó: 1 es el máximo)
  
 head(candidatos)
 #   admit gre  gpa rank
@@ -203,7 +248,8 @@ head(candidatos)
 # 5     0 520 2.93    4
 # 6     1 760 3.00    2
  
-# Se puede ver que gre y gpa son variables continuas (numéricas), mientras que rank es categórica.
+# Se puede ver que gre y gpa son variables continuas (numéricas), mientras que
+# rank es categórica.
  
 # Para mirar un poco los datos:
 with(candidatos, {
@@ -212,19 +258,21 @@ with(candidatos, {
   print(table(rank))
   print(table(rank, admit))
   })
-
+ 
 # Se usa "print" para poder ver la salida de estos comandos
  
 # ¿Hay algún dato faltante?
 any(is.na(candidatos))  # FALSE
  
 # La regresión logística de todas las variables se puede hacer así: 
-milogit <- glm(admit ~ gre + gpa + as.factor(rank), family=binomial("logit"), na.action=na.pass, data=candidatos)
+milogit <- glm(admit ~ gre + gpa + as.factor(rank), family=binomial("logit"),
+na.action=na.pass, data=candidatos)
 # Notas:
-# - en family se puede poner simplemente "binomial", ya que "logit" es la opción por defecto
-# - "na.action=na.pass" indica que en caso de que hubieran datos faltanes (NA) qué acción debe efectuarse, en
-#    este caso es una función llamada "na.pass"
-# - as.factor(rank) se usa para especificar que "rank" debe ser tratado como una variable categórica
+# - en family se puede poner simplemente "binomial", ya que "logit" es la
+# opción por defecto - "na.action=na.pass" indica que en caso de que hubieran
+# datos faltanes (NA) qué acción debe efectuarse, en este caso es una función
+# llamada "na.pass" - as.factor(rank) se usa para especificar que "rank" debe
+# ser tratado como una variable categórica
  
 milogit  # print.glm
 summary(milogit)
@@ -233,14 +281,16 @@ summary(milogit)
 # as.factor(rank)3
 # as.factor(rank)4
  
-# Pero no está el valor 1 ... esto es porque al ser categórica se toma como valor por defecto el primer nivel.
-# Los coeficientes para los demás niveles muestran cuanto cambia la probabilidad de admisión al cambiar el
-# valor de rank (por mayor detalle en la interpretación de los coeficientes, ver un libro sobre el tema).
-# Nótese que el valor negativo de estos coeficientes es consistente con lo que esperamos de antemano (cuanto
-# menor prestigio, menor probabilidad de admisión).
+# Pero no está el valor 1 ... esto es porque al ser categórica se toma como
+# valor por defecto el primer nivel. Los coeficientes para los demás niveles
+# muestran cuanto cambia la probabilidad de admisión al cambiar el valor de rank
+# (por mayor detalle en la interpretación de los coeficientes, ver un libro
+# sobre el tema). Nótese que el valor negativo de estos coeficientes es
+# consistente con lo que esperamos de antemano (cuanto menor prestigio, menor
+# probabilidad de admisión).
  
-# Al igual que antes, el objeto creado es una estructura con varios niveles y muchas funciones siguen aplicando
-# para este caso:
+# Al igual que antes, el objeto creado es una estructura con varios niveles y
+# muchas funciones siguen aplicando para este caso:
 str(milogit)
 coef(milogit)    # milogit$coefficients
 confint(milogit)
@@ -253,18 +303,23 @@ logLik(milogit)
 ################################################################################################################
 ## ANALISIS DE VARIANZA
  
-# En R la función "aov" es la que viene por defecto para hacer análisis de varianza.
+# En R la función "aov" es la que viene por defecto para hacer análisis de
+# varianza.
  
-# Primero que nada vamos a importar la tabla de ejemplo "anova-ej.csv" subida al EVA:
-tabla <- read.csv("anova-ej.csv")  # la tabla debe estar en el directorio de trabajo...
+# Primero que nada vamos a importar la tabla de ejemplo "anova-ej.csv" subida
+# al EVA:
+tabla <- read.csv("anova-ej.csv")  # la tabla debe estar en el directorio de
+                                   # trabajo...
  
-# En este caso se trata de un experimento factorial de dos vías (factores ortogonales) inventado para el
-# ejemplo. Los dos factores están en las primeras dos columnas. Las clases de ambos no necesariamente tienen
-# que ser "factor", pero con ser variables categóricas es suficiente:
+# En este caso se trata de un experimento factorial de dos vías (factores
+# ortogonales) inventado para el ejemplo. Los dos factores están en las primeras
+# dos columnas. Las clases de ambos no necesariamente tienen que ser "factor",
+# pero con ser variables categóricas es suficiente:
 class(tabla$factor1)  # "factor"
 class(tabla$factor2)  # "integer"
  
-# Para ver si los tratamientos están balanceados se puede hacer un examen visual, o si no:
+# Para ver si los tratamientos están balanceados se puede hacer un examen
+# visual, o si no:
 replications(tabla)  # aviso de alerta: factor2 y medida no son "factor"
  
 # Esto se puede corregir:
@@ -273,7 +328,8 @@ class(tabla$factor2)
 # [1] "factor"
 replications(tabla)  # medida no es "factor"
 # También se puede usar una fórmula como argumento principal:
-replications(medida ~ ., data=tabla)  # aquí el "." indica "todas las variables menos la dependiente"
+replications(medida ~ ., data=tabla)  # aquí el "." indica "todas las variables
+                                      # menos la dependiente"
  
 # Para visualizar los efectos de los tratamientos:
 plot(medida ~ factor1, data=tabla)
@@ -285,9 +341,12 @@ boxplot(medida ~ factor2, data=tabla)
 # El análisis de varianza se puede hacer así:
 x <- aov(medida ~ factor1 * factor2, data=tabla)
 # Según la fórmula que usemos va a cambiar el resultado, ojo con esto...
-x <- aov(medida ~ (factor1 + factor2) ^ 2, data=tabla)  # este es igual que el anterior
-x <- aov(medida ~ factor1 + factor2 + factor1:factor2, data=tabla)  # y este también
-x <- aov(medida ~ factor1 + factor2, data=tabla)  # pero en este caso se ignora el término de interacción...
+x <- aov(medida ~ (factor1 + factor2) ^ 2, data=tabla)  # este es igual que el
+                                                        # anterior
+x <- aov(medida ~ factor1 + factor2 + factor1:factor2, data=tabla)  # y este
+                                                                    # también
+x <- aov(medida ~ factor1 + factor2, data=tabla)  # pero en este caso se ignora
+                                                  # el término de interacción...
 x <- aov(medida ~ factor2, data=tabla)  # en este caso sólo toma el factor2
 summary(x)  # devuelve una tabla de anova
 anova(x)  # ídem
@@ -302,7 +361,7 @@ confint(x)
  
  
 ## Algunos test estadísticos comunes:
-
+ 
 # t.test
 x <- t.test(1:10, y=7:20)  # El test de Student
 class(x)
@@ -310,14 +369,15 @@ summary(x)
 names(x)
 str(x)
  
-################################################################################################################
-
+################################################################################
+ 
 # chisq.test
 ?chisq.test  # Test de chi cuadrado
  
 # Ejemplo de la ayuda (se puede correr con "example(chisq.test)":
 M <- as.table(rbind(c(762, 327, 468), c(484,239,477)))
-dimnames(M) <- list(gender=c("M","F"), party=c("Democrat","Independent", "Republican"))
+dimnames(M) <- list(gender=c("M","F"), party=c("Democrat","Independent",
+"Republican"))
  
 Xsq <- chisq.test(M)
 Xsq            # Prints test summary
@@ -326,8 +386,8 @@ Xsq$expected   # expected counts under the null
 Xsq$residuals  # Pearson residuals
 Xsq$stdres     # standardized residuals
  
-################################################################################################################
-
+################################################################################
+ 
 # fisher.test
 ??fischer
 ?fisher.test
@@ -336,8 +396,8 @@ ftest
 names(ftest)
 str(ftest)
  
-################################################################################################################
-
+################################################################################
+ 
 # ACF
 # Trabaja con series de tiempo ("ts")
 ?lh       # luteinizing hormone
@@ -348,7 +408,7 @@ y <- pacf(lh)
 names(x)
 names(y)
  
-################################################################################################################
+################################################################################
 ## ANÁLISIS DE CLUSTER JERÁRQUICO
  
 # El R básico tiene la función hclust (paquete "stats")
@@ -366,16 +426,17 @@ head(USArrests)
 dista <- dist(USArrests)
 # "dist" tiene varios argumentos:
 args(dist)
-# el argumento "method" sirve para definir el tipo de distancia computado entre vectores (cada vector es una
-# columna de la data frame)
+# el argumento "method" sirve para definir el tipo de distancia computado entre
+# vectores (cada vector es una columna de la data frame)
 class(dista)
-# Es un objeto de clase "dist", una matriz de distancia (pero no es de clase "matrix"...). Se puede convertir en
-# matriz con "as.matrix"
+# Es un objeto de clase "dist", una matriz de distancia (pero no es de clase
+# "matrix"...). Se puede convertir en matriz con "as.matrix"
  
 # Para ver los atributos de este objeto, se puede usar: 
 attributes(dista)
  
-# Existen varios métodos de aglomeración para crear el cluster (ver ayuda de hclust)
+# Existen varios métodos de aglomeración para crear el cluster (ver ayuda de
+# hclust)
 hcArrests  <- hclust(dista, method='average')
  
 hcArrests2 <- hclust(dista, method='complete')
@@ -390,7 +451,8 @@ plot(hcArrests)
 plot(hcArrests2)
  
  
-################################################################################################################
-## NOTA FINAL: como se mencionaba al principio de esta lección, hay una infinidad de funciones y paquetes de R
-## para trabajar con estadística, muchas variantes de la forma de usar estas funciones y de las funciones en sí.
-################################################################################################################
+################################################################################
+# NOTA FINAL: como se mencionaba al principio de esta lección, hay una
+# infinidad de funciones y paquetes de R para trabajar con estadística, muchas
+# variantes de la forma de usar estas funciones y de las funciones en sí.
+################################################################################
