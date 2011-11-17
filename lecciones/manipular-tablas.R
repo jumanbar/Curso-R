@@ -1,112 +1,101 @@
 ## MANIPULACIÓN DE TABLAS DENTRO DE R
+
+# La mayoría de las veces es recomendable aprovechar los programas con los que
+# uno se siente más cómodo para manipular nuestras tablas/bases de datos. De
+# todas formas, existen varias funciones en R para lograr nuestros objetivos,
+# varias de las cuales pueden ser sumamente prácticas en muchos casos. En esta
+# lección nos vamos enfocar en algunos casos destacados, en particular con
+# algunas funciones para seleccionar observaciones y para fusionar matrices. De
+# todas formas hay muchos paquetes se enfocan en funcionalidades para trabajar
+# con datos, algunos ejemplos son: reshape2, gdata, bigtabulate y plyr.
  
-# La mayoría de las veces es recomendable aprovechar los programas con los que uno se
-# siente más cómodo para manipular nuestras tablas/bases de datos. De todas formas, existen
-# varias funciones en R para lograr nuestros objetivos. En esta lección nos vamos enfocar
-# en algunas de las funciones que existen, en particular con algunas funciones para seleccionar
-# observaciones y para fusionar matrices. De todas formas hay muchos paquetes se enfocan
-# en agregar funcionalidades para trabajar con datos, algunos ejemplos son: reshape2,
-# gdata, bigtabulate y plyr.
+# Estas herramientas pueden ser cruciales si necesitamos aplicar una misma
+# rutina a una vasta cantidad de tablas y queremos hacerlo de forma automatizada
+# (complementando con el uso de loops y condicionales).
  
-# Estas herramientas pueden ser cruciales si necesitamos aplicar una misma rutina a una
-# vasta cantidad de tablas y queremos hacerlo de forma automatizada (para esas tareas hay
-# que complementar los temas de esta unidad con los de "Estructuras de control").
- 
-# En esta unidad vamos a usar varias bases de datos que vienen incluidas en el paquéte
-# "datasets", el cual está incluido en el R básico. Para ver la lista completa:
+# En esta unidad vamos a usar varias bases de datos que vienen incluidas en el
+# paquéte "datasets", el cual está incluido en el R básico. Para ver la lista
+# completa:
 library(help='datasets')
-# Cualquiera de las bases de la lista está disponible, por ejemplo "cars"
+
+# Cualquiera de las bases de la lista está disponible automáticamente en
+# nuestra sesión de R, por ejemplo "cars":
 head(cars) # "head" sirve para ver los primeros elementos del objeto.
 tail(cars) # "tail" es para los últimos.
 head(iris)
 tail(iris)
-# Nota: es recomendable que recuerden los nombres de las columnas de estas tablas, ya que
-# las vamos a usar repetidament en el curso.
-# Nota: en otros paquetes también hay bases de datos, pero no están disponibles así nomás,
-# generalmente hay que usar la función "data", así:
-data(basededatos) # Sólo un ejemplo
- 
-# En R la clase "data.frame" es el tipo de tabla pensado para trabajar con datos, que
-# comparte propiedades con la clase "list" y con la clase "matrix".
- 
-# Las filas de una data.frame son las observaciones, las columnas son las variables. Cada
-# columna es un vector o un factor, y las distintas columnas pueden ser de clases diferentes.
-names(iris)
-# [1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"     
-class(iris[,5])
-# [1] "factor"
-class(iris$Species) # es equivalente al comando anterior
-# [1] "factor"
-class(iris[,4])
-# [1] "numeric"
-class(iris$Petal.Width) # equivalente al comando anterior
-# [1] "numeric"
 
-# Nota: en RStudio se pueden autocompletar los nombres de los elementos usando la tecla
-# tab a medida que vamos escribiendo, ej: iris$ + tab (muestra un pequeño menú con las opciones)
+# Nota: en otros paquetes también hay bases de datos, pero no están
+# disponibles de forma automática, si no que generalmente hay que usar la
+# función "data":
+data(basededatos) # (no correr)
  
-# A diferencia de una lista común, todas las columnas deben tener la misma longitud (o
-# cantidad de elementos).
- 
-# Muchas funciones que trabajan con matrices también sirven para data.frames:
-nrow(iris)
-ncol(iris)
-colnames(iris)
-rownames(iris)
-colMeans(iris[,-5]) # La última columna es factor, así que no se puede hacer el promedio
-rowMeans(iris[,-5])
-colSums(iris[,-5])
-rowSums(iris[,-5])
- 
+# En R la clase "data.frame" es el tipo de objeto "estándar" para trabajar con
+# datos. Presenta varias ventajas para esto, como una gran flexibilidad para
+# interactuar con otras funciones en R. Como hemos visto anteriormente,
+# presenta características de lista, pero tambien de matrices.
+
+# Las filas de una data.frame son las observaciones, las columnas son las
+# variables. Cada columna es un vector o un factor, y las distintas columnas
+# pueden ser de clases diferentes. Un ejemplo rápido son las columnas de la
+# tabla "iris", que presentan datos numéricos y categóricos (en la última
+# columna).
+
+# Si bien es un tipo de lista, una data.frame tiene la restricción de que
+# todas las columnas tienen una misma cantidad de elementos, al igual que una
+# matriz.
+
  
 # AGREGAR/QUITAR FILAS Y COLUMNAS
 
 # Las funciones cbind y rbind funcionan igual que con las matrices:
-iris2 <- cbind(iris, rep('hola', nuevaCol=nrow(iris)))
+iris2 <- cbind(iris, nuevaCol=rep('hola', nrow(iris)))
 head(iris2)
+# Nótese que el nombre de la nueva columna fue agregado en el momento de
+# ejecutar cbind.
  
 # En R, por defecto, los vectores de la clase "character" son interpretados
-# como "factor" al ser agregados a una "data.frame":
+# como "factor" al ser agregados a una data.frame:
 class(iris2$nuevaCol) # "factor"
+# Esto puede ocasionar errores o advertencias en R. Para estos casos se pueden
+# usar los coercionadores, tal como se muestra en la lección correspondiente.
  
-# Para cambiar la clase de esta columna se pueden usar cohercionadores. Esto es suponiendo
-# que existen métodos para pasar de una clase a la otra:
-iris2$nuevaCol <- as.character(iris2$nuevaCol) # ahora es "character"
-iris2$nuevaCol <- as.vector(iris2$nuevaCol) # ahora tambien es "character"
- 
-# Para el caso de los objetos "factor", puede ser útil saber los niveles en los que se
-# encuentra (los valores posibles):
-levels(iris$Species)
-# [1] "setosa"     "versicolor" "virginica"
-# Nota: la salida de levels es "character" (más sobre factores en la lección homónima).
- 
-# Para el caso de las columnas, se pueden agregar nuevas con el operador "$":
+# Alternativamente:
 iris2$otraCol <- rep('chau', nuevaCol=nrow(iris))
-# El nuevo vector debe tener la misma cantidad de elementos
+# también así se pueden agregar columnas...
 head(iris2)
+
+# En la lección "trabajo con tablas" se muestra el uso de "whithin" para crear
+# columnas nuevas.
  
-# Para quitar filas o columnas se pueden restar índices, al igual que en una matriz:
+# Para quitar filas o columnas se pueden restar índices, al igual que en una
+# matriz:
 head(iris2[,-5])
 head(iris2[,-c(2, 5)])
 head(iris2[-(3:150),])
  
-# Más adelante se va a mencionar el uso de whithin para crear columnas nuevas.
- 
  
 # SELECCIÓN DE OBSERVACIONES
-# Usando which se pueden seleccionar las filas o columnas que nos interesan.
-x <- which(cars$dist > 20) # "x" tiene los números de fila que cumplen la premisa
+
+# Muchas veces nos interesan, dentro de una tabla, sólo ciertas observaciones
+# basadas en ciertos criterios. Generalmente existe la forma de expresar estos
+# criterios utilizando operadores lógicos.
+
+# Una de las formas más sencillas es usar which para seleccionar las filas o
+# columnas que nos interesan.
+x <- which(cars$dist > 20)
+# "x" tiene los números de fila de las observaciones que cumplen la premisa
 y <- cars[x,]
 # Selecciona los casos que cumplen dist > 20
-# También es posible:
-x <- cars$dist > 20
-y <- cars[x,]
-# o
-y <- cars[cars$dist > 20, ]
+
+# También es posible escribir:
+y <- cars[cars$dist > 20,]
+# este método es de alguna forma más directo, aunque tiene la contra que
+# suele amontonar palabras y caracteres, resultando en cosas difíciles de leer.
  
-# Si queremos buscar en todos los elementos de una matriz o data.frame, se puede usar
-# el argumento "arr.ind":
-which(cars > 70, arr.ind=TRUE) # cars tiene sólo elementos "numeric", con iris da una advertencia
+# Si queremos buscar en todos los elementos de una matriz o data.frame, se puede
+# usar el argumento "arr.ind":
+which(cars > 70, arr.ind=TRUE)
 #      row col
 # [1,]  23   2
 # [2,]  34   2
@@ -115,7 +104,11 @@ which(cars > 70, arr.ind=TRUE) # cars tiene sólo elementos "numeric", con iris 
 # [5,]  48   2
 # [6,]  49   2
 # [7,]  50   2
- 
+
+# Como se puede ver, el resultado son las filas y columnas de los elementos
+# que cumplen con la condición dada.
+
+
 # Usando operadores lógicos se pueden hacer filtros más elaborados:
 x <- which(cars$dist > 20 & cars$speed <= 15)
 y <- cars[x,]
@@ -135,20 +128,37 @@ y <- subset(cars, subset=x)
 class(iris$Species)  # "factor"
 levels(iris$Species) # 'setosa' 'versicolor' 'virginica'
 (y <- subset(iris, Species == 'setosa' & Sepal.Length >= 4.96))
- 
-# A su vez el argumetno "select" sirve para elegir las columnas de interés:
-(y <- subset(iris, subset=Sepal.Width > 3.8, select=Species))   # sólo la columna "Species"
-(y <- subset(iris, subset=Sepal.Width > 3.8, select= -Species)) # sin la columna "Species"
-(y <- subset(iris, subset=Sepal.Width > 3.8, select= -5))       # ídem
- 
-# En resumen, subset busca ser más intuitivo y directo que usar which() en
-# combinación con los operadores [ ]
- 
-# Nota final: muchas funciones aceptan un argumento "subset" para seleccionar las
+
+# Nota: muchas funciones aceptan un argumento "subset" para seleccionar las
 # observaciones que nos interesan. Ejemplos: plot, lm, xtabs, ...
  
- 
-## FUNCIÓN merge: FUSIONA DATA.FRAMES
+# A su vez el argumetno "select" sirve para elegir las columnas de interés:
+(y <- subset(iris, subset=Sepal.Width > 3.8, select=Species))
+# sólo la columna "Species"
+(y <- subset(iris, subset=Sepal.Width > 3.8, select= -Species))
+# sin la columna "Species"
+(y <- subset(iris, subset=Sepal.Width > 3.8, select= -5))
+# ídem
+
+# En resumen, subset busca ser más intuitivo y directo que usar which() en
+# combinación con los operadores [ ].
+
+## Split
+# A veces es necesario partir una tabla según ciertos criterios. La función
+# split debe considerarse como una opción, ya que en una corta línea puede
+# expresar un montón de pasos. Por ejemplo, si quiero partir la tabla "iris"
+# en 3 tablas, una por cada especie, puedo hacer:
+irisxspp <- split(iris, iris$Species)
+str(irisxspp)
+# El resultado es una lista con tres data.frames adentro, una por cada spp
+
+
+## FUNCIONES EXTRA
+
+# Pasamos ahora a ver algunas utilidades especiales, que si bien no se usan de
+# forma demasiado regular, pueden simplificar mucho ciertas tareas.
+
+## Función merge: fusiona data.frames
 
 ?merge
 # La función merge() es una alternativa a cbind/rbind, ya que no tienen que 
@@ -156,11 +166,13 @@ levels(iris$Species) # 'setosa' 'versicolor' 'virginica'
  
 # Vamos a tomar el ejemplo que viene en la ayuda de "merge", un poco modificado:
 # Primero se crean dos tablas ("authors" y "books"):
+
+## INICIO
 authors <- data.frame(
     surname = I(c("Tukey", "Venables", "Tierney", "Ripley", "McNeil")),
     nationality = c("US", "Australia", "US", "UK", "Australia"),
     deceased = c("yes", rep("no", 4)),
-		hobby = rep('surf', 5))
+hobby = rep('surf', 5))
 books <- data.frame(
     name = I(c("Tukey", "Venables", "Tierney",
              "Ripley", "Ripley", "McNeil", "R Core")),
@@ -172,7 +184,8 @@ books <- data.frame(
               "An Introduction to R"),
     other.author = c(NA, "Ripley", NA, NA, NA, NA,
                      "Venables & Smith"),
-		hobby = rep('chess', 7))
+hobby = rep('chess', 7))
+## FIN
 
 # Echamos un vistazo a ambas:
 authors
@@ -186,7 +199,8 @@ books
 # En este ejemplo x (el primer argumento) es "authors", mientras que y
 # (el segundo argumento) es "books". Para indicar las columnas que tienen
 # en común se usan los argumentos by.x y by.y.
-# ¿Qué pasa si no se especifícan estos dos argumentos?
+# ¿Qué pasa si no se especifícan estos dos argumentos? Veamos:
+(m1 <- merge(authors, books))
 # Nótese cómo aparecen las columnas hobby.x y hobby.y: debido a que ambas
 # tablas tenían esta columna y mostraban diferencias para las filas en común
 # (por ejemplo, el autor "Tukey" gusta del surf y del ajedrez).
@@ -196,24 +210,38 @@ books
 # all.y=TRUE (según corresponda), o usando all=TRUE para incluir todos los
 # casos (ver ayuda de ?merge).
 (m1 <- merge(authors, books, by.x='surname', by.y='name', all=TRUE))
- 
- 
- 
-## FUNCIÓN xtabs
 
-# Esta función crea tablas de contingencia, usando una "fórumla". Veamos uno de los
-# ejemplos que muestra la ayuda:
+
+## Función xtabs: tablas de contingencia.
+
+# Esta función crea tablas de contingencia, usando una "fórumla". Veamos uno de
+# los ejemplos que muestra la ayuda:
 ?xtabs
+
 # UCBAdmissions ya es de por sí una tabla de contingencia...
 DF <- as.data.frame(UCBAdmissions)
+
 # Ahora DF es una data.frame, con los conteos en la variable "Freq"
 head(DF)
-# Hacemos una tabla de contingencia, mostrando admisiones y rechazos según el género:
+
+# Hacemos una tabla de contingencia, mostrando admisiones y rechazos según el
+# hombres o mujeres:
 (contin <- xtabs(Freq ~ Gender + Admit, DF))
-# La función summary ya hace un test de chi cuadrado:
+
+# Usamos la función summary, que realiza un test de chi cuadrado para este
+# tipo de datos:
 summary(contin)
 # Call: xtabs(formula = Freq ~ Gender + Admit, data = DF)
 # Number of cases in table: 4526 
 # Number of factors: 2 
 # Test for independence of all factors:
-# 	Chisq = 92.21, df = 1, p-value = 7.814e-22
+# Chisq = 92.21, df = 1, p-value = 7.814e-22
+
+
+## REDONDEO
+# Si bien R no es un ambiente para trabajar manipulando tablas por excelencia,
+# es cierto que tiene muchas facilidades que pueden ser muy útiles y
+# prácticas si las sabemos aprovechar. En esta lección no hemos hecho más
+# que rascar la superficie de lo que se puede hacer con funciones pre-armadas.
+# Para el lector y el usuario ávido, recomendamos adentrarse en el uso de los
+# paquetes reshape2, gdata, bigtabulate y plyr.
