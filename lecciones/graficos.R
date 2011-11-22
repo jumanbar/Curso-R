@@ -13,7 +13,7 @@
 # complejos y reproducibles. 
  
 # Para abrir una nueva ventana en la consola de R:
-# X11() under UNIX
+# X11() under UNIX (y Windows)
 # windows() under Windows
 # and quartz() under Mac OS X
 # Esto sirve para poder visualizar mas de un gráfico en R.
@@ -162,7 +162,8 @@ curve(x ^ 3 - 4 * x ^ 2 + 3 * x - 1, from=-8, to=8) # Polinomio de grado 3.
 
 # Nota: algunos comandos se pueden convertir en LL si se usa la opción
 # add=TRUE. Por ejemplo, para agregar otra función al gráfico anterior:
-curve(200 * cos(x), col='magenta', add=TRUE) # Función coseno.
+curve(200 * cos(x), col='magenta')
+# Función coseno.
 
 # Comandos LL comunes:
 # Ya vimos el uso de lines y points para agregar líneas/puntos a un gráfico
@@ -202,6 +203,8 @@ legend('bottomright', legend=14:25, pch=14:25, title='Código', bty='n',
 # Las palabras claves "top", "bottom", "left" y "right" (arriba, abajo,
 # izquierda y derecha) se pueden usar y/o combinar para establecer el lugar de
 # la leyenda (opcionalmente se pueden dar coordenadas).
+
+legend(5, 15, legend='hola', pch=14)
 
 # text ---> agregar texto a un gráfico
 plot(1:25, pch=1:25, cex=4, main='Distintos tipos de puntos', ylim=c(0, 29))
