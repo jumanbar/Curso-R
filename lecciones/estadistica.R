@@ -231,13 +231,13 @@ modelo <- glm(mi.forumla, family=una.familia, data=mi.data.frame)
 ?family
 # Allí se muestran estas famlias:
 
-# Family            Variance	        Link
+# Family            Variance          Link
 #-------------------------------------------------------
-# gaussian          gaussian	        identity
-# binomial          binomial	        logit, probit or cloglog
+# gaussian          gaussian          identity
+# binomial          binomial          logit, probit or cloglog
 # poisson           poisson           log, identity or sqrt
 # Gamma             Gamma             inverse, identity or log
-# inverse.gaussian	inverse.gaussian	1/mu^2
+# inverse.gaussian  inverse.gaussian  1/mu^2
 # quasi             user-defined      user-defined
  
 # (fuente http://data.princeton.edu/R/glms.html)
