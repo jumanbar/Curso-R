@@ -130,3 +130,6 @@
 #
 #	Del analisis de los datos anteriores, observo una variacion de alrededor 
 #	de un grado entre la temp en reposo y en actividad.
+
+   ## no podés concluir eso tan livianamente sólo mirando las varianzas.
+   ## debiste hacer un análisis de varianza con 'aov' (ver lección de estadística).
