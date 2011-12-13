@@ -5,10 +5,11 @@
 #  a)
 #
   Plot(lynx)
-  ## Sobra una mayúscula, supongo que es por el OpenOffice
+  ## Sobra una mayúscula, seguramente es por el procesador de texto
 #
 #	- La funcion crece y decrece, alternandose picos y valles bien marcados. 
 #
+  ## 1x
 #  b)
 #
 	mayores<-function(lynx){
@@ -26,8 +27,9 @@
 	}
   ## Está bien ir sumando 1 al total en cada iteración. De todas formas, hay un
   ## problema con esto, y es que estás contabilizando un valor ligeramente
-  ## distinto al que se pide...
+  ## distinto al que se pide... (ver notas en las soluciones a los ejercicios).
 #
+  ## 0.4x
 # c)
 #	
 	lynxlog<-log10(lynx)
@@ -36,6 +38,7 @@
 #	- La nueva curva tiene una amplitud menor y es mas plana, teniendo tambien menor 
 #	diferencia entre los maximos y los minimos.
 #
+  ## 1x
 # d)
 	a<-mean(lynx)
 	b<-mean(lynxlog)
@@ -47,6 +50,7 @@
   ## siempre va a ser mucho menor que la media lineal). La comparación es entre
   ## a y 10 ^ b
 #
+  ## 0.1x
 # e)
 	d<-median(lynx)
 	e<-median(lynxlog)
@@ -56,28 +60,32 @@
 # 	La mediana de la serie lineal es casi 267 veces mayor que la mediana de la serie logaritmica.
   ## Aplica lo mismo que en el caso anterior
 #
+  ## 0.1x
 # f)
 	qqnorm(lynxlog)
 #	
 #	Si la distribucion fuera perfectamente normal, el comando qqnorm nos entregaria una recta a #	45°, en nuestro caso, como lo q nos entrega es bastante aprocimado/aproximado, podemos decir q la 
 #	distribucion es casi normal.
 #
-# 
+  ## 1x
 # g)
 #	Para comparar en este caso ejecuto
 	qqnorm(lynxlog); qqline(lynxlog)
 #	De la observacion de lo q me entrega la ejecucion de dicho comando puedo inferir q la 
 #	distribucion es normal en la mayor parte de la serie, alejandose un poco en los extremos de
 #	la misma.  	
+  ## Es preferible no usar el ';'
 #
+  ## 1x
 #
 #
 # Ejercicio 4
 #
-# a) 
+# a)
 #	Suponiendo q el estado 1 significa q el individuo esta activo, la actividad de este comienza a 
 #	la hora 15:50.
   ## ¿Usó algún/os comando/s para encontrar este valor?
+  ## 0.8x
 #
 # b)
 #	Voy a crear una nueva matriz castor, q va a ser identica a beaver2, con el objetivo de 
@@ -105,15 +113,17 @@
 	yb<-castoresb[,3]
 	plot(xb,yb,freq="FALSE", add="TRUE", col="red")
   ## Argumento freq no existe para un plot
-
+  ## 0.4
 # c)
-	    actividad1<-castor[,4]
-	 actividad<-as.factor(actividad1)
+	actividad1<-castor[,4]
+	actividad<-as.factor(actividad1)
 #	 
-	 z<-castor[,4]
-	 y<-castor[,3]
-	 plot(z,y)
-   ## plot(temp ~ actividad, castor)
+	z<-castor[,4]
+	y<-castor[,3]
+	plot(z,y)
+  ## Aternativa más sintética:
+  ## plot(temp ~ actividad, castor)
+  ## 1x
 #
 #
 # d)
@@ -131,5 +141,7 @@
 #	Del analisis de los datos anteriores, observo una variacion de alrededor 
 #	de un grado entre la temp en reposo y en actividad.
 
-   ## no podés concluir eso tan livianamente sólo mirando las varianzas.
-   ## debiste hacer un análisis de varianza con 'aov' (ver lección de estadística).
+  ## No podés concluir eso tan livianamente sólo mirando las varianzas.
+  ## Para este ejercicio es necesario hacer un análisis de varianza con 'aov'
+  ## (ver lección de estadística).
+  ## 0x

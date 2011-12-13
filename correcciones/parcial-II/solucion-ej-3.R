@@ -7,10 +7,16 @@ plot(lynx)
 abline(h = 4200)
 # Se observan cuatro momentos en que la gráfica cruza la línea horizontal
 
+# Nota: esto es muy distinto que simplemente contar la cantidad de puntos 
+# que ocurren por encima de ese valor. El conteo de puntos se puede hacer así:
+sum(lynx > 4200)
+
 # c.
 plot(lynx, log='y')
 # En esta escala las fluctuaciones no se alejan tanto del valor medio y lo 
 # hacen con magnitudes similares hacia valores mayores y menores.
+
+
 
 # d.
 mlineal <- mean(lynx)

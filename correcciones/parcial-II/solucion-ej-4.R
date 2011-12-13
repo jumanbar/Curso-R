@@ -24,4 +24,7 @@ aov.castor <- aov(temp ~ factiv, beaver2)
 summary(aov.castor)
 # El resultado del análisis indica que la actividad efectivametne influye en
 # la temperatura corporal del individuo. Esto es concordante con las gráficas 
-# anteriores.
+# anteriores. De todas formas debe observarse que los datos no garantizan un
+# supuesto muy importante: la independencia de las observaciones. Cada
+# observación evidentemente está influenciada por el valor anterior (ver 
+# 'acf(lynx)' para corroborar esto).
