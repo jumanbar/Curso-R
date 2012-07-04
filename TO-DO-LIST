@@ -1,0 +1,13 @@
+- ejercicio de los 6 paneles: cambiar a 3 valores de "a" y 2 de "b". Poner una imagen de ejemplo.
+- poner que no tienen porqué hacer el loop sólo si hacen la función (crec. exp. y mapa log.).
+- agregar ejercicios en funciones, más simples y más diversos (ej: cambiar última y primer fila de
+- una matriz; ordenar una matriz según los valores de cualquier columna, según número o nombre).
+- guía de RStudio: explicar sobre el encoding
+- ejer. "peso-plantas.txt": poner que es una tabla de 30x2
+- agregar "manipular-tablas-plus.R"
+- pedir "más de un método" para varios ejercicios (números pares/impares, secuencia de valores, etc...)
+- luego de cada tanda de ejercicios, poner las soluciones online
+
+
+- Gran lista de las cosas que se pueden hacer con R:
+http://blog.revolutionanalytics.com/2012/07/a-big-list-of-the-things-r-can-do.html
