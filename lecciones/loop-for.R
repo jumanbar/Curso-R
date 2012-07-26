@@ -1,268 +1,179 @@
-## Estructuras de control: loops (for & while)
-
-# Sirven para ejecutar una tarea n veces. Para repetir una rutina, logrando
-# en segundos lo que manualmente llevaría horas o días (o sería simplemente
-# demasiado).
-# Para ver la ayuda de R al respecto se pueden usar los comandos:
-?Control
+## Estructuras de control: loops (for)
 
 # Los "loops" ("lazos" en español) son comandos especiales que sirven para hacer
-# una cantidad arbitraria de iteraciones.
-
-# Iteración, según wikipedia:
-# En programación, Iteración es la repetición de una serie de instrucciones en
-# un programa de computadora. Puede usarse tanto como un término genérico (como
-# sinónimo de repetición) así como para describir una forma específica de
-# repetición con un estado mutable.
+# ejecutar una tarea una cantidad arbitraria de veces; se llama iteración a cada
+# una de estas repeticiones. Sirven para hacer en segundos lo que manualmente
+# llevaría horas, días o sería simplemente demasiado.
 
 # Los comandos más universales para hacer loops en programación son "for" y
 # "while", y en R esto no es distinto.
 
+# Se puede acceder a la ayuda de R con varios comandos, por ejemplo (no correr):
+?Control
+?"for"
+
 
 ## SINTÁXIS BÁSICA
-#  "for" es usado cuando de antemano sabemos el número de iteraciones.
+# Aquí veremos solamente el caso más común que suele utilizarse en R, pero es
+# bueno saber que existen variantes más sofisticadas.
 
-# La siguiente es una descripción, lo más general posible, de la sintaxis del
-# for; debe tenerse en cuenta que "variable" es simplemente un nombre
-# (usualmente es una sóla letra, como "i" o "j") y "secuencia" es un vector
-# cualquiera (generalmente es una secuencia del tipo 1:n):
+# FOR
+# Este comando es usado cuando de antemano sabemos el número de iteraciones que
+# necesitamos. En la práctica esto es la mayoría de las veces. Un loop for
+# típico se escribe así:
 
-for (variable in secuencia) comando
-
-# Con este código, R ejecuta este "comando" n veces (en donde n es la longitud
-# del vector "secuencia"). En cada iteración el valor de "variable" va
-# cambiando, tomando uno a uno los valores del vector "secuencia".
-
-
-# Un ejemplo sumamente simple:
-for (i in 1:10)
-  print(i)
-
-# Aquí usamos "i" y 1:10 en lugar de "variable" y "secuencia" respectivamente.
-# Nuestro comando es "print(i)".
-
-# El resultado de este código es que se imprimen los números del 1 al 10 en
-# la consola. Además el objeto "i", luego de ejecutar esto, ahora es el
-# número 10:
-i
-
-# Nota: en general se considera más "apropiado" escribir los comandos en una
-# línea aparte. En las lecciones se van a usar las dos formas, pero se 
-# recomenda usar este estilo".
-
-
-## MÁS DE UN COMANDO
-# Si queremos hacer varios comandos en cada iteración usamos { }. Esto es
-# lo que se conoce como bloque de código: tódo lo que está entre { y } se
-# ejecuta como si fuera una misma línea de comando. Esto implica que hasta
-# que no se pone el último } en la consola de R no se ejecuta ninguno de
-# los comandos internos.
-
-# Estructura:
-for (variable in secuencia) {
-   comando1
-   comando2
-   ...etc
-}
-
-# Ejemplo:
 for (i in 1:10) {
-   print('Extremos:')         
-   print(paste(0 - i, 0 + i))
-}
-# El lugar de las llaves de inicio y fin, { & }, no es importante para R, pero 
-# es aconsejable usar este estilo ya que es la práctica más común.
-
-# Nota: es un error muy común olvidarse de poner las llaves al principio y
-# final del bloque de instrucciones, por ejemplo luego de un "if ()" o
-# "for (...)". Para evitar estos errores, una actitud "agresiva" de programación
-# defensiva es usar siempre llaves para los comandos for, while, repeat, if y
-# else.
-
-# Es deseable, por un tema de facilidad de lectura, que los comandos interiores
-# a los {} estén adelantados una distancia fija, por ejemplo un "tab" o
-# tabulación (a esto se le llama "indentación"; ver wikipedia para mayor
-# profundidad).
-
-
-## GUARDANDO EL RESULTADO
-# IMPORTANTE!!!: Muchas veces, antes de comenzar el loop se debe crear un vector
-# "vacio" (entindase como un vector lleno de ceros, aunque puede ser diferente).
-# Este vector sirve para guardar los números creados. Para este cometido, se
-# puede usar un esquema de tipo:
-valores <- numeric(n)
-# Hasta aquí "valores" es un vector de ceros, con "n" elementos.
-for (i in 1:n) {
-  nuevoValor <- comando
-  valores[i] <- nuevoValor
+  # comando 1
+  # comando 2
+  # etc ...
 }
 
-# Aquí "n" es el número de iteraciones que necesito, "valores" es el objeto
-# (en este caso un vector) en el que se almacenan los resultados.
+# Con este código R ejecuta los comandos 1, 2, etc unas 10 veces. Por ejemplo,
+# el siguiente ejemplo escribe la palabra "Hemoglobina" 4 veces:
 
-# Nótese que se usa la variable "i" para indicar la posición del vector
-# "valores" en la cual insertamos el nuevo valor obtenido en cada iteración.
-
-
-# Ejemplo: Quiero hacer una secuencia de 100 números que vayan aumentando de a
-# 3, empezando por el 0 (haciendo de cuenta que no existe la función "seq").
-
-# La variable será "i"
-# La secuencia será 1:99
-
-# Nótese que termina en el 99, debido a la forma en que voy a escribir el
-# comando (ver abajo).
-
-valores <- numeric(100) # Crea un vector con 100 ceros, luego los voy a ir
-                        # sustituyendo (excepto al primero).
-for (i in 1:99) {
-  nuevoValor <- valores[i] + 3
-  valores[i + 1] <- nuevoValor
-}
-# Sustituye, en cada iteración, al (i + 1)ésimo valor de "valores" (que es un
-# cero inicialmente) por la suma del iésimo valor + 3.
-
-valores
-plot(valores)
-i # es 99
-
-# En este caso se observaron algunas variantes respecto al esquema general
-# planteado, lo cual no es raro, ya que cada tarea requiere ajustar detalles.
-# Por ejemplo, es común utilizar matrices o listas, en lugar de vectores,
-# para almacenar los valores obtenidos en nuestro loop.
-
-
-## LOOPS OBLIGADOS (O NO)
-# En el caso anterior, no era necesario utilizar un loop, ya que el comando
-# "seq" puede realizar la misma tarea e incluso con mayor eficiencia. No es
-# raro que se utilicen loops existiendo otros comandos que hacen lo mismo,
-# debido a la cantidad de funciones que existen en R.
-
-# Sin embargo hay ocasiones en que es realmente necesario utilizar un loop. Un
-# caso paradigmático es cuando "el valor siguiente depende del anterior". Por
-# ejemplo, si consideramos el aumento de un depósito bancaro bajo una tasa de
-# interés determinada.
-
-# Si la tasa de interés es "t" y la cantidad depositada es "d":
-# d( n + 1 ) = d( n ) + d( n ) * t
-
-# (Se indica entre paréntesis el año).
-# En este caso, para calcular d( n + 1 ) necesito saber cuanto es d( n ), para
-# lo cual debo conocer d( n - 1 ), etc... Por lo tanto, lo que necesito es
-# saber el valor inicial d( 0 ).
-
-# Entonces, para calcular d( n ) a partir de un depósito inicial podemos usar
-# el siguiente código:
-plata.inicial <- 500         # depósito inicial
-tasa.interes  <- 0.05        # tasa de interés, 5%
-deposito <- numeric(10)      # 10 años/iteraciones
-deposito[1] <- plata.inicial # Hay que ingresar "manualmente" el valor inicial
-                             # *antes* del loop
-for (i in 1:9) {
-  plata <- deposito[i] + deposito[i] * tasa.interes
-  deposito[i + 1] <- plata
-}
- 
- 
-# Otro ejemplo: serie de Fibonacci
-# La serie de Fibonacci empieza con dos 1 y se calcula cada valor siguiente
-# sumando los dos anteriores.
-
-# Es decir, si f( n ) es el enésimo valor de la serie, una forma de describir
-# la serie es (empezando por n=3):
-# f( n ) = f(n - 1) + f(n - 2)
-
-# Los primeros valores son:
-# 1 1 2 3 5 8 13 21 34 55 89 ...
-
-# Calculemos los primeros 20 elementos de la serie:
-
-fibo <- numeric(20) + 1
-# "fibo" es un vector para rellenar.
-for (n in 3:20) {
-  fibo[n] <- fibo[n - 1] + fibo[n - 2]
-  # Esta viene a ser la ecuación de más arriba...
-}
-fibo
-plot(fibo)
-plot(fibo, log='y', type='o')
-
-
-## Bonus: LOOPS ANIDADOS
-# Aunque suene horrible, no es otra cosa que más de lo mismo. La idea es que
-# se hace un loop adentro de otro loop. Usando dos loops anidados podemos
-# recorrer los elementos de un objeto de dos dimensiones, como es una matriz:
-mat <- matrix(1:20, 4, 5)
-for (i in 1:4) {       # i será el índice de las filas de mat
-   for (j in 1:5) {    # j será el índice de las columnas de mat
-      print(mat[i, j]) # (es necesario usar letras distintas).
+for (i in 1:4) {
+  print("Hemoglobina")
 }
 
-# Ejemplo: tomando un conjunto de coordenadas cartesianas podemos hacer el
-# calculo de la distancia entre cualquier par de puntos, usando la distancia
-# euclidiana, que no es otra cosa que una aplicación del teorema de pitágoras:
-# h ^ 2 = a ^ 2 + b ^ 2   <==>   h = sqrt(a ^ 2 + b ^ 2)
-# (h: hipotenusa y a,b: catetos, de un triángulo rectángulo).
-# La distancia euclidiana se calcula sustituyendo "a" por la resta de las
-# coordenadas de dos puntos en uno de los ejes, haciendo lo mismo para "b" y
-# despejando para la hipotenusa.
+# ¡Atención! Un error común es olvidar escribir alguno de los corchetes { y };
+# sin embargo en el caso de un único comando se pueden eliminar por completo ...
 
-# Si el punto A es (x0, y0) y B es (x1, y1), la distancia entre ambos es:
-# d = sqrt((x0 - x1) ^ 2 + (y0 - y1) ^ 2)
+# Más importante aún que la cantidad de veces que se ejecutan los comandos es la
+# discreta presencia de la letra "i" en la primer línea. El rol de este objeto
+# es el de variable: en cada iteración el i cambia, tomando los valores 1, 2, 3
+# y 4 (en este caso). Esto es sumamente útil para hacer casi cualquier cosa más
+# elaborada que escribir lo mismo 4 veces ...
 
-# Nuestros puntos van a estar representados por una matriz de dos columnas,
-# las coordenadas de  "longitud" y "latitud" respectivamente:
-x <- rnorm(5)
-y <- rnorm(5)
-coords <- cbind(x, y)
+# El siguiente ejemplo muestra esta propiedad de forma explícita:
 
-# Haremos una pequeña función para calcular la distancia entre 2 puntos
-# cualesquiera, teniendo en cuenta el formato que le dimos a las coordenadas:
-
-euc <- function(a, b, puntos) {
-# Calcula la distancia entre los puntos "a" y "b", incluidos en la matriz
-# "puntos"
-# a,b: dos números enteros, entre 1 y el número de filas de "puntos".
-# puntos: una matriz numérica de dos columnas.
-  resta <- puntos[a,] - puntos[b,] # (x0 - x1, y0 - y1) = (a, b)
-  return(sqrt(sum(resta ^ 2)))     # sqrt(a ^ 2 + b ^ 2)
-}
-
-# Finalmente, quiero calcular las distancias euclidianas entre todos los pares
-# de puntos y guardarlos en una matriz M (5x5), en donde M[i,j] = dist.
-# entre los puntos i y j ... Para esto lo primero será crear una matriz
-# "vacía" para rellenar con los valores de las distancias:
-M <- matrix(0, 5, 5)
-# Nota: 5 podría ser sustituído por nrow(coords)
-# Ahora se hacen dos "for" anidados, ambos de 1:5
 for (i in 1:5) {
-   for (j in 1:5) {
-      M[i, j] <- euc(i, j, coords)
-      # Aquí relleno el elemento i,j de M con la distancia entre esos puntos.
-   }
+  print("El valor i:")
+  print(i)
 }
-M # La diagonal de M deben ser ceros
-diag(M)
-# M debe ser simétrica respecto a la diagonal, lo cual se puede comprobar:
-M1 <- M - t(M)
-sum(M1)      # Debe dar 0
-all(M1 == 0) # Debe dar tfinal
 
-# Nota: existen formas más "elegantes" y eficientes de hacerlo, e incluso hay
-# una función nativa de R para cacular matrices de distancia ("dist").
+# Nótese que ahora i = 5, ya que es el último valor del loop. Nótese también que
+# no hay restricción alguna en los números a utilizar. Es perfectamente válido
+# (y potencialmente útil) escribir 3:5 o -1:5 en lugar de 1:5 como en el ejemplo.
 
+# Nótese también que se utilizan 2 espacios antes de los comandos interiores a
+# los corchetes. Esta práctica es simplemente un criterio común para que el ojo
+# humano detecte fácilmente cuáles son los comandos del loop.
+
+# ¡Atención! Uno de los errores más comunes es el poner un sólo número aquí,
+# por ejemplo:
+
+for (i in 5) {
+  print(i)
+}
+
+# Esto sólo imprime "5".
+
+# Nótese también: que la letra i no es la única opción, cualquier letra o
+# palabra sirve.
+
+
+## USOS MÁS COMUNES:
+# 1. Para acceder de forma secuencial a los distintos valores de un vector,
+# matriz o data.frame se pueden usar códigos como el siguiente:
+
+perros <- c("cucho", "bobi", "morti", "sultan", "fido", "yonofui")
+
+for (i in 1:length(perros)) {
+  print(paste("Mi perro se llamaba:", perros[i]))
+}
+
+# Lo más importante para notar aquí es el uso de los paréntesis rectos para
+# indicar que queremos sólo el iésimo elemento del vector "perros". Es decir, se
+# escribe "perros[i]" y no "perros" solamente.
+
+# Nótese que aquí en vez de escribir "1:6" se puso "1:length(perros)", de forma
+# tal que no es necesario saber de antemano cuántos elementos tiene el vector en
+# cuestión.
+
+# En mismo principio se puede utilizar de muchas maneras distintas y en
+# particular con matrices y data.frames puede ser muy útil. Por ejemplo, para
+# imprimir el promedio de valores de cada fila en una matriz m:
+
+m <- matrix(rnorm(24, 5), nrow=4)
+for (i in 1:nrow(m)) {
+  print(mean(m[i,]))
+}
+
+
+# 2. Otro uso común es el de ir "rellenando" un objeto con valores obtenidos en
+# cada iteración. En este tipo de estrategias, primero se debe crear el objeto
+# vacío y luego en el for se ejecutan los comandos para hacer el rellenado. El
+# siguiente ejemplo ilustra este principio utilizando la matriz m creada en el
+# ejemplo anterior:
+
+(promxfila <- numeric(nrow(m)))
+# Este primer comando genera un vector de ceros con la longitud adecuada.
+for (i in 1:nrow(m)) {
+  promxfila[i] <- mean(m[i,])
+}
+
+# Es fácil comprobar que el vector promxfila contiene los mismos valores que se
+# imprimieron anteriormente.
+
+# Nota: existe una forma más fácil y eficiente de hacer lo mismo:
+promxfila <- rowMeans(m)
+
+
+# 3. Los usos anteriores se pueden combinar para reproducir diferentes tipos de
+# procesos. Vamos a ilustrar este principio con la llamada "caminata del
+# borracho".
+
+# La caminata del borracho es un proceso muy simple: en cada iteración se tira
+# una moneda (usaremos "sample" para esto) y el borracho se mueve un paso a la
+# izquierda o a la derecha según el caso.
+
+# Hagamos un borracho con 50 iteraciones, cuya posición inicial es el cero.
+# Primero hay que crear el vector para rellenar:
+
+posicion <- numeric(50)
+for (i in 1:49) {
+  moneda <- sample(c(-1, 1), 1)
+  posicion[i + 1] <- posicion[i] + moneda
+}
+
+# Podemos visualizar el resultado con un comando simple de plot:
+plot(posicion, type="o", xlab="Iteración", ylab="Posición")
+
+
+# 4. Loops Anidados. Muchas circunstancias pueden llevar a que sea necesario
+# hacer un for dentro de otro for, lo cual suele hacer las cosas un poco más
+# complicadas. Ilustraremos el concepto utilizando nuevamente la matriz m creada
+# anteriormente:
+
+for (i in 1:nrow(m)) {
+  for (j in 1:ncol(m)) {
+    print(m[i, j])
+  }
+}
+
+# Como fácilmente se puede comprobar, este código simplemente imprime todos los
+# elementos de la matriz m.
+
+# Nótese: que la variable i se usa para las filas y la variable j para las
+# columnas. Es importante en estos casos usar nombres diferentes para cada for,
+# ya que de otra manera se producen errores que pasan inadvertidos.
+
+# En general es lo más aconsejable tratar de evitar utilizar este tipo de
+# recursos, ya que muchas veces se pueden resolver los mismos problemas de
+# formas más eficientes. En la lección "loops-for-extra" se explica mejor esta
+# idea y se dan algunos ejemplos.
 
 ## RESUMEN
-# Hemos visto el tipo de loop más comunmente utilizado en programación. El 
-# loop 'for' se utiliza cuando sabemos de antemano el número de iteraciones
-# que necesitamos.
-# Destacamos que a diferencia del loop 'while', que veremos luego, el loop
-# 'for' no requiere de condiciones para su ejecución, más allá de la especi-
-# ficación de la cantidad de iteraciones deseadas.
-# Los ejemplos empleados dan cuenta de varias situaciones en que podemos
+# Hemos visto el tipo de loop más comunmente utilizado en programación. El loop
+# 'for' se utiliza cuando "sabemos" de antemano el número de iteraciones que
+# necesitamos.
+# Dado que la sintaxis es relativamente elaborada, hay que tener especial
+# atención a los errores, particularment los más comunes: omisión de un corchete,
+# escribir mál la secuencia de números (1:n) o confundir el nombre de las
+# variables (i, j, k, etc ...).
+# Los ejemplos empleados dan cuenta de situaciones comunes en que podemos
 # utilizar esta herramienta, pero no está limitada a éstas. Siendo particular-
 # mente útil al realizar simulaciones con modelos o aplicar análisis a grandes
 # series de datos, su combinación dentro de funciones y con otras estructuras
 # de control (ej: condicionales) se hace más importante, y resulta fundamental
 # como herramienta para cualquier programador.
-
