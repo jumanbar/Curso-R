@@ -13,7 +13,7 @@
 ?"for"
 
 
-## SINTÁXIS BÁSICA
+## SINTÁXIS
 # Aquí veremos solamente el caso más común que suele utilizarse en R, pero es
 # bueno saber que existen variantes más sofisticadas.
 
