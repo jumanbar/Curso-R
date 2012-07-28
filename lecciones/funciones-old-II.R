@@ -47,7 +47,7 @@ propios <- function(matriz) {
 ## Pero vamos a verlo paso por paso, con un poco de explicación:
 propios <- function(matriz) { # Primero especificamos que "propios" (tal va a ser el nombre de nuestra función) va a ser
   ## una función. Entre paréntesis van a ser los argumentos de la función, o sea, lo que necesita ser especificado 
-  ## para que ésta funcione. En este caso una matriz. El corchete "{" se pone para especificar que van a haber una serie de
+  ## para que ésta funcione. En este caso una matriz. La llave inicial "{" se pone para especificar que van a haber una serie de
   ## instrucciones internas a la función. Está cerrado al final de la misma.
  
   ## Vamos a crear dentro de la función un objeto "a", al que vamos a asignar la salida de la función "eigen", con los 
@@ -68,7 +68,7 @@ propios <- function(matriz) { # Primero especificamos que "propios" (tal va a se
     # Cuando veamos más formalmente las funciones esto va a ser más claro.
 }
  
-## Si copiamos y pegamos en R las líneas que van desde "propios" hasta el cierre del corchete "}", vamos a definir en R
+## Si copiamos y pegamos en R las líneas que van desde "propios" hasta el cierre de la llave "}", vamos a definir en R
 ## la función "propios", que calcula valores y vectores propios y sustituye o crea nombres de algunos de sus elementos.
  
 ## La clase de "propios" es "function"

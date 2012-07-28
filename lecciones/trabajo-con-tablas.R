@@ -229,7 +229,7 @@ sapply(USArrests, mean)
 # Estas funciones sirven para ejecutar comandos "adentro" de una lista... Esto
 # es útil ya que permite trabajar con los nombres de las variables
 # directamente, en lugar de estar recordando los números de columnas y usando
-# corchetes todo el tiempo. 
+# llaves todo el tiempo. 
 
 # Los argumentos son:
 # data: una lista que sirva para construir un "ambiente" en el cual ejecutar los comandos.

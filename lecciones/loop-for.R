@@ -16,8 +16,6 @@
 ## SINTÁXIS
 # Aquí veremos solamente el caso más común que suele utilizarse en R, pero es
 # bueno saber que existen variantes más sofisticadas.
-
-# FOR
 # Este comando es usado cuando de antemano sabemos el número de iteraciones que
 # necesitamos. En la práctica esto es la mayoría de las veces. Un loop for
 # típico se escribe así:
@@ -35,8 +33,8 @@ for (i in 1:4) {
   print("Hemoglobina")
 }
 
-# ¡Atención! Un error común es olvidar escribir alguno de los corchetes { y };
-# sin embargo en el caso de un único comando se pueden eliminar por completo ...
+# ¡Atención! Un error común es olvidar escribir alguno de las llaves { y }; sin
+# embargo en el caso de un único comando se pueden eliminar por completo ...
 
 # Más importante aún que la cantidad de veces que se ejecutan los comandos es la
 # discreta presencia de la letra "i" en la primer línea. El rol de este objeto
@@ -56,7 +54,7 @@ for (i in 1:5) {
 # (y potencialmente útil) escribir 3:5 o -1:5 en lugar de 1:5 como en el ejemplo.
 
 # Nótese también que se utilizan 2 espacios antes de los comandos interiores a
-# los corchetes. Esta práctica es simplemente un criterio común para que el ojo
+# las llaves. Esta práctica es simplemente un criterio común para que el ojo
 # humano detecte fácilmente cuáles son los comandos del loop.
 
 # ¡Atención! Uno de los errores más comunes es el poner un sólo número aquí,
@@ -96,7 +94,7 @@ for (i in 1:length(perros)) {
 
 m <- matrix(rnorm(24, 5), nrow=4)
 for (i in 1:nrow(m)) {
-  print(mean(m[i,]))
+  print(mean(m[i, ]))
 }
 
 
@@ -109,7 +107,7 @@ for (i in 1:nrow(m)) {
 (promxfila <- numeric(nrow(m)))
 # Este primer comando genera un vector de ceros con la longitud adecuada.
 for (i in 1:nrow(m)) {
-  promxfila[i] <- mean(m[i,])
+  promxfila[i] <- mean(m[i, ])
 }
 
 # Es fácil comprobar que el vector promxfila contiene los mismos valores que se
@@ -168,7 +166,7 @@ for (i in 1:nrow(m)) {
 # 'for' se utiliza cuando "sabemos" de antemano el número de iteraciones que
 # necesitamos.
 # Dado que la sintaxis es relativamente elaborada, hay que tener especial
-# atención a los errores, particularment los más comunes: omisión de un corchete,
+# atención a los errores, particularmente los más comunes: omisión de una llave,
 # escribir mál la secuencia de números (1:n) o confundir el nombre de las
 # variables (i, j, k, etc ...).
 # Los ejemplos empleados dan cuenta de situaciones comunes en que podemos

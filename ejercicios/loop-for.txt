@@ -1,6 +1,6 @@
 ================================================================================
 
-¿Cuántas iteraciones hará el siguiente código? (marcar todas las correctas)
+Dado el siguiente código, marcar todas las afirmaciones correctas:
 
 m <- matrix(sample(20), 5, 4)
 for (i in 1:ncol(m)) {
