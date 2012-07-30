@@ -13,7 +13,7 @@
 ?"for"
 
 
-## SINTÁXIS
+## SINTAXIS
 # Aquí veremos solamente el caso más común que suele utilizarse en R, pero es
 # bueno saber que existen variantes más sofisticadas.
 # Este comando es usado cuando de antemano sabemos el número de iteraciones que

@@ -23,6 +23,9 @@ for (i in 1:9) {
   x[i + 1] <- x[i] + rnorm(1)
 }
 
+# El siguiente código simula un movimiento aleatorio de una partícula sumando
+# un número aleatorio al valor de posición anterior de la misma. La posición
+# se guarda en el vector x.
 x <- numeric(100)
 for (i in 2:100) {
   x[i] <- x[___] + rnorm(1) # i - 1
@@ -56,40 +59,40 @@ x <- numeric(ncol(m))
 for (i in 1:ncol(m)) {
   x[i] <- mean(m[, i])
 }
-# Es correcto. La variable i sirve para seleccionar la columna indicada de m en
-# cada iteración y el número de iteraciones coincide con la cantidad de columnas
-# de m.
+Es correcto. La variable i sirve para seleccionar la columna indicada de m en
+cada iteración y el número de iteraciones coincide con la cantidad de columnas
+de m.
 
 b.
 x <- numeric(ncol(m))
 for (k in 1:ncol(m)) {
   x[k] <- mean(m[, i])
 }
-# No es correcto. Se está llamando a la variable no definida i. Lo correcto sería
-# utilizar m[, k] en la tercer línea.
+No es correcto. Se está llamando a la variable no definida i. Lo correcto sería
+utilizar m[, k] en la tercer línea.
 
 c.
 x <- numeric(ncol(m))
 for (k in 1:ncol(m)) {
   x[k] <- mean(m[, k])
 }
-# Es correcto. La variable k sirve para seleccionar la columna indicada de m en
-# cada iteración y el número de iteraciones coincide con la cantidad de columnas
-# de m.
+Es correcto. La variable k sirve para seleccionar la columna indicada de m en
+cada iteración y el número de iteraciones coincide con la cantidad de columnas
+de m.
 
 d.
 x <- numeric(nrow(m))
 for (k in 1:nrow(m)) {
   x[k] <- mean(m[, k])
 }
-# No es correcto: se usa nrow en lugar de ncol en las primeras dos líneas.
+No es correcto: se usa nrow en lugar de ncol en las primeras dos líneas.
 
 e.
 x <- numeric(ncol(m))
 for (k in 1:ncol(m)) {
   x[k] <- mean(m[k, ])
 }
-# No es correcto, debería decir m[, k] en la 3er. línea.
+No es correcto, debería decir m[, k] en la 3er. línea.
 
 ================================================================================
 
@@ -102,37 +105,41 @@ es equivalente al código (marcar todos los que a su juicio están correctos):
 a.
 k <- m
 for (i in 1:nrow(m)) {
-  for (j in 1:ncol(m)) {
-    k[i, j] <- m[i, j] + 3 * exp(m[i, j])
-  }
-}
-
-b.
-k <- m
-for (i in 1:nrow(m)) {
   for (i in 1:ncol(m)) {
     k[i, j] <- m[i, j] + 3 * exp(m[i, j])
   }
 }
-# No es correcto: la variable i aparece en ambos loops.
+No es correcto: la variable i aparece en ambos loops.
 
-c.
-k <- matrix(0, nrow(m), ncol(m))
+
+b.
+k <- m
 for (i in 1:nrow(m)) {
   for (j in 1:ncol(m)) {
-    k[j, i] <- m[j, i] + 3 * exp(m[j, i])
+    k[i, j] <- m[i, j] + 3 * exp(m[i, j])
   }
 }
-# No es correcto: debería poner [i, j] en lugar de [j, i]
+Es correcto: las variables i y j indican correctamente las filas y columnas respectivamente
+de las matrices k y m.
 
-d.
+c.
 k <- matrix(0, nrow(m), ncol(m))
 for (j in 1:nrow(m)) {
   for (i in 1:ncol(m)) {
     k[j, i] <- m[j, i] + 3 * exp(m[j, i])
   }
 }
-# Es correcto: la variable j se usa para las filas y la variable i se usa para
-# las columnas.
+Es correcto: las variables j y i indican correctamente las filas y columnas respectivamente
+de las matrices k y m.
+
+d.
+k <- matrix(0, nrow(m), ncol(m))
+for (i in 1:nrow(m)) {
+  for (j in 1:ncol(m)) {
+    k[j, i] <- m[j, i] + 3 * exp(m[j, i])
+  }
+}
+No es correcto: debería poner [i, j] en lugar de [j, i]
+
 
 ================================================================================
