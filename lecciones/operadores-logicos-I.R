@@ -4,29 +4,35 @@
 # Los operadores lógicos son símbolos mediante los cuales podemos re-
 # alizar operaciones cuyos resultados son objetos de la clase 'logical',
 # de tipo Booleano, que puede adoptar los valores 'TRUE' o 'FALSE',
-# según se cumpla o no la relación propuesta en la expresión. Este tipo
-# de operaciones resultan herramientas centrales en programación, como
-# veremos, y en esta primera etapa vamos a abordar el uso de operadores
-# relacionales, o comparadores, y de operadores Booleanos.
+# según se cumpla o no la relación propuesta en la expresión. A modo de
+# ejemplo:
+5 == 10/2
+# En este caso estamos proponiendo la igualdad entre los dos términos,
+# la cual es verdadera.
+# Este tipo de operaciones resultan herramientas centrales en programa-
+# ción, como veremos más adelante en el curso. En esta primera etapa
+# vamos a abordar el uso de operadores relacionales, o comparadores,
+# y de operadores Booleanos.
 
 ## COMPARADORES
 # La operación más sencilla e intuitiva que vamos a realizar, dados dos
-# valores u objetos (operandos), va a ser la comparación de los mismos.
-# Para ralizar este tipo de operación contamos con todo un conjunto de 
-# operadores, denominados comparadores u operadores relacionales. Estos
-# son: <, >, <=, >=, == y !=, correspondiendo a las comparaciones:
-# 'menor a', 'mayor a', 'menor o igual a', 'mayor o igual a', 'igual a'
-# y 'distinto de'. 
-# El uso de estos operadores es bastante intuitivo. A modo de ejemplo:
+# valores u objetos, va a ser la comparación de los mismos. Para ralizar
+# este tipo de operación contamos con todo un conjunto de operadores,
+# denominados comparadores u operadores relacionales. Estos son: <, >,
+# <=, >=, == y !=, correspondiendo a las comparaciones: 'menor a',
+# 'mayor a', 'menor o igual a', 'mayor o igual a', 'igual a' y 'distinto
+# de'. El uso de estos operadores es bastante intuitivo. Como ejemplo:
 3 > 2  # TRUE  (¿tres es mayor que dos?)
 3 < 2  # FALSE (¿tres es menor que dos?)
 3 == 2 # FALSE (¿tres es igual a dos?)
 5 == 5 # TRUE (¿cinco es igual a cinco?)
 5 != 5 # FALSE (¿cinco es distinto de cinco?)
 1 == "string" # FALSE
-# Nótese que los objetos a comparar deben estar en el orden correcto.
+# Nótese que los objetos a comparar deben estar en el orden correcto,
+# particularmente en los que se está planteando una desigualdad
 # En el último ejemplo se intenta comparar dos objetos de diferentes
-# clases. Esto es un detalle a tener siempre en cuenta.
+# clases. Además de los valores, deberemos tener en cuenta est tipo de
+# detalles.
 
 # En el caso de que las operaciones involucren vectores, los resultados
 # dependerán de la entrada de la operación. Ej:
