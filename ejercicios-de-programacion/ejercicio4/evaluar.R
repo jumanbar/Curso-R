@@ -42,9 +42,9 @@ verNotas <- function()
 ### FUNCIÓN DE FEEDBACK
 feedback <- function(r, s) {
   if (r) {
-    cat('El script ', s, ': está perfecto, ¡Buen trabajo!\n', sep='')
+    cat('El script "', s, '" está perfecto, ¡Buen trabajo!\n', sep='')
   } else {
-    cat('El script ', s, ': tiene algún error, lo sientimos :(\n', sep='')
+    cat('El script "', s, '" tiene algún error, lo sientimos :(\n', sep='')
   }
 }
 

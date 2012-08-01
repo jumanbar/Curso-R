@@ -35,6 +35,10 @@ Usted trabajará modificando los contenidos de dichos archivos con RStudio (u ot
 evaluar()
 ```
 
+### Entrega de ejercicios
+
+Una vez terminados los ejercicios, se debe subir el archivo "datos", incluidos en la carpeta **`ej4`** al EVA en la página de entrega de los ejercicios.
+
 ********
 
 Ejercicio 1: secuencia de Fibonacci
@@ -67,9 +71,9 @@ plot(fibo ~ i, main = "Secuencia de Fibonacci", ylab = expression(S[i]), xlab = 
 
 ### 1b. Crear una función genérica
 
-En esta parte del ejercicio usted trabajará modificando el archivo `funcion-fibonacci.R`. El objetivo de este archivo es crear una función que calcule la secuencia de Fibonacci para una cantidad de números arbitraria. Tome en cuenta que el código es casi idéntico al contenido en el archivo `fibonacci.R`, pero debe ser modificado estratégicamente para que el argumento `n` modifique el resultado final.
+En esta parte del ejercicio usted trabajará modificando el archivo `funcionFibonacci.R`. El objetivo de este archivo es crear una función que calcule la secuencia de Fibonacci para una cantidad de números arbitraria. Tome en cuenta que el código es casi idéntico al contenido en el archivo `fibonacci.R`, pero debe ser modificado estratégicamente para que el argumento `n` modifique el resultado final.
 
-Si usted ha modificado correctamente el archivo `funcion-fibonacci.R` entonces el siguiente comando debería devolver el resultado que se muestra aquí:
+Si usted ha modificado correctamente el archivo `funcionFibonacci.R` entonces el siguiente comando debería devolver el resultado que se muestra aquí:
 
 
 
@@ -81,4 +85,6 @@ funcionFibonacci(13)
 ##  [1]   0   1   1   2   3   5   8  13  21  34  55  89 144
 ```
 
+
+********
 
