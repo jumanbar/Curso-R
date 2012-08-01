@@ -4,7 +4,7 @@
 ################################################################################
 esperados <- c("fibonacci.R", "funcionFibonacci.R", "evaluar.R", "datos", "notas.csv")
 corregir  <- c("fibonacci.R", "funcionFibonacci.R")
-notas <- data.frame(No.ej=c('1a', '1b', 'Total (%)'), Script=c(corregir, '--'),
+notas <- data.frame(Parte=c('1.a', '1.b', 'Total (%)'), Script=c(corregir, '--'),
                     Nota=numeric(length(corregir) + 1))
 write.csv2(notas, file='notas.csv', row.names=FALSE)
 oblg  <- 2
@@ -19,11 +19,13 @@ fb <- function(n) {
 ### FUNCIONES DE CORRECCIÓN:
 
 cor_fibonacci <- function(a) {
+  load('datos')
   source('fibonacci.R')
   identical(fibo, fb(20)) * 1
 }
 
 cor_funcionFibonacci <- function(a) {
+  load('datos')
   source('funcionFibonacci.R')
   r <- 1
 #   n <- sample(10:50, 15, replace=!0)
@@ -37,5 +39,5 @@ cor_funcionFibonacci <- function(a) {
 
 ################################################################################
 guardar <- c('esperados', 'corregir', 'oblg', 'fb', 'guardar', 'cor_fibonacci',
-             'cor_funcionFibonacci')
+             'cor_funcionFibonacci', 'notas')
 save(list=guardar, file='datos')

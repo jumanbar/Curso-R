@@ -2,7 +2,6 @@ evaluar <- function() {
   #
   cat("\nCargando funciones y datos para la corrección...\n\n")
   load('datos')
-  notas <- read.csv2('notas.csv')
   arch <- dir()
   #
   
@@ -30,6 +29,7 @@ evaluar <- function() {
   cat('\nNota total hasta ahora:\n\n')
   
   print.data.frame(notas, row.names=FALSE, right=FALSE)
+  cat('\n')
 
   write.csv2(notas, file='notas.csv', row.names=FALSE)
   save(list=guardar, file='datos')

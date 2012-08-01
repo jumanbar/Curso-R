@@ -5,7 +5,7 @@ Ejercicio de programación IV: Estructuras de Control
 
 Archivos incluidos
 -------------------
-El [archivo](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/ejercicio4.zip) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta ejercicio4. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo (con el menú **Tools > Set Working Directory > Choose Directory...** o la combinación **Ctrl + Shift + K**). En esta carpeta se encuentran algunos archivos que usted deberá modificar:
+El [archivo](https://github.com/jumanbar/Curso-R/blob/master/ejercicios-de-programacion/ejercicio4/ej4.zip?raw=true) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **ej4**. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo (con el menú **Tools > Set Working Directory > Choose Directory...** o la combinación **Ctrl + Shift + K**). En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 * **` fibonacci.R `**
 * **` funcion-fibonacci.R `**
 
@@ -17,7 +17,7 @@ Adicionalmente los siguientes archivos son necesarios, pero **no deben ser cambi
 Lo primero que debe hacer es ejecutar el siguiente comando para cargar las funciones de corrección:
 
 ```
-source("enviar.R")
+source("evaluar.R")
 ```
 Si usted ha ejecutado todos los pasos anteriores correctamente, la siguiente frase debería verse en la consola:
 
@@ -29,7 +29,7 @@ Si usted ha ejecutado todos los pasos anteriores correctamente, la siguiente fra
 
 En caso de que ocurra un error o se vea otro mensaje en la consola, verifique que los archivos se descomprimieron correctamente y que usted está trabajando en la carpeta correspondiente con el comando `getwd()`.
 
-Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar uno o varios de los ejercicios deberá ejecutar el comando:
+Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:
 
 ```
 evaluar()
