@@ -7,7 +7,7 @@ Archivos incluidos
 -------------------
 El [archivo](https://github.com/jumanbar/Curso-R/blob/master/ejercicios-de-programacion/ejercicio4/ej4.zip?raw=true) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **ej4**. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo (con el menú **Tools > Set Working Directory > Choose Directory...** o la combinación **Ctrl + Shift + K**). En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 * **` fibonacci.R `**
-* **` funcion-fibonacci.R `**
+* **` funcionFibonacci.R `**
 
 Adicionalmente los siguientes archivos son necesarios, pero **no deben ser cambiados**.
 * **` evaluar.R `**

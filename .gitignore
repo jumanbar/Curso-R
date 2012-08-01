@@ -1,6 +1,7 @@
 *.Rproj.user
 *.Rhistory
 *.RData
+*.rda
 Curso-R.Rproj
 apuntes-juan
 .Rproj.user
