@@ -10,9 +10,11 @@ El [archivo](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programac
 * **` funcion-fibonacci.R `**
 
 Adicionalmente los siguientes archivos son necesarios, pero **no deben ser cambiados**.
-* **` enviar.R `**
+* **` evaluar.R `**
+* **` notas.csv `**
+* **` datos `**
 
-Lo primero que debe hacer es ejecutar el siguiente comando:
+Lo primero que debe hacer es ejecutar el siguiente comando para cargar las funciones de corrección:
 
 ```
 source("enviar.R")
@@ -20,15 +22,17 @@ source("enviar.R")
 Si usted ha ejecutado todos los pasos anteriores correctamente, la siguiente frase debería verse en la consola:
 
 ```
-¡Función 'enviar' cargada correctamente!
+
+ Código fuente cargado correctamente
+
 ```
 
-En caso de que no vea este mensaje, verifique que los archivos se descomprimieron correctamente y que usted está trabajando en la carpeta correspondiente con el comando `getwd()`.
+En caso de que ocurra un error o se vea otro mensaje en la consola, verifique que los archivos se descomprimieron correctamente y que usted está trabajando en la carpeta correspondiente con el comando `getwd()`.
 
 Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar uno o varios de los ejercicios deberá ejecutar el comando:
 
 ```
-enviar()
+evaluar()
 ```
 
 ********
@@ -48,30 +52,33 @@ y agregando la condición de que los valores iniciales $S_0$ y $S_1$ equivalen a
 
 En este ejercicio usted deberá trabajar modificando el archivo `fibonacci.R`. En el mismo usted encontrará que el vector `fibo` es el designado para guardar los primeros 20 elementos de la secuencia. Para lograr hacer esta secuencia usted tendrá que crear un loop del tipo `for` con el número correcto de iteraciones. No olvide considerar que los primeros dos elementos de la secuencia ya están agregados al vector `fibo` a la hora de determinar el número de iteraciones así como los valores de `i` inicial e `i` final.
 
-Puede comprobar que su resultado es correcto comparando la imagen que se genera con el último comando del script, la cual debería ser idéntica a la siguiente figura:
+Puede comprobar que su resultado es correcto comparando la siguiente imagen, generada con los comandos:
 
-```{r echo=FALSE}
-fibo <- c(0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181)
+
+
+
+```r
 i <- 0:19
-plot(fibo ~ i, main="Secuencia de Fibonacci", ylab=expression(S[i]), xlab="i")
+plot(fibo ~ i, main = "Secuencia de Fibonacci", ylab = expression(S[i]), xlab = "i")
 ```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
+
 
 ### 1b. Crear una función genérica
 
 En esta parte del ejercicio usted trabajará modificando el archivo `funcion-fibonacci.R`. El objetivo de este archivo es crear una función que calcule la secuencia de Fibonacci para una cantidad de números arbitraria. Tome en cuenta que el código es casi idéntico al contenido en el archivo `fibonacci.R`, pero debe ser modificado estratégicamente para que el argumento `n` modifique el resultado final.
 
 Si usted ha modificado correctamente el archivo `funcion-fibonacci.R` entonces el siguiente comando debería devolver el resultado que se muestra aquí:
-```{r echo=FALSE}
-fibonacci <- function(n = 20) {
-  fibo <- numeric(n)
-  fibo[2] <- 1
-  for (i in 3:n) {
-    fibo[i] <- fibo[i - 1] + fibo[i - 2]
-  }
-  fibo
-}
+
+
+
+```r
+funcionFibonacci(13)
 ```
-```{r}
-fibonacci(13)
+
 ```
+##  [1]   0   1   1   2   3   5   8  13  21  34  55  89 144
+```
+
 

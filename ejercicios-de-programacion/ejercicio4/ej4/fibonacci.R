@@ -9,11 +9,9 @@ fibo[2] <- 1
 # la secuencia de fibonacci. El loop debe rellenar un elemento nuevo del vector
 # 'fibo" en cada paso. Recuerde que los dos primeros elementos de dicho vector
 # ya están agregados.
-
-
-
-
-
+for (i in 3:20) {
+  fibo[i] <- fibo[i - 1] + fibo[i - 2]
+}
 ### Fin de su código aquí   ###
 
 # Para ver gráficamente el crecimiento de la secuencia:

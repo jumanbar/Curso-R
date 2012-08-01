@@ -7,7 +7,7 @@
 - agregar "manipular-tablas-plus.R"
 - pedir "más de un método" para varios ejercicios (números pares/impares, secuencia de valores, etc...)
 - luego de cada tanda de ejercicios, poner las soluciones online
-
+- Ejercicio de programación, tema for: hacer un script que cuente por fila de una matriz la cantidad de elementos que cumplan una condición (mayores que 0, por ejemplo)
 
 - Gran lista de las cosas que se pueden hacer con R:
 http://blog.revolutionanalytics.com/2012/07/a-big-list-of-the-things-r-can-do.html

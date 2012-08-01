@@ -4,18 +4,18 @@ fibonacci <- function(n = 20) {
   # elección del usuario.
   # La salida debe ser un vector con dichos números.
 
-  ### Su código comienza aquí:  ###
+  #===== Su código comienza aquí: =====#
   # Instrucciones:
-  # Agregue en este espacio el loop creado en el ejercicio 1a, el cual debería
-  # encontrarse en el archivo fibonacc.R.
+  # Agregue en este espacio todas las lineas no comentadas del archivo
+  # fibonacci.R.
   # Posteriormente modifique las líneas que sean necesarias para que la función
   # pueda crear la secuencia de fibonacci dado un n arbitrario. También tenga en
   # cuenta que la salida de la función debe ser el vector con esta secuencia.
-  fibo <- numeric(20)
+  fibo <- numeric(n)
   fibo[2] <- 1
-  
-  
-  
-  
-  ### Fin de su código aquí   ###
+  for (i in 3:n) {
+    fibo[i] <- fibo[i - 1] + fibo[i - 2]
+  }
+  fibo  
+  #===== Aquí finaliza su código =====#
 }
