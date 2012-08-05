@@ -1,0 +1,66 @@
+
+(1.4) Scripts & Directorio de trabajo
+=====================================
+
+### Outline
+
+* Scripts:
+    - Qué es un script y para qué sirve
+    - Ejemplo: `histograma.R`
+* Directorio de trabajo
+    - R trabaja en un directorio en particular
+    - `getwd()`, `setwd()`
+    - caminos relativos y árbol de directorios (función `file.path`?)
+    - consecuencias en funciones como `source`, `write.table`, `read.table`, `load`, etc...
+
+Scripts en R
+------------
+
+Cuando se habla de escribir un programa, se trata poner una secuencia de comandos en un orden no aribtrario. Para guardar estos comandos se utilizan archivos de texto plano (siendo el ejemplo clásico  los archivos ".txt"). Normalmente estos archivos se guardan con una extensión que indica el lenguaje del código escrito. En el caso de R, ".R" y ".r" son las extensiones por convención. Estos archivos son llamados "scripts" o “archivos de código fuente” (“code source file en inglés”) y cada uno sirve para ejecutar una o varias tareas.
+
+Si bien no es necesario trabajar siempre con scripts, es recomendable generar el hábito de hacerlo. Al guardar los comandos en un script también estamos guardando parte de nuestro proceso mental de trabajo, así como aquellos detalles que son sutiles y difíciles de recordar de otra forma. Esto se acentúa con el uso regular de los comentarios. Por otro lado, esto permite volver a reproducir nuestro análisis en el futuro o que otra persona lo haga. Esto no sólo es importante a nivel individual, si no que también tiene un impacto en la forma en que se hace investigación. Este es un tema muy actual a nivel mundial, habiéndose instalado el término "[Reproducible Research](http://stats.stackexchange.com/questions/14999/how-are-we-defining-reproducible-research#15006)" (Investigación Reproducible) para describir esta faceta del proceso científico.
+
+R acepta una sola orden por vez y en un script esto se traduce a que solo se puede escribir una orden por línea de texto. Tener los comandos escritos en un archivo permite ordenar el trabajo y repetir los procedimientos cuantas veces sea necesario. Usualmente se comienza con algo muy simple, unas 4 o 5 líneas, pero a medida que vamos perfeccionando y añadiendo etapas un script crece, llegando sin demasiada dificultad a las 100 líneas de código en un sólo archivo.
+
+### Un pequeño ejemplo
+
+En [este enlace](http://eva.universidad.edu.uy/file.php/1454/histograma.R) se puede bajar un script de R de ejemplo llamado “histograma.R”. Nota: esta página se puede abrir desde R también con el comando:
+
+        browseURL('http://eva.universidad.edu.uy/file.php/1454/histograma.R')
+
+El archivo se puede guardar en el disco duro en el directorio en que R trabaja por defecto (Mis Documentos en la mayoría de las máquinas con Windows; en R se puede saber cuál es el directorio de trabajo actual con el comando:
+
+    getwd()
+
+Una vez guardado, la función `source` se utiliza para ejecutar todos los comandos contenidos en el archivo:
+
+    source(“histograma.R”)
+
+Al ejecutar este comando, si el archivo `histograma.R` fue guardado en la ubicación correcta, entonces debería verse un gráfico similar al siguiente:
+
+![**Imagen creada con el script `histograma.R`**](files/histograma.png "Una distribución aproximadamente normal")
+
+Nota: en RStudio, si se abre el archivo en el editor de scripts, se puede ejecutar lo mismo de varias maneras:
+
+ * Ctrl + Shift + S
+ * Ctrl + Shift + Enter
+ * Ctrl + Shift + O
+ * Ctrl + Enter.
+
+Todas estas variantes tienen diferencias sutiles que invitamos a que usted explore.
+
+En este curso se pretende acostumbrar al estudiante a usar scripts para organizar su trabajo. Por esta razón las lecciones escritas se presentan en este formato.
+
+### Observación final:
+
+Si nuestro "`archivo.R`" no se encuentra en el directorio de trabajo actual, existen dos opciones:
+
+* Una es cambiar el directorio de trabajo (desde R la función `setwd()`, pero también hay botones en todas las interfaces gráficas como el R-GUI de Windows y RStudio).
+* La segunda opción es escribir el nombre incluyendo el camino relativo del archivo respecto al directorio actual. Para esto hay que considerar el árbol de directorios de nuestro disco duro y en qué parte de él se encuentra el `getwd()`.
+
+Como se habrá dado cuenta, el directorio de trabajo es clave para la interacción entre R y archivos externos, como pueden ser scripts o datos. Por esta razón el resto del video será dedicado a comprender mejor la forma de trabajar con el directorio de trabajo.
+
+Directorio de trabajo
+---------------------
+
+

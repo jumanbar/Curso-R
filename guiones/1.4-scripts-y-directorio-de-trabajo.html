@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+</head>
+<body>
+<h1 id="scripts-directorio-de-trabajo">(1.4) Scripts &amp; Directorio de trabajo</h1>
+<h3 id="outline">Outline</h3>
+<ul>
+<li>Scripts:
+<ul>
+<li>Qué es un script y para qué sirve</li>
+<li>Ejemplo: <code>histograma.R</code></li>
+</ul></li>
+<li>Directorio de trabajo
+<ul>
+<li>R trabaja en un directorio en particular</li>
+<li><code>getwd()</code>, <code>setwd()</code></li>
+<li>caminos relativos y árbol de directorios (función <code>file.path</code>?)</li>
+<li>consecuencias en funciones como <code>source</code>, <code>write.table</code>, <code>read.table</code>, <code>load</code>, etc...</li>
+</ul></li>
+</ul>
+<h2 id="scripts-en-r">Scripts en R</h2>
+<p>Cuando se habla de escribir un programa, se trata poner una secuencia de comandos en un orden no aribtrario. Para guardar estos comandos se utilizan archivos de texto plano (siendo el ejemplo clásico los archivos &quot;.txt&quot;). Normalmente estos archivos se guardan con una extensión que indica el lenguaje del código escrito. En el caso de R, &quot;.R&quot; y &quot;.r&quot; son las extensiones por convención. Estos archivos son llamados &quot;scripts&quot; o “archivos de código fuente” (“code source file en inglés”) y cada uno sirve para ejecutar una o varias tareas.</p>
+<p>Si bien no es necesario trabajar siempre con scripts, es recomendable generar el hábito de hacerlo. Al guardar los comandos en un script también estamos guardando parte de nuestro proceso mental de trabajo, así como aquellos detalles que son sutiles y difíciles de recordar de otra forma. Esto se acentúa con el uso regular de los comentarios. Por otro lado, esto permite volver a reproducir nuestro análisis en el futuro o que otra persona lo haga. Esto no sólo es importante a nivel individual, si no que también tiene un impacto en la forma en que se hace investigación. Este es un tema muy actual a nivel mundial, habiéndose instalado el término &quot;<a href="http://stats.stackexchange.com/questions/14999/how-are-we-defining-reproducible-research#15006">Reproducible Research</a>&quot; (Investigación Reproducible) para describir esta faceta del proceso científico.</p>
+<p>R acepta una sola orden por vez y en un script esto se traduce a que solo se puede escribir una orden por línea de texto. Tener los comandos escritos en un archivo permite ordenar el trabajo y repetir los procedimientos cuantas veces sea necesario. Usualmente se comienza con algo muy simple, unas 4 o 5 líneas, pero a medida que vamos perfeccionando y añadiendo etapas un script crece, llegando sin demasiada dificultad a las 100 líneas de código en un sólo archivo.</p>
+<h3 id="un-peque&#241;o-ejemplo">Un pequeño ejemplo</h3>
+<p>En <a href="http://eva.universidad.edu.uy/file.php/1454/histograma.R">este enlace</a> se puede bajar un script de R de ejemplo llamado “histograma.R”. Nota: esta página se puede abrir desde R también con el comando:</p>
+<pre><code>    browseURL('http://eva.universidad.edu.uy/file.php/1454/histograma.R')
+</code></pre>
+<p>El archivo se puede guardar en el disco duro en el directorio en que R trabaja por defecto (Mis Documentos en la mayoría de las máquinas con Windows; en R se puede saber cuál es el directorio de trabajo actual con el comando:</p>
+<pre><code>getwd()
+</code></pre>
+<p>Una vez guardado, la función <code>source</code> se utiliza para ejecutar todos los comandos contenidos en el archivo:</p>
+<pre><code>source(“histograma.R”)
+</code></pre>
+<p>Al ejecutar este comando, si el archivo <code>histograma.R</code> fue guardado en la ubicación correcta, entonces debería verse un gráfico similar al siguiente:</p>
+<div class="figure">
+<img src="files/histograma.png" title="Una distribuci&#243;n aproximadamente normal" alt="Imagen creada con el script histograma.R" /><p class="caption"><strong>Imagen creada con el script <code>histograma.R</code></strong></p>
+</div>
+<p>Nota: en RStudio, si se abre el archivo en el editor de scripts, se puede ejecutar lo mismo de varias maneras:</p>
+<ul>
+<li>Ctrl + Shift + S</li>
+<li>Ctrl + Shift + Enter</li>
+<li>Ctrl + Shift + O</li>
+<li>Ctrl + Enter.</li>
+</ul>
+<p>Todas estas variantes tienen diferencias sutiles que invitamos a que usted explore.</p>
+<p>En este curso se pretende acostumbrar al estudiante a usar scripts para organizar su trabajo. Por esta razón las lecciones se presentan en este formato.</p>
+<h3 id="observaci&#243;n-final">Observación final:</h3>
+<p>Si nuestro archivo.R no se encuentra en el directorio de trabajo actual, existen dos opciones:</p>
+<ul>
+<li>Una es cambiar el directorio de trabajo (desde R la función <code>setwd()</code>, pero también hay botones en todas las interfaces gráficas como el R-GUI de Windows y RStudio).</li>
+<li>La segunda opción es escribir el nombre incluyendo el camino relativo del archivo respecto al directorio actual. Para esto hay que considerar el árbol de directorios de nuestro disco duro y en qué parte de él se encuentra el <code>getwd()</code>.</li>
+</ul>
+<p>Como se habrá dado cuenta, el directorio de trabajo es clave para la interacción entre R y archivos externos, como pueden ser scripts o datos. Por esta razón el resto del video será dedicado a comprender mejor la forma de trabajar con el directorio de trabajo.</p>
+<h3 id="histograma">Histograma:</h3>
+</body>
+</html>
