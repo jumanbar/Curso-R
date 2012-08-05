@@ -106,7 +106,6 @@ Dado que R es un software enfocado a estadística, tiene muchas funciones matem�
     rnorm(10)
     mean(rnorm(10))
 
-
 Incluso tiene algunas herramientas que son simples de usar que pueden ser muy útiles. La función curve sirve para graficar una función matemática (en números reales) cualquiera:
 
     curve(cos(x), from=-tau / 2, to=tau / 2)
