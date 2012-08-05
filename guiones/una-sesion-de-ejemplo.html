@@ -1,250 +1,74 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<!-- saved from url=(0014)about:internet -->
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
-<title>Un ejemplo de sesión de R</title>
-
-<base target="_blank"/>
-
-<style type="text/css">
-body, td {
-   font-family: sans-serif;
-   background-color: white;
-   font-size: 12px;
-   margin: 8px;
-}
-
-tt, code, pre {
-   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
-}
-
-h1 { 
-   font-size:2.2em; 
-}
-
-h2 { 
-   font-size:1.8em; 
-}
-
-h3 { 
-   font-size:1.4em; 
-}
-
-h4 { 
-   font-size:1.0em; 
-}
-
-h5 { 
-   font-size:0.9em; 
-}
-
-h6 { 
-   font-size:0.8em; 
-}
-
-a:visited {
-   color: rgb(50%, 0%, 50%);
-}
-
-pre {	
-   margin-top: 0;
-   max-width: 95%;
-   border: 1px solid #ccc;
-}
-
-pre code {
-   display: block; padding: 0.5em;
-}
-
-code.r {
-   background-color: #F8F8F8;
-}
-
-table, td, th {
-  border: none;
-}
-
-blockquote {
-   color:#666666;
-   margin:0;
-   padding-left: 1em;
-   border-left: 0.5em #EEE solid;
-}
-
-hr {
-   height: 0px;
-   border-bottom: none;
-   border-top-width: thin;
-   border-top-style: dotted;
-   border-top-color: #999999;
-}
-
-@media print {
-   * { 
-      background: transparent !important; 
-      color: black !important; 
-      filter:none !important; 
-      -ms-filter: none !important; 
-   }
-
-   body { 
-      font-size:12pt; 
-      max-width:100%; 
-   }
-       
-   a, a:visited { 
-      text-decoration: underline; 
-   }
-
-   hr { 
-      visibility: hidden;
-      page-break-before: always;
-   }
-
-   pre, blockquote { 
-      padding-right: 1em; 
-      page-break-inside: avoid; 
-   }
-
-   tr, img { 
-      page-break-inside: avoid; 
-   }
-
-   img { 
-      max-width: 100% !important; 
-   }
-
-   @page :left { 
-      margin: 15mm 20mm 15mm 10mm; 
-   }
-     
-   @page :right { 
-      margin: 15mm 10mm 15mm 20mm; 
-   }
-
-   p, h2, h3 { 
-      orphans: 3; widows: 3; 
-   }
-
-   h2, h3 { 
-      page-break-after: avoid; 
-   }
-}
-
-</style>
-
-
-
-
-
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
 </head>
-
 <body>
-<h1>Un ejemplo de sesión de R</h1>
-
-<h3>Outline:</h3>
-
+<h1 id="un-ejemplo-de-sesi&#243;n-de-r">Un ejemplo de sesión de R</h1>
+<h3 id="outline">Outline:</h3>
 <ul>
-<li>exresion y una asignacion</li>
+<li>exresión y una asignación</li>
 <li>crear, borrar y reescribir objetos</li>
 <li>lista de objetos activos (ver si un objeto existe)</li>
 <li>cálculos matemáticos simples con estos objetos</li>
 <li>concatenar/combinar comandos</li>
-<li>ejemplo de calculo de gastos para un proyecto:
-
-<ul>
-<li>nombres a las variables (sueldos, gastos etc&hellip;)</li>
+<li>ejemplo de calculo de gastos para un proyecto:</li>
+<li>nombres a las variables (sueldos, gastos etc...)</li>
 <li>un script para repetirlo cambiando detalles</li>
 <li>una funcioncita para hacerlo incluso más rápido</li>
-</ul></li>
-<li>Ejemplo de un loop automatizando una tarea, para mostrar su utilidad
-(con la historia del proyecto?)</li>
+<li>Ejemplo de un loop automatizando una tarea, para mostrar su utilidad (con la historia del proyecto?)</li>
 <li>Ejemplos de los gráficos más comunes: hist, plot y points/lines (abline?)</li>
 <li>terminar la sesión</li>
 <li>Resumen y final remarks (el mensaje!)</li>
 </ul>
-
-<h2>Inicio</h2>
-
+<h2 id="inicio">Inicio</h2>
 <p>Una vez iniciado el R, lo que vemos es un command prompt y el cursor, indicando que se espera el input del usuario.</p>
-
 <p>Podemos empezar por una expresión sencilla:</p>
-
 <pre><code>10 / 3
 </code></pre>
-
-<p>Lo que ocurre luego de dar enter, es que R devuelve el resultado de esta cuenta matemática simple. En este caso se trata de una expresion sencilla. En este caso R imprime el resultado en la consola y dicho valor no es guardado para su uso futuro, simplemente se descarta. Por suerte para nosotros, podemos muy facilmente repetir este comando, sin siquiera escribirlo de vuelta, ya que simplemente usando la tecla &#39;arriba&#39; se puede volver a ver el comando y con enter lo ejecutamos de vuelta.</p>
-
+<p>Lo que ocurre luego de dar enter, es que R devuelve el resultado de esta cuenta matemática simple. En este caso se trata de una expresion sencilla. En este caso R imprime el resultado en la consola y dicho valor no es guardado para su uso futuro, simplemente se descarta. Por suerte para nosotros, podemos muy facilmente repetir este comando, sin siquiera escribirlo de vuelta, ya que simplemente usando la tecla 'arriba' se puede volver a ver el comando y con enter lo ejecutamos de vuelta.</p>
 <p>Pero esta no es la forma más común de guardar un resultado: las asignaciones sirven para este propósito y se ven como esto:</p>
-
 <pre><code>x &lt;- 10 / 3
 </code></pre>
-
 <p>En este caso R no imprime el resultado, pero hace algo mejor, lo guarda en un objeto llamado x, el cual existirá hasta el momento en que cerremos nuestra sesión de R. Por lo tanto, podemos utilizar nuevamente este objeto cuando querramos, por ejemplo:</p>
-
 <pre><code>x
 </code></pre>
-
 <p>Esto nos devuelve el valor calculado.</p>
-
 <pre><code>x * 3
 </code></pre>
-
 <p>Aquí calculamos el valor de x multiplicado por 3.</p>
-
 <pre><code>y &lt;- x * 3
 </code></pre>
-
 <p>Aquí calculamos el valor de x multiplicado por 3 y lo guardamos en un nuevo objeto llamado y</p>
-
 <p>Nota: cada comando que ejecutamos debe ir en una línea, no se pueden poner dos comandos en la misma línea. Para poner un ejemplo:</p>
-
 <pre><code>y &lt;- x * 3 w &lt;- y + 15
 </code></pre>
-
 <p>Esto da error. Se puede solucionar:</p>
-
 <pre><code>y &lt;- x * 3; w &lt;- y + 15
 </code></pre>
-
 <p>Sin embargo esta es una opción a la que no queremos recurrir, ya que es considerada desprolija y efectivamente dificulta la lectura de quien está tratando de entender el código.</p>
-
 <p>Nota: los nombres de los objetos no tienen porqué ser de una sola letra, y de hecho es recomendable usar palabras que den un indicio:</p>
-
 <pre><code>cat.ad &lt;- 4
 cat.op &lt;- 5
 hipot &lt;- sqrt(cat.ad ** 2 + cat.op ** 2)
 </code></pre>
-
 <p>Hay algunas reglas para hacer estos nombres. En general, no usar espacios ni números al inicio de las mismas es suficiente.</p>
-
-<p>Como habrá notado, eventualmente la sesión se llena de objetos con varios nombres de objetos. La función ls (abrebiación de &ldquo;list&rdquo;) sirve para ver estos nombres:</p>
-
+<p>Como habrá notado, eventualmente la sesión se llena de objetos con varios nombres de objetos. La función ls (abrebiación de &quot;list&quot;) sirve para ver estos nombres:</p>
 <pre><code>ls()
 </code></pre>
-
 <p>La función objects hace exactamente lo mismo.</p>
-
 <p>Para el extra: alternativamente, sobre todo si estamos usando R de forma interactiva, podemos usar exists para ver si está presente algún objeto en particular.</p>
-
-<p>Es muy recomendable tratar de tener una sesión de R &ldquo;limpia&rdquo; para no perderse en un mar de objetos que no están siendo usados. La función rm sirve para borrar objetos de la memoria.</p>
-
+<p>Es muy recomendable tratar de tener una sesión de R &quot;limpia&quot; para no perderse en un mar de objetos que no están siendo usados. La función rm sirve para borrar objetos de la memoria.</p>
 <pre><code>rm(x)
 </code></pre>
-
-<h2>Matemática</h2>
-
+<h2 id="matem&#225;tica">Matemática</h2>
 <p>Crear una secuencia de números:</p>
-
 <pre><code>1:5
 seq(1, 20, by=3)
 </code></pre>
-
-<p>Dado que R es un software enfocado a estadística, tiene muchas funciones matemáticas (muchas con mismos nombres que en excel, c, etc&hellip;):</p>
-
+<p>Dado que R es un software enfocado a estadística, tiene muchas funciones matemáticas (muchas con mismos nombres que en excel, c, etc...):</p>
 <pre><code>sin(pi)
 exp(10)
 1000 ** 2
@@ -252,54 +76,32 @@ log(1)
 rnorm(10)
 mean(rnorm(10))
 </code></pre>
-
 <p>Incluso tiene algunas herramientas que son simples de usar que pueden ser muy útiles. La función curve sirve para graficar una función matemática (en números reales) cualquiera:</p>
-
 <pre><code>curve(cos(x), from=-tau / 2, to=tau / 2)
 </code></pre>
-
 <p>Nótese que la variable por convención es x, pero este x no tiene nada que ver con el x que creamos antes. Podemos ver cuánto vale el cos de x cuando x vale pi/2 (90 grados)</p>
-
-<pre><code>abline(v=tau / 4, col=&#39;red&#39;)
+<pre><code>abline(v=tau / 4, col='red')
 </code></pre>
-
 <p>Quiero ver los ejes:</p>
-
-<pre><code>abline(v=0, h=0, col=&#39;blue&#39;)
+<pre><code>abline(v=0, h=0, col='blue')
 </code></pre>
-
 <p>Ahora quiero saber el área bajo la gráfica de esta función en el intervalo 0, tau / 4, o en otras palabras, la integral:</p>
-
 <pre><code>integrate(cos, 0, tau / 4)
 </code></pre>
-
 <p>Esto nos da una respuesta con un pequeño error numérico (ya que R no hace cálculo de la solución analítica).</p>
-
 <p>De forma opuesta la funcin deriv hace calculos de derivadas.</p>
-
 <p>Sin dudas este tipo de funciones tienen gran utilidad y pueden ser utilizadas como ayuda en nuestros trabajos o estudios. Acá están solo para ilustrar las cosas básicas que R puede hacer.</p>
-
-<h2>Combinación de comandos</h2>
-
+<h2 id="combinaci&#243;n-de-comandos">Combinación de comandos</h2>
 <p>Una de las grandes virtudes que tiene R es que favorece naturalmente la combinación de diferentes comandos para crear cálculos sofisticados. Esta es la clave de la enorme flexibilidad de este programa.</p>
-
 <p>La combinación de comandos en su forma más básica se ve algo así:</p>
-
 <pre><code>mean(rnorm(100))
 </code></pre>
-
 <p>Aquí estamos ejecutando la función rnorm, que genera números aleatorios con distribución gaussiana o normal, para crear 100 de estos números. La salida de este comando es inmediatamente tomada por la función mean, quien calcula el promedio de estos 100 números. En términos matemáticos esto es una composición de funciones. Anteriormente vimos otro ejemplo, el de la hipotenusa.</p>
-
 <p>Pero generalmente las instrucciones que son creadas son mucho más elaboradas y permiten realizar cualquier cálculo imaginable.</p>
-
 <p>Veremos un caso de ejemplo ahora para ilustrar esta idea y otras que son fundamentales para sacar provecho a R.</p>
-
-<h2>Presupuesto de un proyecto</h2>
-
+<h2 id="presupuesto-de-un-proyecto">Presupuesto de un proyecto</h2>
 <p>Muchas veces en nuestras vidas nos veremos obligados a calcular el presupuesto de un proyecto, nuestra casa, etc. Vamos a suponer que trabajamos en un proyecto de investigación de la universidad en el que necesitamos calcular el costo de equipos de trabajo, materiales, viáticos y sueldos. Este tipo de tareas suele volverse compleja debido a que muchas variables están en juego, como diferentes modelos y costos para los equipos, cantidad de viajes y medios de transporte, estadías, cantidad de técnicos contratados, sueldos de dichos técnicos, etc.</p>
-
 <p>Un ejemplo sencillo sería este:</p>
-
 <pre><code>dineroTotal &lt;- 450000
 microscopio &lt;- 50000
 salida &lt;- 20000
@@ -308,42 +110,25 @@ ntecnicos &lt;- 2
 meses &lt;- 3
 nsalidas &lt;- 2
 
-margen &lt;- dineroTotal - microscopio - nsalidas * salida - tecnicoMes * meses *
-ntecnicos
+margen &lt;- dineroTotal - microscopio - nsalidas * salida - tecnicoMes * meses * ntecnicos
 </code></pre>
-
-<p>Si queremos jugar cambiando el número de meses o el número de salidas, entonces cambiamos el valor de alguna de estas (uso la flecha hacia arriba para modificar uno de los valores y veo el nuevo margen). </p>
-
+<p>Si queremos jugar cambiando el número de meses o el número de salidas, entonces cambiamos el valor de alguna de estas (uso la flecha hacia arriba para modificar uno de los valores y veo el nuevo margen).</p>
 <p>Como veran, puedo cambiar varias cosas, como el valor del microscopio o de la salida, para seguir estimando el margen de dinero que voy a tener. Pero no es muy práctico hacer esto en la consola. Es aquí cuando entra en juego lo que se conoce como script de R. Para hacer mi script de R, voy a abrir un editor de texto; en el GUI de R de windows hay un editor de texto por defecto (abro ese).</p>
-
 <p>Como me interesa reciclar los últimos comandos que hice, uso history() y hago un copiar y pegar en el editor.</p>
-
 <pre><code>history()
 </code></pre>
-
 <p>Una vez aquí, borro los comandos que sobran. Luego modifico aquellos que me interesa (meses, microscopio, etc). Luego salvo y hago un source en R:</p>
-
-<pre><code>source(&#39;presupuesto.R&#39;)
+<pre><code>source('presupuesto.R')
 </code></pre>
-
 <p>Esto es lo que se conoce como R no interactivo!</p>
-
 <p>Cada vez que cambimos el script en el editor, tenemos que salvar antes de llamar a la función source, ya que si no la versión en el disco duro no se va a actualizar y por lo tanto el R va a seguir interetando la versión anterior.</p>
-
 <p>Así puedo jugar con cualquiera de mis variables y determinar cuál será mi margen. Notarán que el proceso se vuelve un poco engorroso al cabo de un tiempo.</p>
-
 <p>Aquí es cuando encontramos la primer razón para usar RStudio (paso al RStudio).</p>
-
 <p>En RStudio trabajamos con el script y podemos enviar comandos a la consola para que R ejecute, sin necesidad de estar cambiando de ventana. Incluso podemos enviar el documento completo sin necesidad de salvarlo.</p>
-
 <p>Mostrar ejemplos</p>
-
-<h2>Una funcioncita para facilitar</h2>
-
+<h2 id="una-funcioncita-para-facilitar">Una funcioncita para facilitar</h2>
 <p>Para facilitar más aún el proceso, R tiene una herramienta que sale en nuestro auxilio: la función</p>
-
-<p>Tomando los mismos comandos que tenía antes, pero cambiando sutil y estratégicamente la ubicación de los mismos voy a hacer mi funcion prp:</p>
-
+<p>Tomando los mismos comandos que tenía antes, pero cambiando sutil y estratégicamente la ubicación de los mismos voy a hacer mi funcion <code>prp</code>:</p>
 <pre><code>prp &lt;- function(nsalidas = 2, ntecnicos = 2, microscopio = 50000, salida = 20000,
                 tecnicoMes = 6000, meses = 3) {
   dineroTotal &lt;- 450000
@@ -351,25 +136,16 @@ ntecnicos
   margen
 }
 </code></pre>
-
 <p>Entonces si yo ejecuto</p>
-
 <pre><code>prp()
 </code></pre>
-
-<p>Obtengo el cálculo que teníamos antes. Para esto el R usó los valores que puse en la primer línea del script. Estos son los valores &ldquo;por defecto&rdquo; es decir aquellos que tomará la función si es que el usuario no puso ningún valor propio.</p>
-
+<p>Obtengo el cálculo que teníamos antes. Para esto el R usó los valores que puse en la primer línea del script. Estos son los valores &quot;por defecto&quot; es decir aquellos que tomará la función si es que el usuario no puso ningún valor propio.</p>
 <p>La ventaja de esta aproximacion es que podemos cambiar rápidamente de valores para nuestras variables y así encontrar cómo cambia el margen de nuestro presupuesto.</p>
-
 <p>En combinación (no importa el orden de las variables)</p>
-
 <pre><code>prp(nsalidas = 3, ntecnicos = 3)
 </code></pre>
-
-<h2>Ejemplo de un loop</h2>
-
+<h2 id="ejemplo-de-un-loop">Ejemplo de un loop</h2>
 <p>A veces lo que queremos es simplemente ver todos los valores posibles. Para este tipo de tareas repetitivas existen los loops. Concretamente, podríamos hacer algo como esto:</p>
-
 <pre><code>prp(nsalidas = 1)
 prp(nsalidas = 2)
 prp(nsalidas = 3)
@@ -380,47 +156,30 @@ prp(nsalidas = 7)
 prp(nsalidas = 8)
 prp(nsalidas = 9)
 </code></pre>
-
 <p>etc</p>
-
 <p>Pero con un loop esto se reduce a:</p>
-
 <pre><code>for (i in 1:20) {
-  cat(&#39;No. de salidas =&#39;, i, &#39;\n&#39;)
+  cat('No. de salidas =', i, '\n')
   print(prp(nsalidas = i))
 }
 </code></pre>
-
 <p>Si además queremos ver cómo se combina con el número de técnicos, podemos hacer otro loop dentro de este:</p>
-
 <pre><code>for (i in 1:20) {
   for (j in 1:6) {
-    cat(&#39;No. salidas =&#39;, i, &#39;No. técnicos =&#39;, j, &#39;\n&#39;)
+    cat('No. salidas =', i, 'No. técnicos =', j, '\n')
     print(prp(nsalidas = i, ntecnicos=j))
   }
 }
 </code></pre>
-
 <p>La tercer línea fue agregada para poder ver en la salida cuántas salidas y técnicos corresponden.</p>
-
-<p>Nota: esto se puede hacer de formas más fáciles: el primer ejemplo con <code>prp(nsalidas=1:20)</code> y el segundo con la función &#39;outer&#39;:</p>
-
+<p>Nota: esto se puede hacer de formas más fáciles: el primer ejemplo con <code>prp(nsalidas=1:20)</code> y el segundo con la función 'outer':</p>
 <pre><code>outer(1:20, 1:6, prp)
 </code></pre>
-
 <p>En este ejemplo de acercamiento, hemos combinado varias utilidades de R para hacer un análisis relativamente sofisticado del presupuesto de nuestro proyecto ficticio. Empezando incialmente con una cuenta sencilla, pasamos a crear una función y luego utilizamos loops para ver todo el rango de combinaciones posibles.</p>
-
 <p>El objetivo de hacer este ejercicio es mostrar someramente cómo se puede pasar con facilidad de un análisis simple y limitado a otro más elaborado y abarcativo, a través de la secuenciación de pasos. Nótese que el uso de scripts en este proceso es fundamental, ya que permite construir sobre lo ya hecho y mantener ordenados y bien comentados los pasos dados para llegar a un resultado en particular.</p>
-
-<p>Esta posibilidad no sólo permite que un usuario pueda volver a repetir su análisis en el futuro, si no que también facilita el compartir tareas entre varios usuarios, incluyendo el &#39;reproducible research&#39; (investigación reproducible), tema que se ha vuelto muy caliente en los últimos años. </p>
-
-<h2>Mensaje final</h2>
-
+<p>Esta posibilidad no sólo permite que un usuario pueda volver a repetir su análisis en el futuro, si no que también facilita el compartir tareas entre varios usuarios, incluyendo el 'reproducible research' (investigación reproducible), tema que se ha vuelto muy caliente en los últimos años.</p>
+<h2 id="mensaje-final">Mensaje final</h2>
 <p>En esta primer introducción a las capacidades de R no nos hemos metido demasiado en temas específicos de análisis de datos, el cual suele ser el motivo principal por la que R es utilizado. Sin embargo hemos visto herramientas de uso general que pueden y son constantemente utilizadas en cualquier análisis de datos (funciones matemáticas, gráficos, funciones personalizadas, loops).</p>
-
 <p>El objetivo de este video es mostrar rápidamente algunas de las funcionalidades básicas que tenemos en R y, con suerte, entusiasmarlos en el aprendizaje de este lenguaje. Todas las cosas que fueron tocadas en este video, y más, se van a profundizar a medida que avanza el curso, de forma que no hay que preocuparse demasiado por aquello que no se entendió claramente. Animamos a que cada uno en su casa juegue con los ejemplos dados aquí y así pueda ir descubriendo por cuenta propia el R.</p>
-
 </body>
-
 </html>
-
