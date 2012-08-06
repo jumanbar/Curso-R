@@ -43,14 +43,14 @@ Lista de videos
 * Directorio de trabajo
   - R trabaja en un directorio en particular
   - `getwd()`, `setwd()`
-  - caminos relativos y árbol de directorios (función `file.path`?)
+  - caminos relativos y árbol de directorios
   - consecuencias en funciones como `source`, `write.table`, `read.table`, `load`, etc...
 
 ### 1.5 Uso de la ayuda
 * Documentación de R: `help` `?` `help.search` `??`
 * cómo se organizan los archivos de ayuda y cómo podrían estar organizados mejor (?)
 * uso de la función example (es posible aportar mejores ejemplos a la documentación oficial de R? seguramente que sí! hacer la prueba con un mail o algo a ver cómo me va)
-* recursos en linea: google!, foros en español, r-help y stackOverflow]
+* recursos en linea: google!, foros en español, r-help y stackOverflow; [Comunidad uruguaya de R](http://www.softwarelibre.edu.uy/tiki-index.php?page=Grupo+R); [Grupos de usuarios de R](http://rwiki.sciviews.org/doku.php?id=rugs:r_user_groups)
 * Errores y afines
 * tratar de aprovechar al máximo el mensaje de error como filosofía general
 * errores comunes
