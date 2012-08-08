@@ -30,9 +30,9 @@ _______
 Pros y contras de R y otros softwares
 -------------------------------------
 
-La iniciación en el mundo de la programación, sea con R o cualquier otro lenguaje, suele ser un proceso lleno de tropiezos, los cuales tienden a ser frustrantes. Una de las características más notorias de los lenguajes de programación, para quienes tienen una formación alejada, es la exactitud que los mismos exigen al usuario. Nótese que el lenguaje natural utilizado en la comunicación cotidiana e incluso mediática se utiliza en general con un montón de impresiciones y ambigüedades.
+La iniciación en el mundo de la programación, sea con R o cualquier otro lenguaje, suele ser un proceso lleno de tropiezos, los cuales tienden a ser frustrantes. Una de las características más notorias de los lenguajes de programación, para quienes tienen una formación alejada, es la exactitud que los mismos exigen al usuario. Nótese que en la comunicación natural cotidiana, e incluso mediática, se suele hablar con muchas de impresiciones y ambigüedades, por lo tanto no es raro que los lenguajes de programación sean difíciles y antinaturales.
 
-> Por ejemplo, los siguientes comandos no son aceptados por R:
+> Este problema con la exactitud es ilustrado con los siguientes 3 comandos, los cuales no son aceptados por R:
 
 >> `plot(sort(rnorm(200)), pch=8, col=red,   xlab="Rank", ylab="Variable Gaussiana")`
 
