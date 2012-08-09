@@ -59,17 +59,9 @@ _______
 Algunos consejos
 ----------------
 
-### La práctica hace al maestro
+### Usar la documentación permanentemente
 
-El aprendizaje de R es más útil y rápido si el usuario lo utiliza de forma cotidiana y aplica paciencia y esfuerzo en sortear los obstáculos que se le presentarán en esta empresa. En general es cierto afirmar que una vez resuelta una dificultad o un problema, el tiempo dedicado a resolverlo en futuras incidencias de este problema (o similares) es ínfimamente menor.
-
-### Mensajes de Error y de advertencia
-
-Los mensajes de error y de advertencia son otra fuente de aprendizaje, sin embargo suelen producir más miedo y frustración que sensación de logro ... De todas formas es conveniente aprovecharlos, ya que el sistema de reporte de errores de R es bastante sofisticado y suele dar nociones muy útiles para detectar los problemas. Cuanto antes se acostumbre uno a leer y entender estos mensajes, más rápido y liso es el camino a recorrer. Algunos de los videos y lecciones de este curso se van dedicar a cómo aprovechar al máximo estos mensajes.
-
-### Documentación
-
-La documentación de R es uno de sus puntos fuertes. Esto parece raro para principiantes, ya que suele ser una fuente inagotable de dolores de cabeza, por ser intuitivas y tener mucho lenguaje "técnico" que es difícil de digerir. Estas barreras son las que separan a los principiantes de los usuarios experimentados y eficaces. El aprender a usar R efectivamente no implica memorización, si no de incorporar los conceptos básicos y acostumbrarse a usarlos siempre. La documentación es un apoyo permanente hasta para el mayor de los expertos.
+La documentación de R es uno de sus puntos fuertes. Esto parece raro para principiantes, ya que suele ser una fuente inagotable de dolores de cabeza, por ser intuitivas y tener mucho lenguaje "técnico" que es difícil de digerir. Estas barreras son las que separan a los principiantes de los usuarios experimentados y eficaces. El aprender a usar R efectivamente no implica memorización, si no de incorporar los conceptos básicos y acostumbrarse a usarlos siempre, de forma que se evitan mejor los errores. La documentación es un apoyo permanente hasta para el mayor de los expertos.
 
 Por lo tanto, no dude en utilizar el comando `help` para consultar sobre el uso de la función que le está generando problemas. De hecho `help` tiene dos modos de uso:
 
@@ -85,6 +77,14 @@ De particular ayuda es la función "help.search" de R, la cual se puede abreviar
 
 En las lecciones sobre la ayuda del R volveremos a explicar esta función y otras relacionadas, así como el uso de la comunidad global de usuarios para encontrar las soluciones que necesitamos.
 
+### Mensajes de Error y de advertencia
+
+Los mensajes de error y de advertencia son otra fuente de aprendizaje, sin embargo suelen producir más miedo y frustración que sensación de logro ... De todas formas es conveniente aprovecharlos, ya que el sistema de reporte de errores de R es bastante sofisticado y suele dar nociones muy útiles para detectar los problemas. Cuanto antes se acostumbre uno a leer y entender estos mensajes, más rápido y liso es el camino a recorrer. Algunos de los videos y lecciones de este curso se van dedicar a cómo aprovechar al máximo estos mensajes.
+
+### La práctica hace al maestro
+
+El aprendizaje de R es más útil y rápido si el usuario lo utiliza de forma cotidiana y aplica paciencia y esfuerzo en sortear los obstáculos que se le presentarán en esta empresa. En general es cierto afirmar que una vez resuelta una dificultad o un problema, el tiempo dedicado a resolverlo en futuras incidencias de este problema (o similares) es ínfimamente menor. Además el exponerse a distintos códigos y tareas estimula la creatividad, que es un componente fundamental de la buena programación.
+
 _______
 
 Resumen
@@ -93,16 +93,3 @@ Resumen
 Si bien el aprendizaje de R supone un costo importante en tiempo y memoria que debe hacer cada usuario, la popularidad y versatilidad de este software indican que esta es una inversión de enorme retorno a largo plazo.
 
 El proceso de aprendizaje de R es más efectivo cuanto más dedicación tenga el principiante, posibilitando un ahorro de esfuerzo y tiempo a futuro sustancial.
-
-
-
-
-
-
-
-
-
-
-
-
-
