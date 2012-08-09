@@ -1,9 +1,12 @@
 Lista de videos
 ===============
 
+## (0) Bienvenida
+* Bienvenida
+* Uso del EVA, instalación de R y RStudio
+* Cuestionarios, ejercicios, parciales y exámen
 
 ## (1) Introducción
-
 
 ### 1.1 Sobre R y software libre
 * qué es el R
