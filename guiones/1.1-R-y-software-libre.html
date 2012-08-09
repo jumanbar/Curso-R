@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <title></title>
 </head>
@@ -25,9 +26,9 @@
 </div>
 <hr />
 <h2 id="pros-y-contras-de-r-y-otros-softwares">Pros y contras de R y otros softwares</h2>
-<p>La iniciación en el mundo de la programación, sea con R o cualquier otro lenguaje, suele ser un proceso lleno de tropiezos, los cuales tienden a ser frustrantes. Una de las características más notorias de los lenguajes de programación, para quienes tienen una formación alejada, es la exactitud que los mismos exigen al usuario. Nótese que el lenguaje natural utilizado en la comunicación cotidiana e incluso mediática se utiliza en general con un montón de impresiciones y ambigüedades.</p>
+<p>La iniciación en el mundo de la programación, sea con R o cualquier otro lenguaje, suele ser un proceso lleno de tropiezos, los cuales tienden a ser frustrantes. Una de las características más notorias de los lenguajes de programación, para quienes tienen una formación alejada, es la exactitud que los mismos exigen al usuario. Nótese que en la comunicación natural cotidiana, e incluso mediática, se suele hablar con muchas de impresiciones y ambigüedades, por lo tanto no es raro que los lenguajes de programación sean difíciles y antinaturales.</p>
 <blockquote>
-<p>Por ejemplo, los siguientes comandos no son aceptados por R:</p>
+<p>Este problema con la exactitud es ilustrado con los siguientes 3 comandos, los cuales no son aceptados por R:</p>
 </blockquote>
 <blockquote>
 <blockquote>
@@ -61,21 +62,19 @@
 <p>Para el caso de R existe una serie de GUIs buenas que pueden ayudar a empezar a usar R a los recién iniciados. El caso más básico y tal vez el más conocido es el del R-GUI que viene por defecto en la instalación de R para Windows. Otros <a href="https://es.wikipedia.org/wiki/R_%28lenguaje_de_programaci%C3%B3n%29#Herramientas_de_productividad">GUI</a> como RStudio son bastante más elaborados. Este último es el escogido para este curso debido a ciertas facilidades que lo hacen bastante ameno para propósitos pedagógicos.</p>
 <hr />
 <h2 id="algunos-consejos">Algunos consejos</h2>
-<h3 id="la-pr&#225;ctica-hace-al-maestro">La práctica hace al maestro</h3>
+<h3 id="la-práctica-hace-al-maestro">La práctica hace al maestro</h3>
 <p>El aprendizaje de R es más útil y rápido si el usuario lo utiliza de forma cotidiana y aplica paciencia y esfuerzo en sortear los obstáculos que se le presentarán en esta empresa. En general es cierto afirmar que una vez resuelta una dificultad o un problema, el tiempo dedicado a resolverlo en futuras incidencias de este problema (o similares) es ínfimamente menor.</p>
 <h3 id="mensajes-de-error-y-de-advertencia">Mensajes de Error y de advertencia</h3>
 <p>Los mensajes de error y de advertencia son otra fuente de aprendizaje, sin embargo suelen producir más miedo y frustración que sensación de logro ... De todas formas es conveniente aprovecharlos, ya que el sistema de reporte de errores de R es bastante sofisticado y suele dar nociones muy útiles para detectar los problemas. Cuanto antes se acostumbre uno a leer y entender estos mensajes, más rápido y liso es el camino a recorrer. Algunos de los videos y lecciones de este curso se van dedicar a cómo aprovechar al máximo estos mensajes.</p>
-<h3 id="documentaci&#243;n">Documentación</h3>
+<h3 id="documentación">Documentación</h3>
 <p>La documentación de R es uno de sus puntos fuertes. Esto parece raro para principiantes, ya que suele ser una fuente inagotable de dolores de cabeza, por ser intuitivas y tener mucho lenguaje &quot;técnico&quot; que es difícil de digerir. Estas barreras son las que separan a los principiantes de los usuarios experimentados y eficaces.</p>
 <p>Por lo tanto, no dude en utilizar el comando <code>help</code> para consultar sobre el uso de la función que le está generando problemas. De hecho <code>help</code> tiene dos modos de uso:</p>
 <pre><code>help(mean)
-?mean
-</code></pre>
+?mean</code></pre>
 <p>(En este caso para acceder a la ayuda de la función <code>mean</code>.)</p>
 <p>De particular ayuda es la función &quot;help.search&quot; de R, la cual se puede abreviarse como &quot;??&quot;. Dicha función sirve para buscar funciones que tengan alguna relación con una palabra clave que nos interesa. No es necesario saber de antemano el nombre de la función que queremos, de forma que sirve como &quot;tanteo&quot; de las posibilidades que existen. Por ejemplo, si queremos encontrar una función relativa al chi cuadrado, podemos utilizar cualquiera de estos dos comandos:</p>
 <pre><code>help.search(&quot;chi&quot;)
-??chi
-</code></pre>
+??chi</code></pre>
 <p>En las lecciones sobre la ayuda del R volveremos a explicar esta función y otras relacionadas, así como el uso de la comunidad global de usuarios para encontrar las soluciones que necesitamos.</p>
 <hr />
 <h2 id="resumen">Resumen</h2>

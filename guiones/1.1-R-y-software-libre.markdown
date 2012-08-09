@@ -69,7 +69,7 @@ Los mensajes de error y de advertencia son otra fuente de aprendizaje, sin embar
 
 ### Documentación
 
-La documentación de R es uno de sus puntos fuertes. Esto parece raro para principiantes, ya que suele ser una fuente inagotable de dolores de cabeza, por ser intuitivas y tener mucho lenguaje "técnico" que es difícil de digerir. Estas barreras son las que separan a los principiantes de los usuarios experimentados y eficaces.
+La documentación de R es uno de sus puntos fuertes. Esto parece raro para principiantes, ya que suele ser una fuente inagotable de dolores de cabeza, por ser intuitivas y tener mucho lenguaje "técnico" que es difícil de digerir. Estas barreras son las que separan a los principiantes de los usuarios experimentados y eficaces. El aprender a usar R efectivamente no implica memorización, si no de incorporar los conceptos básicos y acostumbrarse a usarlos siempre. La documentación es un apoyo permanente hasta para el mayor de los expertos.
 
 Por lo tanto, no dude en utilizar el comando `help` para consultar sobre el uso de la función que le está generando problemas. De hecho `help` tiene dos modos de uso:
 
