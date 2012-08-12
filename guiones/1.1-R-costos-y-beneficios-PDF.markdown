@@ -1,4 +1,4 @@
-(1.1) Sobre R y software libre
+﻿(1.1) Sobre R y software libre
 ==============================
 
 ### Outline
@@ -48,7 +48,7 @@ La iniciación en el mundo de la programación, sea con R o cualquier otro lengu
 
 Una consecuencia de esto es la aparente tendencia de R de no hacer lo que en verdad se desea. Por supuesto, el problema es que R intenta hacer _exactamente_ lo que le pedimos. Debido a que R funciona principalmente a través de la línea de comando, muchas veces minúsculos errores de escritura, tales como un punto o un paréntesis mal ubicados, cambian por completo la interpretación de una instrucción.
 
-Esto ocurre también con la comunicación verbal cotidiana, pero como humanos podemos elegir, conciente o inconcientemente, la el significado más probable de ser correcto.
+Es cierto que esto ocurre también con la comunicación verbal cotidiana, pero como humanos podemos elegir en la mayoría de los casos, conciente o inconcientemente, el significado más probable de ser correcto (**Fig. 2**).
 
 _______
 
@@ -62,7 +62,15 @@ Entonces el uso y particularmente el aprendizaje de R tiene un costo asociado: d
 
 En el otro extremo de la oferta de programas hechos para trabajar con datos están aquellos puramente gráficos, tales como [STATISTICA](http://www.statsoft.com/#) o el propio [Microsoft Excel](https://office.microsoft.com/en-us/excel/). La ventaja de estos programas es la facilidad de uso y su interfaz más intuitiva. El costo asociado a estas características es una limitación mayor a la hora de combinar las distintas funcionalidades. En particular, el uso de una GUI ([Graphical User Interface](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)) requiere del input constante del usuario, en contraste de la capacidad de automatizar largas secuencias de comandos que implica el uso de la línea de comando. De hecho este costo es tan elevado que la [mayoría de los paquetes estadísticos populares](https://en.wikipedia.org/wiki/Comparison_of_statistical_packages) tienen al menos en parte la capacidad de interactuar a través de la línea de comando.
 
+Las diferencias de fondo que existen entre las interfaces de GUI y CLI (línea de comando, interfaz por excelencia de R), se pueden representar en la [curva de aprendizaje](https://es.wikipedia.org/wiki/Curva_de_aprendizaje) esperadas para ambos estilos. Para un sotware con GUI estricta, la curva de aprendizaje es inicialmente muy empinada, mientras que a plazos mayores perdería velocidad. En contraposición, la curva de aprendizaje de un software como R es lenta inicalemnte, pero a largo plazo las posibilidades de combinar y automatizar procesos permite una versatilidad mucho mayor y por lo tanto un mayor potencial creativo (**Fig. 3**).
+
+Por lo tanto aprender R es una apuesta a largo plazo. No se trata de una "memorización" de funciones y comandos, si no de entender las reglas y patrones generales que gobiernan la sintaxis. Este curso tiene el desafío de facilitar este proceso y así reducir al máximo posible los tiempos para que cada estudiante logre usar efectivamente este software.
+
 Para el caso de R existe una serie de GUIs buenas que pueden ayudar a empezar a usar R a los recién iniciados. El caso más básico y tal vez el más conocido es el del R-GUI que viene por defecto en la instalación de R para Windows. Otros [GUI](https://es.wikipedia.org/wiki/R_%28lenguaje_de_programaci%C3%B3n%29#Herramientas_de_productividad) como RStudio son bastante más elaborados. Este último es el escogido para este curso debido a ciertas facilidades que lo hacen bastante ameno para propósitos pedagógicos.
+
+_______
+
+![**Figura 3**. Curvas de aprendizaje idealizadas para softwares con perfiles opuestos: GUI y CLI (R)](files/curvas-de-aprendizaje.png "Curvas de aprendizaje")
 
 _______
 
@@ -71,35 +79,41 @@ Algunos consejos
 
 ### Usar la documentación permanentemente
 
-La documentación de R es uno de sus puntos fuertes. Esto parece raro para principiantes, ya que suele ser una fuente inagotable de dolores de cabeza, por ser intuitivas y tener mucho lenguaje "técnico" que es difícil de digerir. Estas barreras son las que separan a los principiantes de los usuarios experimentados y eficaces. El aprender a usar R efectivamente no implica memorización, si no de incorporar los conceptos básicos y acostumbrarse a usarlos siempre, de forma que se evitan mejor los errores. La documentación es un apoyo permanente hasta para el mayor de los expertos.
+La documentación de R suele dar muchos dolores de cabeza, sobre todo al principio. Pero es uno de los puntos claves a dominar para cualquier usuario de este lenguaje. Por otro lado, es una documentación muy buena y completa; hasta los usuarios más experientes recurren a ella todo el tiempo.
 
-Por lo tanto, no dude en utilizar el comando `help` para consultar sobre el uso de la función que le está generando problemas. De hecho `help` tiene dos modos de uso:
+Por lo tanto, no debe dudarse en utilizar el comando `help`para consultar sobre el uso de la función que le está generando problemas. De hecho `help` tiene dos modos de uso, por ejemplo los siguientes comandos producen el mismo resultado:
 
-    help(mean)
-    ?mean
+~~~
+help(mean)
+?mean
+~~~
 
-(En este caso para acceder a la ayuda de la función `mean`.)
+Estos comandos abren la página de ayuda de la función `mean` (para calcular promedios).
 
-De particular ayuda es la función "help.search" de R, la cual se puede abreviarse como "??". Dicha función sirve para buscar funciones que tengan alguna relación con una palabra clave que nos interesa. No es necesario saber de antemano el nombre de la función que queremos, de forma que sirve como "tanteo" de las posibilidades que existen. Por ejemplo, si queremos encontrar una función relativa al chi cuadrado, podemos utilizar cualquiera de estos dos comandos:
+De particular ayuda es la función "help.search" de R, la cual se puede abreviarse como "??". Dicha función sirve para buscar funciones que tengan alguna relación con una palabra clave que nos interesa. No es necesario saber de antemano el nombre de la función que queremos, de forma que sirve como "tanteo" de las posibilidades que existen. Algo así como un "google" para R. Por ejemplo, si queremos encontrar una función relativa al chi cuadrado, podemos utilizar cualquiera de estos dos comandos:
 
-    help.search("chi")
-    ??chi
+~~~
+help.search("chi")
+??chi
+~~~
 
 En las lecciones sobre la ayuda del R volveremos a explicar esta función y otras relacionadas, así como el uso de la comunidad global de usuarios para encontrar las soluciones que necesitamos.
 
 ### Mensajes de Error y de advertencia
 
-Los mensajes de error y de advertencia son otra fuente de aprendizaje, sin embargo suelen producir más miedo y frustración que sensación de logro ... De todas formas es conveniente aprovecharlos, ya que el sistema de reporte de errores de R es bastante sofisticado y suele dar nociones muy útiles para detectar los problemas. Cuanto antes se acostumbre uno a leer y entender estos mensajes, más rápido y liso es el camino a recorrer. Algunos de los videos y lecciones de este curso se van dedicar a cómo aprovechar al máximo estos mensajes.
+Los mensajes de error y de advertencia son otra fuente de aprendizaje, sin embargo suelen producir más miedo y frustración que sentimientos positivos ... De todas formas es conveniente aprovecharlos, ya que el sistema de reporte de errores de R es bastante sofisticado y suele dar nociones muy útiles para detectar los problemas. Cuanto antes se acostumbre uno a leer y entender estos mensajes, más rápido y liso es el camino a recorrer. Algunos de los videos y lecciones de este curso se van dedicar a cómo aprovechar al máximo estos mensajes.
 
 ### La práctica hace al maestro
 
-El aprendizaje de R es más útil y rápido si el usuario lo utiliza de forma cotidiana y aplica paciencia y esfuerzo en sortear los obstáculos que se le presentarán en esta empresa. En general es cierto afirmar que una vez resuelta una dificultad o un problema, el tiempo dedicado a resolverlo en futuras incidencias de este problema (o similares) es ínfimamente menor. Además el exponerse a distintos códigos y tareas estimula la creatividad, que es un componente fundamental de la buena programación.
+El aprendizaje de R es más útil y rápido si el usuario lo utiliza de forma cotidiana y aplica paciencia y esfuerzo en sortear los obstáculos que se le presentarán en esta empresa. En general es cierto afirmar que una vez resuelta una dificultad o un problema, el tiempo dedicado a resolverlo en futuras incidencias del mismo problema es ínfimamente menor. Además el exponerse a distintos códigos y tareas estimula la creatividad, que es un componente fundamental de la programación productiva.
 
 _______
 
 Resumen
 -------
 
-Si bien el aprendizaje de R supone un costo importante en tiempo y memoria que debe hacer cada usuario, la popularidad y versatilidad de este software indican que esta es una inversión de enorme retorno a largo plazo.
+R es un **ambiente de computación estadística y gráfica**. Esto implica no sólo una amplia serie de funcionalidades para trabajar y visualizar datos, si no también un lenguaje de programación de [alto nivel](https://es.wikipedia.org/wiki/Lenguaje_de_alto_nivel) (i.e.: más amigable que otros lenguajes de programación) sumamente funcional. Si bien su origen está en un producto comercial, se ha convertido en una de las banderas del Software Libre y por lo tanto es beneficiado por un crecimiento constante de aportes de todo el gobo.
 
-El proceso de aprendizaje de R es más efectivo cuanto más dedicación tenga el principiante, posibilitando un ahorro de esfuerzo y tiempo a futuro sustancial.
+Si bien el aprendizaje de R supone un costo importante en tiempo y memoria que debe hacer cada usuario, las capacidades del mismo, así como popularidad y versatilidad de este software, indican que esta es una inversión de enorme retorno a largo plazo.
+
+El proceso de aprendizaje de R es más efectivo cuanto más dedicación tenga el principiante, posibilitando un ahorro de esfuerzo y tiempo a futuro sustancial. En particular animamos a que todo principiante juegue, experimente y lea R por su propia cuenta.
