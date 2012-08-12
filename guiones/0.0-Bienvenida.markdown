@@ -1,1 +1,63 @@
-(0.0) Bienvenida y
+## (1) Webcam
+
+Hola!, bienvenido al curso Introducción al Manejo del Software Estadístico R
+
+Mi nombre es Juan Manuel Barreneche y seré uno de los profesores del curso. Conmigo trabajan Mauro Berazategui y Carla Rivera, a quienes conocerá en las clases presenciales si acude a ellas.
+
+Este curso trata de proporcionar los conocimientos básicos que todo usuario necesita para utilizar efectivamente R.
+
+Esto supone un desafío doble:
+
+El primero es brindar una síntesis lo bastante amplia y completa de las funcionalidades de R como paquete estadístico.
+
+El segundo deriva de que R es además un lenguaje de programación y como tal trae aparejado una serie de conceptos y formas de trabajo que son ajenas a quien no ha incursionado en este mundo.
+
+Nuestro deseo es poder dar las nociones requeridas para superar ambos desafíos y que usted incorpore esta herramienta de forma efectiva en su carrera como estudiante y profesional.
+
+En lo que queda de este video voy a contarle un poco acerca de la dinámica que vamos a tener en este curso.
+
+## (2) Firefox
+
+Cada unidad durará aproximadamente 2 semanas y tendrán los siguientes elementos:
+
+Clases en video a través de YouTube, las que tendrán como contraparte las lecturas por escrito hechas para seguir con RStudio
+
+Asociadas a estas clases existen cuestionarios rápidos de no más de 10 minutos cada uno, hechos para que se refuercen los conocimientos. Se pueden intentar cuántas veces se quiera, con una pequeña penalización en la nota por cada reintento.
+
+Finalmente, en cada unidad se dará un repartido con ejercicios de programación en el que usted deberá aplicar los conocimientos vertidos y crear sus propios programas y scripts de R.
+
+A lo largo de este curso suponemos que le surgirán muchas dudas y tendrá muchos trancazos resolviendo ejercicios de programación y/o cuestionarios.
+
+Para resolver estas dudas lo animamos fuertemente a que utilicé los medios de comunicación que se encuentran en la página del EVA. Con esto me refiero a los foros (dibujar), los cuales están separados por tema para organizar mejor la conversación.
+
+Creemos que aquí el protagonista no debemos ser los profesores, si no usted y sus compañeros de curso.
+
+Por esta razón nuestra política será la de no intervención: a menos que surjan dudas realmente oscuras, no tomaremos parte de la discusión. Queremos que las preguntas y respuestas sean producidas por ustedes, porque creemos que es el camino pedagógico más acertado.
+
+Como punto final, hace falta notar que la modalidad de los foros en el EVA tiene algunas contras que podemos y debemos evitar para sacarle el mayor provecho. Para esto incitamos a que lea el punto "modo de uso" puesto bajo los links a los foros.
+
+## (3) Webcam
+
+Sin más que decirle por hoy, le deseo un
+feliz curso y el mayor de los éxitos! hasta pronto.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -9,20 +9,20 @@
 
 _______
 
-¿Dijo R?
+¿Qué es el R?
 -------------
 
-R es llamado de varias maneras, ya que la palabra "programa" suele ser limitada en relación a todo lo que implica. En la página del [R-Project](www.r-project.org) se lo describe como un **ambiente de computación estadística y gráficos**. Lo que esto implica es, por un lado, un set de herramientas de alta calidad para trabajar con datos, estadística y gráficos, y por otro, un lenguaje de programación simple y efectivo con los recursos necesarios para desarrollar cualquier tipo de análisis. La palabra ambiente intenta caracterizarlo como un sistema coherente y planificado.
+En la página del [R-Project](www.r-project.org) se lo describe como un **ambiente de computación estadística y gráficos**. Lo que esto implica es, por un lado, un set de herramientas de alta calidad para trabajar con datos, estadística y gráficos, y por otro, un lenguaje de programación simple y efectivo con los recursos necesarios para desarrollar cualquier tipo de análisis. La palabra ambiente intenta caracterizarlo como un sistema coherente y planificado.
 
-R tiene su origen en el paquete estadístico comercial [S](https://en.wikipedia.org/wiki/S_programming_language) y por lo tanto guarda muchas similitudes con este. Su nombre deriva de esta herencia y de los nombres de sus "padres", Ross Ihaka y Robert Gentleman.
+R tiene su origen en el paquete estadístico comercial [S](https://en.wikipedia.org/wiki/S_programming_language), desarrollado por John M. Chambers en los laboratiors Bell, y por lo tanto guarda muchas similitudes con este, incluyendo la sintaxis y muchos comandos. Su nombre deriva de esta herencia y de los nombres de sus "padres", Ross Ihaka y Robert Gentleman. Actualmente esos desarrolladores trabajan en el proyecto R, junto con otros profesionales en el colectivo "R Development Core Group" (Grupo Núcleo de Desarrollo de R). Actualmente R compite fácilmente en calidad con cualquer opción comercial.
 
-Por último pero no por ello menor, R es parte de la Fundación de Software Libre ([Free Software Foundation](http://www.gnu.org/)]) y es distribuido bajo la [licencia GPL](http://www.r-project.org/COPYING) del proyecto [GNU](http://www.gnu.org/). Esto implica que R es gratis y además de código abierto, es decir, cualquiera puede ver "qué hay adentro", en lugar del seguir el modelo del software comercial, en el que cada programa es como una "caja negra" que produce salidas (outputs) a partir de entradas (inputs). En la práctica esto tiene consecuencias muy particulares: la lista de usuarios y contribuyentes a la construcción de este software es virtualmente ilimitada y por lo tanto la calidad y cantidad de herramientas ofrecidas ha ido en crecimiento constante y espectacular desde su creación. Testimonio de esto es el crecimiento exponencial de la cantidad de paquetes (módulos adicionales especializados en diferentes tareas) aportados por la comunidad global de usuarios (**Fig. 1**).
+Por último pero no por ello menor, R es parte de la Fundación de Software Libre ([Free Software Foundation](http://www.gnu.org/)]) y es distribuido bajo la [licencia GPL](http://www.r-project.org/COPYING) del proyecto [GNU](http://www.gnu.org/). Esto implica que R es gratis y además de código abierto, es decir, cualquiera puede ver "qué hay adentro". En este sentido está en contraposición con el modelo estándar del software comercial, en el que cada programa es como una "caja negra" que produce salidas (outputs) a partir de entradas (inputs) sin mostrar los pasos intermedios. En la práctica esto se traduce en un un software construido en colaboración por una lista siempre creciente de contribuyentes. Testimonio de esto es el crecimiento exponencial de la cantidad de paquetes (módulos adicionales especializados en diferentes tareas) aportados por la comunidad global de usuarios (**Fig. 1**).
 
-R se ha convertido en una de la herramientas más utilizadas en estadística y análisis de datos, siendo particularmente popular en [data mining](https://en.wikipedia.org/wiki/Data_mining). Por esta razón, es un candidato interesante a convertirse en la "lingua franca" de la estadística, si es que ya no se puede considerar como tal.
+R se ha convertido en una de las herramientas más utilizadas en estadística y análisis de datos, siendo particularmente popular en [data mining](https://en.wikipedia.org/wiki/Data_mining). Por esta razón, es un candidato interesante a convertirse en la "lingua franca" de la estadística, si es que ya no se puede considerar como tal.
 
 _______
 
-![**Figura 1**. Cantidad de paquetes listados en el sitio web del Comprehesive R Archive Network, CRAN](files/CRAN_packages.png 'Paquetes en el CRAN')
+![**Figura 1**. Cantidad de paquetes listados en el sitio web del Comprehesive R Archive Network (CRAN)](files/CRAN_packages.png 'Paquetes en el CRAN')
 
 _______
 
@@ -46,7 +46,17 @@ La iniciación en el mundo de la programación, sea con R o cualquier otro lengu
 
 > _Se invita al lector a que pruebe estos comandos en la consola, lea los mensajes de error resultantes y detecte las fuentes de error en los primeros tres casos_
 
-Una consecuencia de esto es la aparente tendencia de R de no hacer lo que en verdad se desea. Por supuesto, el problema es que R intenta hacer _exactamente_ lo que le pedimos. Debido a que R funciona principalmente a través de la línea de comando, muchas veces minúsculos errores de escritura, tales como un punto o un paréntesis mal ubicados, cambian por completo la interpretación de una instrucción (nota: esto ocurre también con la comunicación verbal cotidiana, pero como humanos podemos elegir, conciente o inconcientemente, la el significado más probable de ser correcto). La ocurrencia de estos "trancazos" puede ser muy frustrante y por eso la paciencia es una virtud necesaria. Esto contrasta con los programas que hoy en día son más comunes: aquellos con interfaces gráficas elaboradas, desarrollados para ser más fáciles e intuitivos de usar.
+Una consecuencia de esto es la aparente tendencia de R de no hacer lo que en verdad se desea. Por supuesto, el problema es que R intenta hacer _exactamente_ lo que le pedimos. Debido a que R funciona principalmente a través de la línea de comando, muchas veces minúsculos errores de escritura, tales como un punto o un paréntesis mal ubicados, cambian por completo la interpretación de una instrucción.
+
+Esto ocurre también con la comunicación verbal cotidiana, pero como humanos podemos elegir, conciente o inconcientemente, la el significado más probable de ser correcto.
+
+_______
+
+![**Figura 2**. Ejemplo de un diálogo humano. R, o una computadora en genreal, pasaría un mal rato descifrando el significado de las palabras "briyantina" o "güenazo"](files/inodoro.jpg "Autor: Roberto Fontanarrosa")
+
+_______
+
+La ocurrencia de estos "trancazos" puede ser muy frustrante y por eso la paciencia es una virtud necesaria. Esto contrasta con los programas que hoy en día son más comunes: aquellos con interfaces gráficas elaboradas, desarrollados para ser más fáciles e intuitivos de usar.
 
 Entonces el uso y particularmente el aprendizaje de R tiene un costo asociado: dedicación y memoria para incorporar este lenguaje y realmente "hablar R". Pero la contraparte de este costo es una enorme versatilidad para poder desarrollar, controlando hasta el más mínimo detalle, cualquier análisis ajustado a la medida de nuestras necesidades. Existen además beneficios indirectos: la necesidad de involucrarse e informarse mejor acerca de lo que se está haciendo lleva a una mayor comprensión técnica, así como ser una posible "vía de entrada" a otros lenguajes de programación.
 

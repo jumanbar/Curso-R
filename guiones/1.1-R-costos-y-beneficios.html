@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+</head>
+<body>
+<h1 id="sobre-r-costos-beneficios">(1.1) Sobre R, Costos &amp; Beneficios</h1>
+<h2 id="i.-r-y-software-libre">I. R y Software Libre</h2>
+<h3 id="section">1</h3>
+<p>Hola! Bienvenidos a esta primer lección del curso, en la que voy a contar de forma rápida algunas generalidades de R: sus orígenes, el software libre, los costos y beneficios que representa R frente a otras opciones y algunos consejos generales sobre lo que es el proceso de aprendizaje.</p>
+<h3 id="section-1">2</h3>
+<p>¿Qué es el R? Si se visita la página oficial, se puede ver la descripción &quot;Ambiente de computación estadística&quot;. Esta definición hace referencia a que es un sistema completamente planeado y coherente de trabajo en estadística. Este ambiente es la combinación de varios elementos:</p>
+<ul>
+<li>Un set muy completo de herramientas para manejar, guardar datos y realizar análisis de todo tipo</li>
+<li>Funcionalidades gráficas sumamente desarrolladas, capaces de generar gráficos de muy alta calidad, listos para ser publicados.</li>
+<li>Un lenguaje simple y efectivo que incluye las cualidades más importantes que necesita de cualquier lenguaje de programación.</li>
+</ul>
+<p>R es algo así como una evolución del lenguaje S y en general utiliza la misma sintaxis y comandos. Los padres intelectuales de R son Ross Ihaka y Robert Gentleman y su &quot;abuelo&quot; es John M. Chambers, quién fuera el creador de S. Hoy en día estos tres desarrolladores aún continuan trabajando en el proyecto R, junto con un amplio equipo compuesto por informáticos y estadísticos. Hoy en día este grupo ha logrado un software de muy alta calidad que compite fácilmente con cualquier opción comercial existente.</p>
+<p>En este sentido R no es un paquete comercial, si no que es parte del proyecto GNU y la fundación del software libre. R se puede distribuir, copiar y modificar libremente ya que es publicado bajo la licencia GPL: esto implica que cuaquier copia o modificación debe ser publicada con la misma licencia y por lo tanto será libre también.</p>
+<h3 id="section-2">3</h3>
+<p>Esta licencia también implica que R es de código abierto (Open Source). Esto quiere decir que no sigue el modelo de caja negra, prevalente en el software comercial, si no que sigue el modelo de caja de vidrio o caja abierta: todo el mundo puede ver qué y cómo es que se procesan los inputs para producir los outputs.</p>
+<h3 id="section-3">4</h3>
+<p>Las consecuencias de esta característica no son menores: al igual que otros proyectos de software libre (como GNU/Linux o Mozilla Firefox), R es construido por una comunidad global y por lo tanto recibe aportes de cientos y miles de personas alrededor del mundo. En particular las constribuciones más tangibles son los paquetes extra que cualquiera puede instalar en su sistema. Esta gráfica muestra el crecimiento ininterrumpido y básicamente exponencial de la cantidad de paquetes disponibles en la página del C.R.A.N., entre 2001 y 2009</p>
+<h2 id="ii.-costos-y-beneficios">II. Costos y Beneficios</h2>
+<h3 id="section-4">5</h3>
+<p>Ahora pasaré a hablar acerca del balance entre los costos y beneficios que significa optar por usar R en contraposición con otras opciones extendidas.</p>
+<p>Empezaré por los costos</p>
+<h3 id="section-5">6</h3>
+<p>Una interfaz poco amigable: usualmente estamos expuestos a software comercial, los cuales suelen contar con interfaces gráficas sofisticadas que ayudan a aprender rápidamente a producir resultados elaborados. Se le llaman G U I o gui a estas interfaces, por sus siglas en inglés.</p>
+<p>Este tipo de opciones ofrece la ventaja de una curva de aprendizaje empinada o de gran pendiente: con poco aprendizaje se puede lograr una producción considerable. Esto ocurre debido a que las GUI son más intuitivas y reducen efectivamente las dificultades que el usuario pueda encontrar para entender cómo utilizar el producto.</p>
+<h3 id="section-6">7</h3>
+<p>Como contraparte a las GUI tenemos la interfaz de R por excelencia: la línea de comando o CLI (Command Line Interface). En este modo de interacción, el usuario debe escribir cada comando manualmente para obtener el resultado que necesita. Para principiantes, enfrentarse a una línea de comando vacía, con un prompt que nos desafía a escribir algo que sea coerente, puede ser un poco intimidante...</p>
+<p>Más aún cuando consideramos que un comando puede ser como este: (pasar a la siguiente)</p>
+<h3 id="section-7">8</h3>
+<p>Una de las cosas que más puede frustar al neófito es la necesidad de presición que exige R. Como veremos más adelante, en este comando de ejemplo hay muchos detalles que pueden resultar en un frustrante mensaje de error.</p>
+<p>Pero hay que tomar la precaución de no equiparar el aprender R con memorizar un montón de comandos! Debajo de un aparente mundo de detalles interminables, hay reglas generales y patrones que son la sustancia de cómo hablar R.</p>
+<h3 id="section-8">9</h3>
+<p>Como decíamos anteriormente, R demanda mucha presición y el siguiente ejemplo lo ilustra a la perfección. Los tres primeros comandos son fáciles de entender para cualquier persona (asumiendo que sabe los significados de todas las palabras). Sin embargo los tres están mal.</p>
+<p>El comando correcto es el cuarto, justo encima de la gráfica resultante.</p>
+<p>Invitamos a poner pausa y tratar de descubrir, comparando con el ejemplo correcto, el error de la primer línea. En caso de no verse bien, en la descripción de este video pueden verse tambien los mismos cuatro comandos e incluso lo invitamos a que los pruebe en R.</p>
+<p>...</p>
+<p>Omitir comillas en la palabra &quot;red&quot; en el primer caso es el problema. Quien conoce un poco más R sabe que muchos colores se pueden escribir utilizando &quot;strings&quot; de caracteres, e incluso está acostumbrado a saber cuándo es esperable usar comillas y cuando no...</p>
+<p>Este ejemplo muestra lo que para el principiante de programación en general es el choque más grande: la necesidad de estar atento al detalle. Esto contrasta con el lenguaje natural, es decir, el humano. Para ilustrar un poco más este contraste, veamos un ejemplo ...</p>
+<h3 id="section-9">10</h3>
+<p>Invito a poner pausa en el video y así leer detenidamente los siguientes diálogos de tira cómica ...</p>
+<p>...</p>
+<p>Notará el lector que en ambos casos ocurren confusiones derivadas de la elección de las palabras, exageradas claro, pero que ilustran una característica del lenguaje natural: se dicen muchas cosas que requieren una capacidad no trivial de interpretación por parte del receptor. En general damos por sentado que nuestro interlocutor puede entender lo sobreentendido.</p>
+<p>Por ejemplo, R nunca entendería las palabras &quot;briyantina&quot; o &quot;guenazo&quot;, debido a que tienen faltas de ortografía notorias, a pesar de que suenan como deben.</p>
+<p>Las computadoras no tienen el nivel de sofisticación necesario para adivinar correctamente la intención del locutor y por lo tanto tenemos que adaptar nuestra forma de &quot;expresarnos&quot; para ser entendidos.</p>
+<p>Esta es la base de la dificultad que R plantea desde el vamos a los usuarios principiantes y que explica el hecho de que la curva de aprendizaje de R tiene una pendiente mucho más leve que para software equipados con sofisticados GUI</p>
+<h3 id="section-10">11</h3>
+<p>Entonces, haciendo un resumen de este primer obstáculo, podemos utilizar estas dos curvas de aprendizaje idealizadas: output o producción en relación al tiempo dedicado a aprender.</p>
+<p>Los GUI proveen una curva con un aprendizaje inicial muy rápido, derivado de una interfaz intuitiva y fácil, pero luego se estancan naturalmente. Esto es porque la cantidad de cosas que se pueden hacer en general tienen un techo natural, dado por el trabajo invertido por los creadores del propio software.</p>
+<p>Por otro lado R y otros tipo de CLI tienen una curva lenta inicial, pero que luego comienza a ganar en velocidad. Esta lentitud inicial representa las dificultades que hemos estado ilustrando: la adaptación necesaria para lograr ser entendidos por la computadora.</p>
+<p>Como usted tal vez haya adivinado ya, la apuesta de aprender a utilizar R está en lo que ocurre al continuar la proyección de esta gráfica...</p>
+<h3 id="section-11">12</h3>
+<p>Debido a que R no tiene el techo natural que sí tiene una interfaz estrictamente gráfica, la curva de aprendizaje de R no sólo se hace más empinada, si no que también es más alta.</p>
+<p>Nótese que este crecimiento no es lo mismo que simplemente memorizar funciones. Ningún usuario, ni siquiera los más experientes, recuerdan de memoria estos detalles, si no que acuden todo el tiempo a la ayuda.</p>
+<p>Esta curva busca representar dos aspectos centrales de las virtudes de R:</p>
+<h3 id="section-12">13</h3>
+<ol style="list-style-type: decimal">
+<li>La capacidad de combinar con gran libertad un amplio conjunto de funcionalidades, lo que permite hacer cualquier tipo de análisis que se ajuste a nuestras necesidades.</li>
+</ol>
+<p>Nótese que en sentido estricto, esta propiedad es compartida por otros paquetes estadísticos, pero es a través del uso de la programación que se logra una eficiencia mayor en relación al tiempo invertido. Es decir, R posee una segunda cualidad que complementa la primera:</p>
+<ol start="2" style="list-style-type: decimal">
+<li>La posibilidad de automatizar y/o generalizar los análisis creados, logrando realizar complejos procesamientos en menos tiempo.</li>
+</ol>
+<p>Lo que se puede aplicar a una matriz, se puede genralizar a cualquier matriz y se puede automatizar para usar en n matrices. En una GUI típica, es necesaria la constante intervención manual del usuario para completar un análisis, lo que es tan cansador como lento.</p>
+<h3 id="section-13">14</h3>
+<p>Ahora que vimos cómo las virtudes de R pueden superar los costos de sus dificultades, paso a dar algunos consejos relativos a la forma de encarar el aprendizaje de esta herramienta.</p>
+<h3 id="section-14">15</h3>
+<p>Es <strong>muy</strong> importante usar la documentación!</p>
+<p>La documentación de R por cierto es muy buena. Las páginas de documentación tienen una estructura bien definida que ayuda al lector una vez que se acostumbra a dicho formato.</p>
+<p>Es importante notar otra cosa: no hay usuario de R que no consulte constantemente las páginas de la ayuda de R. Por esto, en lugar de resistirse a utilizar esta herramienta, lo animamos a que trate de entenderla y acostumbrarse a ella lo antes posible.</p>
+<p>El uso de la ayuda tiene dos modos básicos: las funciones <code>help</code> y <code>help.search</code>. La primera sirve para acceder directamente a una página de ayuda relativa a una función, o a veces otros tipos de objetos.</p>
+<p>Hay dos formas de usar la función <code>help</code>, aquí ilustramos un ejemplo con la función <code>mean</code>.</p>
+<p>Por otro lado, a veces necesitamos buscar de forma difusa, es decir, no sabemos exactamente el nombre de la función que queremos, o ni siquiera sabemos si esa función existe. En estos casos la función <code>help.search</code> es ideal: funciona de una forma parecida a lo que es el google para internet.</p>
+<p>En el ejemplo de la diapositiva se muestra una búsqueda relativa a la palabra &quot;chi&quot;. Pruebe este ejemplo en su computadora para ver el resultado.</p>
+<h3 id="section-15">16</h3>
+<p>Los mensajes de error y advertencias.</p>
+<p>R tiene mensajes de error y advertencias que son muy útiles si se saben usar. Cuanto antes se acostumbre el usuario a entenderlos, menos dolores de cabeza va a tener que vivir por errores de programación.</p>
+<p>En mi experiencia particular estos errores me han hecho notar que es verdaderamente muy excepcional que sea R y no yo quien &quot;se equivoque&quot;.</p>
+<p>Por estas razones, recomendamos no temer al error, si no convertirlo en nuestro aliado. Después de todo, ensayo y error son la base de todo conocimiento!</p>
+<p>Por último pero no menos importante...</p>
+<h3 id="section-16">17</h3>
+<p>Un consejo que se cae de maduro pero vale la pena subrayar: la práctica hace al maestro</p>
+<p>Quién más rápido aprende un lenguaje de programación es quien está más dispuesto a jugar, experimentar, probar, etc ...</p>
+<p>La filosofía del curso es que el estudiante pruebe e intente n veces hasta encontrar la solución a cada problema, y que lo haga individualmente. Esta es, creemos, la ruta hacia el nirvana del R.</p>
+<h3 id="section-17">18</h3>
+<p>Hemos llegado al fin de esta primera lección y por lo tanto me despido con esta diapositiva que pretende resumir los puntos más imporantes:</p>
+<ol style="list-style-type: decimal">
+<li>Entender qué es R, como lenguaje y como un conjunto de funcionalidades estadísticas y gráficas</li>
+<li>Entender que R es una &quot;apuesta a largo plazo&quot;; en este sentido el curso busca que estos tiempos se reduzcan lo más posible</li>
+<li>Saber que para incorporar R como una herramienta más en nuestro cajón hace falta mucha paciencia y dedicación.</li>
+</ol>
+<p>Y sin más que decir, nos estaremos viendo en el próximo video, &quot;una sesión de ejemplo&quot;, hasta pronto!</p>
+</body>
+</html>
