@@ -1,14 +1,6 @@
 ﻿(1.1) Sobre R y software libre
 ==============================
 
-### Outline
-
-* qué es el R
-* porqué aprenderlo, ventajas y costos (comparación con software "amigable")
-* qué significa software libre y qué implica en la práctica, algunos ejemplos
-
-_______
-
 ¿Qué es el R?
 -------------
 

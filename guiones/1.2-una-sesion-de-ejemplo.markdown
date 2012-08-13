@@ -19,85 +19,99 @@
 * terminar la sesión
 * Resumen y final remarks (el mensaje!)
 
+Saludo
+------
+
+Hola! Bienvenido a un nuevo video de IMSER 2012, hoy nos dedicaremos a mostrar un ejemplo de sesión típico de R. Espero poder dar una idea general de algunas de las cosas que se pueden hacer con esta herramienta y con suerte entusiasmarlos en su proceso de aprendizaje!
+
 Inicio
 ------
 
 Una vez iniciado el R, lo que vemos es un command prompt y el cursor, indicando que se espera el input del usuario.
 
+> **Marcar en pantalla el prompt y el cursor**
+
 Podemos empezar por una expresión sencilla:
 
-    10 / 3
+  10 / 3
 
+Nótese que esto significa 10 dividido 3. Las operaciones matemáticas comunes utilizan los mismos símbolos que en casi todos los programas, como excel, u otros lenguajes de programación.
 
-Lo que ocurre luego de dar enter, es que R devuelve el resultado de esta cuenta matemática simple. En este caso se trata de una expresion sencilla. En este caso R imprime el resultado en la consola y dicho valor no es guardado para su uso futuro, simplemente se descarta. Por suerte para nosotros, podemos muy facilmente repetir este comando, sin siquiera escribirlo de vuelta, ya que simplemente usando la tecla 'arriba' se puede volver a ver el comando y con enter lo ejecutamos de vuelta.
+Lo que ocurre luego de dar enter, es que R devuelve el resultado de esta cuenta matemática simple. En este caso se trata de una expresion sencilla. R imprime el resultado en la consola y dicho valor no es guardado para su uso futuro, simplemente se descarta. Podemos muy facilmente repetir este comando, sin siquiera escribirlo de vuelta, ya que simplemente usando la tecla 'arriba' se puede volver a ver el comando y con enter lo ejecutamos de vuelta.
 
-Pero esta no es la forma más común de guardar un resultado: las asignaciones sirven para este propósito y se ven como esto:
+> **MOSTRAR ESTO**
+
+Cuando queremos guardar un valor o un resultado en un objeto, lo que se hace es utilizar la asignación. Por ejemplo, si yo quisiera guardar el resultado anterior en un objeto llamado `x`, usaría este comando:
+
 
     x <- 10 / 3
-
 
 En este caso R no imprime el resultado, pero hace algo mejor, lo guarda en un objeto llamado x, el cual existirá hasta el momento en que cerremos nuestra sesión de R. Por lo tanto, podemos utilizar nuevamente este objeto cuando querramos, por ejemplo:
 
     x
 
+Nótese que el símbolo de asignación es un "menor a" seguido por un signo de menos y no deben escribirse por separados, es decir, no sirve escribir:
 
-Esto nos devuelve el valor calculado.
+    x < - 10 / 3
 
-    x * 3
+También es posible hacer una flecha hacia la derecha, de la siguiente manera:
 
+    10 / 3 -> x
 
-Aquí calculamos el valor de x multiplicado por 3.
+Debe notarse que cuando ejecutamos este comando, ocurren al menos dos acciones y en este orden:
 
-    y <- x * 3
+1. R ejecuta el cálculo de `10 / 3`
+2. R crea el nuevo objeto `x` y le asigna como valor el resultado del cálculo anterior.
 
+Una vez que hemos creado a `x` podemos utilizarlo en combinación con otros comandos para continuar una cadena de operaciones. Es decir, por ejemplo, podríamos crear un nuevo objeto a partir de `x`:
 
-Aquí calculamos el valor de x multiplicado por 3 y lo guardamos en un nuevo objeto llamado y
+    y <- x * 2
 
-Nota: cada comando que ejecutamos debe ir en una línea, no se pueden poner dos comandos en la misma línea. Para poner un ejemplo:
+Aquí el asterisco se usa para la multiplicación.
 
-    y <- x * 3 w <- y + 15
+Nótese que un comando de R tiene a lo sumo 1 asignación; es decir, no es posible hacer 2 o más asignaciones en una misma orden. Por ejemplo, si quisiera crear los objetos `y` y `w` al mismo tiempo, no puedo usar estas instrucciones:
 
+    y <- x * 2       w <- y + 15
 
-Esto da error. Se puede solucionar:
+R no puede interpretar más de un comando en la misma línea. Aunque existe un "truquillo" para hacerlo, utilizando el punto y coma para delimitar comandos:
 
     y <- x * 3; w <- y + 15
 
+Sin embargo esta es una opción a la que no queremos recurrir, ya que es considerada desprolija y efectivamente dificulta la lectura de quien está tratando de entender el código. Programadores más experientes lo mirarían con escarnio si usted hace esto. Tómelo en cuenta.
 
-Sin embargo esta es una opción a la que no queremos recurrir, ya que es considerada desprolija y efectivamente dificulta la lectura de quien está tratando de entender el código.
-
-Nota: los nombres de los objetos no tienen porqué ser de una sola letra, y de hecho es recomendable usar palabras que den un indicio:
+Debe hacerse un paréntesis aquí, nada menor: los nombres de los objetos no tienen porqué ser de una sola letra (como `x` o `y`), y de hecho es recomendable usar palabras que den una indea del rol de cada objeto. Por ejemplo, si nuestro trabajo es calcular la hipotenusa de un triángulo rectángulo, es lo más recomendable utilizar nombres como cateto adyacente, cateto opuesto e hipotenusa por supuesto:
 
     cat.ad <- 4
     cat.op <- 5
     hipot <- sqrt(cat.ad ** 2 + cat.op ** 2)
 
+Nota: aquí los `**` sirven para elevar al cuadrado los valores de los catetos. Lo mismo se puede hacer con el "techito" `^`:
 
-Hay algunas reglas para hacer estos nombres. En general, no usar espacios ni números al inicio de las mismas es suficiente.
+    hipot <- sqrt(cat.ad ^ 2 + cat.op ^ 2)
 
-Como habrá notado, eventualmente la sesión se llena de objetos con varios nombres de objetos. La función ls (abrebiación de "list") sirve para ver estos nombres:
+Hay algunas reglas para hacer los nombres de los objetos: no usar espacios, no usar números al inicio de las mismas es suficiente para lo que vamos a ver en el curso.
+
+Como tal vez se habrá imaginado, eventualmente la sesión se llena de objetos con varios nombres de objetos. Para ver la cantidad y los nombres de los objetos presentes en nuestra sesión usamos la función ls (abrebiación de "list"):
 
     ls()
 
+Los paréntesis vacíos parecen un exceso de escritura, pero son necesarios para llamar a esta función. De hecho, las funciones no pueden ser llamadas sin paréntesis. Otro comando llamado `objects` sirve para exactamente lo mismo, y tal vez sea más fácil de memorizar para principiantes:
 
-La función objects hace exactamente lo mismo.
+    objects()
 
-Para el extra: alternativamente, sobre todo si estamos usando R de forma interactiva, podemos usar exists para ver si está presente algún objeto en particular.
-
-Es muy recomendable tratar de tener una sesión de R "limpia" para no perderse en un mar de objetos que no están siendo usados. La función rm sirve para borrar objetos de la memoria.
+Para mantener la producción es bueno ser organizado y por esto es muy recomendable tratar de tener una sesión de R "limpia" para no perderse en un mar de objetos que no están siendo usados. La función rm sirve para borrar objetos de la memoria.
 
     rm(x)
+
+Y si teme perder información pero igual quiere borrar objetos, puede usar la función `save` para guardar aquellos objetos que no va a usar por el momento:
+
+    save(objeto.1, objeto.2, objeto.3, file='objetos.RData')
 
 
 Matemática
 ----------
 
-Crear una secuencia de números:
-
-    1:5
-    seq(1, 20, by=3)
-
-
-Dado que R es un software enfocado a estadística, tiene muchas funciones matemáticas (muchas con mismos nombres que en excel, c, etc...):
+Dado que queremos lidiar con números, R nos da una completa caja de herramientas matemáticas con las que trabajar.
 
     sin(pi)
     exp(10)
@@ -106,31 +120,39 @@ Dado que R es un software enfocado a estadística, tiene muchas funciones matem�
     rnorm(10)
     mean(rnorm(10))
 
-Incluso tiene algunas herramientas que son simples de usar que pueden ser muy útiles. La función curve sirve para graficar una función matemática (en números reales) cualquiera:
+Invitamos a utilizar la ayuda de R para descubrir cada una de estas funciones, si es que no las conoce de otros programas, como planillas de cálculo por ejemplo. Para el caso particular de operadores, deben usarse comillas como en el siguiente ejemplo:
 
+~~~
+?"**"
+~~~
+
+Una de las facilidades que tienen estas funciones es que pueden aplicarse a números sólos o en conjunto sin mayor diferencia en la sintaxis. Por ejemplo, considerando una secuencia de números como esta:
+
+    sec <- 1:14
+
+Se trata de los números enteros del 1 al 14 (a lo largo del curso veremos muchas veces el operador "`:`"). Con el vector de números creado (llamado `sec`) puedo ejecutar cualquier operación matemática:
+
+    sec ** 2
+    exp(sec)
+
+Además R cuenta con herramientas más sofisticadas para hacer matemáticas. Por ejemplo, la función `curve` sirve para graficar una función continua cualquiera. Muy útil para quien estudia matemática en los primeros años de la mayoría de las carreras universitarias. Por ejemplo, la función coseno se puede graficar así:
+
+    tau <- 2 * pi
     curve(cos(x), from=-tau / 2, to=tau / 2)
 
-
-Nótese que la variable por convención es x, pero este x no tiene nada que ver con el x que creamos antes. Podemos ver cuánto vale el cos de x cuando x vale `pi/2` (90 grados)
+Nótese que la variable independiente, por convención es x, pero este x no tiene nada que ver con el objeto x que creamos antes. Podemos ver cuánto vale el coseno de x cuando este vale 90 grados o `tau / 4`:
 
     abline(v=tau / 4, col='red')
-
 
 Quiero ver los ejes:
 
     abline(v=0, h=0, col='blue')
 
-
-Ahora quiero saber el área bajo la gráfica de esta función en el intervalo 0, `tau / 4`, o en otras palabras, la integral:
+Ahora quiero calcular la integral de esta función en el intervalo 0, `tau / 4`:
 
     integrate(cos, 0, tau / 4)
 
-
-Esto nos da una respuesta con un pequeño error numérico (ya que R no hace cálculo de la solución analítica).
-
-De forma opuesta la funcin deriv hace calculos de derivadas.
-
-Sin dudas este tipo de funciones tienen gran utilidad y pueden ser utilizadas como ayuda en nuestros trabajos o estudios. Acá están solo para ilustrar las cosas básicas que R puede hacer.
+Esto nos da una respuesta con un pequeño error numérico (ya que R no hace cálculo de la solución analítica), pero que suele ser muy exacta. De forma similar la funcin `deriv` hace calculos de derivadas.
 
 
 Combinación de comandos
@@ -142,31 +164,34 @@ La combinación de comandos en su forma más básica se ve algo así:
 
     mean(rnorm(100))
 
-Aquí estamos ejecutando la función `rnorm`, que genera números aleatorios con distribución gaussiana o normal, para crear 100 de estos números. La salida de este comando es inmediatamente tomada por la función mean, quien calcula el promedio de estos 100 números. En términos matemáticos esto es una composición de funciones. Anteriormente vimos otro ejemplo, el de la hipotenusa.
+Aquí estamos ejecutando la función `rnorm`, que genera números aleatorios con distribución gaussiana o normal, para crear 100 de estos números.
 
-Pero generalmente las instrucciones que son creadas son mucho más elaboradas y permiten realizar cualquier cálculo imaginable.
+> **MARCAR EN PANTALLA**
+
+La salida de este comando es inmediatamente tomada por la función `mean`, quien calcula el promedio de estos 100 números. En términos matemáticos esto es una composición de funciones y es similar a lo que vimos anteriormente al calcular una hipotenusa hipotética.
+
+Pero generalmente las instrucciones que son creadas son mucho más elaboradas y permiten realizar cualquier cálculo imaginable, al menos en principio (ya que no estoy tomando en cuenta limitaciones de capacidad real de las computadoras).
 
 Veremos un caso de ejemplo ahora para ilustrar esta idea y otras que son fundamentales para sacar provecho a R.
 
 
-Presupuesto de un proyecto
---------------------------
+## Presupuesto de un proyecto
 
-Muchas veces en nuestras vidas nos veremos obligados a calcular el presupuesto de un proyecto, nuestra casa, etc. Vamos a suponer que trabajamos en un proyecto de investigación de la universidad en el que necesitamos calcular el costo de equipos de trabajo, materiales, viáticos y sueldos. Este tipo de tareas suele volverse compleja debido a que muchas variables están en juego, como diferentes modelos y costos para los equipos, cantidad de viajes y medios de transporte, estadías, cantidad de técnicos contratados, sueldos de dichos técnicos, etc.
+Muchas veces en nuestras vidas nos veremos obligados a calcular el presupuesto de un proyecto, o el de nuestra casa, empresa, etc. Supongamos que trabajamos en un proyecto de investigación de la universidad en el que necesitamos calcular el costo de equipos de trabajo, materiales, viáticos y sueldos. Este tipo de tareas suele volverse compleja debido a que muchas variables están en juego, como diferentes modelos y costos para los equipos, cantidad de viajes y medios de transporte, estadías, cantidad de técnicos contratados, sueldos de dichos técnicos, etc.
 
 Un ejemplo sencillo sería este:
 
-
-    dineroTotal <- 450000
-    microscopio <- 50000
-    salida <- 20000
-    tecnicoMes <- 6000
-    ntecnicos <- 2
-    meses <- 3
-    nsalidas <- 2
+    dineroTotal <- 450000 # Total asignado por nuestra financiadora
+    microscopio <- 50000  # Costo por un modelo particular de microscopio que necesitamos
+    salida <- 20000       # Costo aproximado de lo que cuesta hacer una salida de campo
+    tecnicoMes <- 6000    # Sueldo de un técnico
+    ntecnicos <- 2        # Número de técnicos a contratar
+    meses <- 3            # Número de meses en que contrataríamos a dichos técnicos
+    nsalidas <- 2         # Número de salidas de campo
 
     margen <- dineroTotal - microscopio - nsalidas * salida - tecnicoMes * meses * ntecnicos
 
+### SEGUIR A PARTIR DE ACÁ!
 
 Si queremos jugar cambiando el número de meses o el número de salidas, entonces cambiamos el valor de alguna de estas (uso la flecha hacia arriba para modificar uno de los valores y veo el nuevo margen).
 
