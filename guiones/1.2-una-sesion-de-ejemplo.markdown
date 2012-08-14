@@ -175,7 +175,7 @@ Pero generalmente las instrucciones que son creadas son mucho más elaboradas y 
 Veremos un caso de ejemplo ahora para ilustrar esta idea y otras que son fundamentales para sacar provecho a R.
 
 
-## Presupuesto de un proyecto
+### Presupuesto de un proyecto
 
 Muchas veces en nuestras vidas nos veremos obligados a calcular el presupuesto de un proyecto, o el de nuestra casa, empresa, etc. Supongamos que trabajamos en un proyecto de investigación de la universidad en el que necesitamos calcular el costo de equipos de trabajo, materiales, viáticos y sueldos. Este tipo de tareas suele volverse compleja debido a que muchas variables están en juego, como diferentes modelos y costos para los equipos, cantidad de viajes y medios de transporte, estadías, cantidad de técnicos contratados, sueldos de dichos técnicos, etc.
 
@@ -189,91 +189,117 @@ Un ejemplo sencillo sería este:
     meses <- 3            # Número de meses en que contrataríamos a dichos técnicos
     nsalidas <- 2         # Número de salidas de campo
 
+El cálculo del márgen se haría muy fácil, con el siguiente comando:
+
     margen <- dineroTotal - microscopio - nsalidas * salida - tecnicoMes * meses * ntecnicos
 
-### SEGUIR A PARTIR DE ACÁ!
+Pero dado que muchos de estos valores pueden cambiarse (como el número de meses, salidas, etc), lo mejor sería explorar distintas posibilidades. Además puede calcularse otro valor, por ejemplo, un número estimado de muestras obtenidas y procesadas, en función del número de meses, salidas y técnicos contratados:
 
-Si queremos jugar cambiando el número de meses o el número de salidas, entonces cambiamos el valor de alguna de estas (uso la flecha hacia arriba para modificar uno de los valores y veo el nuevo margen).
+    nmuestras <- nsalidas * ntecnicos * 300
+    nproc <- nmuestras * meses * 800
 
-Como veran, puedo cambiar varias cosas, como el valor del microscopio o de la salida, para seguir estimando el margen de dinero que voy a tener. Pero no es muy práctico hacer esto en la consola. Es aquí cuando entra en juego lo que se conoce como script de R. Para hacer mi script de R, voy a abrir un editor de texto; en el GUI de R de windows hay un editor de texto por defecto (abro ese).
+(Es cierto que se puede hacer en un sólo paso, pero ya que estamos empezando con un borrador, mejor dejarlo así y seguir la línea de pensamiento.)
 
-Como me interesa reciclar los últimos comandos que hice, uso `history()` y hago un copiar y pegar en el editor.
+Si queremos jugar cambiando el número de meses o el número de salidas, entonces cambiamos el valor de alguna de estas y volvemos a ejecutar las ecuaciones.
+
+> **USO LA FLECHA HACIA ARRIBA PARA MODIFICAR UNO DE LOS VALORES Y VEO EL NUEVO MARGEN.**
+
+Pero no es muy práctico hacer esto en la consola todo el tiempo, por lo que voy a cambiar de estrategia. Es aquí cuando entra en juego lo que se conoce como script de R. Para hacer mi script, voy a abrir un editor de texto plano (es decir, algo tan simple como el notepad de Windows). En mi caso uso Linux, pero los principios son exactamente los mismos.
+
+Como me interesa reciclar los últimos comandos que hice, uso `history()` y hago un copiar y pegar en el editor:
 
     history()
 
+> **COPIAR & PEGAR EN MOUSEPAD**
 
-Una vez aquí, borro los comandos que sobran. Luego modifico aquellos que me interesa (meses, microscopio, etc). Luego salvo y hago un source en R:
+Una vez aquí modifico aquellos que me interesa (meses, microscopio, etc). Luego salvo y hago un source en R:
+
+> **CAMBIAR ntecnicos, O nsalidas, AGREGAR UN print(margen) Y UN print(nproc)**
 
     source('presupuesto.R')
 
+> **MOSTRAR UN PAR DE ITERACIONES GUARDANDO Y CORRIENDO EL ARCHIVO**
 
-Esto es lo que se conoce como R no interactivo!
+Por cierto, esto es lo que se conoce como R no interactivo!
 
 Cada vez que cambimos el script en el editor, tenemos que salvar antes de llamar a la función `source`, ya que si no la versión en el disco duro no se va a actualizar y por lo tanto el R va a seguir interetando la versión anterior.
 
 Así puedo jugar con cualquiera de mis variables y determinar cuál será mi margen. Notarán que el proceso se vuelve un poco engorroso al cabo de un tiempo.
 
-Aquí es cuando encontramos la primer razón para usar RStudio (paso al RStudio).
+Aquí es cuando encontramos la primer razón para usar RStudio.
 
-En RStudio trabajamos con el script y podemos enviar comandos a la consola para que R ejecute, sin necesidad de estar cambiando de ventana. Incluso podemos enviar el documento completo sin necesidad de salvarlo.
+> **IR A RSTUDIO**
 
-Mostrar ejemplos
+En RStudio trabajamos con el script y podemos enviar comandos a la consola para que R ejecute, sin necesidad de estar cambiando de ventana. Incluso podemos enviar el documento completo sin necesidad de salvarlo. El uso de atajos de teclado permite un trabajo mucho más fluido y eficiente.
+
+> **MOSTRAR EJEMPLOS**
+
 
 Una funcioncita para facilitar
 ------------------------------
 
-Para facilitar más aún el proceso, R tiene una herramienta que sale en nuestro auxilio: la función
+Alternativamente a esta modalidad de trabajo existe la posibilidad de crear funciones personalizadas, opción que hace más rápido incluso el proceso iterativo que estábamos mostrando hasta el momento.
 
-Tomando los mismos comandos que tenía antes, pero cambiando sutil y estratégicamente la ubicación de los mismos voy a hacer mi funcion `prp`:
+Las funciones en R ejecutan una tarea en particular con ciertos parámetros, llamados argumentos, definidos por el usuario en el momento de llamar a la función. Tomando los mismos comandos que tenía antes, pero cambiando sutil y estratégicamente la ubicación de los mismos voy a hacer mi funcion llamada `prp`:
+
+> **CREAR LA SIGUIENTE FUNCIÓN**
 
     prp <- function(nsalidas = 2, ntecnicos = 2, microscopio = 50000, salida = 20000,
                     tecnicoMes = 6000, meses = 3) {
+    # Calcula el margen y la cantidad final de muestras procesadas.
       dineroTotal <- 450000
       margen <- dineroTotal - microscopio - nsalidas * salida - tecnicoMes * meses
-      margen
+      nproc <- nsalidas * ntecnicos * 300 * meses * 800
+      c(margen, nproc)
     }
+
+Nota: la línea que empieza con un numeral `#` es lo que llamamos un "comentario" y sirve para dar una referencia a quien lee el código de la función.
 
 Entonces si yo ejecuto
 
     prp()
 
+Obtengo el cálculo que teníamos antes. Para esto el R usó los valores que puse en la primer línea del script (los que están siguiendo los signos de igual). Estos son los valores "por defecto" es decir aquellos que tomará la función si es que el usuario no puso ningún valor propio. Pero estos se pueden cambiar fácilmente. Por ejemplo, si queremos saber el resultado con 4 meses:
 
-Obtengo el cálculo que teníamos antes. Para esto el R usó los valores que puse en la primer línea del script. Estos son los valores "por defecto" es decir aquellos que tomará la función si es que el usuario no puso ningún valor propio.
-
-La ventaja de esta aproximacion es que podemos cambiar rápidamente de valores para nuestras variables y así encontrar cómo cambia el margen de nuestro presupuesto.
-
-En combinación (no importa el orden de las variables)
-
+    prp(meses = 4)
     prp(nsalidas = 3, ntecnicos = 3)
 
+(_No importa el orden de las variables_)
+
+> **MOSTRAR OTROS EJEMPLOS VARIANDO ARGUMENTOS: ntecnicos, tecnicoMes, nsalidas**
+
+La ventaja de esta aproximacion es que podemos cambiar rápidamente de valores para nuestras variables y así encontrar cómo cambia el margen de nuestro presupuesto. Por otro lado, permite resumir una tarea que antes era de varios comandos en una sóla línea. Esto tiene consecuencias importantes cuando tenemos un proyecto de programación más elaborado.
 
 Ejemplo de un loop
 ------------------
 
-A veces lo que queremos es simplemente ver todos los valores posibles. Para este tipo de tareas repetitivas existen los loops. Concretamente, podríamos hacer algo como esto:
+Finalmente veremos un ejemplo de automatización. Supongamos que lo que queremos ver ahora son todos los valores posibles de número de salidas: esto implica ejecutar la función `prp` n veces, siendo n un número dependiente de cuál es nuestro universo de posibilidades. Concretamente, tendríamos que hacer algo como esto:
 
     prp(nsalidas = 1)
     prp(nsalidas = 2)
     prp(nsalidas = 3)
     prp(nsalidas = 4)
-    prp(nsalidas = 5)
-    prp(nsalidas = 6)
-    prp(nsalidas = 7)
-    prp(nsalidas = 8)
-    prp(nsalidas = 9)
 
-etc
+etc, hasta llegar a, digamos, `nsalidas = 20`.
 
-Pero con un loop esto se reduce a:
-
+Para este tipo de tareas repetitivas existen los loops (que podrían traducirse como "lazos", pero vamos a mantener el término loop durante el curso). Usando esta herramienta, el proceso se reduce a:
 
     for (i in 1:20) {
       cat('No. de salidas =', i, '\n')
       print(prp(nsalidas = i))
     }
 
+Aquí aparece el comando `for`, el cual tiene una particular estructura (diferente a la de cualquier función) y aparecen comandos "normales" que aparecen "adentro" del `for`.
 
-Si además queremos ver cómo se combina con el número de técnicos, podemos hacer otro loop dentro de este:
+> **MARCAR LO QUE CORRESPONDE AL FOR Y LO QUE CORRESPONDE AL "INTERIOR"**
+
+Lo importante de notar es que donde antes había un número (el correspondiente al número de salidas), ahora hay una letra, es decir, una variable: `i`
+
+> **MARCAR EL LLAMADO A `prp` EN EL `for`**
+
+El comando que comenza con `cat` no es importante por ahora.
+
+Los loops son entonces una poderosa herramienta en manos de quien les pueda sacar provecho. Como ejemplo final, veremos ahora como podemos hacer un loop adentro de otro loop, para lograr iteraciones anidadas. Podemos ver así las combinaciones resultantes de variar el número de técnicos a contratar, en simultáneo con el número de salidas:
 
     for (i in 1:20) {
       for (j in 1:6) {
@@ -283,22 +309,26 @@ Si además queremos ver cómo se combina con el número de técnicos, podemos ha
     }
 
 
-La tercer línea fue agregada para poder ver en la salida cuántas salidas y técnicos corresponden.
-
-Nota: esto se puede hacer de formas más fáciles: el primer ejemplo con `prp(nsalidas=1:20)` y el segundo con la función "`outer`":
-
-    outer(1:20, 1:6, prp)
-
-
-En este ejemplo de acercamiento, hemos combinado varias utilidades de R para hacer un análisis relativamente sofisticado del presupuesto de nuestro proyecto ficticio. Empezando incialmente con una cuenta sencilla, pasamos a crear una función y luego utilizamos loops para ver todo el rango de combinaciones posibles.
+En este ejemplo de acercamiento, hemos combinado varias utilidades de R para hacer un análisis relativamente sofisticado del presupuesto de nuestro proyecto ficticio. Empezando incialmente con una cuenta sencilla, usamos scripts para ver diferentes combinaciones y pasamos a crear una función, para finalmente utilizar loops y así ver todo el rango de combinaciones posibles.
 
 El objetivo de hacer este ejercicio es mostrar someramente cómo se puede pasar con facilidad de un análisis simple y limitado a otro más elaborado y abarcativo, a través de la secuenciación de pasos. Nótese que el uso de scripts en este proceso es fundamental, ya que permite construir sobre lo ya hecho y mantener ordenados y bien comentados los pasos dados para llegar a un resultado en particular.
 
-Esta posibilidad no sólo permite que un usuario pueda volver a repetir su análisis en el futuro, si no que también facilita el compartir tareas entre varios usuarios, incluyendo el 'reproducible research' (investigación reproducible), tema que se ha vuelto muy caliente en los últimos años.
+Esta posibilidad no sólo permite que un usuario pueda volver a repetir su análisis en el futuro, si no que también facilita el compartir tareas entre varios usuarios, incluyendo el 'reproducible research' (investigación reproducible), tema muy en voga en los últimos años.
 
 Mensaje final
 -------------
 
-En esta primer introducción a las capacidades de R no nos hemos metido demasiado en temas específicos de análisis de datos, el cual suele ser el motivo principal por la que R es utilizado. Sin embargo hemos visto herramientas de uso general que pueden y son constantemente utilizadas en cualquier análisis de datos (funciones matemáticas, gráficos, funciones personalizadas, loops).
+En esta primer introducción a las capacidades de R no nos hemos metido demasiado en temas específicos de análisis de datos, el cual suele ser el motivo principal por la que R es utilizado. Sin embargo hemos visto herramientas de uso general que pueden y son constantemente utilizadas en cualquier análisis de datos real (funciones matemáticas, gráficos, funciones personalizadas, loops).
 
-El objetivo de este video es mostrar rápidamente algunas de las funcionalidades básicas que tenemos en R y, con suerte, entusiasmarlos en el aprendizaje de este lenguaje. Todas las cosas que fueron tocadas en este video, y más, se van a profundizar a medida que avanza el curso, de forma que no hay que preocuparse demasiado por aquello que no se entendió claramente. Animamos a que cada uno en su casa juegue con los ejemplos dados aquí y así pueda ir descubriendo por cuenta propia el R.
+El objetivo de este video es mostrar rápidamente algunas de las funcionalidades básicas que tenemos en R y, con suerte, entusiasmarlos en el aprendizaje de este lenguaje. Todas las cosas que fueron tocadas en este video, y más, se van a profundizar a medida que avanza el curso, de forma que no hay que preocuparse demasiado por aquello que no se entendió claramente. Animamos a que cada uno en su casa juegue con los ejemplos dados aquí y así pueda ir descubriendo por cuenta propia lo que hay aquí.
+
+
+Extra
+-----
+Los dos loops utilizados en esta sesión de ejemplo sólo buscan ilustrar el uso de loops, pero no son las soluciones más óptimas. Los siguientes comandos serían más adecuados en general, sobre todo si se tratase de tareas pesadas:
+
+    prp(nsalidas = 1:20)
+    outer(1:20, 1:6, prp)
+
+Profundizaremos sobre esto en las lecciones dedicadas a esto.
+
