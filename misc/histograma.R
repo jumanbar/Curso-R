@@ -1,5 +1,5 @@
-# Grafica un histograma de una variable con distribución normal estándar. Agrega
-# una línea azul con la densidad y una roja con la densidad teórica.
+# Grafica un histograma de una variable con distribución normal
+# Una línea azul con la densidad y una roja con la densidad teórica.
 x <- rnorm(200)
 hist(x, freq=F)
 lines(density(x), col='blue', lwd=2)

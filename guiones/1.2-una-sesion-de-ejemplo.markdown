@@ -22,18 +22,24 @@
 Saludo
 ------
 
-Hola! Bienvenido a un nuevo video de IMSER 2012, hoy nos dedicaremos a mostrar un ejemplo de sesión típico de R. Espero poder dar una idea general de algunas de las cosas que se pueden hacer con esta herramienta y con suerte entusiasmarlos en su proceso de aprendizaje!
+Hola! Bienvenido a un nuevo video de IMSER 2012, hoy me voy a dedicar a mostrar un ejemplo de una sesión típica de R. Espero poder dar una idea general de algunas de las cosas que se pueden hacer con esta herramienta y con suerte entusiasmarlos en su proceso de aprendizaje!
 
 Inicio
 ------
 
-Una vez iniciado el R, lo que vemos es un command prompt y el cursor, indicando que se espera el input del usuario.
+Lo que tiene frente a su pantalla por el momento es la consola de GNU/Linux, en donde voy a correr el R en este mismo momento...
 
-> **Marcar en pantalla el prompt y el cursor**
+  **INICIAR R**
+
+Si bien puede parecer muy diferente a la interfaz de Windows, en verdad funciona de forma exactamente igual. Así se ve recién iniciada una sesión de R en su forma más elemental, es decir que sólo acepta instrucciones a traves de comandos escritos.
+
+Una vez iniciado el R, lo que vemos es un command prompt, el signo de "mayor a" y el cursor, indicando que se espera el input del usuario.
+
+> **MARCAR EN PANTALLA EL PROMPT Y EL CURSOR**
 
 Podemos empezar por una expresión sencilla:
 
-  10 / 3
+    10 / 3
 
 Nótese que esto significa 10 dividido 3. Las operaciones matemáticas comunes utilizan los mismos símbolos que en casi todos los programas, como excel, u otros lenguajes de programación.
 
@@ -107,56 +113,59 @@ Y si teme perder información pero igual quiere borrar objetos, puede usar la fu
 
     save(objeto.1, objeto.2, objeto.3, file='objetos.RData')
 
+En este caso no doy Enter porque estoy escribiendo nombres de objetos que no existen en la sesión. Por cierto, la terminación "RData" es la extensión convencional para este tipo de archivos. También se puede usar "rda" (en minúsculas).
+
 
 Matemática
 ----------
 
-Dado que queremos lidiar con números, R nos da una completa caja de herramientas matemáticas con las que trabajar.
+Dado que al usar R normalmente queremos lidiar con números, R nos da una completa caja de herramientas matemáticas con las que trabajar. Las funciones comunes como seno, coseno, exponencial, logaritmo, etc, se usan de forma muy parecida a lo que son otros programas:
 
     sin(pi)
     exp(10)
     1000 ** 2
     log(1)
-    rnorm(10)
-    mean(rnorm(10))
 
-Invitamos a utilizar la ayuda de R para descubrir cada una de estas funciones, si es que no las conoce de otros programas, como planillas de cálculo por ejemplo. Para el caso particular de operadores, deben usarse comillas como en el siguiente ejemplo:
+Invitamos a utilizar la ayuda de R para descubrir cada una de estas funciones, si es que no las conoce de otros programas, como planillas de cálculo por ejemplo. En caso de querer abrir la ayuda de un operador, como el doble asterisco, deben usarse comillas como en el siguiente ejemplo:
 
 ~~~
 ?"**"
 ~~~
 
-Una de las facilidades que tienen estas funciones es que pueden aplicarse a números sólos o en conjunto sin mayor diferencia en la sintaxis. Por ejemplo, considerando una secuencia de números como esta:
+Estas operaciones se pueden ejecutar a un número o un objeto con varios números sin cambios mayores en la sintaxis. Así, si consideramos la secuencia de los números enteros del 1 al 14, la cual se puede crear de la siguiente manera:
 
     sec <- 1:14
 
-Se trata de los números enteros del 1 al 14 (a lo largo del curso veremos muchas veces el operador "`:`"). Con el vector de números creado (llamado `sec`) puedo ejecutar cualquier operación matemática:
+(a lo largo del curso veremos muchas veces el operador "`:`")
+
+Con el vector de números creado (llamado `sec`) puedo ejecutar cualquier operación matemática:
 
     sec ** 2
     exp(sec)
 
-Además R cuenta con herramientas más sofisticadas para hacer matemáticas. Por ejemplo, la función `curve` sirve para graficar una función continua cualquiera. Muy útil para quien estudia matemática en los primeros años de la mayoría de las carreras universitarias. Por ejemplo, la función coseno se puede graficar así:
+R cuenta con herramientas matemáticas y gráficas bastante más sofisticadas que estos ejemplos "básicos". Por ejemplo, la función `curve` sirve para graficar una función continua cualquiera. Con dicha función es fácil graficar el coseno de x:
 
-    tau <- 2 * pi
-    curve(cos(x), from=-tau / 2, to=tau / 2)
+    tau <- 2 * pi # (Una circunferencia completa)
+    curve(cos(x), from=- tau / 2, to=tau / 2)
 
-Nótese que la variable independiente, por convención es x, pero este x no tiene nada que ver con el objeto x que creamos antes. Podemos ver cuánto vale el coseno de x cuando este vale 90 grados o `tau / 4`:
+Nótese que la variable independiente, por convención es x, pero este x no tiene nada que ver con el objeto x que creamos antes. Podemos visualizar cuánto vale el coseno de x cuando este vale 90 grados o `tau / 4`, agregando una línea vertical en este punto preciso, usando la función `abline`:
 
     abline(v=tau / 4, col='red')
 
-Quiero ver los ejes:
+Aquí la 'v' denota que es una línea vertical en el valor indicado. Usando la misma función puedo agregarle los ejes:
 
     abline(v=0, h=0, col='blue')
 
-Ahora quiero calcular la integral de esta función en el intervalo 0, `tau / 4`:
+Supongamos que nos interesa
+Ahora quiero calcular la integral de esta función en el intervalo [0, 90] grados:
 
     integrate(cos, 0, tau / 4)
 
 Esto nos da una respuesta con un pequeño error numérico (ya que R no hace cálculo de la solución analítica), pero que suele ser muy exacta. De forma similar la funcin `deriv` hace calculos de derivadas.
 
 
-Combinación de comandos
------------------------
+Combinaciones de comandos
+-------------------------
 
 Una de las grandes virtudes que tiene R es que favorece naturalmente la combinación de diferentes comandos para crear cálculos sofisticados. Esta es la clave de la enorme flexibilidad de este programa.
 
@@ -182,7 +191,6 @@ Muchas veces en nuestras vidas nos veremos obligados a calcular el presupuesto d
 Un ejemplo sencillo sería este:
 
     dineroTotal <- 450000 # Total asignado por nuestra financiadora
-    microscopio <- 50000  # Costo por un modelo particular de microscopio que necesitamos
     salida <- 20000       # Costo aproximado de lo que cuesta hacer una salida de campo
     tecnicoMes <- 6000    # Sueldo de un técnico
     ntecnicos <- 2        # Número de técnicos a contratar
@@ -191,7 +199,7 @@ Un ejemplo sencillo sería este:
 
 El cálculo del márgen se haría muy fácil, con el siguiente comando:
 
-    margen <- dineroTotal - microscopio - nsalidas * salida - tecnicoMes * meses * ntecnicos
+    margen <- dineroTotal - nsalidas * salida - tecnicoMes * meses * ntecnicos
 
 Pero dado que muchos de estos valores pueden cambiarse (como el número de meses, salidas, etc), lo mejor sería explorar distintas posibilidades. Además puede calcularse otro valor, por ejemplo, un número estimado de muestras obtenidas y procesadas, en función del número de meses, salidas y técnicos contratados:
 
@@ -244,11 +252,11 @@ Las funciones en R ejecutan una tarea en particular con ciertos parámetros, lla
 
 > **CREAR LA SIGUIENTE FUNCIÓN**
 
-    prp <- function(nsalidas = 2, ntecnicos = 2, microscopio = 50000, salida = 20000,
+    prp <- function(nsalidas = 2, ntecnicos = 2, salida = 20000,
                     tecnicoMes = 6000, meses = 3) {
     # Calcula el margen y la cantidad final de muestras procesadas.
       dineroTotal <- 450000
-      margen <- dineroTotal - microscopio - nsalidas * salida - tecnicoMes * meses
+      margen <- dineroTotal - nsalidas * salida - tecnicoMes * meses
       nproc <- nsalidas * ntecnicos * 300 * meses * 800
       c(margen, nproc)
     }

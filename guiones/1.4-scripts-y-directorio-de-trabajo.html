@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <title></title>
 </head>
@@ -24,24 +25,21 @@
 </ul>
 <hr />
 <h2 id="scripts-en-r">Scripts en R</h2>
-<p>Cuando se habla de escribir un programa, se trata poner una secuencia de comandos en un orden no aribtrario. Para guardar estos comandos se utilizan archivos de texto plano (siendo el ejemplo clásico los archivos &quot;.txt&quot;). Normalmente estos archivos se guardan con una extensión que indica el lenguaje del código escrito. En el caso de R, &quot;<em>.R</em>&quot; y &quot;<em>.r</em>&quot; son las extensiones por convención. Estos archivos son llamados &quot;scripts&quot; o “archivos de código fuente” (“code source file&quot; en inglés) y cada uno sirve para ejecutar una o varias tareas.</p>
+<p>Cuando se habla de escribir un programa, se trata poner una secuencia de comandos en un orden no aribtrario. Para guardar estos comandos se utilizan archivos de texto plano (siendo el ejemplo clásico los archivos &quot;.txt&quot;). Normalmente estos archivos se guardan con una extensión que indica el lenguaje del código escrito. En el caso de R, &quot;<em>.R</em>&quot; y &quot;<em>.r</em>&quot; son las extensiones por convención. Estos archivos son llamados &quot;scripts&quot; o “archivos de código fuente” (&quot;source code file&quot; en inglés) y cada uno sirve para ejecutar una o varias tareas.</p>
 <p>Si bien no es necesario trabajar siempre con scripts, es recomendable generar el hábito de hacerlo. Al guardar los comandos en un script también estamos guardando parte de nuestro proceso mental de trabajo, así como aquellos detalles que son sutiles y difíciles de recordar de otra forma. El uso regular de los comentarios en el código fuente refuerza esta virtud. Por otro lado, esto permite volver a reproducir nuestro análisis en el futuro o que otra persona lo haga. Se trata de algo importante a nivel individual, pero que también tiene una gran relevancia en la forma en que se hace ciencia en general. Este es un tema muy actual a nivel mundial, habiéndose instalado el término &quot;<a href="http://stats.stackexchange.com/questions/14999/how-are-we-defining-reproducible-research#15006">Reproducible Research</a>&quot; (Investigación Reproducible) para describir esta faceta del proceso científico.</p>
 <p>R acepta una sola orden por vez y en un script esto se traduce a que solo se puede escribir una orden por línea de texto. Tener los comandos escritos en un archivo permite ordenar el trabajo y repetir los procedimientos cuantas veces sea necesario. Usualmente se comienza con algo muy simple, unas 4 o 5 líneas, pero a medida que vamos perfeccionando y añadiendo etapas un script crece, llegando sin demasiada dificultad a las 100 líneas de código en un sólo archivo.</p>
-<h3 id="un-peque&#241;o-ejemplo">Un pequeño ejemplo</h3>
+<h3 id="un-pequeño-ejemplo">Un pequeño ejemplo</h3>
 <p>En <a href="http://eva.universidad.edu.uy/file.php/1454/histograma.R">este enlace</a> se puede bajar un script de R de ejemplo llamado “histograma.R”. Nota: esta página se puede abrir desde R también con el comando:</p>
-<pre><code>    browseURL('http://eva.universidad.edu.uy/file.php/1454/histograma.R')
-</code></pre>
+<pre><code>    browseURL(&#39;http://eva.universidad.edu.uy/file.php/1454/histograma.R&#39;)</code></pre>
 <p>El archivo se puede guardar en el disco duro en el directorio en que R trabaja por defecto (<code>Mis Documentos</code> en la mayoría de las máquinas con Windows; en R se puede saber cuál es el directorio de trabajo actual con el comando:</p>
-<pre><code>getwd()
-</code></pre>
+<pre><code>getwd()</code></pre>
 <p>Una vez guardado, la función <code>source</code> se utiliza para ejecutar todos los comandos contenidos en el archivo:</p>
-<pre><code>source(“histograma.R”)
-</code></pre>
+<pre><code>source(“histograma.R”)</code></pre>
 <p>Es necesario siempre usar comillas para indicar nombres de archivos como en este caso. Tanto las comillas dobles (&quot;) como las simples (') sirven.</p>
 <p>Al ejecutar este comando, si el archivo <code>histograma.R</code> fue guardado en la ubicación correcta, entonces debería verse un gráfico similar al de la <strong>Figura 1</strong>.</p>
 <hr />
 <div class="figure">
-<img src="files/histograma.png" title="Una distribuci&#243;n aproximadamente normal" alt="Fig. 1. Imagen creada con el script histograma.R" /><p class="caption"><strong>Fig. 1.</strong> Imagen creada con el script <code>histograma.R</code></p>
+<img src="files/histograma.png" title="Una distribución aproximadamente normal" alt="Fig. 1. Imagen creada con el script histograma.R" /><p class="caption"><strong>Fig. 1.</strong> Imagen creada con el script <code>histograma.R</code></p>
 </div>
 <hr />
 <p>Nota: en RStudio, si se abre el archivo en el editor de scripts, se puede ejecutar lo mismo de varias maneras:</p>
@@ -53,7 +51,7 @@
 </ul>
 <p>Todas estas variantes tienen diferencias sutiles que invitamos a que usted explore.</p>
 <p>En este curso se pretende acostumbrar al estudiante a usar scripts para organizar su trabajo. Por esta razón las lecciones escritas se presentan en este formato.</p>
-<h3 id="observaci&#243;n-final">Observación final:</h3>
+<h3 id="observación-final">Observación final:</h3>
 <p>Si nuestro &quot;<code>archivo.R</code>&quot; no se encuentra en el directorio de trabajo actual, existen dos opciones:</p>
 <ul>
 <li>Una es cambiar el directorio de trabajo (desde R la función <code>setwd()</code>, pero también hay botones en todas las interfaces gráficas como el R-GUI de Windows y RStudio).</li>
@@ -63,30 +61,26 @@
 <hr />
 <h2 id="directorio-de-trabajo">Directorio de trabajo</h2>
 <p>Cómo ya habrá notado a lo largo de este video, el directorio de trabajo es simplemente la carpeta en la que R está trabajando en un momento dado. Ya vimos que la función <code>getwd</code> nos devuelve la dirección de la carpeta actual, o más exactamente el &quot;camino&quot; desde la raíz hasta esta. En el caso del ejemplo gráfico (Fig. 2), el comando <code>getwd()</code> devolvería un texto como este:</p>
-<pre><code>&quot;/raíz/dir_A/dir_trabajo&quot;
-</code></pre>
+<pre><code>&quot;/raíz/dir_A/dir_trabajo&quot;</code></pre>
 <p>Nótese que se usa la <em>barra</em> y <strong>no la contrabarra</strong> (el carácter utilizado por Windows) para armar el camino.</p>
 <p>Con la función <code>dir</code> podemos saber qué archivos se encuentran en nuestro directorio de trabajo actual, ejecutando simplemente</p>
-<pre><code>dir()
-</code></pre>
+<pre><code>dir()</code></pre>
 <hr />
 <div class="figure">
-<img src="files/dir-tree-small.png" title="Ejemplo de &#225;rbol de carpetas" alt="Fig. 2. &#193;rbol de directorios de ejemplo" /><p class="caption"><strong>Fig. 2.</strong> Árbol de directorios de ejemplo</p>
+<img src="files/dir-tree-small.png" title="Ejemplo de árbol de carpetas" alt="Fig. 2. Árbol de directorios de ejemplo" /><p class="caption"><strong>Fig. 2.</strong> Árbol de directorios de ejemplo</p>
 </div>
 <hr />
 <p>De esta forma sabemos el <strong>camino</strong> que lleva desde el directorio raíz (la raíz del árbol de carpetas) hasta el directorio de trabajo actual. En Windows el camino por defecto típicamente es &quot;<code>C:\Documents and Settings\username\My Documents</code>&quot;, mientras que en GNU/Linux suele ser &quot;<code>/home/usuario/</code>&quot; (o directamente &quot;<code>~</code>&quot;).</p>
 <h3 id="acceso-a-archivos-en-el-disco-duro">Acceso a archivos en el disco duro</h3>
 <p>Como vimos antes, para ejecutar el comando</p>
-<pre><code>source('histograma.R')
-</code></pre>
+<pre><code>source(&#39;histograma.R&#39;)</code></pre>
 <p>Es necesario que el archivo con el código fuente <code>histograma.R</code> se encuentre en el directorio de trabajo actual. En caso de que el código fuente se encuentre en otra carpeta, podemos utilizar el <strong>camino absoluto</strong> o el <strong>camino relativo</strong> para acceder al mismo. Supongamos que <code>histograma.R</code> se encuentra en la carpeta <code>dir_A</code>, mientras que nuestra sesión de R está corriendo en el directorio <code>dir_trabajo</code>. Entonces para ejecutar <code>source</code> los caminos absoluto y relativo son respectivamente:</p>
 <ul>
 <li>&quot;<code>/raíz/dir_A/histograma.R</code>&quot;</li>
 <li>&quot;<code>../histograma.R</code>&quot;</li>
 </ul>
 <p>Nótese que se usan los dos puntos &quot;<code>..</code>&quot; para indicar que queremos ir a un nivel superior dentro del árbol. Si el archivo se encontrara en el directorio <code>dir_B</code> de la <strong>Fig. 2</strong> entonces el camino relativo sería</p>
-<pre><code>&quot;../../dir_B&quot;
-</code></pre>
+<pre><code>&quot;../../dir_B&quot;</code></pre>
 <p>(aquí &quot;<code>../../</code>&quot; equivale al directorio &quot;<code>raíz</code>&quot;)</p>
 <p>Nótese también que el camino <em>incluye</em> al archivo con el script de R.</p>
 <p>En el caso de que <code>histograma.R</code> se encontrar en la carpeta <code>subdir</code> de la <strong>Fig. 2</strong>, los caminos absoluto y relativo serían:</p>

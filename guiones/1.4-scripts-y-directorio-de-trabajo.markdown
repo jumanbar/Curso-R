@@ -18,7 +18,7 @@ ___________________
 Scripts en R
 ------------
 
-Cuando se habla de escribir un programa, se trata poner una secuencia de comandos en un orden no aribtrario. Para guardar estos comandos se utilizan archivos de texto plano (siendo el ejemplo clásico  los archivos ".txt"). Normalmente estos archivos se guardan con una extensión que indica el lenguaje del código escrito. En el caso de R, "_.R_" y "_.r_" son las extensiones por convención. Estos archivos son llamados "scripts" o “archivos de código fuente” (“code source file" en inglés) y cada uno sirve para ejecutar una o varias tareas.
+Cuando se habla de escribir un programa, se trata poner una secuencia de comandos en un orden no aribtrario. Para guardar estos comandos se utilizan archivos de texto plano (siendo el ejemplo clásico  los archivos ".txt"). Normalmente estos archivos se guardan con una extensión que indica el lenguaje del código escrito. En el caso de R, "_.R_" y "_.r_" son las extensiones por convención. Estos archivos son llamados "scripts" o “archivos de código fuente” ("source code file" en inglés) y cada uno sirve para ejecutar una o varias tareas.
 
 Si bien no es necesario trabajar siempre con scripts, es recomendable generar el hábito de hacerlo. Al guardar los comandos en un script también estamos guardando parte de nuestro proceso mental de trabajo, así como aquellos detalles que son sutiles y difíciles de recordar de otra forma. El uso regular de los comentarios en el código fuente refuerza esta virtud. Por otro lado, esto permite volver a reproducir nuestro análisis en el futuro o que otra persona lo haga. Se trata de algo importante a nivel individual, pero que también tiene una gran relevancia en la forma en que se hace ciencia en general. Este es un tema muy actual a nivel mundial, habiéndose instalado el término "[Reproducible Research](http://stats.stackexchange.com/questions/14999/how-are-we-defining-reproducible-research#15006)" (Investigación Reproducible) para describir esta faceta del proceso científico.
 
@@ -139,7 +139,7 @@ La comprensión de cómo y para qué se usan los scripts es fundamental para est
 
 ### Directorios de trabajo y caminos absolutos/relativos
 
-Casi todo trabajo real que hagamos con R va a involucrar archivos contenidos en el disco duro. Entender a la perfección cómo funciona el acceso por línea de comando a estos archivos puede parecer más que lo necesario para trabajar con R (sobre todo considerando programas como RStudio que ofrecen facilidades para no molestarse demasiado con estos detalles). Sin embargo estos conocimientos suelen hacerse necesarios antes de lo que uno espera y eventualmente se convierten en algo cotidian. Por lo tanto, acostumbrarse a usar los comandos `getwd`, `setwd`, `dir` y a escribir los caminos relativos (o absolutos) de los archivos es una excelente práctica para todo principiante.
+Casi todo trabajo real que hagamos con R va a involucrar archivos contenidos en el disco duro. Entender a la perfección cómo funciona el acceso por línea de comando a estos archivos puede parecer más que lo necesario para trabajar con R (sobre todo considerando programas como RStudio que ofrecen facilidades para no molestarse demasiado con estos detalles). Sin embargo estos conocimientos suelen hacerse necesarios antes de lo que uno espera y eventualmente se convierten en algo cotidiano. Por lo tanto, acostumbrarse a usar los comandos `getwd`, `setwd`, `dir` y a escribir los caminos relativos (o absolutos) de los archivos es una excelente práctica para todo principiante.
 
 
 

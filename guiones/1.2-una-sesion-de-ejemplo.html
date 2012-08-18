@@ -25,14 +25,17 @@
 <li>Resumen y final remarks (el mensaje!)</li>
 </ul>
 <h2 id="saludo">Saludo</h2>
-<p>Hola! Bienvenido a un nuevo video de IMSER 2012, hoy nos dedicaremos a mostrar un ejemplo de sesión típico de R. Espero poder dar una idea general de algunas de las cosas que se pueden hacer con esta herramienta y con suerte entusiasmarlos en su proceso de aprendizaje!</p>
+<p>Hola! Bienvenido a un nuevo video de IMSER 2012, hoy me voy a dedicar a mostrar un ejemplo de una sesión típica de R. Espero poder dar una idea general de algunas de las cosas que se pueden hacer con esta herramienta y con suerte entusiasmarlos en su proceso de aprendizaje!</p>
 <h2 id="inicio">Inicio</h2>
-<p>Una vez iniciado el R, lo que vemos es un command prompt y el cursor, indicando que se espera el input del usuario.</p>
+<p>Lo que tiene frente a su pantalla por el momento es la consola de GNU/Linux, en donde voy a correr el R en este mismo momento...</p>
+<p><strong>INICIAR R</strong></p>
+<p>Si bien puede parecer muy diferente a la interfaz de Windows, en verdad funciona de forma exactamente igual. Así se ve recién iniciada una sesión de R en su forma más elemental, es decir que sólo acepta instrucciones a traves de comandos escritos.</p>
+<p>Una vez iniciado el R, lo que vemos es un command prompt, el signo de &quot;mayor a&quot; y el cursor, indicando que se espera el input del usuario.</p>
 <blockquote>
-<p><strong>Marcar en pantalla el prompt y el cursor</strong></p>
+<p><strong>MARCAR EN PANTALLA EL PROMPT Y EL CURSOR</strong></p>
 </blockquote>
 <p>Podemos empezar por una expresión sencilla:</p>
-<p>10 / 3</p>
+<pre><code>10 / 3</code></pre>
 <p>Nótese que esto significa 10 dividido 3. Las operaciones matemáticas comunes utilizan los mismos símbolos que en casi todos los programas, como excel, u otros lenguajes de programación.</p>
 <p>Lo que ocurre luego de dar enter, es que R devuelve el resultado de esta cuenta matemática simple. En este caso se trata de una expresion sencilla. R imprime el resultado en la consola y dicho valor no es guardado para su uso futuro, simplemente se descarta. Podemos muy facilmente repetir este comando, sin siquiera escribirlo de vuelta, ya que simplemente usando la tecla 'arriba' se puede volver a ver el comando y con enter lo ejecutamos de vuelta.</p>
 <blockquote>
@@ -74,32 +77,32 @@ hipot &lt;- sqrt(cat.ad ** 2 + cat.op ** 2)</code></pre>
 <pre><code>rm(x)</code></pre>
 <p>Y si teme perder información pero igual quiere borrar objetos, puede usar la función <code>save</code> para guardar aquellos objetos que no va a usar por el momento:</p>
 <pre><code>save(objeto.1, objeto.2, objeto.3, file=&#39;objetos.RData&#39;)</code></pre>
+<p>En este caso no doy Enter porque estoy escribiendo nombres de objetos que no existen en la sesión. Por cierto, la terminación &quot;RData&quot; es la extensión convencional para este tipo de archivos. También se puede usar &quot;rda&quot; (en minúsculas).</p>
 <h2 id="matemática">Matemática</h2>
-<p>Dado que queremos lidiar con números, R nos da una completa caja de herramientas matemáticas con las que trabajar.</p>
+<p>Dado que al usar R normalmente queremos lidiar con números, R nos da una completa caja de herramientas matemáticas con las que trabajar. Las funciones comunes como seno, coseno, exponencial, logaritmo, etc, se usan de forma muy parecida a lo que son otros programas:</p>
 <pre><code>sin(pi)
 exp(10)
 1000 ** 2
-log(1)
-rnorm(10)
-mean(rnorm(10))</code></pre>
-<p>Invitamos a utilizar la ayuda de R para descubrir cada una de estas funciones, si es que no las conoce de otros programas, como planillas de cálculo por ejemplo. Para el caso particular de operadores, deben usarse comillas como en el siguiente ejemplo:</p>
+log(1)</code></pre>
+<p>Invitamos a utilizar la ayuda de R para descubrir cada una de estas funciones, si es que no las conoce de otros programas, como planillas de cálculo por ejemplo. En caso de querer abrir la ayuda de un operador, como el doble asterisco, deben usarse comillas como en el siguiente ejemplo:</p>
 <pre><code>?&quot;**&quot;</code></pre>
-<p>Una de las facilidades que tienen estas funciones es que pueden aplicarse a números sólos o en conjunto sin mayor diferencia en la sintaxis. Por ejemplo, considerando una secuencia de números como esta:</p>
+<p>Estas operaciones se pueden ejecutar a un número o un objeto con varios números sin cambios mayores en la sintaxis. Así, si consideramos la secuencia de los números enteros del 1 al 14, la cual se puede crear de la siguiente manera:</p>
 <pre><code>sec &lt;- 1:14</code></pre>
-<p>Se trata de los números enteros del 1 al 14 (a lo largo del curso veremos muchas veces el operador &quot;<code>:</code>&quot;). Con el vector de números creado (llamado <code>sec</code>) puedo ejecutar cualquier operación matemática:</p>
+<p>(a lo largo del curso veremos muchas veces el operador &quot;<code>:</code>&quot;)</p>
+<p>Con el vector de números creado (llamado <code>sec</code>) puedo ejecutar cualquier operación matemática:</p>
 <pre><code>sec ** 2
 exp(sec)</code></pre>
-<p>Además R cuenta con herramientas más sofisticadas para hacer matemáticas. Por ejemplo, la función <code>curve</code> sirve para graficar una función continua cualquiera. Muy útil para quien estudia matemática en los primeros años de la mayoría de las carreras universitarias. Por ejemplo, la función coseno se puede graficar así:</p>
-<pre><code>tau &lt;- 2 * pi
-curve(cos(x), from=-tau / 2, to=tau / 2)</code></pre>
-<p>Nótese que la variable independiente, por convención es x, pero este x no tiene nada que ver con el objeto x que creamos antes. Podemos ver cuánto vale el coseno de x cuando este vale 90 grados o <code>tau / 4</code>:</p>
+<p>R cuenta con herramientas matemáticas y gráficas bastante más sofisticadas que estos ejemplos &quot;básicos&quot;. Por ejemplo, la función <code>curve</code> sirve para graficar una función continua cualquiera. Con dicha función es fácil graficar el coseno de x:</p>
+<pre><code>tau &lt;- 2 * pi # (Una circunferencia completa)
+curve(cos(x), from=- tau / 2, to=tau / 2)</code></pre>
+<p>Nótese que la variable independiente, por convención es x, pero este x no tiene nada que ver con el objeto x que creamos antes. Podemos visualizar cuánto vale el coseno de x cuando este vale 90 grados o <code>tau / 4</code>, agregando una línea vertical en este punto preciso, usando la función <code>abline</code>:</p>
 <pre><code>abline(v=tau / 4, col=&#39;red&#39;)</code></pre>
-<p>Quiero ver los ejes:</p>
+<p>Aquí la 'v' denota que es una línea vertical en el valor indicado. Usando la misma función puedo agregarle los ejes:</p>
 <pre><code>abline(v=0, h=0, col=&#39;blue&#39;)</code></pre>
-<p>Ahora quiero calcular la integral de esta función en el intervalo 0, <code>tau / 4</code>:</p>
+<p>Supongamos que nos interesa Ahora quiero calcular la integral de esta función en el intervalo [0, 90] grados:</p>
 <pre><code>integrate(cos, 0, tau / 4)</code></pre>
 <p>Esto nos da una respuesta con un pequeño error numérico (ya que R no hace cálculo de la solución analítica), pero que suele ser muy exacta. De forma similar la funcin <code>deriv</code> hace calculos de derivadas.</p>
-<h2 id="combinación-de-comandos">Combinación de comandos</h2>
+<h2 id="combinaciones-de-comandos">Combinaciones de comandos</h2>
 <p>Una de las grandes virtudes que tiene R es que favorece naturalmente la combinación de diferentes comandos para crear cálculos sofisticados. Esta es la clave de la enorme flexibilidad de este programa.</p>
 <p>La combinación de comandos en su forma más básica se ve algo así:</p>
 <pre><code>mean(rnorm(100))</code></pre>
@@ -114,14 +117,13 @@ curve(cos(x), from=-tau / 2, to=tau / 2)</code></pre>
 <p>Muchas veces en nuestras vidas nos veremos obligados a calcular el presupuesto de un proyecto, o el de nuestra casa, empresa, etc. Supongamos que trabajamos en un proyecto de investigación de la universidad en el que necesitamos calcular el costo de equipos de trabajo, materiales, viáticos y sueldos. Este tipo de tareas suele volverse compleja debido a que muchas variables están en juego, como diferentes modelos y costos para los equipos, cantidad de viajes y medios de transporte, estadías, cantidad de técnicos contratados, sueldos de dichos técnicos, etc.</p>
 <p>Un ejemplo sencillo sería este:</p>
 <pre><code>dineroTotal &lt;- 450000 # Total asignado por nuestra financiadora
-microscopio &lt;- 50000  # Costo por un modelo particular de microscopio que necesitamos
 salida &lt;- 20000       # Costo aproximado de lo que cuesta hacer una salida de campo
 tecnicoMes &lt;- 6000    # Sueldo de un técnico
 ntecnicos &lt;- 2        # Número de técnicos a contratar
 meses &lt;- 3            # Número de meses en que contrataríamos a dichos técnicos
 nsalidas &lt;- 2         # Número de salidas de campo</code></pre>
 <p>El cálculo del márgen se haría muy fácil, con el siguiente comando:</p>
-<pre><code>margen &lt;- dineroTotal - microscopio - nsalidas * salida - tecnicoMes * meses * ntecnicos</code></pre>
+<pre><code>margen &lt;- dineroTotal - nsalidas * salida - tecnicoMes * meses * ntecnicos</code></pre>
 <p>Pero dado que muchos de estos valores pueden cambiarse (como el número de meses, salidas, etc), lo mejor sería explorar distintas posibilidades. Además puede calcularse otro valor, por ejemplo, un número estimado de muestras obtenidas y procesadas, en función del número de meses, salidas y técnicos contratados:</p>
 <pre><code>nmuestras &lt;- nsalidas * ntecnicos * 300
 nproc &lt;- nmuestras * meses * 800</code></pre>
@@ -161,11 +163,11 @@ nproc &lt;- nmuestras * meses * 800</code></pre>
 <blockquote>
 <p><strong>CREAR LA SIGUIENTE FUNCIÓN</strong></p>
 </blockquote>
-<pre><code>prp &lt;- function(nsalidas = 2, ntecnicos = 2, microscopio = 50000, salida = 20000,
+<pre><code>prp &lt;- function(nsalidas = 2, ntecnicos = 2, salida = 20000,
                 tecnicoMes = 6000, meses = 3) {
 # Calcula el margen y la cantidad final de muestras procesadas.
   dineroTotal &lt;- 450000
-  margen &lt;- dineroTotal - microscopio - nsalidas * salida - tecnicoMes * meses
+  margen &lt;- dineroTotal - nsalidas * salida - tecnicoMes * meses
   nproc &lt;- nsalidas * ntecnicos * 300 * meses * 800
   c(margen, nproc)
 }</code></pre>
