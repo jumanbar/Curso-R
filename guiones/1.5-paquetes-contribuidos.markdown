@@ -1,0 +1,12 @@
+(1.5) Paquetes contribuidos
+==============================
+
+Outline
+-------
+
+* fuentes; buscar por nombre/tópico
+* crecimiento exponencial de paquetes
+* diferentes calidades de los paquetes
+* instalación y
+* actualización
+

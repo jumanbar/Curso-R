@@ -1,4 +1,4 @@
-(1.1) Sobre R y software libre
+(1.4) Uso de la ayuda
 ==============================
 
 Outline
@@ -25,3 +25,4 @@ Outline
 * errores comunes
 * no dejarse frustrar fácil!
 
+## Este video se hizo sin seguir un guión preestablecido
