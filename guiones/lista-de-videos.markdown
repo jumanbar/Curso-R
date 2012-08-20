@@ -29,17 +29,7 @@ Lista de videos
 * Terminar la sesión
 * Resumen y final remarks (el mensaje!)
 
-### 1.3 La línea de comando
-* qué es
-* cómo se ve en distintos SO
-* Reglas básicas
-  - 1 comando = 1 línea
-  - mayúsculas y minúsculas
-  - comentarios
-  - sintaxis para llamar funciones (paréntesis, argumentos)
-  - espacios en blanco
-
-### 1.4 Scripts & Directorio de trabajo
+### 1.3 Scripts & Directorio de trabajo
 * Scripts:
   - Qué es un script y para qué sirve
   - Ejemplo: `histograma.R`
@@ -49,7 +39,7 @@ Lista de videos
   - caminos relativos y árbol de directorios
   - consecuencias en funciones como `source`, `write.table`, `read.table`, `load`, etc...
 
-### 1.5 Uso de la ayuda
+### 1.4 Uso de la ayuda
 * Documentación de R: `help` `?` `help.search` `??`
 * cómo se organizan los archivos de ayuda y cómo podrían estar organizados mejor (?)
 * uso de la función example (es posible aportar mejores ejemplos a la documentación oficial de R? seguramente que sí! hacer la prueba con un mail o algo a ver cómo me va)
@@ -59,7 +49,7 @@ Lista de videos
 * errores comunes
 * no dejarse frustrar fácil!
 
-### 1.6 Paquetes contribuidos
+### 1.5 Paquetes contribuidos
 * fuentes; buscar por nombre/tópico
 * crecimiento exponencial de paquetes
 * diferentes calidades de los paquetes

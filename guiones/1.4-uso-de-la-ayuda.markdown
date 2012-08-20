@@ -1,0 +1,27 @@
+(1.1) Sobre R y software libre
+==============================
+
+Outline
+-------
+
+### Parte I: comandos
+* `help`
+  + Secciones de las páginas de ayuda.
+  + Cómo podrían estar mejor organizados?
+* `help.search`
+* `example` (limitaciones)
+
+### Parte II: recursos en linea
+* google!
+* Preguntas personalizadas:
+  + foros en español
+    - [Comunidad uruguaya de R](http://www.softwarelibre.edu.uy/tiki-index.php?page=Grupo+R); [Grupos de usuarios de R](http://rwiki.sciviews.org/doku.php?id=rugs:r_user_groups)
+  + r-help
+  + stackOverflow
+
+
+### Parte III: Errores y afines
+* tratar de aprovechar al máximo el mensaje de error como filosofía general
+* errores comunes
+* no dejarse frustrar fácil!
+

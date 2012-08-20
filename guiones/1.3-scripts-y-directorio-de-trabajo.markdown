@@ -1,0 +1,130 @@
+
+(1.4) Scripts & Directorio de trabajo
+=====================================
+
+### Outline
+
+* Scripts:
+    - Qué es un script y para qué sirve
+    - Ejemplo: `histograma.R`
+* Directorio de trabajo
+    - R trabaja en un directorio en particular
+    - `getwd()`, `setwd()`
+    - caminos relativos y árbol de directorios
+    - consecuencias en funciones como `source`, `write.table`, `read.table`, `load`, etc...
+
+___________________
+
+### 1: Título
+
+Bienvenidos a un nuevo video de IMSER 2012! En el curso del mismo voy a tratar de mostrar la forma de trabajo con archivos de código fuente o "scripts" de R, así como sus virtudes más importantes.
+
+También voy a mostrar la forma en que R interactúa con nuestros archivos del disco duro, incluyendo los de código fuente, a través del directorio de trabajo.
+
+### 2: Scripts en R
+
+Cuando se habla de escribir un programa, se trata poner una secuencia de comandos en un orden no aribtrario, es decir, de crear scripts. Vamos a meternos ahora en este concepto.
+
+### 3: Ejemplo (histograma)
+
+Lo que vemos aquí es una pequeña secuencia de comandos de R, la cual al ejecutarse produce un resultado como la figura de abajo, es decir, un histograma.
+
+En el caso de que estos comandos no tengan mayor importancia para nuestro trabajo, entonces tal vez sea una buena idea ejecutar estos desde la consola y simplemente perderlos al final de la sesión de R.
+
+Pero si se trata de un resultado importante, entonces lo mejor es copiar y pegar esta secuencia en un archivo de texto plano (tal como el clásico ".txt"). Es decir, lo ideal es hacer un script, a fin de guardarlo para uso futuro.
+
+### 4: Ejecución de un script
+
+Normalmente estos archivos se guardan con una extensión que indica el lenguaje del código escrito. Es decir, en vez de usar "txt" como terminación, "_.R_" y "_.r_" son las extensiones normalmente usadas para estos scripts.
+
+Una vez guardadado el script en el disco duro, se puede ejecutar con el comando `source`, produciendo los resultados que necesitamos.
+
+Nótese que hay que estar atento al directorio de trabajo actual, cuestión que veremos más adelante.
+
+### 5: Ciclo de trabajo
+
+El trabajo con scripts lleva naturalmente a un ciclo que se puede repetir cuántas veces sea necesario. Es decir:
+
+1. Escribir el código fuente en un script de R
+2. Enviar y ejecutar dicho código en R, vía source (u otra forma, como puede ser copiar y pegar).
+3. Evaluar en la consola o en las figuras (o en cualquier tipo de salida que generamos con nuestro código) los resultados obtenidos.
+4. Si es necesario, volver al script y hacer los cambios que queremos, comenzando de vuelta el proceso.
+
+De esta forma el script sirve para ir refinando los detalles de nuestro análisis. En este ejemplo estos detalles pueden ser el grosor y color de las líneas, el tamaño de las fuentes, las leyendas, etc.
+
+Tenerlo escrito en un script permite además volver a repetir el mismo trabajo el día de mañana, o que otra persona lo haga. Es una forma de documentar paso a paso nuestro análisis de datos. De hecho es mucho más preciso y menos ambiguo que una sección de "métodos" de cualquier artículo científico.
+
+Al guardar los comandos en un script también estamos guardando parte de nuestro proceso mental de trabajo, así como aquellos detalles que son sutiles y difíciles de recordar de otra forma. El uso regular de los comentarios en el código fuente refuerza esta virtud y por lo tanto es una buena costumbre importante a ser adquirida.
+
+En el caso particular de usar RStudio, y es parecido para algunas otras interfaces gráficas para R, esta dinámica se agiliza, de la siguiente manera ...
+
+### 6: Scripts en RStudio
+
+En una ventana abierta de RStudio, tenemos varios paneles con distintas partes de nuestro trabajo. No es necesario cambiar de ventana para ver los gráficos producidos y en el panel 3 (arriba a la derecha) tenemos la lista de objetos existentes en nuestra sesión.
+
+Pero más allá de estos detalles, la mayor ventaja de esta interfaz es el uso de atajos de teclado (y botones también) para ejecutar los comandos del script. Esto se puede hacer con varias opciones ligeramente diferentes, como **Ctrl+Shift+S** (mi predilecta), **Ctrl+Shift+Enter** o **Ctrl+Shift+O**.
+
+Incluso se pueden ejecutar comandos línea por línea (o de a varias líneas si uno sombrea previamente), usando **Ctrl+Enter**, de forma que se pueden ejecutar sólo algunas partes de nuestro script si así lo deseamos.
+
+### 7: Directorios de trabajo
+
+Paso ahora a hablar de lo que se denomina "directorio de trabajo" o "carpeta actual". Aunque no es explicitamente indicado, R trabaja siempre en algún directorio, o carpeta, de nuestro disco duro. En Windows este directorio es, por defecto, la carpeta de "Mis Documentos", mientras que en GNU/Linux depende de la carpeta en la que estemos en la consola.
+
+### 8: Comandos relacionados
+
+En caso de que no sepamos cuál es nuestro directorio de trabajo actual, siempre podemos preguntárselo a R con el comando `getwd()`. Esto nos devuelve todo el camino absoluto dentro del árbol de directorios hasta la carpeta actual.
+
+Pero muchas veces queremos cambiar de directorio de trabajo, lo cual es natural al trabajar en un proyecto con muchos scripts y archivos con datos. En ese caso el comando que usa R por defecto es `setwd()`. Este comando acepta caminos escritos entre comillas, de forma no muy distinta a lo que ocurre con `source`:
+
+### 9: Ejemplo de camino
+
+Aquí se ve un ejemplo ficticio de posible camino a un directorio de trabajo.
+
+Por otro lado en el GUI de R en Windows y en RStudio hay formas de cambiar el directorio de trabajo a través de los menúes de la ventana principal. En particular en RStudio ...
+
+### 10: Elegir WD en RStudio
+
+... se puede elegir el WD de dos maneras, una es a través del menú "Tools > Set Working Directory > Choose Working Directory..." o simplemente usando la combinación de teclas **Ctrl+Shift+K**
+
+Con estas opciones RStudio abre una ventana en la que podemos elegir el nuevo directorio de trabajo a través de un explorador de archivos.
+
+### 11: Comando `dir()`
+
+Finalmente, el comando `dir()` sirve para ver la lista de archivos dentro de la carpeta actual de trabajo. Esta no es la única forma de utilizarse, ya que al igual que como ocurre con `setwd` o `source`, es posible indicarle cualquier carpeta de trabajo del sistema usando la notación correcta.
+
+### 12: Otras funciones dependientes del WD
+
+Abro un paréntesis aquí para mencionar algunas otras funciones que también interactúan con archivos del disco duro, y por lo tanto son dependientes del WD.
+
+También es importante destacar que la ubicación del WD afeccta a la ubicación relativa de los archivos en el disco duro: es decir, la ubicación relativa a dicho WD.
+
+Veamos entonces a qué me refiero con caminos absolutos y relativos...
+
+### 13: Caminos absolutos
+
+Suponiendo que nuestro disco duro consta de este árbol de directorios o carpetas, los caminos absolutos son los que se indican a la derecha de cada ícono.
+
+Nótese que se usa la barra para indicar el anidamiento de las carpetas; si bien en Windows es lo normal usar la contrabarra, a la hora de escribir comandos en R es correcto usar la barra común para escribir estos caminos.
+
+Nótese también que los caminos absolutos son por completo independientes de cuál es la carpeta actual (indicada aquí como `dir_trabajo`).
+
+### 14: Caminos relativos
+
+Lo contrario ocurre con los caminos relativos. Estos son dependientes del valor actual de ubicación. Cuando queremos acceder a un archivo que no se encuentra en dicha ubicación, tenemos dos opciones:
+
+1. Qué el archivo se encuentre en un una carpeta más "basal" del arbol de directorios. En ese caso se usan los dos puntos para indicar que vamos una carpeta "más atrás".
+2. La otra opción es que se encuentre en una carpeta "más adelante" en el árbol. En este caso sólo hay que usar el o los nombres de las subcarpetas a las que se quiere acceder.
+
+Nótese que para la carpeta `dir_B` se usa una combinación de ambos métodos.
+
+Tanto el camino absoluto como el relativo se pueden usar indistintamente. Los méritos relativos de cada estrategia difieren según las circunstancias de cada proyecto y por lo tanto no pueden discutirse de forma objetiva.
+
+### 15: Observaciones finales
+
+La comprensión de cómo y para qué se usan los scripts es fundamental para este curso así como para el uso cotidiano de R. Si bien no se ha mencionado explícitamente, la coherencia y prolijidad con la que hacemos nuestros scripts se vuelve una virtud muy valiosa a media que estos van creciendo en tamaño.
+
+Casi todo trabajo real que hagamos con R va a involucrar archivos contenidos en el disco duro. Entender a la perfección cómo funciona el acceso por línea de comando a estos archivos puede parecer más que lo necesario para trabajar con R (sobre todo considerando programas como RStudio que ofrecen facilidades para no molestarse demasiado con estos detalles). Sin embargo estos conocimientos suelen hacerse necesarios antes de lo que uno espera y eventualmente se convierten en algo cotidiano. Por lo tanto, acostumbrarse a usar los comandos `getwd`, `setwd`, `dir` y a escribir los caminos relativos (o absolutos) de los archivos es una excelente práctica para todo principiante.
+
+Llegamos al fin entonces de este video, me despido con la esperanza de haber sido instructivo y claro; los invitamos a realizar el cuestionario correspondiente y a usar los foros de discusión para despejar dudas relativas a lo vertido aquí.
+
+Hasta pronto!
