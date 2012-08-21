@@ -1,0 +1,17 @@
+Ejercicios de Cuestionario: Scripts y Directorios de Trabajo (Parte 1.4)
+==========================================================================
+
+### Para saber cual es el directorio de trabajo actual, que comando debe ser ejecutado:
+
+[ ] getwd
+[ ] ls()
+[ ] setwd
+[ ] dir()
+[ ] getwd()
+
+### Para elegir un nuevo directorio de trabajo, cual de los siguientes comandos es el correcto
+
+[ ] setwd(C:/Mis Documetos/R)
+[ ] setwd()
+[ ] setwd("C:/Mis Documetos/R")
+[ ]

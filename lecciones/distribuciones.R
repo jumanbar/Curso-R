@@ -97,23 +97,23 @@ plot(px, pz)
 
 qnorm(0.5)
 # 0
-qnorm(0.5,mean=1)
+qnorm(0.5, mean=1)
 # 1
-qnorm(0.5,mean=1,sd=2)
+qnorm(0.5, mean=1, sd=2)
 # 1
-qnorm(0.5,mean=2,sd=2)
+qnorm(0.5, mean=2, sd=2)
 # 2
-qnorm(0.5,mean=2,sd=4)
+qnorm(0.5, mean=2, sd=4)
 # 2
-qnorm(0.25,mean=2,sd=2)
+qnorm(0.25, mean=2, sd=2)
 # 0.6510205
 qnorm(0.758)
 # 0.6998836
-qnorm(0.758,mean=5,sd=2)
+qnorm(0.758, mean=5, sd=2)
 # 6.399767
 qnorm(0.265)
 # -0.628006
-qnorm(0.265,sd=3)
+qnorm(0.265, sd=3)
 # -1.884018
 
 qc <- c(0.2,0.4,0.65)
