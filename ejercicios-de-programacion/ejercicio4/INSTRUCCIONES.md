@@ -4,8 +4,9 @@ Ejercicio de programación IV: Estructuras de Control
 ### [IMSER 2012]
 
 Archivos incluidos
--------------------
-El [archivo](https://github.com/jumanbar/Curso-R/blob/master/ejercicios-de-programacion/ejercicio4/ej4.zip?raw=true) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **ej4**. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo (con el menú **Tools > Set Working Directory > Choose Directory...** o la combinación **Ctrl + Shift + K**). En esta carpeta se encuentran algunos archivos que usted deberá modificar:
+------------------
+
+El [archivo](https://github.com/jumanbar/Curso-R/blob/master/ejercicios-de-programacion/ejercicio4/ej4.zip?raw=true) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`ej4`**. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo (con el menú **Tools > Set Working Directory > Choose Directory...** o la combinación **Ctrl + Shift + K**). En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 * **` fibonacci.R `**
 * **` funcionFibonacci.R `**
 
@@ -19,6 +20,9 @@ Lo primero que debe hacer es ejecutar el siguiente comando para cargar las funci
 ```
 source("evaluar.R")
 ```
+
+    source("evaluar.R")
+
 Si usted ha ejecutado todos los pasos anteriores correctamente, la siguiente frase debería verse en la consola:
 
 ```

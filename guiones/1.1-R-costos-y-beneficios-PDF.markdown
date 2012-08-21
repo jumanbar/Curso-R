@@ -1,5 +1,5 @@
-﻿(1.1) Sobre R y software libre
-==============================
+﻿(1.1) Sobre R, costos & beneficios
+==================================
 
 ¿Qué es el R?
 -------------
@@ -52,9 +52,9 @@ La ocurrencia de estos "trancazos" puede ser muy frustrante y por eso la pacienc
 
 Entonces el uso y particularmente el aprendizaje de R tiene un costo asociado: dedicación y memoria para incorporar este lenguaje y realmente "hablar R". Pero la contraparte de este costo es una enorme versatilidad para poder desarrollar, controlando hasta el más mínimo detalle, cualquier análisis ajustado a la medida de nuestras necesidades. Existen además beneficios indirectos: la necesidad de involucrarse e informarse mejor acerca de lo que se está haciendo lleva a una mayor comprensión técnica, así como ser una posible "vía de entrada" a otros lenguajes de programación.
 
-En el otro extremo de la oferta de programas hechos para trabajar con datos están aquellos puramente gráficos, tales como [STATISTICA](http://www.statsoft.com/#) o el propio [Microsoft Excel](https://office.microsoft.com/en-us/excel/). La ventaja de estos programas es la facilidad de uso y su interfaz más intuitiva. El costo asociado a estas características es una limitación mayor a la hora de combinar las distintas funcionalidades. En particular, el uso de una GUI ([Graphical User Interface](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)) requiere del input constante del usuario, en contraste de la capacidad de automatizar largas secuencias de comandos que implica el uso de la línea de comando. De hecho este costo es tan elevado que la [mayoría de los paquetes estadísticos populares](https://en.wikipedia.org/wiki/Comparison_of_statistical_packages) tienen al menos en parte la capacidad de interactuar a través de la línea de comando.
+En el otro extremo de la oferta de programas hechos para trabajar con datos están aquellos puramente gráficos, tales como [STATISTICA](http://www.statsoft.com/#) o el propio [Microsoft Excel](https://office.microsoft.com/en-us/excel/). La ventaja de estos programas es la facilidad de uso y su interfaz más intuitiva. El costo asociado a estas características es una limitación mayor a la hora de combinar las distintas funcionalidades. En particular, el uso de una GUI ([Graphical User Interface](https://es.wikipedia.org/wiki/Interfaz_gr%C3%A1fica_de_usuario)) requiere del input constante del usuario, en contraste con la capacidad de automatizar largas secuencias de comandos que implica el uso de la línea de comando. De hecho este costo es tan elevado que la [mayoría de los paquetes estadísticos populares](https://en.wikipedia.org/wiki/Comparison_of_statistical_packages) tienen al menos en parte la capacidad de interactuar a través de la línea de comando.
 
-Las diferencias de fondo que existen entre las interfaces de GUI y CLI (línea de comando, interfaz por excelencia de R), se pueden representar en la [curva de aprendizaje](https://es.wikipedia.org/wiki/Curva_de_aprendizaje) esperadas para ambos estilos. Para un sotware con GUI estricta, la curva de aprendizaje es inicialmente muy empinada, mientras que a plazos mayores perdería velocidad. En contraposición, la curva de aprendizaje de un software como R es lenta inicalemnte, pero a largo plazo las posibilidades de combinar y automatizar procesos permite una versatilidad mucho mayor y por lo tanto un mayor potencial creativo (**Fig. 3**).
+Las diferencias de fondo que existen entre las interfaces de GUI y CLI (línea de comando, interfaz por excelencia de R), se pueden representar en la [curva de aprendizaje](https://es.wikipedia.org/wiki/Curva_de_aprendizaje) esperadas para ambos estilos. Para un sotware con GUI estricta, la curva de aprendizaje es inicialmente muy empinada, mientras que a plazos mayores perdería velocidad. En contraposición, la curva de aprendizaje de un software como R es lenta inicialemnte, pero a largo plazo las posibilidades de combinar y automatizar procesos permite una versatilidad mucho mayor y por lo tanto un mayor potencial creativo (**Fig. 3**).
 
 Por lo tanto aprender R es una apuesta a largo plazo. No se trata de una "memorización" de funciones y comandos, si no de entender las reglas y patrones generales que gobiernan la sintaxis. Este curso tiene el desafío de facilitar este proceso y así reducir al máximo posible los tiempos para que cada estudiante logre usar efectivamente este software.
 
@@ -73,7 +73,7 @@ Algunos consejos
 
 La documentación de R suele dar muchos dolores de cabeza, sobre todo al principio. Pero es uno de los puntos claves a dominar para cualquier usuario de este lenguaje. Por otro lado, es una documentación muy buena y completa; hasta los usuarios más experientes recurren a ella todo el tiempo.
 
-Por lo tanto, no debe dudarse en utilizar el comando `help`para consultar sobre el uso de la función que le está generando problemas. De hecho `help` tiene dos modos de uso, por ejemplo los siguientes comandos producen el mismo resultado:
+Por lo tanto, no debe dudarse en utilizar el comando `help` para consultar sobre el uso de la función que le está generando problemas. De hecho `help` tiene dos modos de uso, por ejemplo los siguientes comandos producen el mismo resultado:
 
 ~~~
 help(mean)
@@ -82,7 +82,7 @@ help(mean)
 
 Estos comandos abren la página de ayuda de la función `mean` (para calcular promedios).
 
-De particular ayuda es la función "help.search" de R, la cual se puede abreviarse como "??". Dicha función sirve para buscar funciones que tengan alguna relación con una palabra clave que nos interesa. No es necesario saber de antemano el nombre de la función que queremos, de forma que sirve como "tanteo" de las posibilidades que existen. Algo así como un "google" para R. Por ejemplo, si queremos encontrar una función relativa al chi cuadrado, podemos utilizar cualquiera de estos dos comandos:
+De particular ayuda es la función `help.search` de R, la cual se puede abreviarse como "`??`". Dicha función sirve para buscar funciones que tengan alguna relación con una palabra clave que nos interesa. No es necesario saber de antemano el nombre de la función que queremos, de forma que sirve como "tanteo" de las posibilidades que existen. Algo así como un "google" para R y bien usado es una herramienta muy poderosa. Por ejemplo, si queremos encontrar una función relativa al chi cuadrado, podemos utilizar cualquiera de estos dos comandos:
 
 ~~~
 help.search("chi")

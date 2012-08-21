@@ -1,0 +1,39 @@
+(1.3) Extra: manuales
+=====================
+
+Como dijimos antes, la ayuda de R es una herramienta indispensable para la comprensión e interpretación de funciones y análisis estadísticos.
+
+Existen varias formas de acceder a la ayuda de R. La primera es consultar la ayuda en forma general, es decir, un conjunto de manuales y documentos útiles que se encuentran instalados en nuestra computadora. Para ello se puede ejecutar el comando:
+
+    help.start()
+
+Esto abre la ayuda de R en nuestro navegador predeterminado si estamos trabajando en R, o en la pestaña "Help" si estamos trabajando en RStudio. En la ayuda general de R vamos a encontrar varias opciones, agrupadas bajo cuatro grandes títulos:
+
+* Manuals,
+* Reference,
+* Miscellaneous material, y
+* Material specific to the Windows port (en caso de usar Windows)
+
+### Manuals
+
+Bajo el título de "Manuals" vamos a encontrar seis manuales de referencia sobre diferentes aspectos de R. El manual "**An introduction to R**" es un manual de referencia básico, el cual también cuenta con [versiones en español](http://cran.r-project.org/other-docs.html#nenglish). Este es el manual con mayor utilidad inmediata para los usuarios.
+
+El resto de los manuales son sobre temas más específicos, como escribir extensiones para R, instalación y administración, importar y exportar datos, y R internals, que trata sobre funciones que se programan fuera de R para configurar aspectos del funcionamiento general del mismo.
+
+### Reference
+
+El título al que más comunmente vamos a acudir como usuarios es el de "Reference", y particularmente al subtítulo "Packages". En éste apartado vamos a encontrar información sobre los paquetes instalados en R. (nota: cada paquete es una colección de funciones para realizar actividades específicas en R). Si cliqueamos en el link del paquete "base", que es el paquete de funciones básicas, más elementales de R, y del que dependen todos los demás paquetes para su funcionamiento. Este paquete se instala por defecto al instalar R.
+
+Dentro de la ayuda de este paquete vamos a encontrar toda la documentación del mismo. El archivo de descripción o "Description file", brinda información general de este paquete; todo paquete de R debe tener un archivo análogo. Una descripción menos técnica se encuentra en el link "base-package". Todos los paquetes tienen un documento de ayuda de este tipo, describiendo sus utilidades y para qué fueron creados.
+
+Posteriormente a estos dos links, sigue una lista de objetos (funciones y sets de datos) incluidos en el paquete en cuestión. Si se siguen estos links simplemente se abrirán páginas idénticas a las obtenidas con la función `help`. Es decir, pinchar en "acos" es idéntico a correr
+
+    ?acos
+
+Por otro lado, bajo "Reference" también se puede seguir el link "Search Engine & Keywords". Allí se puede buscar ayuda por tópicos o por búsqueda personalizada, con un grado interesante de refinamiento.
+
+### Miscellaneous material
+
+Bajo el título de "Miscellaneous material" vamos a encontrar datos sobre la versión de R que estamos usando, sus autores (R Core Team: el núcleo de desarrolladores de R), licencias, FAQ, etc.
+
+En particular, el contenido link "User Manuals", dependiendo de qué paquetes tengamos instalados, puede tener muchos recursos muy útiles para aprender sobre tareas específicas asociadas a dichos paquetes: las llamadas viñetas (vignettes). Por ejemplo, si tenemos instalado el paquete "Matrix" podemos ver una lista de cinco temas relacionados ("Comparisons", "Design-issues", "Intro2Matrix", "Introduction", "sparseModels"; pueden bajarse de internet desde [aquí](http://dirichlet.mat.puc.cl/web/packages/Matrix/index.html)).

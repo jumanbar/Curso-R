@@ -2,230 +2,246 @@
 (1.2) Una sesión de ejemplo
 ===========================
 
-### Outline:
-
-* exresión y una asignación
-* crear, borrar y reescribir objetos
-* lista de objetos activos (ver si un objeto existe)
-* cálculos matemáticos simples con estos objetos
-* concatenar/combinar comandos
-* ejemplo de calculo de gastos para un proyecto:
-  - nombres a las variables (sueldos, gastos etc...)
-  - un script para repetirlo cambiando detalles
-  - una funcioncita para hacerlo incluso más rápido
-* Ejemplo de un loop automatizando una tarea, para mostrar su utilidad
-  (con la historia del proyecto?)
-* Ejemplos de los gráficos más comunes: hist, plot y points/lines (abline?)
-* terminar la sesión
-* Resumen y final remarks (el mensaje!)
-
 Inicio
 ------
 
 Una vez iniciado el R, lo que vemos es un command prompt y el cursor, indicando que se espera el input del usuario.
 
-Podemos empezar por una expresión sencilla:
+Podemos empezar por lo que se denomina una expresión, en este caso de las más sencillas:
 
     10 / 3
 
+Lo que ocurre luego de dar enter, es que R devuelve el resultado de esta cuenta matemática simple. En este caso se trata de una expresion sencilla. En este caso R imprime el resultado en la consola y dicho valor no es guardado para su uso futuro, simplemente se descarta. Por suerte para nosotros, podemos muy facilmente repetir este comando sin siquiera escribirlo de vuelta, ya que usando las flechas hacia arriba y abajo se puede navegar a través de la historia de comandos reciente.
 
-Lo que ocurre luego de dar enter, es que R devuelve el resultado de esta cuenta matemática simple. En este caso se trata de una expresion sencilla. En este caso R imprime el resultado en la consola y dicho valor no es guardado para su uso futuro, simplemente se descarta. Por suerte para nosotros, podemos muy facilmente repetir este comando, sin siquiera escribirlo de vuelta, ya que simplemente usando la tecla 'arriba' se puede volver a ver el comando y con enter lo ejecutamos de vuelta.
-
-Pero esta no es la forma más común de guardar un resultado: las asignaciones sirven para este propósito y se ven como esto:
+Pero esta no es una forma útil de de guardar un resultado: las asignaciones (que también son un tipo de expresión) sirven para este propósito y se ven como esto:
 
     x <- 10 / 3
 
+Nota: el resultado es idéntico si usamos una "flecha" hacia la derecha:
 
-En este caso R no imprime el resultado, pero hace algo mejor, lo guarda en un objeto llamado x, el cual existirá hasta el momento en que cerremos nuestra sesión de R. Por lo tanto, podemos utilizar nuevamente este objeto cuando querramos, por ejemplo:
+    10 / 3 -> x
+
+Pero cambia por completo si no hacemos la flecha correctamente, como sucede por ejemplo cuando ponemos un espacio entre el `<` y el `-`:
+
+    x < - 10 / 3
+
+Cuando hay asignaciones R no imprime el resultado (a menos que escribamos la expresión completa entre paréntesis), pero lo guarda en un objeto llamado `x`, el cual existirá hasta el momento en que cerremos nuestra sesión de R. Por lo tanto, podemos utilizar nuevamente este objeto cuando querramos, por ejemplo:
 
     x
 
-
-Esto nos devuelve el valor calculado.
+Esto nos devuelve el valor calculado. A su vez podemos usar este nombre para elaborar nuevas expresiones, como por ejemplo:
 
     x * 3
 
-
-Aquí calculamos el valor de x multiplicado por 3.
+Aquí calculamos el valor de `x` multiplicado por 3 (y debería dar 10). Podemos seguir usando el objeto `x` para crear más objetos, usando más asignaciones.
 
     y <- x * 3
 
-
-Aquí calculamos el valor de x multiplicado por 3 y lo guardamos en un nuevo objeto llamado y
+Aquí calculamos el valor de `x` multiplicado por 3 y lo guardamos en un nuevo objeto llamado `y`, como se imaginará el lector.
 
 Nota: cada comando que ejecutamos debe ir en una línea, no se pueden poner dos comandos en la misma línea. Para poner un ejemplo:
 
     y <- x * 3 w <- y + 15
 
-
-Esto da error. Se puede solucionar:
+Esto da error. Se puede solucionar utilizando un punto y coma:
 
     y <- x * 3; w <- y + 15
 
-
 Sin embargo esta es una opción a la que no queremos recurrir, ya que es considerada desprolija y efectivamente dificulta la lectura de quien está tratando de entender el código.
 
-Nota: los nombres de los objetos no tienen porqué ser de una sola letra, y de hecho es recomendable usar palabras que den un indicio:
+Debe hacerse un paréntesis aquí y nada menor: los nombres de los objetos no tienen porqué ser de una sola letra (como `x` o `y`), y de hecho es recomendable usar palabras que sean informativos. Por ejemplo, si nuestro trabajo es calcular la hipotenusa de un triángulo rectángulo, es lo más recomendable utilizar nombres como cateto adyacente, cateto opuesto e hipotenusa, por ejemplo:
 
     cat.ad <- 4
-    cat.op <- 5
+    cat.op <- 3
     hipot <- sqrt(cat.ad ** 2 + cat.op ** 2)
 
+Nota: aquí los `**` sirven para elevar al cuadrado los valores de los catetos. Lo mismo se puede hacer con el "techito" `^`:
 
-Hay algunas reglas para hacer estos nombres. En general, no usar espacios ni números al inicio de las mismas es suficiente.
+    hipot <- sqrt(cat.ad ^ 2 + cat.op ^ 2)
 
-Como habrá notado, eventualmente la sesión se llena de objetos con varios nombres de objetos. La función ls (abrebiación de "list") sirve para ver estos nombres:
+Los nombres tienen algunas restricciones. Para las necesidades del curso, alcanza con recordar que no deben empezar por números y que no pueden tener ciertos caracteres, como espacios vacíos o guiones (signos de menos).
+
+Como habrá notado, eventualmente la sesión se llena de objetos con varios nombres de objetos. Las funciones `ls` (abrebiación de "list") y `objects` sirven para ver estos nombres:
 
     ls()
+    objects()
 
+Ambas son idénticas: nos muestran los objetos presentes en nuestra **área de trabajo** actual. Nótese que se usan paréntesis vacíos y, si bien parece raro, es necesario usarlos para correr funciones en R.
 
-La función objects hace exactamente lo mismo.
+Es muy recomendable tratar de tener una sesión de R "limpia" para no perderse en un mar de objetos que no están siendo usados. La función `rm` sirve para borrar objetos de nuestra área de trabajo.
 
-Para el extra: alternativamente, sobre todo si estamos usando R de forma interactiva, podemos usar exists para ver si está presente algún objeto en particular.
+    rm(x) # Esto borra el objeto x
 
-Es muy recomendable tratar de tener una sesión de R "limpia" para no perderse en un mar de objetos que no están siendo usados. La función rm sirve para borrar objetos de la memoria.
+En caso de no querer perder información pero igual es necesario borrar objetos, se puede usar la función `save` para guardar aquellos que no van a ser usados por el momento:
 
-    rm(x)
+    save(cat.ad, cat.op, hipot, file='triangulo.RData')
 
+El resultado es que se guardan estos tres objetos (`cat.ad`, `cat.op`, `hipot`) en el disco duro (en el directorio de trabajo actual: `getwd()`). El archivo en el que se guardan es llamado "triangulo.RData" y es un formato nativo de R. La extensión convencional es .RData, pero también es aceptado .rda.
 
 Matemática
 ----------
 
-Crear una secuencia de números:
-
-    1:5
-    seq(1, 20, by=3)
-
-
-Dado que R es un software enfocado a estadística, tiene muchas funciones matemáticas (muchas con mismos nombres que en excel, c, etc...):
+Dado que al usar R normalmente queremos lidiar con números, R nos da una completa caja de herramientas matemáticas con las que trabajar. Las funciones comunes como seno, coseno, exponencial, logaritmo, etc, se usan de forma muy parecida a otros programas:
 
     sin(pi)
     exp(10)
     1000 ** 2
     log(1)
-    rnorm(10)
-    mean(rnorm(10))
 
-Incluso tiene algunas herramientas que son simples de usar que pueden ser muy útiles. La función curve sirve para graficar una función matemática (en números reales) cualquiera:
+Invitamos a utilizar la ayuda de R para descubrir cada una de estas funciones, si es que no las conoce de otros programas. En caso de querer abrir la ayuda de un operador, como el doble asterisco, deben usarse comillas como en el siguiente ejemplo:
 
-    curve(cos(x), from=-tau / 2, to=tau / 2)
+~~~
+?"**"
+~~~
 
+Estas operaciones se pueden ejecutar para números u objetos con varios números sin cambios mayores en la sintaxis. Así, si consideramos la secuencia de los números enteros del 1 al 14, la cual se puede crear de la siguiente manera:
 
-Nótese que la variable por convención es x, pero este x no tiene nada que ver con el x que creamos antes. Podemos ver cuánto vale el cos de x cuando x vale `pi/2` (90 grados)
+    sec <- 1:14
+
+es posible ejecutar los siguientes comandos usando una sintaxis idéntica a la necesaria para un único valor:
+
+    sec ** 2
+    exp(sec)
+
+(Nota: a lo largo del curso veremos muchas veces el operador "`:`")
+
+R cuenta con herramientas matemáticas y gráficas bastante más sofisticadas que estos ejemplos "básicos". Por ejemplo, la función `curve` sirve para graficar una función continua cualquiera. Con dicha función es fácil graficar el coseno de x:
+
+    tau <- 2 * pi # (tau = una circunferencia completa)
+    curve(cos(x), from=- tau, to=tau)
+
+Nótese que la variable independiente, por convención es x, pero este x no tiene nada que ver con el objeto `x` que creamos antes. Lo que ha hecho la función `curve` es un gráfico de base o "primer nivel" sobre el cual podemos agregar nuevas líneas y puntos para hacer algo más elaborado. Por ejemplo, podemos visualizar cuánto vale el coseno de x = 90 grados = `tau / 4`, agregando una línea vertical en este punto preciso, usando la función `abline`:
 
     abline(v=tau / 4, col='red')
 
-
-Quiero ver los ejes:
+Aquí la 'v' denota que es una línea vertical en el valor indicado. Usando la misma función puedo agregarle los ejes:
 
     abline(v=0, h=0, col='blue')
 
-
-Ahora quiero saber el área bajo la gráfica de esta función en el intervalo 0, `tau / 4`, o en otras palabras, la integral:
+Como nota final, es bueno saber que también existen funciones para hacer cálculos matemáticos sofisticados, como por ejemplo integrales. Supongamos que nos interesa calcular la integral del coseno en el intervalo [0, 90] grados (= [0, tau / 4]):
 
     integrate(cos, 0, tau / 4)
 
+Esto nos da una respuesta con un pequeño error numérico (ya que R no hace cálculo de la solución analítica), pero que suele ser muy exacta. De forma similar la funcin `deriv` hace calculos de derivadas y existen muchas otras funciones, instaladas con el R básico o agregadas a través de paquetes para trabajar con sofisticadas herramientas matemáticas.
 
-Esto nos da una respuesta con un pequeño error numérico (ya que R no hace cálculo de la solución analítica).
+El arte de combinar comandos
+----------------------------
 
-De forma opuesta la funcin deriv hace calculos de derivadas.
+Una de las grandes virtudes que tiene R es que favorece naturalmente la combinación de diferentes comandos para crear cálculos más sofisticados. Esta es la clave de la enorme flexibilidad de este programa y es la idea básica de cualquier lenguaje de programación.
 
-Sin dudas este tipo de funciones tienen gran utilidad y pueden ser utilizadas como ayuda en nuestros trabajos o estudios. Acá están solo para ilustrar las cosas básicas que R puede hacer.
-
-
-Combinación de comandos
------------------------
-
-Una de las grandes virtudes que tiene R es que favorece naturalmente la combinación de diferentes comandos para crear cálculos sofisticados. Esta es la clave de la enorme flexibilidad de este programa.
-
-La combinación de comandos en su forma más básica se ve algo así:
+La combinación de comandos en su forma más sencilla se ve algo así:
 
     mean(rnorm(100))
 
-Aquí estamos ejecutando la función `rnorm`, que genera números aleatorios con distribución gaussiana o normal, para crear 100 de estos números. La salida de este comando es inmediatamente tomada por la función mean, quien calcula el promedio de estos 100 números. En términos matemáticos esto es una composición de funciones. Anteriormente vimos otro ejemplo, el de la hipotenusa.
+Aquí estamos ejecutando la función `rnorm`, que genera números aleatorios con distribución gaussiana o normal, para crear 100 de estos números. La salida de este comando es inmediatamente tomada por la función `mean`, quien calcula el promedio de estos 100 números. En términos matemáticos esto es una composición de funciones. Esto es similar al cálculo de la hipotenusa ficticia que se usó de ejemplo.
 
-Pero generalmente las instrucciones que son creadas son mucho más elaboradas y permiten realizar cualquier cálculo imaginable.
+Pero generalmente las instrucciones que son creadas son mucho más elaboradas y permiten realizar cualquier cálculo imaginable, al menos en principio (ya que no estoy tomando en cuenta limitaciones de capacidad real de las computadoras).
 
-Veremos un caso de ejemplo ahora para ilustrar esta idea y otras que son fundamentales para sacar provecho a R.
+Veamos un caso de ejemplo que puede ser familiar para muchos de nosotros, y así ilustraresta idea y otras que son fundamentales para sacar provecho a R.
+
+### Presupuesto de un proyecto
+
+Muchas veces en nuestras vidas nos veremos obligados a calcular el presupuesto de un proyecto, o de nuestra casa, etc. Vamos a suponer que trabajamos en un proyecto de investigación de la universidad en el que necesitamos calcular el costo de equipos de trabajo, materiales, viáticos y sueldos. Este tipo de tareas suele volverse compleja debido a que muchas variables están en juego, como diferentes modelos y costos para los equipos, cantidad de viajes y medios de transporte, etc.
+
+Supongamos que la siguiente secuencia de comandos refleja los valores reales de salidas o entradas de dinero:
+
+    dineroTotal <- 450000 # Total asignado por nuestra financiadora (entrada)
+    salida <- 20000       # Costo aproximado de lo que cuesta hacer una salida de campo
+    tecnicoMes <- 6000    # Sueldo de un técnico
+    ntecnicos <- 2        # Número de técnicos a contratar
+    meses <- 3            # Número de meses en que contrataríamos a dichos técnicos
+    nsalidas <- 2         # Número de salidas de campo
+
+El cálculo del márgen se haría muy fácil, con el siguiente comando:
+
+    margen <- dineroTotal - nsalidas * salida - tecnicoMes * meses * ntecnicos
+
+Pero dado que muchos de estos valores pueden cambiarse (como el número de meses, salidas, etc), lo mejor sería explorar distintas posibilidades. Además puede calcularse otro valor, por ejemplo, un número estimado de muestras obtenidas y procesadas, en función del número de meses, salidas y técnicos contratados:
+
+    nmuestras <- nsalidas * ntecnicos * 300 # Número de muestras obtenidas
+    nproc <- nmuestras * meses * 800        # Número de muestras procesadas
+
+(Es cierto que se puede hacer en un sólo paso, pero ya que estamos empezando con un borrador, no vamos a preocuparnos por esto aún.)
+
+Si queremos jugar cambiando el número de meses o el número de salidas, entonces cambiamos el valor de alguna de estas y volvemos a ejecutar las ecuaciones. Para esto el uso de las flechas 'arriba' y 'abajo' se vuelve muy práctico. De todas maneras hacer esto en la consola rápidamente se vuelve engorroso y lento, por lo que es recomendable cambiar de método: utilizar un script de R.
+
+Un script de R no es más que un archivo de texto plano (como el clásico .txt), pero cuya terminación es .R o .r. Este script se puede crear y editar con el bloc de notas de Windows o el editor de texto del GUI de R en este sistema, así como muchos otros programas ([Tinn-R, RStudio y Geany](http://eva.universidad.edu.uy/mod/resource/view.php?id=61180) son algunos de Software Libre, siendo el primero exclusivo de la plataforma Windows y los otros multiplataforma).
+
+Entonces el siguiente paso lógico es tomar los últimos comandos ejecutados en la consola y pegarlos en un script nuevo. Uso `history()` para ver las últimas instrucciones ejecutadas y las copio y pego en un editor. Luego de borrar lo innecesario, sólo me queda salvar el archivo (en el directorio de trabajo actual) bajo el nombre: "presupuesto.R". Por ejemplo, mi archivo "presupuesto.R" se vería algo así:
 
 
-Presupuesto de un proyecto
---------------------------
+_Comienzo del script:_
 
-Muchas veces en nuestras vidas nos veremos obligados a calcular el presupuesto de un proyecto, nuestra casa, etc. Vamos a suponer que trabajamos en un proyecto de investigación de la universidad en el que necesitamos calcular el costo de equipos de trabajo, materiales, viáticos y sueldos. Este tipo de tareas suele volverse compleja debido a que muchas variables están en juego, como diferentes modelos y costos para los equipos, cantidad de viajes y medios de transporte, estadías, cantidad de técnicos contratados, sueldos de dichos técnicos, etc.
+_____
 
-Un ejemplo sencillo sería este:
+    dineroTotal <- 450000 # Total asignado por nuestra financiadora (entrada)
+    salida <- 20000       # Costo aproximado de lo que cuesta hacer una salida de campo
+    tecnicoMes <- 6000    # Sueldo de un técnico
+    ntecnicos <- 2        # Número de técnicos a contratar
+    meses <- 3            # Número de meses en que contrataríamos a dichos técnicos
+    nsalidas <- 2         # Número de salidas de campo
 
+    # Cálculo del margen
+    margen <- dineroTotal - nsalidas * salida - tecnicoMes * meses * ntecnicos
 
-    dineroTotal <- 450000
-    microscopio <- 50000
-    salida <- 20000
-    tecnicoMes <- 6000
-    ntecnicos <- 2
-    meses <- 3
-    nsalidas <- 2
+    # Cálculo de la cantidad de muestras obtenidas
+    nmuestras <- nsalidas * ntecnicos * 300
+    nproc <- nmuestras * meses * 800
 
-    margen <- dineroTotal - microscopio - nsalidas * salida - tecnicoMes * meses * ntecnicos
+    print(margen) # Para que me muestre el margen de inmediato
+    print(nproc)  # Idem con la cantidad de muestras procesadas
 
+_____
 
-Si queremos jugar cambiando el número de meses o el número de salidas, entonces cambiamos el valor de alguna de estas (uso la flecha hacia arriba para modificar uno de los valores y veo el nuevo margen).
+_Fin del script_
 
-Como veran, puedo cambiar varias cosas, como el valor del microscopio o de la salida, para seguir estimando el margen de dinero que voy a tener. Pero no es muy práctico hacer esto en la consola. Es aquí cuando entra en juego lo que se conoce como script de R. Para hacer mi script de R, voy a abrir un editor de texto; en el GUI de R de windows hay un editor de texto por defecto (abro ese).
-
-Como me interesa reciclar los últimos comandos que hice, uso `history()` y hago un copiar y pegar en el editor.
-
-    history()
-
-
-Una vez aquí, borro los comandos que sobran. Luego modifico aquellos que me interesa (meses, microscopio, etc). Luego salvo y hago un source en R:
+Entonces estoy listo para correr el script en la consola, lo cual se hace con el comando siguiente:
 
     source('presupuesto.R')
 
+En este modo de trabajo, se cumple un ciclo que puede iterarse (=repetirse) cuántas veces sea necesario, en el que se edita el código en el script, cambiando alguno de los valores, como puede ser el número de salidas (`nsalidas`)(se guarda el archivo), se ejecuta en R el nuevo código y se evalúa el resultado. Si el resultado no es el deseado, se vuelve al inicio. Este ciclo es visto con más detalle en la lección 1.4: Scripts y directorios de trabajo.
 
-Esto es lo que se conoce como R no interactivo!
+Así puedo jugar con cualquiera de mis variables y determinar cuál será mi `margen` y mi `nproc`. Notarán que el proceso se vuelve un poco engorroso al cabo de un tiempo. Aquí es cuando encontramos la primer razón para usar RStudio (paso al RStudio).
 
-Cada vez que cambimos el script en el editor, tenemos que salvar antes de llamar a la función `source`, ya que si no la versión en el disco duro no se va a actualizar y por lo tanto el R va a seguir interetando la versión anterior.
+En RStudio trabajamos con el script y podemos enviar comandos a la consola para que R ejecute, sin necesidad de estar cambiando de ventana. Incluso podemos enviar el documento completo sin necesidad de salvarlo. Esto también lo ilustramos mejor en la lección 1.4.
 
-Así puedo jugar con cualquiera de mis variables y determinar cuál será mi margen. Notarán que el proceso se vuelve un poco engorroso al cabo de un tiempo.
+Pero hay una forma más eficiente aún de evaluar las distintas posibilidades de los valores de `nsalidas` o `ntecnicos`: la creación de una función.
 
-Aquí es cuando encontramos la primer razón para usar RStudio (paso al RStudio).
+Una función hecha a medida
+--------------------------
 
-En RStudio trabajamos con el script y podemos enviar comandos a la consola para que R ejecute, sin necesidad de estar cambiando de ventana. Incluso podemos enviar el documento completo sin necesidad de salvarlo.
+Crear una función no es más que tomar el código que ya tenemos y adaptarlo a un nuevo formato. Tomando los mismos comandos que tenía antes, pero cambiando sutil y estratégicamente la ubicación de los mismos voy a hacer mi funcion `prp`:
 
-Mostrar ejemplos
+_____
 
-Una funcioncita para facilitar
-------------------------------
-
-Para facilitar más aún el proceso, R tiene una herramienta que sale en nuestro auxilio: la función
-
-Tomando los mismos comandos que tenía antes, pero cambiando sutil y estratégicamente la ubicación de los mismos voy a hacer mi funcion `prp`:
-
-    prp <- function(nsalidas = 2, ntecnicos = 2, microscopio = 50000, salida = 20000,
-                    tecnicoMes = 6000, meses = 3) {
+    prp <- function(nsalidas = 2, ntecnicos = 2, salida = 20000, tecnicoMes = 6000,
+                    meses = 3) {
+    # Calcula el margen y la cantidad final de muestras procesadas.
       dineroTotal <- 450000
-      margen <- dineroTotal - microscopio - nsalidas * salida - tecnicoMes * meses
-      margen
+      margen <- dineroTotal - nsalidas * salida - tecnicoMes * meses
+      nproc  <- nsalidas * ntecnicos * 300 * meses * 800
+      c(margen, nproc)
     }
 
-Entonces si yo ejecuto
+_____
+
+Ahora el procedimiento es el siguiente:
+
+1. Copiar y pegar este código en un script nuevo: "prp.R" (debe ser guardado en el mismo directorio que el script anterior)
+2. Ejecutar `source(prp.R)` en la consola de R para cargar la función en la sesión.
+3. Ejecutar un comando como este:
 
     prp()
 
+Este comando resulta en dos números: `margen` y `nproc`, cuyos valores son los mismos que se habían obtenido originalmente. Esto es así ya a que todas las variables (`nsalidas`, `ntecnicos`, `salida`, `tecnicoMes`, `meses`) tienen valores por defecto en esta función (los que aparecen luego de la palabra `function` en el script prp.R) y son los usados al principio del ejemplo.
 
-Obtengo el cálculo que teníamos antes. Para esto el R usó los valores que puse en la primer línea del script. Estos son los valores "por defecto" es decir aquellos que tomará la función si es que el usuario no puso ningún valor propio.
-
-La ventaja de esta aproximacion es que podemos cambiar rápidamente de valores para nuestras variables y así encontrar cómo cambia el margen de nuestro presupuesto.
-
-En combinación (no importa el orden de las variables)
+La ventaja de esta aproximacion es que podemos cambiar rápidamente de valores para nuestras variables y así encontrar cómo cambia el margen de nuestro presupuesto. Incluso es posible estudiar variantes en combinación de variables; por ejemplo:
 
     prp(nsalidas = 3, ntecnicos = 3)
 
+Nota: el orden de las variables no importa aquí.
 
-Ejemplo de un loop
-------------------
-
-A veces lo que queremos es simplemente ver todos los valores posibles. Para este tipo de tareas repetitivas existen los loops. Concretamente, podríamos hacer algo como esto:
+Posiblemente nos interese elegir el valor más adecuado de una variable, por ejemplo `nsalidas`, para nuestro proyecto. ¿Qué método más simple que probar con todas las posibilidades?:
 
     prp(nsalidas = 1)
     prp(nsalidas = 2)
@@ -237,43 +253,42 @@ A veces lo que queremos es simplemente ver todos los valores posibles. Para este
     prp(nsalidas = 8)
     prp(nsalidas = 9)
 
-etc
+etc...
 
-Pero con un loop esto se reduce a:
+Por suerte aquí también podemos usar otro "truco" de R: la automatización. En particular, ciertas herramientas llamadas "loops", así que veremos un ejemplo ahora ...
 
+Ejemplo de un loop
+------------------
+
+En vez de escribir 20 veces la misma línea (es decir, con un número diferente cada vez), podemos simplemente ejecutar lo siguiente:
 
     for (i in 1:20) {
       cat('No. de salidas =', i, '\n')
       print(prp(nsalidas = i))
     }
 
+No es necesario que se entienda por completo este código, ya que es parte de los últimos temas del curso. El resultado que se obtiene es el `margen` y `nproc` para todos los valores de `nsalidas` entre 1 y 20.
 
-Si además queremos ver cómo se combina con el número de técnicos, podemos hacer otro loop dentro de este:
+Por el momento bastará con saber que, para construir esto, en lugar de usar un número sustituimos el valor asignado a `nsalidas` por una letra `i` (i.e. ahora dice `prp(nsalidas = i)`). Con esta estructura podemos entonces evaluar `prp` para una cantidad arbitraria de salidas (hasta 100, 1000, 1000000 ...).
 
-    for (i in 1:20) {
-      for (j in 1:6) {
-        cat('No. salidas =', i, 'No. técnicos =', j, '\n')
-        print(prp(nsalidas = i, ntecnicos=j))
-      }
-    }
+_____
 
+Nota: esto se puede hacer de manera más rápida, pero de todas maneras el ejemplo sirve para ilustrar sobre la utilidad del loop, una herramienta fundamental de todo programador. En particular, es más fácil escribir:
 
-La tercer línea fue agregada para poder ver en la salida cuántas salidas y técnicos corresponden.
+    prp(nsalidas=1:20)
 
-Nota: esto se puede hacer de formas más fáciles: el primer ejemplo con `prp(nsalidas=1:20)` y el segundo con la función "`outer`":
-
-    outer(1:20, 1:6, prp)
+_____
 
 
 En este ejemplo de acercamiento, hemos combinado varias utilidades de R para hacer un análisis relativamente sofisticado del presupuesto de nuestro proyecto ficticio. Empezando incialmente con una cuenta sencilla, pasamos a crear una función y luego utilizamos loops para ver todo el rango de combinaciones posibles.
 
 El objetivo de hacer este ejercicio es mostrar someramente cómo se puede pasar con facilidad de un análisis simple y limitado a otro más elaborado y abarcativo, a través de la secuenciación de pasos. Nótese que el uso de scripts en este proceso es fundamental, ya que permite construir sobre lo ya hecho y mantener ordenados y bien comentados los pasos dados para llegar a un resultado en particular.
 
-Esta posibilidad no sólo permite que un usuario pueda volver a repetir su análisis en el futuro, si no que también facilita el compartir tareas entre varios usuarios, incluyendo el 'reproducible research' (investigación reproducible), tema que se ha vuelto muy caliente en los últimos años.
+Esta posibilidad no sólo permite que un usuario pueda volver a repetir su análisis en el futuro, si no que también facilita el compartir tareas entre varios usuarios, incluyendo el 'reproducible research' (investigación reproducible), tema que se ha puesto muy en voga en los últimos años.
 
 Mensaje final
 -------------
 
 En esta primer introducción a las capacidades de R no nos hemos metido demasiado en temas específicos de análisis de datos, el cual suele ser el motivo principal por la que R es utilizado. Sin embargo hemos visto herramientas de uso general que pueden y son constantemente utilizadas en cualquier análisis de datos (funciones matemáticas, gráficos, funciones personalizadas, loops).
 
-El objetivo de este video es mostrar rápidamente algunas de las funcionalidades básicas que tenemos en R y, con suerte, entusiasmarlos en el aprendizaje de este lenguaje. Todas las cosas que fueron tocadas en este video, y más, se van a profundizar a medida que avanza el curso, de forma que no hay que preocuparse demasiado por aquello que no se entendió claramente. Animamos a que cada uno en su casa juegue con los ejemplos dados aquí y así pueda ir descubriendo por cuenta propia el R.
+Esperamos haber mostrado rápidamente algunas de las funcionalidades básicas que tenemos en R y, con suerte, entusiasmarlos en el aprendizaje de este lenguaje. Todas las cosas que fueron tocadas en este video, y más, se van a profundizar a medida que avanza el curso, de forma que no hay que preocuparse demasiado por aquello que no se entendió claramente. Animamos a que cada uno en su casa juegue con los ejemplos dados aquí y así pueda ir descubriendo por cuenta propia los temas tocados.

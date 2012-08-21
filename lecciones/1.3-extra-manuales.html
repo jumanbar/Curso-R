@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+</head>
+<body>
+<h1 id="extra-manuales">(1.3) Extra: manuales</h1>
+<p>Como dijimos antes, la ayuda de R es una herramienta indispensable para la comprensión e interpretación de funciones y análisis estadísticos.</p>
+<p>Existen varias formas de acceder a la ayuda de R. La primera es consultar la ayuda en forma general, es decir, un conjunto de manuales y documentos útiles que se encuentran instalados en nuestra computadora. Para ello se puede ejecutar el comando:</p>
+<pre><code>help.start()</code></pre>
+<p>Esto abre la ayuda de R en nuestro navegador predeterminado si estamos trabajando en R, o en la pestaña &quot;Help&quot; si estamos trabajando en RStudio. En la ayuda general de R vamos a encontrar varias opciones, agrupadas bajo cuatro grandes títulos:</p>
+<ul>
+<li>Manuals,</li>
+<li>Reference,</li>
+<li>Miscellaneous material, y</li>
+<li>Material specific to the Windows port (en caso de usar Windows)</li>
+</ul>
+<h3 id="manuals">Manuals</h3>
+<p>Bajo el título de &quot;Manuals&quot; vamos a encontrar seis manuales de referencia sobre diferentes aspectos de R. El manual &quot;<strong>An introduction to R</strong>&quot; es un manual de referencia básico, el cual también cuenta con <a href="http://cran.r-project.org/other-docs.html#nenglish">versiones en español</a>. Este es el manual con mayor utilidad inmediata para los usuarios.</p>
+<p>El resto de los manuales son sobre temas más específicos, como escribir extensiones para R, instalación y administración, importar y exportar datos, y R internals, que trata sobre funciones que se programan fuera de R para configurar aspectos del funcionamiento general del mismo.</p>
+<h3 id="reference">Reference</h3>
+<p>El título al que más comunmente vamos a acudir como usuarios es el de &quot;Reference&quot;, y particularmente al subtítulo &quot;Packages&quot;. En éste apartado vamos a encontrar información sobre los paquetes instalados en R. (nota: cada paquete es una colección de funciones para realizar actividades específicas en R). Si cliqueamos en el link del paquete &quot;base&quot;, que es el paquete de funciones básicas, más elementales de R, y del que dependen todos los demás paquetes para su funcionamiento. Este paquete se instala por defecto al instalar R.</p>
+<p>Dentro de la ayuda de este paquete vamos a encontrar toda la documentación del mismo. El archivo de descripción o &quot;Description file&quot;, brinda información general de este paquete; todo paquete de R debe tener un archivo análogo. Una descripción menos técnica se encuentra en el link &quot;base-package&quot;. Todos los paquetes tienen un documento de ayuda de este tipo, describiendo sus utilidades y para qué fueron creados.</p>
+<p>Posteriormente a estos dos links, sigue una lista de objetos (funciones y sets de datos) incluidos en el paquete en cuestión. Si se siguen estos links simplemente se abrirán páginas idénticas a las obtenidas con la función <code>help</code>. Es decir, pinchar en &quot;acos&quot; es idéntico a correr</p>
+<pre><code>?acos</code></pre>
+<p>Por otro lado, bajo &quot;Reference&quot; también se puede seguir el link &quot;Search Engine &amp; Keywords&quot;. Allí se puede buscar ayuda por tópicos o por búsqueda personalizada, con un grado interesante de refinamiento.</p>
+<h3 id="miscellaneous-material">Miscellaneous material</h3>
+<p>Bajo el título de &quot;Miscellaneous material&quot; vamos a encontrar datos sobre la versión de R que estamos usando, sus autores (R Core Team: el núcleo de desarrolladores de R), licencias, FAQ, etc.</p>
+<p>En particular, el contenido link &quot;User Manuals&quot;, dependiendo de qué paquetes tengamos instalados, puede tener muchos recursos muy útiles para aprender sobre tareas específicas asociadas a dichos paquetes: las llamadas viñetas (vignettes). Por ejemplo, si tenemos instalado el paquete &quot;Matrix&quot; podemos ver una lista de cinco temas relacionados (&quot;Comparisons&quot;, &quot;Design-issues&quot;, &quot;Intro2Matrix&quot;, &quot;Introduction&quot;, &quot;sparseModels&quot;; pueden bajarse de internet desde <a href="http://dirichlet.mat.puc.cl/web/packages/Matrix/index.html">aquí</a>).</p>
+</body>
+</html>

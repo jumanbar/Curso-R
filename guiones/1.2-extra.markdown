@@ -1,0 +1,25 @@
+
+Si además queremos ver cómo se combina con el número de técnicos, podemos hacer otro loop dentro de este:
+
+    for (i in 1:20) {
+      for (j in 1:6) {
+        cat('No. salidas =', i, 'No. técnicos =', j, '\n')
+        print(prp(nsalidas = i, ntecnicos=j))
+      }
+    }
+
+
+La tercer línea fue agregada para poder ver en la salida cuántas salidas y técnicos corresponden.
+
+Nota: esto se puede hacer de formas más fáciles: el primer ejemplo con `prp(nsalidas=1:20)` y el segundo con la función "`outer`":
+
+    outer(1:20, 1:6, prp)
+
+Extra
+-----
+Los dos loops utilizados en esta sesión de ejemplo sólo buscan ilustrar el uso de loops, pero no son las soluciones más óptimas. Los siguientes comandos serían más adecuados en general, sobre todo si se tratase de tareas pesadas:
+
+    prp(nsalidas = 1:20)
+    outer(1:20, 1:6, prp)
+
+Profundizaremos sobre esto en las lecciones dedicadas a esto.

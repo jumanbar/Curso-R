@@ -331,12 +331,5 @@ En esta primer introducción a las capacidades de R no nos hemos metido demasiad
 El objetivo de este video es mostrar rápidamente algunas de las funcionalidades básicas que tenemos en R y, con suerte, entusiasmarlos en el aprendizaje de este lenguaje. Todas las cosas que fueron tocadas en este video, y más, se van a profundizar a medida que avanza el curso, de forma que no hay que preocuparse demasiado por aquello que no se entendió claramente. Animamos a que cada uno en su casa juegue con los ejemplos dados aquí y así pueda ir descubriendo por cuenta propia lo que hay aquí.
 
 
-Extra
------
-Los dos loops utilizados en esta sesión de ejemplo sólo buscan ilustrar el uso de loops, pero no son las soluciones más óptimas. Los siguientes comandos serían más adecuados en general, sobre todo si se tratase de tareas pesadas:
 
-    prp(nsalidas = 1:20)
-    outer(1:20, 1:6, prp)
-
-Profundizaremos sobre esto en las lecciones dedicadas a esto.
 

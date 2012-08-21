@@ -1,0 +1,29 @@
+Descipción
+----------
+
+Escriba el comando para realizar la búsqueda del tópico "analisis de varianza" (se debe escribir en inglés)
+
+Cuáles son los los links complementarios de la función "norm" que nos menciona la ayuda de R
+
+Escriba el comando correspondiente para acceder a la ayuda de la funcion "lm"
+
+Escriba el comando correspondiente para obtener información sobre el tema secuencias(se debe escribir en inglés)
+
+Cuál es el valor por defectos de los argumentos de la función "runif"
+
+Cuál es la sintaxis que usa R cuando utilizamos la función help.search(paste)
+
+Cuál es el logaritmo por defecto que utiliza la función "log" y en que sección se encuentra esta información
+
+Que sección de la ayuda me dice donde puedo profundizar sobre dicha fucnción
+
+A que paquete pertenece la función "sample"
+
+
+
+Verdadero o Falso
+-----------------
+
+example(cbind) es elcomando que me sirve para ver el primer ejemplo de la ayuda de R
+
+En la función "sample" es correcto que el argumento size=-5
