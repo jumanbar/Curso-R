@@ -58,7 +58,7 @@ Ejercicio de Cuestionarios: Ayuda de R (Parte 1.3)
     
     [ ] RsiteSearch(topico)
     
-    [ ] RSiteSearch("topico")
+    [x] RSiteSearch("topico")
     
     [ ] Rsitesearch(topico)
 
