@@ -1,29 +1,64 @@
-Descipción
-----------
+Ejercicio de Cuestionarios: Ayuda de R (Parte 1.3)
+========================================================
 
-Escriba el comando para realizar la búsqueda del tópico "analisis de varianza" (se debe escribir en inglés)
-
-Cuáles son los los links complementarios de la función "norm" que nos menciona la ayuda de R
-
-Escriba el comando correspondiente para acceder a la ayuda de la funcion "lm"
-
-Escriba el comando correspondiente para obtener información sobre el tema secuencias(se debe escribir en inglés)
-
-Cuál es el valor por defectos de los argumentos de la función "runif"
-
-Cuál es la sintaxis que usa R cuando utilizamos la función help.search(paste)
-
-Cuál es el logaritmo por defecto que utiliza la función "log" y en que sección se encuentra esta información
-
-Que sección de la ayuda me dice donde puedo profundizar sobre dicha fucnción
-
-A que paquete pertenece la función "sample"
+ 
+### En la sintaxis que usa R cuando en la función `help.search("paste")`
 
 
+[ ] Aparece primero el link a la función que estamos buscando y después una breve descripción
 
-Verdadero o Falso
------------------
+[ ] Aparece primero el link al paquete de la función que estamos buscando y después una breve descripción
 
-example(cbind) es elcomando que me sirve para ver el primer ejemplo de la ayuda de R
+[ ] Aparece primero una breve descripción y después el link con el nombre del paquete::el nombre de la función
 
-En la función "sample" es correcto que el argumento size=-5
+[x] Aparece primero el link con el nombre del paquete::el nombre de la función y después una breve descripción
+
+
+### El comando ??:
+
+[ ] Sirve para hacer una búsqueda en la web
+
+[x] Sirve para realizar una búsqueda generalizada sobre un tema
+
+[ ] Sirve para ir directamente a la ayuda de la función que estoy escribiendo
+
+[ ] Sirve para saber en que paquete se encuentra la función que estoy escribiendo
+
+
+### Seleccione aquel comando o comandos que sirvan para buscar información sobre un tópico en la ayuda de R
+
+    [x] help.search("topico")
+
+    [ ] help.serach(topico)
+    
+    [ ] helpSearch("topico")
+    
+    [ ] helpSearch(topico)
+    
+    [x] ??(topico)
+    
+    [ ] ??"topico"
+
+
+### Seleccione aquel comando o comandos que sirvan para buscar sobre un tópico en la ayuda de R
+
+    [x] help("topico")
+    
+    [ ] help <- topico
+    
+    [ ] ?(topico)
+    
+    [x] ?topico
+    
+    [ ] ?help(topico)
+
+### Seleccione aquel comando o comandos que sirvan para buscar sobre un tópico en la web
+
+    [ ] Rsitesearch(topico)
+    
+    [ ] RsiteSearch(topico)
+    
+    [ ] RSiteSearch("topico")
+    
+    [ ] Rsitesearch(topico)
+
