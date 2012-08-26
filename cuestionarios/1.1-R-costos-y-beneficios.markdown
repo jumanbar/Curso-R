@@ -1,52 +1,35 @@
 1. Marque todas las correctas:
 ------------------------------
 
-[x] R es gratis y además de código abierto, por ello recibe aportes voluntarios de miles de usuarios alrededor del mundo.
-
-[x] R es gratis y además de código abierto, recibiendo aportes de voluntarios a través de paquetes, pero es un grupo selecto de desarrolladores el que se encarga de la distribución de base.
-
-[ ] R es gratis, pero no de código abierto. El crecimiento espectacular de la cantidad de paquetes contribuidos se debe a que simplemente tiene una base de usuarios que es por lejos la mayor de todos los paquetes estadísticos actuales, así como por inversiones provenientes de variantes comerciales de R.
-
+[x] R es gratis y además de código abierto, por ello recibe aportes voluntarios de miles de usuarios alrededor del mundo.  
+[x] R es gratis y además de código abierto, recibiendo aportes de voluntarios a través de paquetes, pero es un grupo selecto de desarrolladores el que se encarga de la distribución de base.  
+[ ] R es gratis, pero no de código abierto. El crecimiento espectacular de la cantidad de paquetes contribuidos se debe a que simplemente tiene una base de usuarios que es por lejos la mayor de todos los paquetes estadísticos actuales, así como por inversiones provenientes de variantes comerciales de R.  
 [ ] Debido a que R depende del trabajo voluntario de sus desarrolladores, es un producto de calidad limitada y sólo compite con otras opciones entre aquellos usuarios que no pueden invertir en productos mejores.
-
-
 
 2. Computadoras y humanos
 -------------------------
 
-[x] El lenguaje humano es sumamente ambiguo, por esto es que es necesario adaptar nuestras formas de comunicación si queremos que una computadora "nos entienda".
-
-[x] Como humanos interpretamos de forma casi inadvertida los mensajes que recibimos y por lo tanto resulta poco intuitiva la exactitud que exigen las máquinas para recibir instrucciones.
-
-[ ]
+[x] El lenguaje humano es sumamente ambiguo, por esto es que es necesario adaptar nuestras formas de comunicación si queremos que una computadora "nos entienda".  
+[x] Como humanos interpretamos de forma casi inadvertida los mensajes que recibimos y por lo tanto resulta poco intuitiva la exactitud que exigen las máquinas para recibir instrucciones.  
+[ ] Debido a que el lenguaje natural es aquél con el que aprendemos desde el nacimiento, es natural que logremos hablar con enorme presición sin esfuerzo; esto no ocurre con un lenguaje antinatural como son los de programación y por lo tanto ocurren muchos más errores de comunicación con las computadoras.
+[ ] 
 
 3. Curvas de aprendizaje
 ------------------------
 
 Luego de ver la lección 1.1, considera que (marque todas las que considera correctas):
 
-[x] Todo programa que dependa demasiado de una GUI está severamente limitado, sin embargo en la mayoría de los casos una GUI buena más que es deseable y logra potenciar las capacidades del usuario.
+[x] Todo programa que dependa demasiado de una GUI está severamente limitado, sin embargo en la mayoría de los casos una GUI buena más que es deseable y logra potenciar las capacidades del usuario.  
+[ ] Todo programa que dependa demasiado de una GUI está severamente limitado y por lo tanto sería deseable evitar este tipo de interfaz en la mayor cantidad de casos posibles.  
+[ ] Las curvas de aprendizaje asociadas a la CLI son lentas inicialmente, pero posteriormente logran una enorme velocidad de crecimiento la cual generalmente no se ve disminuida.  
+[x] Las curvas de aprendizaje asociadas a la CLI son lentas inicialmente, pero posteriormente logran una enorme velocidad de crecimiento, para llegar eventualmente a una nueva "fase" de crecimiento lento, debido a limitaciones propias de la capacidad humana y/o de la computadora.  
+[ ] La limitación ilustrada para programas basados en GUI se deben a que con estos programas no es posible combinar funciones para elaborar análisis nuevos y ajustados a nuestras necesidades.  
 
-[ ] Todo programa que dependa demasiado de una GUI está severamente limitado y por lo tanto sería deseable evitar este tipo de interfaz en la mayor cantidad de casos posibles.
+4. Respecto a la documentación de R, marque todos los que considere correctos:
+------------------------------------------------------------------------------
 
-[ ] Las curvas de aprendizaje asociadas a la CLI son lentas inicialmente, pero posteriormente logran una enorme velocidad de crecimiento la cual generalmente no se ve disminuida.
-
-[x] Las curvas de aprendizaje asociadas a la CLI son lentas inicialmente, pero posteriormente logran una enorme velocidad de crecimiento, para llegar eventualmente a una nueva "fase" de crecimiento lento, debido a limitaciones propias de la capacidad humana y/o de la computadora.
-
-[ ] La limitación ilustrada para programas basados en GUI se deben a que con estos programas no es posible combinar funciones para elaborar análisis nuevos y ajustados a nuestras necesidades.
-
-
-4. Otros
---------
-
-[x] La documentación de R es de alta calidad y es una parte fundamental de este ambiente de trabajo, ya que es usada en todo momento y por todo usuario.
-
-[ ] La documentación de R es de alta calidad y generalmente amigable para quienes quieren aprender este lenguaje.
-
-[ ] La documentación de R es de calidad mediocre (con ejemplos muy buenos, pero también muy malos), pero de todas formas es fundamental tenerla a mano en todo momento, más allá de la experiencia que tenga el usuario.
-
+[x] La documentación de R es de alta calidad y es una parte fundamental de este ambiente de trabajo, ya que es usada en todo momento y por todo usuario.  
+[ ] La documentación de R es de alta calidad y generalmente amigable para quienes quieren aprender este lenguaje.  
+[ ] La documentación de R es de calidad mediocre (con ejemplos muy buenos, pero también muy malos), pero de todas formas es fundamental tenerla a mano en todo momento, más allá de la experiencia que tenga el usuario.  
 [ ] Tanto la documentación de R como los mensajes de error están hechos con un lenguaje sumamente técnico y en general oscuro para el principiante, por lo que en las primeras etapas de aprendizaje no hace mucha diferencia leerla o no.
-
-
-
 

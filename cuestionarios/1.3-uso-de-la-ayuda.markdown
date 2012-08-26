@@ -1,64 +1,44 @@
 Ejercicio de Cuestionarios: Ayuda de R (Parte 1.3)
 ========================================================
-
  
 ### En la sintaxis que usa R cuando en la función `help.search("paste")`
 
-
-[ ] Aparece primero el link a la función que estamos buscando y después una breve descripción
-
-[ ] Aparece primero el link al paquete de la función que estamos buscando y después una breve descripción
-
-[ ] Aparece primero una breve descripción y después el link con el nombre del paquete::el nombre de la función
-
-[x] Aparece primero el link con el nombre del paquete::el nombre de la función y después una breve descripción
-
+[ ] Aparece primero el link a la función que estamos buscando y después una breve descripción  
+[ ] Aparece primero el link al paquete de la función que estamos buscando y después una breve descripción  
+[ ] Aparece primero una breve descripción y después el link con el nombre del paquete::el nombre de la función  
+[x] Aparece primero el link con el nombre del paquete::el nombre de la función y después una breve descripción  
 
 ### El comando ??:
 
-[ ] Sirve para hacer una búsqueda en la web
-
-[x] Sirve para realizar una búsqueda generalizada sobre un tema
-
-[ ] Sirve para ir directamente a la ayuda de la función que estoy escribiendo
-
-[ ] Sirve para saber en que paquete se encuentra la función que estoy escribiendo
-
+[ ] Sirve para hacer una búsqueda en la web  
+[x] Sirve para realizar una búsqueda difusa o general sobre un tema  
+[ ] Sirve para ir directamente a la ayuda de la función que estoy escribiendo  
+[x] Sirve para saber en que paquete se encuentra la función que estoy escribiendo (aunque no es su propósito principal)  
+[ ] Se usa con la sintaxis `tema??`  
+[x] Se usa con la sintaxis `??tema`
 
 ### Seleccione aquel comando o comandos que sirvan para buscar información sobre un tópico en la ayuda de R
 
-    [x] help.search("topico")
+    [x] help.search("topico")  
+    [ ] help.search(topico)  
+    [ ] helpSearch("topico")  
+    [ ] helpSearch(topico)  
+    [ ] ??(topico)  
+    [x] ??"topico"
 
-    [ ] help.serach(topico)
-    
-    [ ] helpSearch("topico")
-    
-    [ ] helpSearch(topico)
-    
-    [x] ??(topico)
-    
-    [ ] ??"topico"
-
-
-### Seleccione aquel comando o comandos que sirvan para buscar sobre un tópico en la ayuda de R
+### Seleccione aquel comando o comandos que sirvan para acceder a la documentación de R (páginas de ayuda):
 
     [x] help("topico")
-    
     [ ] help <- topico
-    
     [ ] ?(topico)
-    
     [x] ?topico
-    
     [ ] ?help(topico)
 
-### Seleccione aquel comando o comandos que sirvan para buscar sobre un tópico en la web
+### 
 
-    [ ] Rsitesearch(topico)
-    
-    [ ] RsiteSearch(topico)
-    
-    [x] RSiteSearch("topico")
-    
-    [ ] Rsitesearch(topico)
+stackoverflow     -----------> para hacer preguntas específicas
+r-help@r-project  -----------> para hacer preguntas específicas
+google (u otros)  -----------> para buscar por temas generales o preguntas específicas
+RSiteSearch       -----------> para buscar en la web del R-project
+
 

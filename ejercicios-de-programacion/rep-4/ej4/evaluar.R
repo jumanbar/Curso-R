@@ -2,10 +2,10 @@ evaluar <- function() {
   #
   cat("\nCargando funciones y datos para la corrección...\n\n")
   load('datos')
-  arc <- dir()
+  arch <- dir()
   #
   
-  if (!all(f <- esperados %in% arc)) {
+  if (!all(f <- esperados %in% arch)) {
     cat("\n Faltan los siguientes archivos en el directorio de trabajo:\n")
     cat(paste("   - ", esperados[!f], '\n', sep=''), '\n', sep='')    
     cat(" ¡La corrección no puede continuar hasta que no se solucione este problema!\n\n")
@@ -13,9 +13,8 @@ evaluar <- function() {
   }
 
   ### Elección del archivo (y por lo tanto el ejercicio) a corregir
-  s <- menu(paste('Ej. (', ejnum, "): ", corregir, sep=""),
-             title="Elija el archivo que desea corregir:")
-  r <- do.call(paste('cor', ejnum[s], sep=''), list(a=1))
+  s  <- menu(corregir, title="Elija los archivos que desea corregir:")
+  r <- do.call(paste('cor_', gsub('.R', '', corregir[s]), sep=''), list(a=1))
   notas$Nota[s] <- r
 
   ### Feedback:
@@ -27,12 +26,11 @@ evaluar <- function() {
   # suman sus valores y entonces se puede llegar a porcentajes mayores a 100.
   cat('\n==============================\n')
 
-  cat('\nNota total hasta ahora:', notas$Nota[nrow(notas)], '\n')
+  cat('\nNota total hasta ahora:\n\n')
   
-#   print.data.frame(notas, row.names=FALSE, right=FALSE)
-#   cat('\n')
-  codigo <- lapply(corregir, readLines)
-  names(codigo) <- corregir
+  print.data.frame(notas, row.names=FALSE, right=FALSE)
+  cat('\n')
+
   write.csv2(notas, file='notas.csv', row.names=FALSE)
   save(list=guardar, file='datos')
 }
@@ -46,8 +44,8 @@ feedback <- function(r, s) {
   if (r) {
     cat('El script "', s, '" está perfecto, ¡Buen trabajo!\n', sep='')
   } else {
-    cat('El script "', s, '" tiene algún error, lo siento :(\n', sep='')
+    cat('El script "', s, '" tiene algún error, lo sientimos :(\n', sep='')
   }
 }
 
-cat("\n Archivo de codigo fuente cargado correctamente\n\n")
+cat("\n Código fuente cargado correctamente\n\n")
