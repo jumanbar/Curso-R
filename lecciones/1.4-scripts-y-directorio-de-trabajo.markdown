@@ -25,7 +25,7 @@ El trabajo con scripts lleva naturalmente a un ciclo que se puede repetir cuánt
 
 ### Un pequeño ejemplo
 
-En [este enlace](http://eva.universidad.edu.uy/file.php/1454/histograma.R) se puede bajar un script de R de ejemplo llamado “histograma.R”.
+En [este enlace](http://eva.universidad.edu.uy/file.php/1454/R/histograma.R) se puede bajar un script de R de ejemplo llamado “histograma.R”.
 
 Nota: esta página se puede abrir desde R también con el comando:
 
