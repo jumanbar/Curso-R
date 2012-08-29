@@ -14,11 +14,9 @@ a <- area(cat.ad, cat.op)                    # Cálculo de las áreas
 
 #===== Su código comienza aquí: =====#
 
-i    <-
-
-sol  <-
-
-amax <-
+i    <- which.max(a)
+sol  <- cat.ad[i]
+amax <- a[i]
 
 #====== Aquí finaliza su código =====#
 

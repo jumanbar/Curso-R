@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.7)  27 AUG 2012 21:10
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.8.7)  28 AUG 2012 21:20
 entering extended mode
  %&-line parsing enabled.
 **INSTRUCCIONES.tex
@@ -541,28 +541,28 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 1248) in paragraph at lines 145--150
+Underfull \hbox (badness 1248) in paragraph at lines 145--147
 \OT1/cmr/m/n/10 y adem^^Sas podr^^Sa en todo mo-mento ver-i-ficar su pun-taje c
 on la funci^^Son
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 170.
+LaTeX Font Info:    Try loading font information for U+msa on input line 175.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 170.
+LaTeX Font Info:    Try loading font information for U+msb on input line 175.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [2]
-LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 181
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 186
 .
 
 (/usr/share/texmf/tex/latex/R/tex/latex/omscmtt.fd
 File: omscmtt.fd 
 )
 LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 181.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 186.
  [3] [4]
 <figure/unnamed-chunk-9.png, id=94, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-9.png Graphic file (type png)
@@ -571,7 +571,7 @@ File: figure/unnamed-chunk-9.png Graphic file (type png)
 ! Argument of \Hy@tempa has an extra }.
 <inserted text> 
                 \par 
-l.315 ...eresa entender cómo se crea tal figura.}
+l.320 ...eresa entender cómo se crea tal figura.}
                                                   
 ? 
 Runaway argument?
@@ -579,7 +579,7 @@ Runaway argument?
 ! Paragraph ended before \Hy@tempa was complete.
 <to be read again> 
                    \par 
-l.315 ...eresa entender cómo se crea tal figura.}
+l.320 ...eresa entender cómo se crea tal figura.}
                                                   
 ? 
 <figure/unnamed-chunk-10.png, id=96, 505.89pt x 505.89pt>
@@ -587,14 +587,14 @@ File: figure/unnamed-chunk-10.png Graphic file (type png)
 
 <use figure/unnamed-chunk-10.png> [5] [6 <./figure/unnamed-chunk-9.png>]
 [7 <./figure/unnamed-chunk-10.png>] [8]
-LaTeX Font Info:    Try loading font information for OML+cmtt on input line 438
+LaTeX Font Info:    Try loading font information for OML+cmtt on input line 443
 .
-LaTeX Font Info:    No file OMLcmtt.fd. on input line 438.
+LaTeX Font Info:    No file OMLcmtt.fd. on input line 443.
 
 
 LaTeX Font Warning: Font shape `OML/cmtt/m/n' undefined
 (Font)              using `OML/cmm/m/it' instead
-(Font)              for symbol `textless' on input line 438.
+(Font)              for symbol `textless' on input line 443.
 
 [9] [10] [11] [12] (./INSTRUCCIONES.aux)
 
@@ -602,8 +602,8 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 7005 strings out of 495061
- 92883 string characters out of 1182622
+ 7006 strings out of 495061
+ 92894 string characters out of 1182622
  162603 words of memory out of 3000000
  10052 multiletter control sequences out of 15000+50000
  7539 words of font info for 30 fonts, out of 3000000 for 9000
@@ -620,9 +620,9 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb>
-Output written on INSTRUCCIONES.pdf (12 pages, 202278 bytes).
+Output written on INSTRUCCIONES.pdf (12 pages, 202458 bytes).
 PDF statistics:
- 189 PDF objects out of 1000 (max. 8388607)
- 32 named destinations out of 1000 (max. 500000)
+ 190 PDF objects out of 1000 (max. 8388607)
+ 33 named destinations out of 1000 (max. 500000)
  139 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -14,11 +14,11 @@ a <- area(cat.ad, cat.op)                    # Cálculo de las áreas
 
 #===== Su código comienza aquí: =====#
 
-i    <- 
+i    <-
 
-sol  <- 
+sol  <-
 
-amax <- 
+amax <-
 
 #====== Aquí finaliza su código =====#
 
