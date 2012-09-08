@@ -1,0 +1,166 @@
+(1.4) Uso de la ayuda
+=====================
+
+Documentación
+-------------
+
+En cualquier instalación de R existe una muy buena documentación a la que se puede acceder rápidamente a través de los comandos de R. Existen varias formas de hacer esto; aquí veremos las funciones `help` y `help.search`, pero también es posible buscar en los manuales básicos usando `help.start()` (más sobre esto se ve en la sección extra correspondiente a esta lección).
+
+### Función `help`
+
+La función `help` sirve para abrir una página de ayuda en particular. Esto implica que el usuario debe saber de antemano el nombre exacto de la página de ayuda. Las páginas de ayuda en general tienen nombres de funciones (como `mean` o `plot`) o datasets (como `iris`), pero a veces se trata de grupos de funciones similares, agrupadas bajo un mismo nombre. Este es el caso de la página "Normal", relacionada con 4 funciones relativas a la distribución normal o gaussina. Para acceder a esta página los siguientes comandos son equivalentes:
+
+    help(Normal)
+
+    ?Normal
+
+Una vez que se abre este documento, podemos ver que tiene una estructura bien definida. Esta estructura es estándar y es casi siempre la misma para toda función de R. Veamos de que se tratan las distintas secciones.
+
+#### Nombre, título & descripción
+
+Al principio de la página se pueden ver estos tres ítems. El nombre, en este caso "Normal {stats}", indica el nombre de la página y el paquete al que pertenece (en este caso "stats"). Nota: un paquete es un conjunto de funciones o datasets de R asociados a ciertas tareas. Algunos paquetes vienen con el R por defecto, como es el caso de "stats".
+
+El título de la página es un poco más extenso y descriptivo; en el caso que estamos viendo es "The Normal Distribution". Nota: varias distribuciones se encuentran en el paquete "stats"; se puede ver la lista completa con el comando `?Distributions`.
+
+La descripción es una síntesis de la función o funciones en cuestión.
+
+#### Usage
+
+Esta es una de las secciones que más usamos en la práctica, junto con "Arguments" y "Examples".
+
+En la sección "usage" vemos una o más funciones (en este caso se verían 4), mostrando su modo de uso. Es decir, en cada caso se trata de la sintaxis que se debe usar, pero no es necesariamente la forma en que la vamos a usar en la práctica. La diferencia entre estos ejemplos y la práctica radica en los argumentos con o sin valor por defecto.
+
+Cuando hablamos de argumentos, nos referimos a variables (objetos) que son las entradas (inputs) que usan las funciones para trabajar. Por ejemplo, la función `rnorm` tiene tres argumentos: `n`, `mean`, y `sd` (ver en la página de ayuda). A su vez, de estos tres argumentos, dos de ellos tienen valor por defecto: `mean` y `sd`, cuyos valores por defecto son 0 y 1. Esto implica que si al usar esta función se omiten estos argumentos, entonces tomarán estos valores.
+
+Por ejemplo, es perfectamente correcto ejecutar la función `rnorm` de la siguiente manera:
+
+    rnorm(10, 3)
+
+En este caso `n = 10` y `mean = 3`, mientras que `sd` toma su valor por defecto, 1. Debido a que `n` no tiene valor por defecto, el siguiente comando no puede ser aceptado por R
+
+    > rnorm(mean = 3)
+    Error in rnorm(mean = 3) : argument "n" is missing, with no default
+
+debido a que es necesario que el usuario indique el valor de `n`.
+
+#### Arguments
+
+En esta sección se da una descripción detallada de cómo deben ser y qué siginifican los distintos argumentos de las funciones. Aquí es particularmente importante determinar la *clase* de cada arguemnto. El concepto de clase de un objeto de R lo veremos en la próxima unidad, pero por el momento es útil saber que se trata de distintas categorías, como lo son los números de las palabras (cualquier cosa delimitada por comillas), como pueden ser los siguientes objetos:
+
+    numero <- 114
+    palabra <- "No hay problema!"
+
+#### Details
+
+Aquí aparecen detalles de los algoritmos e información más profunda acerca de lo que hace internamente la función. Se supone que es información eventualmente relevante para el usuario.
+
+#### Value
+
+Se indica la estructura y el tipo de objeto que se espera como salida de la función. Puede ser sumamente corta (como el ejemplo dado) o sumamente larga, dependiendo mucho de qué tipo de función sea.
+
+#### References, author, etc
+
+La sección "references" es simplemente la bibliografía en la que está basada la función, es decir, el algoritmo implementado.
+
+En "author" se pueden ver los nombres de los autores de la funcion y muchas veces un correo electrónico de contacto.
+
+Otras secciones pueden aparecer aquí, como "source" en el caso de "Normal"
+
+#### See also
+
+Esta es una sección muy simple pero sorprendentemente útil, ya que muestra links con otras funciones que pueden hacer cosas similares. Muchas veces sirve para llegar a una función que necesitamos pero no conocemos, a través de otras que sí conocemos pero no vamos a usar.
+
+#### Examples
+
+Esta es una sección con el potencial de ser muy útil. Se trata de uno o varios ejemplos escritos en código R para correr en la consola. Se puede copiar y pegar por supuesto, pero también existe el comando `example`, el cual ejecuta estos mismos comandos. Por ejemplo:
+
+    example(Normal) # Ejemplo de la ayuda en la distribución Normal
+    example("mean") # Función mean: ejemplos
+
+Nótese que se pueden usar comillas o no para nombrar a la función en cuestión (o página de ayuda para ser más precisos).
+
+Se han criticado varios de estos ejemplos por utilizar casos demasiado complicados para que los entienda un principiante, pero esto no es la norma. En particular, muchas veces se incluyen en los ejemplos otras funciones que tampoco se tienen porqué conocer de antemano.
+
+### Función `help.search`
+
+Cuando no tenemos certeza acerca de la existencia de una función o dataset en particular, podemos hacer búsquedas difusas utilizando la funcion `help.search`. Por ejemplo, si el tema que nos interesa es series de tiempo, entonces podemos usar la palabra clave "series":
+
+    help.search("serues")
+
+    ??serues
+
+Nuevamente, estos dos comandos son idénticos. Nótese que escribí mal la palabra clave a propósito, a fin de mostrar que a pesar de esto R logra hacer una búsqueda útil. Dicha búsqueda aparece en una página con una lista. Cada entrada sigue el formato genérico:
+
+> "paquete::función  Breve descripción"
+o
+> "paquete::dataset  Breve descripción"
+
+Por ejemplo, la primer función que aparece con la búsqueda de ejmplo en mi computadora es "tsboot", la cual pertenece al paquete "boot" y cuya descripción breve es "Bootstrapping of Time Series".
+
+Esta búsqueda difusa es inmensamente útil para encontrar funciones sin saber su nombre de antemano, utilizando las palabras clave adecuadas por supuesto.
+
+Recursos en línea
+-----------------
+
+El uso de la internet es sin duda una ruta muy provechosa para acceder a información de todo tipo, incluyendo aquella relativa a R. Veremos ahora algunos ejemplos notables relativos a R.
+
+### `RSiteSearch`
+
+Para empezar, en las páginas del R-project se encuentran muchos recursos útiles, tales como paquetes, la lista de correos, archivos, páginas de ayuda, viñetas y vista de tareas. De hecho, R viene con una función especial para buscar entre dichos archivos: `RSiteSearch`. Por ejemplo, si nos interesa buscar funciones o paquetes útiles para hacer análisis de componentes principales, puedo ejecutar:
+
+    RSiteSearch("principal components analysis")
+
+Esto abre una página en el buscador, que de hecho usa un [motor de búsqueda de R](http://search.r-project.org) al que se puede acceder por la web directamente también.
+
+Nota: la aparición de caracteres "raros" puede darse a causa de la [codificación](https://es.wikipedia.org/wiki/Codificaci%C3%B3n_de_caracteres); esto se puede arreglar con cualquier buscador normal usando los botones de menú adecuados.
+
+### Motores de búsqueda en la web
+
+Por supuesto que el motor de búsqueda de su preferencia, como pueden ser google u otros, es válido y útil para buscar ayuda respecto a R.
+
+Tal como casi toda información que uno busca por internet, suele haber más y mejor si uno busca en inglés.
+
+### Grupos de usuarios de R
+
+En muchos países y/o ciudades del mundo los usuarios de R han alcanzado números tan altos que han decidido [formar grupos](http://rwiki.sciviews.org/doku.php?id=rugs:r_user_groups). Personalmente no hemos participado, los docentes del curso, de estos grupos, pero sin duda que pueden ser una fuente de soporte muy útil si se logra una comunicación fluida.
+
+En Uruguay existe uno de [estos grupos](http://www.softwarelibre.edu.uy/tiki-index.php?page=Grupo+R) (del cual tenemos conocimiento desde hace muy poco); recomendamos visitar la página y por qué no solicitar inscripción en el mismo.
+
+### Lista de correos
+
+La dirección de correo **r-help@r-project.org** funciona como foro de preguntas y respuestas, en el que cualquiera puede enviar una duda o colaborar respondiendo a preguntas de otros. En esta lista participan muchas personas con enorme experiencia e incluso algunos desarrolladores del R Development Core Team.
+
+También aquí es cierto que la mayoría de los usuarios hablan o entienden inglés, por lo que preguntas en español son menos probables de encontrar respuesta.
+
+Para usar este recurso efectivamente, hay que seguir ciertas reglas básicas que son importantes, como agotar los recursos que disponemos para resolver nuestro problema (como manuales, la web, etc) y exponer nuestra duda de la forma más transparente posible (usualmente usando buenos ejemplos). En [esta página](http://www.r-project.org/posting-guide.html) se pueden ver otros aspectos a tener en cuenta a la hora de enviar un correo a esta dirección.
+
+Debe notarse también que existen otras listas de correos en el R-project que [son más específicas](http://www.r-project.org/posting-guide.html), tales como SIG o ecología.
+
+En general la velocidad de respuesta de estas listas es muy alta; en mi caso he recibido respuestas en menos de 5 o 10 minutos de ser enviada.
+
+### stackoverflow
+
+El sitio [stackoverflow](stackoverflow.com) es otro recurso de preguntas y respuestas (Q&A) relacionadas a problemas de todo tipo, pero predominantemente asociado a programación e informática. Se trata de una opción similar a la lista de correos de R, ya que el principio es el mismo, pero es mucho más elaborado y amigable. Hoy en día es sumamente popular.
+
+De particular utilidad resulta el sitema de votación de los mensajes, sean preguntas o respuestas. Es decir, todo usuario puede dar un voto positivo o negativo a una pregunta o a una de las respuesas de dicha pregunta. De esta forma el sistema se apoya en la capacidad crítica del una masa de usuarios, que termina filtrando los contenidos y resaltando lo más interesantes.
+
+A su vez hay un sistema de etiquetas ("tags") o palabras clave que sirve para organizar las preguntas. Es decir, al momento de formular una pregunta el usuario debe asignar una o más etiquetas, de forma que sirvan de referencia para la búsqueda de preguntas de parte de los usuarios.
+
+Al igual que en la lista de correos de R, la velocidad de respuesta suele ser rápida, gracias la gran cantidad de personas que utilizan este recurso. De forma similar, aquí es importate también el uso de [modales correctos](http://stackoverflow.com/faq#etiquette) y tratar de hacer preguntas claras usando buenos ejemplos.
+
+Otros detalles, como la posibilidad de usar el formato [markdown](http://daringfireball.net/projects/markdown/dingus), o el sistema de "medallas" y ["reputación"](http://stackoverflow.com/faq#reputation) para premiar por la participación a los usuarios, potencian la usabilidad y popularidad del sitio.
+
+Resumen
+-------
+
+Los recursos que existen para recurrir a ayuda son notablemente grandes en el ecosistema de los usuarios de R. Para empezar la documentación incorporada en el programa mismo, así como la base de archivos de la web del R-project, es excelente y de rápido acceso. Nótese que no hemos mencionado los manuales básicos en esta lección, pero estos se encuentran en la sección "extra" de la misma.
+
+Por otro lado, la existencia de una enorme masa de usuarios permite el poder acudir a ayuda específica de nuestros prolemas, a través de recursos como la lista r-help y stackoverflow.
+
+
+
+
+
+
+
+

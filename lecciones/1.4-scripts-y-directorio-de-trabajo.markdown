@@ -1,0 +1,155 @@
+
+(1.4) Scripts & Directorio de trabajo
+=====================================
+
+Scripts en R
+------------
+
+Cuando se habla de escribir un programa, se trata poner una secuencia de comandos en un orden no aribtrario. Para guardar estos comandos se utilizan archivos de texto plano (siendo el ejemplo clásico los archivos ".txt"). Normalmente estos archivos se guardan con una extensión que indica el lenguaje del código escrito. En el caso de R, ".R" y ".r" son las extensiones por convención. Estos archivos son llamados "scripts" o “archivos de código fuente” ("source code file" en inglés) y cada uno sirve para ejecutar una o varias tareas.
+
+Si bien no es necesario trabajar siempre con scripts, es recomendable generar el hábito de hacerlo. Al guardar los comandos en un script no sólo guardamos aquellos detalles que son sutiles y difíciles de recordar de otra forma, si no que también estamos guardando parte de nuestro proceso mental de trabajo. Esto se refuerza con uso regular de los comentarios en el código (líneas de código con un `#` inicial).
+
+Por otro lado, un script permite volver a reproducir nuestro análisis en el futuro o que otra persona lo haga. Se trata de algo importante a nivel individual, pero que también tiene una gran relevancia en la forma en que se hace ciencia en general. Este es un tema muy actual a nivel mundial, habiéndose instalado el término "[Reproducible Research](http://stats.stackexchange.com/questions/14999/how-are-we-defining-reproducible-research#15006)" (Investigación Reproducible) para describir esta faceta del proceso científico.
+
+R acepta una sola orden por vez y en un script esto se traduce a que solo se puede escribir una orden por línea de texto. Usualmente se comienza con algo muy simple, unas 4 o 5 líneas, pero a medida que vamos perfeccionando y añadiendo etapas un script crece, llegando sin demasiada dificultad a las 100 líneas de código en un sólo archivo.
+
+Ciclo de trabajo
+----------------
+
+El trabajo con scripts lleva naturalmente a un ciclo que se puede repetir cuántas veces sea necesario. Se trata de un ciclo en el que se van ajustando detalles hasta llegar al resultado que necesitamos. Estos pasos se pueden describir como:
+
+1. Escribir el código fuente en un script de R.
+2. Enviar y ejecutar dicho código en R, vía source (u otra forma, como puede ser copiar y pegar).
+3. Evaluar en la consola o figuras (o en cualquier tipo de salida que generamos con nuestro código) los resultados obtenidos.
+4. Si es necesario, volver al script y hacer los cambios que queremos, comenzando de vuelta el proceso.
+
+### Un pequeño ejemplo
+
+En [este enlace](http://eva.universidad.edu.uy/file.php/1454/R/histograma.R) se puede bajar un script de R de ejemplo llamado “histograma.R”.
+
+Nota: esta página se puede abrir desde R también con el comando:
+
+    browseURL('http://eva.universidad.edu.uy/file.php/1454/histograma.R')
+
+El archivo se puede guardar en el disco duro en el directorio en que R trabaja por defecto (`Mis Documentos` en la mayoría de las máquinas con Windows; en R se puede saber cuál es el directorio de trabajo actual con el comando:
+
+    getwd()
+
+Una vez guardado, la función `source` se utiliza para ejecutar todos los comandos contenidos en el archivo:
+
+    source(“histograma.R”)
+
+Es necesario siempre usar comillas para indicar nombres de archivos como en este caso. Tanto las comillas dobles (") como las simples (') sirven.
+
+Al ejecutar este comando, si el archivo `histograma.R` fue guardado en la ubicación correcta, entonces debería verse un gráfico similar al de la **Figura 1**.
+
+Este es un ejemplo sumamente simple de script, pero que sin embargo tiene varios detalles que fueron ajustados de forma progresiva hasta llegar al estado actual. En particular, inicialmente se empezó por un histograma sólo, luego se fueron agregando detalles como la curva de densidad (azul) y la curva teórica (rojo), así como los grosores de las distintas curvas.
+
+Lo invitamos a que experimente con este archivo, modificando detalles como el color y grosor de las líneas o el número de elementos de `x` o incluso manipular las leyendas usando los argumentos opcionales `main`, `xlab` e `ylab` en la función `hist`.
+
+________
+
+![**Fig. 1.** Imagen creada con el script `histograma.R`](files/histograma.png "Una distribución aproximadamente normal")
+
+________
+
+Scripts en RStudio
+---------------------
+
+En una ventana abierta de RStudio, tenemos varios paneles con distintas partes de nuestro trabajo (ver la Guía del RStudio en la página del curso). El panel 1, el editor de texto, es en donde trabajamos con los scripts de R. Aquí en lugar de salvar y luego ejecutar `source`, es posible usar alguna de estas combinaciones de teclas:
+
+* **Ctrl + Shift + S** (la opción más "rápida & silenciosa")
+* **Ctrl + Shift + Enter** (imprime todas las líneas en la consola al ejecutarlas)
+* **Ctrl + Shift + O** (abre una ventana para elejir el archivo de código fuente)
+* **Ctrl + Enter** (ejecuta una línea o una selección previa del usuario)
+
+De esta forma se hace más rápido observar el resultado final de nuestro script y por lo tanto hace menos engorroso el ciclo de trabajo antes mencionado. En este curso se pretende acostumbrar al estudiante a usar scripts para organizar su trabajo. Por esta razón las lecciones escritas, en su mayoría, se presentan en este formato.
+
+### Observación:
+
+Si nuestro "`archivo.R`" no se encuentra en el directorio de trabajo actual, existen dos opciones:
+
+* Una es cambiar el directorio de trabajo (desde R la función `setwd()`, pero también hay botones en todas las interfaces gráficas como el R-GUI de Windows y RStudio).
+* La segunda opción es escribir el nombre incluyendo el camino relativo del archivo respecto al directorio actual. Para esto hay que considerar el árbol de directorios de nuestro disco duro y en qué parte de él se encuentra el `getwd()`.
+
+Como se habrá dado cuenta, el directorio de trabajo es clave para la interacción entre R y archivos externos, como pueden ser scripts o datos. Por esta razón el resto de la lección será dedicada a comprender mejor la forma de trabajar con el directorio de trabajo.
+
+________
+
+Directorio de trabajo
+---------------------
+
+Cómo ya habrá notado, el directorio de trabajo es simplemente la carpeta en la que R está trabajando en un momento dado. Ya vimos que la función `getwd` nos devuelve la dirección de la carpeta actual, o más exactamente el "camino" desde la raíz hasta esta. En el caso del ejemplo gráfico (Fig. 2), el comando `getwd()` devolvería un texto como este:
+
+`"/raíz/dir_A/dir_trabajo"`
+
+Nótese que se usa la _barra_ ("`/`") y **no la contrabarra** ("`\`") (el carácter utilizado por Windows) para armar el camino.
+
+De esta forma sabemos el **camino** que lleva desde el directorio raíz (la raíz del árbol de carpetas) hasta el directorio de trabajo actual. En Windows el camino por defecto típicamente es "`C:\Documents and Settings\username\My Documents`", mientras que en GNU/Linux suele ser "`/home/usuario/`" (o directamente "`~`").
+
+________
+
+![**Fig. 2.** Árbol de directorios de ejemplo; la carpeta actual de trabajo es "dir_trabajo"](files/dir-tree-small.png "Ejemplo de árbol de carpetas")
+
+________
+
+### Acceso a archivos en el disco duro
+
+Como vimos antes, para ejecutar el comando
+
+    source('histograma.R')
+
+Es necesario que el archivo con el código fuente `histograma.R` se encuentre en el directorio de trabajo actual. Una forma de confirmar que este archivo está en dicha carpeta, es con el comando:
+
+    dir()
+
+En caso de que el código fuente se encuentre en otra carpeta, podemos utilizar el **camino absoluto** o el **camino relativo** para acceder al mismo. Supongamos que `histograma.R` se encuentra en la carpeta `dir_A`, mientras que nuestra sesión de R está corriendo en el directorio `dir_trabajo`. Entonces para ejecutar `source` los caminos absoluto y relativo son respectivamente:
+
+* `"/raíz/dir_A/histograma.R"`
+* `"../histograma.R"`
+
+Por lo tanto, para ejecutar los comandos de dicho script, debe usarse `source` de una de las siguientes maneras:
+
+* `source("raíz/dir_A/histograma")`
+* `source("../histograma")`
+
+Nótese que se usan los dos puntos "`..`" para indicar que queremos ir a un nivel superior dentro del árbol. Si el archivo se encontrara en el directorio `dir_B` de la **Fig. 2** entonces el camino relativo sería
+
+`"../../dir_B"`
+
+(aquí "`../../`" equivale al directorio "`raíz`")
+
+Nótese también que el camino _incluye_ al nombre del archivo con el script de R.
+
+En el caso de que histograma.R se encontrase en la carpeta `subdir` de la **Fig. 2**, los caminos absoluto y relativo serían:
+
+ * `"/raíz/dir_A/dir_trabajo/subdir/histograma.R"`
+ * `"subdir/histograma.R"`
+
+Nótese por último que los caminos relativos nunca usan la barra como carácter inicial.
+
+### Otras funciones
+
+Así como `source` interactúa con archivos que se encuentran en nuestro disco duro, otras funciones usadas a menudo también lo hacen y siguen las mismas reglas básicas en lo que respecta a la forma en que llaman o crean archivos en el disco duro.
+
+La función `dir`, mencionada arriba, es un ejemplo. Si quisiéra ver la lista de archivos de la carpeta `dir_A` sólo debo usar el camino absoluto o relativo correcto.
+
+Mencionamos aquí algunas otras funciones comunes que también sirven para comunicar a R con los archivos del disco duro:
+
+ * `read.table` & `write.table`, usadas para importar y exportar tablas de datos
+ * `save`, `save.image` & `load`, para guardar y cargar áreas de trabajo u objetos de R en un formato nativo de este lenguaje
+
+Menos usadas, pero bastante relevantes también son `dir.create`, `unlink`, `file.path` y otras afines, todas ellas utilizables para manipular archivos y/o carpetas del disco duro.
+
+_______
+
+Observaciones finales
+---------------------
+
+### Scripts
+
+La comprensión de cómo y para qué se usan los scripts es fundamental para este curso así como para el uso cotidiano de R. Si bien no se ha mencionado explícitamente, la coherencia y prolijidad con la que hacemos nuestros scripts se vuelve una virtud muy valiosa a media que estos van creciendo en tamaño. Por otro lado, el orden a la hora de documentar y modificar versiones de nuestros scripts se hace muy importante cuando se trata de proyectos grandes. Una práctica extendida en programación es el uso de programas especializados en el [control de versiones](https://es.wikipedia.org/wiki/Control_de_versiones), como [git](http://git-scm.com/) o [subversion](http://subversion.apache.org/). Dicho software existe para poder conservar la historia completa de cambios que van sufriendo los archivos con los que se trabaja y particularmente sirven para coordinar el trabajo entre múltiples desarrolladores en simultáneo (de hecho la mayor parte de los contenidos de este curso se encuentran alojados en un [repositorio online](https://github.com/jumanbar/Curso-R)).
+
+### Directorios de trabajo y caminos absolutos/relativos
+
+Casi todo trabajo real que hagamos con R va a involucrar archivos contenidos en el disco duro. Entender a la perfección cómo funciona el acceso por línea de comando a estos archivos puede parecer más que lo necesario para trabajar con R (sobre todo considerando programas como RStudio que ofrecen facilidades para no molestarse demasiado con estos detalles). Sin embargo estos conocimientos suelen hacerse necesarios antes de lo que uno espera y eventualmente se convierten en algo cotidiano. Por lo tanto, acostumbrarse a usar los comandos `getwd`, `setwd`, `dir` y a escribir los caminos relativos (o absolutos) de los archivos es una excelente práctica para todo principiante.
