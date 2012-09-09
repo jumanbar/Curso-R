@@ -1,0 +1,31 @@
+
+### Clases de vectores
+
+Determinar las clases de los siguientes vectores:
+
+    1:5                       -- integer
+    21:40 / 3                 -- numeric
+    c(2:9, '11')              -- character
+    seq(0.1, 1, by=0.1) > 0.5 -- logical
+                              -- matrix
+                              -- data.frame
+                              -- list
+    
+## Funciones genéricas
+
+Teniendo en cuenta lo dado en la lección 2.2, determine cuáles de las siguientes afirmaciones considera correctas:
+
+    [x] Las funciones genéricas son aquellas que tienen una variedad de métodos, asociados a distintas clases de objetos. La cantidad de métdos es finita y nuevos métodos deben ser creados por usuarios o desarrolladores para poder utilizarlos.
+    (Es correcto, las funciones genéricas están limitadas al número de métodos definidos previamente. Cualquier usuario puede crear un nuevo método si diseña una función con un nombre del tipo "funcion.clase" )
+
+    [x] Los métodos de las funciones genéricas son funciones cuyos nombres tienen el formato: "funcion.clase".
+    (Es correcto. Cualquier usuario puede crear un nuevo método si diseña una función con un nombre del tipo "funcion.clase" )
+
+    [x] Las funciones print, summary o mean son ejemplos de funciones genéricas que se usan casi todo el tiempo.
+    (Así es, al igual que plot o str. )
+
+    [ ] En verdad toda función de R es genérica, sólo hace falta crear una nueva función llamada "funcion.clase" para agregar un método de dicha combinación función/clase.
+    (No es así, de hecho existe una función específica para crear funciones genéricas: 'setGeneric')
+
+    [ ] La denominación función genérica abarca un conjunto de funciones que son capaces de aceptar como entrada objetos de cualquier clase que al usuario se le ocurra.
+    (No es así, los métodos de una función genérica deben ser definidos previamente para poder trabajar con una clase particular de objetos. Por lo tanto no todo objeto podrá ser usado como entrada para una función genérica dada, como puede ser summary.)
