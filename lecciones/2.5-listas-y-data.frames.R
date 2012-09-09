@@ -133,156 +133,87 @@ names(x) <- c('nicolas', 'ezequiel')
 d <- data.frame(enteros=1:10, decimales=seq(.1, 1, by=.1))
 # El resultado es una tabla con dos columnas llamadas "enteros" y "decimales". 
 # Nótese que estos son dos vectores de clases diferentes:
-head(d)
+head(d) # La función head devuelve los primeros elementos; ver también ?tail
+class(d)
 class(d$enteros)
 class(d$decimales)
 
-# Nótese también que el uso del operador $ es idéntico al caso de las listas.
+# Nótese también que el uso del operador $ es idéntico al caso de las 
+# listas. Una característica de las data.frame que las diferencia de las 
+# matrices es que necesariamente deben tener las columnas nombradas. Nótese 
+# que tanto en matrices como en data.frames las columnas se pueden nombrar 
+# usando colnames (equivalente a names si se trata de un data.frame) y que las 
+# filas también se pueden nombrar, usando rownames.
+
+# Las funciones genéricas str y summary son opciones muy útiles para ver la 
+# data.frame de forma resumida:
+str(d)
+summary(d)
 
 # Adicionalmente, es bastante común transformar matrices (objetos de la clase 
 # "matrix") en data.frames, utilizando el coercionador as.data.frame de la 
 # siguiente manera:
-x <- matrix(1:25, 5, 5)
-as.data.frame(x)
+m <- matrix(1:25, 5, 5)
+as.data.frame(m)
 
 # Otros objetos pueden convertise en data.frame también con esta función. Se 
 # mencionará más sobre este tipo de funciones en la lección relacionada.
 
-# Una forma de crear un data.frame es  en este tipo de objeto:
-# "as.data.frame" sirve para convertir un objeto de otra clase (vector, matriz)
-# como data.frame:
-x <- matrix(1:25, 5, 5)
-(y <- as.data.frame(x))
-# Nótese que las columnas/variables de y tienen nombres (en lugar de [,1],
-# [,2], etc...), ya que es una de las características de la clase data.frame.
-class(y) # "data.frame"
-# x sin embargo no ha cambiado:
-x
-class(x)
+# De todas maneras, tal vez la forma más común de incorporar una data.frame a 
+# una sesión de R es importando una tabla de datos, ya que al hacerlo 
+# (usualmente con las funciones read.table o read.csv) R devuelve objetos de 
+# esta clase.
 
-# Otra forma de crear un data.frame
-dataf <- data.frame(enteros=1:10, decimales=seq(.1, 1, by=.1))
-# El resultado, "dataf", es una tabla con dos columnas llamadas "enteros" y
-# "decimales")
-head(dataf)
+# Para mostrar los ejemplos de esta lección nos basaremos en algunas tablas de 
+# datos que ya vienen incluidas en el R básico (específicamente en el paquete 
+# 'datasets'). Las data.frames "cars" e "iris" son las que usaremos aquí 
+# particularmente.
+
+summary(cars)
+str(iris)
 
 
-
-# Para mostrar los ejemplos de esta lección nos basaremos
-
-# "cars" e "iris" son dos tablas de datos que vienen incluídas con los paquetes
-# básicos de R y que ya están en la sesión por defecto:
-class(cars)
-head(cars)  # "head" devuelve las primeras seis filas de una matriz o data.frame
-head(iris)
-dim(iris)   # Funciona igual que en matrices
-mean(iris)  # Otra vez, comportamiento diferente
- 
-# Al igual que con las listas comunes, el operador $ sirve para llamar las
-# variables por sus nombres, en el caso de que los tengan:
-cars$speed
-iris$Petal.Length
-
-# Y al igual que en las listas también se pueden usar los números entre corche-
-# tes dobles:
-cars[[1]]
-iris[[3]]
- 
-# Un resultado similar, aunque no igual, se puede obtener usando corchetes
-# simples:
-cars[1] 
-
-# La diferencia entre [ ] y [[ ]] en este caso es la clase a la que pertenecen
-# los resultados:
-class(cars[1])
-# [1] "data.frame"
-class(cars[[1]])
-# [1] "numeric"
-# En el último caso la clase del objeto es la misma que el de la variable
-# correspondiente, o sea un vector numérico:
-class(cars$speed) # "numeric"
+## Índices y data.frames
  
 # En muchos sentidos un data.frame se comporta en forma similar a un objeto de
-# clase "matrix"
+# clase "matrix". En particular, la forma de usar los índices es 
+# prácticamente idéntica: hay que especificar filas y columnas (y en ese orden).
+# Por ejemplo:
 iris[1,]
 iris[2, 5]
-(x <- cbind(iris, nuevaCol=1:150))
-head(x) # Nótese cómo se nombro la nueva columna en el momento de agregarla.
- 
-# Aunque no todo está permitido ...
-rbind(cars, matrix(0, 4, 2)) # El problema está en la diferencia de nombres.
- 
-# Sin embargo tiene la ventaja de que las columnas pueden ser de distintas
-# clases:
-class(iris$Species)      # "factor"
-class(iris$Sepal.Length) # "numeric"
- 
-# ¿Cómo crear data.frame?
-# Una forma de crear un data.frame es transformar algo en este tipo de objeto:
-# "as.data.frame" sirve para convertir un objeto de otra clase (vector, matriz)
-# como data.frame:
-x <- matrix(1:25, 5, 5)
-(y <- as.data.frame(x))
-# Nótese que las columnas/variables de y tienen nombres (en lugar de [,1],
-# [,2], etc...), ya que es una de las características de la clase data.frame.
-class(y) # "data.frame"
-# x sin embargo no ha cambiado:
-x
-class(x)
 
-# Otra forma de crear un data.frame
-dataf <- data.frame(enteros=1:10, decimales=seq(.1, 1, by=.1))
-# El resultado, "dataf", es una tabla con dos columnas llamadas "enteros" y
-# "decimales")
-head(dataf)
- 
+# También sirven las funciones cbind y rbind, para pegar nuevos elementos, por 
+# columnas o filas respectivamente. Por ejemplo, sabiendo que iris tiene 150 
+# filas (lo que se puede averiguar con nrow o dim), puedo agregar el una nueva 
+# variable llamada "nuevaCol" con cbind de la manera siguiente:
+(x <- cbind(iris, nuevaCol=1:150))
+head(x)
+
+# Nótese cómo se nombro la nueva columna en el momento de agregarla.
+
+
+## Otras observaciones
+
 # El data.frame está pensado especialmente para trabajar con datos y muchos
 # métodos gráficos o estadísticos están definidos para trabajar sólamente con
 # este tipo de objetos. Vamos a profundizar en estos aspectos más adelante en el
 # curso. Por ahora nos vamos a limitar a un par de ejemplos gráficos:
 plot(iris)
 plot(Petal.Length ~ Petal.Width, data=iris, col=rep(1:3, each=50))
-# En verdad este ejemplo se puede hacer con matrices, siempre y cuando tengan
-# nombres asignados en las columnas.
+# Nota: este ejemplo se puede hacer con matrices, siempre y cuando tengan
+# los nombres correctos asignados a las columnas. Sin embargo el siguiente 
+# ejemplo no puede hacerse con una matriz con estas características:
 plot(Petal.Length ~ Species, data=iris)
-# Ploteo de cajas: este no se puede hacer con matrices, ya que requiere una
-# variable categórica, "Species", de clase "factor". Como recordamos, las
-# matrices sólo admiten elementos de una misma clase.
- 
-# Debido a que son muy parecidas, uno tiende a usar las mismas funciones para
-# matrix y data.frames, pero a veces nos puede dar error por usar la clase
-# equivocada... hay que estar atentos.
-x <- matrix(1:30, 6, 5)
-plot(x)
-# Esto grafica las dos primeras columnas de x en los ejes x e y del gráfico
-plot(as.data.frame(x))
-# Al graficar a x como data.frame se grafica cada par de variables, o sea todas
-# contra todas las columnas
- 
+# Se trata de un ploteo de cajas: este no se puede hacer con matrices, ya que
+# requiere una variable categórica, "Species", de clase "factor" y por lo 
+# tanto debería tener objetos de distintas clases, lo cual, como recordará, no 
+# es posible con matrices. 
+
+# Es entonces importante recordar que más allá de similitudes, matrices y 
+# data.frames *no* son la misma cosa.
+
 # Resumen:
 # Las listas y los data.frames son dos estructuras muy convenientes para
 # trabajar con datos. Su complejidad no es significativamente mayor al de las
 # matrices y sin embargo tienen diferencias que van a probar ser cruciales para
 # facilitar un diálogo fluído en análisis estadísticos y el trabajo con datos.
-
-
-
-# Los atributos y las clases de los objetos son frecuentes causantes de errores
-# y confusiones. Existen objetos que tienen atributos de varias clases, ya que
-# hay clases que heredan y/o comparten atributos con otras.
-# Un caso clarísimo es la clase "data.frame", la cual tiene varias facilidades
-# para trabajar con datos que la hacen superior a la clase "matrix" para dichas
-# tareas, a pesar de que tienen muchas cosas en común.
-# Una consecuencia de esta similitud es que muchas operaciones con matrices son
-# iguales con data.frames:
-datos  <- data.frame(x=rnorm(6), y=rnorm(6, mean=3))
-matriz <- as.matrix(datos) 
-datos[1,2] == matriz[1,2]        # Usan el mismo sistema de índices
-cbind(datos, rnorm(6, mean=10))  # Funcionan igual con cbind y rbind
-cbind(matriz, rnorm(6, mean=10))
-# Sin embargo en ciertas ocasiones no son lo mismo:
-x <- dist(datos)
-x <- as.matrix(x)
-image(x)                # No hay problema
-image(as.data.frame(x)) # Sí hay problema...
- 

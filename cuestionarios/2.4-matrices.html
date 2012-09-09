@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+</head>
+<body>
+<h1 id="matrices">Matrices</h1>
+<h3 id="ligero-error">Ligero error</h3>
+<p>Considerando el siguiente comando:</p>
+<pre><code>m &lt;- matrix(1:19, ncol = 5, nrow = 4, byrow=T)</code></pre>
+<p>Determine cuáles de las siguientes afirmaciones son correctas:</p>
+<pre><code>[x] No hay errores, sólo un mensaje de advertencia debido a que hay sólo 19 números para una matriz de 20 elementos (y 20 no es múltiplo de 19). En estos casos R recicla los elementos del vector para completar la matriz.
+[x] Se ponen las columnas antes que las filas, pero debido a que son nombrados los argumentos esto no tiene importancia.
+[ ] Hay un sólo error: el número de elementos del vector es inferior al número total de la matriz.
+[ ] Hay dos errores: el número de elementos (19 &lt; 20) y las columnas se ponen antes que las filas.</code></pre>
+<h3 id="índices-1">Índices 1</h3>
+<p>Para acceder al elemnto de la segunda fila y cuarta columna de una matriz &quot;n&quot;, cuál de los siguientes comandos es el correcto:</p>
+<pre><code>[ ] n[2,]
+[ ] n[, 4]
+[x] n[2, 4]
+[ ] n[4, 2]</code></pre>
+<h3 id="índices-2">Índices 2</h3>
+<p>Considerando la siguiente matriz m:</p>
+<pre><code>m &lt;- matrix(sample(6 * 5), 6, 5)</code></pre>
+<p>Determine los resultados de los siguientes comandos:</p>
+<pre><code>m[2:3,]                     -- Devuelve las filas 2 y 3
+m[,2:3]                     -- Devuelve las columnas 2 y 3
+m[,c(2, 4)]                 -- Devuelve las columnas 2 y 4
+m[c(1, 8)] &lt;- 0             -- Cambia m[1, 1] y m[2, 2] por ceros
+m[c(1, 5), c(1, 2)] &lt;- 0    -- Cambia m[1, 1] y m[5, 2] por ceros</code></pre>
+<h3 id="valor-de-la-fila-3-columna-5">Valor de la fila 3, columna 5</h3>
+<p>¿Cuál será el valor de la fila 3, colunma 5 de las siguientes matrices?:</p>
+<pre><code>matrix(1:25, 5)                       -- 23 
+matrix(1:25, ncol = 5, byrow=TRUE)    -- 15
+matrix(20:1, nrow = 4, ncol = 5)      -- 2
+matrix(c(1:14, 3), 3)                 -- 3
+matrix(-10:9, 5, 4, byrow=F)          -- Error
+matrix(-10:9, 4, 5, byrow=T)          -- 4
+rbind(1:6, 6:1, -1:-6, -2:3)          -- -5</code></pre>
+</body>
+</html>
