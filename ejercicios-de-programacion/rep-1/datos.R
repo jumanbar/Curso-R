@@ -22,7 +22,7 @@ oblg   <- length(ejnum) - length(extras)
 guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar',
              'notas', 'codigo', 'Area', 'Co', 'Geom', 'Hipot', 'Shannon', 'Zenon', 
              'cor1.a', 'cor1.b', 'cor1.c', 'cor2.a', 'cor2.b', 'cor2.c', 'cor3.a',
-             'cor3.b')
+             'cor3.b', 'corAll')
 
 ### FUNCIONES AUXILIARES:
 
@@ -51,7 +51,7 @@ Shannon <- function(x) {
 
 ## Ej. 1
 
-cor1.a <- function(a) {
+cor1.a <- function() {
   load('datos')
   source('hipot.R')
   rd <- runif(4, 4, 10)
@@ -60,7 +60,7 @@ cor1.a <- function(a) {
   f1 * f2
 }
 
-cor1.b <- function(a) {
+cor1.b <- function() {
   # Cargar datos y script
   load('datos')
   
@@ -74,8 +74,8 @@ cor1.b <- function(a) {
   # Generación de datos nuevos aleatorios
   hip <- runif(1, 8, 12)
   cat.ad <- runif(100, 0.001, hip - 0.001)
-  cat.op <- co(cat.ad, hip)
-  a <- area(cat.ad, cat.op)
+  cat.op <- Co(cat.ad, hip)
+  a <- Area(cat.ad, cat.op)
 
   # Evaluación de objetos: i, sol, amax
   source(tmp, local=TRUE)
@@ -86,7 +86,7 @@ cor1.b <- function(a) {
   f1 * f2 * f3
 }
 
-cor1.c <- function(a) {
+cor1.c <- function() {
   # Cargar datos y script
   load('datos')
   
@@ -121,7 +121,7 @@ cor1.c <- function(a) {
 
 ## Ej. 2
 
-cor2.a <- function(a) {
+cor2.a <- function() {
   # Cargar datos y script
   load('datos')
   source('varianza.R')
@@ -148,7 +148,7 @@ cor2.a <- function(a) {
   f1 * f2 * f3
 }
 
-cor2.b <- function(a) {
+cor2.b <- function() {
   # Cargar datos y script
   load('datos')
   source('zenon.R')
@@ -173,7 +173,7 @@ cor2.b <- function(a) {
   f1 * f2 * f3 * f4
 }
 
-cor2.c <- function(a) {
+cor2.c <- function() {
   # Cargar datos y script
   load('datos')
   source('geom.R')
@@ -205,7 +205,7 @@ cor2.c <- function(a) {
 
 ## Ej. 3
 
-cor3.a <- function(a) {
+cor3.a <- function() {
   # Cargar datos y script
   load('datos')
   source('shannon-1.R')
@@ -226,11 +226,12 @@ cor3.a <- function(a) {
   n2 <- table(coleccion)
   N2 <- sum(n2)
   p2 <- n2 / N2
+  dim(p) <- NULL
   H2 <- - p2 %*% log2(p2)
   f1 <- identical(n, n2)
   f2 <- identical(N, N2)
   f3 <- identical(p, p2)
-  f4 <- identical(H, H2)
+  f4 <- identical(H[1], H2[1])
   gr2 <- grep('H<-', arch2)[1]
   f5 <- grepl("p%*%log(p,2)", arch2[gr2], fixed=TRUE)
   f6 <- grepl("p%*%log2(p)", arch2[gr2], fixed=TRUE)
@@ -239,7 +240,7 @@ cor3.a <- function(a) {
   f1 * f2 * f3 * f4 * f7
 }
 
-cor3.b <- function(a) {
+cor3.b <- function() {
   # Cargar datos y script
   load('datos')
   source('shannon-2.R')
@@ -251,10 +252,11 @@ cor3.b <- function(a) {
   identical(shannon(coleccion), Shannon(coleccion)) * 1
 }
 
+corAll <- list(cor1.a, cor1.b, cor1.c, cor2.a, cor2.b, cor2.c, cor3.a, cor3.b)
+
 ################################################################################
 save(list=guardar, file='datos')
 if (!any(dir() == rdir))
   dir.create(rdir)
 file.copy(esperados, rdir, recursive=TRUE)
 zip(paste(rdir, 'zip', sep='.'), paste(rdir, '/', sep=''))
-

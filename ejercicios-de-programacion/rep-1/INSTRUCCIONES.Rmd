@@ -41,7 +41,7 @@ Si usted ha ejecutado todos los pasos anteriores correctamente, la siguiente fra
 
 En caso de que ocurra un error o se vea otro mensaje en la consola, verifique que los archivos se descomprimieron correctamente y que usted está trabajando en la carpeta correspondiente con el comando `getwd()`.
 
-Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:
+Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio y **guardando el archivo** correspondiente en el disco duro, usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:
 
 ```{r}
 evaluar()
@@ -229,7 +229,7 @@ Si es cierta la proposición de Zenón, entonces no importa que tan grande sea $
 
 En este ejercicio, usted deberá completar el código del archivo "zenon.R" según las instrucciones que se indican en el mismo. Si el código hace correctamente la sumatoria entonces para $n = 3$ el valor `out` debería ser 0.875.
 
-Además usted debe encontrar el entero `n` mínimo necesario para lograr un valor de `out` muy cercano a 1. Específicamente, la diferencia entre `out` y 1 debe ser menor a 0.000001 (i.e.: 1e-06). Puede comprobar que su resultado cumple con esa premisa con el comando `1 - out < 1e-06`. El valor de `n` encontrado debe ser el generado en el archivo "zenon.R".
+Además usted debe probar distintos valores del entero `n`, con el fin de encontrar el mínimo necesario para lograr un valor de `out` tan cercano a 1 como se quiera. Específicamente, la diferencia entre `out` y 1 debe ser menor a 0.000001 (i.e.: 1e-06). Puede comprobar que su resultado cumple con esa premisa con el comando `1 - out < 1e-06`. El valor de `n` debe ser asignado a `n` en el código del archivo "zenon.R".
 
 Para visualizar la convergencia de la serie puede usar el comando:
 
