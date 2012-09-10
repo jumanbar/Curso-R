@@ -23,14 +23,21 @@ Determine ahora cuáles afirmaciones son correctas:
 
 ### data.frames
 
-Marque todas las opciones correctas: AGREGAR COMENTARIOS (COMO ARRIBA)
+Marque todas las opciones correctas:
 
     [x] d[[1]] sirve para llamar a la primer columna de una data.frame d
-    [ ]data.frames y listas tienen la misma flexibilidad respecto a los objetos que pueden conntener
-    [ ] las data.frames son más flexibles que las listas respecto a los objetos que pueden contener
-    [x] las data.frames son mens flexibles que las listas respecto a los objetos que pueden contener
-    [ ] todas las columnas/variables de un data.frame deben ser de la misma clase
-    [x] las distintas columnas/variables de un data.frame pueden ser de distintas clases
-    [x] A diferencia de las matrices, las data.frames necesitan tener las columnas y filas nombradas
+    (Correcto, dado que las data.frames son para muchos efectos un tipo particular de listas.)
+    [ ] data.frames y listas tienen la misma flexibilidad respecto a los objetos que pueden conntener.
+    (No es asi, data.frames tienen ciertas restricciones que no existen para listas.)
+    [ ] Las data.frames son más flexibles que las listas respecto a los objetos que pueden contener.
+    (No es asi, data.frames tienen ciertas restricciones que no existen para listas.)
+    [x] Las data.frames son menos flexibles que las listas respecto a los objetos que pueden contener.
+    (Ciertamente, las data.frames tienen ciertas restricciones que no existen para listas.)
+    [ ] Todas las columnas/variables de un data.frame deben ser de la misma clase.
+    (Incorrecto. De hecho es parte de las ventajas de las data.frames el poder tener columnas de distintas clases.)
+    [x] Las distintas columnas/variables de un data.frame pueden ser de distintas clases.
+    (Correcto. De hecho es parte de las ventajas de las data.frames el poder tener columnas de distintas clases.)
+    [x] A diferencia de las matrices, las data.frames necesitan tener las columnas y filas nombradas.
+    (Correcto.)
 
 

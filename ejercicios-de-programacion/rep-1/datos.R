@@ -55,8 +55,8 @@ cor1.a <- function() {
   load('datos')
   source('hipot.R')
   rd <- runif(4, 4, 10)
-  f1 <- identical(area(rd[1], rd[2]), Area(rd[1], rd[2]))
-  f2 <- identical(co(rd[3], 12), Co(rd[3], 12))
+  f1 <- area(rd[1], rd[2]) == Area(rd[1], rd[2])
+  f2 <- co(rd[3], 12) == Co(rd[3], 12)
   f1 * f2
 }
 
@@ -79,9 +79,10 @@ cor1.b <- function() {
 
   # Evaluación de objetos: i, sol, amax
   source(tmp, local=TRUE)
-  f1 <- identical(i, which.max(a))
-  f2 <- identical(sol, cat.ad[which.max(a)])
-  f3 <- identical(amax, a[which.max(a)])
+  who <- which.max(a)
+  f1 <- i == who
+  f2 <- sol == cat.ad[who]
+  f3 <- amax == a[who]
   unlink(tmp)
   f1 * f2 * f3
 }
@@ -110,11 +111,11 @@ cor1.c <- function() {
   j2 <- which.max(dst2)
   A2 <- c(coorx[i2], coory[i2])
   B2 <- c(coorx[j2], coory[j2])
-  f1 <- identical(dst, dst2)
-  f2 <- identical(i, i2)
-  f3 <- identical(j, j2)
-  f4 <- identical(A, A2)
-  f5 <- identical(B, B2)
+  f1 <- all(dst == dst2)
+  f2 <- i == i2
+  f3 <- j == j2
+  f4 <- all(A == A2)
+  f5 <- all(B == B2)
   unlink(tmp)
   f1 * f2 * f3 * f4 * f5
 }
@@ -141,9 +142,9 @@ cor2.a <- function() {
   x_mean2 <- sum(x) / length(x)
   s2   <- (x - x_mean2) ** 2
   out2 <- sum(s2) / (length(x) - 1)
-  f1 <- identical(x_mean, x_mean2)
-  f2 <- identical(s, s2)
-  f3 <- identical(out, out2)
+  f1 <- x_mean == x_mean2
+  f2 <- all(s == s2)
+  f3 <- out == out2
   unlink(tmp)
   f1 * f2 * f3
 }
@@ -165,10 +166,10 @@ cor2.b <- function() {
   e2 <- 1:n
   s2 <- 1 / (2 ** e)
   out2 <- sum(s2)
-  f1 <- identical(e, e2)
-  f2 <- identical(s, s2)
-  f3 <- identical(out, out2)
-  f4 <- identical(n, 20)
+  f1 <- all(e == e2)
+  f2 <- all(s == s2)
+  f3 <- all(out == out2)
+  f4 <- n == 20
   unlink(tmp)
   f1 * f2 * f3 * f4
 }
@@ -196,9 +197,9 @@ cor2.c <- function() {
   e2 <- 0:n
   s2 <- 1 / (z ** e2)
   out2 <- sum(s2)
-  f1 <- identical(e, e2)
-  f2 <- identical(s, s2)
-  f3 <- identical(out, out2)
+  f1 <- all(e == e2)
+  f2 <- all(s == s2)
+  f3 <- all(out == out2)
   unlink(tmp)
   f1 * f2 * f3
 }
@@ -228,10 +229,10 @@ cor3.a <- function() {
   p2 <- n2 / N2
   dim(p) <- NULL
   H2 <- - p2 %*% log2(p2)
-  f1 <- identical(n, n2)
-  f2 <- identical(N, N2)
-  f3 <- identical(p, p2)
-  f4 <- identical(H[1], H2[1])
+  f1 <- all(n == n2)
+  f2 <- all(N == N2)
+  f3 <- all(p == p2)
+  f4 <- H[1] == H2[1]
   gr2 <- grep('H<-', arch2)[1]
   f5 <- grepl("p%*%log(p,2)", arch2[gr2], fixed=TRUE)
   f6 <- grepl("p%*%log2(p)", arch2[gr2], fixed=TRUE)
@@ -249,7 +250,7 @@ cor3.b <- function() {
   coleccion <- sample(20, 50, replace=TRUE)
   
   # Evaluación de objetos: n, N, p, H y el operador %*%
-  identical(shannon(coleccion), Shannon(coleccion)) * 1
+  (shannon(coleccion) == Shannon(coleccion)) * 1
 }
 
 corAll <- list(cor1.a, cor1.b, cor1.c, cor2.a, cor2.b, cor2.c, cor3.a, cor3.b)
