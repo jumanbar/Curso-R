@@ -1,27 +1,26 @@
-# IniciaciÃ³n: es recomendable que usted comprenda las siguientes operaciones y
+# Iniciación: es recomendable que usted comprenda las siguientes operaciones y
 # las estructuras de los vectores cat.ad, cat.op y a, resultantes de ejecutar
-# las siguientes lÃ­neas:
+# las siguientes líneas:
 hip <- 10 # Hipotenusa
 cat.ad <- seq(0.001, hip - 0.001, by = 0.1) # Valores del cateto adyacente
-cat.op <- co(cat.ad, hip)                    # CÃ¡lculo de los catetos opuestos
-a <- area(cat.ad, cat.op)                    # CÃ¡lculo de las Ã¡reas
+cat.op <- co(cat.ad, hip)                    # Cálculo de los catetos opuestos
+a <- area(cat.ad, cat.op)                    # Cálculo de las áreas
 
-# Instrucciones: deberÃ¡ usar which o which.max para encontrar la posiciÃ³n dentro
-# del vector a en el que se encuentra el valor mÃ¡ximo de area.
-# i: posiciÃ³n en la que se encuentra el mÃ¡ximo de a (es el i-Ã©simo valor)
-# sol: valor de cateto adyacente para el que ocurre este mÃ¡ximo
-# amax: valor mÃ¡ximo de Ã¡rea calculado 
+# Instrucciones: deberá usar which o which.max para encontrar la posición dentro
+# del vector a en el que se encuentra el valor máximo de area.
+# i: posición en la que se encuentra el máximo de a (es el i-ésimo valor)
+# sol: valor de cateto adyacente para el que ocurre este máximo
+# amax: valor máximo de área calculado 
 
-#===== Su cÃ³digo comienza aquÃ­: =====#
+#===== Su código comienza aquí: =====#
 
-i    <-
+# Problema con co(): REVISAR HASTA LAS ÚLTIMAS CONSECUENCIAS!!!
+i    <- which.max(a)
+sol  <- max(cat.ad[i])
+amax <- a[[i]]
 
-sol  <-
+#====== Aquí finaliza su código =====#
 
-amax <-
-
-#====== AquÃ­ finaliza su cÃ³digo =====#
-
-# ConfirmaciÃ³n de la soluciÃ³n (opcional):
-plot(cat.ad, a, type='l', ylab="Ãrea", main="Ãrea mÃ¡xima: lÃ­nea roja")
+# Confirmación de la solución (opcional):
+plot(cat.ad, a, type='l', xlab="Cateto Adyacente (cat.ad)", ylab="Area", main="Area maxima: linea roja")
 abline(v=cat.ad[i], col='red', lwd=2)

@@ -9,11 +9,13 @@ hipot <- function(cat.ad , cat.op) {
 
 area <- function(ca, co) {
 # Acepta como argumentos los valores de los dos catetos.
-  co * ca / 2
+  out <- co * ca / 2
+  out
 }
 
 co <- function(ca, h) {
 # Acepta como argumentos el valor del cateto adyacente y de la hipotenusa (¡en ese orden!)
-  sqrt(h ^ 2 - ca ^ 2)
+  out <- sqrt(h ^ 2 - ca ^ 2)
+  out
 }
 #===== Su código termina aquí =======#

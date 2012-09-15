@@ -12,7 +12,7 @@ x
  
 # Es posible adjudicarle un nombre a los elementos en el mismo mediante la
 # función "names".
-names(x)<-c("a", "b", "c", "d", "e")
+names(x) <- c("a", "b", "c", "d", "e")
 x
 # a b c d e 
 # 1 2 3 4 5 

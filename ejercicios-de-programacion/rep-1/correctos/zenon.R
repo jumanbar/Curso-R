@@ -9,7 +9,7 @@
 
 #===== Su código comienza aquí: =====# 
 
-n <- 20
+n <- 20 # El valor correcto es 20
 e <- 1:n
 s <- 1 / (2 ^ e)
 out <- sum(s)

@@ -10,7 +10,6 @@ iris[[3]]
 
 
 
- 
 # Un resultado similar, aunque no igual, se puede obtener usando corchetes
 # simples:
 cars[1] 

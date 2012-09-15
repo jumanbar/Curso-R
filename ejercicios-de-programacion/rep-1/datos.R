@@ -66,7 +66,7 @@ cor1.b <- function() {
   
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('areaMax.R')
-  gr <- grep('#===', arch)
+  gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
   writeLines(arch, tmp)
@@ -93,7 +93,7 @@ cor1.c <- function() {
   
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('dist.R')
-  gr <- grep('#===', arch)
+  gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
   writeLines(arch, tmp)
@@ -129,7 +129,7 @@ cor2.a <- function() {
   
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('varianza.R')
-  gr <- grep('#===', arch)
+  gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
   writeLines(arch, tmp)
@@ -156,7 +156,7 @@ cor2.b <- function() {
   
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('zenon.R')
-  gr <- grep('#===', arch)
+  gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
   writeLines(arch, tmp)
@@ -182,8 +182,8 @@ cor2.c <- function() {
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('geom.R')
   arch2 <- gsub(' ', '', arch)
-  gr1 <- grep('z<-', arch2)[1] + 1
-  gr2 <- grep('#===', arch)[2]
+  gr1 <- grep('z<-', arch2, useBytes = TRUE)[1] + 1
+  gr2 <- grep('#===', arch, useBytes = TRUE)[2]
   arch <- arch[gr1:gr2]
   tmp <- tempfile()
   writeLines(arch, tmp)
@@ -214,7 +214,7 @@ cor3.a <- function() {
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('shannon-1.R')
   arch2 <- gsub(' ', '', arch)
-  gr <- grep('#===', arch)
+  gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
   writeLines(arch, tmp)

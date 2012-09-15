@@ -1,23 +1,18 @@
-# Instrucciones: siguiendo la ecuaci√≥n 1 de la letra del repartido, los 
-# objetos definidos entre las llaves de la funci√≥n Shannon son:
-# n: vector con todos los n_i (="n sub√≠ndice i")
-# N: cantidad total de objetos en la colecci√≥n
+# Instrucciones: siguiendo la ecuaciÛn 1 de la letra del repartido, los 
+# objetos definidos entre las llaves de la funciÛn Shannon son:
+# n: vector con todos los n_i (="n subÌndice i")
+# N: cantidad total de objetos en la colecciÛn
 # p: vector con todos los p_i
-# H: √≠ndice de Shannon (salida de la funci√≥n)
-# La funci√≥n debe ser capaz de calcular el √≠ndice de Shannon-Wiener de cualquier
+# H: Ìndice de Shannon (salida de la funciÛn)
+# La funciÛn debe ser capaz de calcular el Ìndice de Shannon-Wiener de cualquier
 # vector que sea utilizado como entrada/input. Esta entrada es el argumento
 
-#===== Su c√≥digo comienza aqu√≠: =====#
-shannon <- function(   ) {
-  
-  n <-
-
-  N <- 
-
-  p <- 
-
-  H <- 
-
-  #==== Aqu√≠ finaliza su c√≥digo =====#
-  H
+#===== Su cÛdigo comienza aquÌ: =====#
+shannon <- function(vect) {
+  n <- table(as.factor(vect))
+  N <- length(vect)
+  p <- n/N
+  H <- -p%*%log2(p)
+  #==== AquÌ finaliza su cÛdigo =====#
+  print(H)
 }

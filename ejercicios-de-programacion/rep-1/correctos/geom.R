@@ -11,8 +11,9 @@
 
 #===== Su código comienza aquí: =====# 
 
-n <- 20
+n <- 20  
 z <- 1.3
+# Nota: los valores de n y z son irrelevantes para la corrección.
 e <- 0:n
 s <- 1 / (z ^ e)
 out <- sum(s)
