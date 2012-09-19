@@ -3,9 +3,9 @@ class(analisisCalif) <- "listaCalif"
 # este script. En caso contrario, corra "load('ej2.rda')" para cargar estos objetos ya preparados.
 # Objetivos:
 # Hacer una salida que incluya los cálculos correctos de los objetos:
-# ptot: porcentaje de aprobados sobre el total.
-# pvar: porcentaje de aprobados sobre el total de mujeres.
-# pmuj: porcentaje de aprobados sobre el total de hombres.
+# ptot: promedio de aprobados sobre el total.
+# pvar: promedio de aprobados sobre el total de mujeres.
+# pmuj: promedio de aprobados sobre el total de hombres.
 # Recuerde que en la corrección los objetos cal y gen son creados nuevamente con generadores de números 
 # aleatorios.
 print.listaCalif <- function(x) {

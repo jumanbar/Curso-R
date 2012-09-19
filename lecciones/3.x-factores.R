@@ -12,35 +12,51 @@
 # tratamiento puede ser sin N y otro con N. Entonces tenemos un factor ("N")
 # con dos niveles (que pueden ser denominados 0 y 1, o de cualquier otra
 # forma).
- 
-# Si queremos crear un factor con tres niveles y cinco casos de cada uno,
-# podemos crear un vector de clase "character" con los valores deseados:
-clasif <- rep(c('N1', 'N2', 'N3'), 5)
-# y, a partir del mismo crear un factor:
+
+
+## Métodos de creación
+
+# Una manera simple de crear un factor es hacer un character y luego 
+# transformarlo con el coercionador as.factor o directamente con la función 
+# "factor". Por ejemplo, un factor con tres niveles/categorías llamados N1, 
+# N2 y N3, repetidos cinco veces cada uno (el equivalente a un experimento con 
+# tres tratamientos y 5 réplicas), puede crearse así:
+# 1ero. hago el vector 'character':
+clasif <- rep(c('N1', 'N2', 'N3'), each = 5)
+# y, a partir del mismo creo un factor:
 x <- factor(clasif)
+# o
+x <- as.factor(clasif)
 # Este comando admite otras opciones que no exploraremos ahora, pero que se 
-# pueden ver en la ayuda
+# pueden ver en la ayuda:
 ?factor
  
-# Alternativamente, podemos utilizar la función "gl"
-?gl
-# de modo que si queremos crear un factor similar al anterior, lo haremos de la
-# siguiente manera:
+# Alternativamente, podemos utilizar la función "gl", de modo que si queremos 
+# crear un factor idéntico al anterior, lo haremos de la siguiente manera:
 x <- gl(3, 5, labels=c('N1', 'N2', 'N3'))
 # El resutado no es exactamente el mismo, sino que están agrupados todas las
 # observaciones que tienen la misma etiqueta.
- 
-# Niveles (rótulos)
-levels(x) # salida de clase "character"
-# [1] "N1" "N2" "N3"
- 
-# Para obtener simplemente los rótulos de todas las observaciones, se
-# puede cohercionar el factor en un "character":
+
+# A veces nos interesa trabajar sólo con los rótulos de las observaciones, es 
+# decir, con un vector de clase character hecho a partir del factor. Esto se 
+# obtiene con as.character o as.vector, por ejemplo:
 as.character(x)
 as.vector(x)
- 
-# Nótese que los factores no son vectores:
-is.vector(x)
+
+# De manera similar, es posible también convertir al factor en un vector 
+# numérico
+
+
+## Niveles de los factores
+
+# Como ya se vió, los niveles/categorías/tratamientos son parte cetral de la 
+# definición de los factores y siempre se imprimen en la consola cuando vemos 
+# estos objetos. Si queremos ver exclusivamente este atributo de un objeto de 
+# clase factor, entonces podemos usar la función levels:
+levels(x)
+# Nota: la salida aquí es de clase "character"
+
+
  
 # La función "nlevels" nos devuelve la cantidad de niveles de un factor:
 nlevels(x)
