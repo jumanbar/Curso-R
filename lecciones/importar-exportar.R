@@ -21,7 +21,7 @@
 ## Importar datos desde archivos de texto
  
 # La opción más rápida y funcional es importar y exportar datos directamente desde R.
-# Los archivos de texto son la opción más sencilla para importar datos desde hojas de cálculo.
+# Los archivos de texto plano son la opción más sencilla para importar datos desde hojas de cálculo.
 # Desde cualquier hoja de cálculo se pueden guardar planillas en formatos de texto básico.
 # Por ejemplo, Excel permite guardar e importar archivos .txt (i.e. texto delimitado por tabulaciones)
 # o .csv (i.e. texto delimitado por comas).
