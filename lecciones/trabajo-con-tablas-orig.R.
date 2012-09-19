@@ -1,0 +1,267 @@
+## TRABAJO CON TABLAS: UNA INTRODUCCIÓN
+
+<<<<<<< HEAD
+# En esta lección se van a mostrar algunos métodos básicos y muy útiles
+# para resolver problemas comunes asociados al trabajo con tablas de datos.
+# Se cubren aspectos sencillos, tal como obtener información, efectuar
+# cálculos por filas o columnas, etc. Se deja afuera todo lo referente a
+# manipulación de tablas, lo que será cubierto en otra de las lecciones.
+
+# Debe notarse que en nuestras lecciones usamos de forma vaga los términos
+# "matriz", "tabla" o "data.frame". En todos los casos, a menos que se
+# especifique, estos términos referirán a objeto de la clase "data.frame".
+# Nótese que tanto "matrix" como "table" también son clases de objetos en R y
+# existe siempre la posibilidad que confundirlos lleve a algún tipo de error. 
+
+
+=======
+>>>>>>> origin/master
+# INFORMACIÓN BÁSICA
+# Existen varias formas de extraer información básica de una tabla ("data.frame") en R.
+# Aquí vamos a mirar algunas formas comunes, pero sin duda que no serán las únicas.
+ 
+# Nombres
+# La función "names" devuelve los nombres de los elementos de una lista. Dado que las "data.frame"
+# son listas, "names" va a devolver los nombres de las columnas, al igual que colnames:
+names(USArrests)
+colnames(USArrests)
+# Los nombres de las filas en cambio son independientes:
+rownames(USArrests)
+ 
+<<<<<<< HEAD
+### ACTUALIZACIÓN ###
+=======
+##### ACTUALIZACIÓN #####
+>>>>>>> origin/master
+# Una función muy útil para listas o data.frames es str:
+str(USArrests)
+# 'data.frame':	50 obs. of  4 variables:
+#  $ Murder  : num  13.2 10 8.1 8.8 9 7.9 3.3 5.9 15.4 17.4 ...
+#  $ Assault : int  236 263 294 190 276 204 110 238 335 211 ...
+#  $ UrbanPop: int  58 48 80 50 91 78 77 72 80 60 ...
+#  $ Rape    : num  21.2 44.5 31 19.5 40.6 38.7 11.1 15.8 31.9 25.8 ...
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
+# Lo primero que indica es la clase del objeto, en este caso "data.frame", junto con
+# las dimensiones del mismo (50 observaciones/filas, 4 variables/columnas)
+# Luego muestra las variables que componen al set de datos, usando el símbolo "$" para
+# indicar cada uno. En cada caso muestra la clase del objeto en cuestión ("num" por "numeric",
+# "int" por "integer", etc...). Por último aparecen los primeros valores.
+ 
+# Otro ejemplo:
+str(iris)
+ 
+# Algunos objetos simples:
+x <- matrix(sample(20), 5, 4)
+str(x)
+# int [1:5, 1:4] 17 3 9 5 16 2 13 14 10 19 ...
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
+# Aquí la clase del objeto es "matrix", pero sólo muestra "int", indicando que los valores
+# del objeto son todos "integer".
+# Las dimensiones de la matriz aparecen entre paréntesis recto (1:5 en filas y 1:4 en columnas,
+# indicadas por la coma)
+ 
+propios <- eigen(matrix(sample(20), 5, 5))
+str(propios)
+# List of 2
+#  $ values : num [1:5] 5.20e+01 1.36e+01 8.83 5.18e-01 -1.61e-14
+#  $ vectors: num [1:5, 1:5] -0.559 -0.223 -0.397 -0.456 -0.521 ...
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
+# En este caso el objeto evaluado es una lista, cuyos elementos son "values" y "vectors"
+# El primero es un vector numérico, de 5 valores (indicado por los [ ])
+# El segundo es una matriz, de 5x5, también indicado por los [ ].
+ 
+str(rnorm(20))
+# Parecido a lo anterior, pero no hay una coman entre los paréntesis recto, lo que indica
+# qué tiene una sola dimensión (aunque los vectores devuelven NULL al pedir la dimensión...
+# debido a que no son vectores "fila" o "columna", como en álgebra lineal).
+ 
+str(letters)
+str(LETTERS)
+# Estos vectores tienen el alfabeto en inglés (minúscula y mayúscula respectivamente).
+ 
+# Último ejemplo con str:
+str(HairEyeColor)
+#  table [1:4, 1:4, 1:2] 32 53 10 3 11 50 10 30 10 25 ...
+#  - attr(*, "dimnames")=List of 3
+#   ..$ Hair: chr [1:4] "Black" "Brown" "Red" "Blond"
+#   ..$ Eye : chr [1:4] "Brown" "Blue" "Hazel" "Green"
+#   ..$ Sex : chr [1:2] "Male" "Female"
+<<<<<<< HEAD
+# En este caso estamos frente a un objeto particular: es de la clase "table" y en este caso
+# tiene 3 dimensiones (ver los [ ]). Es un caso particular de la clase "array".
+### ACTUALIZACIÓN ###
+=======
+
+# En este caso estamos frente a un objeto particular: es de la clase "table" y en este caso
+# tiene 3 dimensiones (ver los [ ]). Es un caso particular de la clase "array".
+##### FIN DE ACTUALIZACIÓN #####
+>>>>>>> origin/master
+ 
+# Resumen
+?summary
+summary(iris)
+# Despliega ciertas medidas obtenidas de las columnas (vectores) de la tabla
+# Para el caso de la columna "Species" simplemente muestra los niveles y la cantidad
+# de veces que ocurren en la tabla.
+ 
+ 
+# Clases
+# Las clases de cada columna se pueden pedir con subíndices o los nombres de las columnas:
+class(iris[,1])
+class(iris$Sepal.Width)
+class(iris$Species)
+ 
+ 
+# Conteos
+# Las funciones tabulate y table realizan conteos de cada observación, devolviendo objetos
+# ligeramente diferentes:
+tabulate(iris$Species) # 50 50 50; clase "integer"
+table(iris$Species)    # Tienen nombres; clase "table"
+ 
+ 
+ 
+# APLICAR FUNCIONES
+ 
+<<<<<<< HEAD
+# Funcion apply:
+=======
+## Funcion apply:
+>>>>>>> origin/master
+# La función "apply" y sus variantes sirven para evaluar funciones a un conjunto
+# de vectores, objetos, etc. La función puede ser una ya existente o una creada por el
+# usuario.
+?apply
+# En el tercer argumento ("FUN") es la función en cuestión.
+# El primer argumento ("X") es un array (matrix, data.frame, array de más dimensiones...)
+# El segundo argumento ("MARGIN") refiere a los subíndices a los que se aplica l
+# función... Por ejemplo, si vale 1 la función se aplica a todas las filas; si vale 2
+# se aplica a todas las columnas; si vale c(1, 2) se aplica a filas y columnas (esto en
+# caso de que el objeto "X" tenga más de 2 dimensiones)
+# Ejemplo:
+apply(USArrests, 2, mean)   # El promedio de todas las columnas
+apply(USArrests, 1, mean)   # El promedio de todas las filas
+apply(USArrests, 1:2, mean) # El promedio de todas las filas y colmnas
+# Este último es idéntico a la tabla original USArrests, ya que está evaluando "mean"
+# elemento por elemento (el promedio de un conjunto de 1 dato, es igual a dicho dato).
+ 
+# A veces las funciones tienen varios argumentos que necesitan ser especificados, estos
+# se pueden agregar como nuevos argumentos para la función apply (usando el nombre). En la
+# ayuda se hace referencia a través del argumento especial "...".
+# Ejemplo:
+apply(USArrests, 2, quantile, probs=c(0.25, 0.75))
+ 
+# apply tiene algunas variantes, para ver la ayuda:
+?lapply
+# Por ejemplo, lapply aplica FUN a todos los elementos contenidos en el primer argumento, que debe
+# ser de la clase "list":
+lapply(USArrests, summary) # Nótese que se puede aplicar aquí ya que "data.frame" también es "list"
+# La salida también es "list"
+ 
+ 
+# Funcies with y within
+# Estas funciones sirven para ejecutar comandos "adentro" de una lista...
+?with
+# Los argumentos son:
+# data: una lista que sirva para construir un "ambiente" en el cual ejecutar los comandos.
+# En este ambiente los objetos existentes son los elementos de la lista
+# expr: una expresión, un comando, o varios si se usan las llaves { }.
+ 
+# Ejemplo:
+lista <- list(x=5, y=rnorm(7), z=sample(7))
+lista
+out <- with(lista, x * y + z) # x y z son los elementos de "lista"
+out
+# Lo mismo se puede obtener así:
+lista$x * lista$y + lista$z
+ 
+# Dado que las "data.frame" son listas también, se puede usar with de la misma forma:
+out <- with(iris, Sepal.Length + Sepal.Width) # Siempre se usan los nombres correspondientes.
+out
+# Equivale a:
+iris$Sepal.Length + iris$Sepal.Width
+ 
+# Pero para cálculos más complejos se vuelve engorroso... para esto es muy conveniente
+# usar { }:
+out <- with(lista, {
+              a <- rep(y, z)
+              b <- matrix(a, 7, 7)
+              y <- b ^ x
+              y
+            })
+out
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
+# La salida es el último comando de los que están entre las { }.
+# Es deseable separar una línea por comando y usar la indentación para indicar las líneas
+# que se encuentran dentro de las llaves, como en este caso.
+ 
+# La función within devuelve una versión modifiada de la lista de entrada:
+iris2 <- within(iris, Sepal.Ratio <- Sepal.Length / Sepal.Width)
+head(iris2)
+ 
+ 
+ 
+<<<<<<< HEAD
+### FUNCIONES tapply, by y aggregate
+=======
+## FUNCIONES tapply, by y aggregate
+
+>>>>>>> origin/master
+# Estas tres funciones sirven para agrupar observaciones dentro de una tabla y aplicar
+# una función ("FUN") determinada a dicho grupo.
+ 
+ 
+# Agregate
+?aggregate
+# Para data.frames el argumento "by" debe ser una lista y cáda elemento debe tener la misma
+# longitud que las variables en la tabla de entrada:
+spp <- iris$Species
+aggregate(iris[,-5], by=list(Promedio=spp), mean)
+# Esto devuelve un promedio por especie de las distintas medidas. Puede ser cualquier otra función, por ejemplo el desvío estándar, "sd"
+aggregate(iris[,-5], by=list(Promedio=spp), sd)
+ 
+# Usando el esquema general usado para fórmulas, podemos hacer cosas similares
+aggregate(Sepal.Length ~ Species, data=iris, mean) # "data" indica "en dónde mirar"
+# En este caso se obtiene el largo de sépalo promedio por especie.
+ 
+# Para extenderlo a todas las especies, se puede sustituir "Sepal.Length" por ".":
+aggregate(. ~ Species, data=iris, mean)
+# Vamos a ver un poco más acerca de fórmulas cuando hablemos de modelos estadísticos y tests comunes. Mientras tanto, se puede ver la ayuda de R:
+?formula
+ 
+ 
+# Función by y tapply
+# Esquema de funcionamiento:
+# by(datos en los que aplicar FUN, categorías, FUN)
+u <- by(iris$Sepal.Length, iris$Species, mean)
+# Aplica la función "mean" a los valores de "Sepal.Length", separando por las categorías
+# presentes en "Species"
+ 
+# Para el caso de "tapply", se usan los mismos argumentos:
+v <- tapply(iris$Sepal.Length, iris$Species, mean)
+ 
+class(u)
+class(v)
+# Las dos opciones dan lo mismo, aunque difieren en las formas en que se imprimen
+# y en las clases de los objetos que devuelven
+ 
+# Además "by" puede trabajar con más de un vector en el primer argumento:
+# (recordar que las columnas de una data.frame son vectores)
+u <- by(iris[,-5], iris$Species, mean)
+v <- tapply(iris[,-5], iris$Species, mean) # Con este ejemplo tapply no funciona
+ 
+# Para transformar la salida de by en una matriz y/o data.frame
+y <- cbind(x$setosa, x$versicolor, x$virginica)
+promedios <- as.data.frame(y)
+summary(promedios)

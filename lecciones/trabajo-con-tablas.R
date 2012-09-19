@@ -21,7 +21,7 @@
 # matrices).
  
 # Nombres
-# El uso de nombres para diferenciar los elemnetos de vectores, matrices,
+# El uso de nombres para diferenciar los elementos de vectores, matrices,
 # listas, etc., es una característica notable de R. Para ver o cambiar estos
 # nombres tres comandos básicos: la función "names" devuelve los nombres de los
 # elementos de una lista, incluyendo el caso especial de las data.frames.

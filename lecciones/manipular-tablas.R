@@ -10,7 +10,7 @@
 # con datos, algunos ejemplos son: reshape2, gdata, bigtabulate y plyr.
  
 # Estas herramientas pueden ser cruciales si necesitamos aplicar una misma
-# rutina a una vasta cantidad de tablas y queremos hacerlo de forma automatizada
+# rutina a una basta cantidad de tablas y queremos hacerlo de forma automatizada
 # (complementando con el uso de loops y condicionales).
  
 # En esta unidad vamos a usar varias bases de datos que vienen incluidas en el
