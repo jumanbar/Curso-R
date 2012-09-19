@@ -1,0 +1,43 @@
+
+### Listas
+
+Considere la lista x creada con el siguiente comando:
+
+    x <- list(mi.matriz = matrix(1:15, 5), mi.vector = 32:23, xy = cbind(runif(12), runif(12)))
+
+Determine ahora cuáles afirmaciones son correctas:
+
+    [x] Los siguienes: `x$[[1]]` y `x$mi.matriz` son comandos equivalentes.  
+    (De hecho, el comando `x[1]` es muy similar, pero no es igual, ya que devuelve un objeto de clase 'list' en lugar de 'matrix'.)  
+    [x] El comando `names(x)[3]` debería devolver el string "xy".  
+    (El string "xy" es el nombre del tercer elemento de x y por lo tanto es correcta la afirmación.)  
+    [x] El comando `x$xy[,1]` devuelve un vector numérico (es decir, de clase "numeric")
+    (Así es, este vector es la primer columna de la matriz xy, el tercer componente de x.)
+    [ ] El comando `x[[2]]` devuelve un objeto de clase 'list'.
+    (No es así, el objeto `x[[2]]` es un vector 'integer'. Si el comando fuera `x[2]` entonces la afirmación sería correcta.)
+    [ ] El comando `x[2:3]` devuelve un objeto de clase 'list' (una lista), compuesta por dos matrices.
+    (No es así, si no que devuelve un objeto de clase 'list' compuesto por un vector (x$mi.vector) y una matriz (x$xy).)
+    [ ] El comando `names(x) -> c("m", "v", "coor")` sirve para cambiar los nombres de los componentes de x.
+    (Sería correcto si no fuera porque la flecha está apuntando en la dirección equivocada.)
+
+
+### data.frames
+
+Marque todas las opciones correctas:
+
+    [x] d[[1]] sirve para llamar a la primer columna de una data.frame d
+    (Correcto, dado que las data.frames son para muchos efectos un tipo particular de listas.)
+    [ ] data.frames y listas tienen la misma flexibilidad respecto a los objetos que pueden conntener.
+    (No es asi, data.frames tienen ciertas restricciones que no existen para listas.)
+    [ ] Las data.frames son más flexibles que las listas respecto a los objetos que pueden contener.
+    (No es asi, data.frames tienen ciertas restricciones que no existen para listas.)
+    [x] Las data.frames son menos flexibles que las listas respecto a los objetos que pueden contener.
+    (Ciertamente, las data.frames tienen ciertas restricciones que no existen para listas.)
+    [ ] Todas las columnas/variables de un data.frame deben ser de la misma clase.
+    (Incorrecto. De hecho es parte de las ventajas de las data.frames el poder tener columnas de distintas clases.)
+    [x] Las distintas columnas/variables de un data.frame pueden ser de distintas clases.
+    (Correcto. De hecho es parte de las ventajas de las data.frames el poder tener columnas de distintas clases.)
+    [x] A diferencia de las matrices, las data.frames necesitan tener las columnas y filas nombradas.
+    (Correcto.)
+
+

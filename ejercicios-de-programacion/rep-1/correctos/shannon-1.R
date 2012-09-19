@@ -17,5 +17,8 @@ n <- table(coleccion)
 N <- sum(n)
 p <- n / N
 H <- - p %*% log(p, 2)
+# También sirve:
+# H <- - p %*% log(p, 2)
+# H <- - p %*% log2(p)
 
 #===== Aquí finaliza su código =====#

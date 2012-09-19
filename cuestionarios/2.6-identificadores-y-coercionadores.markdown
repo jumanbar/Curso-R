@@ -1,0 +1,35 @@
+
+### Coerción de objetos
+
+¿Qué comando debo ejecutar para que un vector 'x', numérico, pase a ser un vector de caracteres?
+
+Seleccione una respuesta.
+
+    [ ] is.character (x) 	
+    [ ] coerce.to(x, character = TRUE) 	
+    [ ] character (x) 	
+    [x] as.character (x)
+    
+
+### Encontrar NAs
+
+Los siguientes comandos crean y modifican en una posición aleatoria a un vector x:
+
+    x <- 1:50
+    x[sample(50, 1)] <- NA
+
+Indique el o los comandos adecuados para encontrar la posición en que se encuentra el elemento NA:
+
+    [x] which(is.na(x))
+    Correcto, la función is.na es necesaria para determinar si un elemento es NA o no. Esto se puede combinar con la función which como en este caso.
+    [x] (1:50)(is.na(x))
+    Correcto, la función is.na es necesaria para determinar si un elemento es NA o no. Luego con el método ingenioso de aquí se encuentra el lugar buscado.
+    [ ] x[is.na(x)]
+    Incorrecto, si bien is.na(x) es el comando correcto para identificar el NA, al usar x[___] obtenemos el valor de x en esa posición (NA) y no la posición propiamente dicha.
+    [ ] which(x == NA)
+    Incorrecto, el operador == no sirve para casos como NA, NULL o NaN.
+    [ ] x[x == NA]
+    Incorrecto, el operador == no sirve para casos como NA, NULL o NaN. Además si sirviera, obtendríamos el valor de x en esa posición (NA) y no la posición propiamente dicha.
+    [ ] which(!is.na(x))
+    Incorrecto, si bien is.na(x) es el comando correcto para identificar el NA, al agregar el ! (NOT) estamos seleccionando todas *menos* la posición que nos interesa.
+    

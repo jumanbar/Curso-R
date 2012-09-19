@@ -16,11 +16,12 @@ evaluar <- function() {
 
   ### Elección del archivo (y por lo tanto el ejercicio) a corregir
   s <- menu(c(paste('Ej. (', ejnum, "): ", corregir, sep=""), 'Todos'),
-             title="Elija el archivo que desea corregir:")
+            title="Elija el archivo que desea corregir:")
   msj <- NULL
   if (s > nej) {
     for (i in 1:nej) {
-      r <- try(do.call(paste('cor', ejnum[i], sep=''), list(a=1)), silent=TRUE)
+#       r <- try(do.call(paste('cor', ejnum[i], sep=''), list(a=1)), silent=TRUE)
+      r <- try(corAll[[i]]())
       if (is.character(r)) {
         msj <- c(msj, r)
         hasmsj[i] <- TRUE
@@ -30,7 +31,8 @@ evaluar <- function() {
       }
     }
   } else {
-    r <- try(do.call(paste('cor', ejnum[s], sep=''), list(a=1)), silent=TRUE)
+#     r <- try(do.call(paste('cor', ejnum[s], sep=''), list(a=1)), silent=TRUE)
+    r <- try(corAll[[s]]())
     if (is.character(r)) {
       msj <- c(msj, r)
       hasmsj[s] <- TRUE

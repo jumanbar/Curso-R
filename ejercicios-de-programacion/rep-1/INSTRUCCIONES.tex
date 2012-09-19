@@ -114,10 +114,11 @@ funcione correctamente.
 \subsection{Mecanismo de corrección:}
 
 Lo primero que debe hacer es cargar el archivo \texttt{evaluar.R} con la
-función \texttt{source}:
+función \texttt{source} y la codificación de caracteres "UTF-8", de la siguiente manera:
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{options}\NormalTok{(}\DataTypeTok{encoding = }\StringTok{"utf-8"}\NormalTok{)}
 \KeywordTok{source}\NormalTok{(}\StringTok{"evaluar.R"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -134,8 +135,9 @@ está trabajando en la carpeta correspondiente con el comando
 
 Usted trabajará modificando los contenidos de dichos archivos con
 RStudio (u otro programa de su preferencia) según las consignas que se
-describen a continuación. Luego de terminar cada ejercicio usted podrá
-verificar rápidamente si su respuesta es correcta ejecutando el comando:
+describen a continuación. Luego de terminar cada ejercicio y \textbf{guardando el 
+archivo} correspondiente en el disco duro, usted podrá verificar rápidamente si
+su respuesta es correcta ejecutando el comando:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -436,12 +438,12 @@ En este ejercicio, usted deberá completar el código del archivo
 código hace correctamente la sumatoria entonces para $n = 3$ el valor
 \texttt{out} debería ser 0.875.
 
-Además usted debe encontrar el entero \texttt{n} mínimo necesario para
-lograr un valor de \texttt{out} muy cercano a 1. Específicamente, la
-diferencia entre \texttt{out} y 1 debe ser menor a 0.000001 (i.e.:
-1e-06). Puede comprobar que su resultado cumple con esa premisa con el
-comando \texttt{1 - out \textless{} 1e-06}. El valor de \texttt{n}
-encontrado debe ser el generado en el archivo ``zenon.R''.
+Además usted debe probar distintos valores del entero \texttt{n}, con el fin de
+encontrar el mínimo necesario para lograr un valor de \texttt{out} tan cercano a
+1 como se quiera. Específicamente, la diferencia entre \texttt{out} y 1 debe ser
+menor a 0.000001 (i.e.: 1e-06). Puede comprobar que su resultado cumple con esa
+premisa con el comando \texttt{1 - out \textless{} 1e-06}. El valor de \texttt{n}
+encontrado debe ser asignado a \texttt{n} en el código del archivo ``zenon.R''.
 
 Para visualizar la convergencia de la serie puede usar el comando:
 
