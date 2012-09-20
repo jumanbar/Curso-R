@@ -13,6 +13,17 @@
 # con dos niveles (que pueden ser denominados 0 y 1, o de cualquier otra
 # forma).
 
+# Este tipo de objetos se encuentra frecuentemente como variables en 
+# data.frames, como por ejemplo la quinta columna de la data.frame "iris":
+str(iris)
+class(iris$Species)
+# En general estos objetos no sirven para trabajar con operadores matemáticos, 
+# de manera similar, si bien no idéntica, a lo que ocurre con vectores 
+# character. Por ejemplo:
+iris$Species * 2
+# De todas formas estos objetos se pueden coercionar en vectores numéricos, 
+# como veremos en esta lección.
+
 
 ## Métodos de creación
 
@@ -24,27 +35,50 @@
 # 1ero. hago el vector 'character':
 clasif <- rep(c('N1', 'N2', 'N3'), each = 5)
 # y, a partir del mismo creo un factor:
-x <- factor(clasif)
+f <- factor(clasif)
 # o
-x <- as.factor(clasif)
+f <- as.factor(clasif)
 # Este comando admite otras opciones que no exploraremos ahora, pero que se 
 # pueden ver en la ayuda:
 ?factor
  
 # Alternativamente, podemos utilizar la función "gl", de modo que si queremos 
 # crear un factor idéntico al anterior, lo haremos de la siguiente manera:
-x <- gl(3, 5, labels=c('N1', 'N2', 'N3'))
+f <- gl(3, 5, labels=c('N1', 'N2', 'N3'))
 # El resutado no es exactamente el mismo, sino que están agrupados todas las
 # observaciones que tienen la misma etiqueta.
+
+# Otro método útil de crear factores es el uso de la función cut para pasar 
+# de valores numéricos ("continuos") a categorías/niveles. Para esto sólo es 
+# necesario indicar el número de los niveles que necesitamos. Por ejemplo, si 
+# asumimos que "edades" es un muestreo de edades de estudiantes:
+edades <- rpois(150, 25)
+
+# Podemos crear un factor de 4 categorías con el siguiente comando:
+(edades4 <- cut(edades, 4))
+ 
+# En la consola se ve en qué rango de edades cae cada observación y cuáles
+# son estos rangos ("Levels"). Se usa la notación estándar de matemáticas 
+# para indicar intervalos semiabiertos: paréntesis curvo para el extremo 
+# "abierto" y paréntesis recto/corchete para el extremo "cerrado".
+# (también en Wikipedia:)
+browseURL('https://es.wikipedia.org/wiki/Intervalo_%28matem%C3%A1tica%29#Intervalo_semiabierto')
+
+
+## Conversión a otras clases de objetos
 
 # A veces nos interesa trabajar sólo con los rótulos de las observaciones, es 
 # decir, con un vector de clase character hecho a partir del factor. Esto se 
 # obtiene con as.character o as.vector, por ejemplo:
-as.character(x)
-as.vector(x)
+as.character(f)
+as.vector(f)
 
 # De manera similar, es posible también convertir al factor en un vector 
-# numérico
+# numérico, cuyos valores se corresponden con los rótulos originales. Por 
+# ejemplo, compare las dos salidas de los siguientes comandos:
+f
+as.numeric(f)
+as.integer(f)
 
 
 ## Niveles de los factores
@@ -53,46 +87,19 @@ as.vector(x)
 # definición de los factores y siempre se imprimen en la consola cuando vemos 
 # estos objetos. Si queremos ver exclusivamente este atributo de un objeto de 
 # clase factor, entonces podemos usar la función levels:
-levels(x)
-# Nota: la salida aquí es de clase "character"
+levels(f)
+# Nota: la salida aquí es de clase "character". Esta función también se 
+# puede usar para modificar los rótulos de los niveles del factor, de manera 
+# similar a cómo se usa la función names:
+levels(f)[2] <- 'n2' # Cambia el nombre del segundo nivel
 
-
- 
-# La función "nlevels" nos devuelve la cantidad de niveles de un factor:
-nlevels(x)
+# Finalmente, la función nlevels nos da el número de categorías de nuestro 
+# factor:
+nlevels(f)
 # [1] 3
- 
-# Para quitarle los rótulos a un factor:
-y <- unclass(x)
-y
-# Ahora lo puedo transformar en numeric:
-as.numeric(y)
-# Nótese que los números de este nuevo vector no tienen por qué guardar relación
-# alguna con los valores de los rótulos originales del factor.
- 
-# Si los nombres de los rótulos son números
-f <- gl(2, 3)
-f
-# entonces se puede convertir el factor en un vector numérico (con los valores
-# de los rótulos), usando:
-as.numeric(levels(f))[f]
- 
-# Una variable numérica puede ser categorizada en un factor, usando la función
-# "cut".
-?cut
-# Por ejemplo, si asumimos que "edades" es un muestreo de edades de estudiantes
-# de la universidad:
-edades <- rpois(150, 25)
- 
-# Podemos crear, por ejemplo, un factor de 4 categorías:
-(edades4 <- cut(edades, 4))
-# de 6
-(edades6 <- cut(edades, 6))
-# etc.
- 
-# En la consola podemos ver en qué rango de edades cae cada observación y cuáles
-# son estos rangos ("Levels").
- 
+# (es decir, es equivalente a "length(levels(f))")
+
+
 # Resumen:
 # En definitiva, los factores son una construcción útil de R que está pensada
 # para trabajar con variables categóricas. En el curso se va a profundizar en
