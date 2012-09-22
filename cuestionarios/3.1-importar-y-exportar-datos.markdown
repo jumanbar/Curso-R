@@ -1,11 +1,11 @@
 
-# Importar
+# Importar txt
 
 Dado el siguiente archivo de texto plano, llamado 'm.txt' y guardado en el directorio de trabajo actual:
 
 ___
 
-    "t"	"a"	"b"	"c"	"d"	"e"
+    "t"  "a"	"b"	"c"	"d"	"e"
     "s1"	0.005	1	1	0	0
     "s2"	0.005	0	1	0	1
     "s3"	1.005	0	1	1	1
@@ -53,3 +53,36 @@ Dada una data.frame d, determine el o los comandos correctos para exportarla en 
     [ ] write.table(d, 'd.csv', sep = ",", dec = ";", row.names = FALSE)
     Los valores correctos de sep y dec están intercambiados ...
     
+ 
+ 
+# Importar csv
+
+Suponga que ud.desea guardar el archivo de cálculo 'w.xls' en formato csv considerando los espacios entre columnas como ';' para luego importar al R.
+
+archivo 'w.xls'
+
+___
+
+    "grupo" "medida" "caso"
+      A	     1,5	    1
+      B	     5,1	    2
+      C	     2,8    	3
+      D	     1,6	    4
+      A	     2,3	    5
+      B      2,1    	6
+      C      3,7    	7
+      D      4.9    	8
+      
+___
+
+Marque en cada caso el tipo de clase que tendrá cada variable segun la forma de importación.
+
+
+    read.table("w.csv", header=T, sep=",", dec=".")    -- una sola variable de clase factor 
+    read.table("w.csv", header=T, sep=";", dec=".")    -- dos variables de clase factor y un variable de clase integer
+    read.table("w.csv", header=T, sep=";", dec=",")    -- una variable factorial, una numérica y otra integer
+    read.table("w.csv", sep=";", dec=",")              -- tres variables de clase factor
+                                                       -- dos variables de clase integer y una numérica
+                                                       -- tres variables numéricas
+                                          
+ 
