@@ -1,0 +1,55 @@
+
+# Importar
+
+Dado el siguiente archivo de texto plano, llamado 'm.txt' y guardado en el directorio de trabajo actual:
+
+___
+
+    "t"	"a"	"b"	"c"	"d"	"e"
+    "s1"	0.005	1	1	0	0
+    "s2"	0.005	0	1	0	1
+    "s3"	1.005	0	1	1	1
+    "s4"	1.005	1	1	0	0
+    "s5"	0.005	1	1	1	1
+
+___
+
+(nota: los espacios entre columnas son tabulaciones)
+
+Determine el o los comandos correctos para importarlo como data.frame en R:
+
+    [*] read.table('m.txt', header = TRUE)
+    Los valores por defecto de sep y dec son "" y "." respectivamente. En el caso de sep esto implica que cualquier espacio en blanco sirve. Por lo tanto no es necesario especificarlos.
+    [*] read.delim('m.txt')
+    La variante (wrapper) read.delim usa por defecto header = TRUE, sep = "\t" y dec = ".". Por lo tanto no es necesario especificar estos argumentos.
+    [*] read.table('m.txt', header = TRUE, sep = '\t')
+    Aunque dec no está especificado, por defecto es "."
+    [ ] read.csv('m.txt', sep = '\t')
+    La función read.csv no es flexible respecto a los argumentos sep y dec, por lo tanto se ignora la opción sep="\t"
+    [ ] read.table('m.txt', sep = '\t', dec = '.')
+    Falta la opción header = TRUE, ya que por defecto read.table usa header = FALSE.
+    [ ] read.table('m.txt', header = TRUE, row.names = 1)
+    La opción row.names = 1 indica que la primer columna en el archivo representa los nombres de las filas, lo cual no es cierto (ya que hay tantos encabezados como columnas).
+
+
+
+# Exportar
+
+Dada una data.frame d, determine el o los comandos correctos para exportarla en un archivo de texto plano (llamado "d.csv"), de tal forma que:
+
+1. Se conserven los encabezados
+2. No se conserven los nombres de las filas
+3. Los decimales deben indicarse con comas (",")
+4. Las separaciones entre columnas deben ser puntos y comas (";")
+
+    [*] write.table(d, 'd.csv', dec = ",", sep = ";", row.names = FALSE)
+    Esta es la forma mímina de usar write.table para lograr los resultados que se piden.
+    [*] write.csv2(d, 'd.csv', row.names = FALSE)
+    Esta es la forma mínima de usar write.csv para lograr los resultados que se piden.
+    [ ] write.csv(d, 'd.csv', sep = ";", dec = ",")
+    La función write.csv no es flexible respecto a los argumentos sep y dec, por lo tanto se ignora las opciones sep=";" y dec = ",".
+    [ ] write.table(d, 'd.csv', header = TRUE, sep = ';', dec = ',', row.names = FALSE)
+    El argumento header no existe para la función write.table.
+    [ ] write.table(d, 'd.csv', sep = ",", dec = ";", row.names = FALSE)
+    Los valores correctos de sep y dec están intercambiados ...
+    

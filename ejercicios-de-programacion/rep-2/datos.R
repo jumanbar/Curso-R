@@ -221,7 +221,8 @@ cor2.b <- function() {
   i2 <- order(datosCalif$nota)
   datosCalif2 <- datosCalif[i2,]
   source(tmp, local=TRUE)
-  f1 <- all.equal(datosCalif, datosCalif2)
+#   f1 <- all.equal(datosCalif, datosCalif2)
+  f1 <- all(datosCalif == datosCalif2)
   unlink(tmp)
   f1
 }

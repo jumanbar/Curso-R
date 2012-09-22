@@ -1,6 +1,15 @@
 ## Trabajo con tablas: una introducción (parte II)
 
-### Selecciones de datos y cálculos
+# En esta lección se van a mostrar algunos métodos básicos y muy útiles
+# para resolver problemas comunes asociados al trabajo con tablas de datos y su
+# manipulación.  Se cubren aspectos sencillos, tal como obtener información,
+# efectuar cálculos por filas o columnas, etc.
+
+# La mayoría de las veces es recomendable aprovechar los programas con los
+# que uno se siente más cómodo para manipular nuestras tablas/bases de datos.
+# De todas formas, existen varias funciones en R para manipular y explorar 
+# tablas (data.frames), varias de las cuales pueden ser sumamente prácticas en
+# muchos casos.
 
 ## Selección de Observaciones
 
@@ -12,14 +21,17 @@
 
 # La función which sirve para además guardar en un objeto los índices de un 
 # vector lógico para los cuales vale TRUE. Por ejemplo:
+
 x <- which(cars$dist > 20)
 
 # Aquí x tiene los números de fila de las observaciones que cumplen la 
 # condición dada entre paréntesis. Entonces x se puede usar posteriormente 
 # para quedarnos sólo con estas filas:
+
 y <- cars[x,]
 
 # Además, como se ha mostrado antes, también es posible escribir:
+
 y <- cars[cars$dist > 20,]
 
 # para obtener lo mismo que con los comandos anteriores. Este método es de 
@@ -29,6 +41,7 @@ y <- cars[cars$dist > 20,]
 # De todas formas which tiene un argumento extra que es de gran utilidad para 
 # trabajar con objetos de más de una dimensión (matrices, data.frames, 
 # arrays). Dicho argumento es "arr.ind" y es del tipo lógico. Por ejemplo:
+
 which(cars > 70, arr.ind=TRUE)
 
 # Como se puede ver, el resultado son las filas y columnas de los elementos
@@ -39,10 +52,12 @@ which(cars > 70, arr.ind=TRUE)
 
 # Para el caso de data.frames, R tiene una función bastante amena para filtrar 
 # observaciones siguiendo criterios: "subset"
+
 ?subset
 
 # Por ejemplo, para seleccionar las filas de 'cars' tales que dist > 20, uso 
 # la sintaxis:
+
 y <- subset(cars, subset=dist > 20)
 
 # El argumento 'subset' (sí, el argumento se llama igual que la función,
@@ -50,6 +65,7 @@ y <- subset(cars, subset=dist > 20)
 # expresión que resulta en un vector lógico.
 
 # A su vez el argumetno 'select' sirve para elegir las columnas de interés:
+
 subset(iris, subset=Species == 'versicolor', select=c(Sepal.Length, Petal.length)
 
 # En este caso me quedo con las columnas Sepal. y Petal. Length. Nótese que 
@@ -71,12 +87,14 @@ subset(iris, subset=Species == 'versicolor', select=c(Sepal.Length, Petal.length
 # ejemplo, en la data.frame iris la columna Species es un factor (y obviamente 
 # tiene la misma cantidad de elementos que filas de la data.frame), por lo que 
 # puedo usarlo como criterio de división. Para esto ejecuto:
+
 irisxspp <- split(iris, iris$Species)
 
 # El resultado, irisxspp, es una lista con 3 elementos: data.frames con las 
 # observaciones de iris, pero cada una con el subconjunto de aquellas que 
 # contienen a uno de los niveles del factor iris$Species. Con str se puede 
 # hechar un vistazo:
+
 str(irisxspp)
 
 
@@ -84,16 +102,20 @@ str(irisxspp)
 
 # Las funciones 'tabulate' y 'table' realizan conteos cada observación, 
 # devolviendo objetos ligeramente diferentes:
+
 (t1 <- tabulate(iris$Species))
 (t2 <- table(iris$Species))
+
 # Mientras que en el primer caso la salida es un vector 'integer', en el 
 # segundo se trata de un objeto de clase 'table', el cual tiene nombres para 
 # sus elementos (en este caso el de las especies de la data.frame iris), de 
 # forma que permite comandos como:
+
 t2['setosa']
 
 # NOTA: esto puede darse para confusiones si las categorías mismas son números
 # enteros, 1, 2, 3, etc... Por ejemplo:
+
 x <- sample(5, 20, replace = TRUE)
 table(x)
 
@@ -101,6 +123,7 @@ table(x)
 # La función 'count' del paquete 'plyr' sirve para hacer conteos por categorías,
 # devolviendo el resultado en un formato diferente (requiere instalar el paquete
 # plyr por supuesto):
+
 library(plyr)
 count(iris$Sepal.Width)
 count(as.vector(iris$Species))
@@ -118,6 +141,7 @@ count(as.vector(iris$Species))
 # cierto criterio (por filas, columnas, etc...).
 # Siguiendo el ejemplo anterior, podemos crear un substituto de colMeans de la
 # siguiente forma:
+
 apply(USArrests, 2, mean)
 
 # Es decir, la salida consiste en el calculo de los promedios para cada 
@@ -127,7 +151,9 @@ apply(USArrests, 2, mean)
 # siempre").
 
 # Veamos cómo funciona, es decir, cuáles son los argumentos
+
 ?apply # Abra la ayuda de la función.
+
 # X:
 # El primer argumento es un "array" (lo que incluye matrices, data.frames, y
 # otros tipos de objetos...).
@@ -146,13 +172,17 @@ apply(USArrests, 2, mean)
 # abajo).
 
 # Más ejemplos:
+
 apply(USArrests, 2, mean)   # El promedio de todas las columnas, ya lo vimos
 apply(USArrests, 1, mean)   # El promedio de todas las filas
 
 # El caso del argumento especial "...":
+
 apply(USArrests, 2, quantile, probs=c(0.25, 0.75))
+
 # En este caso FUN es la función quantile y el argumento extra es "probs".
 # Podemos ver que este es un argumento que usa quantile para hacer sus cálculos:
+
 ?quantile
 
 
@@ -164,6 +194,7 @@ apply(USArrests, 2, quantile, probs=c(0.25, 0.75))
 # Por ejemplo, lapply trabaja con listas, aplicando la función FUN a todos los
 # elementos de una lista determinada. En este caso no es necesario el 
 # argumento MARGIN. Veamos un ejemplo:
+
 x <- list(a = c(0, 1, 0, 1, 0, 1), b = rnorm(12))
 lapply(x, mean)
 
@@ -171,12 +202,15 @@ lapply(x, mean)
 
 # Dado que las data.frames son una especie de lista también, lapply funciona 
 # sin problemas con esta clase de objetos. Por ejemplo:
+
 lapply(USArrests, mean)
+
 # Aquí se obtiene el mismo resultado que con colMeans, pero con una salida del
 # tipo lista...
 
 # La función sapply hace exactamente lo mismo pero devuelve un vector común, 
 # por lo que es más amigable si los resultados son números únicos:
+
 sapply(USArrests, mean)
 
 

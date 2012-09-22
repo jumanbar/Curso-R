@@ -1,8 +1,26 @@
+# Factores
 
-### El objeto "y" se define como y <- gl(5, 1, labels=c('Robb', 'Sansa', 'Arya', 'Brandon', 'Rickon')),
-### cuál de los sigueintes comandos me permite averiguar si es un factor:
+El objeto "f" se define como
 
-    [ ] as.factor(y)
-    [x] is.factor(y)
-    [ ] levels(y)
-    [ ] y == factor
+    f <- gl(5, 4, labels = c('Robb', 'Sansa', 'Arya', 'Brandon', 'Rickon'))
+
+determine las afirmaciones correctas:
+Seleccione al menos una respuesta.
+
+	[ ] `as.factor(f)` permite determinar si se trata de un factor.
+  Incorrecto, el prefijo "as." se usa para coercionadores, no para identificadores.
+
+	[*] `is.factor(f)` permite determinar si se trata de un factor
+  Correcto; es una función identificadora como delata el prefijo "is."
+
+	[ ] `nlevels(f)` = 4
+  Incorrecto, nlevels(f) da el número de niveles pero no de réplicas.
+
+	[*] `nlevels(f)` = 5
+  Correcto, es el número de niveles de f
+
+	[*] `length(f) / nlevels(f)` = 4
+  Correcto (`length(f) = nlevels(f) * [número de réplicas]`).
+
+	[ ] `levels(f)` = 5
+  Incorrecto, devuelve un vector "character" con las etiquetas de los niveles de f 

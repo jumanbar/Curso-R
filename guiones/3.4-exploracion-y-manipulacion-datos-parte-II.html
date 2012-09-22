@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+</head>
+<body>
+<h1 id="exploración-manipulación-de-datos-parte-ii">Exploración &amp; manipulación de datos (parte II)</h1>
+<h2 id="selecciones-de-datos-y-cálculos">Selecciones de datos y cálculos</h2>
+<h2 id="selección-de-observaciones">Selección de Observaciones</h2>
+<p>Muchas veces nos interesan, dentro de una tabla, sólo ciertas observaciones basadas con ciertos criterios. Generalmente existe la forma de expresar estos criterios utilizando operadores lógicos. De hecho ya hemos visto en la unidad anterior cómo se pueden combinar estos con los corchetes para filtrar vectores, matrices o data.frames.</p>
+<p>La función which sirve para además guardar en un objeto los índices de un vector lógico para los cuales vale TRUE. Por ejemplo:</p>
+<pre><code>x &lt;- which(cars$dist &gt; 20)</code></pre>
+<p>Aquí x tiene los números de fila de las observaciones que cumplen la condición dada entre paréntesis. Entonces x se puede usar posteriormente para quedarnos sólo con estas filas:</p>
+<pre><code>y &lt;- cars[x,]</code></pre>
+<p>Además, como se ha mostrado antes, también es posible escribir:</p>
+<pre><code>y &lt;- cars[cars$dist &gt; 20,]</code></pre>
+<p>para obtener lo mismo que con los comandos anteriores. Este método es de alguna forma más directo, aunque tiene la contra que suele amontonar palabras y caracteres, resultando en cosas difíciles de leer.</p>
+<p>De todas formas which tiene un argumento extra que es de gran utilidad para trabajar con objetos de más de una dimensión (matrices, data.frames, arrays). Dicho argumento es &quot;arr.ind&quot; y es del tipo lógico. Por ejemplo:</p>
+<pre><code>which(cars &gt; 70, arr.ind=TRUE)</code></pre>
+<p>Como se puede ver, el resultado son las filas y columnas de los elementos que cumplen con la condición dada.</p>
+<h2 id="función-subset-subconjuntos">Función subset (subconjuntos)</h2>
+<p>Para el caso de data.frames, R tiene una función bastante amena para filtrar observaciones siguiendo criterios: &quot;subset&quot;</p>
+<pre><code>?subset</code></pre>
+<p>Por ejemplo, para seleccionar las filas de 'cars' tales que dist &gt; 20, uso la sintaxis:</p>
+<pre><code>y &lt;- subset(cars, subset=dist &gt; 20)</code></pre>
+<p>El argumento 'subset' (sí, el argumento se llama igual que la función, espero no sea demasiado confuso) acepta un vector lógico; en este caso una expresión que resulta en un vector lógico.</p>
+<p>A su vez el argumetno 'select' sirve para elegir las columnas de interés:</p>
+<pre><code>subset(iris, subset=Species == &#39;versicolor&#39;, select=c(Sepal.Length, Petal.length)</code></pre>
+<p>En este caso me quedo con las columnas Sepal. y Petal. Length. Nótese que para el nombre de la especie usé las comillas, pero esto no fue necesario para seleccionar las columnas (aunque también funcionaría).</p>
+<p>A su vez es de utilidad recordar que muchas otras funciones aceptan un argumento 'subset' para seleccionar las bservaciones que nos interesan. Los dos ejemplos más notables son plot y lm.</p>
+<p>En resumen, subset busca ser más intuitivo y directo que usar which() y/o vectores lógicos en combinación con los corchetes [ ].</p>
+<h2 id="partiendo-tablas-split">Partiendo Tablas (split)</h2>
+<p>A veces es necesario partir una tabla según distintas categorías de observaciones. Es decir, dividir una tabla según los valores de un factor. Por ejemplo, en la data.frame iris la columna Species es un factor (y obviamente tiene la misma cantidad de elementos que filas de la data.frame), por lo que puedo usarlo como criterio de división. Para esto ejecuto:</p>
+<pre><code>irisxspp &lt;- split(iris, iris$Species)</code></pre>
+<p>El resultado, irisxspp, es una lista con 3 elementos: data.frames con las observaciones de iris, pero cada una con el subconjunto de aquellas que contienen a uno de los niveles del factor iris$Species. Con str se puede hechar un vistazo:</p>
+<pre><code>str(irisxspp)</code></pre>
+<h2 id="conteos">Conteos</h2>
+<p>Las funciones 'tabulate' y 'table' realizan conteos cada observación, devolviendo objetos ligeramente diferentes:</p>
+<pre><code>(t1 &lt;- tabulate(iris$Species))
+(t2 &lt;- table(iris$Species))</code></pre>
+<p>Mientras que en el primer caso la salida es un vector 'integer', en el segundo se trata de un objeto de clase 'table', el cual tiene nombres para sus elementos (en este caso el de las especies de la data.frame iris), de forma que permite comandos como:</p>
+<pre><code>t2[&#39;setosa&#39;]</code></pre>
+<p>NOTA: esto puede darse para confusiones si las categorías mismas son números enteros, 1, 2, 3, etc... Por ejemplo:</p>
+<pre><code>x &lt;- sample(5, 20, replace = TRUE)
+table(x)</code></pre>
+<p>Alternativa: paquete plyr La función 'count' del paquete 'plyr' sirve para hacer conteos por categorías, devolviendo el resultado en un formato diferente (requiere instalar el paquete plyr por supuesto):</p>
+<pre><code>library(plyr)
+count(iris$Sepal.Width)
+count(as.vector(iris$Species))</code></pre>
+<h2 id="calculos-en-tablas">Calculos en tablas:</h2>
+<p>En R existen algunas funciones útiles que hacen cálculos por columna o fila en una tabla de datos. Un ejemplo sencillo son las funciones colMeans, rowMeans, colSums y rowSums (vea la ayuda para entender qué hacen). Pero para el caso general, el grupo de funciones &quot;apply&quot; es muy práctico.</p>
+<p>Función &quot;apply&quot;: Es una función que &quot;aplica&quot; otra función a un conjunto de datos según un cierto criterio (por filas, columnas, etc...). Siguiendo el ejemplo anterior, podemos crear un substituto de colMeans de la siguiente forma:</p>
+<pre><code>apply(USArrests, 2, mean)</code></pre>
+<p>Es decir, la salida consiste en el calculo de los promedios para cada columna de la data.frame USArrests. En este caso el número 2 indica el &quot;margen&quot; sobre el cual se va ha ejecutar la función, en este caso 'mean' (nota: margen 1 = filas, margen 2 = columnas; es el mismo &quot;orden de siempre&quot;).</p>
+<p>Veamos cómo funciona, es decir, cuáles son los argumentos</p>
+<pre><code>?apply Abra la ayuda de la función.</code></pre>
+<p>X: El primer argumento es un &quot;array&quot; (lo que incluye matrices, data.frames, y otros tipos de objetos...). MARGIN: El segundo argumento refiere a los subíndices a los que se aplica la función. Por ejemplo, si vale 1 la función se aplica a todas las filas; si vale 2 se aplica a todas las columnas; si vale c(1, 2) se aplica a filas y columnas (esto en caso de que el objeto &quot;X&quot; tenga más de 2 dimensiones, en una matriz no tendría sentido). FUN: En el tercer argumento es la función en cuestión. En nuestro caso es la función &quot;mean&quot;. ...: Este argumento especial indica que se pueden agregar más argumentos según lo que necesite FUN para correr, usando los nombres adecuados (ver más abajo).</p>
+<p>Más ejemplos:</p>
+<pre><code>apply(USArrests, 2, mean)   El promedio de todas las columnas, ya lo vimos
+apply(USArrests, 1, mean)   El promedio de todas las filas</code></pre>
+<p>El caso del argumento especial &quot;...&quot;:</p>
+<pre><code>apply(USArrests, 2, quantile, probs=c(0.25, 0.75))</code></pre>
+<p>En este caso FUN es la función quantile y el argumento extra es &quot;probs&quot;. Podemos ver que este es un argumento que usa quantile para hacer sus cálculos:</p>
+<pre><code>?quantile</code></pre>
+<h2 id="variantes-de-apply">Variantes de &quot;apply&quot;</h2>
+<p>lapply, sapply, vapply y replicate son variantes de la función apply. Estas trabajan de forma ligeramente diferente, pero el objetivo es similar siempre.</p>
+<p>Por ejemplo, lapply trabaja con listas, aplicando la función FUN a todos los elementos de una lista determinada. En este caso no es necesario el argumento MARGIN. Veamos un ejemplo:</p>
+<pre><code>x &lt;- list(a = c(0, 1, 0, 1, 0, 1), b = rnorm(12))
+lapply(x, mean)</code></pre>
+<p>Nótese que la salida es un objeto tipo lista.</p>
+<p>Dado que las data.frames son una especie de lista también, lapply funciona sin problemas con esta clase de objetos. Por ejemplo:</p>
+<pre><code>lapply(USArrests, mean)</code></pre>
+<p>Aquí se obtiene el mismo resultado que con colMeans, pero con una salida del tipo lista...</p>
+<p>La función sapply hace exactamente lo mismo pero devuelve un vector común, por lo que es más amigable si los resultados son números únicos:</p>
+<pre><code>sapply(USArrests, mean)</code></pre>
+<h2 id="resumen">Resumen</h2>
+<p>Si bien R no es un ambiente para trabajar manipulando tablas por excelencia, es cierto que tiene muchas facilidades que pueden ser muy útiles y prácticas si las sabemos aprovechar. En esta lección no hemos hecho más que rascar la superficie de lo que se puede hacer con funciones pre-armadas. Para el lector y el usuario ávido, recomendamos adentrarse en el uso de los paquetes reshape2, gdata, bigtabulate y plyr.</p>
+</body>
+</html>

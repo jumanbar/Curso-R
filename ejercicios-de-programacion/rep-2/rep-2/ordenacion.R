@@ -8,7 +8,7 @@
 # aleatorios.
 #===== Su código comienza aquí: =====#
 
-datosCalif <- 0
+datosCalif <- data.frame(nota=datosCalif$nota[order(cal)], genero=datosCalif$genero[order(cal)], franja=datosCalif$franja[order(cal)])
 
 #====== Aquí finaliza su código =====#
 

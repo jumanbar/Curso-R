@@ -1,16 +1,5 @@
 ## Trabajo con tablas: una introducción (parte I)
 
-# En esta lección se van a mostrar algunos métodos básicos y muy útiles
-# para resolver problemas comunes asociados al trabajo con tablas de datos y su
-# manipulación.  Se cubren aspectos sencillos, tal como obtener información,
-# efectuar cálculos por filas o columnas, etc.
-
-# La mayoría de las veces es recomendable aprovechar los programas con los
-# que uno se siente más cómodo para manipular nuestras tablas/bases de datos.
-# De todas formas, existen varias funciones en R para manipular y explorar 
-# tablas (data.frames), varias de las cuales pueden ser sumamente prácticas en
-# muchos casos.
-
 # Debe notarse que en nuestras lecciones usamos de forma vaga y poco rigurosa los
 # términos "matriz", "tabla" o "data.frame". En todos los casos, a menos que se 
 # especifique, estos términos referirán a objeto de la clase "data.frame".
@@ -35,10 +24,7 @@ data(basededatos)
 # datos, ya sean listas, matrices, data.frames o la cualquier otra clase.
 # Algunos comandos funcionan con todas ellas, particularmente la función 'str'.
 # Otros como 'colnames' o 'rownames' sólo sirven para objetos de dos dimensiones
-# (como matrices). Este tipo de 
-
-
-## Miradas rápidas
+# (como matrices).
 
 # Muchas veces nos interesa saber si nuestras tablas
 # quedaron bien importadas o si realizar un visualización rápida de como son
@@ -62,6 +48,11 @@ View(iris)
 # En RStudio si ud 'cliquea' sobre un objeto en el panel de workspace, R 
 # ejecutará este mismo comando. Lo puede corroborar porque en la consola de 
 # aparece el mismo al momento de cliquear
+
+# Adicionalmente, si se trabaja por fuera de RStudio es posible utilizar la 
+# función fix para cambiar data.frames usando una ventana interactiva. Por 
+# ejemplo, es posible cambiar la matriz "quakes" de la siguiete manera:
+fix(quakes)
 
 
 ## Nombres
@@ -142,7 +133,8 @@ str(USArrests)
 # Este comando es importante recordar debido a que es sumamente flexible,
 # de forma que sirve para casi cualquier objeto en R.
 
-# Algunos objetos simples:
+# Algunos objetos simples ...
+
 # 1. Una matriz corriente:
 x <- matrix(sample(20), 5, 4)
 str(x)

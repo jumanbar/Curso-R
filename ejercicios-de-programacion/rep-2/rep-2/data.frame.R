@@ -8,8 +8,7 @@
 # Note además que en la evaluación automática cal y gen serán vectores creados aleatoriamente.
 #===== Su código comienza aquí: =====#
 
-datosCalif <- data.frame (cal, gen, ctg)
-colnames(datosCalif) <- c("nota","genero","franja")
+datosCalif <- 0
 
 #====== Aquí finaliza su código =====#
 

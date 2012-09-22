@@ -1,7 +1,7 @@
-## Trabajo con tablas: una introducción (parte I)
+## Extra: graficos simples para visualizar datos
 
 
-### Gráficos de visualización para datos
+## Gráficos simples para visualizar datos
 
 # El objetivo de esta lección es brindar los elementos más básicos y
 # universales posibles para poder visualizar nuestros datos en los gráficos
@@ -11,6 +11,7 @@
 # esta necesidad.
 
 # La función 'plot' nos sirve para un pantallazo general de un data.frame
+
 plot(iris)
 
 # Como veremos en la siguiente unidad, la función 'plot' la utilizamos
@@ -42,30 +43,54 @@ pairs(iris, panel = panel.smooth)
 # La función 'coplot' nos retorna un gráfico de dispersión para dos variables
 # separado por cada una de las clases o grupos.  Por ejemplo:
 coplot(Sepal.Length ~ Sepal.Width | Species, data=iris)
+# Aquí vemos la relación entre Sepal.Length y Sepal.Width para los tres 
+# niveles del factor "Species", dados por la data.frame iris. Debido a que se 
+# trata de una variable categórica, no se ve ninguna superposición en el 
+# panel de arriba, pero esto cambia si usamos otra base de datos, en la que la 
+# variable condicional es numérica (y continua). Veamos lo que pasa cuando 
+# graficamos la ubicación geográfica de sismos cercanos a Fiji desde 1964, 
+# dada la variable condicional "depth":
+coplot(lat ~ long | depth, data = quakes)
+
+# Como se ve aquí, los intervalos utilizados para cada gráfico de abajo se 
+# superponen para distintos valores de profundidad ('depth'). Utilizando 
+# varios argumentos de la función es posible controlar el grado de 
+# superposición y el número de intervalos. En particular, para saber los 
+# rangos de dichos intervalos se puede usar la función co.intervals:
+co.intervals(quakes$depth)
+# Nota: en este caso se trata de los valores por defectos. Vea la 
+# documentación de "coplot" para comprender mejor cómo manipular las salidas 
+# de estas dos funciones.
 
 # La función 'boxplot' realiza gráficos del tipo boxplot o "box and
 # whisker diagram". Este requiere de una fórmula que consiste en una
 # variable y en función de la variable categórica, y ~ x. Es decir que la
-# variable x es del tipo 'factor'.
+# variable x es del tipo 'factor' (aunque esto no es del todo estricto). Por 
+# ejemplo los valores de Sepal.Width por especie en la base iris se pueden
+# visualizar así:
 boxplot(Sepal.Width ~ Species, data=iris)
-boxplot(Sepal.Length ~ Species, data=iris)
-boxplot(Petal.Width ~ Species, data=iris)
-boxplot(Petal.Length ~ Species, data=iris)
+
+# Nota: cuando usamos la misma sintaxis pero con la función plot, en caso de 
+# que x sea factor, se grafica lo mismo:
+plot(weight ~ group, PlantGrowth)
+
 
 # Cada caja contiene el 75% de los datos, la línea negra es la mediana (50%
 # de los datos), los 'bigotes' o las líneas que sobresalen tanto por debajo
 # como por arriba son los valores equivalentes al valor del extremo de la caja 
-# - o + 1.5 * RQ (donde RQ = rango intercuartílico: 3er. cuartil - 1er. cuartil)
-# respectivamente y los puntos son valores atípicos u "outliers".
+# - o + 1.5 * RIC (donde RIC = rango intercuartílico: 3er. cuartil - 1er. cuartil)
+# respectivamente y los puntos son valores atípicos u "outliers". Ver también:
+browseURL('https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Boxplot.svg/500px-Boxplot.svg.png')
 
 # Por último, la función 'hist' nos devuelve un histograma de los datos en un 
 # vector:
 hist(iris$Sepal.Length)
-hist(iris$Sepal.Width)
+hist(iris$Sepal.Length, breaks = 15)
 
 # Este nos permite observar como se distribuyen los datos, por ejemplo si
 # estos tienen una distribución aproximable a una Normal, Uniforme u otra.
-
+# Nótese el uso del argumento breaks para determinar la cantidad de intervalos 
+# en los que se hace conteo de ocurrencias.
 
 ## Resumen
 

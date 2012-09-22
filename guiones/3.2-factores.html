@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+</head>
+<body>
+<h1 id="factores">Factores</h1>
+<p>Los objetos de clase &quot;factor&quot; son objetos que sirven para trabajar con varia- bles categóricas, como pueden ser franjas etarias, nombres de especies o lugares. Una forma de comprender el concepto de factor es pensando en su uso dentro del diseño experimental: un factor es una variable cuyo efecto se busca entender; en un experimento se crean distintos tratamientos, cada uno con un nivel determinado para dicho factor. Estos tratamientos equivalen al concepto de niveles o &quot;levels&quot; utilizado en los objetos &quot;factor&quot; de R.</p>
+<p>Ejemplo: efecto del nitrógeno en el crecimiento de un cultivo. Un tratamiento puede ser sin N y otro con N. Entonces tenemos un factor (&quot;N&quot;) con dos niveles (que pueden ser denominados 0 y 1, o de cualquier otra forma).</p>
+<p>Este tipo de objetos se encuentra frecuentemente como variables en data.frames, como por ejemplo la quinta columna de la data.frame &quot;iris&quot;:</p>
+<pre><code>str(iris)
+class(iris$Species)</code></pre>
+<p>En general estos objetos no sirven para trabajar con operadores matemáticos, de manera similar, si bien no idéntica, a lo que ocurre con vectores character. Por ejemplo:</p>
+<pre><code>iris$Species * 2</code></pre>
+<p>De todas formas estos objetos se pueden coercionar en vectores numéricos, como veremos en esta lección.</p>
+<h2 id="métodos-de-creación">Métodos de creación</h2>
+<p>Una manera simple de crear un factor es hacer un character y luego transformarlo con el coercionador as.factor o directamente con la función &quot;factor&quot;. Por ejemplo, un factor con tres niveles/categorías llamados N1, N2 y N3, repetidos cinco veces cada uno (el equivalente a un experimento con tres tratamientos y 5 réplicas), puede crearse así: 1ero. hago el vector 'character':</p>
+<pre><code>clasif &lt;- rep(c(&#39;N1&#39;, &#39;N2&#39;, &#39;N3&#39;), each = 5)</code></pre>
+<p>y, a partir del mismo creo un factor:</p>
+<pre><code>f &lt;- factor(clasif)</code></pre>
+<p>o</p>
+<pre><code>f &lt;- as.factor(clasif)</code></pre>
+<p>Este comando admite otras opciones que no exploraremos ahora, pero que se pueden ver en la ayuda:</p>
+<pre><code>?factor</code></pre>
+<p>Alternativamente, podemos utilizar la función &quot;gl&quot;, de modo que si queremos crear un factor idéntico al anterior, lo haremos de la siguiente manera:</p>
+<pre><code>f &lt;- gl(3, 5, labels=c(&#39;N1&#39;, &#39;N2&#39;, &#39;N3&#39;))</code></pre>
+<p>El resutado no es exactamente el mismo, sino que están agrupados todas las observaciones que tienen la misma etiqueta.</p>
+<p>Otro método útil de crear factores es el uso de la función cut para pasar de valores numéricos (&quot;continuos&quot;) a categorías/niveles. Para esto sólo es necesario indicar el número de los niveles que necesitamos. Por ejemplo, si asumimos que &quot;edades&quot; es un muestreo de edades de estudiantes:</p>
+<pre><code>edades &lt;- rpois(150, 25)</code></pre>
+<p>Podemos crear un factor de 4 categorías con el siguiente comando:</p>
+<pre><code>(edades4 &lt;- cut(edades, 4))</code></pre>
+<p>En la consola se ve en qué rango de edades cae cada observación y cuáles son estos rangos (&quot;Levels&quot;). Se usa la notación estándar de matemáticas para indicar intervalos semiabiertos: paréntesis curvo para el extremo &quot;abierto&quot; y paréntesis recto/corchete para el extremo &quot;cerrado&quot;. (también en Wikipedia:)</p>
+<pre><code>browseURL(&#39;https://es.wikipedia.org/wiki/Intervalo_%28matem%C3%A1tica%29#Intervalo_semiabierto&#39;)</code></pre>
+<h2 id="conversión-a-otras-clases-de-objetos">Conversión a otras clases de objetos</h2>
+<p>A veces nos interesa trabajar sólo con los rótulos de las observaciones, es decir, con un vector de clase character hecho a partir del factor. Esto se obtiene con as.character o as.vector, por ejemplo:</p>
+<pre><code>as.character(f)
+as.vector(f)</code></pre>
+<p>De manera similar, es posible también convertir al factor en un vector numérico, cuyos valores se corresponden con los rótulos originales. Por ejemplo, compare las dos salidas de los siguientes comandos:</p>
+<pre><code>f
+as.numeric(f)
+as.integer(f)</code></pre>
+<h2 id="niveles-de-los-factores">Niveles de los factores</h2>
+<p>Como ya se vió, los niveles/categorías/tratamientos son parte cetral de la definición de los factores y siempre se imprimen en la consola cuando vemos estos objetos. Si queremos ver exclusivamente este atributo de un objeto de clase factor, entonces podemos usar la función levels:</p>
+<pre><code>levels(f)</code></pre>
+<p>Nota: la salida aquí es de clase &quot;character&quot;. Esta función también se puede usar para modificar los rótulos de los niveles del factor, de manera similar a cómo se usa la función names:</p>
+<pre><code>levels(f)[2] &lt;- &#39;n2&#39; # Cambia el nombre del segundo nivel</code></pre>
+<p>Finalmente, la función nlevels nos da el número de categorías de nuestro factor:</p>
+<pre><code>nlevels(f)</code></pre>
+<p>[1] 3 (es decir, es equivalente a &quot;<code>length(levels(f))</code>&quot;)</p>
+<p>Resumen: En definitiva, los factores son una construcción útil de R que está pensada para trabajar con variables categóricas. En el curso se va a profundizar en los usos de los factores, particularmente en los temas relacionados con esta- dística y trabajo con datos.</p>
+<p>Nota final: no es nada raro confundir un objeto &quot;factor&quot; con uno &quot;character&quot;, sobre todo cuando uno está aprendiendo R (y en particular luego de importar matrices o data.frames). Por esto se recomienda estar atento a la salida que R imprime en la consola (si es un factor se imprimen los &quot;Levels:...&quot; al final). En el caso de importación de datos, la opción por defecto es que las columnas con texto se interpetan como factores. Esto se puede evitar usando el argumen- to &quot;<code>stringsAsFactor = FALSE</code>&quot;.</p>
+</body>
+</html>
