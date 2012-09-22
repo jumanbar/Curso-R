@@ -1,8 +1,0 @@
-
-### El objeto "y" se define como y <- gl(5, 1, labels=c('Robb', 'Sansa', 'Arya', 'Brandon', 'Rickon')),
-### cuál de los sigueintes comandos me permite averiguar si es un factor:
-
-    [ ] as.factor(y)
-    [x] is.factor(y)
-    [ ] levels(y)
-    [ ] y == factor
