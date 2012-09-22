@@ -1,0 +1,32 @@
+
+# sapply & un lista
+
+Considerando la lista x definida de la forma siguiente:
+
+x <- list(a = subset(quakes, depth <= 100, c(lat, long)),
+          b = 1:11,
+          c = table(gl(3, 20, labels = c('A', 'B', 'C'))),
+          d = letters[3:8])
+
+Determine las asociaciones correctas (hay varias opciones sin correspondencia):
+
+    sapply(x, length) -- c(a = 2, b = 11, c = 3, d = 6)
+                      -- c(a = 200, b = 11, c = 3, d = 6)
+    sapply(x, class)  -- c(a = "data.frame", b = "integer", c = "table", d = "character")
+                      -- c(a = "data.frame", b = "numeric", c = "factor", d = "character")
+    apply(x, 2, mean) -- Error (el argumento MARGIN no tiene sentido para x).
+                      -- Error (debe usarse MARGIN = 1)
+
+
+# apply
+
+Encontrar las asociaciones correctas (hay opciones sin correspondencia):
+
+    colMeans(x)     --  apply(x, 2, mean)
+    rowMeans(x)     --  apply(x, 1, mean)
+    sapply(x, sum)  --  colSums(x)
+    rowSums(x)      --  apply(x, 1, sum)
+    sapply(x, mean) --  unlist(lapply(cars, mean))
+                    --  sapply(x, 2, sum)
+                    --  lapply(x, 1, mean)
+
