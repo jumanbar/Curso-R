@@ -3,10 +3,10 @@
 
 Considerando la lista x definida de la forma siguiente:
 
-x <- list(a = subset(quakes, depth <= 100, c(lat, long)),
-          b = 1:11,
-          c = table(gl(3, 20, labels = c('A', 'B', 'C'))),
-          d = letters[3:8])
+    x <- list(a = subset(quakes, depth <= 100, c(lat, long)),
+              b = 1:11,
+              c = table(gl(3, 20, labels = c('A', 'B', 'C'))),
+              d = letters[3:8])
 
 Determine las asociaciones correctas (hay varias opciones sin correspondencia):
 
