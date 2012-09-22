@@ -27,7 +27,7 @@ Determine las relaciones correctas:
     names(x)         --  c('a', 'b', 'c')
     names(y)         --  colnames(y)
     names(z)[-1]     --  c('b', 'c')
-    colnames(z)      --  Error (no tiene filas)
+    colnames(z)      --  Error (no tiene filas, es una lista)
     rownames(y)      --  as.character(1:15)
     rownames(x)      --  Error (tiene dimensión = NULL)
     class(y[['c']])  --  "factor"
