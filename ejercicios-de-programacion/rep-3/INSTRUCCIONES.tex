@@ -1,0 +1,564 @@
+\documentclass[]{article}
+\hyphenation{co-rres-pon-dien-tes te-ner E-ben-sper-ger de-pre-da-do-res dis-po-ni-ble be-ne-fi-cio-sa in-di-vi-dual so-cia-li-dad mos-tra-ron fuen-tes a-cep-ta-ble ta-ma-ño o-pues-ta mo-de-lo es-tu-dian-tes e-jer-ci-cios co-rres-pon-dien-te mo-di-fi-ca-dos mo-di-fi-car-lo}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifxetex
+  \usepackage{fontspec,xltxtra,xunicode}
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\else
+  \ifluatex
+    \usepackage{fontspec}
+    \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \else
+    \usepackage[utf8]{inputenc}
+  \fi
+\fi
+\usepackage{color}
+\usepackage{fancyvrb}
+\DefineShortVerb[commandchars=\\\{\}]{\|}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+% Redefine labelwidth for lists; otherwise, the enumerate package will cause
+% markers to extend beyond the left margin.
+\makeatletter\AtBeginDocument{%
+  \renewcommand{\@listi}
+    {\setlength{\labelwidth}{4em}}
+}\makeatother
+\usepackage{enumerate}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex,
+              colorlinks=true,
+              linkcolor=blue]{hyperref}
+\else
+  \usepackage[unicode=true,
+              colorlinks=true,
+              linkcolor=blue]{hyperref}
+\fi
+\hypersetup{breaklinks=true, pdfborder={0 0 0}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+
+
+\begin{document}
+
+\section{Ejercicios de programación II: Fundamentos}
+
+\subsubsection{{[}IMSER 2012{]}}
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\subsection{Archivos incluidos:}
+
+El
+\href{http://eva.universidad.edu.uy/file.php/1454/ejercicios\_de\_programacion/rep-1.zip}{archivo}
+con los ejercicios del práctico debe bajarse y descomprimirse en disco
+duro, creando la carpeta \textbf{\texttt{rep-2}} (nota: no debe dentro
+de ningún disco, partición o carpeta protegida a la escritura, como
+puede ser un disco duro externo de backup). Usted deberá abrir el
+RStudio y seleccionar dicha carpeta como su directorio de trabajo con
+\texttt{setwd} o en RStudio la combinación \textbf{Ctrl + Shift + K}. En
+esta carpeta se encuentran algunos archivos que usted deberá modificar:
+
+\begin{itemize}
+\item
+  \textbf{\texttt{aprobados.R}}
+\item
+  \textbf{\texttt{aprobados2.R}}
+\item
+  \textbf{\texttt{mejorcitos.R}}
+\item
+  \textbf{\texttt{franjas.R}}
+\item
+  \textbf{\texttt{data.frame.R}}
+\item
+  \textbf{\texttt{ordenacion.R}}
+\item
+  \textbf{\texttt{lista.R}}
+\item
+  \textbf{\texttt{print.listaCalif.R}}
+\end{itemize}
+Adicionalmente los siguientes archivos son necesarios, pero \textbf{no
+deben ser modificados} para que el método de calificación automático
+funcione correctamente.
+
+\begin{itemize}
+\item
+  \texttt{evaluar.R}
+\item
+  \texttt{notas.csv}
+\item
+  \texttt{datos}
+\item
+  \texttt{INSTRUCCIONES.pdf}
+\item
+  \texttt{calificaciones.R}
+\item
+  \texttt{ej2.rda}
+\end{itemize}
+\subsection{Mecanismo de corrección:}
+
+Lo primero que debe hacer es cargar el archivo evaluar.R con la función
+\texttt{source} y la codificación de caracteres ``UTF-8'' (lo cual
+afecta a la función \texttt{evaluar} en particular), de la siguiente
+manera:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{options}\NormalTok{(}\DataTypeTok{encoding =} \StringTok{"utf-8"}\NormalTok{)}
+\KeywordTok{source}\NormalTok{(}\StringTok{"evaluar.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+Si usted ha ejecutado todos los pasos anteriores correctamente, la
+siguiente frase debería verse en la consola:
+
+\begin{verbatim}
+Archivo de codigo fuente cargado correctamente
+\end{verbatim}
+En caso de que ocurra un error o se vea otro mensaje en la consola,
+verifique que los archivos se descomprimieron correctamente y que usted
+está trabajando en la carpeta correspondiente con el comando
+\texttt{getwd()}.
+
+Usted trabajará modificando los contenidos de dichos archivos con
+RStudio (u otro programa de su preferencia) según las consignas que se
+describen a continuación. Luego de terminar cada ejercicio y
+\textbf{guardando el archivo} correspondiente en el disco duro, usted
+podrá verificar rápidamente si su respuesta es correcta ejecutando el
+comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{evaluar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+y además podrá en todo momento verificar su puntaje con la función
+\texttt{verNotas()}. Tenga siempre en cuenta que, a \textbf{menos que
+sea indicado} por la letra del ejercicio, las soluciones deben ser
+genéricas y por lo tanto deben obtenerse con el código de los scripts en
+lugar de ser valores fijos. Usualmente se utilizan valores generados de
+forma aleatoria para las correcciones automáticas. Los objetos que son
+evaluados en la corrección automática estarán indicados con un asterísco
+en las instrucciones de cada script. Nótese además que en los archivos
+\textbf{se indica claramente en dónde se inicia y dónde finaliza su
+código} y que debe respetar esta organización para que la corrección de
+los ejercicios funcione bien.
+
+\subsubsection{Al finalizar}
+
+Una vez terminados y guardados los archivos de los ejercicios del
+repartido, usted deberá ejecutar \texttt{evaluar()} y seleccionar la
+última opción (``Todos'') y luego subir el archivo ''datos'' (sin
+extensión), incluido en la carpeta ''rep-1'', a la
+\href{http://eva.universidad.edu.uy/mod/assignment/view.php?id=95125}{sección
+de entregas} de la portada del curso en la plataforma EVA. Este archivo
+se podrá reemplazar con uno más nuevo, en caso de que desee corregir
+algún error; en caso de querer que el archivo sea corregido antes de la
+fecha de entrega, puede cambiarle el nombre a ``datos-finalizado'', pero
+en ese caso la nota no se cambiará de ahí en adelante.
+
+\subsubsection{Código de Honor}
+
+Si bien animamos a que los estudiantes trabajen en equipos y que haya un
+intercambio fluido en los foros del curso, es fundamental que las
+respuestas a los cuestionarios y ejercicios de programación sean fruto
+del trabajo individual. En particular, consideramos importante que los
+estudiantes no miren el código creado por sus compañeros ya que esto
+supone un sabotaje a su propio proceso de aprendizaje. Como profesores
+estamos comprometidos a pedir tareas para las cuales hayamos dado las
+herramientas correctas y las explicaciones adecuadas como para que todos
+puedan encontrar su propio camino para resolver los ejercicios.
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\subsection{1. Datos de calificaciones}
+
+Con el archivo ``calificaciones.R'' se generan calificaciones ficticias
+de estudiantes de secundaria, utilizando rutinas de generación de
+números aleatorios. Lo primero que debe hacer entonces es ejecutar el
+comando
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source}\NormalTok{(}\StringTok{"calificaciones.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+para generar los vectores \texttt{cal} y \texttt{gen}, los cuales
+deberían encontrarse en su área de trabajo (o ``Workspace'' en RStudio).
+En el primero se encuentran las notas de dichos estudiantes, con valores
+que van del 1 al 12, mientras que el segundo indica el sexo de cada uno
+de ellos (codificados como ``V'' y ``M'', varón y mujer
+respectivamente). Nótese que las clases de ambos vectores son
+diferentes, siendo uno numérico y el otro caracter. Ejecute los
+siguientes comandos para hechar un vistazo rápido a los datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Histograma de las notas:}
+\KeywordTok{hist}\NormalTok{(cal)}
+\CommentTok{# Cantidad de mujeres y de varones:}
+\KeywordTok{table}\NormalTok{(gen)}
+\end{Highlighting}
+\end{Shaded}
+\subsubsection{1.a Porcentaje de aprobados}
+
+Script: ``aprobados.R''
+
+Considerando que los aprobados son todos aquellos que tienen una nota de
+5 o mayor, usted deberá cuantificar el porcentaje de aprobaciones. En el
+archivo \texttt{aprobados.R} deberá escribir el código necesario para
+calcular este valor. Tenga en cuenta que para esta tarea necesitará usar
+\href{http://eva.universidad.edu.uy/mod/resource/view.php?id=94745}{operadores
+relacionales}. Existen varias formas de obtener el valor final, por lo
+que queda a su gusto determinar el camino a tomar.
+
+\subsubsection{1.b Aprobados por género}
+
+Script: ``aprobados2.R''
+
+El objetivo aquí es determinar la cantidad y porcentaje de aprobados
+para varones y mujeres por separado. Es decir, se debe determinar la
+cantidad de varones aprobados en relación a la cantidad de varones
+totales, y lo mismo para las mujeres. El código para ejecutar esta tarea
+se debe escribir en el archivo ``aprobados2.R''.
+
+La estrategia más sencilla es primero separar las calificaciones de
+varones y mujeres en dos vectores (\texttt{v} y \texttt{m} por ejemplo)
+y luego aplicar el método usado en el ejercicio anterior en ambos. Para
+esto evidentemente tendrá que usar el vector \texttt{gen} además de
+operadores relacionales, en particular \texttt{==} (o su contraparte
+\texttt{!=}).
+
+\subsubsection{1.c Los mejorcitos}
+
+Script: ``mejorcitos.R''
+
+En esta parte lo que hará es seleccionar al grupo de los mejores
+calificados, trabajando con el script ``mejorcitos.R''. El objetivo es
+crear un vector numérico llamado \texttt{mejores}, el que tendrá las
+calificaciones del 25\% de los estudiantes con mejor nota. Es decir, en
+caso de que fueran 100 valores, queremos tomar los 25 más altos. Para
+esto una estrategia simple es ordenar los valores de menor a mayor y
+luego elegir los últimos elementos del vector resultante. Lo primero
+será entonces crear un vector llamado \texttt{ord} con la función
+\texttt{sort}. Posteriormente es necesario determinar la iésima posición
+del mismo a partir de la cual se deben tomar los valores, para lo cual
+seguirá la ecuación:
+
+\[i = \lceil { n \cdot 0.75 } \rceil\]
+
+donde $n$ es el número de elementos de \texttt{cal} y la función
+$\lceil x \rceil$ indica la
+\href{https://es.wikipedia.org/wiki/Funciones\_de\_parte\_entera\#Funci.C3.B3n\_techo}{función
+techo}, es decir el siguiente valor entero más alto que $x$. Entonces el
+vector \texttt{mejores} consistirá en los elementos de \texttt{ord}
+entre las posiciones $i$ (inclusive) y $n$. Puede buscar la función
+techo en R con el comando \texttt{??ceil}.
+
+Finalmente puede visualizar cómo se distribuyen estos datos usando las
+funciones \texttt{table} o \texttt{hist}.
+
+\subsubsection{1.d Franjas de notas}
+
+Script: ``franjas.R''
+
+El objetivo de esta sección es crear un nuevo vector de clase
+``character'' el cual tendrá las letras ``A'', ``B'', ``C'' y ``D'' a
+fin de indicar cuatro franjas de notas, como se describe a continuación:
+
+\begin{itemize}
+\item
+  A: $x \leq 3$
+\item
+  B: $3 < x \leq 6$
+\item
+  C: $6 < x \leq 9$
+\item
+  D: $9 < x$
+\end{itemize}
+siendo $x$ la nota del estudiante. El nuevo vector caracter se llamará
+\texttt{ctg}, tendrá la misma cantidad de elementos que número de
+calificaciones y para cada posición tendrá asignada la letra
+correspondiente (en mayúsculas). Por ejemplo, para el siguiente vector
+\texttt{cal}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{> cal}
+\NormalTok{[}\DecValTok{1}\NormalTok{]  }\DecValTok{2} \DecValTok{11}  \DecValTok{3}  \DecValTok{6}  \DecValTok{7}  \DecValTok{6}  \DecValTok{9} \DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+El vector \texttt{ctg} correspndiente es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{> ctg}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"A"} \StringTok{"D"} \StringTok{"A"} \StringTok{"B"} \StringTok{"C"} \StringTok{"B"} \StringTok{"C"} \StringTok{"B"} 
+\end{Highlighting}
+\end{Shaded}
+Finalmente deberá obtener la cantidad de casos para cada franja (en el
+ejemplo anterior serían 2, 3, 2, 1 para A, B, C y D respectivamente) y
+guardar estos valores en el vector \texttt{conteo} (las funciones
+\texttt{sum} o \texttt{table} pueden ser de utilidad aquí). Si el vector
+\texttt{conteo} resultante es de la clase ``table'' entonces debe
+convertirlo en un vector ``numeric'' con la
+\href{http://eva.universidad.edu.uy/file.php/1454/lecciones/2.6-identificadores-y-coercionadores.R}{función
+coercionadora} adecuada y luego los nombres dicho vector deben cambiarse
+a ``A'', ``B'', ``C'', y ``D'', utilizando la función \texttt{names}.
+
+El archivo para esta tarea es ``franjas.R''.
+
+\paragraph{Sugerencia:}
+
+Una forma sencilla de hacer esto es crear un vector del tipo
+``character'' inicial, con funciones tales como \texttt{rep} o
+\texttt{character}, para luego modificarlo, utilizando el esquema:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x[i] <- y}
+\end{Highlighting}
+\end{Shaded}
+en donde \texttt{x} es el vector caracter, \texttt{y} es un(os)
+valor(es) determinado(s) e \texttt{i} es un vector (de uno o más
+elementos) de clase ``integer'' o ``logical''. Probablemente deba usar
+operadores
+\href{http://eva.universidad.edu.uy/mod/resource/view.php?id=94745}{lógicos
+y relacionales} para reproducir las 4 condiciones que definen las
+franjas.
+
+\subsection{2. Organización de los datos}
+
+En esta sección se crearán data.frames y listas en base a datos de
+calificaciones similares a los del ejercicio 1. Para esto puede
+continuar utilizando los objetos creados en dicho ejercicio, o
+alternativamente cargar objetos ya preparados para este ejercicio con el
+comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Comando opcional:}
+\KeywordTok{load}\NormalTok{(}\StringTok{"ej2.rda"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\subsubsection{2.a Crear una data.frame}
+
+Sript: ``data.frame.R''
+
+En esta sección deberá modificar el archivo ``data.frame.R'' para crear
+un objeto de la clase ``data.frame'' llamado \texttt{datosCalif}, cuyas
+columnas/variables sean los vectores \texttt{cal}, \texttt{gen} y
+\texttt{ctg}. Los nombres de tales columnas en la data.frame serán
+``nota'', ``genero'' y ``franja'' (respetando mayúsculas y minúsculas).
+Utilice su método de preferencia para generar dicha data.frame. Una vez
+hecho, el siguiente comando debería dar un resultado similar a este:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{> }\KeywordTok{head}\NormalTok{(datosCalif)}
+  \NormalTok{nota genero franja}
+\DecValTok{1}    \DecValTok{9}      \NormalTok{M      C}
+\DecValTok{2}    \DecValTok{8}      \NormalTok{V      C}
+\DecValTok{3}    \DecValTok{5}      \NormalTok{M      B}
+\DecValTok{4}   \DecValTok{11}      \NormalTok{V      D}
+\DecValTok{5}   \DecValTok{11}      \NormalTok{V      D}
+\DecValTok{6}    \DecValTok{5}      \NormalTok{M      B}
+\end{Highlighting}
+\end{Shaded}
+\subsubsection{2.b Ordenar la tabla}
+
+Script: ``ordenacion.R''
+
+el objetivo aquí es modificar la tabla \texttt{datosCalif} creada en la
+sección anterior, de forma que las filas estén ordenadas en función de
+la nota (de menor a mayor). Una vez terminado, las primeras filas de
+\texttt{datosCalif} se deberían ver similares a
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{> }\KeywordTok{head}\NormalTok{(datosCalif)}
+    \NormalTok{nota genero franja}
+\DecValTok{40}     \DecValTok{1}      \NormalTok{V      A}
+\DecValTok{178}    \DecValTok{1}      \NormalTok{M      A}
+\DecValTok{181}    \DecValTok{1}      \NormalTok{M      A}
+\DecValTok{194}    \DecValTok{1}      \NormalTok{V      A}
+\DecValTok{236}    \DecValTok{1}      \NormalTok{V      A}
+\DecValTok{246}    \DecValTok{1}      \NormalTok{M      A}
+\end{Highlighting}
+\end{Shaded}
+y las últimas parecidas a esto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{> }\KeywordTok{tail}\NormalTok{(datosCalif)}
+    \NormalTok{nota genero franja}
+\DecValTok{193}   \DecValTok{11}      \NormalTok{V      D}
+\DecValTok{242}   \DecValTok{11}      \NormalTok{M      D}
+\DecValTok{252}   \DecValTok{11}      \NormalTok{M      D}
+\DecValTok{272}   \DecValTok{11}      \NormalTok{M      D}
+\DecValTok{135}   \DecValTok{12}      \NormalTok{V      D}
+\DecValTok{136}   \DecValTok{12}      \NormalTok{V      D}
+\end{Highlighting}
+\end{Shaded}
+\paragraph{Sugerencias}
+
+Para este ejercicio es necesario comprender el funcionamiento de la
+función \texttt{order}, el uso de los índices en vectores y/o matrices,
+así como el de los corchetes y/o el operador \texttt{\$}. Nótese además
+que una expresión de la forma
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <- x[i]}
+\end{Highlighting}
+\end{Shaded}
+es perfectamente válida y que el objeto \texttt{x} es sobreescrito en el
+proceso.
+
+\subsubsection{2.c Una lista con los datos}
+
+Script: ``lista.R''
+
+Vamos a crear ahora una lista con los datos generados (o los cargados
+del archivo ``ej2.rda'' si es necesario), modificando el código del
+archivo ``lista.R''. Esta lista se llamará \texttt{analisisCalif} y
+tendrá los siguientes componentes (preste atención a los nombres):
+
+\begin{enumerate}[1.]
+\item
+  tabla: la data.frame creada en el ejercicio 2.a (y modificada en 2.b).
+\item
+  conteo: el vector nombrado con los conteos por franjas de
+  calificaciones.
+\item
+  aprob: una lista con 3 elementos:
+  \begin{itemize}
+  \item
+    atot: porcentaje de aprobación total (\texttt{p.apr})
+  \item
+    avar: porcentaje de aprobación de varones (\texttt{p.apr.v})
+  \item
+    amuj: porcentaje de aprobación de mujeres (\texttt{p.apr.m})
+  \end{itemize}
+\end{enumerate}
+Si su lista ha sido construida correctamente, al usar la función
+\texttt{str} debería ver algo similar a lo siguiente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{> }\KeywordTok{str}\NormalTok{(analisisCalif)}
+\NormalTok{List of }\DecValTok{3}
+ \NormalTok{$ tabla :}\StringTok{'data.frame'}\NormalTok{:  }\DecValTok{272} \NormalTok{obs. of  }\DecValTok{3} \NormalTok{variables:}
+  \NormalTok{..$ nota  : num [}\DecValTok{1}\NormalTok{:}\DecValTok{272}\NormalTok{] }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{2} \DecValTok{2} \DecValTok{2} \DecValTok{2} \NormalTok{...}
+  \NormalTok{..$ genero: Factor w/ }\DecValTok{2} \NormalTok{levels }\StringTok{"M"}\NormalTok{,}\StringTok{"V"}\NormalTok{: }\DecValTok{2} \DecValTok{1} \DecValTok{1} \DecValTok{2} \DecValTok{2} \DecValTok{1} \DecValTok{2} \DecValTok{1} \DecValTok{1} \DecValTok{1} \NormalTok{...}
+  \NormalTok{..$ franja: Factor w/ }\DecValTok{4} \NormalTok{levels }\StringTok{"A"}\NormalTok{,}\StringTok{"B"}\NormalTok{,}\StringTok{"C"}\NormalTok{,}\StringTok{"D"}\NormalTok{: }\DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \DecValTok{1} \NormalTok{...}
+ \NormalTok{$ conteo: Named num [}\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{] }\DecValTok{38} \DecValTok{113} \DecValTok{99} \DecValTok{22}
+  \NormalTok{..- }\KeywordTok{attr}\NormalTok{(*, }\StringTok{"names"}\NormalTok{)= chr [}\DecValTok{1}\NormalTok{:}\DecValTok{4}\NormalTok{] }\StringTok{"A"} \StringTok{"B"} \StringTok{"C"} \StringTok{"D"}
+ \NormalTok{$ aprob :List of }\DecValTok{3}
+  \NormalTok{..$ atot: num }\DecValTok{71}
+  \NormalTok{..$ avar: num }\FloatTok{73.4}
+  \NormalTok{..$ amuj: num }\FloatTok{68.2}
+\end{Highlighting}
+\end{Shaded}
+\subsubsection{2.d Extra: una clase nueva y un método asociado}
+
+(\emph{Este ejercicio es opcional, aunque puede sumar puntos en su
+calificación final del repartido})
+
+Script: ``print.listaCalif.R''
+
+Cuando se manejan estructuras de información sofisticadas, como la lista
+creada en la sección anterior, no es mala idea definir una nueva clase y
+algunos métodos asociados para hacer el trabajo más fluido. Esto es útil
+en particular cuando es una tarea que se repite muchas veces a lo largo
+de un proyecto o en trabajos de rutina.
+
+Actualmente el objeto \texttt{analisisCalif} debería ser de la clase
+``list'', lo que podemos comprobar con el comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{> }\KeywordTok{class}\NormalTok{(analisisCalif)}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"list"}
+\end{Highlighting}
+\end{Shaded}
+Hagamos una nueva clase llamada ``listaCalif'' la cual va a estar
+compuestas por listas con la estructura de \texttt{analisisCalif}. Lo
+primero que vamos a hacer es cambiar la clase de este objeto de la
+siguiente manera:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{> }\KeywordTok{class}\NormalTok{(analisisCalif) <- }\StringTok{"listaCalif"}
+\end{Highlighting}
+\end{Shaded}
+Esto por ahora no traerá mayores cambios, pero una vez que usted
+modifique el archivo ``print.listaCalif.R'' se habrá definido un nuevo
+método de \texttt{print} para esta nueva clase. Para entender la
+diferencia que esto hace, veamos lo que sucede cuando se escribe el
+nombre del objeto \texttt{analisisCalif} en la consola:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{> analisisCalif}
+\KeywordTok{...}\NormalTok{(muchos números)}
+\end{Highlighting}
+\end{Shaded}
+R simplemente arroja todos los datos de la lista. Sin embargo, al cargar
+``print.listaCalif.R'', se puede ver algo así:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{> }\KeywordTok{source}\NormalTok{(}\StringTok{"print.listaCalif.R"}\NormalTok{)}
+\NormalTok{> analisisCalif}
+\NormalTok{Porcentaje total de aprobaciones: }\FloatTok{70.96} \NormalTok{%}
+  \NormalTok{En varones: }\FloatTok{73.43} \NormalTok{%}
+  \NormalTok{En mujeres: }\FloatTok{68.22} \NormalTok{%}
+\NormalTok{La nota promedio fue de: }\OtherTok{NA} 
+  \NormalTok{En varones: }\OtherTok{NA} 
+  \NormalTok{En mujeres: }\OtherTok{NA} 
+\NormalTok{Conteos por franja de nota:}
+  \DecValTok{1}\ErrorTok{--}\DecValTok{3}   \DecValTok{4}\ErrorTok{--}\DecValTok{6}   \DecValTok{7}\ErrorTok{--}\DecValTok{9} \DecValTok{10}\ErrorTok{--}\DecValTok{12} 
+    \DecValTok{38}    \DecValTok{113}     \DecValTok{99}     \DecValTok{22}
+\end{Highlighting}
+\end{Shaded}
+¡Esta es la gran utilidad de definir métodos para una clase en R! En
+este caso, en lugar de imprimir en pantalla una cantidad de números
+difícles de leer, ahora se pueden ver los resultados más relevantes sin
+todo ese ruido. Nótese que esto sólo es posible gracias a que
+\texttt{print} es una función genérica y por lo tanto permite hacer
+nuevos métodos en cualquier momento. No muchas funciones pertenecen a
+esta categoría (ver \texttt{?GenericFunctions} por mayor información).
+
+El único problema en este caso es que no se calculan bien los promedios
+de las notas y por lo tanto se ven unos ``NA'' en la salida de la
+consola. El objetivo de este ejercicio es modificar la función
+\texttt{print.listaCalif} para que calcule estos 3 promedios y así los
+imprima correctamente cada vez que se llama a un objeto de la nueva
+clase ``listaCalif''. Invitamos además a mirar el resto del código de la
+función \texttt{print.listaCalif} para tratar de entender los pasos que
+se toman para generar esta salida.
+
+Nótese el uso del operador \texttt{\$} en varios comandos internos de
+dicha función, ya que usted deberá usarlos también para calcular los
+promedios.
+
+\end{document}

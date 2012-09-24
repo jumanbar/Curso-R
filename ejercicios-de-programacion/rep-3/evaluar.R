@@ -16,12 +16,13 @@ evaluar <- function() {
 
   ### Elección del archivo (y por lo tanto el ejercicio) a corregir
   s <- menu(c(paste('Ej. (', ejnum, "): ", corregir, sep=""), 'Todos'),
-             title="Elija el archivo que desea corregir:")
+            title="Elija el archivo que desea corregir:")
   msj <- NULL
   if (s > nej) {
     for (i in 1:nej) {
-      r <- try(do.call(paste('cor', ejnum[i], sep=''), list(a=1)), silent=TRUE)
-      if (is.character(r)) {
+#       r <- try(do.call(paste('cor', ejnum[i], sep=''), list(a=1)), silent=TRUE)
+      r <- try(corAll[[i]]())
+      if (is.character(r) || is.na(r)) {
         msj <- c(msj, r)
         hasmsj[i] <- TRUE
         notas$Nota[i] <- 0
@@ -30,8 +31,9 @@ evaluar <- function() {
       }
     }
   } else {
-    r <- try(do.call(paste('cor', ejnum[s], sep=''), list(a=1)), silent=TRUE)
-    if (is.character(r)) {
+#     r <- try(do.call(paste('cor', ejnum[s], sep=''), list(a=1)), silent=TRUE)
+    r <- try(corAll[[s]]())
+    if (is.character(r) || is.na(r)) {
       msj <- c(msj, r)
       hasmsj[s] <- TRUE
       notas$Nota[s] <- 0
@@ -91,7 +93,7 @@ feedback <- function(r, s) {
   if (!is.character(r) && r > 0) {
     cat('El script "', s, '" está perfecto, ¡Buen trabajo!\n\n', sep='')
   } else {
-    cat('El script "', s, '" tiene algún error, lo siento :(\n\n', sep='')
+    cat('El script "', s, '" tiene algún error, lo siento :s(\n\n', sep='')
   }
 }
 

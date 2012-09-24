@@ -1,0 +1,104 @@
+Ejercicios de programación II: Fundamentos
+==========================================
+
+### [IMSER 2012]
+
+___
+
+Archivos incluidos:
+-------------------
+
+El [archivo](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/rep-1.zip) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-2`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
+
+* **` importar.R `**
+* **` analf.R `**
+
+Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modificados** para que el método de calificación automático funcione correctamente.
+
+* ` evaluar.R `
+* ` notas.csv `
+* ` datos `
+* ` INSTRUCCIONES.pdf `
+* ` aux `
+* ` est.rda `
+
+Mecanismo de corrección:
+------------------------
+
+Lo primero que debe hacer es cargar el archivo evaluar.R con la función `source` y la codificación de caracteres "UTF-8" (lo cual afecta a la función `evaluar` en particular), de la siguiente manera:
+
+```{r eval=FALSE}
+options(encoding = "utf-8")
+source("evaluar.R")
+```
+
+Si usted ha ejecutado todos los pasos anteriores correctamente, la siguiente frase debería verse en la consola:
+
+    Archivo de codigo fuente cargado correctamente
+
+En caso de que ocurra un error o se vea otro mensaje en la consola, verifique que los archivos se descomprimieron correctamente y que usted está trabajando en la carpeta correspondiente con el comando `getwd()`.
+
+Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio y **guardando el archivo** correspondiente en el disco duro, usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:
+
+```{r eval=FALSE}
+evaluar()
+```
+
+y además podrá en todo momento verificar su puntaje con la función `verNotas()`. Tenga siempre en cuenta que, a **menos que sea indicado** por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben obtenerse con el código de los scripts en lugar de ser valores fijos. Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos **se indica claramente en dónde se inicia y dónde finaliza su código** y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.
+
+### Al finalizar
+
+Una vez terminados y guardados los archivos de los ejercicios del repartido, usted deberá ejecutar `evaluar()` y seleccionar la última opción ("Todos") y luego subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-1”, a la [sección de entregas](http://eva.universidad.edu.uy/mod/assignment/view.php?id=95125) de la portada del curso en la plataforma EVA. Este archivo se podrá reemplazar con uno más nuevo, en caso de que desee corregir algún error; en caso de querer que el archivo sea corregido antes de la fecha de entrega, puede cambiarle el nombre a "datos-finalizado", pero en ese caso la nota no se cambiará de ahí en adelante.
+
+
+### Código de Honor
+
+Si bien animamos a que los estudiantes trabajen en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos importante que los estudiantes no miren el código creado por sus compañeros ya que esto supone un sabotaje a su propio proceso de aprendizaje. Como profesores estamos comprometidos a pedir tareas para las cuales hayamos dado las herramientas correctas y las explicaciones adecuadas como para que todos puedan encontrar su propio camino para resolver los ejercicios.
+
+
+___
+
+
+1. Datos de EEUU
+----------------
+
+En la carpeta del repartido 'rep-3' se encuentra una planilla de cálculo en formato xls, llamada "usa.xls". Esta planilla tiene una serie de variables medidas para los cincuenta estados de EE.UU., durante los años setenta. Para mayor información de estos datos, ejecute el comando:
+
+```{r eval=FALSE}
+?state
+```
+
+A partir de esta base de datos vamos a trabajar a lo largo de todo el repartido, ejercitando las habilidades y conocimientos necesarios para modificar y manipular data.frames. Esta es la principal clase de objeto para trabajar con datos que tiene R y por lo tanto nos centramos principalmente en esta.
+
+
+### 1.a Importar los datos
+
+
+
+Lo primero que se debe hacer es importar los datos a R. Para ello usted deberá exportar la planilla de cálculo desde excell u otro programa capaz de trabajar con ella. Dicha exportación deberá hacerse en un archivo de texto plano (cuyas extensiones suelen ser .txt o .csv). En la evaluación automática no se corregirá dicho archivo, 
+
+### 1.b Corregir datos de analfabetismo
+
+### 1.c Eliminar filas sin datos de ingresos
+
+### 1.d Extra: función para estandarizar valores de un vector
+
+### 1.e Estandarizar los datos
+
+### 1.f Extra: un nuevo factor
+
+### 1.g Exportar
+
+
+
+
+
+
+
+
+
+
+
+
+
+

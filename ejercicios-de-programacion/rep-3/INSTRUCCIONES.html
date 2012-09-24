@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Ejercicios de programación II: Fundamentos</title>
+
+<base target="_blank"/>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+</head>
+
+<body>
+<h1>Ejercicios de programación II: Fundamentos</h1>
+
+<h3>[IMSER 2012]</h3>
+
+<hr/>
+
+<h2>Archivos incluidos:</h2>
+
+<p>El <a href="http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/rep-1.zip">archivo</a> con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta <strong><code>rep-2</code>** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con <code>setwd</code> o en RStudio la combinación **Ctrl + Shift + K</strong>. En esta carpeta se encuentran algunos archivos que usted deberá modificar:</p>
+
+<ul>
+<li><strong><code>aprobados.R</code></strong></li>
+<li><strong><code>aprobados2.R</code></strong></li>
+<li><strong><code>mejorcitos.R</code></strong></li>
+<li><strong><code>franjas.R</code></strong></li>
+<li><strong><code>data.frame.R</code></strong></li>
+<li><strong><code>ordenacion.R</code></strong></li>
+<li><strong><code>lista.R</code></strong></li>
+<li><strong><code>print.listaCalif.R</code></strong></li>
+</ul>
+
+<p>Adicionalmente los siguientes archivos son necesarios, pero <strong>no deben ser modificados</strong> para que el método de calificación automático funcione correctamente.</p>
+
+<ul>
+<li><code>evaluar.R</code></li>
+<li><code>notas.csv</code></li>
+<li><code>datos</code></li>
+<li><code>INSTRUCCIONES.pdf</code></li>
+<li><code>calificaciones.R</code></li>
+<li><code>ej2.rda</code></li>
+</ul>
+
+<h2>Mecanismo de corrección:</h2>
+
+<p>Lo primero que debe hacer es cargar el archivo evaluar.R con la función <code>source</code> y la codificación de caracteres &ldquo;UTF-8&rdquo; (lo cual afecta a la función <code>evaluar</code> en particular), de la siguiente manera:</p>
+
+<pre><code class="r">options(encoding = &quot;utf-8&quot;)
+source(&quot;evaluar.R&quot;)
+</code></pre>
+
+<p>Si usted ha ejecutado todos los pasos anteriores correctamente, la siguiente frase debería verse en la consola:</p>
+
+<pre><code>Archivo de codigo fuente cargado correctamente
+</code></pre>
+
+<p>En caso de que ocurra un error o se vea otro mensaje en la consola, verifique que los archivos se descomprimieron correctamente y que usted está trabajando en la carpeta correspondiente con el comando <code>getwd()</code>.</p>
+
+<p>Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio y <strong>guardando el archivo</strong> correspondiente en el disco duro, usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:</p>
+
+<pre><code class="r">evaluar()
+</code></pre>
+
+<p>y además podrá en todo momento verificar su puntaje con la función <code>verNotas()</code>. Tenga siempre en cuenta que, a <strong>menos que sea indicado</strong> por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben obtenerse con el código de los scripts en lugar de ser valores fijos. Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos <strong>se indica claramente en dónde se inicia y dónde finaliza su código</strong> y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.</p>
+
+<h3>Al finalizar</h3>
+
+<p>Una vez terminados y guardados los archivos de los ejercicios del repartido, usted deberá ejecutar <code>evaluar()</code> y seleccionar la última opción (&ldquo;Todos&rdquo;) y luego subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-1”, a la <a href="http://eva.universidad.edu.uy/mod/assignment/view.php?id=95125">sección de entregas</a> de la portada del curso en la plataforma EVA. Este archivo se podrá reemplazar con uno más nuevo, en caso de que desee corregir algún error; en caso de querer que el archivo sea corregido antes de la fecha de entrega, puede cambiarle el nombre a &ldquo;datos-finalizado&rdquo;, pero en ese caso la nota no se cambiará de ahí en adelante.</p>
+
+<h3>Código de Honor</h3>
+
+<p>Si bien animamos a que los estudiantes trabajen en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos importante que los estudiantes no miren el código creado por sus compañeros ya que esto supone un sabotaje a su propio proceso de aprendizaje. Como profesores estamos comprometidos a pedir tareas para las cuales hayamos dado las herramientas correctas y las explicaciones adecuadas como para que todos puedan encontrar su propio camino para resolver los ejercicios.</p>
+
+<hr/>
+
+<h2>1. Datos de calificaciones</h2>
+
+<p>Con el archivo &ldquo;calificaciones.R&rdquo; se generan calificaciones ficticias de estudiantes de secundaria, utilizando rutinas de generación de números aleatorios. Lo primero que debe hacer entonces es ejecutar el comando</p>
+
+<pre><code class="r">source(&quot;calificaciones.R&quot;)
+</code></pre>
+
+<p>para generar los vectores <code>cal</code> y <code>gen</code>, los cuales deberían encontrarse en su área de trabajo (o &ldquo;Workspace&rdquo; en RStudio). En el primero se encuentran las notas de dichos estudiantes, con valores que van del 1 al 12, mientras que el segundo indica el sexo de cada uno de ellos (codificados como &ldquo;V&rdquo; y &ldquo;M&rdquo;, varón y mujer respectivamente). Nótese que las clases de ambos vectores son diferentes, siendo uno numérico y el otro caracter. Ejecute los siguientes comandos para hechar un vistazo rápido a los datos:</p>
+
+<pre><code class="r"># Histograma de las notas:
+hist(cal)
+# Cantidad de mujeres y de varones:
+table(gen)
+</code></pre>
+
+<h3>1.a Porcentaje de aprobados</h3>
+
+<p>Script: &ldquo;aprobados.R&rdquo;</p>
+
+<p>Considerando que los aprobados son todos aquellos que tienen una nota de 5 o mayor, usted deberá cuantificar el porcentaje de aprobaciones. En el archivo <code>aprobados.R</code> deberá escribir el código necesario para calcular este valor. Tenga en cuenta que para esta tarea necesitará usar <a href="http://eva.universidad.edu.uy/mod/resource/view.php?id=94745">operadores relacionales</a>. Existen varias formas de obtener el valor final, por lo que queda a su gusto determinar el camino a tomar.</p>
+
+<h3>1.b Aprobados por género</h3>
+
+<p>Script: &ldquo;aprobados2.R&rdquo;</p>
+
+<p>El objetivo aquí es determinar la cantidad y porcentaje de aprobados para varones y mujeres por separado. Es decir, se debe determinar la cantidad de varones aprobados en relación a la cantidad de varones totales, y lo mismo para las mujeres. El código para ejecutar esta tarea se debe escribir en el archivo &ldquo;aprobados2.R&rdquo;.</p>
+
+<p>La estrategia más sencilla es primero separar las calificaciones de varones y mujeres en dos vectores (<code>v</code> y <code>m</code> por ejemplo) y luego aplicar el método usado en el ejercicio anterior en ambos. Para esto evidentemente tendrá que usar el vector <code>gen</code> además de operadores relacionales, en particular <code>==</code> (o su contraparte <code>!=</code>).</p>
+
+<h3>1.c Los mejorcitos</h3>
+
+<p>Script: &ldquo;mejorcitos.R&rdquo;</p>
+
+<p>En esta parte lo que hará es seleccionar al grupo de los mejores calificados, trabajando con el script &ldquo;mejorcitos.R&rdquo;. El objetivo es crear un vector numérico llamado <code>mejores</code>, el que tendrá las calificaciones del 25% de los estudiantes con mejor nota. Es decir, en caso de que fueran 100 valores, queremos tomar los 25 más altos. Para esto una estrategia simple es ordenar los valores de menor a mayor y luego elegir los últimos elementos del vector resultante. Lo primero será entonces crear un vector llamado <code>ord</code> con la función <code>sort</code>. Posteriormente es necesario determinar la iésima posición del mismo a partir de la cual se deben tomar los valores, para lo cual seguirá la ecuación:</p>
+
+<p>\[ i = \lceil { n \cdot 0.75 } \rceil \]</p>
+
+<p>donde \( n \) es el número de elementos de <code>cal</code> y la función \( \lceil x \rceil \) indica la <a href="https://es.wikipedia.org/wiki/Funciones_de_parte_entera#Funci.C3.B3n_techo">función techo</a>, es decir el siguiente valor entero más alto que \( x \). Entonces el vector <code>mejores</code> consistirá en los elementos de <code>ord</code> entre las posiciones \( i \) (inclusive) y \( n \). Puede buscar la función techo en R con el comando <code>??ceil</code>.</p>
+
+<p>Finalmente puede visualizar cómo se distribuyen estos datos usando las funciones <code>table</code> o <code>hist</code>.</p>
+
+<h3>1.d Franjas de notas</h3>
+
+<p>Script: &ldquo;franjas.R&rdquo;</p>
+
+<p>El objetivo de esta sección es crear un nuevo vector de clase &ldquo;character&rdquo; el cual tendrá las letras &ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;C&rdquo; y &ldquo;D&rdquo; a fin de indicar cuatro franjas de notas, como se describe a continuación:</p>
+
+<ul>
+<li>A: \( x \leq 3 \)</li>
+<li>B: \( 3 < x \leq 6 \)</li>
+<li>C: \( 6 < x \leq 9 \)</li>
+<li>D: \( 9 < x \)</li>
+</ul>
+
+<p>siendo \( x \) la nota del estudiante. El nuevo vector caracter se llamará <code>ctg</code>, tendrá la misma cantidad de elementos que número de calificaciones y para cada posición tendrá asignada la letra correspondiente (en mayúsculas). Por ejemplo, para el siguiente vector <code>cal</code>:</p>
+
+<pre><code class="r">&gt; cal
+[1]  2 11  3  6  7  6  9 5
+</code></pre>
+
+<p>El vector <code>ctg</code> correspndiente es:</p>
+
+<pre><code class="r">&gt; ctg
+[1] &quot;A&quot; &quot;D&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;B&quot; &quot;C&quot; &quot;B&quot; 
+</code></pre>
+
+<p>Finalmente deberá obtener la cantidad de casos para cada franja (en el ejemplo anterior serían 2, 3, 2, 1 para A, B, C y D respectivamente) y guardar estos valores en el vector <code>conteo</code> (las funciones <code>sum</code> o <code>table</code> pueden ser de utilidad aquí). Si el vector <code>conteo</code> resultante es de la clase &ldquo;table&rdquo; entonces debe convertirlo en un vector &ldquo;numeric&rdquo; con la <a href="http://eva.universidad.edu.uy/file.php/1454/lecciones/2.6-identificadores-y-coercionadores.R">función coercionadora</a> adecuada y luego los nombres dicho vector deben cambiarse a &ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;C&rdquo;, y &ldquo;D&rdquo;, utilizando la función <code>names</code>.</p>
+
+<p>El archivo para esta tarea es &ldquo;franjas.R&rdquo;.</p>
+
+<h4>Sugerencia:</h4>
+
+<p>Una forma sencilla de hacer esto es crear un vector del tipo &ldquo;character&rdquo; inicial, con funciones tales como <code>rep</code> o <code>character</code>, para luego modificarlo, utilizando el esquema:</p>
+
+<pre><code class="r">x[i] &lt;- y
+</code></pre>
+
+<p>en donde <code>x</code> es el vector caracter, <code>y</code> es un(os) valor(es) determinado(s) e <code>i</code> es un vector (de uno o más elementos) de clase &ldquo;integer&rdquo; o &ldquo;logical&rdquo;. Probablemente deba usar operadores <a href="http://eva.universidad.edu.uy/mod/resource/view.php?id=94745">lógicos y relacionales</a> para reproducir las 4 condiciones que definen las franjas.</p>
+
+<h2>2. Organización de los datos</h2>
+
+<p>En esta sección se crearán data.frames y listas en base a datos de calificaciones similares a los del ejercicio 1. Para esto puede continuar utilizando los objetos creados en dicho ejercicio, o alternativamente cargar objetos ya preparados para este ejercicio con el comando:</p>
+
+<pre><code class="r"># Comando opcional:
+load(&quot;ej2.rda&quot;)
+</code></pre>
+
+<h3>2.a Crear una data.frame</h3>
+
+<p>Sript: &ldquo;data.frame.R&rdquo;</p>
+
+<p>En esta sección deberá modificar el archivo &ldquo;data.frame.R&rdquo; para crear un objeto de la clase &ldquo;data.frame&rdquo; llamado <code>datosCalif</code>, cuyas columnas/variables sean los vectores <code>cal</code>, <code>gen</code> y <code>ctg</code>. Los nombres de tales columnas en la data.frame serán &ldquo;nota&rdquo;, &ldquo;genero&rdquo; y &ldquo;franja&rdquo; (respetando mayúsculas y minúsculas). Utilice su método de preferencia para generar dicha data.frame. Una vez hecho, el siguiente comando debería dar un resultado similar a este:</p>
+
+<pre><code class="r">&gt; head(datosCalif)
+  nota genero franja
+1    9      M      C
+2    8      V      C
+3    5      M      B
+4   11      V      D
+5   11      V      D
+6    5      M      B
+</code></pre>
+
+<h3>2.b Ordenar la tabla</h3>
+
+<p>Script: &ldquo;ordenacion.R&rdquo;</p>
+
+<p>el objetivo aquí es modificar la tabla <code>datosCalif</code> creada en la sección anterior, de forma que las filas estén ordenadas en función de la nota (de menor a mayor). Una vez terminado, las primeras filas de <code>datosCalif</code> se deberían ver similares a</p>
+
+<pre><code class="r">&gt; head(datosCalif)
+    nota genero franja
+40     1      V      A
+178    1      M      A
+181    1      M      A
+194    1      V      A
+236    1      V      A
+246    1      M      A
+</code></pre>
+
+<p>y las últimas parecidas a esto:</p>
+
+<pre><code class="r">&gt; tail(datosCalif)
+    nota genero franja
+193   11      V      D
+242   11      M      D
+252   11      M      D
+272   11      M      D
+135   12      V      D
+136   12      V      D
+</code></pre>
+
+<h4>Sugerencias</h4>
+
+<p>Para este ejercicio es necesario comprender el funcionamiento de la función <code>order</code>, el uso de los índices en vectores y/o matrices, así como el de los corchetes y/o el operador <code>$</code>. Nótese además que una expresión de la forma</p>
+
+<pre><code class="r">x &lt;- x[i]
+</code></pre>
+
+<p>es perfectamente válida y que el objeto <code>x</code> es sobreescrito en el proceso.</p>
+
+<h3>2.c Una lista con los datos</h3>
+
+<p>Script: &ldquo;lista.R&rdquo;</p>
+
+<p>Vamos a crear ahora una lista con los datos generados (o los cargados del archivo &ldquo;ej2.rda&rdquo; si es necesario), modificando el código del archivo &ldquo;lista.R&rdquo;. Esta lista se llamará <code>analisisCalif</code> y tendrá los siguientes componentes (preste atención a los nombres):</p>
+
+<ol>
+<li>tabla: la data.frame creada en el ejercicio 2.a (y modificada en 2.b).</li>
+<li>conteo: el vector nombrado con los conteos por franjas de calificaciones.</li>
+<li>aprob: una lista con 3 elementos:
+
+<ul>
+<li>atot: porcentaje de aprobación total (<code>p.apr</code>)</li>
+<li>avar: porcentaje de aprobación de varones (<code>p.apr.v</code>)</li>
+<li>amuj: porcentaje de aprobación de mujeres (<code>p.apr.m</code>)</li>
+</ul></li>
+</ol>
+
+<p>Si su lista ha sido construida correctamente, al usar la función <code>str</code> debería ver algo similar a lo siguiente:</p>
+
+<pre><code class="r">&gt; str(analisisCalif)
+List of 3
+ $ tabla :&#39;data.frame&#39;:  272 obs. of  3 variables:
+  ..$ nota  : num [1:272] 1 1 1 1 1 1 2 2 2 2 ...
+  ..$ genero: Factor w/ 2 levels &quot;M&quot;,&quot;V&quot;: 2 1 1 2 2 1 2 1 1 1 ...
+  ..$ franja: Factor w/ 4 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+ $ conteo: Named num [1:4] 38 113 99 22
+  ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot;
+ $ aprob :List of 3
+  ..$ atot: num 71
+  ..$ avar: num 73.4
+  ..$ amuj: num 68.2
+</code></pre>
+
+<h3>2.d Extra: una clase nueva y un método asociado</h3>
+
+<p>(<em>Este ejercicio es opcional, aunque puede sumar puntos en su calificación final del repartido</em>)</p>
+
+<p>Script: &ldquo;print.listaCalif.R&rdquo;</p>
+
+<p>Cuando se manejan estructuras de información sofisticadas, como la lista creada en la sección anterior, no es mala idea definir una nueva clase y algunos métodos asociados para hacer el trabajo más fluido. Esto es útil en particular cuando es una tarea que se repite muchas veces a lo largo de un proyecto o en trabajos de rutina.</p>
+
+<p>Actualmente el objeto <code>analisisCalif</code> debería ser de la clase &ldquo;list&rdquo;, lo que podemos comprobar con el comando:</p>
+
+<pre><code class="r">&gt; class(analisisCalif)
+[1] &quot;list&quot;
+</code></pre>
+
+<p>Hagamos una nueva clase llamada &ldquo;listaCalif&rdquo; la cual va a estar compuestas por listas con la estructura de <code>analisisCalif</code>. Lo primero que vamos a hacer es cambiar la clase de este objeto de la siguiente manera:</p>
+
+<pre><code class="r">&gt; class(analisisCalif) &lt;- &quot;listaCalif&quot;
+</code></pre>
+
+<p>Esto por ahora no traerá mayores cambios, pero una vez que usted modifique el archivo &ldquo;print.listaCalif.R&rdquo; se habrá definido un nuevo método de <code>print</code> para esta nueva clase. Para entender la diferencia que esto hace, veamos lo que sucede cuando se escribe el nombre del objeto <code>analisisCalif</code> en la consola:</p>
+
+<pre><code class="r">&gt; analisisCalif
+...(muchos números)
+</code></pre>
+
+<p>R simplemente arroja todos los datos de la lista. Sin embargo, al cargar &ldquo;print.listaCalif.R&rdquo;, se puede ver algo así:</p>
+
+<pre><code class="r">&gt; source(&quot;print.listaCalif.R&quot;)
+&gt; analisisCalif
+Porcentaje total de aprobaciones: 70.96 %
+  En varones: 73.43 %
+  En mujeres: 68.22 %
+La nota promedio fue de: NA 
+  En varones: NA 
+  En mujeres: NA 
+Conteos por franja de nota:
+  1--3   4--6   7--9 10--12 
+    38    113     99     22
+</code></pre>
+
+<p>¡Esta es la gran utilidad de definir métodos para una clase en R! En este caso, en lugar de imprimir en pantalla una cantidad de números difícles de leer, ahora se pueden ver los resultados más relevantes sin todo ese ruido. Nótese que esto sólo es posible gracias a que <code>print</code> es una función genérica y por lo tanto permite hacer nuevos métodos en cualquier momento. No muchas funciones pertenecen a esta categoría (ver <code>?GenericFunctions</code> por mayor información).</p>
+
+<p>El único problema en este caso es que no se calculan bien los promedios de las notas y por lo tanto se ven unos &ldquo;NA&rdquo; en la salida de la consola. El objetivo de este ejercicio es modificar la función <code>print.listaCalif</code> para que calcule estos 3 promedios y así los imprima correctamente cada vez que se llama a un objeto de la nueva clase &ldquo;listaCalif&rdquo;. Invitamos además a mirar el resto del código de la función <code>print.listaCalif</code> para tratar de entender los pasos que se toman para generar esta salida.</p>
+
+<p>Nótese el uso del operador <code>$</code> en varios comandos internos de dicha función, ya que usted deberá usarlos también para calcular los promedios.</p>
+
+</body>
+
+</html>
+

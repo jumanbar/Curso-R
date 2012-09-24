@@ -20,13 +20,13 @@ Determine las asociaciones correctas (hay varias opciones sin correspondencia):
 
 # apply
 
-Encontrar las asociaciones correctas (hay opciones sin correspondencia):
+Considerando que x es un data.frame de variables numéricas, encontrar las asociaciones correctas (hay opciones sin correspondencia):
 
     colMeans(x)     --  apply(x, 2, mean)
     rowMeans(x)     --  apply(x, 1, mean)
     sapply(x, sum)  --  colSums(x)
     rowSums(x)      --  apply(x, 1, sum)
-    sapply(x, mean) --  unlist(lapply(cars, mean))
+    sapply(x, mean) --  unlist(lapply(x, mean))
                     --  sapply(x, 2, sum)
                     --  lapply(x, 1, mean)
 
