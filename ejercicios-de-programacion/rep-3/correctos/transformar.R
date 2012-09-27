@@ -25,10 +25,9 @@ if (!exists('est')) {
 # determinar si el código es correcto.
 #===== Su código comienza aquí: =====#
 
-datosNumericos <- 0
-
-datosTrans <- 0 # Aquí debe usarse apply
-
-usaNorm <- 0
+datosNumericos <- usa3[, -c(1, 10)]
+datosTrans <- apply(datosNumericos, 2, est)
+datosTrans <- as.data.frame(datosTrans)
+usaNorm <- cbind(Abrev = usa3$Abrev, datosTrans, Division = usa3$Division)
 
 #====== Aquí finaliza su código =====#

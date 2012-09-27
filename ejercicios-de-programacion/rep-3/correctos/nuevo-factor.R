@@ -17,11 +17,11 @@
 # determinar si el código es correcto.
 #===== Su código comienza aquí: =====#
 
-usa3$Ing.Cat <- 0 # Esta será la nueva variable
+usa3$Ing.Cat <- cut(usa3$Ingresos, 4)
 
-salidaTapply <- 0 # Salida de tapply
+salidaTapply <- tapply(usa3$Analf, usa3$Ing.Cat, summary)
 
-salidaBoxplot <- 0 # Salida de boxplot
+salidaBoxplot <- boxplot(Analf ~ Ing.Cat, usa3)
 
 #====== Aquí finaliza su código =====#
 

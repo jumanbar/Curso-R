@@ -12,7 +12,11 @@
 #   'evaluar()', usando valores aleatorios.
 #===== Su código comienza aquí: =====#
 
-usa2 <- usa # usa2 es una copia de usa, para mantener la data.frame usa incambiada...
+usa2 <- usa
+usa.extra <- read.csv2('usa-extra.csv', row.names = 1)
+estados <- rownames(usa)[is.na(usa$Analf)]
+parche <- usa.extra$Analf[rownames(usa.extra) %in% estados]
+usa2$Analf[is.na(usa$Analf)] <- parche
 
 #====== Aquí finaliza su código =====#
 

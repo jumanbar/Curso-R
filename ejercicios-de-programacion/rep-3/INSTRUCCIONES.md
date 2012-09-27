@@ -1,5 +1,5 @@
-Ejercicios de programación II: Fundamentos
-==========================================
+Ejercicios de programación III: Trabajo con datos
+=================================================
 
 ### [IMSER 2012]
 
@@ -10,14 +10,13 @@ Archivos incluidos:
 
 El [archivo](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/rep-1.zip) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-2`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
-* **` aprobados.R `**
-* **` aprobados2.R `**
-* **` mejorcitos.R `**
-* **` franjas.R `**
-* **` data.frame.R `**
-* **` ordenacion.R `**
-* **` lista.R `**
-* **` print.listaCalif.R `**
+* **` importar.R `**
+* **` parche.R `**
+* **` filtrado.R `**
+* **` est.R `**
+* **` transformar.R `**
+* **` nuevo-factor.R `**
+* **` exportar.R `**
 
 Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modificados** para que el método de calificación automático funcione correctamente.
 
@@ -25,8 +24,7 @@ Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modif
 * ` notas.csv `
 * ` datos `
 * ` INSTRUCCIONES.pdf `
-* ` calificaciones.R `
-* ` ej2.rda `
+* ` est.rda `
 
 Mecanismo de corrección:
 ------------------------
@@ -65,265 +63,208 @@ Una vez terminados y guardados los archivos de los ejercicios del repartido, ust
 
 Si bien animamos a que los estudiantes trabajen en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos importante que los estudiantes no miren el código creado por sus compañeros ya que esto supone un sabotaje a su propio proceso de aprendizaje. Como profesores estamos comprometidos a pedir tareas para las cuales hayamos dado las herramientas correctas y las explicaciones adecuadas como para que todos puedan encontrar su propio camino para resolver los ejercicios.
 
+
 ___
 
-1. Datos de calificaciones
---------------------------
 
-Con el archivo "calificaciones.R" se generan calificaciones ficticias de estudiantes de secundaria, utilizando rutinas de generación de números aleatorios. Lo primero que debe hacer entonces es ejecutar el comando
+1. Datos de EEUU
+----------------
 
+En la carpeta del repartido 'rep-3' se encuentra una planilla de cálculo en formato xls, llamada "usa.xls". Esta planilla tiene una serie de variables medidas para los cincuenta estados de EE.UU., durante los años setenta. Para mayor información de estos datos, ejecute el comando `?state`.
 
-```r
-source("calificaciones.R")
-```
+A partir de esta base de datos vamos a trabajar a lo largo de todo el repartido, ejercitando las habilidades y conocimientos necesarios para modificar y manipular data.frames. Esta es la principal clase de objeto para trabajar con datos que tiene R y por lo tanto nos centramos principalmente en esta.
 
 
-para generar los vectores `cal` y `gen`, los cuales deberían encontrarse en su área de trabajo (o "Workspace" en RStudio). En el primero se encuentran las notas de dichos estudiantes, con valores que van del 1 al 12, mientras que el segundo indica el sexo de cada uno de ellos (codificados como "V" y "M", varón y mujer respectivamente). Nótese que las clases de ambos vectores son diferentes, siendo uno numérico y el otro caracter. Ejecute los siguientes comandos para hechar un vistazo rápido a los datos:
+### 1.a Importar los datos
+
+Script: "importar.R"
+
+Lo primero que se debe hacer es importar los datos a R. Para ello usted deberá exportar la planilla de cálculo desde excell u otro programa capaz de trabajar con ella. Dicha exportación deberá hacerse en un archivo de texto plano (cuyas extensiones suelen ser .txt o .csv). En la evaluación automática no se corregirá dicho archivo, pero es necesario que se encuentre en la carpeta del repartido para que pueda ejecutarse el script "importar.R".
+
+En dicho archivo usted deberá crear el código necesario para importar los datos a R usando alguna de las variantes de `read.table`. La única condición importante es que la primer columna (los nombres de los estados de EE.UU.) debe importarse como los nombres de filas de la data.frame resultante en R. Dicha data.frame deberá llamarse `usa` (ver instrucciones en el arcihvo "importar.R").
+
+Pero además de importar los datos a su área de trabajo, el script debe también cambiarle los nombres de las variables al español. Específicamente, los nombres de las variables de la data.frame deben ser (en el mismo orden y respetando mayúsculas y minúsculas):
+
+    Abrev, Poblacion, Ingresos, Analf, Esp.Vida, Homicidio, Sec.Grad, 
+    Heladas, Area, Division
+
+Por último, en la variable `Division` también queremos cambiar los nombres de los 9 niveles (se trata de un factor) a una versión en español. Específicamente:
+
+    Nueva Inglaterra, Atlantico Central, Atlantico Sur, Sudeste Central,
+    Sudoeste Central, Noreste Central, Noroeste Central, Montania, Pacifico
+
+Nótese que no se usan tildes ni eñes en los nombres para evitar problemas de codificación de caracteres y que se deben respetar mayúsculas y minúsculas.
+
+(Pista: considere usar la función `levels` para esta tarea.)
 
 
-```r
-# Histograma de las notas:
-hist(cal)
-# Cantidad de mujeres y de varones:
-table(gen)
-```
+### 1.b Corregir datos de analfabetismo
 
+Script: "parche.R"
 
-### 1.a Porcentaje de aprobados
-
-Script: "aprobados.R"
-
-Considerando que los aprobados son todos aquellos que tienen una nota de 5 o mayor, usted deberá cuantificar el porcentaje de aprobaciones. En el archivo `aprobados.R` deberá escribir el código necesario para calcular este valor. Tenga en cuenta que para esta tarea necesitará usar [operadores relacionales](http://eva.universidad.edu.uy/mod/resource/view.php?id=94745). Existen varias formas de obtener el valor final, por lo que queda a su gusto determinar el camino a tomar.
-
-
-### 1.b Aprobados por género
-
-Script: "aprobados2.R"
-
-El objetivo aquí es determinar la cantidad y porcentaje de aprobados para varones y mujeres por separado. Es decir, se debe determinar la cantidad de varones aprobados en relación a la cantidad de varones totales, y lo mismo para las mujeres. El código para ejecutar esta tarea se debe escribir en el archivo "aprobados2.R".
-
-La estrategia más sencilla es primero separar las calificaciones de varones y mujeres en dos vectores (`v` y `m` por ejemplo) y luego aplicar el método usado en el ejercicio anterior en ambos. Para esto evidentemente tendrá que usar el vector `gen` además de operadores relacionales, en particular `==` (o su contraparte `!=`).
-
-### 1.c Los mejorcitos
-
-Script: "mejorcitos.R"
-
-En esta parte lo que hará es seleccionar al grupo de los mejores calificados, trabajando con el script "mejorcitos.R". El objetivo es crear un vector numérico llamado `mejores`, el que tendrá las calificaciones del 25% de los estudiantes con mejor nota. Es decir, en caso de que fueran 100 valores, queremos tomar los 25 más altos. Para esto una estrategia simple es ordenar los valores de menor a mayor y luego elegir los últimos elementos del vector resultante. Lo primero será entonces crear un vector llamado `ord` con la función `sort`. Posteriormente es necesario determinar la iésima posición del mismo a partir de la cual se deben tomar los valores, para lo cual seguirá la ecuación:
-
-$$i = \lceil { n \cdot 0.75 } \rceil$$
-
-donde $n$ es el número de elementos de `cal` y la función $\lceil x \rceil$ indica la [función techo](https://es.wikipedia.org/wiki/Funciones_de_parte_entera#Funci.C3.B3n_techo), es decir el siguiente valor entero más alto que $x$. Entonces el vector `mejores` consistirá en los elementos de `ord` entre las posiciones $i$ (inclusive) y $n$. Puede buscar la función techo en R con el comando `??ceil`.
-
-Finalmente puede visualizar cómo se distribuyen estos datos usando las funciones `table` o `hist`.
-
-### 1.d Franjas de notas
-
-Script: "franjas.R"
-
-El objetivo de esta sección es crear un nuevo vector de clase "character" el cual tendrá las letras "A", "B", "C" y "D" a fin de indicar cuatro franjas de notas, como se describe a continuación:
-
-  * A: $x \leq 3$
-  * B: $3 < x \leq 6$
-  * C: $6 < x \leq 9$
-  * D: $9 < x$
-
-siendo $x$ la nota del estudiante. El nuevo vector caracter se llamará `ctg`, tendrá la misma cantidad de elementos que número de calificaciones y para cada posición tendrá asignada la letra correspondiente (en mayúsculas). Por ejemplo, para el siguiente vector `cal`:
+Este ejercicio parte de la base que usted logró importar con éxito los datos de "usa.xls" como se indica en el ejercicio anterior. Si usted ejecuta ahora el comando
 
 
 ```r
-> cal
-[1]  2 11  3  6  7  6  9 5
+summary(usa)
 ```
 
 
-El vector `ctg` correspndiente es:
+podrá notar que para las columnas `Ingresos` y `Analf` figura un conteo de la cantidad de NA's. Esto quiere decir que hay datos faltantes ("Not Available"; ver en [el glosario](http://eva.universidad.edu.uy/mod/glossary/showentry.php?courseid=1454&concept=NA) para mayor información). Esto suele ser un problema para trabajar con datos en general y por lo tanto es importante encontrar la forma sortear este tipo de obstáculos.
 
-```r
-> ctg
-[1] "A" "D" "A" "B" "C" "B" "C" "B" 
-```
+Afortunadamente en este caso tenemos una tabla de datos auxiliar que nos permite completar lo que nos falta para la columna `Analf` (tasa de analfabetismo). Esta tabla auxiliar está en el archivo "usa-extra.csv". Para completar el ejercicio, usted deberá completar todos los pasos necesarios para
 
+1. importar estos datos,
+2. seleccionar los valores de analfabetismo de los estados correctos y
+3. sustituir los NA de la data.frame `usa2`, columna `Analf`, por estos datos seleccionados.
 
-Finalmente deberá obtener la cantidad de casos para cada franja (en el ejemplo anterior serían 2, 3, 2, 1 para A, B, C y D respectivamente) y guardar estos valores en el vector `conteo` (las funciones `sum` o `table` pueden ser de utilidad aquí). Si el vector `conteo` resultante es de la clase "table" entonces debe convertirlo en un vector "numeric" con la [función coercionadora](http://eva.universidad.edu.uy/file.php/1454/lecciones/2.6-identificadores-y-coercionadores.R) adecuada y luego los nombres dicho vector deben cambiarse a "A", "B", "C", y "D", utilizando la función `names`.
-
-El archivo para esta tarea es "franjas.R".
-
-#### Sugerencia:
-
-Una forma sencilla de hacer esto es crear un vector del tipo "character" inicial, con funciones tales como `rep` o `character`, para luego modificarlo, utilizando el esquema:
+Nótese que la data.frame `usa` debe permanecer incambiada y se debe crear el objeto `usa2` para hacer estas modificaciones. Nótese también que "usa-extra.csv" es una tabla muy distinta a la planilla original, incluyendo sólo 2 columnas y menor cantidad de filas, por lo que la única manera de determinar la ubicación de los valores correctos es a través del uso de los nombres de los estados como referencia. En este sentido es bueno recordar que el operador lógico `%in%` puede ser de mucha utilidad; también es importante recordar que este no es un operador conmutativo; es decir no es lo mismo
 
 
 ```r
-x[i] <- y
+x %in% y
 ```
 
 
-en donde `x` es el vector caracter, `y` es un(os) valor(es) determinado(s) e `i` es un vector (de uno o más elementos) de clase "integer" o "logical". Probablemente deba usar operadores [lógicos y relacionales](http://eva.universidad.edu.uy/mod/resource/view.php?id=94745) para reproducir las 4 condiciones que definen las franjas.
-
-
-2. Organización de los datos
-----------------------------
-
-En esta sección se crearán data.frames y listas en base a datos de calificaciones similares a los del ejercicio 1. Para esto puede continuar utilizando los objetos creados en dicho ejercicio, o alternativamente cargar objetos ya preparados para este ejercicio con el comando:
+que
 
 
 ```r
-# Comando opcional:
-load("ej2.rda")
+y %in% x.
 ```
 
 
-### 2.a Crear una data.frame
+### 1.c Eliminar filas sin datos de ingresos
 
-Sript: "data.frame.R"
+Script: "filtrado.R"
 
-En esta sección deberá modificar el archivo "data.frame.R" para crear un objeto de la clase "data.frame" llamado `datosCalif`, cuyas columnas/variables sean los vectores `cal`, `gen` y `ctg`. Los nombres de tales columnas en la data.frame serán "nota", "genero" y "franja" (respetando mayúsculas y minúsculas). Utilice su método de preferencia para generar dicha data.frame. Una vez hecho, el siguiente comando debería dar un resultado similar a este:
+Así como para el analfabetismo tuvimos una forma de llenar un vacío de datos, para el caso de la columna "Ingresos" no tenemos la misma suerte. Por lo tanto, considerando que lo mejor es dejar de lado los casos en que hay ausencia de datos, en esta parte del ejercicio vamos a eliminar las filas correspondientes de "usa2".
 
+Para esto usted deberá escribir el código necesario en el archivo "filtrado.R". Este código debe asumir la existencia de una data.frame llamada `usa2`, y servirá para obtener finalmente una data.frame `usa3` a través de la eliminación de las observaciones de `usa2`, columna `Ingresos`, en las que ocurren valores NA's.
 
-```r
-> head(datosCalif)
-  nota genero franja
-1    9      M      C
-2    8      V      C
-3    5      M      B
-4   11      V      D
-5   11      V      D
-6    5      M      B
-```
+(Pista: considere usar la función `subset` para esta tarea).
 
-
-### 2.b Ordenar la tabla
-
-Script: "ordenacion.R"
-
-el objetivo aquí es modificar la tabla `datosCalif` creada en la sección anterior, de forma que las filas estén ordenadas en función de la nota (de menor a mayor). Una vez terminado, las primeras filas de `datosCalif` se deberían ver similares a
-
-
-```r
-> head(datosCalif)
-    nota genero franja
-40     1      V      A
-178    1      M      A
-181    1      M      A
-194    1      V      A
-236    1      V      A
-246    1      M      A
-```
-
-
-y las últimas parecidas a esto:
-
-
-```r
-> tail(datosCalif)
-    nota genero franja
-193   11      V      D
-242   11      M      D
-252   11      M      D
-272   11      M      D
-135   12      V      D
-136   12      V      D
-```
-
-
-#### Sugerencias
-
-Para este ejercicio es necesario comprender el funcionamiento de la función `order`, el uso de los índices en vectores y/o matrices, así como el de los corchetes y/o el operador `$`. Nótese además que una expresión de la forma
-
-
-```r
-x <- x[i]
-```
-
-
-es perfectamente válida y que el objeto `x` es sobreescrito en el proceso.
-
-### 2.c Una lista con los datos
-
-Script: "lista.R"
-
-Vamos a crear ahora una lista con los datos generados (o los cargados del archivo "ej2.rda" si es necesario), modificando el código del archivo "lista.R". Esta lista se llamará `analisisCalif` y tendrá los siguientes componentes (preste atención a los nombres):
-
-1. tabla: la data.frame creada en el ejercicio 2.a (y modificada en 2.b).
-2. conteo: el vector nombrado con los conteos por franjas de calificaciones.
-3. aprob: una lista con 3 elementos:
-    * atot: porcentaje de aprobación total (`p.apr`)
-    * avar: porcentaje de aprobación de varones (`p.apr.v`)
-    * amuj: porcentaje de aprobación de mujeres (`p.apr.m`)
-
-Si su lista ha sido construida correctamente, al usar la función `str` debería ver algo similar a lo siguiente:
-
-
-```r
-> str(analisisCalif)
-List of 3
- $ tabla :'data.frame':  272 obs. of  3 variables:
-  ..$ nota  : num [1:272] 1 1 1 1 1 1 2 2 2 2 ...
-  ..$ genero: Factor w/ 2 levels "M","V": 2 1 1 2 2 1 2 1 1 1 ...
-  ..$ franja: Factor w/ 4 levels "A","B","C","D": 1 1 1 1 1 1 1 1 1 1 ...
- $ conteo: Named num [1:4] 38 113 99 22
-  ..- attr(*, "names")= chr [1:4] "A" "B" "C" "D"
- $ aprob :List of 3
-  ..$ atot: num 71
-  ..$ avar: num 73.4
-  ..$ amuj: num 68.2
-```
-
-
-### 2.d Extra: una clase nueva y un método asociado
+### 1.d Extra: función para estandarizar valores de un vector
 
 (*Este ejercicio es opcional, aunque puede sumar puntos en su calificación final del repartido*)
 
-Script: "print.listaCalif.R"
+Script: "est.R"
 
-Cuando se manejan estructuras de información sofisticadas, como la lista creada en la sección anterior, no es mala idea definir una nueva clase y algunos métodos asociados para hacer el trabajo más fluido. Esto es útil en particular cuando es una tarea que se repite muchas veces a lo largo de un proyecto o en trabajos de rutina.
+Muchas veces es útil al analizar datos transformar variables usando distintas fórmulas. Una de ellas es la estandarización de datos, utilizando la fórmula:
 
-Actualmente el objeto `analisisCalif` debería ser de la clase "list", lo que podemos comprobar con el comando:
+$$Z = \frac{X - \mu}{\sigma}$$
 
+En donde $X$ representa a los datos originales, $\mu$ es el valor promedio de los $X$, $sigma$ es el desvío estándar de los $X$ y los $Z$ son los valores estandarizados.
 
-```r
-> class(analisisCalif)
-[1] "list"
-```
+En este ejercicio usted deberá crear una función llamada `est` (puede tomar como ejemplo las realizadas en el primer repartido u otras mostradas en las lecciones) que tome como entrada **un sólo argumento**: un vector numérico cualquiera y devuelva otro vector numérico con los valores estandarizados del original. Para esto deberá escribir el código necesario en el archivo "est.R".
 
-
-Hagamos una nueva clase llamada "listaCalif" la cual va a estar compuestas por listas con la estructura de `analisisCalif`. Lo primero que vamos a hacer es cambiar la clase de este objeto de la siguiente manera:
+Aconsejamos utilizar las funciones `mean` y `sd` para obtener $\mu$ y $\sigma$ respectivamente. Además es deseable que las normalizaciones de datos no se vean afectadas por la ocurrencia de NA's. Por lo tanto, es necesario utilizar el argumento `na.rm` de dichas funciones para que `est` maneje correctamente los NA's. En caso de que la haya construido bien, debería obtener resultados como el siguiente:
 
 
-```r
-> class(analisisCalif) <- "listaCalif"
-```
-
-
-Esto por ahora no traerá mayores cambios, pero una vez que usted modifique el archivo "print.listaCalif.R" se habrá definido un nuevo método de `print` para esta nueva clase. Para entender la diferencia que esto hace, veamos lo que sucede cuando se escribe el nombre del objeto `analisisCalif` en la consola:
 
 
 ```r
-> analisisCalif
-...(muchos números)
+x <- c(4.5, 12.3, 5.8, 9.4, 7.9, NA)
+est(x)
+```
+
+```
+## [1] -1.13584  1.41000 -0.71153  0.46347 -0.02611       NA
 ```
 
 
-R simplemente arroja todos los datos de la lista. Sin embargo, al cargar "print.listaCalif.R", se puede ver algo así:
+Nótese que si la función `est` no maneja correctamente los NA's, entonces el resultado sería igual a `rep(NA, 6)`.
+
+### 1.e Estandarizar los datos
+
+Script: "transformar.R"
+
+La estandarización o normalización es una tranformación común en el análisis de datos. En general para cualquier tipo de transformación, si se trata de un trabajo con matrices o data.frames, es común en R el uso de las funciónes del tipo `apply`, ya que permiten modificar varias columnas en un sólo comando y además pueden ser más eficientes (en particular `lapply` o `sapply`) cuando se trabaja con grandes cantidades de datos.
+
+En este ejercicio el objetivo es usar la función `est` creada en el ejercicio anterior, en conjunción con `apply`, para transformar las columnas de clase "numeric" de nuestra data.frame `usa3`. Específicamente, debe usar `apply` para transformar el objeto `datosNumericos`, el cual están en el script "trasnformar.R". En caso de **no haber hecho** el ejercicio 1.d, puede cargar una función `est` hecha de antemano con el comando:
 
 
 ```r
-> source("print.listaCalif.R")
-> analisisCalif
-Porcentaje total de aprobaciones: 70.96 %
-  En varones: 73.43 %
-  En mujeres: 68.22 %
-La nota promedio fue de: NA 
-  En varones: NA 
-  En mujeres: NA 
-Conteos por franja de nota:
-  1--3   4--6   7--9 10--12 
-    38    113     99     22
+load("est.rda")
 ```
 
 
-¡Esta es la gran utilidad de definir métodos para una clase en R! En este caso, en lugar de imprimir en pantalla una cantidad de números difícles de leer, ahora se pueden ver los resultados más relevantes sin todo ese ruido. Nótese que esto sólo es posible gracias a que `print` es una función genérica y por lo tanto permite hacer nuevos métodos en cualquier momento. No muchas funciones pertenecen a esta categoría (ver `?GenericFunctions` por mayor información).
+En el script "transformar.R" se indica específicamente en qué línea debe utilizarse `apply` para que la evaluación del ejercicio funcione correctamente (i.e.: la línea en que se crea el objeto `datosTrans`). Si usted ha creado correctamente el objeto `datosTrans`, entonces este será de clase "matrix" y los promedios de las columnas `Poblacion` y `Area` serán respectivamente:
 
-El único problema en este caso es que no se calculan bien los promedios de las notas y por lo tanto se ven unos "NA" en la salida de la consola. El objetivo de este ejercicio es modificar la función `print.listaCalif` para que calcule estos 3 promedios y así los imprima correctamente cada vez que se llama a un objeto de la nueva clase "listaCalif". Invitamos además a mirar el resto del código de la función `print.listaCalif` para tratar de entender los pasos que se toman para generar esta salida.
 
-Nótese el uso del operador `$` en varios comandos internos de dicha función, ya que usted deberá usarlos también para calcular los promedios.
+```r
+colMeans(datosTrans[, c('Poblacion', 'Area')])
+    Poblacion          Area 
+-6.745250e-17 -2.678736e-17
+```
+
+
+Finalmente, tome en cuenta también que el objeto final que usted debe crear, llamado `usaNorm`, debe ser de clase 'data.frame' y debe tener las mismas columnas de clase "factor" del objeto inicial `usa3`. También deben coincidir los nombres de filas y columnas. Para esto recomendamos primero coercionar `usaNorm` en una data.frame con la función correspondiente y luego unir el objeto resultante con las columnas "factor" de `usa3` (siempre manteniendo el orden de columnas).
+
+### 1.f Extra: un nuevo factor
+
+(*Este ejercicio es opcional, aunque puede sumar puntos en su calificación final del repartido*)
+
+Script: "nuevo-factor.R"
+
+En este ejercicio se propone crear una nueva columna de clase "factor" en la data.frame `usa3`, utilizando la función `cut`. Dicho factor deberá llamarse `Ing.Cat` (como se ilustra en el script), tener 4 niveles y ser construido en base a la columna `Ingresos` de `usa3`. Este a variable representará entonces las 4 categorías de ingreso (promedio, por estado) de EE.UU. Si el ejercicio fue hecho correctamente, el conteo de ocurrencias de cada nivel del factor será:
+
+
+```r
+> tabulate(usa3$Ing.Cat)
+[1] 12 19 11  1
+```
+
+
+En segundo lugar, se utilizará la función `tapply`, una variante bastante especializada de `apply` (y muy similar a la función `by`), para analizar los valores de analfabetismo correspondientes a estas categorías de ingresos. La función `tapply` se usa con la siguiente sintaxis:
+
+
+```r
+tapply(x, f, fu)
+```
+
+
+En dónde `x` es típicamente un vector numérico, `f` es un factor cuya longitud equivale a la de `x` y `fu` es una función de R (p.ej.: `mean`). Aquí lo que haría este comando es ejecutar la función `fu` tantas veces como niveles tiene `f` y en cada vez lo hace usando como entrada los elementos de `x` que se corresponden con las ocurrencias de dicho factor. Es decir, primero ejecuta
+
+
+```r
+fu(x[f == levels(f)[1]])
+```
+
+
+luego
+
+
+```r
+fu(x[f == levels(f)[2]])
+```
+
+
+y así sucesivamente hasta llegar al último nivel de `f`. Como resultado devuelve una lista en la que cada elemento es se corresponde con la salida de uno de estos comandos.
+
+Lo que usted deberá ejecutar aquí es la función `tapply` sobre el vector `Analf`, con `Ing.Cat` como referencia (ambas columnas de `usa3`) y la función `summary`. El resultado, tal como se muestra en el archivo de código fuente, debe guardarse en el objeto `salidaTapply`.
+
+Finalmente debe hacer algo similar con la función `boxplot`, cuya sintaxis es mucho más sencilla que `tapply`, por ejemplo:
+
+
+```r
+boxplot(y ~ f, d)
+```
+
+
+Aquí `d` es una data.frame, mientras que `y` y `f` son columnas de `d` de las clases "numeric" y "factor" respectivamente. Nuevamente las columnas a utilizar son `Analf` e `Ing.Cat`, de la data.frame `usa3`. La salida de esta función es doble, por un lado un objeto (el cual deberá guardar bajo el nombre `salidaBoxplot`) y por otro una gráfica similar a la siguiente:
+
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png) 
+
+
+### 1.g Exportar
+
+Script: "exportar.R"
+
+Finalmente se deberá exportar la data.frame `usaNorm` a un archivo de texto plano. Dicho archivo se llamará "usa-norm.csv" y deberá cumplir con las siguientes condiciones:
+
+1. Deberá guardar correctamente los nombres de las filas y columnas.
+2. El separador de columnas deberá ser el caracter ";".
+3. El punto decimal debe estar indicado con el caracter ","
+
+Consulte las lecciones o la ayuda de R en `?write.table` para determinar el comando adecuado para realizar esta operación.

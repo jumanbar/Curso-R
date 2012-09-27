@@ -9,6 +9,8 @@
 # determinar si el código es correcto.
 #===== Su código comienza aquí: =====#
 
-est <- 0
+est <- function(x) {
+  (x - mean(x, na.rm = T)) / sd(x, na.rm = TRUE)
+}
 
 #====== Aquí finaliza su código =====#

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<title>Ejercicios de programación II: Fundamentos</title>
+<title>Ejercicios de programación III: Trabajo con datos</title>
 
 <base target="_blank"/>
 
@@ -184,7 +184,7 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>Ejercicios de programación II: Fundamentos</h1>
+<h1>Ejercicios de programación III: Trabajo con datos</h1>
 
 <h3>[IMSER 2012]</h3>
 
@@ -195,14 +195,13 @@ hljs.initHighlightingOnLoad();
 <p>El <a href="http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/rep-1.zip">archivo</a> con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta <strong><code>rep-2</code>** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con <code>setwd</code> o en RStudio la combinación **Ctrl + Shift + K</strong>. En esta carpeta se encuentran algunos archivos que usted deberá modificar:</p>
 
 <ul>
-<li><strong><code>aprobados.R</code></strong></li>
-<li><strong><code>aprobados2.R</code></strong></li>
-<li><strong><code>mejorcitos.R</code></strong></li>
-<li><strong><code>franjas.R</code></strong></li>
-<li><strong><code>data.frame.R</code></strong></li>
-<li><strong><code>ordenacion.R</code></strong></li>
-<li><strong><code>lista.R</code></strong></li>
-<li><strong><code>print.listaCalif.R</code></strong></li>
+<li><strong><code>importar.R</code></strong></li>
+<li><strong><code>parche.R</code></strong></li>
+<li><strong><code>filtrado.R</code></strong></li>
+<li><strong><code>est.R</code></strong></li>
+<li><strong><code>transformar.R</code></strong></li>
+<li><strong><code>nuevo-factor.R</code></strong></li>
+<li><strong><code>exportar.R</code></strong></li>
 </ul>
 
 <p>Adicionalmente los siguientes archivos son necesarios, pero <strong>no deben ser modificados</strong> para que el método de calificación automático funcione correctamente.</p>
@@ -212,8 +211,7 @@ hljs.initHighlightingOnLoad();
 <li><code>notas.csv</code></li>
 <li><code>datos</code></li>
 <li><code>INSTRUCCIONES.pdf</code></li>
-<li><code>calificaciones.R</code></li>
-<li><code>ej2.rda</code></li>
+<li><code>est.rda</code></li>
 </ul>
 
 <h2>Mecanismo de corrección:</h2>
@@ -248,225 +246,173 @@ source(&quot;evaluar.R&quot;)
 
 <hr/>
 
-<h2>1. Datos de calificaciones</h2>
+<h2>1. Datos de EEUU</h2>
 
-<p>Con el archivo &ldquo;calificaciones.R&rdquo; se generan calificaciones ficticias de estudiantes de secundaria, utilizando rutinas de generación de números aleatorios. Lo primero que debe hacer entonces es ejecutar el comando</p>
+<p>En la carpeta del repartido &#39;rep-3&#39; se encuentra una planilla de cálculo en formato xls, llamada &ldquo;usa.xls&rdquo;. Esta planilla tiene una serie de variables medidas para los cincuenta estados de EE.UU., durante los años setenta. Para mayor información de estos datos, ejecute el comando <code>?state</code>.</p>
 
-<pre><code class="r">source(&quot;calificaciones.R&quot;)
+<p>A partir de esta base de datos vamos a trabajar a lo largo de todo el repartido, ejercitando las habilidades y conocimientos necesarios para modificar y manipular data.frames. Esta es la principal clase de objeto para trabajar con datos que tiene R y por lo tanto nos centramos principalmente en esta.</p>
+
+<h3>1.a Importar los datos</h3>
+
+<p>Script: &ldquo;importar.R&rdquo;</p>
+
+<p>Lo primero que se debe hacer es importar los datos a R. Para ello usted deberá exportar la planilla de cálculo desde excell u otro programa capaz de trabajar con ella. Dicha exportación deberá hacerse en un archivo de texto plano (cuyas extensiones suelen ser .txt o .csv). En la evaluación automática no se corregirá dicho archivo, pero es necesario que se encuentre en la carpeta del repartido para que pueda ejecutarse el script &ldquo;importar.R&rdquo;.</p>
+
+<p>En dicho archivo usted deberá crear el código necesario para importar los datos a R usando alguna de las variantes de <code>read.table</code>. La única condición importante es que la primer columna (los nombres de los estados de EE.UU.) debe importarse como los nombres de filas de la data.frame resultante en R. Dicha data.frame deberá llamarse <code>usa</code> (ver instrucciones en el arcihvo &ldquo;importar.R&rdquo;).</p>
+
+<p>Pero además de importar los datos a su área de trabajo, el script debe también cambiarle los nombres de las variables al español. Específicamente, los nombres de las variables de la data.frame deben ser (en el mismo orden y respetando mayúsculas y minúsculas):</p>
+
+<pre><code>Abrev, Poblacion, Ingresos, Analf, Esp.Vida, Homicidio, Sec.Grad, 
+Heladas, Area, Division
 </code></pre>
 
-<p>para generar los vectores <code>cal</code> y <code>gen</code>, los cuales deberían encontrarse en su área de trabajo (o &ldquo;Workspace&rdquo; en RStudio). En el primero se encuentran las notas de dichos estudiantes, con valores que van del 1 al 12, mientras que el segundo indica el sexo de cada uno de ellos (codificados como &ldquo;V&rdquo; y &ldquo;M&rdquo;, varón y mujer respectivamente). Nótese que las clases de ambos vectores son diferentes, siendo uno numérico y el otro caracter. Ejecute los siguientes comandos para hechar un vistazo rápido a los datos:</p>
+<p>Por último, en la variable <code>Division</code> también queremos cambiar los nombres de los 9 niveles (se trata de un factor) a una versión en español. Específicamente:</p>
 
-<pre><code class="r"># Histograma de las notas:
-hist(cal)
-# Cantidad de mujeres y de varones:
-table(gen)
+<pre><code>Nueva Inglaterra, Atlantico Central, Atlantico Sur, Sudeste Central,
+Sudoeste Central, Noreste Central, Noroeste Central, Montania, Pacifico
 </code></pre>
 
-<h3>1.a Porcentaje de aprobados</h3>
+<p>Nótese que no se usan tildes ni eñes en los nombres para evitar problemas de codificación de caracteres y que se deben respetar mayúsculas y minúsculas.</p>
 
-<p>Script: &ldquo;aprobados.R&rdquo;</p>
+<p>(Pista: considere usar la función <code>levels</code> para esta tarea.)</p>
 
-<p>Considerando que los aprobados son todos aquellos que tienen una nota de 5 o mayor, usted deberá cuantificar el porcentaje de aprobaciones. En el archivo <code>aprobados.R</code> deberá escribir el código necesario para calcular este valor. Tenga en cuenta que para esta tarea necesitará usar <a href="http://eva.universidad.edu.uy/mod/resource/view.php?id=94745">operadores relacionales</a>. Existen varias formas de obtener el valor final, por lo que queda a su gusto determinar el camino a tomar.</p>
+<h3>1.b Corregir datos de analfabetismo</h3>
 
-<h3>1.b Aprobados por género</h3>
+<p>Script: &ldquo;parche.R&rdquo;</p>
 
-<p>Script: &ldquo;aprobados2.R&rdquo;</p>
+<p>Este ejercicio parte de la base que usted logró importar con éxito los datos de &ldquo;usa.xls&rdquo; como se indica en el ejercicio anterior. Si usted ejecuta ahora el comando</p>
 
-<p>El objetivo aquí es determinar la cantidad y porcentaje de aprobados para varones y mujeres por separado. Es decir, se debe determinar la cantidad de varones aprobados en relación a la cantidad de varones totales, y lo mismo para las mujeres. El código para ejecutar esta tarea se debe escribir en el archivo &ldquo;aprobados2.R&rdquo;.</p>
-
-<p>La estrategia más sencilla es primero separar las calificaciones de varones y mujeres en dos vectores (<code>v</code> y <code>m</code> por ejemplo) y luego aplicar el método usado en el ejercicio anterior en ambos. Para esto evidentemente tendrá que usar el vector <code>gen</code> además de operadores relacionales, en particular <code>==</code> (o su contraparte <code>!=</code>).</p>
-
-<h3>1.c Los mejorcitos</h3>
-
-<p>Script: &ldquo;mejorcitos.R&rdquo;</p>
-
-<p>En esta parte lo que hará es seleccionar al grupo de los mejores calificados, trabajando con el script &ldquo;mejorcitos.R&rdquo;. El objetivo es crear un vector numérico llamado <code>mejores</code>, el que tendrá las calificaciones del 25% de los estudiantes con mejor nota. Es decir, en caso de que fueran 100 valores, queremos tomar los 25 más altos. Para esto una estrategia simple es ordenar los valores de menor a mayor y luego elegir los últimos elementos del vector resultante. Lo primero será entonces crear un vector llamado <code>ord</code> con la función <code>sort</code>. Posteriormente es necesario determinar la iésima posición del mismo a partir de la cual se deben tomar los valores, para lo cual seguirá la ecuación:</p>
-
-<p>\[ i = \lceil { n \cdot 0.75 } \rceil \]</p>
-
-<p>donde \( n \) es el número de elementos de <code>cal</code> y la función \( \lceil x \rceil \) indica la <a href="https://es.wikipedia.org/wiki/Funciones_de_parte_entera#Funci.C3.B3n_techo">función techo</a>, es decir el siguiente valor entero más alto que \( x \). Entonces el vector <code>mejores</code> consistirá en los elementos de <code>ord</code> entre las posiciones \( i \) (inclusive) y \( n \). Puede buscar la función techo en R con el comando <code>??ceil</code>.</p>
-
-<p>Finalmente puede visualizar cómo se distribuyen estos datos usando las funciones <code>table</code> o <code>hist</code>.</p>
-
-<h3>1.d Franjas de notas</h3>
-
-<p>Script: &ldquo;franjas.R&rdquo;</p>
-
-<p>El objetivo de esta sección es crear un nuevo vector de clase &ldquo;character&rdquo; el cual tendrá las letras &ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;C&rdquo; y &ldquo;D&rdquo; a fin de indicar cuatro franjas de notas, como se describe a continuación:</p>
-
-<ul>
-<li>A: \( x \leq 3 \)</li>
-<li>B: \( 3 < x \leq 6 \)</li>
-<li>C: \( 6 < x \leq 9 \)</li>
-<li>D: \( 9 < x \)</li>
-</ul>
-
-<p>siendo \( x \) la nota del estudiante. El nuevo vector caracter se llamará <code>ctg</code>, tendrá la misma cantidad de elementos que número de calificaciones y para cada posición tendrá asignada la letra correspondiente (en mayúsculas). Por ejemplo, para el siguiente vector <code>cal</code>:</p>
-
-<pre><code class="r">&gt; cal
-[1]  2 11  3  6  7  6  9 5
+<pre><code class="r">summary(usa)
 </code></pre>
 
-<p>El vector <code>ctg</code> correspndiente es:</p>
+<p>podrá notar que para las columnas <code>Ingresos</code> y <code>Analf</code> figura un conteo de la cantidad de NA&#39;s. Esto quiere decir que hay datos faltantes (&ldquo;Not Available&rdquo;; ver en <a href="http://eva.universidad.edu.uy/mod/glossary/showentry.php?courseid=1454&amp;concept=NA">el glosario</a> para mayor información). Esto suele ser un problema para trabajar con datos en general y por lo tanto es importante encontrar la forma sortear este tipo de obstáculos.</p>
 
-<pre><code class="r">&gt; ctg
-[1] &quot;A&quot; &quot;D&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;B&quot; &quot;C&quot; &quot;B&quot; 
-</code></pre>
-
-<p>Finalmente deberá obtener la cantidad de casos para cada franja (en el ejemplo anterior serían 2, 3, 2, 1 para A, B, C y D respectivamente) y guardar estos valores en el vector <code>conteo</code> (las funciones <code>sum</code> o <code>table</code> pueden ser de utilidad aquí). Si el vector <code>conteo</code> resultante es de la clase &ldquo;table&rdquo; entonces debe convertirlo en un vector &ldquo;numeric&rdquo; con la <a href="http://eva.universidad.edu.uy/file.php/1454/lecciones/2.6-identificadores-y-coercionadores.R">función coercionadora</a> adecuada y luego los nombres dicho vector deben cambiarse a &ldquo;A&rdquo;, &ldquo;B&rdquo;, &ldquo;C&rdquo;, y &ldquo;D&rdquo;, utilizando la función <code>names</code>.</p>
-
-<p>El archivo para esta tarea es &ldquo;franjas.R&rdquo;.</p>
-
-<h4>Sugerencia:</h4>
-
-<p>Una forma sencilla de hacer esto es crear un vector del tipo &ldquo;character&rdquo; inicial, con funciones tales como <code>rep</code> o <code>character</code>, para luego modificarlo, utilizando el esquema:</p>
-
-<pre><code class="r">x[i] &lt;- y
-</code></pre>
-
-<p>en donde <code>x</code> es el vector caracter, <code>y</code> es un(os) valor(es) determinado(s) e <code>i</code> es un vector (de uno o más elementos) de clase &ldquo;integer&rdquo; o &ldquo;logical&rdquo;. Probablemente deba usar operadores <a href="http://eva.universidad.edu.uy/mod/resource/view.php?id=94745">lógicos y relacionales</a> para reproducir las 4 condiciones que definen las franjas.</p>
-
-<h2>2. Organización de los datos</h2>
-
-<p>En esta sección se crearán data.frames y listas en base a datos de calificaciones similares a los del ejercicio 1. Para esto puede continuar utilizando los objetos creados en dicho ejercicio, o alternativamente cargar objetos ya preparados para este ejercicio con el comando:</p>
-
-<pre><code class="r"># Comando opcional:
-load(&quot;ej2.rda&quot;)
-</code></pre>
-
-<h3>2.a Crear una data.frame</h3>
-
-<p>Sript: &ldquo;data.frame.R&rdquo;</p>
-
-<p>En esta sección deberá modificar el archivo &ldquo;data.frame.R&rdquo; para crear un objeto de la clase &ldquo;data.frame&rdquo; llamado <code>datosCalif</code>, cuyas columnas/variables sean los vectores <code>cal</code>, <code>gen</code> y <code>ctg</code>. Los nombres de tales columnas en la data.frame serán &ldquo;nota&rdquo;, &ldquo;genero&rdquo; y &ldquo;franja&rdquo; (respetando mayúsculas y minúsculas). Utilice su método de preferencia para generar dicha data.frame. Una vez hecho, el siguiente comando debería dar un resultado similar a este:</p>
-
-<pre><code class="r">&gt; head(datosCalif)
-  nota genero franja
-1    9      M      C
-2    8      V      C
-3    5      M      B
-4   11      V      D
-5   11      V      D
-6    5      M      B
-</code></pre>
-
-<h3>2.b Ordenar la tabla</h3>
-
-<p>Script: &ldquo;ordenacion.R&rdquo;</p>
-
-<p>el objetivo aquí es modificar la tabla <code>datosCalif</code> creada en la sección anterior, de forma que las filas estén ordenadas en función de la nota (de menor a mayor). Una vez terminado, las primeras filas de <code>datosCalif</code> se deberían ver similares a</p>
-
-<pre><code class="r">&gt; head(datosCalif)
-    nota genero franja
-40     1      V      A
-178    1      M      A
-181    1      M      A
-194    1      V      A
-236    1      V      A
-246    1      M      A
-</code></pre>
-
-<p>y las últimas parecidas a esto:</p>
-
-<pre><code class="r">&gt; tail(datosCalif)
-    nota genero franja
-193   11      V      D
-242   11      M      D
-252   11      M      D
-272   11      M      D
-135   12      V      D
-136   12      V      D
-</code></pre>
-
-<h4>Sugerencias</h4>
-
-<p>Para este ejercicio es necesario comprender el funcionamiento de la función <code>order</code>, el uso de los índices en vectores y/o matrices, así como el de los corchetes y/o el operador <code>$</code>. Nótese además que una expresión de la forma</p>
-
-<pre><code class="r">x &lt;- x[i]
-</code></pre>
-
-<p>es perfectamente válida y que el objeto <code>x</code> es sobreescrito en el proceso.</p>
-
-<h3>2.c Una lista con los datos</h3>
-
-<p>Script: &ldquo;lista.R&rdquo;</p>
-
-<p>Vamos a crear ahora una lista con los datos generados (o los cargados del archivo &ldquo;ej2.rda&rdquo; si es necesario), modificando el código del archivo &ldquo;lista.R&rdquo;. Esta lista se llamará <code>analisisCalif</code> y tendrá los siguientes componentes (preste atención a los nombres):</p>
+<p>Afortunadamente en este caso tenemos una tabla de datos auxiliar que nos permite completar lo que nos falta para la columna <code>Analf</code> (tasa de analfabetismo). Esta tabla auxiliar está en el archivo &ldquo;usa-extra.csv&rdquo;. Para completar el ejercicio, usted deberá completar todos los pasos necesarios para</p>
 
 <ol>
-<li>tabla: la data.frame creada en el ejercicio 2.a (y modificada en 2.b).</li>
-<li>conteo: el vector nombrado con los conteos por franjas de calificaciones.</li>
-<li>aprob: una lista con 3 elementos:
-
-<ul>
-<li>atot: porcentaje de aprobación total (<code>p.apr</code>)</li>
-<li>avar: porcentaje de aprobación de varones (<code>p.apr.v</code>)</li>
-<li>amuj: porcentaje de aprobación de mujeres (<code>p.apr.m</code>)</li>
-</ul></li>
+<li>importar estos datos,</li>
+<li>seleccionar los valores de analfabetismo de los estados correctos y</li>
+<li>sustituir los NA de la data.frame <code>usa2</code>, columna <code>Analf</code>, por estos datos seleccionados.</li>
 </ol>
 
-<p>Si su lista ha sido construida correctamente, al usar la función <code>str</code> debería ver algo similar a lo siguiente:</p>
+<p>Nótese que la data.frame <code>usa</code> debe permanecer incambiada y se debe crear el objeto <code>usa2</code> para hacer estas modificaciones. Nótese también que &ldquo;usa-extra.csv&rdquo; es una tabla muy distinta a la planilla original, incluyendo sólo 2 columnas y menor cantidad de filas, por lo que la única manera de determinar la ubicación de los valores correctos es a través del uso de los nombres de los estados como referencia. En este sentido es bueno recordar que el operador lógico <code>%in%</code> puede ser de mucha utilidad; también es importante recordar que este no es un operador conmutativo; es decir no es lo mismo</p>
 
-<pre><code class="r">&gt; str(analisisCalif)
-List of 3
- $ tabla :&#39;data.frame&#39;:  272 obs. of  3 variables:
-  ..$ nota  : num [1:272] 1 1 1 1 1 1 2 2 2 2 ...
-  ..$ genero: Factor w/ 2 levels &quot;M&quot;,&quot;V&quot;: 2 1 1 2 2 1 2 1 1 1 ...
-  ..$ franja: Factor w/ 4 levels &quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;D&quot;: 1 1 1 1 1 1 1 1 1 1 ...
- $ conteo: Named num [1:4] 38 113 99 22
-  ..- attr(*, &quot;names&quot;)= chr [1:4] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot;
- $ aprob :List of 3
-  ..$ atot: num 71
-  ..$ avar: num 73.4
-  ..$ amuj: num 68.2
+<pre><code class="r">x %in% y
 </code></pre>
 
-<h3>2.d Extra: una clase nueva y un método asociado</h3>
+<p>que</p>
+
+<pre><code class="r">y %in% x.
+</code></pre>
+
+<h3>1.c Eliminar filas sin datos de ingresos</h3>
+
+<p>Script: &ldquo;filtrado.R&rdquo;</p>
+
+<p>Así como para el analfabetismo tuvimos una forma de llenar un vacío de datos, para el caso de la columna &ldquo;Ingresos&rdquo; no tenemos la misma suerte. Por lo tanto, considerando que lo mejor es dejar de lado los casos en que hay ausencia de datos, en esta parte del ejercicio vamos a eliminar las filas correspondientes de &ldquo;usa2&rdquo;.</p>
+
+<p>Para esto usted deberá escribir el código necesario en el archivo &ldquo;filtrado.R&rdquo;. Este código debe asumir la existencia de una data.frame llamada <code>usa2</code>, y servirá para obtener finalmente una data.frame <code>usa3</code> a través de la eliminación de las observaciones de <code>usa2</code>, columna <code>Ingresos</code>, en las que ocurren valores NA&#39;s.</p>
+
+<p>(Pista: considere usar la función <code>subset</code> para esta tarea).</p>
+
+<h3>1.d Extra: función para estandarizar valores de un vector</h3>
 
 <p>(<em>Este ejercicio es opcional, aunque puede sumar puntos en su calificación final del repartido</em>)</p>
 
-<p>Script: &ldquo;print.listaCalif.R&rdquo;</p>
+<p>Script: &ldquo;est.R&rdquo;</p>
 
-<p>Cuando se manejan estructuras de información sofisticadas, como la lista creada en la sección anterior, no es mala idea definir una nueva clase y algunos métodos asociados para hacer el trabajo más fluido. Esto es útil en particular cuando es una tarea que se repite muchas veces a lo largo de un proyecto o en trabajos de rutina.</p>
+<p>Muchas veces es útil al analizar datos transformar variables usando distintas fórmulas. Una de ellas es la estandarización de datos, utilizando la fórmula:</p>
 
-<p>Actualmente el objeto <code>analisisCalif</code> debería ser de la clase &ldquo;list&rdquo;, lo que podemos comprobar con el comando:</p>
+<p>\[ Z = \frac{X - \mu}{\sigma} \]</p>
 
-<pre><code class="r">&gt; class(analisisCalif)
-[1] &quot;list&quot;
+<p>En donde \( X \) representa a los datos originales, \( \mu \) es el valor promedio de los \( X \), \( sigma \) es el desvío estándar de los \( X \) y los \( Z \) son los valores estandarizados.</p>
+
+<p>En este ejercicio usted deberá crear una función llamada <code>est</code> (puede tomar como ejemplo las realizadas en el primer repartido u otras mostradas en las lecciones) que tome como entrada <strong>un sólo argumento</strong>: un vector numérico cualquiera y devuelva otro vector numérico con los valores estandarizados del original. Para esto deberá escribir el código necesario en el archivo &ldquo;est.R&rdquo;.</p>
+
+<p>Aconsejamos utilizar las funciones <code>mean</code> y <code>sd</code> para obtener \( \mu \) y \( \sigma \) respectivamente. Además es deseable que las normalizaciones de datos no se vean afectadas por la ocurrencia de NA&#39;s. Por lo tanto, es necesario utilizar el argumento <code>na.rm</code> de dichas funciones para que <code>est</code> maneje correctamente los NA&#39;s. En caso de que la haya construido bien, debería obtener resultados como el siguiente:</p>
+
+<pre><code class="r">x &lt;- c(4.5, 12.3, 5.8, 9.4, 7.9, NA)
+est(x)
 </code></pre>
 
-<p>Hagamos una nueva clase llamada &ldquo;listaCalif&rdquo; la cual va a estar compuestas por listas con la estructura de <code>analisisCalif</code>. Lo primero que vamos a hacer es cambiar la clase de este objeto de la siguiente manera:</p>
-
-<pre><code class="r">&gt; class(analisisCalif) &lt;- &quot;listaCalif&quot;
+<pre><code>## [1] -1.13584  1.41000 -0.71153  0.46347 -0.02611       NA
 </code></pre>
 
-<p>Esto por ahora no traerá mayores cambios, pero una vez que usted modifique el archivo &ldquo;print.listaCalif.R&rdquo; se habrá definido un nuevo método de <code>print</code> para esta nueva clase. Para entender la diferencia que esto hace, veamos lo que sucede cuando se escribe el nombre del objeto <code>analisisCalif</code> en la consola:</p>
+<p>Nótese que si la función <code>est</code> no maneja correctamente los NA&#39;s, entonces el resultado sería igual a <code>rep(NA, 6)</code>.</p>
 
-<pre><code class="r">&gt; analisisCalif
-...(muchos números)
+<h3>1.e Estandarizar los datos</h3>
+
+<p>Script: &ldquo;transformar.R&rdquo;</p>
+
+<p>La estandarización o normalización es una tranformación común en el análisis de datos. En general para cualquier tipo de transformación, si se trata de un trabajo con matrices o data.frames, es común en R el uso de las funciónes del tipo <code>apply</code>, ya que permiten modificar varias columnas en un sólo comando y además pueden ser más eficientes (en particular <code>lapply</code> o <code>sapply</code>) cuando se trabaja con grandes cantidades de datos.</p>
+
+<p>En este ejercicio el objetivo es usar la función <code>est</code> creada en el ejercicio anterior, en conjunción con <code>apply</code>, para transformar las columnas de clase &ldquo;numeric&rdquo; de nuestra data.frame <code>usa3</code>. Específicamente, debe usar <code>apply</code> para transformar el objeto <code>datosNumericos</code>, el cual están en el script &ldquo;trasnformar.R&rdquo;. En caso de <strong>no haber hecho</strong> el ejercicio 1.d, puede cargar una función <code>est</code> hecha de antemano con el comando:</p>
+
+<pre><code class="r">load(&quot;est.rda&quot;)
 </code></pre>
 
-<p>R simplemente arroja todos los datos de la lista. Sin embargo, al cargar &ldquo;print.listaCalif.R&rdquo;, se puede ver algo así:</p>
+<p>En el script &ldquo;transformar.R&rdquo; se indica específicamente en qué línea debe utilizarse <code>apply</code> para que la evaluación del ejercicio funcione correctamente (i.e.: la línea en que se crea el objeto <code>datosTrans</code>). Si usted ha creado correctamente el objeto <code>datosTrans</code>, entonces este será de clase &ldquo;matrix&rdquo; y los promedios de las columnas <code>Poblacion</code> y <code>Area</code> serán respectivamente:</p>
 
-<pre><code class="r">&gt; source(&quot;print.listaCalif.R&quot;)
-&gt; analisisCalif
-Porcentaje total de aprobaciones: 70.96 %
-  En varones: 73.43 %
-  En mujeres: 68.22 %
-La nota promedio fue de: NA 
-  En varones: NA 
-  En mujeres: NA 
-Conteos por franja de nota:
-  1--3   4--6   7--9 10--12 
-    38    113     99     22
+<pre><code class="r">colMeans(datosTrans[, c(&#39;Poblacion&#39;, &#39;Area&#39;)])
+    Poblacion          Area 
+-6.745250e-17 -2.678736e-17
 </code></pre>
 
-<p>¡Esta es la gran utilidad de definir métodos para una clase en R! En este caso, en lugar de imprimir en pantalla una cantidad de números difícles de leer, ahora se pueden ver los resultados más relevantes sin todo ese ruido. Nótese que esto sólo es posible gracias a que <code>print</code> es una función genérica y por lo tanto permite hacer nuevos métodos en cualquier momento. No muchas funciones pertenecen a esta categoría (ver <code>?GenericFunctions</code> por mayor información).</p>
+<p>Finalmente, tome en cuenta también que el objeto final que usted debe crear, llamado <code>usaNorm</code>, debe ser de clase &#39;data.frame&#39; y debe tener las mismas columnas de clase &ldquo;factor&rdquo; del objeto inicial <code>usa3</code>. También deben coincidir los nombres de filas y columnas. Para esto recomendamos primero coercionar <code>usaNorm</code> en una data.frame con la función correspondiente y luego unir el objeto resultante con las columnas &ldquo;factor&rdquo; de <code>usa3</code> (siempre manteniendo el orden de columnas).</p>
 
-<p>El único problema en este caso es que no se calculan bien los promedios de las notas y por lo tanto se ven unos &ldquo;NA&rdquo; en la salida de la consola. El objetivo de este ejercicio es modificar la función <code>print.listaCalif</code> para que calcule estos 3 promedios y así los imprima correctamente cada vez que se llama a un objeto de la nueva clase &ldquo;listaCalif&rdquo;. Invitamos además a mirar el resto del código de la función <code>print.listaCalif</code> para tratar de entender los pasos que se toman para generar esta salida.</p>
+<h3>1.f Extra: un nuevo factor</h3>
 
-<p>Nótese el uso del operador <code>$</code> en varios comandos internos de dicha función, ya que usted deberá usarlos también para calcular los promedios.</p>
+<p>(<em>Este ejercicio es opcional, aunque puede sumar puntos en su calificación final del repartido</em>)</p>
+
+<p>Script: &ldquo;nuevo-factor.R&rdquo;</p>
+
+<p>En este ejercicio se propone crear una nueva columna de clase &ldquo;factor&rdquo; en la data.frame <code>usa3</code>, utilizando la función <code>cut</code>. Dicho factor deberá llamarse <code>Ing.Cat</code> (como se ilustra en el script), tener 4 niveles y ser construido en base a la columna <code>Ingresos</code> de <code>usa3</code>. Este a variable representará entonces las 4 categorías de ingreso (promedio, por estado) de EE.UU. Si el ejercicio fue hecho correctamente, el conteo de ocurrencias de cada nivel del factor será:</p>
+
+<pre><code class="r">&gt; tabulate(usa3$Ing.Cat)
+[1] 12 19 11  1
+</code></pre>
+
+<p>En segundo lugar, se utilizará la función <code>tapply</code>, una variante bastante especializada de <code>apply</code> (y muy similar a la función <code>by</code>), para analizar los valores de analfabetismo correspondientes a estas categorías de ingresos. La función <code>tapply</code> se usa con la siguiente sintaxis:</p>
+
+<pre><code class="r">tapply(x, f, fu)
+</code></pre>
+
+<p>En dónde <code>x</code> es típicamente un vector numérico, <code>f</code> es un factor cuya longitud equivale a la de <code>x</code> y <code>fu</code> es una función de R (p.ej.: <code>mean</code>). Aquí lo que haría este comando es ejecutar la función <code>fu</code> tantas veces como niveles tiene <code>f</code> y en cada vez lo hace usando como entrada los elementos de <code>x</code> que se corresponden con las ocurrencias de dicho factor. Es decir, primero ejecuta</p>
+
+<pre><code class="r">fu(x[f == levels(f)[1]])
+</code></pre>
+
+<p>luego</p>
+
+<pre><code class="r">fu(x[f == levels(f)[2]])
+</code></pre>
+
+<p>y así sucesivamente hasta llegar al último nivel de <code>f</code>. Como resultado devuelve una lista en la que cada elemento es se corresponde con la salida de uno de estos comandos.</p>
+
+<p>Lo que usted deberá ejecutar aquí es la función <code>tapply</code> sobre el vector <code>Analf</code>, con <code>Ing.Cat</code> como referencia (ambas columnas de <code>usa3</code>) y la función <code>summary</code>. El resultado, tal como se muestra en el archivo de código fuente, debe guardarse en el objeto <code>salidaTapply</code>.</p>
+
+<p>Finalmente debe hacer algo similar con la función <code>boxplot</code>, cuya sintaxis es mucho más sencilla que <code>tapply</code>, por ejemplo:</p>
+
+<pre><code class="r">boxplot(y ~ f, d)
+</code></pre>
+
+<p>Aquí <code>d</code> es una data.frame, mientras que <code>y</code> y <code>f</code> son columnas de <code>d</code> de las clases &ldquo;numeric&rdquo; y &ldquo;factor&rdquo; respectivamente. Nuevamente las columnas a utilizar son <code>Analf</code> e <code>Ing.Cat</code>, de la data.frame <code>usa3</code>. La salida de esta función es doble, por un lado un objeto (el cual deberá guardar bajo el nombre <code>salidaBoxplot</code>) y por otro una gráfica similar a la siguiente:</p>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-15"/> </p>
+
+<h3>1.g Exportar</h3>
+
+<p>Script: &ldquo;exportar.R&rdquo;</p>
+
+<p>Finalmente se deberá exportar la data.frame <code>usaNorm</code> a un archivo de texto plano. Dicho archivo se llamará &ldquo;usa-norm.csv&rdquo; y deberá cumplir con las siguientes condiciones:</p>
+
+<ol>
+<li>Deberá guardar correctamente los nombres de las filas y columnas.</li>
+<li>El separador de columnas deberá ser el caracter &ldquo;;&rdquo;.</li>
+<li>El punto decimal debe estar indicado con el caracter &ldquo;,&rdquo;</li>
+</ol>
+
+<p>Consulte las lecciones o la ayuda de R en <code>?write.table</code> para determinar el comando adecuado para realizar esta operación.</p>
 
 </body>
 

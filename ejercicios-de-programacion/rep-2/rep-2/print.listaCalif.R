@@ -3,9 +3,9 @@ class(analisisCalif) <- "listaCalif"
 # este script. En caso contrario, corra "load('ej2.rda')" para cargar estos objetos ya preparados.
 # Objetivos:
 # Hacer una salida que incluya los cálculos correctos de los objetos:
-# ptot: promedio de aprobados sobre el total.
-# pvar: promedio de aprobados sobre el total de mujeres.
-# pmuj: promedio de aprobados sobre el total de hombres.
+# ptot: promedio total de notas.
+# pvar: promedio de notas de varones.
+# pmuj: promedio de notas de mujeres.
 # Recuerde que en la corrección los objetos cal y gen son creados nuevamente con generadores de números 
 # aleatorios.
 print.listaCalif <- function(x) {
@@ -25,7 +25,7 @@ print.listaCalif <- function(x) {
   cat('  En varones:', round(pvar, 2), '\n')
   cat('  En mujeres:', round(pmuj, 2), '\n')
   cnt <- x$conteo
-  if (class(cnt) != 'numeric') stop('x$conteo no es numeric')
+  if (!is.numeric(conteo)) stop('x$conteo no es numeric')
   names(cnt) <- c('1--3', '4--6', '7--9', '10--12')
   cat('Conteos por franja de nota:\n')
   print(cnt)

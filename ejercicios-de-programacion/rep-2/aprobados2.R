@@ -16,17 +16,17 @@
 # aleatoriamente.
 #===== Su código comienza aquí: =====#
 
-v <- cal[gen == 'V']
+v <- 0
 
-m <- cal[gen == 'M']
+m <- 0
 
-apr.v <- sum(v >= 5)
+apr.v <- 0
 
-apr.m <- sum(m >= 5)
+apr.m <- 0
 
-p.apr.v <- 100 * apr.v / length(v)
+p.apr.v <- 0
 
-p.apr.m <- 100 * apr.m / length(m)
+p.apr.m <- 0
 
 #====== Aquí finaliza su código =====#
 

@@ -1,8 +1,10 @@
 # Instrucciones: siendo cal el vector con las calificaciones de todos los
 # estudiantes, y gen el vector con el género de dichos estudiantes ("V" = varón y "M" = mujer), debe 
 # obtener los siguientes valores:
-# p.apr.v*: porcentaje de estudiantes varones aprobados.
-# p.apr.m*: porcentaje de estudiantes mujeres aprobadas.
+# p.apr.v*: porcentaje de estudiantes varones aprobados (en relación al total 
+#   de varones).
+# p.apr.m*: porcentaje de estudiantes mujeres aprobadas (en relación al total 
+#   de mujeres).
 # Se sugiere crear y usar los siguientes objetos:
 # v: calificacinones de los estudiantes varones
 # m: calificaciones de las estudiantes mujeres
