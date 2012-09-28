@@ -188,7 +188,7 @@ Finalmente, tome en cuenta también que el objeto final que usted debe crear, ll
 
 Script: "nuevo-factor.R"
 
-En este ejercicio se propone crear una nueva columna de clase "factor" en la data.frame `usa3`, utilizando la función `cut`. Dicho factor deberá llamarse `Ing.Cat` (como se ilustra en el script), tener 4 niveles y ser construido en base a la columna `Ingresos` de `usa3`. Este a variable representará entonces las 4 categorías de ingreso (promedio, por estado) de EE.UU. Si el ejercicio fue hecho correctamente, el conteo de ocurrencias de cada nivel del factor será:
+En este ejercicio se propone crear una nueva columna de clase "factor" en la data.frame `usa3`, utilizando la función `cut`. Dicho factor deberá llamarse `Ing.Cat` (como se ilustra en el script), tener 4 niveles y ser construido en base a la columna `Ingresos` de `usa3`. Esta variable representará entonces las 4 categorías de ingreso (promedio, por estado) de EE.UU. Si el ejercicio fue hecho correctamente, el conteo de ocurrencias de cada nivel del factor será:
 
 ```{r eval = FALSE}
 > tabulate(usa3$Ing.Cat)
@@ -201,7 +201,7 @@ En segundo lugar, se utilizará la función `tapply`, una variante bastante espe
 tapply(x, f, fu)
 ```
 
-En dónde `x` es típicamente un vector numérico, `f` es un factor cuya longitud equivale a la de `x` y `fu` es una función de R (p.ej.: `mean`). Aquí lo que haría este comando es ejecutar la función `fu` tantas veces como niveles tiene `f` y en cada vez lo hace usando como entrada los elementos de `x` que se corresponden con las ocurrencias de dicho factor. Es decir, primero ejecuta
+En dónde `x` es típicamente un vector numérico, `f` es un factor cuya longitud equivale a la de `x` y `fu` es una función de R (p.ej.: `mean`). Aquí lo que haría este comando es ejecutar la función `fu` tantas veces como niveles tiene `f` y en cada vez lo hace usando como entrada los elementos de `x` que se corresponden con las ocurrencias de dicho nivel. Es decir, primero ejecuta
 
 ```{r eval = FALSE}
 fu(x[f == levels(f)[1]])
@@ -213,17 +213,17 @@ luego
 fu(x[f == levels(f)[2]])
 ```
 
-y así sucesivamente hasta llegar al último nivel de `f`. Como resultado devuelve una lista en la que cada elemento es se corresponde con la salida de uno de estos comandos.
+y así sucesivamente hasta llegar al último nivel de `f`. Como resultado devuelve una lista en la que cada elemento se corresponde con la salida de uno de estos comandos.
 
 Lo que usted deberá ejecutar aquí es la función `tapply` sobre el vector `Analf`, con `Ing.Cat` como referencia (ambas columnas de `usa3`) y la función `summary`. El resultado, tal como se muestra en el archivo de código fuente, debe guardarse en el objeto `salidaTapply`.
 
-Finalmente debe hacer algo similar con la función `boxplot`, cuya sintaxis es mucho más sencilla que `tapply`, por ejemplo:
+Finalmente debe hacer algo similar con la función `boxplot`, cuya sintaxis es tal vez más sencilla que `tapply`, por ejemplo:
 
 ```{r eval = FALSE}
 boxplot(y ~ f, d)
 ``` 
 
-Aquí `d` es una data.frame, mientras que `y` y `f` son columnas de `d` de las clases "numeric" y "factor" respectivamente. Nuevamente las columnas a utilizar son `Analf` e `Ing.Cat`, de la data.frame `usa3`. La salida de esta función es doble, por un lado un objeto (el cual deberá guardar bajo el nombre `salidaBoxplot`) y por otro una gráfica similar a la siguiente:
+Aquí `d` es una data.frame, mientras que `y` y `f` son columnas de `d` de las clases "numeric" y "factor" respectivamente. Nuevamente las columnas a utilizar son `Analf` e `Ing.Cat`, de la data.frame `usa3`. La salida de esta función es doble, por un lado un objeto (el cual deberá guardar bajo el nombre `salidaBoxplot`) y por otro una gráfica similar a la Figura 1 de este repartido.
 
 ```{r echo = FALSE}
 load('preparacion.RData')
