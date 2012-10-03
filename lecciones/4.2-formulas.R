@@ -1,12 +1,11 @@
-
 ## Fórmulas
 
-# En R las fórmulas son utilizadas para describir modelos. Estos modelos se escriben con operadores como '~', '+', '*', etc. 
+# En R las fórmulas son utilizadas para describir modelos o más en general, relaciones entre variables. Estas fórmulas se escriben con el operador '~' y otros más comunes pero de uso distinto al normal, como '+' y '*'. Sirven especialmente para trabajar con modelos de regresión y varias funciones gráficas.
 
-# Formula genérica:
+# Formula genérica (no correr):
 variable.de.respuesta ~ variables.explicativas
 
-# Aquí la fórmula está dada por el operador "~"; a la izquierda está la variable de respuesta, a la derecha la o las variables explicativas. El esquema general es el siguiente:
+# Aquí la fórmula está dada por el operador "~"; a la izquierda está la variable de respuesta, a la derecha la o las variables explicativas.
 
 ## El "~" (virgulilla) debería leerse como "es modelado por" o "es modelado como una función de".
 
@@ -15,14 +14,16 @@ variable.de.respuesta ~ variables.explicativas
 
 # En esta lección nos vamos a enfocar en el uso de fórmulas para ANOVA y análisis de regresión, con la esperanza de dar los elementos para que cada estudiante pueda profundizar mejor en este tema por su cuenta, en caso de que le sea necesario.
 
-# En R existen varias funciones, tales como aov (Analysis of Variance), lm (Linear Models) y glm (Generalized Linear Models), que usan objetos de la clase "formula" para especificar las variables que deben ser incluidas en el análisis o modelo. Normalmente la fórmula es incluida como el primer argumento de la función. 
-# Siguiendo con el ejemplo genérico:
+# En R existen varias funciones, tales como aov (Analysis of Variance), lm (Linear Models) y glm (Generalized Linear Models),
+# que usan objetos de la clase "formula" para especificar las variables que deben ser incluidas en el análisis o modelo. 
+# Normalmente la fórmula es incluida como el primer argumento de la función.
+# Siguiendo con el ejemplo (no correr):
 
 reresion_simple <- lm(variable.de.respuesta ~ variables.explicativas, data=DataFrame) # el argumento data es impresindible para indicarle al R de donde debe sacar los datos para realizar la regresión, es como cuando en el Excel, marcamos las columnas que queremos que sean utilizadas para graficar...
 
-# Las fórmulas, a pesar de ser similares, no funcionan del todo igual respecto a las convenciones con las que todos estamos familiarizados. 
-# El primer objetivo de estas es especificar un modelo estadístico. 
-# Esto ayuda a simplicar la interfase con el usuario, pero implica que primero este debe aprender la sintáxis propia de estas fórmulas.
+# Las fórmulas, a pesar de ser similares a los comandos normales, no funcionan del todo igual respecto a las convenciones 
+# con las que todos estamos familiarizados. El primer objetivo de estas es especificar un modelo estadístico. Esto ayuda a 
+# simplicar la interfase con el usuario, pero implica que primero este debe aprender la sintáxis propia de estas fórmulas.
 
 # Veamos algunos ejemplos para ir entendiendo la lógica:
 x <- runif(20, 5, 30) # variable explicativa
