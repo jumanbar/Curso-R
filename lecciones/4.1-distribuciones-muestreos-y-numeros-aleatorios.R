@@ -6,7 +6,7 @@
 # En R podemos ver la lista de todas las distribuciones que se encuentran incluidas en el paquete 'stats', utilizando el siguiente comando:
 ?Distributions
 
-# Cuatro grandes grupos de funciones de distribución de probabilidad se encuentran disponibles en dicho paquete: función de densidad (Density), función de distribución acumulativa (cumulative distribution function), función cuantil (quantile function) y generadores de núneros al azar (random variate generation).
+# Cuatro grandes grupos de funciones de distribución de probabilidad se encuentran disponibles en dicho paquete: función de densidad (Density), función de distribución acumulativa (cumulative distribution function), función cuantil (quantile function) y generadores de números al azar (random variate generation).
 # Cada función se denomina e identifica con la primer letra seguido del nombre de la variable (discreta o continua).
 # dxxx
 # pxxx
@@ -20,7 +20,7 @@
 # qnorm : Función de Cuantiles.
 # rnorm : Generador aleatorio de números con distribución normal.
 # En la ayuda de R se pueden ver las cuatro funciones incluidas para la
-# distribución normal:
+# distribución normal (los 5 comandos tienen el mismo efecto):
 ?Normal
 ?dnorm
 ?pnorm
@@ -39,16 +39,16 @@
 # Es la función con forma de campana que la mayoría conocemos.
 # Calcula para cada punto observado el valor de la función de densidad.
 
-# Para la función de densidad con una distribución normal el valor cero vale:
-dnorm(0) # cuánto vale la media y el desvio de esta distribución?
+# Para la función de densidad con una distribución normal el valor en cero vale:
+dnorm(0) # cuánto vale la media y el desvío de esta distribución?
 # 0.3989423
 
-# Para la función de densidad con una distribución normal y media = 6, el valor cero vale:
-dnorm(0,mean=6)
+# Para la función de densidad con una distribución normal y media = 6, el valor en cero vale:
+dnorm(0, mean = 6)
 # 6.075883e-09
 
-# Para la función de densidad con una distribución normal con media = 4 y desvio = 10, el valor cero vale:
-dnorm(0,mean=6, sd=10)
+# Para la función de densidad con una distribución normal con media = 4 y desvío = 10, el valor en cero vale:
+dnorm(0, mean = 6, sd = 10)
 # 0.03332246
 
 # Si quiero averigual el valor para tres números diferentes, los debo concatenar con la función c:
@@ -56,17 +56,20 @@ dc <- dnorm(c(1, 3, 7))
 # 2.419707e-01 4.431848e-03 9.134720e-12
 
 # Si quiero conocer para un determinada secuencia de valores como se comporta la función de distribución de densidad, primero debo generar la secuencia:
-dx <- seq(-20,20,by=0.1)
+dx <- seq(-8, 8, by = 0.025)
 # dx es un vector con valores entre -20 y 20 tomados de a 0,1.
 dy <- dnorm(dx)
 # dy usa los valores generados en dx y calcula los valores para la función de densidad con distribución normal
-plot(dx,dy)
+plot(dx, dy, type = 'l')
 
-# ahora le cambiamos la media y el desvio
-dz <- dnorm(dx, mean=2.5, sd=0.1) 
-plot(dx,dz)
+# ahora le cambiamos la media y el desvío
+dz <- dnorm(dx, mean = 2.5, sd = 0.3)
+plot(dx, dz, type = 'l')
 
-# pnorm 
+# Nótese que la función curve también se puede usar para este propósito:
+curve(dnorm(x, mean = 2.5, sd = 0.3), from = -8, to = 8, n = 500)
+
+# pnorm
 # Es la función que describe P(Y <= X) (probabilidad de que Y sea
 # menor o igual a X, siendo X un cuantil e Y una variable aleatoria
 # tomada de una distribución normal.
@@ -75,68 +78,81 @@ plot(dx,dz)
 pnorm(0)
 # 0.5
 
-pnorm(0,mean=2)
+pnorm(0, mean = 2)
 # 0.02275013
 
-pnorm(0,mean=2, sd=3)
+pnorm(0, mean = 2, sd = 3)
 # 0.2524925
 
 pc <- pnorm(c(1, 3, 7))
 # 0.8413447 0.9986501 1.0000000
 
-px <- seq(-20,20,by=0.1)
+px <- seq(-20, 20, by = 0.1)
 py <- pnorm(px)
-plot(px,py)
+plot(px, py)
 
-pz <- pnorm(px, mean=2, sd=3) 
-plot(px,pz)
+pz <- pnorm(px, mean = 2, sd = 3) 
+plot(px, pz)
 
 # qnorm
 # Matemáticamente es la función inversa a pnorm (f^-1(x), no 1/f(x)).
-# Ejemplo: para una variable al azar con distribución normal, de media 0 y desvio 1, la función de probabilidad que devuelve es el Z-score.
+# Ejemplo: para una variable al azar con distribución normal, de media 0 y desvío 1, la función de probabilidad que devuelve es el usualmente llamado Z-score.
 
+# El ejemplo tal vez más conocido es el del valor de z correspondiente a un alfa de
+# 0.05, 1.96 el cual se puede obtener así:
+
+qnorm(0.975)
+# 1.959964
+# Debe tenerse en cuenta que este valor se obtiene tanto si se trata de un alfa 
+# de 0.025 para un test de una sola cola (como en este caso) como para un alfa de
+# 0.05 para un test de dos colas.
+
+# Por defecto qnorm considera sólo la cola inferior de la distribución, pero se
+# puede cambiar con el argumento lógico lower.tail:
+qnorm(0.975, lower.tail = FALSE)
+
+# Otros varios ejemplos (nótese que la entrada debe estar entre 0 y 1):
 qnorm(0.5)
 # 0
-qnorm(0.5,mean=1)
+qnorm(0.5, mean = 1)
 # 1
-qnorm(0.5,mean=1,sd=2)
+qnorm(0.5, mean = 1, sd = 2)
 # 1
-qnorm(0.5,mean=2,sd=2)
+qnorm(0.5, mean = 2, sd = 2)
 # 2
-qnorm(0.5,mean=2,sd=4)
+qnorm(0.5, mean = 2, sd = 4)
 # 2
-qnorm(0.25,mean=2,sd=2)
+qnorm(0.25, mean = 2, sd = 2)
 # 0.6510205
 qnorm(0.758)
 # 0.6998836
-qnorm(0.758,mean=5,sd=2)
+qnorm(0.758, mean = 5, sd = 2)
 # 6.399767
-qnorm(0.265)
-# -0.628006
-qnorm(0.265,sd=3)
-# -1.884018
 
-qc <- c(0.2,0.4,0.65)
+# Nótese que al cambiar de mean = 0 y sd = 1 ya no estamos hablando de los 
+# denominados Z-scores.
+
+qc <- c(0.2, 0.4, 0.65)
 qnorm(qc)
 # -0.8416212 -0.2533471  0.3853205
 
-qx <- seq(0, 1, by=0.05)
+qx <- seq(0, 1, by = 0.01)
 qy <- qnorm(qx)
-plot(qx, qy)
+plot(qx, qy, type = 'l')
 
 
 ## Números aleatorios en R
 
 # Un número aleatorio surge a partir de una variable al azar que presenta una función de distribución determinada.
 
-# Ejemplo: Para crear 1000 números aleatorios con promedio 0 y desvío estándar 1:
+# Ejemplo: Para crear 1000 números aleatorios de distribución normal con promedio
+# 0 y desvío estándar 1:
 x <- rnorm(1000, mean=0, sd=4)
-# Claro está que el promedio es de la población y no de cada número en sí...
 # Para corroborar que el generador funciona bien:
 mean(x)  # Debería ser cercano a 0
 sd(x)    # y este cercano a 1
 
-# De acuerdo a la ley de los grandes números, cuánto mayor es la cantidad de elementos de x, más cercanos a 0 y 1 son estos valores... invitamos al usuario a que explore lo que ocurre con rnorm.
+# De acuerdo a la ley de los grandes números, cuánto mayor es la cantidad de elementos de x, más cercanos a 0 y 1 son estos valores... invitamos al usuario a que explore lo que ocurre con estos valores al cambiar el primer argumento de rnorm.
 
 # Podemos hacer un resumen de los números generados:
 summary(x)
@@ -149,11 +165,12 @@ densidad <- density(x)
 plot(densidad)
 
 # O ambos...
-hist(x, freq=FALSE, add=TRUE)
+hist(x, freq = FALSE, add = TRUE)
 # Nótese el uso de los argumentos "freq" y "add" para cambiar las
 # opciones por defecto (así grafica densidades y no borra el gráfico
 # anterior). En esta parte no se va a profundizar en lo que refiere
 # a herramientas gráficas, pero se retomará el tema más adelante.
+
 
 # Ejemplificando con las tres funciones que vimos anteriormente:
 
@@ -167,7 +184,7 @@ curve(pnorm(x), from=-3.5, to=3.5)
 
 # qnorm
 curve(qnorm(x), from=-1, to=1)
-# Se parece a:
+# Nótese el parecido con:
 plot(sort(rnorm(1e3)))
 
 # Puedo combinar dnorm y rnorm para hacer un lindo gráfico:
@@ -323,6 +340,7 @@ sample(10)
 
 # si plantamos otra semilla, el orden aleatorio que quede guardado en dicha semilla será otro:
 set.seed(2)
+
 sample(10)
 # 2  7  5 10  6  8  1  3  4  9
 
