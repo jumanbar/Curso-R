@@ -1,0 +1,285 @@
+# GRÁFICOS: UNA INTRODUCCIÓN
+
+# Aclaramos que se trata de una introducción al conocimiento en general, ya que
+# el universo de los gráficos posibles en R es muy, muy vasto. Pueden
+# profundizar sobre este tema a través de los "links de interés" dispuestos en
+# la sección "recursos".
+
+# El objetivo de esta lección es brindar los elementos más básicos y universales
+# posibles para trabajar con gráficos en R.
+# Una práctica recomendable es la de escribir los pasos necesarios para lograr
+# el gráfico que deseamos en un script de R (con extensión ".R"), de forma tal
+# que se pueden hacer cambios paso por paso y lograr resultados bastante
+# complejos y reproducibles. 
+
+# Cuando se realiza un gráfico en en la consola de R, este nos abre una nueva
+# ventana con el gráfico resultante. Sin embargo, cuando realizamos un nuevo
+# gráfico no se abre una ventana nueva para mostrarnos el nuevo gráfico. De
+# manera contraria, el nuevo gráfico sutituye en la ventana de la consola el
+# gráfico anterior. En este sentido, para no perder el grafico previo es
+# necesario abrir una nueva ventana en la consola de R y así poder tener ambos
+# gráfico para visualizarlos (en ventanas distintas).
+# Para abrir una nueva ventana en la consola de R:
+# X11() under UNIX (y Windows)
+# windows() under Windows
+# and quartz() under Mac OS X
+# Esto sirve para poder visualizar mas de un gráfico en R.
+# En RStudio esto no es problema, dado que en la ventana 'Plot' es posible
+# visualizar más de un gráfico. A medida que vamos realizando distintos
+# gráficos, estos se van almacenando en dicha ventana sin la necesidad de
+# tener que abrir una nueva ventana en la consola por cada uno. A su ves,
+# tiene un conjunto de botones que nos permiten realizar distintas cosas...
+# Empezando por arriba y a la izquierda se encuentran dos 'flechas celestes' que
+# apuntan hacia la izquierda y la derecha. Esto nos permite ir viendo en la
+# venta de plot los distintos gráficos creados. El sigueinte boton es el del
+# 'Zoom', este permite agrandar la imagen obtenida para una mejor visualización.
+# El botón 'Export' nos permite guardar la imagen que estamos observando en
+# formato imagen (.jpg) o en pdf. Sino la podemos copiar al clipboard y luego
+# pegarla en algún programa de imgen para poder editarla como LibreOffice o
+# PowerPoint. Los dos últimos botones sirven para borrar el gráfico que
+# estamos observando o todos los gráfico obtenidos, respectivamente.  
+
+# PARÁMETROS DE GRÁFICOS
+# par
+# Es el conjunto de los parámetros gráficos, los objetos generados en R con
+# la función 'plot', le pasan sus argumentos a la función 'par', la mayoría a
+# través del argumento especial "...", cuando se ejecutan.
+# Para mayor información consulte en la ayuda de R:
+?par
+
+# A continuación les describiremos aquellos argumentos de la función 'par' más
+# utilizados para digrmar gráficos en R:
+
+# col (.axis, .lab, .main, .sub) // colores(números o caracteres entre comillas)
+# lwd // line width // ancho de la línea (número)
+# pch // point character // tipo de punto (números o caracteres entre comillas)
+# type // tipo de gráfico a dibujar ('p', 'l', 'b', 'o', 'n', 's' y otros)
+# lty // line type // tipo de línea (1:sólida, 2:quebrada, 3:punteada,
+# 4:puntolínea, 5:línea larga-corta, 6:dos líneas cortas)
+# xlab // x axis label // nombre del eje x
+# ylab // y axis label // nombre del eje x
+# main // main title // título principal
+# sub // sub label
+# cex (.axis, .lab, .main, .sub) // magnificación del texto y símbolos con
+# respecto al valor por defecto, 1
+# bty // tipo de caja que se dibuja alrededor del gráfico ("o", "l", "7", "c",
+# "u" o "]", "n")
+# font (.axis, .lab, .main, .sub) // tipo de letra (1:normal, 2:cursiva,
+# 3:negrilla, 4:negrilla cursiva)
+# family // tipo de letra (caracteres entre comillas)
+# axes // si es FALSE no dibuja ni los ejes ni la caja, por defecto es TRUE
+# (lógico)
+# las // posición de los nombres de los ejes en los ejes (0:siempre paralelo al
+# eje [defecto], 1:siempre horizontal al eje, 2:siempre perpendicular al eje,
+# 3:siempre vertical)
+# add // si es TRUE permite agregar un gráfico al ya existente (lógico)
+# mar=c(bottom, left, top, right) // margin // margenes
+# oma=c(bottom, left, top, right) // outer margin // orden de aparición de los
+# margenes
+# mfcol, mfrow // "matrix figure" // varios gráficos en una sola ventana
+# log // escala logarítmica
+# xlog // escala log en eje x
+# ylog // escala log en eje y
+# xlim // rango de coordenadas x e y del eje 'x' (numérico)
+# ylim // rango de coordenadas x e y del eje 'y' (numérico)
+
+# nomenclatura básica
+# números de los ejes == .axis, nombres de los ejes == .lab, títulob== .main,
+# subtítulo == .sub
+
+
+# Un ejemplo introductorio... 
+# Creo un vector para plotear
+x <- sort(rnorm(100))
+# Uso el argumento 'mar' para agrandar el margen izquierdo... 'mar' es un argumento que
+# acepta como opción un vector numérico con 4 valores
+# (por defecto mar=c(5, 4, 4, 2) + .1). Este vector define el tamaño de los 4
+# márgenes de la ventana del gráfico.
+op <- par(mar=c(5, 6, 4, 2))
+
+# Aća estoy cambiando el tamaño de los margenes del gráfico. En este caso
+# sólamente los dos primeros valores que equivalen al margen inferior y al
+# margen izquierdo.
+# Estos números están puestos en sentido horario, empezando por el margen
+# inferior (inf, izq., arr, der).
+# Es común guardar en un objeto (en este caso 'op') la salida para volver a usar
+# los parámetros originales luego.
+
+# Un ejemplo en el que se manipulan muchos parámetros...
+plot(x, cex=1.5, cex.axis=1.2, cex.lab=2.1, col.lab='green', type='o', lwd=3,
+xlab="ejemplo", ylab="numeros", main="Ejem-plot")
+
+# Jugando con los valores de cada uno se puede ver el significado de los mismos
+# (en general los nombres buscan ser informativos).
+
+
+# OPCIONES COMUNES
+
+# Veremos tres formas comunes en que se suelen ajustar los gráficos: colores,
+# superposición de líneas/puntos y gráficos múltiples.
+
+# 1. Colores en los gráficos
+# El argumento 'col', usado dentro de la función 'plot' (u otras funciones de
+# gráficos) establece el color de lo graficado. Es un parámetro versátil, ya que
+# acepta números, strings (palabras) o códigos RGB... veamos.
+
+# Si se usan los enteros del 1 al 8 los colores ploteados son estos:
+palette()
+# Podemos visualizarlo con este comando:
+plot(1:8, col=1:8, pch=19, cex=4)
+ 
+# Hay muchos nombres de colores posibles, los cuales se pueden conocer con la
+# funcion 'colors':
+?colors
+colors()
+ 
+# Para visualizarlos:
+length(colors()) # 657 =~ 26 ^ 2
+mat <- matrix(1:(26 ^ 2), 26, 26)
+image(mat, col=colors())
+ 
+# También existen algunas funciones que generan gradientes de colores
+# preestablecidos, por ejemplo 'gray' , 'rainbow', 'terrain.colors',
+# 'heat.colors':
+image(mat, col=terrain.colors(26 ^ 2))
+image(mat, col=terrain.colors(26 ^ 2))
+image(mat, col=rainbow(26 ^ 2))
+image(mat, col=gray(seq(0, 1, , 26 ^ 2))) # este necesita valores entre 0 y 1
+image(mat, col=heat.colors(26 ^ 2))
+
+# Es posible usar colores definidos por códigos de RGB. Estos se escriben con un
+# "#" y 3 valores en hexagesimal (son 6 dígitos, 2 para Red, 2 para Green y 2
+# para Blue).
+
+# Ejemplo:
+curve(sin(x) / x, from=-20, to=20, lwd=15, col='#5D5EB6')
+# Existen programas y páginas web para elegir colores que devuelven el código
+# RGB:
+browseURL('http://www.colorpicker.com/')
+
+
+# 2. Superposición de líneas/puntos
+# Muchas veces queremos agregar varias series de datos a la misma gráfica. Los
+# comandos para hacer esto son 'points'  y 'lines'. Por ejemplo:
+x <- sort(rnorm(100, 0))
+y <- sort(rnorm(100, 1))
+plot(x, type='o')
+points(y, col='green') # Agrega un nuevo conjunto de puntos de color verde.
+lines(y, col='green', lwd=1.5) # Líena que une los puntos verdes.
+
+# En este punto es necesario hacer una distinción importante: en R existen
+# comandos gráficos de "alto nivel" y de "bajo nivel". En inglés los
+# términos son "high level" y "low level" plots (HL y LL de aquí en más).
+
+# Los HL son comandos capaces de hacer plots nuevos. Algunos ejemplos son
+# 'plot', 'curve' o 'hist'.
+
+# Los LL son comandos que sólo pueden agregar elementos a un plot existente.
+# Algunos ejemplos son 'points', 'lines', 'legend' o 'text'.
+
+# Comandos HL comunes:
+# curve ---> para graficar funciones matemáticas de una variable.
+# Ejemplos:
+curve(sin(x), from=-4, to=4)                        # Función seno.
+curve(x ^ 3 - 4 * x ^ 2 + 3 * x - 1, from=-8, to=8) # Polinomio de grado 3.
+# En el primer argumento se escribe una función con x como variable.
+
+# Nota: algunos comandos se pueden convertir en LL si se usa la opción
+# add=TRUE. Por ejemplo, para agregar otra función al gráfico anterior:
+curve(200 * cos(x), col='magenta')
+# Función coseno.
+
+# Comandos LL comunes:
+# Ya vimos el uso de lines y points para agregar líneas/puntos a un gráfico
+# existente. Existen muchas otras funciones para agregar elementos a un
+# gráfico. Varias sirven para trabajar con objetos "geométricos" (líneas,
+# puntos, segmentos, polígonos...), pero también existen funciones para
+# agregar texto o leyendas. Vamos a mostrar algunos casos de cada uno.
+
+# abline ---> agregar líneas rectas a un gráfico.
+# Es un comando LL muy útil y ampliamente utilizado.
+# Ejemplos:
+plot(Sepal.Length ~ Sepal.Width, subset=Species == 'setosa', data=iris)
+# Nótese el uso de los argumentos subset y data para especificar los datos que
+# quiero graficar.
+# Ahora, para agregar líneas horizontales:
+abline(h=5) # Una línea recta horizontal cortando el eje y en el 5...
+abline(v=4) # Una línea recta vertical cortando el eje x en el 4...
+# Para graficar otros tipos de rectas se usan 2 parámetros: intercepto y
+# pendiente:
+abline(1.5, 1, col=3) # Intercepto: 1.5 / Pendiente: 1
+
+# Finalmente, si hago una regresión lineal puedo agregar el resultado a un
+# gráfico usando abline:
+regresion <- lm(Sepal.Length ~ Sepal.Width, subset=Species == 'setosa', data=iris)
+abline(regresion, col='seagreen', lwd=3)
+# Nótese la similitud entre el comando usado para hacer la regresión y el
+# usado para hacer el plot original... 
+
+# legend ---> agregar una leyenda a un plot.
+# Ejemplo:
+plot(1:25, pch=1:25, cex=4, main='Distintos tipos de puntos')
+legend('topleft', legend=1:13, pch=1:13, title='Código', bty='n', inset=0.01,
+       cex=1.2)
+legend('bottomright', legend=14:25, pch=14:25, title='Código', bty='n',
+       inset=0.01, cex=1.2)
+# Las palabras claves "top", "bottom", "left" y "right" (arriba, abajo,
+# izquierda y derecha) se pueden usar y/o combinar para establecer el lugar de
+# la leyenda (opcionalmente se pueden dar coordenadas).
+
+legend(5, 15, legend='hola', pch=14) # Nótese que 'legend' es una función y
+# un argumento de su propia función
+
+# text ---> agregar texto a un gráfico
+plot(1:25, pch=1:25, cex=4, main='Distintos tipos de puntos', ylim=c(0, 29))
+text(1:25, 1:25 + 3, labels=1:25)
+# Los 2 primeros argumentos son las coordenadas, mientras que labels es el texto
+# que nos interesa agregar.
+text(10.5, 27, labels='Los números indican el código correspondiente a cada punto',
+     adj=.5) # Observe que cuando son letras éstas deben estar entre comillas
+
+# Otra función para agregar texto, levemente difernte...
+plot(Sepal.Length ~ Sepal.Width, subset=Species == 'setosa', data=iris)
+mtext("estoy en el lado 3", side=3, line=2)
+# Escribe texto en uno (algunos o todos) los márgenes del gráfico, puede ser
+# dentro o fuera de la figura
+# El segundo argumento, 'side', marca el margen (1=bottom, 2=left, 3=top,
+# 4=right)
+# El argumento 'line' mueve a partir de la linea del grafico (contorno) el 
+# texto escritonhacia afuera del grafico (valores positivos) y hacia adentro 
+# (vaalores negativos)
+
+
+# 3. Gráficos múltiples
+# Usando el argumento "mfcol" o "mfrow", dentro de 'par' podemos hacer varios
+# plots juntos:
+op <- par(mfrow=c(2, 2))
+
+# Esto inicia una ventana gráfica con 4 lugares, 2 filas y 2 columnas
+# Al usar mfrow los gráficos van llenando la ventana por fila:
+boxplot(Sepal.Width ~ Species, data=iris)
+boxplot(Sepal.Length ~ Species, data=iris)
+boxplot(Petal.Width ~ Species, data=iris)
+boxplot(Petal.Length ~ Species, data=iris)
+
+# Si guaramos la salida de par, podemos recuperar los parámetros originales:
+par(op)
+
+
+# Para finalizar con esta parte les queremos dar a conocer la función 'locator'...
+
+la función 'locator' nos brinda la posición exacta de cualquier punto dentro
+# del gráfico. Para esto debemos hacer click con el mouse y nos devuelve las 
+# coordenadas x e y
+
+locator(n=1) 
+# n es la cantidad de puntos que queremos tener como corrdenadas
+# en este caso una sola
+
+# Otra utilidad...
+plot(Sepal.Length ~ Sepal.Width, subset=Species == 'setosa', data=iris)
+legend(locator(n=1), legend=c("el texto aparece en donde se hace clik con el mouse"))
+# En este caso el argumento 'locator' permite poner el texto que deseamos en el
+# exacto con solo hacer un click sobre gráfico...
+# It's Awesome!
+

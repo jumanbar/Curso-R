@@ -1,0 +1,55 @@
+
+# Función 'par'
+
+Encontrar las asociaciones correctas para los principales argumentos de la función 'par' 
+(hay opciones sin correspondencia):
+
+
+    bty             --  tipo de caja que se dibuja alrededor del gráfico
+    cex             --  tamaño del texto y símbolos con respecto al valor por defecto
+    col             --  color de los símbolos
+    font            --  estilo del texto
+    lwd             --  ancho de línea
+    mfcol           --  divide la ventana de gráfico en varias ventanas por columnas
+    pch             --  tipo de símbolo
+    xlab            --  añade título al eje 'x'
+    ylab            --  añade título al eje 'y'
+    main            --  título principal
+    sub             --  subtítulo
+    family          --  tipo de letra
+    lty             --  tipo de línea
+                    --  especifica el color de fondo
+                    --  controla el tamaño (en puntos) de texto y símbolos
+                    --  divide la ventana de gráfico en varias ventanas por filas
+                    
+# Figura
+
+En la figura se observa el gráfico y ~ x.
+Cual de los siguientes comandos es el que permite obtener dicha figura.
+
+*nota: los datos utilizados son x <- runif(50); y <- runif(50)
+
+![figures](/home/carlita/Curso-R/cuestionarios/figures.png)
+
+   
+    [ ] plot(y ~ x, main="Puntos al azar", xlab="eje x", ylab="eje y", col="red")
+    [ ] plot(y ~ x, main="Puntos al azar", xlab="eje x", ylab="eje y", col=red, bty="n")
+    [x] plot(y ~ x, main="Puntos al azar", xlab="eje x", ylab="eje y", col="red", pch=19, bty="n")
+    [ ] plot(y ~ x, main="Puntos al azar", xlab="eje x", ylab="eje y", col="red", pch=19)
+
+
+# Funciones LL
+
+Encontrar las asociaciones correctas (hay opciones sin correspondencia):
+
+    points()        --  agrega puntos
+    lines()         --  agrega líneas
+    text()          --  agrega texto en un gráfico
+    mtext()         --  agrega texto en los márgenes del gráfico
+    legend()        --  agrega leyendas a los gráficos
+    locator()       --  devuelve las corrdenadas x e y del punto que fue 'cliqueado' con el mouse
+    xlim            --  especifica los límites inferior y supoerior del eje 'x'
+    ylim            --  especifica los límites inferior y supoerior del eje 'y'
+    
+                    --  agrega un título al gáfico
+                    --  agrega más valores entre los ejes del gráfico

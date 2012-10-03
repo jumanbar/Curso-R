@@ -5,7 +5,7 @@ Dado el siguiente archivo de texto plano, llamado 'm.txt' y guardado en el direc
 
 ___
 
-    "t"  "a"	"b"	"c"	"d"	"e"
+    "t"  "a" "b"	"c"	"d"	"e"
     "s1"	0.005	1	1	0	0
     "s2"	0.005	0	1	0	1
     "s3"	1.005	0	1	1	1
