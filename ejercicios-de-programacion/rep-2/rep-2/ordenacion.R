@@ -7,8 +7,7 @@
 # Recuerde que en la corrección los objetos cal y gen son creados nuevamente con generadores de números
 # aleatorios.
 #===== Su código comienza aquí: =====#
-
-datosCalif <- 0
-
+i <- order(datosCalif$nota)
+datosCalif <- datosCalif[i,]
 #====== Aquí finaliza su código =====#
 

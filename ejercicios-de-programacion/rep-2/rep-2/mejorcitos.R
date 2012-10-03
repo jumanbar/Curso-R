@@ -9,12 +9,9 @@
 # de las propias líneas).
 # Note además que en la evaluación automática cal será un vector creado aleatoriamente.
 #===== Su código comienza aquí: =====#
-
-ord <- 0
-
-i <- 0
-
-mejores <- 0
-
+n <- length(cal)
+ord <- sort(cal)
+i <- ceiling(n * 0.75)
+mejores <- ord[i:n]
 #====== Aquí finaliza su código =====#
 

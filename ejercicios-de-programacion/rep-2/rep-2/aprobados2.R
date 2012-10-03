@@ -15,18 +15,11 @@
 # Note además que en la evaluación automática cal y gen serán sustituidos por vectores creados
 # aleatoriamente.
 #===== Su código comienza aquí: =====#
-
-v <- 0
-
-m <- 0
-
-apr.v <- 0
-
-apr.m <- 0
-
-p.apr.v <- 0
-
-p.apr.m <- 0
-
+v <- cal[gen == 'V']
+m <- cal[gen == 'M']
+apr.v <- sum(v >= 5)
+apr.m <- sum(m >= 5)
+p.apr.v <- 100 * apr.v / length(v)
+p.apr.m <- 100 * apr.m / length(m)
 #====== Aquí finaliza su código =====#
 

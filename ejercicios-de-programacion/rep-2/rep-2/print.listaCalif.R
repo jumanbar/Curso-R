@@ -13,13 +13,9 @@ print.listaCalif <- function(x) {
   cat('  En varones:', round(x$aprob$avar, 2), '%\n')
   cat('  En mujeres:', round(x$aprob$amuj, 2), '%\n')
   #===== Su código comienza aquí: =====#
-  
-  ptot <- NA
-  
-  pvar <- NA
-  
-  pmuj <- NA
-  
+  ptot <- mean(x$tabla$nota)
+  pvar <- mean(x$tabla$nota[x$tabla$genero == 'V'])
+  pmuj <- mean(x$tabla$nota[x$tabla$genero == 'M'])
   #====== Aquí finaliza su código =====#
   cat('La nota promedio fue de:', round(ptot, 2), '\n')
   cat('  En varones:', round(pvar, 2), '\n')

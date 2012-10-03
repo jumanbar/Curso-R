@@ -6,8 +6,7 @@
 # Note además que en la evaluación automática cal y gen serán sustituidos por vectores creados
 # aleatoriamente.
 #===== Su código comienza aquí: =====#
-
-p.apr <- 0
-
+apr   <- sum(cal >= 5)
+p.apr <- 100 * apr / length(cal)
 #====== Aquí finaliza su código =====#
 

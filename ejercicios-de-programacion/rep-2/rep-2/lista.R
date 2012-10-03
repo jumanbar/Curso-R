@@ -7,8 +7,10 @@
 # Recuerde que en la corrección los objetos cal y gen son creados nuevamente con generadores de números 
 # aleatorios.
 #===== Su código comienza aquí: =====#
-
-analisisCalif <- 0
-
+analisisCalif <- list(tabla = datosCalif,
+                      conteo = conteo,
+                      aprob = list(atot = p.apr,
+                                   avar = p.apr.v,
+                                   amuj = p.apr.m))
 #====== Aquí finaliza su código =====#
 

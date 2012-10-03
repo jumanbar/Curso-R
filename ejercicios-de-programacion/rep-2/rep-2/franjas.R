@@ -7,10 +7,16 @@
 # de las propias líneas).
 # Note además que en la evaluación automática cal y gen serán vectores creados aleatoriamente.
 #===== Su código comienza aquí: =====#
-
-ctg <- 0
-
-conteo <- 0
-
+n <- length(cal)
+ctg <- character(n)
+ctg[cal <= 3] <- 'A'
+ctg[3 < cal & cal <= 6] <- 'B'
+ctg[6 < cal & cal <= 9] <- 'C'
+ctg[9 < cal] <- 'D'
+conteo <- as.numeric(table(ctg))
+# Alternativamente:
+#  conteo <- tabulate(as.factor(ctg))
+names(conteo) <- c("A", "B", "C", "D")
+# Alternativamente:
+#  names(conteo) <- LETTERS[1:4]
 #====== Aquí finaliza su código =====#
-
