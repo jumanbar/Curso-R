@@ -194,80 +194,53 @@ curve(dnorm(x), add=TRUE, col='blue', lwd=2)
 lines(density(x), col='red', lwd=2)
 # la función line ajusta una línea al modelo propuesto.
 
-# EXTRA
 
-# La función qqnorm sirve para comparar los cuantiles de un vector
-# cualquiera con la distribución de cuantiles esperada para una
-# distribución normal:
-?qqnorm
-
-# Ejemplo:
-qqx <- rnorm(100)
-qqnorm(qqx)
-# Usando qqline agregamos una recta que pasa por el primer y tercer
-# cuartiles (correspondientes a los percentiles 25% y 75%). 
-qqline(qqx, col='red', lwd=2)
-# ¿Qué pasa si hago una prueba similar con un x generado con runif?
-# Comparar con la curva de pnorm, ¿Se parecen?¿Tiene lógica?
-
-####################################################
-
-## Ejemplo: Distribución Uniforme
-?Uniform
-# O
-?dunif
-
-# Cómo dice el nombre, la distribución uniforme es equiprobable para
-# todos los valores incluídos en un intervalo dado. Por lo tanto sólo
-# necesita un mínimo y un máximo como parámetros.
-# Al igual que todos los generadores de números de "stats", el primer
-# argumento es el número de elementos, mientras que los otros dos son
-# el mín. y máx. mencionados.
-
-# Ejemplo: Para tomar mil valores aleatorios con distribución U(0,1):
-x <- runif(1000, 0, 1)
-hist(x)  # Bastante horizontal, ¿no?
-
-####################################################
-
-## Muestreos aleatorios
+## Función sample (muestreos aleatorios)
 ?sample
 
 # La función sample hace muestreos de los elementos contenidos en el
 # primer argumento. Por defecto muestrea sin reposición todos los
 # elementos posibles:
 sample(1:5)
-# 1 4 5 2 3 # primera corrida
-# 2 1 5 4 3 # segunda corrida
-# 3 4 2 1 5 # tercera corrida
-# como el lector puede observar, cada nueva corridadel comando, genera un muestreo aleatorio, por lo tanto es esperable que el orden de los números sea siempre distinto.
-# intente probar con una mayor cantidad de números o correr varias veces el argumento de arriba...
+sample(1:5)
+sample(1:5)
 
-# En la ayuda se pueden ver varios argumentos para modificar este
-# comportamiento:
-sample(1:5, replace=TRUE)  # con reposición
+# como el lector puede observar, cada nueva corrida del comando genera un muestreo aleatorio, por lo 
+# tanto es esperable que el orden de los números sea siempre distinto. Intente probar con una mayor 
+# cantidad de números o correr varias veces el argumento de arriba...
+
+# Nótese que este comando es básicamente el equivalente a tomar aleatoriamente elementos de un conjunto,
+# tal como sucede en una lotería o un sorteo. 
+
+# En la ayuda se pueden ver varios argumentos para modificar el comortamiento 
+# de la función. Veamos algunos ejemplos:
+sample(1:5, replace=TRUE)  # muestro con reposición
 sample(1:5, 2)             # muestrea sólo dos valores, sin reposición
-sample(1:5, size=2)        # ídem
-sample(1:5, 2, replace=TRUE) # los anteriores combinados
+sample(1:5, size = 2)      # ídem
+sample(1:5, 2, replace = TRUE) # los dos casos anteriores combinados
 
 # Los mismos resultados se pueden obtener si usamos vectores "character":
-sample(c('Homero', 'Marge', 'Bart', 'Lisa', 'Maguie'), 3, replace=TRUE) # nombres
+sample(c('Homero', 'Marge', 'Bart', 'Lisa', 'Maggie'), 3, replace=TRUE) # nombres
 sample(letters, 5) # letras
 
-# Algo que puede confundir: si le damos solamente un número como entrada,
-# puede tener comportamientos inesperados:
-sample(10)     # idéntico a pedir "sample(1:10)"
-sample(10.3)   # redondea 10.3 --> 10, así que es igual que el anterior
-# es idéntico a pedir: sample(floor(10.3)), función floor es para redondear
-sample(-10.3)  # el comportamiento es distinto ahora, por ser negativo
+# Algo que puede confundir: si le damos solamente un número como entrada, puede tener comportamientos 
+# tal vez inesperados:
+sample(10)     # esto es idéntico a pedir "sample(1:10)"
+sample(10.3)   # redondea 10.3 --> 10, así que es igual que el anterior o a:
+sample(floor(10.3)) # La función floor es para redondear "hacia abajo"
+sample(-10.3)  # el comportamiento es distinto ahora, por ser negativo ...
 
-#############################################################################
+# Otra opción útil puede ser usar el argumento "prob" de la función sample, 
+# lo que permite que el muestreo sea sesgado hacia ciertos valores. Este 
+# argumento permite asignar distintos valores de peso a cada uno de los 
+# elementos del vector a muestrear.
 
-# EXTRA
+# Consierando el siguiente ejemplo genérico (no correr):
+sample(x, 100, replace = T, prob = p)
 
-# Otra opción útil puede ser usar el argumento "prob" de la función sample.
-# Este argumento permite asignar distintos valores de peso a cada
-# uno de los elementos del vector a muestrear.
+# Aquí p debe tener la misma longitud/length que x, de forma que se asignen 
+# los "pesos relativos" de cada valor de x.
+
 # Por ejemplo, si queremos muestrear los valores 5, 10 y 15 pero de tal
 # forma que el valor 5 sea 3 veces más frecuente que el 15, y que el
 # el 10 sea 2 veces más frecuente que el 15, entonces podemos ingresar:
@@ -294,60 +267,3 @@ x['5'] / x['10']  # ¿Es el valor que esperábamos?
 # c = C / (A + B + C)
 # Y utiliza a, b y c como las probabilidades de que sean muestreados
 # los elementos correspondiente del vector a muestrear.
-
-
-####################################################
-## Semillas
-
-# Los números aleatorios generados por computadora, no son verdaderamente
-# aleatorios. Los algoritmos internos necesarios son determinísticos
-# en último término, pero producen secuencias de valores que aproximan
-# propiedades estadísticas aceptablemente similares a las esperadas
-# por la distribución uniforme.
-# Ver:
-# http://www.random.org/;
-# http://en.wikipedia.org/wiki/Pseudorandom_number_generator).
-?Random
-?RNG/
-  # También existe un paquete llamado "random", para la generación de
-  # números verdaderamente aleatorios (aunque en muchos casos no son
-  # necesarios).
-  
-  # Las simulaciones que usan métodos Monte Carlo pueden ser sensibles a
-  # los problemas. Para el uso de R existe al menos un libro relacionado:
-  # http://books.google.com/books/about/Introducing_Monte_Carlo_Methods_with_R.html?id=WIjMyiEiHCsC
-  
-# Las secuencias generadas por estos algoritmos dependen del valor
-# inicial llamado "semilla". Si ingresamos una semilla manualmente
-# podemos repetir el resultado de cualquiera de las funciones basadas
-# en generadores de números aleatorios (como rnorm, runif y sample):
-set.seed(1)  # se puede usar cualquier otro número
-sample(10)
-# 3  4  5  7  2  8  9  6 10  1
-# si ejecutamos de vuelta el comando, va a ser distinto
-sample(10)
-#  3  2  6 10  5  7  8  4  1  9
-# a menos que volvamos a "plantar" la misma "semilla":
-set.seed(1)
-sample(10)
-# 3  4  5  7  2  8  9  6 10  1
-
-# Se obtendrán resultados análogos si usamos rnorm, runif u otros
-# generadores de números aleatorios.
-
-# Esto puede ser útil si queremos que nuestros resultados sean
-# reproducibles *exactamente* en otro momento o lugar.
-
-# si plantamos otra semilla, el orden aleatorio que quede guardado en dicha semilla será otro:
-set.seed(2)
-
-sample(10)
-# 2  7  5 10  6  8  1  3  4  9
-
-sample(10)
-# 6  3  7  2  9  5  4  1 10  8
-
-set.seed(2)
-sample(10)
-# 2  7  5 10  6  8  1  3  4  9
-
