@@ -115,9 +115,11 @@ cor1.c <- function() {
   writeLines(arch, tmp)
 
   # Generación de datos
+#   browser()
   usaX <- usa2
   usaX$Ingresos <- rpois(nrow(usaX), 5050)
   usaX$Ingresos[sample(nrow(usaX), sample(4:15, 1))] <- NA
+  usa2 <- usaX
   usaX <- subset(usaX, !is.na(Ingresos))
 
   # Evaluación de objetos: usa3
