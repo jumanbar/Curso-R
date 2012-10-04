@@ -29,7 +29,7 @@ Cual de los siguientes comandos es el que permite obtener dicha figura.
 
 *nota: los datos utilizados son x <- runif(50); y <- runif(50)
 
-![figures](/home/carlita/Curso-R/cuestionarios/figures.png)
+![figures](/home/carlita/Documentos/Enseñanza/Cursos-R/Segunda Edicion/Cuestionarios/figures.png)
 
    
     [ ] plot(y ~ x, main="Puntos al azar", xlab="eje x", ylab="eje y", col="red")
