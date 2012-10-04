@@ -1,3 +1,4 @@
+# GRÁFICOS: parte II
 
 # Como vimos en la lección 3.5 (gráficos simples para visualizar datos)
 # existen una gran diversidad de funciones en R que nos permiten visualizar
@@ -52,9 +53,115 @@ plot(dist ~ speed, data=cars, subset=dist > 20)
 # escalas en los ejes y como disminuyen la cantidad de puntos (datos) graficados.
 
 
-hist
+# Usando la función gráfica llamada 'abline' podemos agregar la recta al
+# gráfico cuya pendiente y corte en el eje 'y' se obtienen del modelo lineal
+# 'lm1' en este caso:
+abline(lm1) # observe que se escribe elmodelo dentro de la función
+# En este caso la función 'abline' esta utilizando los argumentos 'a' y  'b',
+# para mayor información consulte la ayuda:
+?abline
 
-boxplot
+# Es lo mismo que haber escrito:
+abline(coef(lm1)[1], coef(lm1)[2])
+# En este caso el primer argumento 'a' es el primer coeficiente del modelo
+# 'lm1'es decir el corte en ele eje 'y' y el segundo argumeto 'b' es el valor de
+# la pendiente. Utilizamos la función 'coef' porque esta nos brinda el valor de
+# los parámetros arriba descritos. A su vez se utiliza la identación con los
+# '[]' poruqe dicha función deveuelve los valores en un vector y cada parámetro
+# presenta una posición. Para más información consulte en la ayuda de R:
+?coef
+
+# Recuerde que la función 'abline' también puede ser utilizado para otros
+# casos que no sean modelos estadśiticos explicados en la parte I.
+
+# Esta función también acepta argumetos de la función 'par' para diagramar la
+# o las líneas que desamos que sean graficadas.
+# Por ejemplo:
+lm_iris <- lm(Sepal.Length ~ Sepal.Width, data=iris) # modelo lineal
+plot(Sepal.Length ~ Sepal.Width, data=iris) # gráfico que lo representa
+abline(lm_iris, lwd=2, col=2, lty=3) # recta del modelo lineal
+
+# Complejizando un poco...
+# Si nos interesa tener una recta por cada especie, debemos filtrar a nuestro
+# modelo lineal por la variable 'Species' y así obtendremos para cada modelo
+# sus coeficientes correspondientes.
+setosa <- lm(iris$Sepal.Length ~ iris$Sepal.Width, data=iris, subset=Species
+=="setosa")
+versicolor <- lm(iris$Sepal.Length ~ iris$Sepal.Width, data=iris,
+subset=Species == "versicolor")
+virginica <- lm(iris$Sepal.Length ~ iris$Sepal.Width, data=iris,
+subset=Species == "virginica")
+
+plot(Sepal.Length ~ Sepal.Width, data=iris, pch=as.numeric(iris$Species),
+col=as.numeric(iris$Species))
+
+abline(setosa, col=1, lty=1, lwd=1.5) # recta para el modelo setosa
+abline(versicolor, col=2, lty=2, lwd=1.5) # recta para el modelo versicolor
+abline(virginica, col=3, lty=3, lwd=1.5) # recta para el modelo virginica
+
+legend("topleft", title = "Species", legend=c("setosa","versicolor",
+"virginica"), bty ='n', lty = c(1:3), pch=1:3, col=1:3, lwd = 1.5, cex=0.8)
+
+
+# Muchas veces nos intersa ver como se distribuyen las frecuencias de
+# nuestros datos, si estos presentan algún tipo de distriubución teórica
+# conocida o simplemente presentan una distribución azarosa. Para este tipo de
+# casos existe una buena forma de visualizar lo planteado anteriormente y es a
+# través de la función 'hist':
+?hist
+
+# Por ejemplo queremos observar la distribución de los siguientes datos:
+hist(iris$Sepal.Width)
+
+# Esta función tiene algunos argumentos por defecto que pueden ser de nuestro
+# interés modificarlos.
+# El argumento 'breaks' es el que marca cuantos cortes (rangos de valores)
+# tendrá el histograma:
+hist(iris$Sepal.Width, breaks=20)
+
+# Observe que en el eje 'y' se grafican las frecuencias para cada rango de
+# valores presente en el eje 'x'. Ahora si preferimos conocer cual es la densidad
+# de dichos valores debemos cambiar el argumento lógico 'freq' que por defecto
+# es TRUE: 
+hist(iris$Sepal.Width, breaks=20, freq=F)
+
+# Al igual que en la función 'plot', la función 'hist' también acepta
+# argumentos como 'col', 'xlab', 'ylab', 'cex', 'font'...
+# A modo de ejemplo:
+hist(iris$Sepal.Width, col=2, main="Histograma", xlab="Ancho del Sepalo",
+ylab="Frecuencia", xlim=c(1.5, 4.5), font=2)
+
+# Cuando nos intersa visualizar distintos estadísticos descriptivos para
+nuestras variables categóricas, existe una función llamda 'boxplot':
+?boxplot
+
+# La fórmula que requiere esta función es del tipo y ~ grp, donde 'y' es la
+# variable de respuesta, esta debe ser continua y 'grp' son los ditintos grupos
+# que queremos comparar o visualizar en relación a 'y'. Por ejemplo:
+boxplot(Temp ~ Month, data=airquality)
+
+# Aqui se esta graficando la variable continual Temperatura en función de cada
+# uno de los 5 Meses de estudio (grupos).
+# La interpretación...
+# Los límites de la caja dan cuenta del primer y tercer cuartil (ver lección
+# correspondiente para complementar). Es decir, la caja limita entre el 25% y
+# 75% de los datos. La mediana es la línea que se observa (segundo cuartil),
+# en donde se encuentran el 50% de loa datos. Los bigotes que salen
+# de la caja hacen refencia la valor mínimo y al valor máximo. Por último,
+# los puntos que se encuentran más alla de los bigotes son posibles valores
+# extremos que aparecen separados porque su valor excede una vez y media el
+# rango de la caja (recorrido intercuartilico).
+
+# Como veniámos viendo hasta ahora tanbién es posible diagramar un boxplot
+# con los argumentos 'prestados' por la función 'par':
+
+boxplot(Temp ~ Month, data=airquality, col=2:6, main="Boxplot", xlab="Meses",
+ylab="Temperatura") # ... y todos los que hemos visto
+
+# En la función 'boxplot' también funciona el argumento 'subset':
+boxplot(Temp ~ Month, data=airquality, col=2:6, main="Boxplot", xlab="Meses",
+ylab="Temperatura", subset=Month < 7)
+
 
 # La función curve sirve para graficar funciones.
 # El primer argumento usa una función de x.
@@ -65,16 +172,28 @@ curve(sin(x) / x, from=-5, to=5, n=1000) # n es el número de puntos evaluados
 # Usando la opción add=TRUE curve actúa como una low level
 curve(cos(x), from=-5, to=5, add=TRUE, col=2, n=6)
 
+# Dos alternativas para guardar los gráficos con comandos:
 
-# Visualización de la normalidad de un conjunto de datos:
-x <- rnorm(100)
-qqnorm(x) # Cuantiles teóricamente esperados vs. cuantiles observados
-qqline(x) # Línea 1:1
+png(file="mi boxplot.png") # Función que prepara el dispositivo gráfico para
+# ser guardado.
+mi boxplot <- boxplot(Temp ~ Month, data=airquality)
+dev.off() # Es necesario ejecutar este comando para desconectar el device png
+# y así volver a visualizar los gráficos en la pantalla. 
+
+x11() # Abre una nueva venta de gráfico, necesario para poder ejecutar la
+función 'savePlot'. 
+mi segundo boxplot <- boxplot(Temp ~ Month, data=airquality, col=2:6)
+savePlot(file="mi segundo boxplot.png") # Ojo, en este caso debe estar la
+# extensión del archivo incluida, en este caso es .png. 
+
+# Tenga n cuenta que la figura será guardada en el directorio de trabajo
+# actual, al cual se accedia con la función 'getwd'.
+
  
-
-
 # Otras herramientas gráficas existen y se crean todo el tiempo en la
 # comunidad R. Existen muchos gráficos muy populares que son bastante más
 # sofisticados que los gráficos por defecto de R, uno de ellos es "ggplot2",
 # sobre el cual no vamos a profundizar en este curso.
- lattice y MASS
+# También hay dos grandes paquetes 'lattice' y 'MASS' especializados para
+# realizar un sin fin de gráficos en R desde gráficos de tortas hasta gráficos
+# en 3D.
