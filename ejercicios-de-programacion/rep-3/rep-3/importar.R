@@ -8,7 +8,14 @@
 #   letra del repartido para consultar los detalles de dicho objeto.
 #===== Su código comienza aquí: =====#
 
-usa <- 0
+usa <- read.table('usa.csv', header = TRUE, row.names = 1)
+names(usa)[c(1:8, 10)] <- c('Abrev', 'Poblacion', 'Ingresos', 'Analf', 'Esp.Vida',
+                            'Homicidio', 'Sec.Grad', 'Heladas', 'Division')
+
+levels(usa$Division) <- c('Noreste Central', 'Sudeste Central', 
+                          'Atlantico Central', 'Montania', 'Nueva Inglaterra', 
+                          'Pacifico', 'Atlantico Sur', 'Noroeste Central',
+                          'Sudoeste Central')
 
 #====== Aquí finaliza su código =====#
 

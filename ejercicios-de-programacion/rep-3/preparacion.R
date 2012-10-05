@@ -17,12 +17,14 @@
 ##------ Importar ------##  1
 
 usa <- read.table('usa.csv', header = TRUE, row.names = 1)
-names(usa)[c(1:8, 10)] <- c('Abrev', 'Poblacion', 'Ingresos', 'Analf', 'Esp.Vida',
-                            'Homicidio', 'Sec.Grad', 'Heladas', 'Division')
+names(usa)[c(1:8, 10)] <- c('Abrev', 'Poblacion', 'Ingresos', 'Analf', 
+                            'Esp.Vida', 'Homicidio', 'Sec.Grad', 'Heladas', 
+                            'Division')
 
-levels(usa$Division) <- c('Nueva Inglaterra', 'Atlantico Central', 'Atlantico Sur',
-                          'Sudeste Central', 'Sudoeste Central', 'Noreste Central',
-                          'Noroeste Central', 'Montania', 'Pacifico')
+levels(usa$Division) <- c('Noreste Central', 'Sudeste Central', 
+                          'Atlantico Central', 'Montania', 'Nueva Inglaterra', 
+                          'Pacifico', 'Atlantico Sur', 'Noroeste Central',
+                          'Sudoeste Central')
 usa.check <- usa
 
 ##------ Arreglar Analf ------##  2
@@ -77,7 +79,7 @@ boxplot(usa3$Homicidio ~ Ing.Cat, usa3)
 
 ##------ Exportar ------##  7
 
-write.table(usaNorm, file = 'usa3.csv', sep = ';', dec = ',')
+write.table(usaNorm, file = 'usa-norm.csv', sep = ';', dec = ',')
 
 ##------ ------##  8
 ##------ ------##  9
@@ -112,7 +114,7 @@ est <- function(x) .z(x)
 save(.z, est, file = 'est.rda')
 if ('Ing.Cat' %in% names(usa3))
   usa3 <- usa3[- 11]
+load('usa.inc.rda')
 save(usa.check, usa.inc, usa2, usa3, usaNorm, outAnalf,
      file = '~/projects/Curso-R/ejercicios-de-programacion/rep-3/aux')
-
 
