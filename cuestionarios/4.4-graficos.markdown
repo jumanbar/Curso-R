@@ -35,7 +35,7 @@ Cual de los siguientes comandos es el que permite obtener dicha figura.
     [ ] plot(y ~ x, main="Puntos al azar", xlab="eje x", ylab="eje y", col="red")
     [ ] plot(y ~ x, main="Puntos al azar", xlab="eje x", ylab="eje y", col=red, bty="n")
     [x] plot(y ~ x, main="Puntos al azar", xlab="eje x", ylab="eje y", col="red", pch=19, bty="n")
-    [ ] plot(y ~ x, main="Puntos al azar", xlab="eje x", ylab="eje y", col="red", pch=19)
+    [ ] plot(y ~ x, main="Puntos al azar", xlab="eje x", ylab="eje y", col="red", pch=19, bty="l")
 
 
 # Funciones LL
@@ -48,8 +48,8 @@ Encontrar las asociaciones correctas (hay opciones sin correspondencia):
     mtext()         --  agrega texto en los márgenes del gráfico
     legend()        --  agrega leyendas a los gráficos
     locator()       --  devuelve las corrdenadas x e y del punto que fue 'cliqueado' con el mouse
-    xlim            --  especifica los límites inferior y supoerior del eje 'x'
-    ylim            --  especifica los límites inferior y supoerior del eje 'y'
-    
+    xlim()          --  especifica los límites inferior y supoerior del eje 'x'
+                    --  especifica los límites inferior y supoerior del eje 'y'    
                     --  agrega un título al gáfico
                     --  agrega más valores entre los ejes del gráfico
+

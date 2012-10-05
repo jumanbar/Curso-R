@@ -1,6 +1,6 @@
-# Salida de lm
+# Salida de un lm
 
-A partir del sigueinte modelo lineal simple: 
+A partir del siguiente modelo lineal simple: 
 
     naranjas <- lm(circumference ~ age, data = Orange)
 
