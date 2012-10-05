@@ -7,14 +7,16 @@ Seleccióne todas las afirmaciones correctas (de ser necesario consulte a la ayu
     Es correcto, ya que el desvío estándar (sigma) es mayor y la campana más ancha, por lo que el valor en 0 debe disminuir.
     [*] dnorm(0) > dnorm(0, mean = 2) (el segundo comando corresponde a una "campana" movida a la derecha)
     Correcto, al tener una mayor media (mu), el segundo valor no se encuentra en el máximo de la campana (que estaría en X = 2)
-    [ ] dnorm(0) == dnorm(0, mean = 2)
+    [ ] dnorm(0) == dnorm(0, mean = 2) (ambas campanas tienen la misma altura)
     Incorrecto, al tener una mayor media (mu), el segundo valor no se encuentra en el máximo de la campana (que estaría en X = 2)
     [ ] dnorm(3, mean = 3) > dnorm(0, sd = 2) (el segundo comando corresponde a una "campana" más fina / leptocúrtica)
-    Incorrecto, ya que el desvío estándar (sigma) es mayor y la campana más ancha, por lo que el valor en 0, el máximo, debe disminuir.
+    c
 
 # Distribuciones II
 
-Seleccióne todas las afirmaciones correctas (de ser necesario consulte a la ayuda de la distribución Normal):
+Seleccióne todas las afirmaciones correctas (de ser necesario consulte a la ayuda de R):
+
+(Nota: integrate(f, a, b) calcula la integral, área bajo la curva, de f en el intervalo [a, b])
 
     [*] Si y <- qnorm(x), entonces pnorm(y) es x
     Es correcto ya que qnorm y pnorm representan funciones inversas.
