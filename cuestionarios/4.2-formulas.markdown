@@ -11,4 +11,4 @@ Encontrar las asociaciones correctas (hay opciones sin correspondencia):
                             -- x ^ 2 + z ^ 2 (x al cuadrado más z al cuadrado)
                             -- y en función x:z (interacción entre ambos)
                             
-    points()        --  agrega puntos
+
