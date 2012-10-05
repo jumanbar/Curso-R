@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="date" content="" />
+</head>
+<body>
+<div id="f&#243;rmulas"
+><h1
+  >Fórmulas</h1
+  ><p
+  >Encontrar las asociaciones correctas (hay opciones sin correspondencia):</p
+  ><pre
+  ><code
+    >y ~ x * z               -- y en función de x + z + x:z (suma de x + y más la interacción entre ambos)
+y ~ x ^ 2 + z           -- y en función de x ^ 2 + z (cuadrado de x más z)
+y ~ I(x * z)            -- y en función de x * z (multiplicación entre x y z)
+y ~ x * I(z + w) ^ 3    -- y en función de x + (z + w) ^ 3 + x:(z + w) ^ 3 (suma de x más la suma de z y w al cubo más la interacción entre x y la suma de z y w al cubo)
+y ~ I(x + z) ^ 2        -- y en función de x + z ^ 2 (suma de x más z al cuadrado)
+                        -- x ^ 2 + z ^ 2 (x al cuadrado más z al cuadrado)
+                        -- y en función x:z (interacción entre ambos)
+
+points()        --  agrega puntos
+</code
+    ></pre
+  ></div
+>
+</body>
+</html>
+

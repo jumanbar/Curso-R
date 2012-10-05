@@ -1,0 +1,14 @@
+
+# Fórmulas
+
+Encontrar las asociaciones correctas (hay opciones sin correspondencia):
+
+    y ~ x * z               -- y en función de x + z + x:z (suma de x + y más la interacción entre ambos)
+    y ~ x ^ 2 + z           -- y en función de x ^ 2 + z (cuadrado de x más z)
+    y ~ I(x * z)            -- y en función de x * z (multiplicación entre x y z)
+    y ~ x * I(z + w) ^ 3    -- y en función de x + (z + w) ^ 3 + x:(z + w) ^ 3 (suma de x más la suma de z y w al cubo más la interacción entre x y la suma de z y w al cubo)
+    y ~ I(x + z) ^ 2        -- y en función de x + z ^ 2 (suma de x más z al cuadrado)
+                            -- x ^ 2 + z ^ 2 (x al cuadrado más z al cuadrado)
+                            -- y en función x:z (interacción entre ambos)
+                            
+    points()        --  agrega puntos
