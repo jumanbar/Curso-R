@@ -83,19 +83,23 @@ y ~ x + log(z)
 
 # La siguiente tabla muestra los usos de los distintos operadores (no todos) dentro de una fórmula:
 
-# operador | ejemplo | interpretación
-#----------+---------------+-----------------------------------------------------#
-# + | + x | incluye esta variable
-# - | - x | quita esta variable
-# : | x:z | incluye la interacción entre estas variables
-# * | x*z | incluye ambas variables y la interacción entre ambas
-# / | x/z | anidamiento: incluye a z anidado en x
-# | | x|z | condicional: incluye a x dado z
-# ^ | (u + v + w)^3 | incluye estas variables y todas las interacciones hasta 3 vías
-# poly | poly(x, 3) | regresión polinómica (polinomios ortogonales)
-# Error | Error(a/b) | especifía un término de error
-# I | I(x * z) | incluye una nueva variable, la cual es el resultado de las operaciones internas al paréntesis.
-# 1 | - 1 | intercepto, generalmente usado para ser borrado
+# operador | ejemplo         | interpretación
+#----------+-----------------+-----------------------------------------------------#
+# +        | + x             | incluye esta variable
+# -        | - x             | quita esta variable
+# :        | x:z             | incluye la interacción entre estas variables
+# *        | x*z             | incluye ambas variables y la interacción
+#                              entre ambas.
+# /        | x/z             | anidamiento: incluye a z anidado en x
+# |        | x|z             | condicional: incluye a x dado z
+# ^        | (u + v + w) ^ 3 | incluye estas variables y todas las
+#                              interacciones hasta 3 vías.
+# poly     | poly(x, 3)      | regresión polinómica (polinomios ortogonales)
+# Error    | Error(a/b)      | especifía un término de error
+# I        | I(x * z)        | incluye una nueva variable, la cual es el
+#                              resultado de las operaciones internas al 
+#                              paréntesis.
+# 1        | - 1             | intercepto, generalmente usado para ser borrado
 
 # Tal vez hayan notado que algunas estructuras se pueden especificar de varias maneras:
 y ~ u + v + w + u:v + u:w + v:w + u:v:w

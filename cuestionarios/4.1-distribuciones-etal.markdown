@@ -1,0 +1,19 @@
+
+# Distribuciones
+
+# Sample
+
+Considerando la siguiente secuencia de comandos y el resultado final (z):
+
+    > m <- sample(c('a', 'b', 'c'), size = 5e3, replace = TRUE, prob = p)
+    > z <- table(m)
+    > z
+    m
+       a    b    c
+    1145 3616  239
+
+¿Cuál de las siguientes opciones será el más probable vector p?
+
+    [] c(5, 15, 1)
+    [] c(4, 12, 1)
+    [] c()
