@@ -84,7 +84,7 @@ Pero además de importar los datos a su área de trabajo, el script debe tambié
     Abrev, Poblacion, Ingresos, Analf, Esp.Vida, Homicidio, Sec.Grad, 
     Heladas, Area, Division
 
-Por último, en la variable `Division` también queremos cambiar los nombres de los 9 niveles (se trata de un factor) a una versión en español. Específicamente:
+Por último, en la variable `Division` también queremos cambiar los nombres de los 9 niveles (se trata de un factor) a una versión en español. Específicamente (en el mismo orden y respetando mayúsculas y minúsculas):
 
     Nueva Inglaterra, Atlantico Central, Atlantico Sur, Sudeste Central,
     Sudoeste Central, Noreste Central, Noroeste Central, Montania, Pacifico
