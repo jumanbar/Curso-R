@@ -3,7 +3,7 @@
 
 # Ahora veremos que ocurre cuando nuestro modelo estadístico tiene más de una variable explicativa.
 
-Y = a + b1X1 + b2X2 + b3X3 + e
+Y = a + b1*X1 + b2*X2 + b3*X3 + e
 # En donde cada Xn es una pendiente 'parcial' del modelo.
 # Dicha pendiente parcial indica la tasa de cambio de la variable Y cuando las demás X's son constantes.
 # La hipótesis nula de la regresión múltiple establece que no existe relación entre las variables Xn e Y. 
