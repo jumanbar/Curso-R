@@ -57,11 +57,20 @@ cor1.a <- function() {
   
   # Evaluación de objetos: usa
   source(tmp, local = TRUE)
-  f0 <- identical(usa, usa.check)
-  if (!f0)
+  if (!identical(dim(usa), dim(usa.chek)))
+    stop("las dimensiones de usa no son correctas", call. = FALSE)
+  clases1 <- sapply(usa, class)
+  clases2 <- sapply(usa.check, class)
+  if (!identical(clases1, clases2))
+    stop("las clases de las columnas de usa no son correctas", call. = FALSE)
+  if (!identical(colnames(usa), colnames(usa.check)))
+    stop("Los nombres de las columnas de usa no son los correctos", call. = FALSE)
+  if (!identical(rownames(usa), rownames(usa.check)))
+    stop("Los nombres de las filas de usa no son los correctos", call. = FALSE)
+  if (!identical(usa, usa.check))
     stop("usa no es idéntica al objeto esperado", call. = FALSE)
   unlink(tmp)  
-  f0
+  TRUE
 }
 
 cor1.b <- function() {
@@ -85,22 +94,17 @@ cor1.b <- function() {
   usaX$Analf[nas] <- parche
   source(tmp, local = TRUE)
   unlink(tmp)
-  f0 <- is.data.frame(usa2)
-  if (!f0)
+  if (!is.data.frame(usa2))
     stop("usa2 no es 'data.frame'", call. = FALSE)
-  f1 <- identical(colnames(usa2), colnames(usaX))
-  if (!f1)
+  if (!identical(colnames(usa2), colnames(usaX)))
     stop("Los nombres de las columnas de usa2 no son los correctos", call. = FALSE)
-  f2 <- identical(rownames(usa2), rownames(usaX))
-  if (!f2)
+  if (!identical(rownames(usa2), rownames(usaX)))
     stop("Los nombres de las filas de usa2 no son los correctos", call. = FALSE)
-  f3 <- all(usa2 == usaX, na.rm = TRUE)
-  if (!f3)
+  if (!all(usa2 == usaX, na.rm = TRUE))
     stop("El usa2 resultante no tiene los valores correctos", call. = FALSE)
-  f4 <- identical(usa2$Analf, usaX$Analf)
-  if (!f4)
+  if (!identical(usa2$Analf, usaX$Analf))
     stop("La columna 'Analf' de usa2 no toma los valres correctos", call. = FALSE)
-  all(f0, f1, f2, f3, f4)
+  TRUE
 }
 
 cor1.c <- function() {
@@ -303,15 +307,14 @@ cor1.g <- function() {
     stop("El archivo usa-norm.csv no es idéntico al esperado", call. = FALSE)
   TRUE
 }
+browser()
 
 corAll <- list(cor1.a, cor1.b, cor1.c, cor1.d, cor1.e, cor1.f, cor1.g)
 
 ################################################################################
+
 save(list=guardar, file='datos')
-if (!any(dir() == rdir)) {
-  dir.create(rdir)
-} else {
-  unlink(file.path(rdir, '*'))
-}
+unlink(rdir, recursive=TRUE)
+dir.create(rdir)
 file.copy(esperados, rdir, recursive=TRUE)
 zip(paste(rdir, 'zip', sep='.'), paste(rdir, '/', sep=''))
