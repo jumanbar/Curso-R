@@ -17,9 +17,8 @@
 ##------ Importar ------##  1
 
 usa <- read.table('usa.csv', header = TRUE, row.names = 1)
-names(usa)[c(1:8, 10)] <- c('Abrev', 'Poblacion', 'Ingresos', 'Analf', 
-                            'Esp.Vida', 'Homicidio', 'Sec.Grad', 'Heladas', 
-                            'Division')
+names(usa) <- c('Abrev', 'Poblacion', 'Ingresos', 'Analf', 'Esp.Vida', 
+                'Homicidio', 'Sec.Grad', 'Heladas', 'Area', 'Division')
 
 levels(usa$Division) <- c('Noreste Central', 'Sudeste Central', 
                           'Atlantico Central', 'Montania', 'Nueva Inglaterra', 
@@ -43,6 +42,7 @@ usa3 <- subset(usa2, !is.na(Ingresos))
 
 ##------ Extra: función para estandarizar ------##  4
 # Hacer una función que estandarice valores:
+
 est <- function(x)
   (x - mean(x, na.rm = T)) / sd(x, na.rm = T)
 

@@ -103,10 +103,14 @@ y ~ x + log(z)
 #----------+-----------------+-------------------------------------------------+
 # +        | + x             | incluye esta variable
 # -        | - x             | quita esta variable
+# M        | M               | Si M es una matriz agrega el efecto aditivo de
+#          |                 | todas sus columnas (ver ej. de w en el texto).
 # :        | x:z             | incluye la interacción entre estas variables
-# *        | x*z             | incluye ambas variables y la interacción
+# *        | x*z             | incluye el efecto aditivo de las variables y la
+#          |                 | interacción entre ambas.
 #          |                 | entre ambas.
-# /        | x/z             | anidamiento: incluye a z anidado en x
+# /        | x/z             | anidamiento: incluye a z anidado en x (= x + x:z)
+# %in%     | z %in% x        | ídem que el anterior
 # |        | x|z             | condicional: incluye a x dado z
 # ^        | (u + v + w) ^ 3 | incluye estas variables y todas las
 #          |                 | interacciones hasta 3 vías.
@@ -116,6 +120,8 @@ y ~ x + log(z)
 #          |                 | resultado de las operaciones internas al 
 #          |                 | paréntesis.
 # 1        | - 1             | intercepto, generalmente usado para ser borrado
+# offset() | offset(2*x)     | agrega un efecto al modelo sin estimar un nuevo
+#          |                 | parámetro/coeficiente de regresión.
 
 # Tal vez hayan notado que algunas estructuras se pueden especificar de varias
 # maneras:

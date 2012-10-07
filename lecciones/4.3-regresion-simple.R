@@ -4,11 +4,13 @@
 #==============================================================================#
 # Pequeña nota de advertencia: Fórmulas y factores
 
-# Para trabajar con modelos estadísticos en R existen los objetos de clase "formula", los
-# cuales tienen una sintaxis muy particular, hecha para facilitar la interacción
-# entre el usuario y la función de R que hace el análisis. 
-# Sin embargo no es del todo intuitiva al principio dicha sintaxis, así que es necesario estar familiarizado con la misma antes de proseguir con esta lección. 
-# Por esta razón lo más lógico y recomendable es leer la lección correspondiente antes de proseguir con esta lección.
+# Para trabajar con modelos estadísticos en R existen los objetos de clase 
+# "formula", los cuales tienen una sintaxis muy particular, hecha para facilitar 
+# la interacción entre el usuario y la función de R que hace el análisis. 
+# Sin embargo no es del todo intuitiva al principio dicha sintaxis, así que es 
+# necesario estar familiarizado con la misma antes de proseguir con esta lección. 
+# Por esta razón lo más lógico y recomendable es leer la lección correspondiente
+# antes de proseguir con esta lección.
 
 # Lo mismo vale también para la lección dedicada a factores. Los factores son
 # una representación de datos categóricos, los cuales tienen una notable
@@ -19,12 +21,14 @@
 #==============================================================================#
 
 
-# La regresión lineal es un modelo estadístico que relaciona funcionalmente dos varibales de forma lineal.
-# Su versión más simple contiene una variable Y o de respuesta y una variable X o explicativa.
-# A TENER EN CUENTA: Que exista una relación funcional significativa entre ambas variables no implica una causalidad, pero la puede sugeriri.
+# La regresión lineal es un modelo estadístico que relaciona funcionalmente dos 
+# varibales de forma lineal. Su versión más simple contiene una variable Y o de 
+# respuesta y una variable X o explicativa.
+# A TENER EN CUENTA: Que exista una relación funcional significativa entre ambas 
+# variables no implica una causalidad, pero la puede sugerir.
 
-# El modelo estadíístico lineal simple se puede escribir como: 
-Y = a + bX+ e 
+# El modelo estadíístico lineal simple se puede escribir como (no correr):
+Y = a + b*X + e 
 # 'a' y 'b' son los parámetros del modelo.
 # a: intercepto, corte en el eje de las ordenadas
 # b: pendiente, tasa de cambio de la variable Y por unidad de la variable X
@@ -36,19 +40,22 @@ Y = a + bX+ e
 
 # Como nos muestra la ayuda, el primer argumento de la función es la 'formula'.
 # En esta fórmula se debe escribir el modelo estadístico que se desea ajustar.
-# El segundo argumento 'data' hace refencia a la base de datos ó data.frame, de donde pretendo que la función obtenga mis datos.
+# El segundo argumento 'data' hace refencia a la base de datos ó data.frame, de 
+# donde pretendo que la función obtenga mis datos.
 
 # Con sólo estos dos argumentos ya es posible realizar una regresión lineal.
 # Por ejemplo: 
 lm1 <- lm(dist ~ speed, data=cars)
-# El objeto 'lm1' contiene la regresión simple que esta dada por las variables 'dist' y 'speed' y utilaza el data.frame 'cars'.
-# Estas varibales pertenecen a una base de datos 'cars' que viene por defecto denro de R, para más información:
+# El objeto 'lm1' contiene la regresión simple que esta dada por las variables 
+# 'dist' y 'speed' y utilaza el data.frame 'cars'. Estas varibales pertenecen a 
+# una base de datos 'cars' que viene por defecto denro de R, para más 
+# información:
 ?cars
 
 # ¿Que ocurre cuando ejecutamos el objeto lm1?
 lm1
 # La salida que nos da el R en la consola es un resumen de información básica, donde nos muestra en la primer linea la fórmula que equivaldría a nuestro modelo estadístico.
-# En la segunda línea nos da los valores estimados de los parámetros(coeficientes) de nuestro modelo, en este caso el intercepto y la pendiente.
+# En la segunda línea nos da los valores estimados de los parámetros (coeficientes) de nuestro modelo, en este caso el intercepto y la pendiente.
 # Estos valores nos van a intersar para poder intrpretar los resultados.
 # Sin embargo, vamos a necesitar más informacón sobre nuesta regresión para poder intepretar la relacion entre ambas variables.
 # Una de las funciones más útiles para ver esto es a través de la función "summary" (la cual sirve para muchas clases de objetos):
@@ -69,18 +76,18 @@ summary(lm1)
 # Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 # 
 # Residual standard error: 15.38 on 48 degrees of freedom
-# Multiple R-squared: 0.6511,  Adjusted R-squared: 0.6438 # R cuadrado
+# Multiple R-squared: 0.6511,  Adjusted R-squared: 0.6438
 # F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12
 
-# De esta salida nos interesan varios datos a parte de los valores estimados de los parámetros, intercepto(-17.5791) y pendiente(3.9324).
-# 1) el rango de los valores cuantiles. Estos aparecen debajo de la línea que dice 'Residuals', y muestran los valores referentes a el valor mínimo(-29.069), primer cuantil(-9.525), mediana(-2.272), tercer cuantil(9.215), y valor máximo(43.201).
-# 2) El p-valor de los valores estimados de cada parámetro, intercepto(0.0123) y pendiente(1.49e-12).
-# 3) El R2(cuadrado) que es el coeficiente de regresión, en este caso 0.6438.
-# 4) Los grados de libertad y el valor del estadistico F(Fisher)respectivamente, F 1,48 = 89.57.
-# 5) El p-valor del modelo, 1.49e-12 para este caso.
+# De esta salida nos interesan varios datos a parte de los valores estimados de los parámetros, intercepto (-17.5791) y pendiente (3.9324).
+# 1) el rango de los valores cuantiles. Estos aparecen debajo de la línea que dice 'Residuals', y muestran los valores referentes a el valor mínimo (-29.069), primer cuantil (-9.525), mediana (-2.272), tercer cuantil (9.215), y valor máximo (43.201).
+# 2) El p-valor de los valores estimados de cada parámetro, intercepto (0.0123) y pendiente (1.49e-12).
+# 3) El R2 ("r cuadrado") que es el coeficiente de determinación, en este caso 0.6438.
+# 4) Los grados de libertad y el valor del estadistico F (Fisher) respectivamente, F(1, 48) = 89.57.
+# 5) El p-valor del modelo (asociado al estadístico F), 1.49e-12 para este caso.
 
 
-# Otra forma popular, y más completa, de acceder a la información del objeto 'lm1' es usando la función "str":
+# Otra forma popular, y más completa, de acceder a la información resumida del objeto 'lm1' es usando la función "str":
 str(lm1)
 # List of 12
 #  $ coefficients : Named num [1:2] -17.58 3.93
@@ -107,7 +114,7 @@ attributes(lm1)        # nombres y clase
 # Ahora si a la función "attributes" se le especifica uno de los nombres, devuelve un objeto tipo lista con un montón de información.
 attributes(lm1$terms)
 
-# Existe un montón de funciones creadas especialmente para trabajar con modelos o tests estadísticos.
+# Existe una amplia gama de funciones creadas especialmente para trabajar con modelos o tests estadísticos.
 # Algunos ejemplos sencillos son:
 fitted(lm1)     # valores ajustados, equivale a lm1$fitted.values
 resid(lm1)      # residuos, equivale a lm1$residuals
@@ -120,6 +127,7 @@ logLik(lm1)     # log likelihood
 AIC(lm1)        # criterio de información de Akaike
 anova(lm1)      # significancia de la influencia de las variables
 
+# Nota: muchas de estas funciones se pueden utilizar con varias clases de objetos, incluyendo regresiones no lineales, glm, etc...
 
 # Las funciones de regresión, así como muchas otras que están pensadas para trabajar con data.frames, tienen muchas veces la opción "subset" para filtrar los valores de las variables:
 lm2 <- lm(dist ~ speed, data=cars, subset=dist > 20)
@@ -128,7 +136,7 @@ lm2 <- lm(dist ~ speed, data=cars, subset=dist > 20)
 # Ojo!, los dos modelos lm1 y lm2 no son modelos comparables dado que no contienen el mismo conjunto de datos, lm2 tiene menos datos que lm1.
 
 # Otra forma de filtrar datos pero de manera mas precisa y detallada, es utilizando el signo de '-'
-lm3 <- lm(dist ~ speed, data=cars[-c(23, 35, 49), ]) 
+lm3 <- lm(dist ~ speed, data=cars[-c(23, 35, 49), ])
 # Dentro del paréntesis rectos se estan eliminando las filas 23, 35 y 49.
 # Como no son consecutivas, estas deben concatenarse con la función "c" y el signo de menos es para marcar que filas del data.frame cars se van a eliminar.
 # Este modelo tampoco es comparable con ninguno de los otros dos anteriores, debido a que tienen distintos conjuntos de datos.
@@ -141,8 +149,8 @@ summary(lm1)
 # El R2(cuadrado) nos habla de que tan bien nuestros datos se ajustan al modelo propuesto, en este caso una regresión simple. Es un coeficiente va de 0 a 1, cuanto más cercano a 1 sea este valor, mejor ajuste tienen nuestro datos al modelo lineal (en este caso) propuesto.
 # También es importante observar cual es la significancia de nuestros parámetros y modelo. Para eso nos informamos con el p-valor. 
 # Si este es menor a 0.05, estamos en condiciones de rechazar la hipótesis nula del modelo que dice que no existe una relación lineal entre X e Y (pendiente = 0) y aceptar nuestro modelo y parámetros significativos, no como verdaderos sino como alternativos a la hipótesis nula.
-# Por último nos entrega el valor del Test F (Fisher) junto con los grado de libertad. El valor de F observado se obtiene de la relación entre la media de la suma de los cuadrados de los valores observados y la media de la suma de cuadrados de los errores estandard. Este valor obtenido es comparado con la distribución F teórica y se utiliza una regla de desición para rechazar o no la hipótesis nula. Dicha regla es rechazar la hipótesis nula si mi vlaor de F observado es mayor al valor de F teórico para n - 2 grados de libertad y un alfa=0.05.
-# Los grados de libertad se pueden calcular teniendo en cuata cuantos valores presenta mi variable y sustrayendole la cantidad de parametros que estoy evaluando en mi modelo. En este ejemplo F 1,48 = 89,47, la cantidad de parámetros es 2, a y b, asi que son n - 2 la cantidad de grados de libertad. 
+# Por último nos entrega el valor del Test F (Fisher) junto con los grado de libertad. El valor de F observado se obtiene de la relación entre la media de la suma de los cuadrados de los valores observados y la media de la suma de cuadrados de los errores estandard. Este valor obtenido es comparado con la distribución F teórica y se utiliza una regla de desición para rechazar o no la hipótesis nula. Dicha regla es rechazar la hipótesis nula si mi valor de F observado es mayor al valor de F teórico para n - 2 grados de libertad y un alfa=0.05.
+# Los grados de libertad se pueden calcular teniendo en cuenta cuantos valores presenta mi variable y sustrayendole la cantidad de parametros que estoy evaluando en mi modelo. En este ejemplo F 1,48 = 89,47, la cantidad de parámetros es 2, a y b, asi que son n - 2 la cantidad de grados de libertad. 
 
 # A tener en cuenta...
 # En ningún momnento hemos evaluado los supuestos del modelo lineal general como ser la normalidad de los datos, la homogeneidad de varianza o la distribución de los residuales.

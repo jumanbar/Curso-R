@@ -4,7 +4,7 @@
 # el Análisis de Varianza o ANOVA por sus siglas e inglés, es un modelo estadístico que evalua si las medias de distintos grupos son iguales. Su versión más simple es aquella en la cual dos grupos distntos son comparados considerando solo los efectos fijos de los mismos.
 # El modelo estadístico clásico del análisis de varianza de efecto fijo es el sigueinte:
 
-Y = mu + ai + e 
+Y = mu + ai + e
 # donde 'mu' es la media global poblacional, 'a' es la media de grupo i y e son los errores aleatorios.
 # Cada 'ai' evalua el efecto del i-ésimno nivel de mi factor. Este se puede definir como la diferencia entre la media poblacional 'mu' y la media de cada grupo i 'mui':
 ai = mu - mui.
