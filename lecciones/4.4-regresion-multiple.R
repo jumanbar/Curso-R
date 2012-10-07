@@ -1,5 +1,5 @@
 
-# REGRESIÓN LINEAL MÚLTIPLE queda pendiente!!! averiguar cuales son los valores de las pendientes
+# REGRESIÓN LINEAL MÚLTIPLE 
 
 # Ahora veremos que ocurre cuando nuestro modelo estadístico tiene más de una variable explicativa.
 
