@@ -1,0 +1,17 @@
+# ANOVA
+
+Cual de los siguientes modelos estadísticos no corresponden a un Análisis de Varianza.
+
+*nota: serán utilizadas distintas bases de datos que vienen por defecto en el R.
+
+    [ ] lm(decrease ~ treatment - 1, data=OrchardSprays)
+    Esto si es un ANOVA porque la variable explicativa es del tipo factorial.
+    Puedes comprobarlo pidiendo la investigando la estructura del data.frame.
+    [ ] aov(len ~ supp, data=ToothGrowth)
+    [x] aov(Wind ~ Month, data=airquality)
+    Esto si es un ANOVA porque la variable explicativa es del tipo factorial.
+    Puedes comprobarlo pidiendo la investigando la estructura del data.frame.
+    En este caso la variable 'Month' no es un factor sino una variable numérica, por ese motivo los coeficientes son solo el intercepto y la pendiente. Para que nos de las medias de cada mes, es necesario previamente coearcionar dicha variable a factor. Intentalo!
+    [ ] lm(Petal.Length ~ Species, data=iris)
+    Esto si es un ANOVA porque la variable explicativa es del tipo factorial.
+    Puedes comprobarlo pidiendo la investigando la estructura del data.frame.

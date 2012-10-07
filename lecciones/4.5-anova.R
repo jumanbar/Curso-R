@@ -1,7 +1,7 @@
 
 # ANALISIS DE VARIANZA
 
-# el Análisis de Varianza o ANOVA por sus siglas e inglés, es un modelo estadístico que evalua si las medias de distintos grupos son iguales. Su versión más simple es aquella en la cual dos grupos distntos son comparados considerando solo los efectos fijos de los mismos.
+# el Análisis de Varianza o ANOVA por sus siglas e inglés, es un modelo estadístico que evalua si las medias de distintos grupos son iguales. Su versión más simple es aquella en la cual dos grupos distntos son comparados considerando solo los efectos fijos de los mismos. Este caso particular es llamado comunmente Test de t.
 # El modelo estadístico clásico del análisis de varianza de efecto fijo es el sigueinte:
 
 Y = mu + ai + e
@@ -48,7 +48,7 @@ anova1
 # Aligual que para la función 'lm' y muchas otra más, podemos utilizar la función summary para solicitar más información:
 summary(anova1)
 
-# Df Sum Sq Mean Sq F value Pr(>F)  
+#             Df Sum Sq Mean Sq F value Pr(>F)  
 # supp         1    205  205.35   3.668 0.0604 .
 # Residuals   58   3247   55.98                 
 # ---
@@ -68,7 +68,7 @@ anova1[[1]] # Nos da los coeficientes del modelo.
 # 20.66333    -3.70000 
 
 # Como interpretar esto...
-# El intercepto del modelo hace referencia a uno de los grupos evaluados por el modelo, en este caso el grupo 'OJ'. El valor del coeficiente es la media de dicho grupo. En este caso 'OJ' estaría siendo como la media global mu, en nuestro modelo, es el grupo de referncia. R utiliza un criterio alfabético para elegir al grupo de referncia, por este motico en este caso es 'OJ'. 
+# El intercepto del modelo hace referencia a uno de los grupos evaluados por el modelo, en este caso el grupo 'OJ'. El valor del coeficiente es la media de dicho grupo. En este caso 'OJ' estaría siendo como la media global mu, en nuestro modelo genérico arriba, es el grupo de referncia. R utiliza un criterio alfabético para elegir al grupo de referncia, por este motico en este caso es 'OJ'. 
 # El otro coeficiente es el ai, es decir, es la diferencia entre mu y mui, la media global y la media del grupo i, en este caso la media del grupo 'VC'.
 # Para conocer cual es la media del grupo 'VC' se le resta a la media del grupo 'OJ'(20.66) el valor de ai(3.7), esto nos da un valor de 16.96.
 
@@ -83,12 +83,12 @@ coef(anova2) # Observe que aqui utilice l otro comando para obteber los coeficie
 
 # En escencia el modelo estadístico del análisis de varianza es una regresión lineal, en donde cada variable categórica b esta asociada a una matriz X de diseño:
 
-Y = b0 +b1X1 +b2X2 + e ---> Y = bX + e
+Y = b0 +b1*X1 +b2*X2 + e ---> Y = bX + e
 
 # b0 corresponde a la media global o grupo de referncia, al igual que mu en un modelo anova.
 # Cada 'bn' es el parámetros a estimar para el grupo i y se define como la diferncia entre la media poblacional y la media del grupo i, en otras palabras es ai:
 
-Y = b0 + b1(xi - X) + e
+Y = b0 + b1*(xi - X) + e
 
 # Utilizando nuestro modelo de anova1 realizaremos el mismo modelo pero ahora con la función 'lm':
 

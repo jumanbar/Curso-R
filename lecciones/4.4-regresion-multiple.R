@@ -46,6 +46,12 @@ coef(lmm1)
 residuals(lmm1)
 
 # La interpretación de la salida es similar a la de la regresión simple, salvo que en este caso hay dos pendientes y no solo una.
+summary(lmm1)
+# Ahora cada parámetro obtenido (excepto el intercepto) es una pendiente parcial, que debe ser interpretada como:
+# cuanto cambia la variable de respuesta cuando me muevo una unidad de mi pendiente Xi mantendiendo a mis otras pendientes constantes. En este caso como no hay interacción entre las vaiables solo se esta evaluando el efecto directo de cada una de ellas sobre la variable respuesta y estamos dejando de lados los efectos indirectos.
+
+
+# En el caso de la regresión multiple, la relación funcional esta dada entre una variable de respuesta y k-variables explicativas. En este sentido, debemos tener en cuenta la correlación entre las distintas variables independientes, la interacción entre ellas y cuidar que el modelo no quede sobreajustado.
 
 
 
