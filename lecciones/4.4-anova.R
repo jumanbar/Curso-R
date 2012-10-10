@@ -93,7 +93,7 @@ Y = b_0 + b_1*X_1 + b_2*X_2 + e ---> Y = b %*% X + e
 
 anova3 <- lm(len ~ supp, data=ToothGrowth) # Lo único que se modifico es la función que se utiliza...
 
-# ¿Que ocurre cuando ejecutamos el objeto anova3?
+# ¿Que ocurre cuando imprimimos el objeto anova3?
 anova3
 
 # Obtenemos una salida muy similar a la del objeto 'anova1'
@@ -108,10 +108,10 @@ summary(anova3)
 
 # Si a nuestro modelo lineal le sacamos el intercepto, el valor de los coeficientes van a ser las medias de cada grupo y no vamos a tener que realizar ninguna cuenta para obtenerlas, al igual que vimos arriba...
 
-anova4 <- lm(len ~ supp-1, data=ToothGrowth)
+anova4 <- lm(len ~ supp - 1, data=ToothGrowth)
 summary(anova4)
 
-# Como se pudo observar, el análsis de varianza no es más que un añálisis de regresión lineal dentro de un modelo lineal general y no un modelo totalmente difernte y sin conexión ninguna. Esto nos facilita mucho a la hora de tener que pensar en los modelos y como interprtarlos, si son parte de lo mismo, va a ser más sencillo.
+# Como se pudo observar, el análsis de varianza no es más que una regresión lineal dentro de un modelo lineal general y no un modelo totalmente diferente y sin conexión ninguna. Esto nos facilita mucho a la hora de tener que pensar en los modelos y como interpretarlos, si son parte de lo mismo, va a ser más sencillo.
 
 # A modo de información el test de t es un caso particular para el ANOVA de una Via, en donde solo se comparan las medias de dos grupos. En todos los demás casos de ANOVA de una Via para tres o dos grupos o para más de una sola Via el nombre que se utiliza para denominar el análsis es ANOVA.
 
@@ -131,11 +131,18 @@ x <- aov(medida ~ factor2, data=tabla)  # en este caso sólo toma el factor2
 
 # Algo que siempre se aconseja, pero que a veces los diseños de muestreo no lo permite por distintos motivos, es que los tratamientos esten balanceaos. Es decir, que exista la misma canidad de datos para cada uno de los difrentes grupos.
 
-# Para ver si los tratamientos están balanceados se puede hacer un examen visual, o si no:
-!is.list(replications(formula,data))
+# Para ver si los tratamientos están balanceados se puede hacer un examen visual, o si no hay varias opciones. Para el caso más sencillo (ANOVA de una sola vía) se puede usar table para contar la cantidad de réplicas por nivel del factor:
+table(ToothGrowth$supp) # Están balanceados
+
+# En casos sofisticados, la función replications es más útil. En caso de que los datos estén balanceados, devuelve un vector, como en el caso siguiente:
+replications(len ~ supp, data = ToothGrowth)
+
+tg2 <- ToothGrowth # Una copia de la data.frame para no modificarla
+tg2$len[12] <- NA  # Convierto un dato bueno en "faltante"
+replications(len ~ supp, data = tg2)
+
+# Nótese la diferencia de salida de los dos llamados a replications. Puede usarse la siguiente línea como test para determinar si se trata de tratamientos balanceados o no:
+!is.list(replications(len ~ supp, data = tg2))
 
 # Para más información consulte en la ayuda:
 ?replications
-
-
-

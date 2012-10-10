@@ -26,6 +26,7 @@ guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar',
 
 ### FUNCIONES Y DATOS AUXILIARES:
 
+source('make-aux.R')
 load('aux')
 guardar <- c(guardar, 'usa.check', 'usa.inc', 'usa2', 'usa3', 'usaNorm', 'outAnalf')
 
@@ -312,12 +313,12 @@ corAll <- list(cor1.a, cor1.b, cor1.c, cor1.d, cor1.e, cor1.f, cor1.g)
 ################################################################################
 
 save(list=guardar, file='datos')
-borrar <- dir('rdir')
+borrar <- dir(rdir)
 borrar <- file.path(rdir, borrar)
 unlink(borrar, recursive=TRUE)
 
 file.copy(esperados, rdir, recursive=TRUE)
 zipfile <- paste(rdir, 'zip', sep = '.')
 unlink(zipfile)
-print(dir())
+# print(dir())
 zip(zipfile, paste(rdir, '/', sep=''))

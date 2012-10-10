@@ -1,0 +1,28 @@
+col (.axis, .lab, .main, .sub) | colores (números o caracteres entre comillas)
+lwd | line width; ancho de la línea (número)
+pch | point character; tipo de punto (números o caracteres entre comillas)
+type | tipo de gráfico a dibujar ('p', 'l', 'b', 'o', 'n', 's' y otros)
+lty | line type; tipo de línea (1:sólida, 2:quebrada, 3:punteada, 4:puntolínea, 5:línea larga-corta, 6:dos líneas cortas)
+xlab | x axis label; nombre del eje x
+ylab | y axis label; nombre del eje x
+main | main title; título principal
+sub | sub label
+cex (.axis, .lab, .main, .sub) | magnificación del texto y símbolos con respecto al valor por defecto, 1
+bty | tipo de caja que se dibuja alrededor del gráfico ("o", "l", "7", "c", "u" o "]", "n")
+font (.axis, .lab, .main, .sub) | tipo de letra (1:normal, 2:cursiva, 3:negrita, 4:negrita cursiva)
+family | tipo de letra (caracteres entre comillas)
+axes | si es FALSE no dibuja ni los ejes ni la caja, por defecto es TRUE (lógico)
+las | posición de los nombres de los ejes en los ejes (0:siempre paralelo al eje [defecto], 1:siempre horizontal al eje, 2:siempre perpendicular al eje, 3:siempre vertical)
+add | si es TRUE permite agregar un gráfico al ya existente (lógico)
+mar=c(bottom, left, top, right) | margin; ancho de márgenes internos
+oma=c(bottom, left, top, right) | outer margin; ancho de márgenes externos
+mfcol, mfrow | "matrix figure"; varios gráficos en una sola ventana
+log | escala logarítmica
+xlog | escala log en eje x
+ylog | escala log en eje y
+xlim | rango de coordenadas x e y del eje 'x' (numérico)
+ylim | rango de coordenadas x e y del eje 'y' (numérico)
+
+nomenclatura básica
+números de los ejes == .axis, nombres de los ejes == .lab, títulob== .main,
+subtítulo == .sub

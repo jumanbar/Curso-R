@@ -19,7 +19,7 @@ plot(x, y)
 # Por ejemplo si deseamos visualizar graficamente el primer modelo lineal simple
 # utilizado en la lección 4.3 (regresión simple):
 
-# lm1 <- lm(dist ~ speed, data=cars)
+lm1 <- lm(dist ~ speed, data=cars)
 plot(dist ~ speed, data=cars, col="red")
 # Observe que dentro de la función 'plot' se escribe exactamente lo mismo que
 # en la función 'lm'.
@@ -45,7 +45,7 @@ plot(speed, dist, data=cars, col="green")
 # iguales). Esto da cuenta de que ambas formas sirven y queda a elección de cada
 # uno la manera más sencilla que le sirva para entender la sintaxis.
 
-# lm2 <- lm(dist ~ speed, data=cars, subset=dist > 20)
+lm2 <- lm(dist ~ speed, data=cars, subset=dist > 20)
 plot(dist ~ speed, data=cars, subset=dist > 20)
 # Como puede observar el argumento 'subset' también sirve como un filtro para
 # las variables a graficar. En este caso si ud. compara cualquiera de los tres
@@ -99,8 +99,9 @@ abline(setosa, col=1, lty=1, lwd=1.5) # recta para el modelo setosa
 abline(versicolor, col=2, lty=2, lwd=1.5) # recta para el modelo versicolor
 abline(virginica, col=3, lty=3, lwd=1.5) # recta para el modelo virginica
 
-legend("topleft", title = "Species", legend=c("setosa","versicolor",
-"virginica"), bty ='n', lty = c(1:3), pch=1:3, col=1:3, lwd = 1.5, cex=0.8)
+legend("topleft", title = "Species", 
+       legend=c("setosa","versicolor", "virginica"),
+       bty ='n', lty = c(1:3), pch=1:3, col=1:3, lwd = 1.5, cex=0.8)
 
 
 # Muchas veces nos intersa ver como se distribuyen las frecuencias de
@@ -129,10 +130,10 @@ hist(iris$Sepal.Width, breaks=20, freq=F)
 # argumentos como 'col', 'xlab', 'ylab', 'cex', 'font'...
 # A modo de ejemplo:
 hist(iris$Sepal.Width, col=2, main="Histograma", xlab="Ancho del Sepalo",
-ylab="Frecuencia", xlim=c(1.5, 4.5), font=2)
+     ylab="Frecuencia", xlim=c(1.5, 4.5), font=2)
 
 # Cuando nos intersa visualizar distintos estadísticos descriptivos para
-nuestras variables categóricas, existe una función llamda 'boxplot':
+# nuestras variables categóricas, existe una función llamda 'boxplot':
 ?boxplot
 
 # La fórmula que requiere esta función es del tipo y ~ grp, donde 'y' es la
@@ -156,11 +157,11 @@ boxplot(Temp ~ Month, data=airquality)
 # con los argumentos 'prestados' por la función 'par':
 
 boxplot(Temp ~ Month, data=airquality, col=2:6, main="Boxplot", xlab="Meses",
-ylab="Temperatura") # ... y todos los que hemos visto
+        ylab="Temperatura") # ... y todos los que hemos visto
 
 # En la función 'boxplot' también funciona el argumento 'subset':
 boxplot(Temp ~ Month, data=airquality, col=2:6, main="Boxplot", xlab="Meses",
-ylab="Temperatura", subset=Month < 7)
+        ylab="Temperatura", subset=Month < 7)
 
 
 # La función curve sirve para graficar funciones.
@@ -174,20 +175,21 @@ curve(cos(x), from=-5, to=5, add=TRUE, col=2, n=6)
 
 # Dos alternativas para guardar los gráficos con comandos:
 
-png(file="mi boxplot.png") # Función que prepara el dispositivo gráfico para
+png(file="mi_boxplot.png") # Función que prepara el dispositivo gráfico para
 # ser guardado.
-mi boxplot <- boxplot(Temp ~ Month, data=airquality)
+boxplot(Temp ~ Month, data=airquality)
 dev.off() # Es necesario ejecutar este comando para desconectar el device png
 # y así volver a visualizar los gráficos en la pantalla. 
 
-x11() # Abre una nueva venta de gráfico, necesario para poder ejecutar la
-función 'savePlot'. 
-mi segundo boxplot <- boxplot(Temp ~ Month, data=airquality, col=2:6)
-savePlot(file="mi segundo boxplot.png") # Ojo, en este caso debe estar la
-# extensión del archivo incluida, en este caso es .png. 
+x11()
+# Abre una nueva venta de gráfico, necesario para poder ejecutar la función 
+# 'savePlot'. 
+boxplot <- boxplot(Temp ~ Month, data=airquality, col=2:6)
+savePlot(file="mi_segundo_boxplot.png")
+# Ojo, debe estar la extensión del archivo incluida, en este caso es .png. 
 
-# Tenga n cuenta que la figura será guardada en el directorio de trabajo
-# actual, al cual se accedia con la función 'getwd'.
+# Tenga en cuenta que la figura será guardada en el directorio de trabajo
+# actual (usar la función 'getwd' para verlo).
 
  
 # Otras herramientas gráficas existen y se crean todo el tiempo en la

@@ -14,20 +14,18 @@
 
 # Cuando se realiza un gráfico en en la consola de R, este nos abre una nueva
 # ventana con el gráfico resultante. Sin embargo, cuando realizamos un nuevo
-# gráfico no se abre una ventana nueva para mostrarnos el nuevo gráfico. De
-# manera contraria, el nuevo gráfico sutituye en la ventana de la consola el
-# gráfico anterior. En este sentido, para no perder el grafico previo es
-# necesario abrir una nueva ventana en la consola de R y así poder tener ambos
-# gráfico para visualizarlos (en ventanas distintas).
+# gráfico no se abre otra ventana: el nuevo sutituye al anterior. En este 
+# sentido, para no perder el grafico previo es necesario abrir una nueva 
+# ventana en la consola de R y así poder tener ambos gráficos para visualizarlos
 # Para abrir una nueva ventana en la consola de R:
-# X11() under UNIX (y Windows)
-# windows() under Windows
-# and quartz() under Mac OS X
+# X11()        para UNIX (y Windows)
+# windows()    para Windows
+# and quartz() para Mac OS X
 # Esto sirve para poder visualizar mas de un gráfico en R.
 # En RStudio esto no es problema, dado que en la ventana 'Plot' es posible
 # visualizar más de un gráfico. A medida que vamos realizando distintos
 # gráficos, estos se van almacenando en dicha ventana sin la necesidad de
-# tener que abrir una nueva ventana en la consola por cada uno. A su ves,
+# tener que abrir una nueva ventana en la consola por cada uno. A su vez,
 # tiene un conjunto de botones que nos permiten realizar distintas cosas...
 # Empezando por arriba y a la izquierda se encuentran dos 'flechas celestes' que
 # apuntan hacia la izquierda y la derecha. Esto nos permite ir viendo en la
@@ -40,53 +38,18 @@
 # estamos observando o todos los gráfico obtenidos, respectivamente.  
 
 # PARÁMETROS DE GRÁFICOS
-# par
-# Es el conjunto de los parámetros gráficos, los objetos generados en R con
+# función par
+# Es una función para acceder y manipular el conjunto de los parámetros gráficos
+# que son utilizados en cada ventana. Los objetos generados en R con
 # la función 'plot', le pasan sus argumentos a la función 'par', la mayoría a
 # través del argumento especial "...", cuando se ejecutan.
 # Para mayor información consulte en la ayuda de R:
 ?par
 
-# A continuación les describiremos aquellos argumentos de la función 'par' más
-# utilizados para digrmar gráficos en R:
-
-# col (.axis, .lab, .main, .sub) // colores(números o caracteres entre comillas)
-# lwd // line width // ancho de la línea (número)
-# pch // point character // tipo de punto (números o caracteres entre comillas)
-# type // tipo de gráfico a dibujar ('p', 'l', 'b', 'o', 'n', 's' y otros)
-# lty // line type // tipo de línea (1:sólida, 2:quebrada, 3:punteada,
-# 4:puntolínea, 5:línea larga-corta, 6:dos líneas cortas)
-# xlab // x axis label // nombre del eje x
-# ylab // y axis label // nombre del eje x
-# main // main title // título principal
-# sub // sub label
-# cex (.axis, .lab, .main, .sub) // magnificación del texto y símbolos con
-# respecto al valor por defecto, 1
-# bty // tipo de caja que se dibuja alrededor del gráfico ("o", "l", "7", "c",
-# "u" o "]", "n")
-# font (.axis, .lab, .main, .sub) // tipo de letra (1:normal, 2:cursiva,
-# 3:negrilla, 4:negrilla cursiva)
-# family // tipo de letra (caracteres entre comillas)
-# axes // si es FALSE no dibuja ni los ejes ni la caja, por defecto es TRUE
-# (lógico)
-# las // posición de los nombres de los ejes en los ejes (0:siempre paralelo al
-# eje [defecto], 1:siempre horizontal al eje, 2:siempre perpendicular al eje,
-# 3:siempre vertical)
-# add // si es TRUE permite agregar un gráfico al ya existente (lógico)
-# mar=c(bottom, left, top, right) // margin // margenes
-# oma=c(bottom, left, top, right) // outer margin // orden de aparición de los
-# margenes
-# mfcol, mfrow // "matrix figure" // varios gráficos en una sola ventana
-# log // escala logarítmica
-# xlog // escala log en eje x
-# ylog // escala log en eje y
-# xlim // rango de coordenadas x e y del eje 'x' (numérico)
-# ylim // rango de coordenadas x e y del eje 'y' (numérico)
-
-# nomenclatura básica
-# números de los ejes == .axis, nombres de los ejes == .lab, títulob== .main,
-# subtítulo == .sub
-
+# De la página del curso se puede bajar un pdf con una referencia rápida de los
+# parámetros de par más comunmente usados (aunque esto depende de cada uno 
+# claro). Para bajarla ejecutar:
+browseURL('http://eva.universidad.edu.uy/file.php/1454/pdf/tabla-par.pdf')
 
 # Un ejemplo introductorio... 
 # Creo un vector para plotear
@@ -103,11 +66,14 @@ op <- par(mar=c(5, 6, 4, 2))
 # Estos números están puestos en sentido horario, empezando por el margen
 # inferior (inf, izq., arr, der).
 # Es común guardar en un objeto (en este caso 'op') la salida para volver a usar
-# los parámetros originales luego.
+# los parámetros originales luego, utilizando el comando:
+par(op)
+# Pero volvamos a la configuración anterior:
+op <- par(mar=c(5, 6, 4, 2))
 
-# Un ejemplo en el que se manipulan muchos parámetros...
+# Veamos un ejemplo en el que se manipulan muchos parámetros...
 plot(x, cex=1.5, cex.axis=1.2, cex.lab=2.1, col.lab='green', type='o', lwd=3,
-xlab="ejemplo", ylab="numeros", main="Ejem-plot")
+     xlab="ejemplo", ylab="numeros", main="Un ejemplito")
 
 # Jugando con los valores de cada uno se puede ver el significado de los mismos
 # (en general los nombres buscan ser informativos).
@@ -134,14 +100,13 @@ plot(1:8, col=1:8, pch=19, cex=4)
 colors()
  
 # Para visualizarlos:
-length(colors()) # 657 =~ 26 ^ 2
+length(colors()) # 657 es aprox. 26 ^ 2
 mat <- matrix(1:(26 ^ 2), 26, 26)
 image(mat, col=colors())
  
 # También existen algunas funciones que generan gradientes de colores
 # preestablecidos, por ejemplo 'gray' , 'rainbow', 'terrain.colors',
 # 'heat.colors':
-image(mat, col=terrain.colors(26 ^ 2))
 image(mat, col=terrain.colors(26 ^ 2))
 image(mat, col=rainbow(26 ^ 2))
 image(mat, col=gray(seq(0, 1, , 26 ^ 2))) # este necesita valores entre 0 y 1
@@ -165,7 +130,7 @@ x <- sort(rnorm(100, 0))
 y <- sort(rnorm(100, 1))
 plot(x, type='o')
 points(y, col='green') # Agrega un nuevo conjunto de puntos de color verde.
-lines(y, col='green', lwd=1.5) # Líena que une los puntos verdes.
+lines(y, col='green', lwd=1.5) # Línea que une los puntos verdes.
 
 # En este punto es necesario hacer una distinción importante: en R existen
 # comandos gráficos de "alto nivel" y de "bajo nivel". En inglés los
@@ -202,6 +167,7 @@ curve(200 * cos(x), col='magenta')
 plot(Sepal.Length ~ Sepal.Width, subset=Species == 'setosa', data=iris)
 # Nótese el uso de los argumentos subset y data para especificar los datos que
 # quiero graficar.
+points(Sepal.Length ~ Sepal.Width, subset=Species == 'versicolor', data=iris, col = 3, pch = 19)
 # Ahora, para agregar líneas horizontales:
 abline(h=5) # Una línea recta horizontal cortando el eje y en el 5...
 abline(v=4) # Una línea recta vertical cortando el eje x en el 4...
