@@ -27,7 +27,7 @@ if (!exists('est')) {
 
 datosNumericos <- 0
 
-datosTrans <- 0 # Aquí debe usarse apply
+datosTrans <- 0 # Aquí debe usarse apply usando datosNumericos como entrada
 
 usaNorm <- 0
 

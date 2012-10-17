@@ -59,16 +59,16 @@ cor1.a <- function() {
   source(tmp, local = TRUE)
   if (!identical(dim(usa), dim(usa.check)))
     stop("las dimensiones de usa no son correctas", call. = FALSE)
-  clases1 <- sapply(usa, class)
-  clases2 <- sapply(usa.check, class)
-  if (!identical(clases1, clases2))
-    stop("las clases de las columnas de usa no son correctas", call. = FALSE)
   if (!identical(colnames(usa), colnames(usa.check)))
     stop("Los nombres de las columnas de usa no son los correctos", call. = FALSE)
   if (!identical(rownames(usa), rownames(usa.check)))
     stop("Los nombres de las filas de usa no son los correctos", call. = FALSE)
   if (!identical(usa, usa.check))
     stop("usa no es idéntica al objeto esperado", call. = FALSE)
+  clases1 <- sapply(usa, class)
+  clases2 <- sapply(usa.check, class)
+  if (!identical(clases1, clases2))
+    stop("las clases de las columnas de usa no son correctas", call. = FALSE)
   unlink(tmp)  
   TRUE
 }
@@ -212,7 +212,9 @@ cor1.e <- function() {
          call. = FALSE)
   }
   rm(datosTrans)
-  eval(parse(text = arch[app]))
+  txt <- arch[app]
+  txt <- sub('datosNumericos', 'datosNumericosX', txt)
+  eval(parse(text = txt))
   datosTransX <- apply(datosNumericosX, 2, estX)
   if (!identical(datosTrans, datosTransX))
     stop("no parece que haya usado la función apply como se indica en la letra", call. = FALSE)

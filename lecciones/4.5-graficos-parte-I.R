@@ -93,6 +93,16 @@ plot(x, cex=1.5, cex.axis=1.2, cex.lab=2.1, col.lab='green', type='o', lwd=3,
 palette()
 # Podemos visualizarlo con este comando:
 plot(1:8, col=1:8, pch=19, cex=4)
+# A su vez es posible manipular esta paleta de colores, agregando, quitando o 
+# modificando distintos colores. Por ejemplo:
+palette(c('green', 'red', 'skyblue'))
+plot(1:8, col=1:8, pch=19, cex=4)
+
+# Nótese que se repiten los colores porque la paleta ahora tiene sólo 3... De 
+# todas formas es fácil volver a los valores por defecto:
+p <- palette('default')
+# Nótese también que opté por guardar estos valores en un vector p, el cual no
+# vamos a usar en esta lección, pero que puede ser de mucha utilidad.
  
 # Hay muchos nombres de colores posibles, los cuales se pueden conocer con la
 # funcion 'colors':
