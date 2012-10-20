@@ -1,16 +1,15 @@
-
 # Distribuciones I
 
 Seleccióne todas las afirmaciones correctas (de ser necesario consulte a la ayuda de la distribución Normal):
 
-    [*] dnorm(0) < dnorm(0, sd = 4) (el segundo comando corresponde a una "campana" más achatada / platicúrtica)
+    [*] dnorm(0) > dnorm(0, sd = 4) (el segundo comando corresponde a una "campana" más achatada / platicúrtica)
     Es correcto, ya que el desvío estándar (sigma) es mayor y la campana más ancha, por lo que el valor en 0 debe disminuir.
     [*] dnorm(0) > dnorm(0, mean = 2) (el segundo comando corresponde a una "campana" movida a la derecha)
     Correcto, al tener una mayor media (mu), el segundo valor no se encuentra en el máximo de la campana (que estaría en X = 2)
     [ ] dnorm(0) == dnorm(0, mean = 2) (ambas campanas tienen la misma altura)
     Incorrecto, al tener una mayor media (mu), el segundo valor no se encuentra en el máximo de la campana (que estaría en X = 2)
-    [ ] dnorm(3, mean = 3) > dnorm(0, sd = 2) (el segundo comando corresponde a una "campana" más fina / leptocúrtica)
-    c
+    [ ] dnorm(3, mean = 3) > dnorm(3, mean = 3, sd = 0.3) (el segundo comando corresponde a una "campana" más fina / leptocúrtica)
+    El primer comando expresa una campana más "ancha" y por lo tanto tendrá menor altura en el valor central. 
 
 # Distribuciones II
 
