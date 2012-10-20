@@ -21,8 +21,32 @@ notas <- data.frame(Parte = c(ejnum, 'Total (%)'),
 write.csv2(notas, file='notas.csv', row.names=FALSE)
 extras <- c('1.d', '1.f')
 oblg   <- sum(!(ejnum %in% extras))
-guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar',
+guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar', 'reload',
              'notas', 'codigo', 'corAll')
+
+### RELOAD
+
+reload <- function() {
+# Esta función sólo se puede usar trabajando desde el subdirectorio 
+# "Curso-R/ejercicios-de-programacion/rep-X/rep-X"
+
+# Uso:
+# (1)  modificar este archivo ('datos.R'), por ejemplo en uno de las funciones de corrección
+#      (e.g.: cor1.a).
+# (2)  load('datos')
+# (3)  reload()
+  rdir <- getwd()
+  on.exit(setwd(rdir))
+  setwd('..')
+  arch <- readLines('datos.R')
+  f <- grep('### REINICIAR', arch, useBytes = TRUE)[2]
+  arch <- arch[1:(f - 1)]
+  tmp <- tempfile()
+  writeLines(arch, tmp)
+  source(tmp)
+  unlink(tmp)
+  out <- file.copy('datos', rdir, overwrite = TRUE)
+}
 
 ### FUNCIONES Y DATOS AUXILIARES:
 
@@ -152,9 +176,10 @@ cor1.d <- function() {
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
-  arch2 <- gsub(' ', '', arch)
-  f <- grep('est<-', arch2)
-  arch[f] <- sub('est', 'est.foo', arch[f])
+#   arch2 <- gsub(' ', '', arch)
+#   f <- grep('est<-', arch2)
+#   arch[f] <- sub('est', 'est.foo', arch[f])
+  arch <- c(arch, "est.foo <- est")
   writeLines(arch, tmp)
 
   # Generación de datos
@@ -295,6 +320,8 @@ cor1.g <- function() {
   source(tmp, local=TRUE)
   unlink(tmp)
   usa.norm <- readLines('usa-norm.csv')
+  if(grepl("\"\";", usa.norm[1]))
+    usa.norm[1] <- sub("\"\";", "", usa.norm[1])
   usa.import <- read.table('usa-norm.csv', header = TRUE, sep = ";", dec = ",",
                            row.names = 1)
   if (ncol(usa.import) != ncol(usa.importX))
@@ -314,13 +341,17 @@ corAll <- list(cor1.a, cor1.b, cor1.c, cor1.d, cor1.e, cor1.f, cor1.g)
 
 ################################################################################
 
-save(list=guardar, file='datos')
+### GUARDAR TODO
+save(list = guardar, file = 'datos')
+
+
+### REINICIAR EL DIRECTORIO Y ZIP FILE
+
 borrar <- dir(rdir)
 borrar <- file.path(rdir, borrar)
-unlink(borrar, recursive=TRUE)
+unlink(borrar, recursive = TRUE)
 
-file.copy(esperados, rdir, recursive=TRUE)
+file.copy(esperados, rdir, recursive = TRUE)
 zipfile <- paste(rdir, 'zip', sep = '.')
 unlink(zipfile)
-# print(dir())
 zip(zipfile, paste(rdir, '/', sep=''))

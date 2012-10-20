@@ -1,0 +1,228 @@
+\documentclass[]{article}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifxetex
+  \usepackage{fontspec,xltxtra,xunicode}
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\else
+  \ifluatex
+    \usepackage{fontspec}
+    \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \else
+    \usepackage[utf8]{inputenc}
+  \fi
+\fi
+\usepackage{color}
+\usepackage{fancyvrb}
+\DefineShortVerb[commandchars=\\\{\}]{\|}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex,
+              colorlinks=true,
+              linkcolor=blue]{hyperref}
+\else
+  \usepackage[unicode=true,
+              colorlinks=true,
+              linkcolor=blue]{hyperref}
+\fi
+\hypersetup{breaklinks=true, pdfborder={0 0 0}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+
+
+\begin{document}
+
+\section{Parcial I}
+
+\paragraph{Curso IMSER 2012}
+
+\subsection{Instrucciones:}
+
+La carpeta comprimida ``parcial-I.zip'' tiene un script de R
+(``parcial.R'') en el cual usted deberá guardar todos los comandos del
+ejercicio, siguiendo la demarcación que se muestra en el archivo mismo.
+
+La hoja de cálculo llamada `datos.xls' contiene tres variables
+muestreadas. La primer variable son los tamaños corporales (en Kg) de 40
+competidores del último Mundial de Magic, 20 hombres y 20 mujeres. La
+segunda variable es el sexo de los mismos, codificados como 1 para
+mujeres y 2 para varones. La tercer variable es la altura de los
+participantes, en metros.
+
+Nota: los ejercicios del parcial son dependientes de los anteriores en
+el sentido de que utilizan objetos creados, pero no implica que no se
+puedan tratar de resolver independientemente.
+
+Una vez terminado el parcial usted deberá comprimir la carpeta y subirla
+al EVA en la
+\href{http://eva.universidad.edu.uy/mod/assignment/view.php?id=99264}{página
+correspondiente}. Nótese que debe contener al menos dos archivos:
+
+\begin{itemize}
+\item
+  ``parcial.R''\\
+\item
+  Un archivo de texto plano (.txt o .csv) con los datos de
+  ``datos.xls'', según lo indicado en la parte \textbf{a}.
+\end{itemize}
+\paragraph{a.}
+
+Importar la tabla de la hoja de cálculo a R; el objeto resultante debe
+ser una data.frame llamada \texttt{magic} y sus columnas deben llamarse
+\texttt{body.size}, \texttt{sex} y \texttt{height} (i.e.: los valores
+que R asigna por defecto).
+
+Debe guardarse en la carpeta del parcial el archivo de texto (.txt o
+.csv) utilizado para la importación.
+
+\paragraph{b.}
+
+Generar un vector aleatorio llamado \texttt{age}, compuesto por números
+enteros positivos entre 18 y 35 aprox. (este rango puede tener cierta
+flexibilidad). Nota: debe ser generado con una función creadora de
+valores aleatorios, y se deben permitir ocurrencias repetidas del mismo
+valor.
+
+\paragraph{c.}
+
+Agregar la variable \texttt{age} al data.frame \texttt{magic}.
+
+\paragraph{d.}
+
+La variable \texttt{sex} del data.frame presenta los valores 1 y 2.
+Transformar esta variable en factor. Luego modificar los nombres de los
+niveles del mismo a \texttt{"mujer"} y \texttt{"hombre"}
+(correspondientes a los valores originales 1 y 2 respectivamente).
+
+\paragraph{e.}
+
+Crear la variable factorial \texttt{agef} basada en \texttt{age} de
+forma tal que cuente con 3 niveles (dividiendo el rango en 3 franjas
+etarias de igual amplitud). Agregar dicha variable a la data.frame
+\texttt{magic}.
+
+\paragraph{f.}
+
+Nombrar a cada uno de los niveles de la variable \texttt{agef} (dentro
+de \texttt{magic}) como \texttt{"novatos"}, \texttt{"intermedios"},
+\texttt{"expertos"}, en ese orden.
+
+\paragraph{g.}
+
+Cambiar los nombres de las columnas del data.frame a \texttt{``peso''},
+\texttt{``sexo''}, \texttt{``altura''}, \texttt{``edad''} y
+\texttt{``edadf''}.
+
+\paragraph{h.}
+
+Graficar: peso en función de sexo. El gráfico debe ser un diagrama de
+cajas y tener las etiquetas ``Sexo'', ``Peso (Kg)'' en los ejes
+correspondientes, así como el título: ``Peso en función del sexo''.
+
+\paragraph{i.}
+
+Realizar un anova con la variable de respuesta \texttt{peso} y la
+variable explicativa \texttt{sexo}; guardar el resultado en el objeto
+\texttt{peso.sexo}.
+
+\paragraph{j.}
+
+Crear los objetos \texttt{peso.hombre} y \texttt{peso.mujer} con los
+valores esperados de peso para los sexos respectivos, según los
+resultados del modelo \texttt{peso.sexo} creado en el punto anterior
+(considere la interpretación de los coeficientes del anova dada en la
+lección correspondiente).
+
+\paragraph{k.}
+
+Graficar: $altura ^ 2$ (altura al cuadrado) en función del peso.
+
+\paragraph{l.}
+
+Realizar una regresión lineal entre estas dos variables ($altura ^ 2$
+\ensuremath{\sim} peso) sin intercepto. El modelo obtenido debe
+guardarse en el objeto \texttt{altura.peso}.
+
+\paragraph{m.}
+
+Realizar una regresión lineal entre estas dos variables ($altura ^ 2$
+\ensuremath{\sim} peso) sin intercepto, pero esta vez excluyendo a los
+outliers de peso (es decir, aquellos tales que peso \textgreater{} 120
+Kg). Guardar el modelo en el objeto \texttt{altura.peso2}.
+
+\paragraph{n.}
+
+Utilizando los coeficientes obtenidos en este segundo modelo, determine
+la altura esperada para la secuencia de pesos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <- }\KeywordTok{seq}\NormalTok{(}\DecValTok{40}\NormalTok{, }\DecValTok{120}\NormalTok{, }\DataTypeTok{by =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+Los valores de altura esperados se deben guardar en un objeto llamado
+\texttt{ae}.
+
+(Nótese que el modelo establece la relación del peso con la
+$altura ^ 2$, pero no con la altura per se).
+
+\paragraph{o.}
+
+Guardar en el objeto \texttt{r2} el valor del R cuadrado (no ajustado)
+del modelo (es decir, el coeficiente de determinación o ``proporción de
+varianza explicada'').
+
+\paragraph{p.}
+
+Agregar al último gráfico creado anteriormente las líneas
+correspondientes a ambas regresiones lineales, utilizando diferentes
+trazos y/o colores para diferenciarlas.
+
+\paragraph{q.}
+
+Agregar una línea vertical indicando el valor 120 en el eje del peso;
+utilice un estilo de línea diferente a los anteriores (con color y/o
+trazo diferente).
+
+\paragraph{r.}
+
+Superponer al mismo gráfico los puntos de los outliers en peso,
+utilizando un símbolo diferente (y opcionalmente, un color distinto), de
+forma tal que se puedan diferenciar a simple vista.
+
+\paragraph{s.}
+
+Agregar una última variable, llamada \texttt{IMC}, a la data.frame
+\texttt{magic}: el
+\href{http://es.wikipedia.org/wiki/\%C3\%8Dndice\_de\_masa\_corporal}{índice
+IMC} correspondiente a cada participante, calculado como:
+
+\[IMC = \frac{Peso (Kg)}{Altura ^ 2 (m)}\]
+
+\paragraph{t.}
+
+Exportar la data.frame \texttt{magic} a un archivo de texto plano (.txt
+o .csv), conteniendo todas las columnas agregadas y los encabezados,
+pero excluyendo los nombres de fila.
+
+\end{document}

@@ -9,7 +9,7 @@
 #===== Su código comienza aquí: =====#
 
 
-
+write.table(usaNorm, file = "usa-norm.csv", sep = ";", eol = "\n", dec = ",", row.names = TRUE, col.names = TRUE)
 
 #====== Aquí finaliza su código =====#
 
