@@ -1,3 +1,5 @@
+Contenidos:
+===========
 
 lecciones
 ---------
@@ -7,7 +9,7 @@ Scripts pensados para ser leidos en RStudio, de forma tal que el estudiante pued
 cuestionarios
 -------------
 
-Archivos markdown en los que se guardan las preguntas de los cuestionarios asociados a cada lección. En general se marcan las opciones correctas con [*].
+Archivos markdown en los que se guardan las preguntas de los cuestionarios asociados a cada lección. Pueden haber diferencias con los cuestionarios finales, lo ideal es actualizar el repositorio para que estas no existan.
 
 ejercicios-de-programacion
 --------------------------
@@ -25,6 +27,6 @@ misc
 Archivos misceláneos, incluyendo algunos de ejemplos, como tablas de datos, scripts de funcines, imágenes, etc...
 
 Licencia
---------
+========
 
 Ver el archivo LICENCIA por información de los autores y derechos de copia. El archivo [GNU-FDL](https://github.com/jumanbar/Curso-R/blob/master/GNU-FDL) tiene el texto de la licencia (en inglés).
