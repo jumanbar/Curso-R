@@ -118,7 +118,7 @@ Aquí la 'v' denota que es una línea vertical en el valor indicado. Usando la m
 
     abline(v=0, h=0, col='blue')
 
-Como nota final, es bueno saber que también existen funciones para hacer cálculos matemáticos sofisticados, como por ejemplo integrales. Supongamos que nos interesa calcular la integral del coseno en el intervalo [0, 90] grados (= [0, tau / 4]):
+Como nota final, es bueno saber que también existen funciones para hacer cálculos matemáticos sofisticados, como por ejemplo integrales. Supongamos que nos interesa calcular la integral del coseno en el intervalo `[0, 90]` grados (= `[0, tau / 4]`):
 
     integrate(cos, 0, tau / 4)
 

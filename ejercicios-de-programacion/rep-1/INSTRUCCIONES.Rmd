@@ -54,7 +54,7 @@ y además podrá en todo momento verificar su puntaje con la función `verNotas(
 
 Si bien animamos a que los estudiantes trabajen en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos importante que los estudiantes no miren el código creado por sus compañeros ya que esto supone un sabotaje a su propio proceso de aprendizaje. Como profesores estamos comprometidos a pedir tareas para las cuales hayamos dado las herramientas correctas y las explicaciones adecuadas como para que todos puedan encontrar su propio camino para resolver los ejercicios.
 
-___
+____
 
 
 1. Geometría
@@ -138,7 +138,7 @@ abline(v=cat.ad[i], col='red', lwd=2)
 
 La definición de distancia euclidiana se basa en el teorema de pitágoras. Para dos puntos en un espacio bidimensional (un plano) la distancia entre ambos se puede calcular a través de las coordenadas cartesianas de los mismos, tal como lo muestra la Figura 1.
 
-___
+____
 
 ```{r echo=FALSE, fig.width=7, fig.height=7}
 a <- c(2, 6)
@@ -160,7 +160,7 @@ text(mean(a) - .2, mean(b) + .2, labels='h', cex=1.5)
 **Figura 1:** Los puntos A, B y C de coordenadas $(x_A, y_A)$, $(x_B, y_B)$ y $(x_B, y_A)$ pueden formar un triángulo rectángulo como muestra la figura, cuyos catetos tienen los valores indicados entre paréntesis. Por lo tanto, la distancia entre A y B es la hipotenusa del triángulo y se puede hallar con la fórmula de Pitágoras.  
 Nota: puede reproducir este gráfico con la función `plotTriang` contenida en el script "plotTriang.R"; además lo invitamos a que examine dicho código si le interesa entender cómo se crea tal figura.
 
-___
+____
 
 En el presente ejercicio vamos a utilizar este concepto, así como las recién aprendidas funciones `which` y `which.max`, y también `which.min`. La idea es encontrar distancias entre puntos y determinar distancias mínimas y máximas. En el archivo "dist.R" el código inicial (8 líneas) debería reproducir un gráfico muy similar a la **Figura 2**.
 
