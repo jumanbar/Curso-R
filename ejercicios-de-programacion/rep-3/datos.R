@@ -21,16 +21,40 @@ notas <- data.frame(Parte = c(ejnum, 'Total (%)'),
 write.csv2(notas, file='notas.csv', row.names=FALSE)
 extras <- c('1.d', '1.f')
 oblg   <- sum(!(ejnum %in% extras))
-guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar',
+guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar', 'reload',
              'notas', 'codigo', 'corAll')
+
+### RELOAD
+
+reload <- function() {
+# Esta función sólo se puede usar trabajando desde el subdirectorio 
+# "Curso-R/ejercicios-de-programacion/rep-X/rep-X"
+
+# Uso:
+# (1)  modificar este archivo ('datos.R'), por ejemplo en uno de las funciones de corrección
+#      (e.g.: cor1.a).
+# (2)  load('datos')
+# (3)  reload()
+  rdir <- getwd()
+  on.exit(setwd(rdir))
+  setwd('..')
+  arch <- readLines('datos.R')
+  f <- grep('### REINICIAR', arch, useBytes = TRUE)[2]
+  arch <- arch[1:(f - 1)]
+  tmp <- tempfile()
+  writeLines(arch, tmp)
+  source(tmp)
+  unlink(tmp)
+  out <- file.copy('datos', rdir, overwrite = TRUE)
+}
 
 ### FUNCIONES Y DATOS AUXILIARES:
 
+source('make-aux.R')
 load('aux')
 guardar <- c(guardar, 'usa.check', 'usa.inc', 'usa2', 'usa3', 'usaNorm', 'outAnalf')
 
 .usainc <- function() {
-#   browser()
   load('datos')
   n <- is.na(usa.inc$Analf)
   usa.inc$Analf[n] <- outAnalf + sample(c(-0.1, 0.1), sum(n), replace = TRUE)
@@ -57,18 +81,18 @@ cor1.a <- function() {
   
   # Evaluación de objetos: usa
   source(tmp, local = TRUE)
-  if (!identical(dim(usa), dim(usa.chek)))
+  if (!identical(dim(usa), dim(usa.check)))
     stop("las dimensiones de usa no son correctas", call. = FALSE)
-  clases1 <- sapply(usa, class)
-  clases2 <- sapply(usa.check, class)
-  if (!identical(clases1, clases2))
-    stop("las clases de las columnas de usa no son correctas", call. = FALSE)
   if (!identical(colnames(usa), colnames(usa.check)))
     stop("Los nombres de las columnas de usa no son los correctos", call. = FALSE)
   if (!identical(rownames(usa), rownames(usa.check)))
     stop("Los nombres de las filas de usa no son los correctos", call. = FALSE)
   if (!identical(usa, usa.check))
     stop("usa no es idéntica al objeto esperado", call. = FALSE)
+  clases1 <- sapply(usa, class)
+  clases2 <- sapply(usa.check, class)
+  if (!identical(clases1, clases2))
+    stop("las clases de las columnas de usa no son correctas", call. = FALSE)
   unlink(tmp)  
   TRUE
 }
@@ -129,22 +153,17 @@ cor1.c <- function() {
   # Evaluación de objetos: usa3
   source(tmp, local = TRUE)
   unlink(tmp)
-  f0 <- is.data.frame(usa3)
-  if (!f0)
+  if (!is.data.frame(usa3))
     stop("usa3 no es 'data.frame'", call. = FALSE)
-  f1 <- identical(colnames(usa3), colnames(usa.check))
-  if (!f1)
+  if (!identical(colnames(usa3), colnames(usa.check)))
     stop("Los nombres de las columnas de usa3 no son los correctos", call. = FALSE)
-  f2 <- identical(rownames(usa3), rownames(usaX))
-  if (!f2)
+  if (!identical(rownames(usa3), rownames(usaX)))
     stop("Los nombres de las filas de usa3 no son los correctos", call. = FALSE)
-  f3 <- all(!is.na(usa3$Ingresos))
-  if (!f3)
+  if (!all(!is.na(usa3$Ingresos)))
     stop("El usa3 resultante contiene NA's en la columna 'Ingresos'", call. = FALSE)
-  f4 <- all(usa3 == usaX, na.rm = TRUE)
-  if (!f4)
+  if (!all(usa3 == usaX, na.rm = TRUE))
     stop("El usa3 resultante no tiene los valores correctos", call. = FALSE)
-  all(f0, f1, f2, f3, f4)
+  TRUE
 }
 
 ## Ej. 2
@@ -152,20 +171,20 @@ cor1.c <- function() {
 cor1.d <- function() {
   # Cargar datos
   load('datos')
-
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('est.R')
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
-  arch2 <- gsub(' ', '', arch)
-  f <- grep('est<-', arch2)
-  arch[f] <- sub('est', 'est.foo', arch[f])
+#   arch2 <- gsub(' ', '', arch)
+#   f <- grep('est<-', arch2)
+#   arch[f] <- sub('est', 'est.foo', arch[f])
+  arch <- c(arch, "est.foo <- est")
   writeLines(arch, tmp)
 
   # Generación de datos
   estX <- function(x)
-    (x - mean(x, na.rm = T)) / sd(x, na.rm = T)
+    (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
 
   # Evaluación de objetos: ctg y conteo
   source(tmp, local=TRUE)
@@ -174,13 +193,11 @@ cor1.d <- function() {
   x[sample(100, 3)] <- NA
   o1 <- est.foo(x)
   o2 <- estX(x)
-  f0 <- sum(is.na(o1)) == sum(is.na(x))
-  if (!f0)
+  if (!sum(is.na(o1)) == sum(is.na(x)))
     stop("La función est no maneja correctamente los valores NA", call. = FALSE)
-  f1 <- identical(o1, o2)
-  if (!f1)
+  if (!identical(o1, o2))
     stop("La salida de la función est no es idéntica a la esperada", call. = FALSE)
-  all(f0, f1)
+  TRUE
 }
 
 cor1.e <- function() {
@@ -194,10 +211,15 @@ cor1.e <- function() {
   tmp <- tempfile()
   writeLines(arch, tmp)
   arch2 <- gsub(' ', '', arch)
+  app <- grep('apply', arch2)
+  arch[app] <- sub('est', 'estX', arch[app])
+  writeLines(arch, tmp)
   
   # Generación de datos
+  estX <- function(x)
+    (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
   datosNumericosX <- usa3[-c(1, 10)]
-  datosTransX <- apply(datosNumericosX, 2, est)
+  datosTransX <- apply(datosNumericosX, 2, estX)
   datosTransX <- as.data.frame(datosTransX)
   usaNormX <- cbind(usa3['Abrev'], datosTransX, usa3['Division'])
 
@@ -210,20 +232,25 @@ cor1.e <- function() {
     stop("datosNumericos no coincide con los valores de las columnas numéricas de usa3",
          call. = FALSE)
   }
-  if (!any(grepl('datosTrans<-apply\\(datosNumericos,2,est\\)', arch2)))
-    stop("No parece que haya usado la función apply como se indica en la letra", call. = FALSE)
   if (!all(datosTransX == datosTrans, na.rm = TRUE)) {
-    stop("Los valores de datosTrans no coinciden con los valores esperados",
+    stop("los valores de datosTrans no coinciden con los valores esperados",
          call. = FALSE)
   }
+  rm(datosTrans)
+  txt <- arch[app]
+  txt <- sub('datosNumericos', 'datosNumericosX', txt)
+  eval(parse(text = txt))
+  datosTransX <- apply(datosNumericosX, 2, estX)
+  if (!identical(datosTrans, datosTransX))
+    stop("no parece que haya usado la función apply como se indica en la letra", call. = FALSE)
   if (!is.data.frame(usaNorm))
     stop("usaNorm no es de clase data.frame", call. = FALSE)
   if (!identical(colnames(usaNorm), colnames(usaNormX)))
-    stop("Los nombres de las columnas de usaNorm no son los correctos", call. = FALSE)
+    stop("los nombres de las columnas de usaNorm no son los correctos", call. = FALSE)
   if (!identical(rownames(usaNorm), rownames(usaNormX)))
-    stop("Los nombres de las filas de usaNorm no son los correctos", call. = FALSE)
+    stop("los nombres de las filas de usaNorm no son los correctos", call. = FALSE)
   if (!all(usaNorm == usaNormX, na.rm = TRUE))
-    stop("Los valores de usaNorm no coinciden con los esperados", call. = FALSE)
+    stop("los valores de usaNorm no coinciden con los esperados", call. = FALSE)
   TRUE
 }
 
@@ -293,6 +320,8 @@ cor1.g <- function() {
   source(tmp, local=TRUE)
   unlink(tmp)
   usa.norm <- readLines('usa-norm.csv')
+  if(grepl("\"\";", usa.norm[1]))
+    usa.norm[1] <- sub("\"\";", "", usa.norm[1])
   usa.import <- read.table('usa-norm.csv', header = TRUE, sep = ";", dec = ",",
                            row.names = 1)
   if (ncol(usa.import) != ncol(usa.importX))
@@ -307,14 +336,22 @@ cor1.g <- function() {
     stop("El archivo usa-norm.csv no es idéntico al esperado", call. = FALSE)
   TRUE
 }
-browser()
 
 corAll <- list(cor1.a, cor1.b, cor1.c, cor1.d, cor1.e, cor1.f, cor1.g)
 
 ################################################################################
 
-save(list=guardar, file='datos')
-unlink(rdir, recursive=TRUE)
-dir.create(rdir)
-file.copy(esperados, rdir, recursive=TRUE)
-zip(paste(rdir, 'zip', sep='.'), paste(rdir, '/', sep=''))
+### GUARDAR TODO
+save(list = guardar, file = 'datos')
+
+
+### REINICIAR EL DIRECTORIO Y ZIP FILE
+
+borrar <- dir(rdir)
+borrar <- file.path(rdir, borrar)
+unlink(borrar, recursive = TRUE)
+
+file.copy(esperados, rdir, recursive = TRUE)
+zipfile <- paste(rdir, 'zip', sep = '.')
+unlink(zipfile)
+zip(zipfile, paste(rdir, '/', sep=''))

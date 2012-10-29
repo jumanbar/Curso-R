@@ -1,0 +1,68 @@
+
+Ambientes
+---------
+
+* Qué es un ambiente (frame + enclosure/pointer)  
+* Relación jerárquica entre ambientes (tipo árbol)  
+* Ambiente x defecto, ambiente base `.GlobalEnv`  
+
+Funciones
+---------
+
+### Componentes:
+
+1. Formals (formal argument list)
+2. Body
+3. Environment (aquel en el que fue definida la función)
+
+Anatomía:
+
+```{r, eval = FALSE}
+w <- 24 # No presten atención a esto aún...
+f <- function(a, b = 5, ...) {
+   # <instrucciones varias>
+   x <- a * b + w
+   x / 2
+}
+```
+### 1. Formals
+
+Los argumentos de la función. En el ejemplo anterior son los "parámetros" `a`, `b` y `...`. De hecho podemos "pedir" estos argumentos con la función `formals`:
+
+```{r, eval = FALSE}
+formals(f)
+```
+
+### 2. Body
+
+El conjunto de lo que son las instrucciones de la función. En el ejemplo que hemos hecho:
+
+```{r, eval = FALSE}
+body(f)
+```
+
+### 3. Ambiente de la función
+
+La función tiene "asignado" como "parental" el ambiente en el cual se definió la función (usualmente el `.GlobalEnv`). Esto afecta directamente lo que la función puede o no puede hacer. Lo primero que hay que saber, es que al instante en que se ejecuta una función, se crea de forma temporal un nuevo ambiente, en el cual se ejecutan las instrucciones del cuerpo de la misma. Es como un "ambiente paralelo" al de nuestra sesión. El objetivo de esta separación, es evitar siempre que sea posible que una función modifique alguna variable de la propia sesión. Es decir, pase lo que pase dentro de la función, no se van a afectar los objetos que se encuentran en nuestra área de trabajo.
+Veamos un ejemplo:
+
+```{r, eval = FALSE}
+x <- 1:5
+f <- function(a, b = 5) {
+  x <- a * b + w
+  x / 2
+}
+f(3, 4)
+x
+```
+
+Si esto puede ser confuso (aunque en realidad creo que no debería serlo), más confuso aún es el territorio de lo que la función puede "usar" (pero no modificar...). Veamos la lista de objetos visibles para una función de R:
+  - objetos definidos en los argumentos  
+  - objetos creados en el cuerpo de la funcion (hasta acá son los pertenenecientes al ambiente de la propia función).
+  - objetos existentes en ambientes "parentales" (todos los "antepasados").
+
+De hecho estuvimos utilizando esta propiedad todo el tiempo. Nótese que `w` no es parte de los argumentos, y no está definido en el cuerpo de `f`. El `w` puede ser usado para calcular `x` (el que se encuentra dentro del cuerpo de `f` no "el otro"). De hecho si cambio `w` el resultado de evaluar `f` será distinto ahora ... (ver ej.).
+
+
+En el próximo video hablaré en detalle de lo que es la "salida" de las funciones (es un video rápido y sencillo).
+

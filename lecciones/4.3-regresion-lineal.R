@@ -22,8 +22,10 @@
 
 
 # La regresión lineal es un modelo estadístico que relaciona funcionalmente dos 
-# varibales de forma lineal. Su versión más simple contiene una variable Y o de 
-# respuesta y una variable X o explicativa.
+# varibales de forma lineal (una recta o, en su versión generalizada, un plano o
+# un hyperplano). Su versión más simple contiene una variable Y o de respuesta y
+# una variable X o explicativa (a veces llamadas también dependiente e 
+# independiente)
 # A TENER EN CUENTA: Que exista una relación funcional significativa entre ambas 
 # variables no implica una causalidad, pero la puede sugerir.
 
@@ -150,7 +152,17 @@ summary(lm1)
 # También es importante observar cual es la significancia de nuestros parámetros y modelo. Para eso nos informamos con el p-valor. 
 # Si este es menor a 0.05, estamos en condiciones de rechazar la hipótesis nula del modelo que dice que no existe una relación lineal entre X e Y (pendiente = 0) y aceptar nuestro modelo y parámetros significativos, no como verdaderos sino como alternativos a la hipótesis nula.
 # Por último nos entrega el valor del Test F (Fisher) junto con los grado de libertad. El valor de F observado se obtiene de la relación entre la media de la suma de los cuadrados de los valores observados y la media de la suma de cuadrados de los errores estandard. Este valor obtenido es comparado con la distribución F teórica y se utiliza una regla de desición para rechazar o no la hipótesis nula. Dicha regla es rechazar la hipótesis nula si mi valor de F observado es mayor al valor de F teórico para n - 2 grados de libertad y un alfa=0.05.
-# Los grados de libertad se pueden calcular teniendo en cuenta cuantos valores presenta mi variable y sustrayendole la cantidad de parametros que estoy evaluando en mi modelo. En este ejemplo F 1,48 = 89,47, la cantidad de parámetros es 2, a y b, asi que son n - 2 la cantidad de grados de libertad. 
+# Los grados de libertad se pueden calcular teniendo en cuenta cuantos valores presenta mi variable y sustrayendole la cantidad de parametros que estoy evaluando en mi modelo. En este ejemplo F 1,48 = 89,47, la cantidad de parámetros es 2, a y b, asi que son n - 2 la cantidad de grados de libertad.
+
+
+# Nota: la función summary también devuelve un objeto tipo lista el cual puede ser de utilidad para utilizar a posteriori. Por ejemplo:
+slm1 <- summary(lm1)
+str(slm10
+
+# Esto permite acceder a varios valores, como el R^2 y el R^2 ajustado, usando el operador '$' o los dobles corchetes:
+slm1$r.squared
+slm1$adj.r.squared
+slm1[[9]]
 
 # A tener en cuenta...
 # En ningún momnento hemos evaluado los supuestos del modelo lineal general como ser la normalidad de los datos, la homogeneidad de varianza o la distribución de los residuales.

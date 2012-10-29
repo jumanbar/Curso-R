@@ -88,7 +88,6 @@ write.table(usaNorm, file = 'usa-norm.csv', sep = ';', dec = ',')
 # Usar otra matriz para sustituir los valores NA de la columna Analf
 
 # s1 <- which(is.na(b$Illiteracy))
-# usa.inc <- read.csv('usa-incompleto.csv', row.names = 1)
 # usa.inc[,1] <- round(usa.inc[,1] + rnorm(nrow(usa.inc), sd = 0.13), 1)
 # usa.inc[,2] <- round(usa.inc[,2] + rnorm(nrow(usa.inc)), 1)
 # 
@@ -114,7 +113,7 @@ est <- function(x) .z(x)
 save(.z, est, file = 'est.rda')
 if ('Ing.Cat' %in% names(usa3))
   usa3 <- usa3[- 11]
-load('usa.inc.rda')
+usa.inc <- read.csv('usa-extra.csv', row.names = 1)
 save(usa.check, usa.inc, usa2, usa3, usaNorm, outAnalf,
      file = '~/projects/Curso-R/ejercicios-de-programacion/rep-3/aux')
 
