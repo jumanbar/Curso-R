@@ -1,7 +1,6 @@
 # Instrucciones: crear una función para estandarizar valores de vectores 
-# numéricos. Dicha función debe llamarse "est" y tiene que tomar un único 
-# argumento (un vector numeric), para devolver un vector numérico con los 
-# valores estandarizados de dicho argumento.
+# numéricos. Dicha función debe llamarse "est" y tiene que devolver un vector 
+# numérico con los valores estandarizados. 
 # est*: función que toma un vector cualquiera y estandariza sus valores, 
 #   según la fórmula expuesta en el repartido.
 
