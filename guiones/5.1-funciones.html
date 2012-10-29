@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+</head>
+<body>
+<h2 id="ambientes">Ambientes</h2>
+<ul>
+<li>Qué es un ambiente (frame + enclosure/pointer)<br /></li>
+<li>Relación jerárquica entre ambientes (tipo árbol)<br /></li>
+<li>Ambiente x defecto, ambiente base <code>.GlobalEnv</code></li>
+</ul>
+<h2 id="funciones">Funciones</h2>
+<h3 id="componentes">Componentes:</h3>
+<ol style="list-style-type: decimal">
+<li>Formals (formal argument list)</li>
+<li>Body</li>
+<li>Environment (aquel en el que fue definida la función)</li>
+</ol>
+<p>Anatomía:</p>
+<p><code>{r, eval = FALSE} w &lt;- 24 # No presten atención a esto aún... f &lt;- function(a, b = 5, ...) {    # &lt;instrucciones varias&gt;    x &lt;- a * b + w    x / 2 }</code> ### 1. Formals</p>
+<p>Los argumentos de la función. En el ejemplo anterior son los &quot;parámetros&quot; <code>a</code>, <code>b</code> y <code>...</code>. De hecho podemos &quot;pedir&quot; estos argumentos con la función <code>formals</code>:</p>
+<p><code>{r, eval = FALSE} formals(f)</code></p>
+<h3 id="body">2. Body</h3>
+<p>El conjunto de lo que son las instrucciones de la función. En el ejemplo que hemos hecho:</p>
+<p><code>{r, eval = FALSE} body(f)</code></p>
+<h3 id="ambiente-de-la-función">3. Ambiente de la función</h3>
+<p>La función tiene &quot;asignado&quot; como &quot;parental&quot; el ambiente en el cual se definió la función (usualmente el <code>.GlobalEnv</code>). Esto afecta directamente lo que la función puede o no puede hacer. Lo primero que hay que saber, es que al instante en que se ejecuta una función, se crea de forma temporal un nuevo ambiente, en el cual se ejecutan las instrucciones del cuerpo de la misma. Es como un &quot;ambiente paralelo&quot; al de nuestra sesión. El objetivo de esta separación, es evitar siempre que sea posible que una función modifique alguna variable de la propia sesión. Es decir, pase lo que pase dentro de la función, no se van a afectar los objetos que se encuentran en nuestra área de trabajo. Veamos un ejemplo:</p>
+<p><code>{r, eval = FALSE} x &lt;- 1:5 f &lt;- function(a, b = 5) {   x &lt;- a * b + w   x / 2 } f(3, 4) x</code></p>
+<p>Si esto puede ser confuso (aunque en realidad creo que no debería serlo), más confuso aún es el territorio de lo que la función puede &quot;usar&quot; (pero no modificar...). Veamos la lista de objetos visibles para una función de R: - objetos definidos en los argumentos<br /> - objetos creados en el cuerpo de la funcion (hasta acá son los pertenenecientes al ambiente de la propia función). - objetos existentes en ambientes &quot;parentales&quot; (todos los &quot;antepasados&quot;).</p>
+<p>De hecho estuvimos utilizando esta propiedad todo el tiempo. Nótese que <code>w</code> no es parte de los argumentos, y no está definido en el cuerpo de <code>f</code>. El <code>w</code> puede ser usado para calcular <code>x</code> (el que se encuentra dentro del cuerpo de <code>f</code> no &quot;el otro&quot;). De hecho si cambio <code>w</code> el resultado de evaluar <code>f</code> será distinto ahora ... (ver ej.).</p>
+<p>En el próximo video hablaré en detalle de lo que es la &quot;salida&quot; de las funciones (es un video rápido y sencillo).</p>
+</body>
+</html>
