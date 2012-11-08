@@ -9,7 +9,7 @@ if (!exists('est')) {
 }
 
 # Objetos:
-# datosNumericos: matriz o data.frame con las columnas de usa3 de clase 
+# datosNumericos: matriz o data.frame con las clumnas de usa3 de clase 
 #   numeric. Nótese que si usted ha completado los ejercicios anteriores, no 
 #   todas las variables de dicho objeto son de esta clase.
 # datosTrans*: variables numéricas de usa3 transformadas con la función est. 

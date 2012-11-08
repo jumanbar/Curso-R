@@ -12,7 +12,7 @@
 #   'evaluar()', usando valores aleatorios.
 #===== Su código comienza aquí: =====#
 
-usa2 <- usa # usa2 es una copia de usa, para mantener la data.frame usa incambiada...
+usa2 <- usa # Para mantener la data.frame usa incambiada...
 
 #====== Aquí finaliza su código =====#
 
