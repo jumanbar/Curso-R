@@ -1,0 +1,15 @@
+
+Motivos
+-------
+
+Según la lección 5.1, los principales motivos para crear funciones son:
+
+    [*] Compartimentación (división en módulos pequeños; economía de líneas) y generalización de tareas (de lo específico a lo genérico).
+    (Correcto).
+    [ ] Compartimentación (división en varios módulos) y la capacidad de repetir una tarea tantas veces como se quiera.
+    (La repetición de tareas no necesita de la creación de funciones).
+    [ ] Acumular muchas tareas diferentes dentro de un mismo comando de forma de tener un "todo en uno"; generalización de tareas (de lo específico a lo genérico).
+    (Si bien las funciones están compuestas por una importante combinación de "tareas" (comandos), en general es deseable que respondan a una tarea en particular y que sean buenas en ello).
+
+
+

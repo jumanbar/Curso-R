@@ -2,6 +2,6 @@
 *.Rhistory
 *.rda
 Curso-R.Rproj
-apuntes*
+apuntes.*
 .Rproj.user
 .Rprofile
