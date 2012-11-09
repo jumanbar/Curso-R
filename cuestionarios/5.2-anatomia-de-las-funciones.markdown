@@ -30,10 +30,10 @@ Seleccione el ambientes correspondiente a cada una de las funciones utilizadas e
 
 Utilizando el script de la función 'matriz' eloja cual de las siguientes opciones es la correcta
 
-[ ] Si llamo a la función 'rpois' R va a mirar el ambiente parental
-[x] Lo que ocurre en el ambiente de la funcion no afecta al ambiente parental
-[ ] Los objetos que estan definidos por fuera del ambiente de mi función pero que son necesarios para la misma deben ser definidos dentro de mi función nuevamente
-[ ] Los objetos de mi función pueden ser llamados en el R poruqe forman parte del Worksapce del mismo
+    [ ] Si llamo a la función 'rpois' R va a mirar el ambiente parental
+    [x] Lo que ocurre en el ambiente de la funcion no afecta al ambiente parental
+    [ ] Los objetos que estan definidos por fuera del ambiente de mi función pero que son necesarios para la misma deben ser definidos dentro de mi función nuevamente
+    [ ] Los objetos de mi función pueden ser llamados en el R poruqe forman parte del Worksapce del mismo
 
 
 
