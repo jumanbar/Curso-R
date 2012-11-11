@@ -26,6 +26,7 @@ misc
 
 Archivos misceláneos, incluyendo algunos de ejemplos, como tablas de datos, scripts de funcines, imágenes, etc...
 
+
 Licencia
 ========
 

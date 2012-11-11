@@ -157,7 +157,7 @@ print(x2)
 
 # Volviendo a cargar el archivo y ejecutando la función, vamos a ver lo
 # siguiente:
-source('')
+source('davuelta.R')
 davuelta(x)
 # x1:
 # [1] 1 2 3
@@ -165,11 +165,11 @@ davuelta(x)
 # [1] 3 4 5 6
 # [1] 3 4 5 6 1 2 3
 
-# Lo que estamos viendo es justamente los vectores x1, x2 y la salida de la
-# función tal como está definida en este momento. Se puede notar que el
-# vector que no es lo esperado es x2, ya que tiene cuatro elementos, siendo el
-# primero (3) el que sobra. Esto nos indica que el error debe estar en la
-# construcción de x2.
+# Lo que estamos viendo es justamente los vectores x1, x2 y la salida (en la 
+# última línea) de la función tal como está definida en este momento. Se puede 
+# notar que el vector que no es lo esperado es x2, ya que tiene cuatro 
+# elementos, siendo el primero (3) el que sobra. Esto nos indica que el error 
+# debe estar en la construcción de x2.
 
 # Hasta aquí llegamos con la estrategia de imprimir en la consola. Como se
 # puede ver, este método sólo nos puede decir el resultado de pasos
