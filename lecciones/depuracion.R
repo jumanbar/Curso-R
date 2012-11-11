@@ -302,7 +302,7 @@ davuelta(x)
 # Qué ocurrió?
 # La longitud de out es 7, mayor que len que tiene 6 elementos, por lo tanto
 # se cumplió la condición dentro del paréntesis del "if". Esto permitió que
-# se ejecutara el comando "broser()", cuyo efecto es meternos dentro de la
+# se ejecutara el comando "browser()", cuyo efecto es meternos dentro de la
 # función, de forma similiar a lo que hace "debug", pero esta vez no estamos
 # al inicio, si no en el momento preciso en que el comando es ejecutado. Esto
 # quiere decir que todos los pasos anteriores de la función ya se hicieron, lo
@@ -345,3 +345,4 @@ davuelta(letters[1:6]) # con caracteres debería andar también
 # obvias. Es bueno recordar que existen y saber cómo funcionan, ya que muchas
 # veces un error sencillo nos puede estar complicando la vida mucho rato y no
 # perdemos demasiado tiempo buscándolo si conocemos las herramientas adecuadas.
+
