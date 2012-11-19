@@ -227,11 +227,13 @@ cor3.b <- function() {
   r <- rnorm(1, sd = 30)
   source('radio.R', local = TRUE)
   p1 <- capture.output(out1 <- radio(r))
+  p1 <- gsub(' ', '', p1)
   p2 <- capture.output(out2 <- rad(r))
-  if (!identical(p1, p2))
-    stop("¡el script 'radio.R' aún tiene errores!", call. = FALSE)
+  p2 <- gsub(' ', '', p2)
+  if (!all(p1 == p2))
+    stop("el mensaje que 'radio' imprime en la consola no coincide con el esperado.", call. = FALSE)
   if (!identical(out1, out2))
-    stop("¡el script 'radio.R' aún tiene errores (en el objeto de salida)!", call. = FALSE)
+    stop("el objeto de salida ('salida') es distinto al esperado.", call. = FALSE)
   TRUE
 }
 
