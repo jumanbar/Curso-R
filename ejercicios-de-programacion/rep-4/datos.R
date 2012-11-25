@@ -238,6 +238,8 @@ cor3.b <- function() {
 }
 
 cor3.c <- function() {
+  # ARREGLAR PARA 2013: LA FUNCIÓN NO EVALÚA SI SE PRODUCE UN GRÁFICO O NO... (ES DECIR,
+  # IGNORA EL ERROR DE LA LÍNEA 34 ("!"ver debe cambiarse por "ver"
   # Cargar datos
   load('datos')
   
