@@ -6,11 +6,12 @@ La siguiente función llamada 'matiz' crea una matriz, la cual es multiplicada p
     A <- rpois(1, 15)
     
     matriz <- function(n, nrow, ncol){
-      
+     
       mat_orig <- matrix(n, nrow, ncol)
       mat_inter <- A * mat_orig
       mat_fin <- t(mat_inter)
       mat_fin
+      
     }
 
 

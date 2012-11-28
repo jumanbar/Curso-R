@@ -1,0 +1,61 @@
+# Crecimiento exponencial en tiempo continuo
+
+Escoja cual de las siguientes funciones presentan errores:
+  
+  
+  I
+    exponencial <- function(t=1:20, r=0.02){
+      
+      N <- numeric(20)
+      N[1] <- 20
+      
+      for(i in t){
+        
+        N[i+1] <- N[i] * exp(r * t[i])
+      }
+      print(N)
+    }
+
+
+  II
+    exponencial <- function(t=1:20, r=0.02){
+    
+       for(i in t){
+         
+         N <- numeric(20)
+         N[1] <- 20
+         N[i+1] <- N[i] * exp(r * t[i])
+       }
+       print(N)
+    }
+
+El vector N debe iniciarse fuera del loop, para evitar reinicios en el ciclo del loop.
+
+
+  III
+    exponencial <- function(t=1:20, r=0.02){
+      
+      N <- numeric(20)
+      N[1] <- 20
+      
+      for(i in t){
+        N[i] <- N[i-1] * exp(r * t[i-1])
+      }
+      print(N)
+    }
+    
+Rango de i incorrecto. El elemnto i debe comenzar en la segunda posición del vector 't' debido a que este presenta una identación de i-1. Si este comenzara en 1,el resuktado daría cero, no existiendo dicha posición en el vector.
+
+
+  IV
+    exponencial <- function(t=2:20, r=0.02){
+      
+      N <- numeric(20)
+        
+      for(i in t){
+        N[1] <- 20
+        N[i] <- N[i-1] * exp(r * t[i-1])
+      }
+      print(N)
+    }
+
