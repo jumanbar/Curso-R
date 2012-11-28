@@ -3,7 +3,7 @@ Ejercicios de programación III: Trabajo con datos
 
 ### [IMSER 2012]
 
-___
+- - -
 
 Archivos incluidos:
 -------------------
@@ -60,7 +60,7 @@ Una vez terminados y guardados los archivos de los ejercicios del repartido, ust
 Si bien animamos a que los estudiantes trabajen en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos importante que los estudiantes no miren el código creado por sus compañeros ya que esto supone un sabotaje a su propio proceso de aprendizaje. Como profesores estamos comprometidos a pedir tareas para las cuales hayamos dado las herramientas correctas y las explicaciones adecuadas como para que todos puedan encontrar su propio camino para resolver los ejercicios.
 
 
-___
+- - -
 
 
 1. Datos de EEUU

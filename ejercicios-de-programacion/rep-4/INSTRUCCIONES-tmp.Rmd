@@ -16,11 +16,8 @@ El [archivo](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programac
 * **` radio.R `**
 * **` distancias.R `**
 
-Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modificados** para que el método de calificación automático funcione correctamente: 
+Adicionalmente se incluyen los siguientes archivos, los cuales no son para modificar: 
 
-* ` datos `
-* ` evaluar `
-* ` notas.csv `
 * ` edu.data.rda `
 * ` HandbookSpanish.pdf `
 * ` INSTRUCCIONES.pdf `
@@ -52,6 +49,7 @@ y además podrá en todo momento verificar su puntaje con la función `verNotas(
 ### Al finalizar
 
 Una vez terminados y guardados los archivos de los ejercicios del repartido, usted deberá ejecutar `evaluar()` y seleccionar la última opción ("Todos") y luego subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-1”, a la [sección de entregas](http://eva.universidad.edu.uy/mod/assignment/view.php?id=95125) de la portada del curso en la plataforma EVA. Este archivo se podrá reemplazar con uno más nuevo, en caso de que desee corregir algún error; en caso de querer que el archivo sea corregido antes de la fecha de entrega, puede cambiarle el nombre a "datos-finalizado", pero en ese caso la nota no se cambiará de ahí en adelante.
+
 
 ### Código de Honor
 
@@ -171,9 +169,9 @@ función, pero para la tarea es opcional):
 ```{r, echo = FALSE}
 source('correctos/educacion.R')
 ```
-```{r, fig.cap = 'regresión de TA en función de PC (salida gráfica opcional de la función educacion)'}
+```{r}
 load('edu.data.rda')
-x <- educacion(edu.data, 1:5, 6:10, 11)
+x <- educacion(edu.data)
 x$coeficientes
 x$p.valor
 x$r2
@@ -258,7 +256,54 @@ El objetivo de este ejercicio es arreglar el código de la función contenida en
 Script: distancias.R
 
 ```{r, echo = FALSE}
-source('correctos/distancias.R')
+distancias <- function(pnt, p = c(0, 0), ver = TRUE) {
+  # Calclula las distancias desde un punto "central" p a un conjunto de puntos
+  # en el plano, cuyas coordenadas se encuentran en la matriz pnt. La opción ver
+  # indica si se quieren graficar los puntos y las distancias.
+  # El algoritmo para calcular distancias está basado este artículo:
+  #  http://www.johndcook.com/blog/2010/06/02/whats-so-hard-about-finding-a-hypotenuse/
+
+  # Control: pnt debe tener el formato correcto:
+  if (!(class(pnt) %in% c('data.frame', 'matrix')) || !is.numeric(pnt) || ncol(pnt) != 2)
+    stop('El objeto pnt no tiene el formato adecuado')
+  # Control: objeto p
+  if (!is.numeric(p) || length(p) != 2)
+    stop('El objeto p no es numérico o tiene longitud != 2')
+
+  # Implementación de la fórmula sugerida en el link:
+  catetos <- abs(pnt - p)             # Medidas de todos los "catetos"
+  ord <- t(apply(catetos, 1, sort))   # Catetos mayores en columna 2
+  r <- ord[,1] / ord[, 2]             # Divide la columna 1 sobre la 2 (min / max)
+  dists <- ord[, 2] * sqrt(1 + r ^ 2) # Fórmula final
+
+  # A guardar posiciones y valores de distancias:
+  i.max <- which.max(dists)
+  i.min <- which.min(dists)
+  d.max <- dists[i.max]
+  d.min <- dists[i.min]
+
+  # Los puntos son:
+  pout <- pnt[c(i.max, i.min), ]
+  rownames(pout) <- c('d.max', 'd.min')
+  colnames(pout) <- c('x', 'y')
+
+  # En caso de ver = TRUE se ejecutan las siguientes líneas:
+  if (ver) {
+    plot(pnt, xlab = 'Longitud', ylab = 'Latitud')
+    points(p[1], p[2], pch = 19)
+    points(pnt[c(i.max, i.min), ], pch = 19, col = 2:3)
+    segments(p[1], p[2], pout[, 1], pout[, 2], col = 2:3, lwd = 2)
+  }
+
+  # Se imprimen en la consola los resultados:
+  cat('d.max =', round(d.max, 2), '- punto:', round(pout[1, ], 2), '\n')
+  cat('d.min =', round(d.min, 2), '- punto:', round(pout[2, ], 2), '\n')
+
+  # Preparación de la salida:
+  list(dists = c(d.max = d.max, d.min = d.min),
+       posiciones = c(i.max = i.max, i.min = i.min),
+       puntos = pout, centro = p)
+}
 ```
 
 La función `distancias`, escrita en el archivo "distancias.R", busca realizar una tarea parecida a la que ya se hizo en el Repartido I
@@ -270,7 +315,7 @@ del uso de comentarios. Al igual que en ejercicios anteriores, el objetivo es co
 función `distancias` cumpla su tarea correctamente. El siguiente es un ejemplo de cómo debería ser la salida de la función
 (incluyendo la figura):
 
-```{r, fig.cap = "salida gráfica de la función distancias"}
+```{r}
 pts <- matrix(rnorm(20), ncol = 2)
 x <- distancias(pts, p = c(0.3, -0.1))
 x
