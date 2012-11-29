@@ -1,61 +1,99 @@
 # Crecimiento exponencial en tiempo continuo
 
-Escoja cual de las siguientes funciones presentan errores:
+## ENCUENTRE LOS ERRORES
+
+La función "exponencial" busca simular un crecimiento exponencial tal como lo describiera Thomas Malthus, pero en su versión discreta (en el que la población, i.e. cantidad de individuos, en un tiempo "t + 1" alcanza un valor equivalente al tamaño poblacional del tiempo anterior "t" multiplicado por una constante "lambda"). Para esto se eligió utilizar un loop for (nótese igualmente que existe una solución cerrada que permitiría, en R, evitar esto).
+
+Considere ahora las distintas funciones candidatas y determine cuáles de ellas NO SON CORRECTAS (es decir, que tienen errores de diseño del loop interno).
   
-  
-  I
-    exponencial <- function(t=1:20, r=0.02){
-      
-      N <- numeric(20)
-      N[1] <- 20
-      
-      for(i in t){
-        
-        N[i+1] <- N[i] * exp(r * t[i])
+
+
+### I  
+
+    exponencial <- function(t = 20, lambda = 1.02, N_0 = 10) {
+      N <- numeric(t)
+      N[1] <- N_0
+      for(i in 1:(t - 1)) {
+        N[i + 1] <- N[i] * lambda
       }
-      print(N)
+      N
     }
-
-
-  II
-    exponencial <- function(t=1:20, r=0.02){
     
-       for(i in t){
-         
-         N <- numeric(20)
-         N[1] <- 20
-         N[i+1] <- N[i] * exp(r * t[i])
+¡Esta función está perfecta!
+
+
+
+### II  
+
+    exponencial <- function(t = 20, lambda = 1.02, N_0 = 10) {    
+       for(i in 1:(t - 1)) {
+         N <- numeric(t)
+         N[1] <- N_0
+         N[i + 1] <- N[i] * lambda
        }
-       print(N)
+       N
     }
 
-El vector N debe iniciarse fuera del loop, para evitar reinicios en el ciclo del loop.
+El vector N debe iniciarse fuera (y antes) del loop, para evitar reinicios en el ciclo del loop (i.e.: la fase de "preparación" loop está mal ubicada).
 
 
-  III
-    exponencial <- function(t=1:20, r=0.02){
-      
-      N <- numeric(20)
-      N[1] <- 20
-      
-      for(i in t){
-        N[i] <- N[i-1] * exp(r * t[i-1])
+
+### III  
+
+    exponencial <- function(t = 20, lambda = 1.02, N_0 = 10) {    
+       for(i in 1:(t - 1)) {
+         N[i + 1] <- N[i] * lambda
+       }
+       N
+    }
+
+¡El vector N debe definirse antes de empezar a indexarlo! debe iniciarse fuera (y antes) del loop (i.e.: falta la fase de "preparación").
+
+
+
+### IV  
+
+    exponencial <- function(t = 20, lambda = 1.02, N_0 = 10) {
+      N <- numeric(t)
+      N[1] <- N_0
+      for(i in 1:(t - 1)) {
+        N[i] <- N[i - 1] * lambda
       }
-      print(N)
+      N
     }
     
-Rango de i incorrecto. El elemnto i debe comenzar en la segunda posición del vector 't' debido a que este presenta una identación de i-1. Si este comenzara en 1,el resuktado daría cero, no existiendo dicha posición en el vector.
+Rango de i incorrecto. Debido a que en la fórmula se encuentra i e i - 1 es necesario que el rango sea 2:t. Nótese que de otra forma en la primer iteración i - 1 = 0, lo cual trae problemas con la indexación de N (i.e.: `N[0]` no existe!).
 
 
-  IV
-    exponencial <- function(t=2:20, r=0.02){
-      
-      N <- numeric(20)
-        
-      for(i in t){
-        N[1] <- 20
-        N[i] <- N[i-1] * exp(r * t[i-1])
+
+### V  
+
+    exponencial <- function(t = 20, lambda = 1.02, N_0 = 10) {      
+      N <- numeric(t)
+      for(i in 2:t) {
+        N[1] <- N_0
+        N[i] <- N[i - 1] * lambda
       }
-      print(N)
+      N
     }
+    
+¡Esta función está perfecta!
 
+
+## Comentarios:
+
+* Cambié la consigna: hay que encontrar las **equivocadas**. Esto porque así pueden ver en el feedback si el error que tenían era el que ellos pensában.
+
+* Cambié los t=1:20 por t = 20 en los argumentos. Es más práctico usar 1 sólo número en lugar de un vector, siempre que se pueda, en un argumeto. Esto implica que cambian los `i in t` a `i in 1:(t - 1)` en casi todos los casos (menos el último).
+
+* Cambié los numeric(20) por numeric(t), porque 1. es necesario que N se ajuste para todo t posible y 2. porque t ahora es 1 sólo número.
+
+* Cambié la fórmula de crecimiento exponencial a tiempo discreto, ya que un for con estas características es justamente lo que no hay que usar para simular un crecimiento exponencial de tiempo continuo (de hecho es tan simple como poner: `N <- N_0 * exp(r * t)` siendo `t <- seq(0, 20, by = 1e-3)` y N_0 un valor inicial constante. Queda: `N[t + 1] <- N[t] * r`.
+
+* La palabra identación está mal usada en la opción III (que ahora es IV). Cambié la frase del comentario por completo.
+
+* Cambié print(N) por N sólo, por razones que ya he dicho en el pasado.
+
+* Agregué el argumento `N_0`: valor inicial de la población.
+
+* Agregué una opción errónea más.
