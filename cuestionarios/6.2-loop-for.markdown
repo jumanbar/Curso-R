@@ -1,0 +1,92 @@
+Nota:
+=====
+
+Habría que agregar los ejercicios que están online (eso también aplica para muchos cuestionarios en realidad). 
+
+
+------------------------------------------------------------------------------------------
+
+
+# Crecimiento exponencial en tiempo continuo
+
+## Encuentre los errores
+
+La función `exponencial` busca simular un crecimiento exponencial tal como lo describiera Thomas Malthus, pero en su versión discreta (en el que la población, i.e. cantidad de individuos, en un tiempo `t + 1` alcanza un valor equivalente al tamaño poblacional del tiempo anterior `t` multiplicado por una constante `lambda`). Para esto se eligió utilizar un loop `for` (nótese igualmente que existe una solución cerrada que permitiría, en R, evitar esto).
+
+Considere ahora las distintas funciones candidatas y determine cuáles de ellas NO SON CORRECTAS (es decir, que tienen errores de diseño del loop interno).
+  
+
+
+### I  
+
+    exponencial <- function(t = 20, lambda = 1.02, N_0 = 10) {
+      N <- numeric(t)
+      N[1] <- N_0
+      for(i in 1:(t - 1)) {
+        N[i + 1] <- N[i] * lambda
+      }
+      N
+    }
+    
+
+
+
+
+### II  
+
+    exponencial <- function(t = 20, lambda = 1.02, N_0 = 10) {    
+       for(i in 1:(t - 1)) {
+         N <- numeric(t)
+         N[1] <- N_0
+         N[i + 1] <- N[i] * lambda
+       }
+       N
+    }
+
+
+### III  
+
+    exponencial <- function(t = 20, lambda = 1.02, N_0 = 10) {    
+       for(i in 1:(t - 1)) {
+         N[i + 1] <- N[i] * lambda
+       }
+       N
+    }
+
+
+### IV  
+
+    exponencial <- function(t = 20, lambda = 1.02, N_0 = 10) {
+      N <- numeric(t)
+      N[1] <- N_0
+      for(i in 1:(t - 1)) {
+        N[i] <- N[i - 1] * lambda
+      }
+      N
+    }
+    
+
+### V  
+
+    exponencial <- function(t = 20, lambda = 1.02, N_0 = 10) {      
+      N <- numeric(t)
+      for(i in 2:t) {
+        N[1] <- N_0
+        N[i] <- N[i - 1] * lambda
+      }
+      N
+    }
+
+
+
+I. Por acá no es, ¡Esta función está perfecta!
+
+II. 
+El vector N debe iniciarse fuera (y antes) del loop, para evitar reinicios en el ciclo del loop (i.e.: la fase de "preparación" loop está mal ubicada).
+
+III. ¡El vector N debe definirse antes de empezar a indexarlo! debe iniciarse fuera (y antes) del loop (i.e.: falta la fase de "preparación").
+
+
+IV. Rango de i incorrecto. Debido a que en la fórmula se encuentra i e i - 1 es necesario que el rango sea 2:t. Nótese que de otra forma en la primer iteración i - 1 == 0, lo cual trae problemas con la indexación de N (i.e.: `N[0]` no existe!).
+
+V. Por acá no es, ¡Esta función está perfecta!

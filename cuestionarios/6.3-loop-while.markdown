@@ -1,0 +1,10 @@
+
+# Fill in the blanks (varios):
+
+Poner un diagrama de flujo de un loop while y el código asociado con un fill in the blanks... (en la condición por ejemplo).
+
+Poner un while y elegir cuál diagrama de flujo es el correcto.
+
+Encontrar un error (un loop infinito!).
+
+Encontrar un error ...

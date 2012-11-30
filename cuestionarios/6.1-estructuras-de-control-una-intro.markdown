@@ -1,0 +1,16 @@
+
+# Estructuras de control
+
+Escoja la opción correcta:
+
+    prepáración     -- objeto en R que va a ser sustituido por las suscesivas iteraciones    
+    pregunta        -- condición inicial donde comienza el loop    
+    loop            -- conjunto de condiciones que evaluan una pregunta y devuelven una respuesta dependiente del cumplimiento de la pregunta    
+    condicionales   -- expresiones que condicionan las respuestas     
+    respuestas      -- expresiones alternativas a la pregunta buscada    
+    salida          -- fin de la ejecucuon de la funcion
+
+
+
+
+
