@@ -26,4 +26,8 @@ username <- function() {
 * Ejercicio de programación:
   - for: hacer un script que cuente por fila de una matriz la cantidad de elementos que cumplan una condición (mayores que 0, por ejemplo)
 
+Para 2013
+---------
+
+Cambiar parte d del útimo parcial: si el bus tiene el máximo de pasajeros no sube a más nadie y si tiene el mínimo (0) no baja nadie.
 
