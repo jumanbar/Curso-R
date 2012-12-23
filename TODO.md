@@ -31,3 +31,7 @@ Para 2013
 
 Cambiar parte d del útimo parcial: si el bus tiene el máximo de pasajeros no sube a más nadie y si tiene el mínimo (0) no baja nadie.
 
+Poner lugar para que pongan el nombre en los parciales o cualquier script de ejercicios...
+
+
+
