@@ -219,7 +219,7 @@ En el archivo "varianza.R" usted deberá escribir los pasos necesarios para calc
 
 ### 2.b Paradoja de Zenón
 
-Según la clásica [paradoja de la dicotomía de Zenón](https://es.wikipedia.org/wiki/Paradojas_de_Zen%C3%B3n#La_dicotom.C3.ADa) es imposible caminar de un punto A a un punto B, debido a que primero debemos movernos la mitad del camino, posteriormente avanzar la mitad de la mitad del camino y así ad infinitum, sin llegar jamás a B. Esto se traduce en avanzar primero 1/2 de camino, luego 1/4, luego 1/8, luego 1/16 y así sucesivamente. Entonces, luego de n pasos de este tipo se alcanza una fracción de camino equivalente a:
+Según la clásica [paradoja de la dicotomía de Zenón](https://es.wikipedia.org/wiki/Paradojas_de_Zen%C3%B3n#La_dicotom.C3.ADa)(http://xkcd.com/1153/) es imposible caminar de un punto A a un punto B, debido a que primero debemos movernos la mitad del camino, posteriormente avanzar la mitad de la mitad del camino y así ad infinitum, sin llegar jamás a B. Esto se traduce en avanzar primero 1/2 de camino, luego 1/4, luego 1/8, luego 1/16 y así sucesivamente. Entonces, luego de n pasos de este tipo se alcanza una fracción de camino equivalente a:
 
 $$Z_n = \sum_{i=1}^{i=n} \frac{1}{2 ^ i} \;=\;
   \frac{1}{2 ^ 1} + \frac{1}{2 ^ 2} + \frac{1}{2 ^ 3} + ... + \frac{1}{2 ^ n} \;=\;

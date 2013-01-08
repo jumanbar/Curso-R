@@ -34,4 +34,7 @@ Cambiar parte d del útimo parcial: si el bus tiene el máximo de pasajeros no s
 Poner lugar para que pongan el nombre en los parciales o cualquier script de ejercicios...
 
 
+> As someone said, if you want to understand something, explain it to another person, but if you really want to understand it, explain it to a computer.
+
+> Si quieres entender algo, explícaselo a otra persona, pero si realmente quieres entenderlo, explícaselo a una computadora.
 
