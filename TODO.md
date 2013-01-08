@@ -38,3 +38,5 @@ Poner lugar para que pongan el nombre en los parciales o cualquier script de eje
 
 > Si quieres entender algo, explícaselo a otra persona, pero si realmente quieres entenderlo, explícaselo a una computadora.
 
+Agregar la función "stack" en la parte de manipulación de datos.
+
