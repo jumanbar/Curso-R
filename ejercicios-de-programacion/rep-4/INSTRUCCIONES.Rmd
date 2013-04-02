@@ -60,6 +60,7 @@ Si bien animamos a que los estudiantes trabajen en equipos y que haya un interca
 
 - - -
 
+En este primer repartido el objetivo principal es que usted empiece a jugar con R y pueda ir descubriendo cómo utilizarlo, a través de ejemplos muy similares a los vistos en el video 1.2 "Una sesión de ejemplo". En varias ocasiones utilizará funciones o elementos que se verán con mayor profundidad en las siguientes unidades del curso; esperamos que este ejercicio ayude a perderle el susto al programa. Es vital no dejarse intimidar, así como buscar ayuda o consulta a través de los foros, para poder hacer todos los ejercicios sin problemas.
 
 1. Triángulos, volumen II
 -------------------------

@@ -3,11 +3,13 @@
 
 ## NÚMERO DE REPARTIDO!
 nrep <- 1
-rdir <- paste('rep', 1, sep='-')
+rdir <- paste('rep', nrep, sep='-')
 
-esperados <- c("evaluar.R", "datos", "notas.csv", "INSTRUCCIONES.pdf", "hipot.R",
-                "areaMax.R", "dist.R", "varianza.R", "zenon.R", "geom.R",
-		            "shannon-1.R", "shannon-2.R")
+esperados <- c("evaluar.R", "datos", "notas.csv", "INSTRUCCIONES.pdf",
+               # Los archivos de los ejercicios deben estar en el orden 
+               # correcto (para el menú de 'evaluar'):
+							 "hipot", "areaMax.R", "dist.R", "varianza.R", "zenon.R", "geom.R",
+		           "shannon-1.R", "shannon-2.R")
 corregir <- esperados[- (1:4)]
 codigo <- lapply(corregir, readLines)
 names(codigo) <- corregir
@@ -19,12 +21,35 @@ notas <- data.frame(Parte = c(ejnum, 'Total (%)'),
 write.csv2(notas, file='notas.csv', row.names=FALSE)
 extras <- c('2.c', '3.b')
 oblg   <- length(ejnum) - length(extras)
-guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar',
-             'notas', 'codigo', 'Area', 'Co', 'Geom', 'Hipot', 'Shannon', 'Zenon', 
-             'cor1.a', 'cor1.b', 'cor1.c', 'cor2.a', 'cor2.b', 'cor2.c', 'cor3.a',
-             'cor3.b', 'corAll')
+oblg   <- sum(!(ejnum %in% extras))
+guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar', 'reload'
+             'notas', 'codigo', 'corAll')
 
-### FUNCIONES AUXILIARES:
+### RELOAD
+
+reload <- function() {
+# Esta función sólo se puede usar trabajando desde el subdirectorio 
+# "Curso-R/ejercicios-de-programacion/rep-X/rep-X"
+
+# Uso:
+# (1)  modificar este archivo ('datos.R'), por ejemplo en uno de las funciones de corrección
+#      (e.g.: cor1.a).
+# (2)  load('datos')
+# (3)  reload()
+  rdir <- getwd()
+  on.exit(setwd(rdir))
+  setwd('..')
+  arch <- readLines('datos.R')
+  f <- grep('### REINICIAR', arch, useBytes = TRUE)[2]
+  arch <- arch[1:(f - 1)]
+  tmp <- tempfile()
+  writeLines(arch, tmp)
+  source(tmp)
+  unlink(tmp)
+  out <- file.copy('datos', rdir, overwrite = TRUE)
+}
+
+### FUNCIONES Y DATOS AUXILIARES:
 
 Hipot <- function(a, b)
   sqrt(a ** 2 + b ** 2)
@@ -47,6 +72,8 @@ Shannon <- function(x) {
   - p %*% log(p, 2)
 }
 
+guardar <- c(guardar, 'Hipot', 'Area', 'Co', 'Zenon', 'Geom', 'Shannon')
+
 ### FUNCIONES DE CORRECCIÓN:
 
 ## Ej. 1
@@ -54,10 +81,23 @@ Shannon <- function(x) {
 cor1.a <- function() {
   load('datos')
   source('hipot.R')
-  rd <- runif(4, 4, 10)
+  rd <- runif(2, 4, 10)
   f1 <- area(rd[1], rd[2]) == Area(rd[1], rd[2])
   f2 <- co(rd[3], 12) == Co(rd[3], 12)
   f1 * f2
+  if (!is.list(out1))
+    stop("la salida no es una lista", call. = FALSE)
+  if (!all(names(out1) == names(out2)))
+    stop("los nombres del objeto de salida no coinciden con los esperados", call. = FALSE)
+  if (abs(out1$hipotenusa - out2$hipotenusa) > tol)
+    stop("el valor de la hipotenusa no es correcto", call. = FALSE)
+  if (abs(out1$area - out2$area) > tol)
+    stop("el valor del area no es correcto", call. = FALSE)
+  if (abs(out1$angulo.adyacente - out2$angulo.adyacente) > tol)
+    stop("el valor del angulo.adyacente no es correcto", call. = FALSE)
+  if (abs(out1$angulo.opuesto - out2$angulo.opuesto) > tol)
+    stop("el valor del angulo.opuesto no es correcto", call. = FALSE)
+  TRUE
 }
 
 cor1.b <- function() {
@@ -256,8 +296,21 @@ cor3.b <- function() {
 corAll <- list(cor1.a, cor1.b, cor1.c, cor2.a, cor2.b, cor2.c, cor3.a, cor3.b)
 
 ################################################################################
-save(list=guardar, file='datos')
-if (!any(dir() == rdir))
+
+### GUARDAR TODO
+save(list = guardar, file = 'datos')
+
+
+### REINICIAR EL DIRECTORIO Y ZIP FILE
+
+if (!file.exists(rdir))
   dir.create(rdir)
-file.copy(esperados, rdir, recursive=TRUE)
-zip(paste(rdir, 'zip', sep='.'), paste(rdir, '/', sep=''))
+borrar <- dir(rdir)
+borrar <- file.path(rdir, borrar)
+unlink(borrar, recursive = TRUE)
+
+file.copy(esperados, rdir, recursive = TRUE)
+zipfile <- paste(rdir, 'zip', sep = '.')
+unlink(zipfile)
+zip(zipfile, paste(rdir, '/', sep=''))
+

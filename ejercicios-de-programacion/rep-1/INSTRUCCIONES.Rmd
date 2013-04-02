@@ -3,7 +3,7 @@ Ejercicios de programación I: Introducción
 
 ### [IMSER 2012]
 
-___
+- - -
 
 Archivos incluidos:
 -------------------
@@ -19,11 +19,13 @@ El [archivo](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programac
 * **` shannon-1.R `**
 * **` shannon-2.R `**
 
+Cada uno de estos archivos se corresponde con un ejercicio del repartido. Se trata de archivos de texto plano (equivalentes a un `.txt`, pero con una extensión diferente que sirve para que los programas que lo abren reconozcan la sintaxis). En cada archivo se indica con presición en dónde debe usted escribir su código (o modificar lo que ya está escrito). **Cuide siempre de no escribir ninguna línea de código ajena a los propósitos del ejercicio mismo**. Por ejemplo, debe tener cuidado de no dejar escritas líneas como `source(triangulo.R)` dentro del propio archivo `triangulo.R`, ya que esto genera problemas al momento de evaluar el ejercicio (básicamente es como pedirle al archivo que se evalúe a sí mismo, lo que hace que se vuelva a evaluar a sí mismo y así sigue un "circulo vicioso", hasta que se llega a los límites de procesamiento de la máquina). Por esta razón, recomendamos usar un script aparte para este tipo de comandos, así como todos aquellos comandos usados para experimentar con posibles soluciones o simples juegos de progamación que usted quiera hacer. En el video "Guía para repartidos" mostramos un ejemplo a seguir en caso de que esta explicación no le resulte satisfactoria.
+
 Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modificados** para que el método de calificación automático funcione correctamente.
 
 * ` evaluar.R `
-* ` notas.csv `
 * ` datos `
+* ` notas.csv `
 * ` INSTRUCCIONES.pdf `
 
 Mecanismo de corrección:
@@ -32,6 +34,7 @@ Mecanismo de corrección:
 Lo primero que debe hacer es cargar el archivo `evaluar.R` con la función `source`:
 
 ```{r eval=FALSE}
+options(encoding = "utf-8")
 source("evaluar.R")
 ```
 
@@ -54,7 +57,7 @@ y además podrá en todo momento verificar su puntaje con la función `verNotas(
 
 Si bien animamos a que los estudiantes trabajen en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos importante que los estudiantes no miren el código creado por sus compañeros ya que esto supone un sabotaje a su propio proceso de aprendizaje. Como profesores estamos comprometidos a pedir tareas para las cuales hayamos dado las herramientas correctas y las explicaciones adecuadas como para que todos puedan encontrar su propio camino para resolver los ejercicios.
 
-____
+- - -
 
 
 1. Geometría
@@ -78,9 +81,11 @@ area <- function(a, b) a * b / 2
 co <- function(ca, h) sqrt(h ^ 2 - ca ^ 2)
 ```
 
-Tomando este caso como ejemplo, complete el código del script "hipot.R" para hacer las funciones `area` y `co` tales sean capaces de calcular el área de un triángulo y el cateto opuesto respectivamente. Las entradas para la función `area`, es decir, sus argumentos, serán los anchos de los catetos. Para el caso de `co` los argumentos serán los anchos del cateto adyacente y de la hipotenusa. Recuerde que para ejecutar este script debe usar la función `source` de la siguiente manera:
+Tomando este caso como ejemplo, complete el código del script "hipot.R" para hacer las funciones `area` y `co` tales sean capaces de calcular el área de un triángulo y el cateto opuesto respectivamente. Las entradas para la función `area`, es decir, sus argumentos, serán los anchos de los catetos (tal como el la función `hipot`). Para el caso de `co` los argumentos serán los anchos del cateto adyacente y de la hipotenusa. Recuerde que para ejecutar este script debe usar la función `source` de la siguiente manera:
 
-    source('hipot.R')
+```{r}
+source('hipot.R')
+```
 
 o usar los atajos de teclado de RStudio. Luego en la sesión de trabajo aparecerán los distintos objetos definidos en el script (verifíquelo con `ls()`), incluyendo a las funciones `area` y `co`.
 
@@ -110,7 +115,7 @@ for (i in 1:length(cat.ad)) {
 
 Si usted ejecuta este código, podrá ver que el área máxima está cercana a 25 y que el ancho del cateto adyacente correspondiente es aproximadamente 7.1 (si ejecuta el script "ejTriang.R" puede visualizar todos estos triángulos). Pero este es un método sumamente engorroso en comparación a lo aque se puede hacer en R. Para empezar, como se menciona en la lección 1.2, en su versión escrita la menos, el cálculo de todas estas áreas (y de los catetos opuestos asociados) se puede hacer sin loops. Esta capacidad de R es muy importante para aumentar la velocidad de ejecución de ciertas tareas y se denomina **vectorización**.
 
-En el caso que las áreas, el siguiente código sirve para calcular todos estos valores de áreas:
+El siguiente es un ejemplo de vectorización, ya que calcula todos los valores posibles de `cat.op` y `a` sin utilizar un **loop** (es decir, no utiliza el `for` mostrado anteriormente). Para el caso que las áreas, este código sirve para calcular todos estos valores de áreas:
 
 ```{r eval=FALSE}
 hip <- 10 # Hipotenusa
@@ -122,9 +127,9 @@ a <- area(cat.ad, cat.op)                   # Cálculo de las áreas
 
 Nótese el uso de la función `seq` para crear una secuencia de valores entre $0.001$ y $h - 0.001$, utilizados como anchos de los distintos catetos adyacentes. De esta forma sólo quedaría buscar cuál de los valores de área es el mayor y determinar en qué posición se encuentra. Esto lo deberá hacer usted, completando el código en el archivo "areaMax.R"; para ello debería considerar dos funciones de R:
 
-* Las funciones `which` o `which.max` se pueden utilizar para encontrar la posición del valor máximo dentro de un vector. Utilice la documentación para aprender más de estas funciones y así encontrar la posición del valor máximo dentro del vector `a`.  
+* Las funciones `which` o `which.max` se pueden utilizar para encontrar la posición (i.e.: un número entero positivo) del valor máximo dentro de un vector. Utilice la documentación para aprender más de estas funciones y así encontrar la posición del valor máximo dentro del vector `a`.  
 
-* El uso de los corchetes `[` y `]` sirve para usar el i-ésimo elemento dentro de un vector (y también se usa con matrices). Acceda a la documentación del uso de estos operadores con el comando
+* El uso de los corchetes `[` y `]` sirve para seleccionar/modificar el i-ésimo elemento dentro de un vector (y también se usa con matrices). Acceda a la documentación del uso de estos operadores con el comando
     `?"["`
 
 Cuando complete el código podrá confirmar que ha encontrado verdaderamente el valor máximo con los comandos:
@@ -138,7 +143,7 @@ abline(v=cat.ad[i], col='red', lwd=2)
 
 La definición de distancia euclidiana se basa en el teorema de pitágoras. Para dos puntos en un espacio bidimensional (un plano) la distancia entre ambos se puede calcular a través de las coordenadas cartesianas de los mismos, tal como lo muestra la Figura 1.
 
-____
+- - -
 
 ```{r echo=FALSE, fig.width=7, fig.height=7}
 a <- c(2, 6)
@@ -160,7 +165,7 @@ text(mean(a) - .2, mean(b) + .2, labels='h', cex=1.5)
 **Figura 1:** Los puntos A, B y C de coordenadas $(x_A, y_A)$, $(x_B, y_B)$ y $(x_B, y_A)$ pueden formar un triángulo rectángulo como muestra la figura, cuyos catetos tienen los valores indicados entre paréntesis. Por lo tanto, la distancia entre A y B es la hipotenusa del triángulo y se puede hallar con la fórmula de Pitágoras.  
 Nota: puede reproducir este gráfico con la función `plotTriang` contenida en el script "plotTriang.R"; además lo invitamos a que examine dicho código si le interesa entender cómo se crea tal figura.
 
-____
+- - -
 
 En el presente ejercicio vamos a utilizar este concepto, así como las recién aprendidas funciones `which` y `which.max`, y también `which.min`. La idea es encontrar distancias entre puntos y determinar distancias mínimas y máximas. En el archivo "dist.R" el código inicial (8 líneas) debería reproducir un gráfico muy similar a la **Figura 2**.
 
@@ -209,7 +214,9 @@ Nota: la función `c` aquí es usada para crear `s`, un vector que es simplement
 
 Sin duda que este es el caso más trivial. Cuando queremos trabajar con algún caso más elaborado, es conveniente entonces separar el problema en dos partes, (1) Crear el vector `s`, el cual contiene todos los términos de la sumatoria y (2) ejecutar la función `sum`. Por supuesto que en la primer etapa es en donde se hace casi todo el trabajo. Muchas veces nos encontramos con sumatorias que están definidas con funciones matemáticas. Un ejemplo es la fórmula para calcular la varianza no sesgada de una muestra de `n` datos:
 
-$$\sigma ^ 2 = \frac{1}{n - 1} \cdot \sum_{i=1}^{i=n} (x_i - \overline{x}) ^ 2$$
+$$
+  \sigma ^ 2 = \frac{1}{n - 1} \cdot \sum_{i=1}^{i=n} (x_i - \overline{x}) ^ 2 
+$$
 
 En donde $\overline{x}$ denota el valor promedio de la muestra de datos, calculado como $\frac{1}{n} \cdot \sum_i x_i$. Llamaremos "término de la sumatoria" a la función está incluida en la misma, es decir $(x_i - \overline{x}) ^ 2$.
 
@@ -221,9 +228,11 @@ En el archivo "varianza.R" usted deberá escribir los pasos necesarios para calc
 
 Según la clásica [paradoja de la dicotomía de Zenón](https://es.wikipedia.org/wiki/Paradojas_de_Zen%C3%B3n#La_dicotom.C3.ADa)(http://xkcd.com/1153/) es imposible caminar de un punto A a un punto B, debido a que primero debemos movernos la mitad del camino, posteriormente avanzar la mitad de la mitad del camino y así ad infinitum, sin llegar jamás a B. Esto se traduce en avanzar primero 1/2 de camino, luego 1/4, luego 1/8, luego 1/16 y así sucesivamente. Entonces, luego de n pasos de este tipo se alcanza una fracción de camino equivalente a:
 
-$$Z_n = \sum_{i=1}^{i=n} \frac{1}{2 ^ i} \;=\;
+$$
+  Z_n = \sum_{i=1}^{i=n} \frac{1}{2 ^ i} \;=\;
   \frac{1}{2 ^ 1} + \frac{1}{2 ^ 2} + \frac{1}{2 ^ 3} + ... + \frac{1}{2 ^ n} \;=\;
-  \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + ... + \frac{1}{2 ^ n}$$
+  \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + ... + \frac{1}{2 ^ n}
+$$
 
 Si es cierta la proposición de Zenón, entonces no importa que tan grande sea $n$, esta sumatoria siempre será menor a 1, a pesar de que el límite de la misma cuando $n \to \infty$ es 1. Podemos verificar numéricamente esta afirmación usando R: si elegimos un valor $\varepsilon$ arbitrariamente pequeño, entonces podemos encontrar un $n$ tal que $1 - Z_n < \varepsilon$.
 
@@ -244,7 +253,9 @@ plot(cumsum(s), type="o", xlab="n", ylab=expression(Z[n]))
 
 La serie $Z_n$ es un caso particular de serie geométrica. La fórmula general de este tipo de series es:
 
-$$S_n = \sum_{i=0}^{i=n} \frac{1}{z ^ i}$$
+$$
+  S_n = \sum_{i=0}^{i=n} \frac{1}{z ^ i}
+$$
 
 (Nota: ahora el primer término corresponde a i=0, por lo que a toda $S_n$ se le agrega un +1 en comparación con la misma sumatoria empezando por i=1.)
 
@@ -252,22 +263,28 @@ Un resultado importante es que la serie converge a un valor determinado (es deci
 
 Si el código es correcto, el resultado `out` debería ser idéntico (o casi igual, debido a pequeños errores numéricos de redondeo) al valor de la siguiente fórmula:
 
-$$S_n = \frac{1 - z ^ {- n}}{1 - z ^ {-1}}$$
+$$
+  S_n = \frac{1 - z ^ {- n}}{1 - z ^ {-1}}
+$$
 
-___
+- - -
 
 3. Índice de Shannon-Wiener
 ---------------------------
 
 El índice de [Shannon-Wiener](https://es.wikipedia.org/wiki/%C3%8Dndice_de_Shannon) o simplemente índice de Shannon ha sido utilizado en ecología y otras ciencias como indicador de diversidad de una comunidad de especies. Este índice fue creado originalmente para ser usado como medida de entropía en cadenas de caracteres (i.e., texto) en el contexto de la teoría de la información (Legendre & Legendre, 1998). En general para una colección de objetos de distintas categorías (i.e., individuos de distintas especies), el índice de Shannon se calcula con la siguiente fórmula:
 
-$$H = - \sum_{i=1}^{i=S} p_i \cdot log_2 (p_i)$$
+$$
+  H = - \sum_{i=1}^{i=S} p_i \cdot log_2 (p_i)
+$$
 
 (La base del logaritmo no es demasiado importante, pero en este ejercicio nos vamos a regir a esta definición en particular; es decir, vamos a usar logarítmo de base 2)
 
 Aquí S es el número total de categorías o especies y $p_i$ es la frecuencia relativa de la categoría i. Es decir:
 
-$$p_i = \frac{n_i}{N}$$
+$$
+  p_i = \frac{n_i}{N}
+$$
 
 En donde $n_i$ es la cantidad de objetos de la categoría i contenidos en nuestra colección y N es la cantidad total de objetos. Por ejemplo, para la palabra "banana", los $p_i$ de las letras "a", "b" y "n" son $3/6$, $1/6$ y $2/6$ respectivamente y el H resultante es 1.46.
 
@@ -277,18 +294,21 @@ En el archivo "shannon-1.R" usted encontrará código de R incompleto. El objeti
 
 Una forma de hacer sumatorias del tipo $\sum v_i \cdot u_i$ es usando el [producto escalar](https://es.wikipedia.org/wiki/Producto_escalar) o producto interior de vectores, para lo cual en R se usa el operador `%*%`. Específicamente, si $v$ y $u$ son vectores columna, entonces $\langle v, u \rangle = \sum v_i \cdot u_i$. Otra representación común es: 
 
-$$v^T \cdot u = (v_1 v_2 \cdots v_d)
-  \begin{pmatrix}
-    u_1 \\
-    u_2 \\
-    \vdots \\
-    u_d
-  \end{pmatrix}
+$$
+  v^T \cdot u = (v_1 v_2 \cdots v_d)
+    \begin{pmatrix}
+      u_1 \\
+      u_2 \\
+      \vdots \\
+      u_d
+    \end{pmatrix}
 $$
 
 en dónde $v^T$ es el vector columna $v$ transpuesto y $d$ es la dimensión o número de elementos de ambos vectores. En R el producto escalar se escribe
 
-    v %*% u
+```{r}
+v %*% u
+```
     
 simplemente, ignorando problemas de transposición. De hecho los vectores en R no son fila o columna, si no que simplemente son una secuencia de elementos. En general este operador sirve para toda multiplicación de matrices en R.
 
