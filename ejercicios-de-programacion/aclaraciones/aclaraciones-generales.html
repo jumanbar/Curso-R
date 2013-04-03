@@ -223,13 +223,17 @@ hljs.initHighlightingOnLoad();
 
 <p>Ocasionalmente puede ocurrir que una solución que plantea un estudiante tenga diferencias ínfimas con los valores esperados y resultan en ejercicios corregidos como incompletos. Estas diferencias pueden estar en el orden de \( 10 ^ {-99} \), por lo que a simple vista no se pueden ver (R nos muestra valores redondeados al 5 decimal por defecto). El origen de estas divergencias es la necesidad de la computadora de redondear los números, debido a que tiene capacidades finitas y los números pueden tener infinitos decimales.</p>
 
-<p>En general tratamos de que esto no sea un problema para la corrección de ejercicios, pero no puede descartarse que en algún caso hallamos pasado un problema así sin verlo.</p>
+<p>En general tratamos de que esto no sea un problema para la corrección de ejercicios, pero no puede descartarse que en algún caso hallamos pasado un problema así sin verlo. Si está <em>convencido</em> de que esto es así, por favor comuníquelo a través de los foros bajo la etiqueta &ldquo;fe de erratas&rdquo;.</p>
 
 <p>Debe notarse además que estas diferencias pueden además surgir en base a la forma en que uno escribe las ecuaciones, sobre todo en el caso de que se usen operaciones que &ldquo;amplifiquen&rdquo; dichas diferencias, como puede ser la exponenciación. El siguiente es un ejemplo concreto:</p>
 
 <pre><code class="r">a &lt;- (1/7)^100
 b &lt;- (1/(7^100))
-a == b
+</code></pre>
+
+<p>Es claro que los valores de <code>a</code> y <code>b</code> deberían ser idénticos, ya que se obtuvieron con expresiones matemáticamente equivalentes (i.e.: \( (1 / 7) ^ {100} \) y \( 1 / (7 ^ {100})) \). Sin embargo cuando buscamos verificar esto, nos sorprendemos:</p>
+
+<pre><code class="r">a == b
 </code></pre>
 
 <pre><code>## [1] FALSE
@@ -241,7 +245,7 @@ a == b
 <pre><code>## [1] -1.714e-99
 </code></pre>
 
-<p>Aquí la evaluación de <code>a == b</code> debería dar <code>TRUE</code> y no <code>FALSE</code>, y la última línea debería devolver un cero. En caso de que esté <em>convencido</em> de que se trate de un error nuestro, por favor hágalo saber a través del foro.</p>
+<p>Aquí la evaluación de <code>a == b</code> debería dar <code>TRUE</code> y no <code>FALSE</code>, y la última línea debería devolver un cero. Lo que ocurre es que el orden en el que se realizan las operaciones <strong>sí</strong> altera el producto en este caso, a causa de los problemas de redondeo que antes mencionábamos. Nótese que para crear <code>a</code>, <em>primero</em> se calcula \( 1/7 \) (lo que resulta en un valor redondeado) y <em>luego</em> se eleva el resultado a la 100. Contrariamente, para el caso de <code>b</code>, R primero eleva 7 a la 100 (lo que debería dar un resultado exacto), y recién entonces evalúa la división (aquí es otra vez un valor redondeado).</p>
 
 <h2>Objetos nombrados</h2>
 

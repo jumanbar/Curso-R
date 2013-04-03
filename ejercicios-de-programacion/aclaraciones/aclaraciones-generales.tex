@@ -68,6 +68,12 @@ mismo. Para que este método funcione correctamente, hay que seguir
 ciertos procedimientos generales que pasaremos a describir a
 continuación.
 
+Este documento puede considerarse como una contraparte escrita al video
+``Guía para repartidos''.
+
+ADVERTENCIA: leer este documento puede ahorrar \emph{muchos} dolores de
+cabeza a la hora de resolver los ejercicios del curso.
+
 \subsection{Archivos incluidos:}
 
 Cada repartido consta de una carpeta con archivos que usted puede bajar
@@ -89,22 +95,33 @@ combinación \textbf{Ctrl + Shift + K})
 
 \subsection{Escribiendo el código}
 
-Cada uno de los scripts del repartido se corresponde con un ejercicio.
-En cada archivo se indica con presición en dónde debe usted escribir su
-código (o modificar lo que ya está escrito). \textbf{Cuide siempre de no
-escribir ninguna línea de código ajena a los propósitos del ejercicio
-mismo}. Por ejemplo, debe tener cuidado de no dejar escritas líneas como
+Cada uno de estos archivos se corresponde con un ejercicio del
+repartido. Se trata de archivos de texto plano (equivalentes a un
+\texttt{.txt}, pero con una extensión diferente que sirve para que los
+programas que lo abren reconozcan la sintaxis). En cada archivo se
+indica con presición en dónde debe usted escribir su código (o modificar
+lo que ya está escrito). Para que el sistema de corrección funcione
+bien, debe evitar cambiar el texto de todas las líneas de texto del
+archivo ajenas a este espacio, incluyendo las que se usan para indicar
+el inicio y el final del mismo. Nótese además que esto no impide
+\textbf{ampliar o reducir} el espacio que usted tiene para escribir,
+subiendo o bajando cualquiera de las ``líneas límite'' del archivo.
+
+\textbf{Cuide siempre de no escribir en estos archivos ninguna línea de
+código ajena a los propósitos del ejercicio mismo}. Por ejemplo, debe
+tener cuidado de no dejar escritas líneas como
 \texttt{source(triangulo.R)} dentro del propio archivo
 \texttt{triangulo.R}, ya que esto genera problemas al momento de evaluar
 el ejercicio (básicamente es como pedirle al archivo que se evalúe a sí
 mismo, lo que hace que se vuelva a evaluar a sí mismo y así sigue un
 ``circulo vicioso'', hasta que se llega a los límites de procesamiento
-de la máquina). Por esta razón, recomendamos usar un script aparte para
-este tipo de comandos, así como todos aquellos comandos usados para
-experimentar con posibles soluciones o simples juegos de progamación que
-usted quiera hacer. En el video ``Guía para repartidos'' mostramos un
-ejemplo a seguir en caso de que esta explicación no le resulte
-satisfactoria.
+de la máquina).
+
+Por esta razón, recomendamos usar un script aparte para este tipo de
+comandos, así como todos aquellos comandos usados para experimentar con
+posibles soluciones o simples juegos de progamación que usted quiera
+hacer. En el video ``Guía para repartidos'' mostramos un ejemplo a
+seguir en caso de que esta explicación no le resulte satisfactoria.
 
 Nótese además que los cambios que se hacen al script del ejercicio son
 \textbf{invisibles} para R hasta el momento en que usted \textbf{guarda}
@@ -140,6 +157,66 @@ cualquier ejercicio, el sistema de corrección automático utiliza números
 aleatorios para verificar que su solución es robusta respecto a los
 casos particulares (i.e.: diferentes valores numéricos).
 
+\subsection{Problemas de redondeo/aproximación numérica}
+
+Ocasionalmente puede ocurrir que una solución que plantea un estudiante
+tenga diferencias ínfimas con los valores esperados y resultan en
+ejercicios corregidos como incompletos. Estas diferencias pueden estar
+en el orden de $10 ^ {-99}$, por lo que a simple vista no se pueden ver
+(R nos muestra valores redondeados al 5 decimal por defecto). El origen
+de estas divergencias es la necesidad de la computadora de redondear los
+números, debido a que tiene capacidades finitas y los números pueden
+tener infinitos decimales.
+
+En general tratamos de que esto no sea un problema para la corrección de
+ejercicios, pero no puede descartarse que en algún caso hallamos pasado
+un problema así sin verlo. Si está \emph{convencido} de que esto es así,
+por favor comuníquelo a través de los foros bajo la etiqueta ``fe de
+erratas''.
+
+Debe notarse además que estas diferencias pueden además surgir en base a
+la forma en que uno escribe las ecuaciones, sobre todo en el caso de que
+se usen operaciones que ``amplifiquen'' dichas diferencias, como puede
+ser la exponenciación. El siguiente es un ejemplo concreto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a <- (}\DecValTok{1}\NormalTok{/}\DecValTok{7}\NormalTok{)^}\DecValTok{100}
+\NormalTok{b <- (}\DecValTok{1}\NormalTok{/(}\DecValTok{7}\NormalTok{^}\DecValTok{100}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+Es claro que los valores de \texttt{a} y \texttt{b} deberían ser
+idénticos, ya que se obtuvieron con expresiones matemáticamente
+equivalentes (i.e.: $(1 / 7) ^ {100}$ y $1 / (7 ^ {100}))$. Sin embargo
+cuando buscamos verificar esto, nos sorprendemos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a == b}
+\end{Highlighting}
+\end{Shaded}
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a - b}
+\end{Highlighting}
+\end{Shaded}
+\begin{verbatim}
+## [1] -1.714e-99
+\end{verbatim}
+Aquí la evaluación de \texttt{a == b} debería dar \texttt{TRUE} y no
+\texttt{FALSE}, y la última línea debería devolver un cero. Lo que
+ocurre es que el orden en el que se realizan las operaciones \textbf{sí}
+altera el producto en este caso, a causa de los problemas de redondeo
+que antes mencionábamos. Nótese que para crear \texttt{a},
+\emph{primero} se calcula $1/7$ (lo que resulta en un valor redondeado)
+y \emph{luego} se eleva el resultado a la 100. Contrariamente, para el
+caso de \texttt{b}, R primero eleva 7 a la 100 (lo que debería dar un
+resultado exacto), y recién entonces evalúa la división (aquí es otra
+vez un valor redondeado).
+
 \subsection{Objetos nombrados}
 
 En varios ejercicios del curso usted se encontrarán con objetos en R que
@@ -151,6 +228,23 @@ nombres así como la \textbf{capitalización} de las letras en los nombres
 (i.e.: mayúsculas y minúsculas). Por esto debe uster prestar atención a
 estos detalles cada vez que realice una corrección automática de los
 ejercicios.
+
+\subsection{Evaluaciones de métodos}
+
+En algunos ejercicios (la minoría) se pide que el estudiante resuelva un
+problema utilizando un método en particular (por ejemplo, usando el
+operador \texttt{\%*\%} en el 3.a del repartido 1). En estos casos el
+sistema de evaluación sólo dará como correcto al ejercicio si el usuario
+usa efectivamente el método en cuestión (i.e.: utiliza el operador
+\texttt{\%*\%} correctamente en la línea correspondiente).
+
+\subsection{Se evalúan varios objetos}
+
+En muchos casos el algoritmo de evaluación no se limita a evaluar si el
+``objeto final'' de un script está correcto, si no que evalúa también
+objetos (y/o pasos) intermedios. Por ejemplo, en el ejercicio 1.b del
+repartido 1, la corrección evalúa los tres objetos, \texttt{i},
+\texttt{sol} y \texttt{amax}.
 
 \subsection{Mecanismo de corrección automática:}
 

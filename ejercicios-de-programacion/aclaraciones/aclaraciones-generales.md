@@ -45,7 +45,7 @@ Por esta razón, si usted prueba usar 72 como se muestra arriba, el sistema de c
 
 Ocasionalmente puede ocurrir que una solución que plantea un estudiante tenga diferencias ínfimas con los valores esperados y resultan en ejercicios corregidos como incompletos. Estas diferencias pueden estar en el orden de $10 ^ {-99}$, por lo que a simple vista no se pueden ver (R nos muestra valores redondeados al 5 decimal por defecto). El origen de estas divergencias es la necesidad de la computadora de redondear los números, debido a que tiene capacidades finitas y los números pueden tener infinitos decimales.
 
-En general tratamos de que esto no sea un problema para la corrección de ejercicios, pero no puede descartarse que en algún caso hallamos pasado un problema así sin verlo.
+En general tratamos de que esto no sea un problema para la corrección de ejercicios, pero no puede descartarse que en algún caso hallamos pasado un problema así sin verlo. Si está *convencido* de que esto es así, por favor comuníquelo a través de los foros bajo la etiqueta "fe de erratas".
 
 Debe notarse además que estas diferencias pueden además surgir en base a la forma en que uno escribe las ecuaciones, sobre todo en el caso de que se usen operaciones que "amplifiquen" dichas diferencias, como puede ser la exponenciación. El siguiente es un ejemplo concreto:
 
@@ -53,6 +53,13 @@ Debe notarse además que estas diferencias pueden además surgir en base a la fo
 ```r
 a <- (1/7)^100
 b <- (1/(7^100))
+```
+
+
+Es claro que los valores de `a` y `b` deberían ser idénticos, ya que se obtuvieron con expresiones matemáticamente equivalentes (i.e.: $(1 / 7) ^ {100}$ y $1 / (7 ^ {100}))$. Sin embargo cuando buscamos verificar esto, nos sorprendemos:
+
+
+```r
 a == b
 ```
 
@@ -69,7 +76,7 @@ a - b
 ```
 
 
-Aquí la evaluación de `a == b` debería dar `TRUE` y no `FALSE`, y la última línea debería devolver un cero. En caso de que esté *convencido* de que se trate de un error nuestro, por favor hágalo saber a través del foro.
+Aquí la evaluación de `a == b` debería dar `TRUE` y no `FALSE`, y la última línea debería devolver un cero. Lo que ocurre es que el orden en el que se realizan las operaciones **sí** altera el producto en este caso, a causa de los problemas de redondeo que antes mencionábamos. Nótese que para crear `a`, *primero* se calcula $1/7$ (lo que resulta en un valor redondeado) y *luego* se eleva el resultado a la 100. Contrariamente, para el caso de `b`, R primero eleva 7 a la 100 (lo que debería dar un resultado exacto), y recién entonces evalúa la división (aquí es otra vez un valor redondeado).
 
 ## Objetos nombrados
 
