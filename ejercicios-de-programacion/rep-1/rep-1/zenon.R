@@ -1,39 +1,20 @@
 # Instrucciones: el valor n tiene asignado un valor de 3 para empezar, pero 
-# usted lo deber· cambiar para lograr el objetivo del problema (usando siempre
+# usted lo deber√° cambiar para lograr el objetivo del problema (usando siempre
 # valores enteros y positivos).
 # Otros objetos:
-# e: representa los exponentes de cada tÈrmino en la fÛrmula en de la letra (es
+# e: representa los exponentes de cada t√©rmino en la f√≥rmula en de la letra (es
 # decir, 1, 2, 3, etc.. hasta n).
 # s: vector final que se va a usar para la sumatoria
 # out: resultado final de la sumatoria.
 
-#===== Su cÛdigo comienza aquÌ: =====# 
+#===== Su c√≥digo comienza aqu√≠: =====# 
 
-n <- 20
+n <- 3
 
-e <- 1:n
+e <- 
 
-s <- 1/(2**e)
+s <- 
 
-out <- sum(s)
+out <- 
 
-#plot(cumsum(s), type = "o", main="Verificacion: paradoja de Zenon", xlab = "n", ylab = expression(Z[n]))
-
-#====== AquÌ finaliza su cÛdigo =====#
-
-# CÛdigo que adjunto y que evaluar() lo pone como incorrecto:
-# (nos ayudÛ a hallar el valor de n correcto, n=20)
-#out <- function(n=2,s){
-#  e <- (1:n) #seq(from=1,to=n,by=1)
-#  s <- 1/(2**e)
-#  dif<-(1-sum(s))
-#  if(dif>(1e-06)) {
-#    cat("    Suma", "Epsilon", "\n")
-#    print(c(sum(s), dif))
-#    cat("Seguir probando con un n mayor")
-#  } else {
-#    cat("    Suma", "Epsilon", "\n")
-#    print(c(sum(s), dif))
-#    cat("El n que alcanza la cota es: ", n)
-#  }
-#}
+#====== Aqu√≠ finaliza su c√≥digo =====#

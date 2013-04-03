@@ -64,7 +64,7 @@
 
 \section{Ejercicios de programación I: Introducción}
 
-\subsubsection{{[}IMSER 2013{]}}
+\subsubsection{{[}IMSER 2012{]}}
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
@@ -101,29 +101,22 @@ repartido. Se trata de archivos de texto plano (equivalentes a un
 \texttt{.txt}, pero con una extensión diferente que sirve para que los
 programas que lo abren reconozcan la sintaxis). En cada archivo se
 indica con presición en dónde debe usted escribir su código (o modificar
-lo que ya está escrito). \textbf{Cuide siempre de no escribir en estos
-archivos ninguna línea de código ajena a los propósitos del ejercicio
-mismo}. Por ejemplo, debe tener cuidado de no dejar escritas líneas como
+lo que ya está escrito). \textbf{Cuide siempre de no escribir ninguna
+línea de código ajena a los propósitos del ejercicio mismo}. Por
+ejemplo, debe tener cuidado de no dejar escritas líneas como
 \texttt{source(triangulo.R)} dentro del propio archivo
 \texttt{triangulo.R}, ya que esto genera problemas al momento de evaluar
 el ejercicio (básicamente es como pedirle al archivo que se evalúe a sí
 mismo, lo que hace que se vuelva a evaluar a sí mismo y así sigue un
 ``circulo vicioso'', hasta que se llega a los límites de procesamiento
-de la máquina).
-
-Por esta razón, recomendamos usar un script aparte para este tipo de
-comandos, así como todos aquellos comandos usados para experimentar con
-posibles soluciones o simples juegos de progamación que usted quiera
-hacer. En el video ``Guía para repartidos'' mostramos un ejemplo a
-seguir en caso de que esta explicación no le resulte satisfactoria (ver
-también el documento
+de la máquina). Por esta razón, recomendamos usar un script aparte para
+este tipo de comandos, así como todos aquellos comandos usados para
+experimentar con posibles soluciones o simples juegos de progamación que
+usted quiera hacer. En el video ``Guía para repartidos'' mostramos un
+ejemplo a seguir en caso de que esta explicación no le resulte
+satisfactoria (ver también el documento
 \href{http://eva.universidad.edu.uy/file.php/1454/ejercicios\_de\_programacion/dinamica-reps.pdf}{Dinámica
 de trabajo de los repartidos}).
-
-Nótese además que los cambios que se hacen al script del ejercicio son
-\textbf{invisibles} para R hasta el momento en que usted \textbf{guarda}
-el archivo a disco duro. Esta suele ser una fuente común de frustración
-entre principiantes (y no tanto).
 
 Adicionalmente los siguientes archivos son necesarios, pero \textbf{no
 deben ser modificados} para que el método de calificación automático
@@ -204,8 +197,6 @@ catetos.
 
 \subsubsection{1.a Funciones simples}
 
-Script: hipot.R
-
 El siguiente código sirve para crear la función \texttt{hipot}, la cual
 acepta como argumentos los anchos de los catetos y calcula el valor de
 $h$ correspondientes:
@@ -275,8 +266,6 @@ valores negativos. La forma más básica de evitarlo es encontrando el
 valor absoluto, usando la función \texttt{abs}.
 
 \subsubsection{1.b Área máxima}
-
-Script: areaMax.R
 
 En la lección 1.2 vimos cómo con un loop podemos ver fácilemnte todos
 los valores posibles de salida de la función \texttt{prp}. Ahora
@@ -359,8 +348,6 @@ verdaderamente el valor máximo con los comandos:
 \end{Highlighting}
 \end{Shaded}
 \subsubsection{1.c Distancias entre puntos}
-
-Script: dist.R
 
 La definición de distancia euclidiana se basa en el teorema de
 pitágoras. Para dos puntos en un espacio bidimensional (un plano) la
@@ -469,8 +456,6 @@ $(x_i - \overline{x}) ^ 2$.
 
 \subsubsection{2.a Cálculo de la varianza de una muestra}
 
-Script: varianza.R
-
 En el archivo ``varianza.R'' usted deberá escribir los pasos necesarios
 para calcular la varianza del vector \texttt{x} que se muestra en el
 archivo (siga las instrucciones incluidas en los comentarios). Para
@@ -479,8 +464,6 @@ confirmar que su resultado es correcto, puede ejecutar el comando
 \texttt{out}.
 
 \subsubsection{2.b Paradoja de Zenón}
-
-Script: zenon.R
 
 Según la clásica
 \href{https://es.wikipedia.org/wiki/Paradojas\_de\_Zen\%C3\%B3n\#La\_dicotom.C3.ADa}{paradoja
@@ -533,8 +516,6 @@ Para visualizar la convergencia de la serie puede usar el comando:
 \end{Shaded}
 \subsubsection{2.c Extra: series geométricas}
 
-Script: geom.R
-
 (\emph{Este ejercicio es opcional, aunque puede sumar puntos en su
 calificación final del repartido})
 
@@ -555,9 +536,6 @@ tales que $1 > \|z\|$ (1 mayor al valor absoluto de $z$). El objetivo de
 este ejercicio es confirmar este resultado. Para esto debe completarse
 el código del archivo \texttt{geom.R}, siguiendo las instrucciones que
 allí se indican.
-
-Nota: en este ejercicio utilice valores para \texttt{n} y \texttt{z} a
-elección (siendo el primero entero y positivo).
 
 Si el código es correcto, el resultado \texttt{out} debería ser idéntico
 (o casi igual, debido a pequeños errores numéricos de redondeo) al valor
@@ -603,8 +581,6 @@ para la palabra ``banana'', los $p_i$ de las letras ``a'', ``b'' y ``n''
 son $3/6$, $1/6$ y $2/6$ respectivamente y el $H$ resultante es 1.46.
 
 \subsubsection{3.a Cálculo de H para una colección de números}
-
-Script: shannon-1.R
 
 En el archivo ``shannon-1.R'' usted encontrará código de R incompleto.
 El objetivo de este script es calcular el $H$ de un vector de números
@@ -663,8 +639,6 @@ de R de estas dos funciones en caso de que no comprenda del todo bien su
 accionar.
 
 \subsubsection{3.b Extra: función \texttt{shannon}}
-
-Script: shannon-2.R
 
 (\emph{Este ejercicio es opcional, aunque puede sumar puntos en su
 calificación final del repartido})
