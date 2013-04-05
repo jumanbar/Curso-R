@@ -1,54 +1,67 @@
-Ejercicio de Cuestionarios: Ayuda de R (Parte 1.3)
-========================================================
  
-### En la sintaxis que usa R cuando en la función `help.search("paste")`
+### help
 
-[ ] Aparece primero el link a la función que estamos buscando y después una breve descripción  
-[ ] Aparece primero el link al paquete de la función que estamos buscando y después una breve descripción  
-[ ] Aparece primero una breve descripción y después el link con el nombre del paquete::el nombre de la función  
-[x] Aparece primero el link con el nombre del paquete::el nombre de la función y después una breve descripción  
-
-### El comando ??:
-
-[ ] Sirve para hacer una búsqueda en la web  
-[x] Sirve para realizar una búsqueda difusa o general sobre un tema  
-[ ] Sirve para ir directamente a la ayuda de la función que estoy escribiendo  
-[x] Sirve para saber en que paquete se encuentra la función que estoy escribiendo (aunque no es su propósito principal)  
-[ ] Se usa con la sintaxis `tema??`  
-[x] Se usa con la sintaxis `??tema`
-
-### Seleccione aquel comando o comandos que sirvan para buscar información sobre un tópico en la ayuda de R
-
-    [x] help.search("topico")  
-    [ ] help.search(topico)  
-    [ ] helpSearch("topico")  
-    [ ] helpSearch(topico)  
-    [ ] ??(topico)  
-    [x] ??"topico"
-
-### Seleccione aquel comando o comandos que sirvan para acceder a la documentación de R (páginas de ayuda):
+Seleccione aquel comando o comandos que sirvan para acceder a la documentación de R (páginas de ayuda):
 
     [x] help("topico")
+		(Correcto, es una de las **dos** opciones posibles.)
     [ ] help <- topico
+		(Incorrecto, esta sintaxis es para la operación de asignación (i.e.: crear un nuevo objeto llamado "help", el cual sería una copia de otro objeto llamado "topico").)
     [ ] ?(topico)
+		(Están sobrando los paréntesis aquí.)
     [x] ?topico
+		(Correcto, es una de las **dos** opciones posibles.)
     [ ] ?help(topico)
+		(Acá se están combinando dos métodos para hacer un híbrido que R no puede comprender ...)
 
-### 
+### ??:
 
-stackoverflow     -----------> para hacer preguntas específicas
-r-help@r-project  -----------> para hacer preguntas específicas
-google (u otros)  -----------> para buscar por temas generales o preguntas específicas
-RSiteSearch       -----------> para buscar en la web del R-project
+El comando especial `??` sirve para (marque todas las correctas) ...
 
-<<<<<<< HEAD
-    [ ] Rsitesearch(topico)
-    
-    [ ] RsiteSearch(topico)
-    
-    [x] RSiteSearch("topico")
-    
-    [ ] Rsitesearch(topico)
-=======
+    [x] Sirve para realizar una búsqueda difusa o general sobre un tema  
+		Así es, usualmente se usa cuando no sabemos cuál es, o si existe, la función que necesitamos (similar a lo que es una búsqueda de google, aunque local).
+    [x] Sirve para saber en que paquete se encuentra la función que estoy escribiendo (aunque no es su propósito principal)  
+		Es correcto, ya que luego de ejecutar este comando R nos muestra una lista de funciones agrupadas según los paquetes que las contienen.
+    [x] Se usa con la sintaxis `??tema`
+		Es correcto (y no debe dejarse espacio entre los signos de interrogación y la palabra de búsqueda).
+    [ ] Se usa con la sintaxis `tema??`  
+		Incorrecto, no es lo mismo poner los signos de interrogación antes que después ...
+    [ ] Sirve para ir directamente a la ayuda de la función que estoy escribiendo  
+		Incorrecto, se está confundiendo con el uso del comando especial ?, el cual es un equivalente a la función help.
+    [ ] Sirve para hacer una búsqueda en la web  
+		Incorrecto, sólo sirve para buscar funciones o bases de datos instalados localmente.
+    Incorrecto, no es lo mismo poner los signos de interrogación antes que después ...[x] Se usa con la sintaxis `??tema`
 
->>>>>>> ee4a80eace7be6cefb582fbeb3373db0c1008fe5
+### help.search
+
+Seleccione aquellos comandos que sirvan para buscar información sobre un tópico en la ayuda de R, haciendo una búsqueda difusa.
+
+    [x] `help.search("topico")`
+		Correcto: el tópico debe indicarse con comillas obligatoriamente en este caso.
+    [x] `??"topic"`
+	  Correcto: con el método `??` las comillas pueden usarse de forma opcional.
+    [x] `help.search(topico)`
+		Incorrecto: el tópico debe indicarse con comillas obligatoriamente en este caso.
+    [x] `helpSearch("topico")`
+		Incorrecto, el nombre de la función está mal ...
+    [x] `helpSearch(topico)`
+		Incorrecto, el nombre de la función está mal ...
+    [x] `??(topico)`
+		Incorrecto, aquí hay un problema con los paréntesis.
+
+### Emparejamiento
+
+Una los conceptos con los recursos online correctos.
+
+Preguntas específicas; puede buscar respuestas y seleccionar por votos; independiente del R-project.
+> stackoverflow
+
+lista de correos r-help@r-project
+> Preguntas específicas; puede buscar respuestas; dependiente del R-project.
+
+Búsqueda de todo tipo a través de la web, independiente del R-project.
+> Buscadores tipo google.
+
+Búsqueda por temas en la web del R-project.
+> RSiteSearch
+
