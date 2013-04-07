@@ -1,26 +1,23 @@
 # El vector de muestra "coleccion" 
-
 coleccion <- c(9, 6, 3, 3, 6, 1, 5, 5, 5, 3, 2, 7, 2, 1)
 
-# Instrucciones: siguiendo la ecuación 1 de la letra del repartido, los 
+# Instrucciones: siguiendo la ecuaciÃ³n 1 de la letra del repartido, los 
 # siguientes objetos son:
-# n: vector con todos los n_i (="n subíndice i")
-# N: cantidad total de objetos en la colección
+# n: vector con todos los n_i (="n subÃ­ndice i")
+# N: cantidad total de objetos en la colecciÃ³n
 # p: vector con todos los p_i
-# H: índice de Shannon
-# Usted deberá calcular el valor de H pero evitando usar la función "sum" y en
+# H: Ã­ndice de Shannon
+# Usted deberÃ¡ calcular el valor de H pero evitando usar la funciÃ³n "sum" y en
 # cambio utilizando el producto interno o escalar, denotado por el operador %*%.
 # Reuerde que las funciones "table" y "length" le pueden ser de mucha ayuda.
-#===== Su código comienza aquí: =====#
+#===== Su cÃ³digo comienza aquÃ­: =====#
 
-#n <- table(as.factor(coleccion))
+n <-
 
-n <- table(coleccion)
+N <- 
 
-N <- length(coleccion)
+p <-
 
-p <- n/N
+H <- 
 
-H <- -p%*%log2(p)
-
-#===== Aquí finaliza su código =====#
+#===== AquÃ­ finaliza su cÃ³digo =====#

@@ -1,38 +1,24 @@
-# Instrucciones: generar un código que pueda calcular el valor de una serie 
-# geométrica para valores arbitrarios de n y z.
+# Instrucciones: generar un cÃ³digo que pueda calcular el valor de una serie 
+# geomÃ©trica para valores arbitrarios de n y z (i.e.: elÃ­jalos usted mismo).
 # Objetos:
-# n: número entero positivo; el número de términos de la serie.
-# z: número real; el denominador de la fórmula de la serie S_n
-# e: representa los exponentes de cada término de la serie. Nótese que la
+# n: nÃºmero entero positivo; el nÃºmero de tÃ©rminos de la serie.
+# z: nÃºmero real; el denominador de la fÃ³rmula de la serie S_n
+# e: representa los exponentes de cada tÃ©rmino de la serie. NÃ³tese que la
 # sumatoria empieza en i=0 y termina en el i=n.
-# s: vector resultante de aplicar la fórmula del "término de la sumatoria" a los 
-# números del 0 al n.
+# s: vector resultante de aplicar la fÃ³rmula del "tÃ©rmino de la sumatoria" a los 
+# nÃºmeros del 0 al n.
 # out: resultado final de la sumatoria.
 
-#===== Su código comienza aquí: =====#  
+#===== Su cÃ³digo comienza aquÃ­: =====# 
 
 n <- 20
 
-z <- 0.4
+z <- 
 
-e <- seq(from=0,to=n,by=1)
+e <-
 
-s <- 1/(z**e)
+s <- 
 
-out <-sum(s)
+out <- 
 
-#====== Aquí finaliza su código =====#
-
-# Código usado para resolver:
-
-#out<-function(n,z){
-#  valor.z <- function(z){
-#    if(abs(z)<=1){
-#      cat("z debe ser tal que |z|>1")
-#    } else {cat("OK")}
-#  }
-#  e <- seq(from=0,to=n,by=1)
-#  s <- 1/(z**e)  
-#  print(sum(s))
-#}
-
+#====== AquÃ­ finaliza su cÃ³digo =====#

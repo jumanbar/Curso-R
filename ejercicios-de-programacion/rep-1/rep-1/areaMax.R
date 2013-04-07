@@ -1,26 +1,28 @@
-# Iniciación: es recomendable que usted comprenda las siguientes operaciones y
+# IniciaciÃ³n: es recomendable que usted comprenda las siguientes operaciones y
 # las estructuras de los vectores cat.ad, cat.op y a, resultantes de ejecutar
-# las siguientes líneas:
+# las siguientes lÃ­neas:
 hip <- 10 # Hipotenusa
-cat.ad <- seq(0.001, hip - 0.001, by = 0.1) # Valores del cateto adyacente
-cat.op <- co(cat.ad, hip)                    # Cálculo de los catetos opuestos
-a <- area(cat.ad, cat.op)                    # Cálculo de las áreas
+cat.ad <- seq(0.001, hip - 0.001, by = 0.1)  # Valores del cateto adyacente
+cat.op <- co(cat.ad, hip)                    # CÃ¡lculo de los catetos opuestos
+a <- area(cat.ad, cat.op)                    # CÃ¡lculo de las Ã¡reas
 
-# Instrucciones: deberá usar which o which.max para encontrar la posición dentro
-# del vector a en el que se encuentra el valor máximo de area.
-# i: posición en la que se encuentra el máximo de a (es el i-ésimo valor)
-# sol: valor de cateto adyacente para el que ocurre este máximo
-# amax: valor máximo de área calculado 
+# Instrucciones: deberÃ¡ usar which o which.max para encontrar la posiciÃ³n dentro
+# del vector a en el que se encuentra el valor mÃ¡ximo de area.
+# i: posiciÃ³n en la que se encuentra el mÃ¡ximo de a 
+# sol: valor de cateto adyacente para el que ocurre este mÃ¡ximo
+# amax: valor mÃ¡ximo de Ã¡rea calculado ("i-Ã©simo valor de a ...")
 
-#===== Su código comienza aquí: =====#
+#===== Su cÃ³digo comienza aquÃ­: =====#
 
-# Problema con co(): REVISAR HASTA LAS ÚLTIMAS CONSECUENCIAS!!!
-i    <- which.max(a)
-sol  <- max(cat.ad[i])
-amax <- a[[i]]
+i    <-
 
-#====== Aquí finaliza su código =====#
+sol  <-
 
-# Confirmación de la solución (opcional):
-plot(cat.ad, a, type='l', xlab="Cateto Adyacente (cat.ad)", ylab="Area", main="Area maxima: linea roja")
+amax <-
+
+#====== AquÃ­ finaliza su cÃ³digo =====#
+
+# CÃ³digo opcional, para confirmar su soluciÃ³n:
+# (NÃ³tese que este cÃ³digo da error si usted no ha definido aÃºn el objeto i)
+plot(cat.ad, a, type='l', ylab="Ãrea", main="Ãrea mÃ¡xima: lÃ­nea roja")
 abline(v=cat.ad[i], col='red', lwd=2)

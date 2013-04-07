@@ -1,5 +1,5 @@
 # Instrucciones: generar un código que pueda calcular el valor de una serie 
-# geométrica para valores arbitrarios de n y z.
+# geométrica para valores arbitrarios de n y z (i.e.: elíjalos usted mismo).
 # Objetos:
 # n: número entero positivo; el número de términos de la serie.
 # z: número real; el denominador de la fórmula de la serie S_n

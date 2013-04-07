@@ -122,7 +122,7 @@ clasif
          / Sí -----> "grande"
 (i > 5)? |                    / Sí -----> "mediano"
          \ No -----> (i > 2)? |
-                                 \ No -----> "chico"
+                              \ No -----> "chico"
 
 
 # RESUMEN
