@@ -1,7 +1,10 @@
 *.Rproj.user
 *.Rhistory
 *.rda
+*.swp
+*~
 Curso-R.Rproj
 apuntes.*
 .Rproj.user
 .Rprofile
+NA
