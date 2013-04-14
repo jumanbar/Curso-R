@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.4.2)  14 APR 2013 15:27
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.4.2)  14 APR 2013 16:50
 entering extended mode
  %&-line parsing enabled.
-**aclaraciones-generales.tex
-(./aclaraciones-generales.tex
+**dinamica-repartidos.tex
+(./dinamica-repartidos.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
 yphenation, loaded.
@@ -460,8 +460,8 @@ File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
 )
 Package hyperref Info: Option `breaklinks' set `true' on input line 46.
 
-(./aclaraciones-generales.aux)
-\openout1 = `aclaraciones-generales.aux'.
+(./dinamica-repartidos.aux)
+\openout1 = `dinamica-repartidos.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
 LaTeX Font Info:    ... okay on input line 53.
@@ -505,9 +505,9 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 LaTeX Info: Redefining \ref on input line 53.
 LaTeX Info: Redefining \pageref on input line 53.
 
-(./aclaraciones-generales.out) (./aclaraciones-generales.out)
+(./dinamica-repartidos.out) (./dinamica-repartidos.out)
 \@outlinefile=\write4
-\openout4 = `aclaraciones-generales.out'.
+\openout4 = `dinamica-repartidos.out'.
 
 \AtBeginShipoutBox=\box30
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
@@ -525,25 +525,25 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 163.
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 ) [2] [3] [4] [5]
-(./aclaraciones-generales.aux) ) 
+(./dinamica-repartidos.aux) ) 
 Here is how much of TeX's memory you used:
  6743 strings out of 495061
- 89173 string characters out of 1182622
+ 89134 string characters out of 1182622
  157613 words of memory out of 3000000
  9828 multiletter control sequences out of 15000+50000
  8089 words of font info for 31 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,6n,36p,339b,303s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
-></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
-e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/a
-msfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on aclaraciones-generales.pdf (5 pages, 144458 bytes).
+ 38i,6n,36p,369b,303s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx
+12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></
+usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive
+/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-texlive/fonts/type1/
+public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
+onts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti
+10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on dinamica-repartidos.pdf (5 pages, 144893 bytes).
 PDF statistics:
  117 PDF objects out of 1000 (max. 8388607)
  17 named destinations out of 1000 (max. 500000)
