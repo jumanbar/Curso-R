@@ -19,7 +19,7 @@ El archivo con los ejercicios del práctico debe bajarse y descomprimirse dentro
 * **` shannon-1.R `**
 * **` shannon-2.R `**
 
-Cada uno de estos archivos se corresponde con un ejercicio del repartido. Se trata de archivos de texto plano (como un `.txt`, pero con una extensión diferente). En cada archivo se indica con presición en dónde debe usted escribir su código (o modificar lo que ya está escrito). Para que el sistema de corrección funcione bien, **no cambie** el texto que se encuentra por fuera, incluyendo las que se usan para indicar el inicio y el final del mismo. Nótese además que **esto no impide** ampliar o reducir el espacio que usted tiene para escribir, subiendo o bajando cualquiera de las "líneas límite" del archivo.
+Cada uno de estos archivos se corresponde con un ejercicio del repartido. Se trata de archivos de texto plano (como un `.txt`, pero con extensión `.R`). En cada archivo se indica con presición en dónde debe usted escribir su código (o modificar lo que ya está escrito). Para que el sistema de corrección funcione bien, **no cambie** el texto que se encuentra por fuera, incluyendo las que se usan para indicar el inicio y el final del mismo. Nótese además que **esto no impide** ampliar o reducir el espacio que usted tiene para escribir, subiendo o bajando cualquiera de las "líneas límite" del archivo.
 
 Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modificados** para que el método de calificación automático funcione correctamente.
 
@@ -28,7 +28,7 @@ Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modif
 * ` notas.csv `
 * ` INSTRUCCIONES.pdf `
 
-Nota: más recomendaciones **importantes** se hacen en el documento [Dinámica de los repartidos](http://eva.universidad.edu.uy/mod/resource/view.php?id=118422).
+Nota: *más recomendaciones importantes* se hacen en el documento [Dinámica de los repartidos](http://eva.universidad.edu.uy/mod/resource/view.php?id=118422).
 
 Mecanismo de corrección:
 ------------------------
@@ -71,7 +71,7 @@ En casos de planteos de dudas a través del foro, en los que considere que es im
 1. Geometría
 ------------
 
-Como sabrá probablemente, el filósofo griego Pitágoras es el supuesto autor del teorema homónimo, el cual sirve para calcular la hipotenusa de un triángulo rectángulo. Este cálculo se realiza con la fórmula $h^2 = a^2 + b^2$, en donde $h$ es la hipotenusa y $a$ y $b$ los catetos.
+Como sabrá probablemente, el filósofo (o grupo de filósofos) griego Pitágoras es el supuesto autor del teorema homónimo, el cual sirve para calcular la hipotenusa de un triángulo rectángulo. Este cálculo se realiza con la fórmula $h^2 = a^2 + b^2$, en donde $h$ es la hipotenusa y $a$ y $b$ los catetos.
 
 ### 1.a Funciones simples
 

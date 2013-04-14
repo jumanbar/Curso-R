@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.4.2)  14 APR 2013 16:51
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.4.2)  14 APR 2013 18:49
 entering extended mode
  %&-line parsing enabled.
 **INSTRUCCIONES.tex
@@ -565,11 +565,11 @@ File: omscmtt.fd
 LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 208.
  [3] [4] [5]
-<figure/unnamed-chunk-10.png, id=99, 505.89pt x 505.89pt>
+<figure/unnamed-chunk-10.png, id=100, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-10.png Graphic file (type png)
 
 <use figure/unnamed-chunk-10.png> [6 <./figure/unnamed-chunk-10.png>]
-<figure/unnamed-chunk-11.png, id=108, 505.89pt x 505.89pt>
+<figure/unnamed-chunk-11.png, id=109, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-11.png Graphic file (type png)
 
 <use figure/unnamed-chunk-11.png> [7 <./figure/unnamed-chunk-11.png>] [8]
@@ -606,7 +606,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb>
-Output written on INSTRUCCIONES.pdf (13 pages, 208228 bytes).
+Output written on INSTRUCCIONES.pdf (13 pages, 208233 bytes).
 PDF statistics:
  196 PDF objects out of 1000 (max. 8388607)
  33 named destinations out of 1000 (max. 500000)

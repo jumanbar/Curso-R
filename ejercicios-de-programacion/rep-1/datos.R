@@ -351,7 +351,7 @@ borrar <- file.path(rdir, borrar)
 unlink(borrar, recursive = TRUE)
 
 file.copy(esperados, rdir, recursive = TRUE)
-zipfile <- paste(rdir, 'zip', sep = '.')
-unlink(zipfile)
-zip(zipfile, paste(rdir, '/', sep=''))
+# zipfile <- paste(rdir, 'zip', sep = '.')
+# unlink(zipfile)
+# zip(zipfile, paste(rdir, '/', sep=''))
 
