@@ -8,7 +8,7 @@ Ejercicios de programación I: Introducción
 Archivos incluidos:
 -------------------
 
-El [archivo](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/rep-1.zip) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-1`**. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
+El archivo con los ejercicios del práctico debe bajarse y descomprimirse dentro de la carpeta del curso, creando la subcarpeta **`rep-1`**. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
 * **` hipot.R `**
 * **` areaMax.R `**
@@ -19,11 +19,7 @@ El [archivo](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programac
 * **` shannon-1.R `**
 * **` shannon-2.R `**
 
-Cada uno de estos archivos se corresponde con un ejercicio del repartido. Se trata de archivos de texto plano (equivalentes a un `.txt`, pero con una extensión diferente que sirve para que los programas que lo abren reconozcan la sintaxis). En cada archivo se indica con presición en dónde debe usted escribir su código (o modificar lo que ya está escrito). **Cuide siempre de no escribir en estos archivos ninguna línea de código ajena a los propósitos del ejercicio mismo**. Por ejemplo, debe tener cuidado de no dejar escritas líneas como `source(triangulo.R)` dentro del propio archivo `triangulo.R`, ya que esto genera problemas al momento de evaluar el ejercicio (básicamente es como pedirle al archivo que se evalúe a sí mismo, lo que hace que se vuelva a evaluar a sí mismo y así sigue un "circulo vicioso", hasta que se llega a los límites de procesamiento de la máquina). 
-
-Por esta razón, recomendamos usar un script aparte para este tipo de comandos, así como todos aquellos comandos usados para experimentar con posibles soluciones o simples juegos de progamación que usted quiera hacer. En el video "Guía para repartidos" mostramos un ejemplo a seguir en caso de que esta explicación no le resulte satisfactoria (ver también el documento [Dinámica de trabajo de los repartidos](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/dinamica-reps.pdf)).
-
-Nótese además que los cambios que se hacen al script del ejercicio son **invisibles** para R hasta el momento en que usted **guarda** el archivo a disco duro. Esta suele ser una fuente común de frustración entre principiantes (y no tanto).
+Cada uno de estos archivos se corresponde con un ejercicio del repartido. Se trata de archivos de texto plano (como un `.txt`, pero con una extensión diferente). En cada archivo se indica con presición en dónde debe usted escribir su código (o modificar lo que ya está escrito). Para que el sistema de corrección funcione bien, **no cambie** el texto que se encuentra por fuera, incluyendo las que se usan para indicar el inicio y el final del mismo. Nótese además que **esto no impide** ampliar o reducir el espacio que usted tiene para escribir, subiendo o bajando cualquiera de las "líneas límite" del archivo.
 
 Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modificados** para que el método de calificación automático funcione correctamente.
 
@@ -31,6 +27,8 @@ Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modif
 * ` datos `
 * ` notas.csv `
 * ` INSTRUCCIONES.pdf `
+
+Nota: más recomendaciones **importantes** se hacen en el documento [Dinámica de los repartidos](http://eva.universidad.edu.uy/mod/resource/view.php?id=118422).
 
 Mecanismo de corrección:
 ------------------------

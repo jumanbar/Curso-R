@@ -12,23 +12,23 @@ ADVERTENCIA: leer este documento puede ahorrar *muchos* dolores de cabeza a la h
 Archivos incluidos:
 -------------------
 
-Cada repartido consta de una carpeta con archivos que usted puede bajar desde la plataforma del curso (por ejemplo [este](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/rep-1.zip)). Aquí por supuesto se encuentran los scripts de R que usted **debe modificar**, así como ciertos archivos auxiliares que usted **no debe modificar** (usualmente: `evaluar.R`, `datos`, `notas.csv` e `INSTRUCCIONES.pdf`, aunque pueden variar). Estos archivos, particularmente los dos primeros, son esenciales para que funcione el método de corrección automática que hemos desarrollado para este curso.
+Cada repartido consta de una carpeta con archivos que usted puede bajar desde la plataforma del curso (por ejemplo [este](http://eva.universidad.edu.uy/mod/resource/view.php?id=93598)). Aquí por supuesto se encuentran los scripts de R que usted debe **modificar**, así como ciertos archivos auxiliares que usted debe **dejar como están** (usualmente: `evaluar.R`, `datos`, `notas.csv` e `INSTRUCCIONES.pdf`, aunque pueden variar). Estos archivos, particularmente los dos primeros, son esenciales para que funcione el método de corrección automática que hemos desarrollado para este curso.
 
-La carpeta con el repartido debe bajarse y descomprimirse en el disco duro, creando la carpeta **`rep-X`** (siendo X el número de repartido). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` (o en RStudio la combinación **Ctrl + Shift + K**)
+La carpeta con el repartido debe bajarse y descomprimirse en el disco duro, creando la carpeta **`rep-X`** (siendo X el número de repartido). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` (o en RStudio la combinación **Ctrl + Shift + K**). En la lección 1.4 se explica en más detalle el uso de la función `setwd` y de los directorios de trabajo.
 
 
 Escribiendo el código
 ---------------------
 
-Cada uno de estos archivos se corresponde con un ejercicio del repartido. Se trata de archivos de texto plano (equivalentes a un `.txt`, pero con una extensión diferente que sirve para que los programas que lo abren reconozcan la sintaxis). En cada archivo se indica con presición en dónde debe usted escribir su código (o modificar lo que ya está escrito). Para que el sistema de corrección funcione bien, debe evitar cambiar el texto de todas las líneas de texto del archivo ajenas a este espacio, incluyendo las que se usan para indicar el inicio y el final del mismo. Nótese además que esto no impide **ampliar o reducir** el espacio que usted tiene para escribir, subiendo o bajando cualquiera de las "líneas límite" del archivo.
+Cada uno de estos archivos se corresponde con un ejercicio del repartido. Se trata de archivos de texto plano (como un `.txt`, pero con una extensión diferente). En cada archivo se indica con presición en dónde debe usted escribir su código (o modificar lo que ya está escrito). Para que el sistema de corrección funcione bien, **no cambie** el texto que se encuentra por fuera, incluyendo las que se usan para indicar el inicio y el final del mismo. Nótese además que **esto no impide** ampliar o reducir el espacio que usted tiene para escribir, subiendo o bajando cualquiera de las "líneas límite" del archivo.
 
-**Cuide siempre de no escribir en estos archivos ninguna línea de código ajena a los propósitos del ejercicio mismo**. Por ejemplo, debe tener cuidado de no dejar escritas líneas como `source(triangulo.R)` dentro del propio archivo `triangulo.R`, ya que esto genera problemas al momento de evaluar el ejercicio (básicamente es como pedirle al archivo que se evalúe a sí mismo, lo que hace que se vuelva a evaluar a sí mismo y así sigue un "circulo vicioso", hasta que se llega a los límites de procesamiento de la máquina). 
+Cuide siempre de **no escribir** en estos archivos líneas de código ajenas a los propósitos del ejercicio mismo. Por ejemplo, debe tener cuidado de no dejar escritas líneas como `source(triangulo.R)` dentro del propio archivo `triangulo.R`, ya que esto genera problemas al momento de evaluar el ejercicio (básicamente es como pedirle al archivo que se evalúe a sí mismo, lo que hace que R entre en una espiral de "autoevaluación").
 
-Por esta razón, recomendamos usar un script (una nueva hoja) aparte para este tipo de comandos, así como todos aquellos comandos usados para experimentar con posibles soluciones o simples juegos de progamación que usted quiera hacer. En el video "Guía para repartidos" mostramos un ejemplo a seguir en caso de que esta explicación no le resulte satisfactoria.
+Por esta razón, recomendamos usar otro archivo (posiblemente temporal) aparte para este tipo de comandos. En el video "Guía para repartidos" mostramos un ejemplo a seguir en caso de que esta explicación no le resulte satisfactoria.
 
 Nótese además que los cambios que se hacen al script del ejercicio son **invisibles** para R hasta el momento en que usted **guarda** el archivo a disco duro. Esta suele ser una fuente común de frustración entre principiantes (y no tanto).
 
-## Qué tipos de soluciones *sirven*
+## Sólo sirven soluciones *genéricas*
 
 Por ejemplo, para el segundo ejercicio del repartido 1 (para el cual se debe completar el código del script `areaMax.R`), no es válido el siguiente comando:
 
@@ -44,7 +44,7 @@ Por esta razón, si usted prueba usar 72 como se muestra arriba, el sistema de c
 
 Ocasionalmente puede ocurrir que una solución que plantea un estudiante tenga diferencias ínfimas con los valores esperados y resultan en ejercicios corregidos como incompletos. Estas diferencias pueden estar en el orden de $10 ^ {-99}$, por lo que a simple vista no se pueden ver (R nos muestra valores redondeados al 5 decimal por defecto). El origen de estas divergencias es la necesidad de la computadora de redondear los números, debido a que tiene capacidades finitas y los números pueden tener infinitos decimales.
 
-En general tratamos de que esto no sea un problema para la corrección de ejercicios, pero no puede descartarse que en algún caso hallamos pasado un problema así sin verlo. Si está *convencido* de que esto es así, por favor comuníquelo a través de los foros bajo la etiqueta "fe de erratas".
+En general tratamos de que esto no sea un problema para la corrección de ejercicios, pero no puede descartarse que no hayamos previsto algún caso. Si está *convencido* de que esto es así, por favor comuníquelo a través de los foros bajo la etiqueta "fe de erratas".
 
 Debe notarse además que estas diferencias pueden además surgir en base a la forma en que uno escribe las ecuaciones, sobre todo en el caso de que se usen operaciones que "amplifiquen" dichas diferencias, como puede ser la exponenciación. El siguiente es un ejemplo concreto:
 
@@ -68,14 +68,14 @@ En varios ejercicios del curso usted se encontrarán con objetos en R que contie
 
 ## Evaluaciones de métodos
 
-En algunos ejercicios (la minoría) se pide que el estudiante resuelva un problema utilizando un método en particular (por ejemplo, usando el operador `%*%` en el 3.a del repartido 1). En estos casos el sistema de evaluación sólo dará como correcto al ejercicio si el usuario usa efectivamente el método en cuestión (i.e.: utiliza el operador `%*%` correctamente en la línea correspondiente). La idea es que en general el estudiante entienda que no importa el camino que realiza si llegan a la solución, pero que en algunos casos excepcionales es distinto como en ese ejemplo descrito arriba.
+En algunos ejercicios (la minoría) se pide que el estudiante resuelva un problema utilizando un método en particular (por ejemplo, usando el operador `%*%` en el 3.a del repartido 1). En estos casos el sistema de evaluación sólo dará como correcto al ejercicio si el usuario usa efectivamente el método en cuestión (i.e.: utiliza el operador `%*%` correctamente en la línea correspondiente). La idea en general es que el estudiante tenga total libertad respecto al camino que realiza para alcanzar una solución, pero en algunos casos excepcionales esto no es así.
 
 ## Se evalúan varios objetos
 
-En muchos casos el algoritmo de evaluación no se limita a evaluar si el "objeto final" de un script está correcto, si no que evalúa también objetos (y/o pasos) intermedios. Por ejemplo, en el ejercicio 1.b del repartido 1, la corrección evalúa los tres objetos, `i`, `sol` y `amax`. Por lo tanto, es importante que los objetos se encuentren bien definidos y de manera universal.
+En muchos casos el algoritmo de evaluación no se limita a evaluar solamente el "objeto final" de un script, si no que evalúa también objetos (y/o pasos) anteriores. Por ejemplo, en el ejercicio 1.b del repartido 1, la corrección evalúa los tres objetos, `i`, `sol` y `amax`. Por lo tanto, es importante que los objetos se encuentren bien definidos con soluciones genéricas.
 
-Mecanismo de corrección automática:
------------------------------------
+Mecanismo de corrección automática: procedimiento
+-------------------------------------------------
 
 Lo primero que debe hacer es cargar el archivo `evaluar.R` con la función `source`, como se muestra a continuación:
 
@@ -90,13 +90,13 @@ Ejecutado correctamente, la siguiente frase debería verse en la consola:
 
 En caso de que ocurra un error o se vea otro mensaje en la consola, verifique que los archivos se descomprimieron correctamente y que usted está trabajando en la carpeta correspondiente con el comando `getwd()`.
 
-Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio y **guardando el archivo** correspondiente en el disco duro, usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:
+Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen en cada repartido. Luego de terminar cada ejercicio y **guardando el archivo** correspondiente en el disco duro, usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:
 
 ```{r eval=FALSE}
 evaluar()
 ```
 
-y además podrá en todo momento verificar su puntaje con la función `verNotas()`. Una vez terminados los ejercicios del repartido, usted deberá subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-X”, a la [sección de entregas](http://eva.universidad.edu.uy/mod/assignment/view.php?id=93616) de la portada del curso en la plataforma EVA.
+En todo momento podrá verificar su puntaje con la función `verNotas()`. Una vez terminados los ejercicios del repartido, usted deberá subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-X”, a la [sección de entregas](http://eva.universidad.edu.uy/mod/assignment/view.php?id=93616) de la portada del curso en la plataforma EVA.
 
 Sistema de puntaje
 ------------------

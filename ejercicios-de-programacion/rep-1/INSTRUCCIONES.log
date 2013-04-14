@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.4.2)  2 APR 2013 23:34
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.4.2)  14 APR 2013 15:32
 entering extended mode
  %&-line parsing enabled.
 **INSTRUCCIONES.tex
@@ -531,57 +531,57 @@ Package hyperref Warning: Difference (2) between bookmark levels is greater
 (hyperref)                than one, level fixed on input line 67.
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 76.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 83.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 75.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 82.
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 83.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 82.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 1248) in paragraph at lines 176--182
+Underfull \hbox (badness 1248) in paragraph at lines 161--167
 \OT1/cmr/m/n/10 y adem^^Sas podr^^Sa en todo mo-mento ver-i-ficar su pun-taje c
 on la funci^^Son
  []
 
 [2]
-LaTeX Font Info:    Try loading font information for U+msa on input line 202.
+LaTeX Font Info:    Try loading font information for U+msa on input line 187.
  (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 202.
+LaTeX Font Info:    Try loading font information for U+msb on input line 187.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 215
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 200
 .
 
 (/usr/share/texmf/tex/latex/R/tex/latex/omscmtt.fd
 File: omscmtt.fd 
 )
 LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 215.
- [3] [4] [5]
-<figure/unnamed-chunk-10.png, id=100, 505.89pt x 505.89pt>
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 200.
+ [3] [4]
+<figure/unnamed-chunk-10.png, id=94, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-10.png Graphic file (type png)
 
-<use figure/unnamed-chunk-10.png>
-<figure/unnamed-chunk-11.png, id=102, 505.89pt x 505.89pt>
+<use figure/unnamed-chunk-10.png> [5] [6 <./figure/unnamed-chunk-10.png>]
+<figure/unnamed-chunk-11.png, id=107, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-11.png Graphic file (type png)
 
-<use figure/unnamed-chunk-11.png> [6] [7 <./figure/unnamed-chunk-10.png>]
-[8 <./figure/unnamed-chunk-11.png>] [9]
-LaTeX Font Info:    Try loading font information for OML+cmtt on input line 520
+<use figure/unnamed-chunk-11.png> [7] [8 <./figure/unnamed-chunk-11.png>]
+[9]
+LaTeX Font Info:    Try loading font information for OML+cmtt on input line 505
 .
-LaTeX Font Info:    No file OMLcmtt.fd. on input line 520.
+LaTeX Font Info:    No file OMLcmtt.fd. on input line 505.
 
 
 LaTeX Font Warning: Font shape `OML/cmtt/m/n' undefined
 (Font)              using `OML/cmm/m/it' instead
-(Font)              for symbol `textless' on input line 520.
+(Font)              for symbol `textless' on input line 505.
 
 [10] [11] [12] [13] (./INSTRUCCIONES.aux)
 
@@ -595,7 +595,7 @@ Here is how much of TeX's memory you used:
  10023 multiletter control sequences out of 15000+50000
  7539 words of font info for 30 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,8n,37p,366b,453s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,8n,37p,366b,451s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts
@@ -607,9 +607,9 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb>
-Output written on INSTRUCCIONES.pdf (13 pages, 209155 bytes).
+Output written on INSTRUCCIONES.pdf (13 pages, 207905 bytes).
 PDF statistics:
- 197 PDF objects out of 1000 (max. 8388607)
+ 196 PDF objects out of 1000 (max. 8388607)
  33 named destinations out of 1000 (max. 500000)
  139 words of extra memory for PDF output out of 10000 (max. 10000000)
 
