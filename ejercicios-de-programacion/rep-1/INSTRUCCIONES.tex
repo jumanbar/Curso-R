@@ -97,12 +97,12 @@ encuentran algunos archivos que usted deberá modificar:
 \end{itemize}
 Cada uno de estos archivos se corresponde con un ejercicio del
 repartido. Se trata de archivos de texto plano (como un \texttt{.txt},
-pero con extensión \texttt{.R}). En cada archivo se indica con presición
-en dónde debe usted escribir su código (o modificar lo que ya está
-escrito). Para que el sistema de corrección funcione bien, \textbf{no
-cambie} el texto que se encuentra por fuera, incluyendo las que se usan
-para indicar el inicio y el final del mismo. Nótese además que
-\textbf{esto no impide} ampliar o reducir el espacio que usted tiene
+pero con una extensión diferente). En cada archivo se indica con
+presición en dónde debe usted escribir su código (o modificar lo que ya
+está escrito). Para que el sistema de corrección funcione bien,
+\textbf{no cambie} el texto que se encuentra por fuera, incluyendo las
+que se usan para indicar el inicio y el final del mismo. Nótese además
+que \textbf{esto no impide} ampliar o reducir el espacio que usted tiene
 para escribir, subiendo o bajando cualquiera de las ``líneas límite''
 del archivo.
 
@@ -120,7 +120,7 @@ funcione correctamente.
 \item
   \texttt{INSTRUCCIONES.pdf}
 \end{itemize}
-Nota: \emph{más recomendaciones importantes} se hacen en el documento
+Nota: más recomendaciones \textbf{importantes} se hacen en el documento
 \href{http://eva.universidad.edu.uy/mod/resource/view.php?id=118422}{Dinámica
 de los repartidos}.
 
@@ -189,11 +189,11 @@ profesor, explicando la problemática.
 
 \subsection{1. Geometría}
 
-Como sabrá probablemente, el filósofo (o grupo de filósofos) griego
-Pitágoras es el supuesto autor del teorema homónimo, el cual sirve para
-calcular la hipotenusa de un triángulo rectángulo. Este cálculo se
-realiza con la fórmula $h^2 = a^2 + b^2$, en donde $h$ es la hipotenusa
-y $a$ y $b$ los catetos.
+Como sabrá probablemente, el filósofo griego Pitágoras es el supuesto
+autor del teorema homónimo, el cual sirve para calcular la hipotenusa de
+un triángulo rectángulo. Este cálculo se realiza con la fórmula
+$h^2 = a^2 + b^2$, en donde $h$ es la hipotenusa y $a$ y $b$ los
+catetos.
 
 \subsubsection{1.a Funciones simples}
 
@@ -513,17 +513,23 @@ a 0.000001 (i.e.: 1e-06). Puede comprobar que su resultado cumple con
 esa premisa con el comando \texttt{1 - out \textless{} 1e-06}.
 
 Nota: en este ejercicio, y \emph{a diferencia de la mayoría de los
-casos} de este curso, la respuesta para el valor de \texttt{n} debe ser
-un número entero (i.e.: 42), el cual usted deberá escribir en la línea
-correspondiente del archivo ``zenon.R''.
+casos} de este curso, la respuesta para el valor de \texttt{n} no es
+general, si no que debe ser un número entero (i.e.: 42), el cual usted
+deberá escribir en la línea correspondiente del archivo ``zenon.R''.
 
-Para visualizar la convergencia de la serie puede usar el comando:
+Para visualizar la convergencia de su serie puede usar el comando:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(}\KeywordTok{cumsum}\NormalTok{(s), }\DataTypeTok{type =} \StringTok{"o"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{ylab =} \KeywordTok{expression}\NormalTok{(Z[n]))}
 \end{Highlighting}
 \end{Shaded}
+\begin{figure}[htbp]
+\centering
+\includegraphics{figure/unnamed-chunk-15.png}
+\caption{Serie de Zenón}
+\end{figure}
+
 \subsubsection{2.c Extra: series geométricas}
 
 Script: geom.R
@@ -544,7 +550,7 @@ por i=1.)
 
 Un resultado importante es que la serie converge a un valor determinado
 (es decir, tiene un límite finito para $n \to \infty$) para todos los z
-tales que $1 > \|z\|$ (1 mayor al valor absoluto de $z$). El objetivo de
+tales que $1 < \|z\|$ (1 menor al valor absoluto de $z$). El objetivo de
 este ejercicio es confirmar este resultado. Para esto debe completarse
 el código del archivo \texttt{geom.R}, siguiendo las instrucciones que
 allí se indican.

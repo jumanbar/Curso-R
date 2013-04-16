@@ -14,6 +14,6 @@ INSTRUCCIONES.pdf: INSTRUCCIONES.md
 rep-1.zip: INSTRUCCIONES.pdf datos.R
 	R --vanilla --slave < datos.R
 	wait
-	zip -r rep-1.zip rep-1 
+	zip -r rep-1.zip rep-1
 
 

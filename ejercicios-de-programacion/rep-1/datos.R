@@ -265,8 +265,8 @@ cor2.c <- function() {
 		stop("los valores del s obtenido no son los correctos", call. = FALSE)
 	if (any(abs(out - out2) > tol))
 		stop("los valores del out obtenido no son los correctos", call. = FALSE)
-  if (n != 20)
-    stop("el valor de n obtenido no es el correcto", call. = FALSE)
+#   if (n != 20)
+#     stop("el valor de n obtenido no es el correcto", call. = FALSE)
 
 	TRUE
 }

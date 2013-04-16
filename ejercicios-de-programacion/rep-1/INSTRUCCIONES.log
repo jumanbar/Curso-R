@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.4.2)  14 APR 2013 18:49
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.4.2)  16 APR 2013 19:25
 entering extended mode
  %&-line parsing enabled.
 **INSTRUCCIONES.tex
@@ -565,11 +565,11 @@ File: omscmtt.fd
 LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 208.
  [3] [4] [5]
-<figure/unnamed-chunk-10.png, id=100, 505.89pt x 505.89pt>
+<figure/unnamed-chunk-10.png, id=99, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-10.png Graphic file (type png)
 
 <use figure/unnamed-chunk-10.png> [6 <./figure/unnamed-chunk-10.png>]
-<figure/unnamed-chunk-11.png, id=109, 505.89pt x 505.89pt>
+<figure/unnamed-chunk-11.png, id=108, 505.89pt x 505.89pt>
 File: figure/unnamed-chunk-11.png Graphic file (type png)
 
 <use figure/unnamed-chunk-11.png> [7 <./figure/unnamed-chunk-11.png>] [8]
@@ -582,19 +582,23 @@ LaTeX Font Warning: Font shape `OML/cmtt/m/n' undefined
 (Font)              using `OML/cmm/m/it' instead
 (Font)              for symbol `textless' on input line 513.
 
-[9] [10] [11] [12] [13] (./INSTRUCCIONES.aux)
+[9] <figure/unnamed-chunk-15.png, id=126, 252.945pt x 252.945pt>
+File: figure/unnamed-chunk-15.png Graphic file (type png)
+
+<use figure/unnamed-chunk-15.png> [10 <./figure/unnamed-chunk-15.png>] [11]
+[12] [13] (./INSTRUCCIONES.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 6978 strings out of 495061
- 92339 string characters out of 1182622
+ 6984 strings out of 495061
+ 92494 string characters out of 1182622
  161881 words of memory out of 3000000
- 10023 multiletter control sequences out of 15000+50000
+ 10027 multiletter control sequences out of 15000+50000
  7539 words of font info for 30 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 38i,8n,37p,366b,425s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,8n,37p,366b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts
@@ -606,9 +610,9 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb>
-Output written on INSTRUCCIONES.pdf (13 pages, 208233 bytes).
+Output written on INSTRUCCIONES.pdf (13 pages, 212614 bytes).
 PDF statistics:
- 196 PDF objects out of 1000 (max. 8388607)
- 33 named destinations out of 1000 (max. 500000)
- 139 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 199 PDF objects out of 1000 (max. 8388607)
+ 34 named destinations out of 1000 (max. 500000)
+ 144 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -262,11 +262,16 @@ En este ejercicio, usted deberá completar el código del archivo "zenon.R" seg�
 
 Además usted debe probar distintos valores del entero `n`, con el fin de encontrar aquel entero mínimo necesario para lograr un valor de `out` tal que la diferencia entre `out` y 1 debe ser menor a 0.000001 (i.e.: 1e-06). Puede comprobar que su resultado cumple con esa premisa con el comando `1 - out < 1e-06`. 
 
-Nota: en este ejercicio, y *a diferencia de la mayoría de los casos* de este curso, la respuesta para el valor de `n` debe ser un número entero (i.e.: 42), el cual usted deberá escribir en la línea correspondiente del archivo "zenon.R".
+Nota: en este ejercicio, y *a diferencia de la mayoría de los casos* de este curso, la respuesta para el valor de `n` no es general, si no que debe ser un número entero (i.e.: 42), el cual usted deberá escribir en la línea correspondiente del archivo "zenon.R".
 
-Para visualizar la convergencia de la serie puede usar el comando:
+Para visualizar la convergencia de su serie puede usar el comando:
 
-```{r eval=FALSE}
+```{r eval=TRUE, echo=FALSE}
+n <- 22; z <- 1.4
+s <- 1 / (z ** (0:n))
+out <- sum(s)
+```
+```{r eval=TRUE, fig.width = 3.5, fig.height=3.5, fig.cap="Serie de Zenón"}
 plot(cumsum(s), type="o", xlab="n", ylab=expression(Z[n]))
 ```
 
@@ -285,7 +290,7 @@ $$
 
 (Nota: ahora el primer término corresponde a i=0, por lo que a toda $S_n$ se le agrega un +1 en comparación con la misma sumatoria empezando por i=1.)
 
-Un resultado importante es que la serie converge a un valor determinado (es decir, tiene un límite finito para $n \to \infty$) para todos los z tales que $1 > \|z\|$ (1 mayor al valor absoluto de $z$). El objetivo de este ejercicio es confirmar este resultado. Para esto debe completarse el código del archivo `geom.R`, siguiendo las instrucciones que allí se indican.
+Un resultado importante es que la serie converge a un valor determinado (es decir, tiene un límite finito para $n \to \infty$) para todos los z tales que $1 < \|z\|$ (1 menor al valor absoluto de $z$). El objetivo de este ejercicio es confirmar este resultado. Para esto debe completarse el código del archivo `geom.R`, siguiendo las instrucciones que allí se indican.
 
 Nota: en este ejercicio utilice valores para `n` y `z` a elección (siendo el primero entero y positivo).
 
