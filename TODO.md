@@ -75,3 +75,12 @@ TAREAS (lista hecha el 7-3-2013 en la PUC):
 * Notas finales: N = 0.4 * C + 0.6 * R
 (N: nota, C: promedio cuestionarios, R: promedio repartidos)
 
+
+
+Para el final del curso
+-----------------------
+
+* Hacer una encuesta a parte de la evaluatoria final con las siguientes consultas y afines:
+	- ud. le gustaria que el curso dure menos tiempo ?
+	- ud. considera que hubiera podido realizar los modulos en una semana ?
+	- ud. considera que si le dan dos semanas por modulo pero es capaz de realizarlo en una, utilizaría igualmetne las dos semanas?
