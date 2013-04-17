@@ -3,6 +3,7 @@
 *.rda
 *.swp
 *~
+*-sol.R
 Curso-R.Rproj
 apuntes.*
 .Rproj.user
