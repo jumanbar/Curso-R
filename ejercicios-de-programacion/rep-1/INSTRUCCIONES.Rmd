@@ -19,7 +19,7 @@ El archivo con los ejercicios del práctico debe bajarse y descomprimirse dentro
 * **` shannon-1.R `**
 * **` shannon-2.R `**
 
-Cada uno de estos archivos se corresponde con un ejercicio del repartido. Se trata de archivos de texto plano (como un `.txt`, pero con una extensión diferente). En cada archivo se indica con presición en dónde debe usted escribir su código (o modificar lo que ya está escrito). Para que el sistema de corrección funcione bien, **no cambie** el texto que se encuentra por fuera, incluyendo las que se usan para indicar el inicio y el final del mismo. Nótese además que **esto no impide** ampliar o reducir el espacio que usted tiene para escribir, subiendo o bajando cualquiera de las "líneas límite" del archivo.
+Cada uno de estos archivos se corresponde con un ejercicio del repartido. Se trata de archivos de texto plano (como un `.txt`, pero con una extensión diferente). En cada archivo se indica con precisión en dónde debe usted escribir su código (o modificar lo que ya está escrito). Para que el sistema de corrección funcione bien, **no cambie** el texto que se encuentra por fuera, incluyendo las que se usan para indicar el inicio y el final del mismo. Nótese además que **esto no impide** ampliar o reducir el espacio que usted tiene para escribir, subiendo o bajando cualquiera de las "líneas límite" del archivo.
 
 Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modificados** para que el método de calificación automático funcione correctamente.
 
