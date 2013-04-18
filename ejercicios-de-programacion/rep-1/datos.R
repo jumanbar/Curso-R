@@ -308,13 +308,14 @@ cor3.a <- function() {
 	if (abs(H[1] - H2[1]) > tol)
 		stop("el valor del N obtenido no es el correcto", call. = FALSE)
 
-  gr2 <- grep('H<-', arch2)[1]
-  x1 <- grepl("p%*%log(p,2)", arch2[gr2], fixed=TRUE)
-  x2 <- grepl("p%*%log2(p)", arch2[gr2], fixed=TRUE)
+	# Deprecated:
+	#   gr2 <- grep('H<-', arch2)[1]
+	#   x1 <- grepl("p%*%log(p,2)", arch2[gr2], fixed=TRUE)
+	#   x2 <- grepl("p%*%log2(p)", arch2[gr2], fixed=TRUE)
 
-	if (!(x1 || x2))
+	if (!all(dim(H) == c(1, 1)) || class(H) != "matrix")
 		stop("el operador %*% no ha sido usado correctamente", call. = FALSE)
-	  
+
 	TRUE
 }
 
