@@ -306,7 +306,7 @@ cor3.a <- function() {
 	if (any(abs(p - p2) > tol))
 		stop("los valores del p obtenido no son los correctos", call. = FALSE)
 	if (abs(H[1] - H2[1]) > tol)
-		stop("el valor del N obtenido no es el correcto", call. = FALSE)
+		stop("el valor del H obtenido no es el correcto", call. = FALSE)
 
 	# Deprecated:
 	#   gr2 <- grep('H<-', arch2)[1]
