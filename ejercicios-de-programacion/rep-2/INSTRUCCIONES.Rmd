@@ -3,7 +3,7 @@ Ejercicios de programación II: Fundamentos
 
 ### [IMSER 2012]
 
-___
+- - -
 
 Archivos incluidos:
 -------------------
@@ -59,9 +59,11 @@ Una vez terminados y guardados los archivos de los ejercicios del repartido, ust
 
 ### Código de Honor
 
-Si bien animamos a que los estudiantes trabajen en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos importante que los estudiantes no miren el código creado por sus compañeros ya que esto supone un sabotaje a su propio proceso de aprendizaje. Como profesores estamos comprometidos a pedir tareas para las cuales hayamos dado las herramientas correctas y las explicaciones adecuadas como para que todos puedan encontrar su propio camino para resolver los ejercicios.
+Si bien animamos a que trabaje en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos necesario que no utilize el código creado por sus compañeros, si no que debe programar sus propias instrucciones, ya que de lo contrario supone un sabotaje a su propio proceso de aprendizaje. Esto implica también evitar, en la medida de lo posible, exponer el código propio a sus colegas. Como profesores estamos comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y explicaciones adecuadas a fin de que pueda encontrar su propio camino para resolver los ejercicios.
 
-___
+En casos de planteos de dudas a través del foro, en los que considere que es imposible expresar un problema sin exponer su própio código, entonces es aceptable hacerlo. De todas formas en estos casos es preferible que envíe su código por correo electrónico directamente a un profesor, explicando la problemática.
+
+- - -
 
 1. Datos de calificaciones
 --------------------------
@@ -92,7 +94,7 @@ Considerando que los aprobados son todos aquellos que tienen una nota de 5 o may
 
 Script: "aprobados2.R"
 
-El objetivo aquí es determinar la cantidad y porcentaje de aprobados para varones y mujeres por separado. Es decir, se debe determinar la cantidad de varones aprobados en relación a la cantidad de varones totales, y lo mismo para las mujeres. El código para ejecutar esta tarea se debe escribir en el archivo "aprobados2.R".
+El objetivo aquí es determinar la cantidad y porcentaje (*no confundir con fracción*) de aprobados para varones y mujeres por separado. Es decir, se debe determinar la cantidad de varones aprobados en relación a la cantidad de varones totales, y lo mismo para las mujeres. El código para ejecutar esta tarea se debe escribir en el archivo "aprobados2.R".
 
 La estrategia más sencilla es primero separar las calificaciones de varones y mujeres en dos vectores (`v` y `m` por ejemplo) y luego aplicar el método usado en el ejercicio anterior en ambos. Para esto evidentemente tendrá que usar el vector `gen` además de operadores relacionales, en particular `==` (o su contraparte `!=`).
 

@@ -1,11 +1,8 @@
 # Lo primero es crear un conjunto de puntos en el plano con un generador de
 # valores aleatorios (función "runif"):
+set.seed(3.1415)
 coorx <- runif(20)
 coory <- runif(20)
-# Nota: cada vez que se corran estas dos líneas se van a generar nuevos puntos,
-# por lo que no es recomendable hacer. Una forma de evitar que esto pase es
-# agregando numerales ("#") al comienzo de las líneas para evitar correrlas al
-# usar "source".
 
 # Posteriormente se grafican esos puntos y se agrega el "punto central", en las
 # coordenadas (0.5, 0.5).

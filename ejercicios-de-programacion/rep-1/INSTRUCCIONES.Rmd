@@ -129,7 +129,7 @@ for (i in 1:length(cat.ad)) {
 
 Si usted ejecuta este código, podrá ver que el área máxima está cercana a 25 y que el ancho del cateto adyacente correspondiente es aproximadamente 7.1 (si ejecuta el script "ejTriang.R" puede visualizar todos estos triángulos). Pero este es un método sumamente engorroso en comparación a lo aque se puede hacer en R. Para empezar, como se menciona en la lección 1.2, en su versión escrita la menos, el cálculo de todas estas áreas (y de los catetos opuestos asociados) se puede hacer sin loops. Esta capacidad de R es muy importante para aumentar la velocidad de ejecución de ciertas tareas y se denomina **vectorización**.
 
-El siguiente es un ejemplo de vectorización, ya que calcula todos los valores posibles de `cat.op` y `a` sin utilizar un **loop** (es decir, no utiliza el comando especial `for` mostrado anteriormente). Para el caso que las áreas, este código sirve para calcular todos estos valores de áreas:
+El siguiente es un ejemplo de vectorización, ya que calcula todos los valores posibles de `cat.op` y `a` sin utilizar un **loop** (es decir, no utiliza el comando especial `for` mostrado anteriormente). Para el caso que las áreas, ejecute el siguiente código:
 
 ```{r eval=FALSE}
 hip <- 10 # Hipotenusa
@@ -139,7 +139,7 @@ a <- area(cat.ad, cat.op)                   # Cálculo de las áreas
 
 ```
 
-Nótese el uso de la función `seq` para crear una secuencia de valores entre $0.001$ y $h - 0.001$, utilizados como anchos de los distintos catetos adyacentes. De esta forma sólo quedaría buscar cuál de los valores de área es el mayor y determinar en qué posición se encuentra. Esto lo deberá hacer usted, completando el código en el archivo "areaMax.R". Para ello recomendamos considerar dos funciones de R:
+De esta forma tiene un vector `a` con todos los valores de áreas. Nótese el uso de la función `seq` para crear una secuencia de valores entre $0.001$ y $h - 0.001$, utilizados como anchos de los distintos catetos adyacentes. De esta forma sólo quedaría buscar cuál de los valores de área es el mayor y determinar en qué posición se encuentra. Esto lo deberá hacer usted, completando el código en el archivo "areaMax.R". Para ello recomendamos considerar dos funciones de R:
 
 * Las funciones `which` o `which.max` se pueden utilizar para encontrar la posición (i.e.: un número entero positivo) del valor máximo dentro de un vector (siendo la primera una opción más versatil en verdad). Utilice la documentación para aprender más de estas funciones y así encontrar la posición del valor máximo dentro del vector `a`. 
 
@@ -150,7 +150,7 @@ Cuando complete el código podrá confirmar que ha encontrado verdaderamente el 
 
 ```{r eval=FALSE}
 plot(cat.ad, a, type='l', ylab="Área", main="Área máxima: línea roja")
-abline(v=cat.ad[i], col='red', lwd=2)
+abline(v=cat.ad[i], h=amax, col='red', lwd=1.3, lty = 3)
 ```
 
 ### 1.c Distancias entre puntos
@@ -246,7 +246,7 @@ En el archivo "varianza.R" usted deberá escribir los pasos necesarios para calc
 
 Script: zenon.R
 
-Según la clásica [paradoja de la dicotomía de Zenón](https://es.wikipedia.org/wiki/Paradojas_de_Zen%C3%B3n#La_dicotom.C3.ADa)(http://xkcd.com/1153/) es imposible caminar de un punto A a un punto B, debido a que primero debemos movernos la mitad del camino, posteriormente avanzar la mitad de la mitad del camino y así ad infinitum, sin llegar jamás a B. Esto se traduce en avanzar primero 1/2 de camino, luego 1/4, luego 1/8, luego 1/16 y así sucesivamente. Entonces, luego de $n$ pasos de este tipo se alcanza una fracción de camino equivalente a:
+Según la clásica [paradoja de la dicotomía](https://es.wikipedia.org/wiki/Paradojas_de_Zen%C3%B3n#La_dicotom.C3.ADa) de [Zenón](http://xkcd.com/1153/) es imposible caminar de un punto A a un punto B, debido a que primero debemos movernos la mitad del camino, posteriormente avanzar la mitad de la mitad del camino y así ad infinitum, sin llegar jamás a B. Esto se traduce en avanzar primero 1/2 de camino, luego 1/4, luego 1/8, luego 1/16 y así sucesivamente. Entonces, luego de $n$ pasos de este tipo se alcanza una fracción de camino equivalente a:
 
 $$
   Z_n = \sum_{i=1}^{i=n} \frac{1}{2 ^ i} \;=\;
