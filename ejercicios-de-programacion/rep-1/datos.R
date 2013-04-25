@@ -248,8 +248,8 @@ cor2.c <- function() {
   writeLines(arch, tmp)
 
   # Generación de datos
-  n  <- sample(20:40, 1)
-  z  <- rnorm(1, 1, 1)
+  n <- 10
+  z <- runif(1, 1, 4)
   
   # Evaluación de objetos: e, s, out
   source(tmp, local=TRUE)
@@ -257,14 +257,18 @@ cor2.c <- function() {
   e2 <- 0:n
   s2 <- 1 / (z ** e2)
   out2 <- sum(s2)
-	tol <- 1e-20
+	tol <- 1e-10 # Acá la tolerancia es mayor que en otros ejercicios; se hicieron
+               # pruebas y resultó necesario hacerlo.
 
+  if (length(e) != length(e2))
+		stop("la longitud de e no es la esperada,
+          ¿es posible que el primer término sea 1 y no 0?", call. = FALSE)
 	if (any(abs(e - e2) > tol))
-		stop("los valores del e obtenido no son los correctos", call. = FALSE)
+	  stop("los valores del e obtenido no son los esperados", call. = FALSE)
 	if (any(abs(s - s2) > tol))
-		stop("los valores del s obtenido no son los correctos", call. = FALSE)
+		stop("los valores del s obtenido no son los esperados", call. = FALSE)
 	if (any(abs(out - out2) > tol))
-		stop("los valores del out obtenido no son los correctos", call. = FALSE)
+		stop("el valor del out obtenido no es el esperado", call. = FALSE)
 #   if (n != 20)
 #     stop("el valor de n obtenido no es el correcto", call. = FALSE)
 

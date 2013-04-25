@@ -84,3 +84,5 @@ Para el final del curso
 	- ud. le gustaria que el curso dure menos tiempo ?
 	- ud. considera que hubiera podido realizar los modulos en una semana ?
 	- ud. considera que si le dan dos semanas por modulo pero es capaz de realizarlo en una, utilizaría igualmetne las dos semanas?
+
+* Mensajes de error: cambiar "no es el valor correcto" por "no es el valor esperado", en todos los casos que esto aplique.
