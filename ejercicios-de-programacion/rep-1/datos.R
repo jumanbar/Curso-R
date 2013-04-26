@@ -261,7 +261,7 @@ cor2.c <- function() {
                # pruebas y resultó necesario hacerlo.
 
   if (length(e) != length(e2))
-		stop("la longitud de e no es la esperada,
+	  stop("la longitud de e no es la esperada,
           ¿es posible que el primer término sea 1 y no 0?", call. = FALSE)
 	if (any(abs(e - e2) > tol))
 	  stop("los valores del e obtenido no son los esperados", call. = FALSE)
