@@ -87,4 +87,5 @@ Para el final del curso
 
 * Mensajes de error: cambiar "no es el valor correcto" por "no es el valor esperado", en todos los casos que esto aplique.
 
-* INSISTIR MUCHO, POR EJEMPLO EN LA LETRA DE REPARTIDOS, CON LO DE LAS SOLUCIONES GENÉRICAS!!!
+*  INSISTIR MUCHO, POR EJEMPLO EN LA LETRA DE REPARTIDOS, CON LO DE LAS SOLUCIONES GENÉRICAS!!!
+   El año que viene debería haber una lección "cómo hacer el repartido"!!

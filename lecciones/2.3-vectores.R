@@ -1,4 +1,4 @@
-## Vectores
+﻿## Vectores
  
 # Los vectores son una de las unidades básicas de trabajo en R y muchos de los
 # métodos de trabajo con este tipo de objetos se aplica para otras clases de
@@ -8,7 +8,10 @@
 # caracteres, números); esta es una restricción importante a la hora de crear
 # un vector, como veremos más adelante.
 
-# Un vector no tiene dimensión en R, más allá de que en un sentido matemático
+# Esta característica hace que se los denomine "vectores atómicos" (atomic
+# vectors).
+
+# Un vector no tiene dimensión en R, más allá de que en álgebra se considera que
 # los vectores tienen dimensión 1. Es decir, en R y a diferencia de otros 
 # lenguajes como Matlab u Octave, los vectores no son fila o columna, si no 
 # que simplemente son una secuencia de valores. Esto se refleja en el hecho de 
@@ -58,7 +61,8 @@ class(x)
 # ser una fuente de errores difíciles de detectar para el usuario que no está
 # atento a estos detalles.
 
-# Algunos ejemplos de vectores de distintas clases, construidos con c:
+# Las clases posibles de los vectores son 5: integer, numeric, character y complex.
+# Estos son algunos ejemplos:
 x <- 1:5
 class(x) # integer (enteros)
 x <- seq(11, 15, by=0.1)
@@ -67,8 +71,10 @@ x <- c('Gabi', 'Fofó', 'Miliki')
 class(x) # character
 x <- 1:3 > 1.34
 class(x) # logical (valores lógicos, TRUE/FALSE)
+x <- 1:4 + 1i
+class(x) # complex
 
-# Una función práctica es rep, cual sirve para repetir n veces un valor o un 
+# Una función práctica es rep, la cual sirve para repetir n veces un valor o un 
 # vector. Por ejemplo el siguiente comando
 rep('char', 5)
 
@@ -80,7 +86,7 @@ rep(c(5, 7, 2), each=3)
 # Nótese las diferencias en las salidas. Vea la ayuda de R para ver en 
 # profundidad el funcionamiento de rep.
 
-# La función "seq" sirve para generar secuencias de con mayor flexibilidad que 
+# La función "seq" sirve para generar secuencias de valores con mayor flexibilidad que 
 # el operador :. Por ejemplo, para generar secuencias de valores entre 0 y 1, 
 # cuyos valores consecutivos tengan una diferencia de 0.05, podemos correr:
 seq(0, 1, by = 0.05)
@@ -141,11 +147,8 @@ x[a] # Deben ser sólo los elementos de x mayores que 1
 # A veces usar 'which' es un poco engorroso si queremos hacer cosas simples.
 # Una forma alternativa es usar directamente el vector lógico dentro de los
 # paréntesis rectos:
-(y <- x > 1)
-x[y]
-# Estos son entonces los elementos de "x" que cumplen con la condición (x > 1). 
-# Esto equivale a:
 x[x > 1]
+# Estos son entonces los elementos de "x" que cumplen con la condición (x > 1). 
  
 # Los índices también se pueden usar para modificar al vector x. Si 
 # utilizamos la flecha podemos asignar al iésimo elemento un nuevo valor, por 
@@ -194,7 +197,7 @@ mean(x)    # promedio
 median(x)  # mediana
 sd(x)      # desvío estándar
 var(x)     # varianza
-summary(x) # resumen del vector, incluye varios valores relavantes (mínimo,
+summary(x) # resumen del vector, incluye varios valores relevantes (mínimo,
            # máximo, media, mediana, cuartiles)
 
 # En particular summary, que es una función genérica, suele ser muy útil 

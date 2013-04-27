@@ -1,4 +1,4 @@
-## Operadores relacionales
+﻿## Operadores relacionales
  
 # En esta lección vamos a introducirnos en el uso de operadores relacionales. 
 # Los operadores relacionales son símbolos mediante los cuales podemos realizar
@@ -19,7 +19,7 @@
 
 ## Comparadores: <, >, <=, >=, ==, !=
 # La operación más sencilla e intuitiva que vamos a realizar, dados dos
-# valores u objetos, va a ser la comparación de los mismos. Para ralizar
+# valores u objetos, va a ser la comparación de los mismos. Para realizar
 # este tipo de operación contamos con todo un conjunto de operadores,
 # denominados comparadores u operadores relacionales. Estos son: <, >, <=,
 # >=, == y !=, correspondiendo a las comparaciones: 'menor a', 'mayor a',
@@ -33,7 +33,7 @@
 # Nótese que los objetos a comparar deben estar en el orden correcto,
 # particularmente en los que se está planteando una desigualdad.
 # En el último ejemplo se intenta comparar dos objetos de diferentes
-# clases. Además de los valores, deberemos tener en cuenta est tipo de
+# clases. Además de los valores, deberemos tener en cuenta este tipo de
 # detalles.
 
 # En el caso de que las operaciones involucren vectores, los resultados
@@ -46,11 +46,11 @@ x == y    # Compara cada elemento del vector 'x' con el correspondiente de 'y'.
 x >= y[1] # Compara cada elemento de 'x' con el primer elemento del vector 'y'.
 
 # El resultado de una operación lógica de este tipo puede tener una aplicación
-# inmediata. Un ejemplo de ello es la identificación los valores de un vector
+# inmediata. Un ejemplo de ello es la identificación de los valores de un vector
 # que cumplen una determinada condición.
 cond <- abs(x) < 2.5
 # 'cond' devuelve como 'TRUE' en cuáles posiciones en el vector 'x' se cumple
-# la condición de estár ocupadas por cifras cuyo valor absoluto es menor a 2.5.
+# la condición de estar ocupadas por cifras cuyo valor absoluto es menor a 2.5.
 cond
 # Esto que permite usar al objeto denominado "cond" (un vector de clase
 # 'logical') para obtener los valores de 'x' que cumplen la condición indicada
@@ -107,10 +107,10 @@ x >= y & x <= y
 # parte posterior del curso.
 
 # OR: |, ||
-# Dados dos objetos a y b de la clase logical, al planter una expresión del 
+# Dados dos objetos a y b de la clase logical, al plantear una expresión del 
 # tipo a || b, alcanza con que uno de los dos sea TRUE para que el resultado 
-# sea TRUE también, sin exigir que lo sean ambas (caso de AND) ni que lo sea una
-# o la otra en forma excluyente (caso de 'xor'). Ejemplo:
+# sea TRUE también, sin exigir que lo sean ambos (caso de AND) ni que lo sea uno
+# o el otro en forma excluyente (caso de 'xor'). Ejemplo:
 3 > 2 || 4/5 < 7/8  # TRUE
 3 > 2 || 4/5 == 7/8 # TRUE
 1 > 2 || 4/5 == 7/8 # FALSE
@@ -124,13 +124,13 @@ x > y || x < y
 
 
 # XOR: xor(a, b)
-# Dados a y b vectores lógicos, 'xor' devuelve como resultado TRUE sólamente en 
-# las posiciones en las que sólo uno de los dos contiene un TRUE. Es decir, 
-# sólo evalúa como verdadero si se cumple en forma exclusiva una de las dos 
+# Dados a y b vectores lógicos, 'xor' devuelve como resultado TRUE solamente en 
+# las posiciones en las que solo uno de los dos contiene un TRUE. Es decir, 
+# solo evalúa como verdadero si se cumple en forma exclusiva una de las dos 
 # condiciones. Conceptualmente es equivalente a sustraer de los resultados 
 # verdaderos de una operación con OR los resultados que sean, además, verdaderos
 # en una operación con AND. La sintaxis es, sin embargo, diferente a lo visto
-# para AND u OR y a que utiliza una función.
+# para AND u OR ya que utiliza una función.
 # Ejemplo:
 x > 0
 x < 3

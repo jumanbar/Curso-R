@@ -1,4 +1,4 @@
-## Clases de objetos
+﻿## Clases de objetos
  
 # R es un lenguaje orientado a objetos. Variables, tablas, vectores, números,
 # funciones, etc., todos son objetos, y cada clase de objeto tiene diferentes
@@ -17,7 +17,7 @@ class(x) # "numeric", ya que ahora contiene decimales
 # La diferencia más importante entre ambos es que los primeros ocupan menos 
 # memoria (puede consultarlo con la función 'object.size')
 
-# Para el caso de "palabras" o más comunmente llamadas "strings", la clase 
+# Para el caso de "palabras" o más comúnmente llamadas "strings", la clase 
 # "character" es la que utiliza R para manejar este tipo de objetos. Al igual 
 # que en la mayoría de los lenguajes de programación, R utiliza las comillas 
 # dobles " o simples ' para delimitar un string. Veamos un ejemplo rápido:
@@ -40,7 +40,7 @@ mp
 # estos tipos de objetos son llamados "strings literals" muchas veces.
 
 # Los objetos del tipo "logical" son resultado de operaciones lógicas, como 
-# comparciones (¿a es mayor que b?, ¿h es distinto de 3.1415?, etc). Por 
+# comparaciones (¿a es mayor que b?, ¿h es distinto de 3.1415?, etc). Por 
 # ejemplo:
 u <- 5 > 2:8
 u # [1]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE
@@ -107,7 +107,7 @@ plot(hclust(out))
 # No todas las funciones de R pueden trabajar con varios tipos de objeto (es 
 # decir, varias clases de objeto). Las que pueden con estas tareas son las 
 # llamadas "funciones genéricas". Algunos ejemplos son plot, print, summary, 
-# y mean. Cada una de estas funciones tienen variantes asociadas a cada clase 
+# y mean. Cada una de estas funciones tiene variantes asociadas a cada clase 
 # posible. Es decir, hay una versión de mean para trabajar con matrices, otra 
 # para data.frames, etc... Todas estas variantes se pueden ver de la siguiente 
 # manera:
@@ -118,7 +118,7 @@ methods(mean)
 # de esas clases luego del punto (ej: mean.data.frame es la versión de mean 
 # específica para trabajar con data.frames).
 
-# Entonces, cuando el usuario ejecuta la función mean, R primero verifica el 
+# Entonces, cuando el usuario ejecuta la función mean, R primero verifica 
 # el nombre de la clase del objeto de entrada y luego usa la versión de mean 
 # adecuada para dicha clase. Veamos dos ejemplos, una matriz y un data.frame:
 nums <- rnorm(20)         # 20 valores aleatorios
@@ -133,14 +133,14 @@ mean(d)
 # embargo esto es secundario, ya que lo importante es que hay una importante 
 # diferencia en los resultados: para la matriz se hizo el promedio de todos 
 # los números, mientras que para la data.frame se hicieron los promedios por 
-# columna (lo que se puede hacer con colMeans o sapply también).s
+# columna (lo que se puede hacer con colMeans o sapply también).
 
 # Es bueno mencionar también que ciertos objetos de R sofisticados suelen 
 # tener varias clases, anotadas de forma ordenada, de forma que si no se 
 # encuentra el método adecuado para la primera, entonces busca utilizar la 
 # segunda clase y así sucesivamente.
 
-# A lo largo de el curso nos vamos a ir enfrentando a distintos ejemplos de
+# A lo largo del curso nos vamos a ir enfrentando a distintos ejemplos de
 # clases y cómo interactúan con los objetos y funciones de R. Es
 # importante estar atento a los tipos de objetos con los que estamos
 # trabajando, ya que de esto depende si el resultado de un comando da el
