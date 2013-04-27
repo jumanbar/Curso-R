@@ -86,3 +86,5 @@ Para el final del curso
 	- ud. considera que si le dan dos semanas por modulo pero es capaz de realizarlo en una, utilizaría igualmetne las dos semanas?
 
 * Mensajes de error: cambiar "no es el valor correcto" por "no es el valor esperado", en todos los casos que esto aplique.
+
+* INSISTIR MUCHO, POR EJEMPLO EN LA LETRA DE REPARTIDOS, CON LO DE LAS SOLUCIONES GENÉRICAS!!!
