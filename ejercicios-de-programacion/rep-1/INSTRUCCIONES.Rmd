@@ -5,8 +5,10 @@ Ejercicios de programación I: Introducción
 
 - - -
 
-Archivos incluidos:
--------------------
+Instrucciones generales:
+------------------------
+
+### Archivos incluidos:
 
 El archivo con los ejercicios del práctico debe bajarse y descomprimirse dentro de la carpeta del curso, creando la subcarpeta **`rep-1`**. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
@@ -28,10 +30,10 @@ Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modif
 * ` notas.csv `
 * ` INSTRUCCIONES.pdf `
 
-Nota: más recomendaciones **importantes** se hacen en el documento [Dinámica de los repartidos](http://eva.universidad.edu.uy/mod/resource/view.php?id=118422).
-
 Mecanismo de corrección:
 ------------------------
+
+Nota: más recomendaciones **importantes** se hacen en el documento [Dinámica de los repartidos](http://goo.gl/P5Wnq).
 
 Lo primero que debe hacer es cargar el archivo `evaluar.R` con la función `source`:
 
@@ -62,7 +64,6 @@ Si bien animamos a que trabaje en equipos y que haya un intercambio fluido en lo
 En casos de planteos de dudas a través del foro, en los que considere que es imposible expresar un problema sin exponer su própio código, entonces es aceptable hacerlo. De todas formas en estos casos es preferible que envíe su código por correo electrónico directamente a un profesor, explicando la problemática.
 
 - - -
-
 
 1. Geometría
 ------------
@@ -106,6 +107,8 @@ Si sus funciones están correctas, usted debería obtener estos resultados:
 area(3, 4)
 co(3, 5)
 ```
+
+Pero también recuerde que estas funciones deben hacer el cálculo correcto *para cualquier par de valores* de catetos e hipotenusas, es decir deben ser _**genéricas**_ (con la restricción de que la hipotenusa siempre es mayor que los catetos).
 
 Nota: dado que para obtener el cateto se hace una resta, a cuyo resultado se debe hallar la raíz cuadrada, considere que debe evitar valores negativos. La forma más básica de evitarlo es encontrando el valor absoluto, usando la función `abs`.
 

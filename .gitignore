@@ -4,6 +4,7 @@
 *.swp
 *~
 *-sol.R
+*.html
 Curso-R.Rproj
 apuntes.*
 .Rprofile

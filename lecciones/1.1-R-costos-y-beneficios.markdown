@@ -1,8 +1,7 @@
 ﻿(1.1) Sobre R, costos & beneficios
 ==================================
 
-¿Qué es el R?
--------------
+## ¿Qué es el R?
 
 En la página del [R-Project](www.r-project.org) se lo describe como un **ambiente de computación estadística y gráficos**. Lo que esto implica es, por un lado, un set de herramientas de alta calidad para trabajar con datos, estadística y gráficos, y por otro, un lenguaje de programación simple y efectivo con los recursos necesarios para desarrollar cualquier tipo de análisis. La palabra ambiente intenta caracterizarlo como un sistema coherente y planificado.
 
@@ -12,15 +11,10 @@ Por último pero no por ello menor, R es parte de la Fundación de Software Libr
 
 R se ha convertido en una de las herramientas más utilizadas en estadística y análisis de datos, siendo particularmente popular en [data mining](https://en.wikipedia.org/wiki/Data_mining). Por esta razón, es un candidato interesante a convertirse en la "lingua franca" de la estadística, si es que ya no se puede considerar como tal.
 
-_______
-
-![**Figura 1**. Cantidad de paquetes listados en el sitio web del Comprehesive R Archive Network (CRAN)](files/CRAN_packages.png 'Paquetes en el CRAN')
-
-_______
+![Cantidad de paquetes listados en el sitio web del Comprehesive R Archive Network (CRAN)](Dropbox/IMSER/imagenes/CRAN_packages.png 'Paquetes en el CRAN')
 
 
-Costos y beneficios de aprender R (en relación a otras opciones)
-----------------------------------------------------------------
+## Costos y beneficios de aprender R (en relación a otras opciones)
 
 La iniciación en el mundo de la programación, sea con R o cualquier otro lenguaje, suele ser un proceso lleno de tropiezos, los cuales tienden a ser frustrantes. Una de las características más notorias de los lenguajes de programación, para quienes tienen una formación alejada, es la exactitud que los mismos exigen al usuario. Nótese que en la comunicación natural cotidiana, e incluso mediática, se suele hablar con muchas imprecisiones y ambigüedades, por lo tanto no es raro que los lenguajes de programación sean difíciles y antinaturales.
 
@@ -42,11 +36,7 @@ Una consecuencia de esto es la aparente tendencia de R de no hacer lo que en ver
 
 Es cierto que esto ocurre también con la comunicación verbal cotidiana, pero como humanos podemos elegir en la mayoría de los casos, consciente o inconscientemente, el significado más probable de ser correcto (**Fig. 2**).
 
-_______
-
-![**Figura 2**. Ejemplo de un diálogo humano. R, o una computadora en general, pasaría un mal rato descifrando el significado de las palabras "briyantina" o "güenazo"](files/inodoro.jpg "Autor: Roberto Fontanarrosa")
-
-_______
+![Ejemplo de un diálogo humano. R, o una computadora en general, pasaría un mal rato descifrando el significado de las palabras "briyantina" o "güenazo"](Dropbox/IMSER/imagenes/Inodoro_briyantina.png "Autor: Roberto Fontanarrosa")
 
 La ocurrencia de estos "trancazos" puede ser muy frustrante y por eso la paciencia es una virtud necesaria. Esto contrasta con los programas que hoy en día son más comunes: aquellos con interfaces gráficas elaboradas, desarrollados para ser más fáciles e intuitivos de usar.
 
@@ -60,14 +50,10 @@ Por lo tanto aprender R es una apuesta a largo plazo. No se trata de una "memori
 
 Para el caso de R existe una serie de GUIs buenas que pueden ayudar a empezar a usar R a los recién iniciados. El caso más básico y tal vez el más conocido es el del R-GUI que viene por defecto en la instalación de R para Windows. Otros [GUI](https://es.wikipedia.org/wiki/R_%28lenguaje_de_programaci%C3%B3n%29#Herramientas_de_productividad) como RStudio son bastante más elaborados. Este último es el escogido para este curso debido a ciertas facilidades que lo hacen bastante ameno para propósitos pedagógicos.
 
-_______
 
-![**Figura 3**. Curvas de aprendizaje idealizadas para softwares con perfiles opuestos: GUI y CLI (R)](files/curvas-de-aprendizaje.png "Curvas de aprendizaje")
+![Curvas de aprendizaje idealizadas para softwares con perfiles opuestos: GUI y CLI (R)](Dropbox/IMSER/imagenes/curvas-aprendizaje.png "Curvas de aprendizaje")
 
-_______
-
-Algunos consejos
-----------------
+## Algunos consejos
 
 ### Usar la documentación permanentemente
 
@@ -75,19 +61,15 @@ La documentación de R suele dar muchos dolores de cabeza, sobre todo al princip
 
 Por lo tanto, no debe dudarse en utilizar el comando `help` para consultar sobre el uso de la función que le está generando problemas. De hecho `help` tiene dos modos de uso, por ejemplo los siguientes comandos producen el mismo resultado:
 
-~~~
-help(mean)
-?mean
-~~~
+    help(mean)
+    ?mean
 
 Estos comandos abren la página de ayuda de la función `mean` (para calcular promedios).
 
 De particular ayuda es la función `help.search` de R, la cual se puede abreviar como "`??`". Dicha función sirve para buscar funciones que tengan alguna relación con una palabra clave que nos interesa. No es necesario saber de antemano el nombre de la función que queremos, de forma que sirve como "tanteo" de las posibilidades que existen. Algo así como un "google" para R y bien usado es una herramienta muy poderosa. Por ejemplo, si queremos encontrar una función relativa al chi cuadrado, podemos utilizar cualquiera de estos dos comandos:
 
-~~~
-help.search("chi")
-??chi
-~~~
+    help.search("chi")
+    ??chi
 
 En las lecciones sobre la ayuda del R volveremos a explicar esta función y otras relacionadas, así como el uso de la comunidad global de usuarios para encontrar las soluciones que necesitamos.
 
@@ -99,13 +81,13 @@ Los mensajes de error y de advertencia son otra fuente de aprendizaje, sin embar
 
 El aprendizaje de R es más útil y rápido si el usuario lo utiliza de forma cotidiana y aplica paciencia y esfuerzo en sortear los obstáculos que se le presentarán en esta empresa. En general es cierto afirmar que una vez resuelta una dificultad o un problema, el tiempo dedicado a resolverlo en futuras incidencias del mismo problema es ínfimamente menor. Además el exponerse a distintos códigos y tareas estimula la creatividad, que es un componente fundamental de la programación productiva.
 
-_______
+- - -
 
-Resumen
--------
+## Resumen
 
 R es un **ambiente de computación estadística y gráfica**. Esto implica no sólo una amplia serie de funcionalidades para trabajar y visualizar datos, sino también un lenguaje de programación de [alto nivel](https://es.wikipedia.org/wiki/Lenguaje_de_alto_nivel) (i.e.: más amigable que otros lenguajes de programación) sumamente funcional. Si bien su origen está en un producto comercial, se ha convertido en una de las banderas del Software Libre y por lo tanto es beneficiado por un crecimiento constante de aportes de todo el globo.
 
 Si bien el aprendizaje de R supone un costo importante en tiempo y memoria que debe hacer cada usuario, las capacidades del mismo, así como popularidad y versatilidad de este software, indican que esta es una inversión de enorme retorno a largo plazo.
 
 El proceso de aprendizaje de R es más efectivo cuanto más dedicación tenga el principiante, posibilitando un ahorro de esfuerzo y tiempo a futuro sustancial. En particular animamos a que todo principiante juegue, experimente y lea R por su propia cuenta.
+
