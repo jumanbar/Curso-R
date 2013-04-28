@@ -61,6 +61,9 @@ y además podrá en todo momento verificar su puntaje con la función `verNotas(
 
 Si bien animamos a que trabaje en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos necesario que no utilize el código creado por sus compañeros, si no que debe programar sus propias instrucciones, ya que de lo contrario supone un sabotaje a su propio proceso de aprendizaje. Esto implica también evitar, en la medida de lo posible, exponer el código propio a sus colegas. Como profesores estamos comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y explicaciones adecuadas a fin de que pueda encontrar su propio camino para resolver los ejercicios.
 
+
+Si bien animamos a que trabaje en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos necesario que no utilize el código creado por sus compañeros, si no que debe programar sus propias instrucciones, ya que de lo contrario supone un sabotaje a su propio proceso de aprendizaje. Esto implica también evitar, en la medida de lo posible, exponer el código propio a sus colegas. Como profesores estamos comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y explicaciones adecuadas a fin de que pueda encontrar su propio camino para resolver los ejercicios.
+
 En casos de planteos de dudas a través del foro, en los que considere que es imposible expresar un problema sin exponer su própio código, entonces es aceptable hacerlo. De todas formas en estos casos es preferible que envíe su código por correo electrónico directamente a un profesor, explicando la problemática.
 
 - - -
@@ -243,7 +246,16 @@ En donde $\overline{x}$ denota el valor promedio de la muestra de datos, calcula
 
 Script: varianza.R
 
-En el archivo "varianza.R" usted deberá escribir los pasos necesarios para calcular la varianza del vector `x` que se muestra en el archivo (siga las instrucciones incluidas en los comentarios).  Para confirmar que su resultado es correcto, puede ejecutar el comando `var(x)`, el cual debería devolver el mismo valor que el objeto `out`.
+En el archivo "varianza.R" usted deberá escribir los pasos necesarios para calcular la varianza del vector de ejemplo `x` que se muestra en el archivo (siga las instrucciones incluidas en los comentarios). 
+
+Si su solución es correcta, lo cual implica que es genérica, entonces el valor de `out` obtenido coincidirá con la salida de la función `var`. Puede correr las siguientes líneas varias veces para determinar si esto es así:
+
+```{r}
+source("varianza.R")
+out == var(x)
+```
+
+Esto producirá un `TRUE` o un `FALSE` en caso de que `out` esté bien o mal calculado, respectivamente.
 
 ### 2.b Paradoja de Zenón
 
@@ -351,9 +363,6 @@ v %*% u
 simplemente, ignorando detalles de transposición. De hecho los vectores en R no son fila o columna, si no que simplemente son una secuencia de elementos. En general este operador sirve para toda multiplicación de matrices en R.
 
 En este ejercicio deberá completar el archivo "shannon-1.R" de forma que sea capaz de calcular el valor de H para el vector `coleccion` o *cualquier otro vector* de R, utilizando el producto escalar de vectores para calcular el resultado de la sumatoria. Para el caso particular de `coleccion`, el $H$ esperado es de 2.699514.
-
-#### Observaciones a tener en cuenta:
-
 El cálculo del $H$ puede dividirse en (1) calcular los valores de $p_i$ y (2) realizar la sumatoria. Para calcular los $p_i$ es necesario a su vez tener los $n_i$ y el valor $N$. Para estas tareas las funciones `table` y `length` pueden ser de gran ayuda. La primera sirve para hacer un conteo de la cantidad de objetos por categoría, mientras que la función `length` devuelve la cantidad de elementos de un vector cualquiera. No dude en consultar la documentación de R de estas dos funciones en caso de que no comprenda del todo bien su accionar.
 
 ### 3.b Extra: función `shannon`

@@ -5,8 +5,10 @@ Ejercicios de programación I: Introducción
 
 - - -
 
-Archivos incluidos:
--------------------
+Instrucciones generales:
+------------------------
+
+### Archivos incluidos:
 
 El archivo con los ejercicios del práctico debe bajarse y descomprimirse dentro de la carpeta del curso, creando la subcarpeta **`rep-1`**. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
@@ -28,10 +30,10 @@ Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modif
 * ` notas.csv `
 * ` INSTRUCCIONES.pdf `
 
-Nota: más recomendaciones **importantes** se hacen en el documento [Dinámica de los repartidos](http://eva.universidad.edu.uy/mod/resource/view.php?id=118422).
-
 Mecanismo de corrección:
 ------------------------
+
+Nota: más recomendaciones **importantes** se hacen en el documento [Dinámica de los repartidos](http://goo.gl/P5Wnq).
 
 Lo primero que debe hacer es cargar el archivo `evaluar.R` con la función `source`:
 
@@ -63,10 +65,12 @@ y además podrá en todo momento verificar su puntaje con la función `verNotas(
 
 Si bien animamos a que trabaje en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos necesario que no utilize el código creado por sus compañeros, si no que debe programar sus propias instrucciones, ya que de lo contrario supone un sabotaje a su propio proceso de aprendizaje. Esto implica también evitar, en la medida de lo posible, exponer el código propio a sus colegas. Como profesores estamos comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y explicaciones adecuadas a fin de que pueda encontrar su propio camino para resolver los ejercicios.
 
+
+Si bien animamos a que trabaje en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos necesario que no utilize el código creado por sus compañeros, si no que debe programar sus propias instrucciones, ya que de lo contrario supone un sabotaje a su propio proceso de aprendizaje. Esto implica también evitar, en la medida de lo posible, exponer el código propio a sus colegas. Como profesores estamos comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y explicaciones adecuadas a fin de que pueda encontrar su propio camino para resolver los ejercicios.
+
 En casos de planteos de dudas a través del foro, en los que considere que es imposible expresar un problema sin exponer su própio código, entonces es aceptable hacerlo. De todas formas en estos casos es preferible que envíe su código por correo electrónico directamente a un profesor, explicando la problemática.
 
 - - -
-
 
 1. Geometría
 ------------
@@ -125,6 +129,8 @@ co(3, 5)
 ```
 
 
+Pero también recuerde que estas funciones deben hacer el cálculo correcto *para cualquier par de valores* de catetos e hipotenusas, es decir deben ser _**genéricas**_ (con la restricción de que la hipotenusa siempre es mayor que los catetos).
+
 Nota: dado que para obtener el cateto se hace una resta, a cuyo resultado se debe hallar la raíz cuadrada, considere que debe evitar valores negativos. La forma más básica de evitarlo es encontrando el valor absoluto, usando la función `abs`.
 
 ### 1.b Área máxima
@@ -149,7 +155,7 @@ for (i in 1:length(cat.ad)) {
 
 Si usted ejecuta este código, podrá ver que el área máxima está cercana a 25 y que el ancho del cateto adyacente correspondiente es aproximadamente 7.1 (si ejecuta el script "ejTriang.R" puede visualizar todos estos triángulos). Pero este es un método sumamente engorroso en comparación a lo aque se puede hacer en R. Para empezar, como se menciona en la lección 1.2, en su versión escrita la menos, el cálculo de todas estas áreas (y de los catetos opuestos asociados) se puede hacer sin loops. Esta capacidad de R es muy importante para aumentar la velocidad de ejecución de ciertas tareas y se denomina **vectorización**.
 
-El siguiente es un ejemplo de vectorización, ya que calcula todos los valores posibles de `cat.op` y `a` sin utilizar un **loop** (es decir, no utiliza el comando especial `for` mostrado anteriormente). Para el caso que las áreas, este código sirve para calcular todos estos valores de áreas:
+El siguiente es un ejemplo de vectorización, ya que calcula todos los valores posibles de `cat.op` y `a` sin utilizar un **loop** (es decir, no utiliza el comando especial `for` mostrado anteriormente). Para el caso que las áreas, ejecute el siguiente código:
 
 
 ```r
@@ -161,7 +167,7 @@ a <- area(cat.ad, cat.op)  # Cálculo de las áreas
 ```
 
 
-Nótese el uso de la función `seq` para crear una secuencia de valores entre $0.001$ y $h - 0.001$, utilizados como anchos de los distintos catetos adyacentes. De esta forma sólo quedaría buscar cuál de los valores de área es el mayor y determinar en qué posición se encuentra. Esto lo deberá hacer usted, completando el código en el archivo "areaMax.R". Para ello recomendamos considerar dos funciones de R:
+De esta forma tiene un vector `a` con todos los valores de áreas. Nótese el uso de la función `seq` para crear una secuencia de valores entre $0.001$ y $h - 0.001$, utilizados como anchos de los distintos catetos adyacentes. De esta forma sólo quedaría buscar cuál de los valores de área es el mayor y determinar en qué posición se encuentra. Esto lo deberá hacer usted, completando el código en el archivo "areaMax.R". Para ello recomendamos considerar dos funciones de R:
 
 * Las funciones `which` o `which.max` se pueden utilizar para encontrar la posición (i.e.: un número entero positivo) del valor máximo dentro de un vector (siendo la primera una opción más versatil en verdad). Utilice la documentación para aprender más de estas funciones y así encontrar la posición del valor máximo dentro del vector `a`. 
 
@@ -173,7 +179,7 @@ Cuando complete el código podrá confirmar que ha encontrado verdaderamente el 
 
 ```r
 plot(cat.ad, a, type = "l", ylab = "Área", main = "Área máxima: línea roja")
-abline(v = cat.ad[i], col = "red", lwd = 2)
+abline(v = cat.ad[i], h = amax, col = "red", lwd = 1.3, lty = 3)
 ```
 
 
@@ -245,13 +251,28 @@ En donde $\overline{x}$ denota el valor promedio de la muestra de datos, calcula
 
 Script: varianza.R
 
-En el archivo "varianza.R" usted deberá escribir los pasos necesarios para calcular la varianza del vector `x` que se muestra en el archivo (siga las instrucciones incluidas en los comentarios).  Para confirmar que su resultado es correcto, puede ejecutar el comando `var(x)`, el cual debería devolver el mismo valor que el objeto `out`.
+En el archivo "varianza.R" usted deberá escribir los pasos necesarios para calcular la varianza del vector de ejemplo `x` que se muestra en el archivo (siga las instrucciones incluidas en los comentarios). 
+
+Si su solución es correcta, lo cual implica que es genérica, entonces el valor de `out` obtenido coincidirá con la salida de la función `var`. Puede correr las siguientes líneas varias veces para determinar si esto es así:
+
+
+```r
+source("varianza.R")
+out == var(x)
+```
+
+```
+## [1] FALSE
+```
+
+
+Esto producirá un `TRUE` o un `FALSE` en caso de que `out` esté bien o mal calculado, respectivamente.
 
 ### 2.b Paradoja de Zenón
 
 Script: zenon.R
 
-Según la clásica [paradoja de la dicotomía de Zenón](https://es.wikipedia.org/wiki/Paradojas_de_Zen%C3%B3n#La_dicotom.C3.ADa)(http://xkcd.com/1153/) es imposible caminar de un punto A a un punto B, debido a que primero debemos movernos la mitad del camino, posteriormente avanzar la mitad de la mitad del camino y así ad infinitum, sin llegar jamás a B. Esto se traduce en avanzar primero 1/2 de camino, luego 1/4, luego 1/8, luego 1/16 y así sucesivamente. Entonces, luego de $n$ pasos de este tipo se alcanza una fracción de camino equivalente a:
+Según la clásica [paradoja de la dicotomía](https://es.wikipedia.org/wiki/Paradojas_de_Zen%C3%B3n#La_dicotom.C3.ADa) de [Zenón](http://xkcd.com/1153/) es imposible caminar de un punto A a un punto B, debido a que primero debemos movernos la mitad del camino, posteriormente avanzar la mitad de la mitad del camino y así ad infinitum, sin llegar jamás a B. Esto se traduce en avanzar primero 1/2 de camino, luego 1/4, luego 1/8, luego 1/16 y así sucesivamente. Entonces, luego de $n$ pasos de este tipo se alcanza una fracción de camino equivalente a:
 
 $$
   Z_n = \sum_{i=1}^{i=n} \frac{1}{2 ^ i} \;=\;
@@ -278,7 +299,7 @@ Para visualizar la convergencia de su serie puede usar el comando:
 plot(cumsum(s), type = "o", xlab = "n", ylab = expression(Z[n]))
 ```
 
-![Serie de Zenón](figure/unnamed-chunk-15.png) 
+![Serie de Zenón](figure/unnamed-chunk-16.png) 
 
 
 
@@ -356,9 +377,6 @@ v %*% u
 simplemente, ignorando detalles de transposición. De hecho los vectores en R no son fila o columna, si no que simplemente son una secuencia de elementos. En general este operador sirve para toda multiplicación de matrices en R.
 
 En este ejercicio deberá completar el archivo "shannon-1.R" de forma que sea capaz de calcular el valor de H para el vector `coleccion` o *cualquier otro vector* de R, utilizando el producto escalar de vectores para calcular el resultado de la sumatoria. Para el caso particular de `coleccion`, el $H$ esperado es de 2.699514.
-
-#### Observaciones a tener en cuenta:
-
 El cálculo del $H$ puede dividirse en (1) calcular los valores de $p_i$ y (2) realizar la sumatoria. Para calcular los $p_i$ es necesario a su vez tener los $n_i$ y el valor $N$. Para estas tareas las funciones `table` y `length` pueden ser de gran ayuda. La primera sirve para hacer un conteo de la cantidad de objetos por categoría, mientras que la función `length` devuelve la cantidad de elementos de un vector cualquiera. No dude en consultar la documentación de R de estas dos funciones en caso de que no comprenda del todo bien su accionar.
 
 ### 3.b Extra: función `shannon`

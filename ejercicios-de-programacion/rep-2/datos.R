@@ -85,11 +85,12 @@ cor1.a <- function() {
   
   # Evaluación de objetos: p.apr
   source(tmp, local = TRUE)
+  unlink(tmp)  
   apr2   <- sum(cal >= 5)
   p.apr2 <- 100 * apr2 / length(cal)
-  f1 <- all.equal(p.apr, p.apr2)
-  unlink(tmp)  
-  f1 * 1
+	if (abs(p.apr2 - p.apr) > tol)
+		stop("El valor obtenido no coincide con el esperado", call. = FALSE)
+  TRUE
 }
 
 cor1.b <- function() {

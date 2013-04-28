@@ -5,6 +5,8 @@
 *~
 *-sol.R
 *.html
+*.swo
+*.png
 Curso-R.Rproj
 apuntes.*
 .Rprofile

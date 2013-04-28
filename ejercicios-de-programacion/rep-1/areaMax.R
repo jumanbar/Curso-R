@@ -6,19 +6,23 @@ cat.ad <- seq(0.001, hip - 0.001, by = 0.1)  # Valores del cateto adyacente
 cat.op <- co(cat.ad, hip)                    # Cálculo de los catetos opuestos
 a <- area(cat.ad, cat.op)                    # Cálculo de las áreas
 
-# Instrucciones: deberá usar which o which.max para encontrar la posición dentro
+# Instrucciones:
+# Deberá usar which o which.max para encontrar la posición dentro
 # del vector a en el que se encuentra el valor máximo de area.
+
+# Modifique las líneas de abajo para obtener los siguientes objetos:
+
 # i: posición en la que se encuentra el máximo de a 
 # sol: valor de cateto adyacente para el que ocurre este máximo
 # amax: valor máximo de área calculado ("i-ésimo valor de a ...")
 
 #===== Su código comienza aquí: =====#
 
-i    <-
+i    <- 0
 
-sol  <-
+sol  <- 0
 
-amax <-
+amax <- 0
 
 #====== Aquí finaliza su código =====#
 
