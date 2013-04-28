@@ -6,18 +6,19 @@ nrep <- 1
 rdir <- paste('rep', nrep, sep='-')
 
 esperados <- c("evaluar.R", "datos", "notas.csv", "INSTRUCCIONES.pdf",
+	       "ejTriangs.R", "plotTriang.R",
                # Los archivos de los ejercicios deben estar en el orden 
                # correcto (para el menú de 'evaluar'):
-							 "hipot.R", "areaMax.R", "dist.R", "varianza.R", "zenon.R", "geom.R",
-		           "shannon-1.R", "shannon-2.R")
-corregir <- esperados[- (1:4)]
+	       "hipot.R", "areaMax.R", "dist.R", "varianza.R", "zenon.R", "geom.R",
+	       "shannon-1.R", "shannon-2.R")
+corregir <- esperados[- (1:6)]
 codigo <- lapply(corregir, readLines)
 names(codigo) <- corregir
 ejnum  <- c('1.a', '1.b', '1.c', '2.a', '2.b', '2.c', '3.a', '3.b')
 
 notas <- data.frame(Parte = c(ejnum, 'Total (%)'),
-                     Nota=numeric(length(corregir) + 1),
-                     Script=c(corregir, '--'))
+                    Nota=numeric(length(corregir) + 1),
+                    Script=c(corregir, '--'))
 write.csv2(notas, file='notas.csv', row.names=FALSE)
 extras <- c('2.c', '3.b')
 oblg   <- length(ejnum) - length(extras)

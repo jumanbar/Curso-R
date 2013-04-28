@@ -370,6 +370,23 @@ verdaderamente el valor máximo con los comandos:
 \KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \NormalTok{cat.ad[i], }\DataTypeTok{h =} \NormalTok{amax, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \FloatTok{1.3}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+Adicionalmente, si su solución es realmente genérica entonces el
+resultado del siguiente código debe terminar en \texttt{TRUE}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hip <- }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{cat.ad <- }\KeywordTok{runif}\NormalTok{(}\DecValTok{100}\NormalTok{, }\FloatTok{0.1}\NormalTok{, hip - }\FloatTok{0.1}\NormalTok{)}
+\NormalTok{cat.op <- }\KeywordTok{co}\NormalTok{(cat.ad, hip)}
+\NormalTok{a <- }\KeywordTok{area}\NormalTok{(cat.ad, cat.op)}
+\KeywordTok{source}\NormalTok{(}\StringTok{"areaMax.R"}\NormalTok{)}
+\KeywordTok{max}\NormalTok{(a) == amax  }\CommentTok{# ¿TRUE or FALSE?}
+\end{Highlighting}
+\end{Shaded}
+(Lo que hace este código es crear valores aleatorios de los objetos
+\texttt{hip}, \texttt{cat.ad}, \texttt{cat.op} y \texttt{a} y verificar
+que su código funciona con estos.)
+
 \subsubsection{1.c Distancias entre puntos}
 
 Script: dist.R
@@ -383,8 +400,8 @@ cartesianas de los mismos, tal como lo muestra la Figura 1.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics{figure/unnamed-chunk-10.png}
-\caption{Figura 1}
+\includegraphics{figure/unnamed-chunk-11.png}
+\caption{triángulo ABC}
 \end{figure}
 
 \textbf{Figura 1:} Los puntos A, B y C de coordenadas $(x_A, y_A)$,
@@ -407,8 +424,8 @@ código inicial (8 líneas) debería reproducir un gráfico muy similar a la
 
 \begin{figure}[htbp]
 \centering
-\includegraphics{figure/unnamed-chunk-11.png}
-\caption{Figura 2}
+\includegraphics{figure/unnamed-chunk-12.png}
+\caption{puntos en el plano}
 \end{figure}
 
 Los objetos \texttt{coorx} y \texttt{coory} son las coordenadas en los
@@ -436,7 +453,8 @@ código:
 \end{Highlighting}
 \end{Shaded}
 Complete el código del archivo ``dist.R'' para completar esta parte del
-ejercicio.
+ejercicio y recuerde que su solución debe servir sin importar la
+ubicación exacta de los puntos en el plano.
 
 \subsection{2. Cálculo de sumatorias}
 
@@ -499,9 +517,6 @@ determinar si esto es así:
 \NormalTok{out == }\KeywordTok{var}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
-\begin{verbatim}
-## [1] FALSE
-\end{verbatim}
 Esto producirá un \texttt{TRUE} o un \texttt{FALSE} en caso de que
 \texttt{out} esté bien o mal calculado, respectivamente.
 
@@ -528,11 +543,11 @@ alcanza una fracción de camino equivalente a:
 (¡nótese que el primer valor de $i$ es 1 y no 0!)
 
 Si es cierta la proposición de Zenón, entonces no importa que tan grande
-sea $n$, esta sumatoria siempre será menor a 1, a pesar de que el límite
-de la misma cuando $n \to \infty$ es 1. Podemos verificar numéricamente
-esta afirmación usando R: si elegimos un valor $\varepsilon$
-arbitrariamente pequeño, entonces podemos encontrar un $n$ tal que
-$1 - Z_n < \varepsilon$.
+sea $n$, esta sumatoria siempre será menor a 1, a pesar ser este el
+límite de la misma cuando $n \to \infty$. Podemos verificar
+numéricamente esta afirmación usando R: si elegimos un valor
+$\varepsilon$ arbitrariamente pequeño, entonces podemos encontrar un $n$
+tal que $1 - Z_n < \varepsilon$.
 
 En este ejercicio, usted deberá completar el código del archivo
 ``zenon.R'' según las instrucciones que se indican en el mismo. Para que
@@ -543,8 +558,9 @@ debería ser 0.875.
 Además usted debe probar distintos valores del entero \texttt{n}, con el
 fin de encontrar aquel entero mínimo necesario para lograr un valor de
 \texttt{out} tal que la diferencia entre \texttt{out} y 1 debe ser menor
-a 0.000001 (i.e.: 1e-06). Puede comprobar que su resultado cumple con
-esa premisa con el comando \texttt{1 - out \textless{} 1e-06}.
+a 0.000001 (i.e.: \texttt{1e-06}). Puede comprobar que su resultado
+cumple con esa premisa con el comando
+\texttt{1 - out \textless{} 1e-06}.
 
 Nota: en este ejercicio, y \emph{a diferencia de la mayoría de los
 casos} de este curso, la respuesta para el valor de \texttt{n} no es
@@ -560,7 +576,7 @@ Para visualizar la convergencia de su serie puede usar el comando:
 \end{Shaded}
 \begin{figure}[htbp]
 \centering
-\includegraphics{figure/unnamed-chunk-16.png}
+\includegraphics{figure/unnamed-chunk-17.png}
 \caption{Serie de Zenón}
 \end{figure}
 
@@ -597,7 +613,7 @@ Si el código es correcto, el resultado \texttt{out} debería ser idéntico
 de la siguiente fórmula:
 
 \[
-  S_n = \frac{1 - z ^ {- n}}{1 - z ^ {-1}}
+  S_n = \frac{1 - z ^ {- (n - 1)}}{1 - z ^ {-1}}
 \]
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
@@ -624,7 +640,7 @@ ejercicio nos vamos a regir a esta definición en particular; es decir,
 vamos a usar logarítmo de base 2)
 
 Aquí $S$ es el número total de categorías o especies y $p_i$ es la
-frecuencia relativa de la categoría i. Es decir:
+frecuencia relativa de la categoría $i$. Es decir:
 
 \[
   p_i = \frac{n_i}{N}
@@ -681,16 +697,39 @@ que sea capaz de calcular el valor de H para el vector
 \texttt{coleccion} o \emph{cualquier otro vector} de R, utilizando el
 producto escalar de vectores para calcular el resultado de la sumatoria.
 Para el caso particular de \texttt{coleccion}, el $H$ esperado es de
-2.699514. El cálculo del $H$ puede dividirse en (1) calcular los valores
-de $p_i$ y (2) realizar la sumatoria. Para calcular los $p_i$ es
-necesario a su vez tener los $n_i$ y el valor $N$. Para estas tareas las
-funciones \texttt{table} y \texttt{length} pueden ser de gran ayuda. La
-primera sirve para hacer un conteo de la cantidad de objetos por
-categoría, mientras que la función \texttt{length} devuelve la cantidad
-de elementos de un vector cualquiera. No dude en consultar la
-documentación de R de estas dos funciones en caso de que no comprenda
-del todo bien su accionar.
+2.699514.
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coleccion <- }\KeywordTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+El cálculo del $H$ puede dividirse en (1) calcular los valores de $p_i$
+y (2) realizar la sumatoria. Para calcular los $p_i$ es necesario a su
+vez tener los $n_i$ y el valor $N$. Para estas tareas las funciones
+\texttt{table} y \texttt{length} pueden ser de gran ayuda. La primera
+sirve para hacer un conteo de la cantidad de objetos por categoría,
+mientras que la función \texttt{length} devuelve la cantidad de
+elementos de un vector cualquiera. No dude en consultar la documentación
+de R de estas dos funciones en caso de que no comprenda del todo bien su
+accionar.
+
+Nota: para verificar que su solución sirve para cualquier vector, puede
+instalar el paquete \texttt{vegan}, el cual cuenta con la función
+\texttt{diversity} para calcular el índice Shannon-Wiener (aunque a
+partir de datos de conteo, a diferencia del vector \texttt{coleccion}).
+El siguiente código sirve como verificación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"vegan"}\NormalTok{)  }\CommentTok{# Si el paquete no está instalado}
+\KeywordTok{library}\NormalTok{(vegan)  }\CommentTok{# Para cargar el paquete}
+\NormalTok{coleccion <- }\KeywordTok{rpois}\NormalTok{(}\DecValTok{42}\NormalTok{, }\DecValTok{6}\NormalTok{)  }\CommentTok{# Para crear un vector aleatorio}
+\KeywordTok{source}\NormalTok{(}\StringTok{"shannon-1.R"}\NormalTok{)  }\CommentTok{# Calcula H}
+\NormalTok{H1 <- }\KeywordTok{diversity}\NormalTok{(}\KeywordTok{table}\NormalTok{(coleccion), }\DataTypeTok{base =} \DecValTok{2}\NormalTok{)  }\CommentTok{# Calcula H1}
+\NormalTok{H - H1 < }\FloatTok{1e-13}  \CommentTok{# Si es TRUE, su código está bien}
+\end{Highlighting}
+\end{Shaded}
 \subsubsection{3.b Extra: función \texttt{shannon}}
 
 Script: shannon-2.R
@@ -724,6 +763,8 @@ correctamente y el resultado debería ser el predicho por el objeto
 ## [1] 3.708
 \end{verbatim}
 (Nota: el segundo comando toma la \texttt{frase} y la parte en todos los
-caracteres que la componen)
+caracteres que la componen; se podría también modificar el código de
+verificación del ejercicio anterior para utilizar la función
+\texttt{diversity} y compararla con la suya.)
 
 \end{document}

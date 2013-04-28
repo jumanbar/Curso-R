@@ -1,5 +1,6 @@
-# El vector de muestra "coleccion" 
-coleccion <- c(9, 6, 3, 3, 6, 1, 5, 5, 5, 3, 2, 7, 2, 1)
+# El vector de muestra "coleccion" se debe generar antes de escribir
+# aquí, siguiendo el código de la letra:
+# coleccion <- c(9, 6, 3, 3, 6, 1, 5, 5, 5, 3, 2, 7, 2, 1)
 
 # Instrucciones:
 # Modifique el código de abajo para obtener los siguentes

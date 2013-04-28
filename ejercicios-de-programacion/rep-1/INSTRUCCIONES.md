@@ -183,6 +183,21 @@ abline(v = cat.ad[i], h = amax, col = "red", lwd = 1.3, lty = 3)
 ```
 
 
+Adicionalmente, si su solución es realmente genérica entonces el resultado del siguiente código debe terminar en `TRUE`:
+
+
+```r
+hip <- rnorm(1, 10)
+cat.ad <- runif(100, 0.1, hip - 0.1)
+cat.op <- co(cat.ad, hip)
+a <- area(cat.ad, cat.op)
+source("areaMax.R")
+max(a) == amax  # ¿TRUE or FALSE?
+```
+
+
+(Lo que hace este código es crear valores aleatorios de los objetos `hip`, `cat.ad`, `cat.op` y `a` y verificar que su código funciona con estos.)
+
 ### 1.c Distancias entre puntos
 
 Script: dist.R
@@ -191,7 +206,7 @@ La definición de distancia euclidiana se basa en el teorema de pitágoras. Para
 
 - - -
 
-![Figura 1](figure/unnamed-chunk-10.png) 
+![triángulo ABC](figure/unnamed-chunk-11.png) 
 
 
 **Figura 1:** Los puntos A, B y C de coordenadas $(x_A, y_A)$, $(x_B, y_B)$ y $(x_B, y_A)$ pueden formar un triángulo rectángulo como muestra la figura, cuyos catetos tienen los valores indicados entre paréntesis. Por lo tanto, la distancia entre A y B es la hipotenusa del triángulo y se puede hallar con la fórmula de Pitágoras.  
@@ -201,7 +216,7 @@ Nota: puede reproducir este gráfico con la función `plotTriang` contenida en e
 
 En el presente ejercicio vamos a utilizar este concepto, así como las recién aprendidas funciones `which` y `which.max`, y también `which.min`. La idea es encontrar distancias entre puntos y determinar distancias mínimas y máximas. En el archivo "dist.R" el código inicial (8 líneas) debería reproducir un gráfico muy similar a la **Figura 2**.
 
-![Figura 2](figure/unnamed-chunk-11.png) 
+![puntos en el plano](figure/unnamed-chunk-12.png) 
 
 
 Los objetos `coorx` y `coory` son las coordenadas en los ejes x e y respectivamente de todos los puntos blancos. Estos fueron obtenidos con un generador de números aleatorios. El punto negro en el centro de la figura es nuestro foco de interés.
@@ -219,7 +234,7 @@ points(coorx[j], coory[j], pch = 19, col = "darkgreen")
 ```
 
 
-Complete el código del archivo "dist.R" para completar esta parte del ejercicio.
+Complete el código del archivo "dist.R" para completar esta parte del ejercicio y recuerde que su solución debe servir sin importar la ubicación exacta de los puntos en el plano.
 
 2. Cálculo de sumatorias
 ------------------------
@@ -261,10 +276,6 @@ source("varianza.R")
 out == var(x)
 ```
 
-```
-## [1] FALSE
-```
-
 
 Esto producirá un `TRUE` o un `FALSE` en caso de que `out` esté bien o mal calculado, respectivamente.
 
@@ -282,11 +293,11 @@ $$
 
 (¡nótese que el primer valor de $i$ es 1 y no 0!)
 
-Si es cierta la proposición de Zenón, entonces no importa que tan grande sea $n$, esta sumatoria siempre será menor a 1, a pesar de que el límite de la misma cuando $n \to \infty$ es 1. Podemos verificar numéricamente esta afirmación usando R: si elegimos un valor $\varepsilon$ arbitrariamente pequeño, entonces podemos encontrar un $n$ tal que $1 - Z_n < \varepsilon$.
+Si es cierta la proposición de Zenón, entonces no importa que tan grande sea $n$, esta sumatoria siempre será menor a 1, a pesar ser este el límite de la misma cuando $n \to \infty$. Podemos verificar numéricamente esta afirmación usando R: si elegimos un valor $\varepsilon$ arbitrariamente pequeño, entonces podemos encontrar un $n$ tal que $1 - Z_n < \varepsilon$.
 
 En este ejercicio, usted deberá completar el código del archivo "zenon.R" según las instrucciones que se indican en el mismo. Para que usted pueda tener una referencia, considere que si el código se hace correctamente, la sumatoria entonces para $n = 3$ el valor `out` debería ser 0.875.
 
-Además usted debe probar distintos valores del entero `n`, con el fin de encontrar aquel entero mínimo necesario para lograr un valor de `out` tal que la diferencia entre `out` y 1 debe ser menor a 0.000001 (i.e.: 1e-06). Puede comprobar que su resultado cumple con esa premisa con el comando `1 - out < 1e-06`. 
+Además usted debe probar distintos valores del entero `n`, con el fin de encontrar aquel entero mínimo necesario para lograr un valor de `out` tal que la diferencia entre `out` y 1 debe ser menor a 0.000001 (i.e.: `1e-06`). Puede comprobar que su resultado cumple con esa premisa con el comando `1 - out < 1e-06`. 
 
 Nota: en este ejercicio, y *a diferencia de la mayoría de los casos* de este curso, la respuesta para el valor de `n` no es general, si no que debe ser un número entero (i.e.: 42), el cual usted deberá escribir en la línea correspondiente del archivo "zenon.R".
 
@@ -299,7 +310,7 @@ Para visualizar la convergencia de su serie puede usar el comando:
 plot(cumsum(s), type = "o", xlab = "n", ylab = expression(Z[n]))
 ```
 
-![Serie de Zenón](figure/unnamed-chunk-16.png) 
+![Serie de Zenón](figure/unnamed-chunk-17.png) 
 
 
 
@@ -324,7 +335,7 @@ Nota: en este ejercicio utilice valores para `n` y `z` a elección (siendo el pr
 Si el código es correcto, el resultado `out` debería ser idéntico (o casi igual, debido a pequeños errores numéricos de redondeo) al valor de la siguiente fórmula:
 
 $$
-  S_n = \frac{1 - z ^ {- n}}{1 - z ^ {-1}}
+  S_n = \frac{1 - z ^ {- (n - 1)}}{1 - z ^ {-1}}
 $$
 
 - - -
@@ -340,7 +351,7 @@ $$
 
 (La base del logaritmo no es demasiado importante, pero en este ejercicio nos vamos a regir a esta definición en particular; es decir, vamos a usar logarítmo de base 2)
 
-Aquí $S$ es el número total de categorías o especies y $p_i$ es la frecuencia relativa de la categoría i. Es decir:
+Aquí $S$ es el número total de categorías o especies y $p_i$ es la frecuencia relativa de la categoría $i$. Es decir:
 
 $$
   p_i = \frac{n_i}{N}
@@ -377,7 +388,29 @@ v %*% u
 simplemente, ignorando detalles de transposición. De hecho los vectores en R no son fila o columna, si no que simplemente son una secuencia de elementos. En general este operador sirve para toda multiplicación de matrices en R.
 
 En este ejercicio deberá completar el archivo "shannon-1.R" de forma que sea capaz de calcular el valor de H para el vector `coleccion` o *cualquier otro vector* de R, utilizando el producto escalar de vectores para calcular el resultado de la sumatoria. Para el caso particular de `coleccion`, el $H$ esperado es de 2.699514.
+
+
+```r
+coleccion <- c(9, 6, 3, 3, 6, 1, 5, 5, 5, 3, 2, 7, 2, 1)
+```
+
+
 El cálculo del $H$ puede dividirse en (1) calcular los valores de $p_i$ y (2) realizar la sumatoria. Para calcular los $p_i$ es necesario a su vez tener los $n_i$ y el valor $N$. Para estas tareas las funciones `table` y `length` pueden ser de gran ayuda. La primera sirve para hacer un conteo de la cantidad de objetos por categoría, mientras que la función `length` devuelve la cantidad de elementos de un vector cualquiera. No dude en consultar la documentación de R de estas dos funciones en caso de que no comprenda del todo bien su accionar.
+  
+Nota: para verificar que su solución sirve para cualquier vector, puede instalar el paquete `vegan`, el cual cuenta con la función `diversity` para calcular el índice Shannon-Wiener (aunque a partir de datos de conteo, a diferencia del vector `coleccion`). El siguiente código sirve como verificación:
+
+
+```r
+install.packages("vegan")  # Si el paquete no está instalado
+library(vegan)  # Para cargar el paquete
+coleccion <- rpois(42, 6)  # Para crear un vector aleatorio
+source("shannon-1.R")  # Calcula H
+H1 <- diversity(table(coleccion), base = 2)  # Calcula H1
+H - H1 < 1e-13  # Si es TRUE, su código está bien
+```
+
+
+
 
 ### 3.b Extra: función `shannon`
 
@@ -405,5 +438,5 @@ shannon(x)
 ```
 
 
-(Nota: el segundo comando toma la `frase` y la parte en todos los caracteres que la componen)
+(Nota: el segundo comando toma la `frase` y la parte en todos los caracteres que la componen; se podría también modificar el código de verificación del ejercicio anterior para utilizar la función `diversity` y compararla con la suya.)
 

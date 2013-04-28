@@ -1,10 +1,11 @@
 
 all: rep-1.zip
 
-clean: INSTRUCCIONES.md datos.R
-	rm -rf rep-1.zip
+clean: INSTRUCCIONES.Rmd datos.R
+	rm -rf rep-1.zip *~ *.swp *.swo
 
-INSTRUCCIONES.pdf: INSTRUCCIONES.md
+INSTRUCCIONES.pdf: INSTRUCCIONES.Rmd
+	R --vanilla --slave < make.R
 	pandoc -o INSTRUCCIONES.tex -s INSTRUCCIONES.md
 	wait
 	pdflatex INSTRUCCIONES.tex

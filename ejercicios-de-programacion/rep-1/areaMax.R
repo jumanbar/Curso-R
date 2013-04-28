@@ -1,10 +1,7 @@
 # Iniciación: es recomendable que usted comprenda las siguientes operaciones y
 # las estructuras de los vectores cat.ad, cat.op y a, resultantes de ejecutar
-# las siguientes líneas:
-hip <- 10 # Hipotenusa
-cat.ad <- seq(0.001, hip - 0.001, by = 0.1)  # Valores del cateto adyacente
-cat.op <- co(cat.ad, hip)                    # Cálculo de los catetos opuestos
-a <- area(cat.ad, cat.op)                    # Cálculo de las áreas
+# las líneas que se muestran en la letra (creando los objetos hip, cat.ad, cat.op
+# y a).
 
 # Instrucciones:
 # Deberá usar which o which.max para encontrar la posición dentro
@@ -26,7 +23,3 @@ amax <- 0
 
 #====== Aquí finaliza su código =====#
 
-# Código opcional, para confirmar su solución:
-# (Nótese que este código da error si usted no ha definido aún el objeto i)
-plot(cat.ad, a, type='l', ylab="Área", main="Área máxima: línea roja")
-abline(v=cat.ad[i], col='red', lwd=2)

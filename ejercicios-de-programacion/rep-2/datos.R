@@ -88,6 +88,8 @@ cor1.a <- function() {
   unlink(tmp)  
   apr2   <- sum(cal >= 5)
   p.apr2 <- 100 * apr2 / length(cal)
+	if (p.apr < 1)
+		cat("El valor de p.apr es menor a 1, tal vez no esté en porcentaje\n")
 	if (abs(p.apr2 - p.apr) > tol)
 		stop("El valor obtenido no coincide con el esperado", call. = FALSE)
   TRUE
@@ -300,8 +302,13 @@ cor2.d <- function() {
 corAll <- list(cor1.a, cor1.b, cor1.c, cor1.d, cor2.a, cor2.b, cor2.c, cor2.d)
 
 ################################################################################
-save(list=guardar, file='datos')
-if (!any(dir() == rdir))
+if (!file.exists(rdir))
   dir.create(rdir)
-file.copy(esperados, rdir, recursive=TRUE)
-zip(paste(rdir, 'zip', sep='.'), paste(rdir, '/', sep=''))
+borrar <- dir(rdir)
+borrar <- file.path(rdir, borrar)
+unlink(borrar, recursive = TRUE)
+
+file.copy(esperados, rdir, recursive = TRUE)
+# zipfile <- paste(rdir, 'zip', sep = '.')
+# unlink(zipfile)
+# zip(zipfile, paste(rdir, '/', sep=''))
