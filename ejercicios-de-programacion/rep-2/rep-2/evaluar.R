@@ -1,6 +1,5 @@
-evaluar <- function() {
+evaluar <- function(e) {
   #
-  cat("\nCargando funciones y datos para la corrección...\n\n")
   load('datos')
   nej <- length(corregir)
   hasmsj <- logical(nej)
@@ -11,17 +10,22 @@ evaluar <- function() {
     cat("\n Faltan los siguientes archivos en el directorio de trabajo:\n")
     cat(paste("   - ", esperados[!f], '\n', sep=''), '\n', sep='')    
     cat(" ¡La corrección no puede continuar hasta que no se solucione este problema!\n\n")
-    return('bye!')
+    return('Pruebe de nuevo entonces...')
   }
 
   ### Elección del archivo (y por lo tanto el ejercicio) a corregir
-  s <- menu(c(paste('Ej. (', ejnum, "): ", corregir, sep=""), 'Todos'),
-            title="Elija el archivo que desea corregir:")
+  if (!missing(e)) {
+    if (length(e) > 1)
+      stop('Seleccione un único ejercicio o todos juntos (i.e.: ', nej + 1, ').')
+    s <- e
+  } else {
+    s <- menu(c(paste('Ej. (', ejnum, "): ", corregir, sep=""), 'Todos'),
+              title="Elija el archivo que desea corregir:")
+  }
   msj <- NULL
   if (s > nej) {
     for (i in 1:nej) {
-#       r <- try(do.call(paste('cor', ejnum[i], sep=''), list(a=1)), silent=TRUE)
-      r <- try(corAll[[i]]())
+      r <- try(corAll[[i]](), silent = TRUE)
       if (is.character(r) || is.na(r)) {
         msj <- c(msj, r)
         hasmsj[i] <- TRUE
@@ -31,8 +35,7 @@ evaluar <- function() {
       }
     }
   } else {
-#     r <- try(do.call(paste('cor', ejnum[s], sep=''), list(a=1)), silent=TRUE)
-    r <- try(corAll[[s]]())
+    r <- try(corAll[[s]](), silent = TRUE)
     if (is.character(r) || is.na(r)) {
       msj <- c(msj, r)
       hasmsj[s] <- TRUE
@@ -65,7 +68,7 @@ evaluar <- function() {
     msjArch  <- corregir[hasmsj]
     cat("Se generaron los siguientes mensajes de error:\n")
     for (i in 1:sum(hasmsj)) {
-      cat('\n==>> Al corregir el ej. ', msjEjNum[i], ', archivo ', msjArch[i], ':\n', sep='')
+      cat('\n* Al corregir el ej. ', msjEjNum[i], ', archivo ', msjArch[i], ':\n==>> ', sep='')
       cat(msj[i])
     }
   }
@@ -93,7 +96,9 @@ feedback <- function(r, s) {
   if (!is.character(r) && r > 0) {
     cat('El script "', s, '" está perfecto, ¡Buen trabajo!\n\n', sep='')
   } else {
-    cat('El script "', s, '" tiene algún error, lo siento :s(\n\n', sep='')
+    cat('El script "', s, '" tiene algún error, lo siento :-(
+    -> Verifique que su solución sea genérica y que sigue
+       todas las consignas de la letra. \n\n', sep='')
   }
 }
 

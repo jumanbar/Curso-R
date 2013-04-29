@@ -1,8 +1,8 @@
 
-all: rep-1.zip
+all: rep-2.zip
 
 clean: INSTRUCCIONES.Rmd datos.R
-	rm -rf rep-1.zip *~ *.swp *.swo
+	rm -rf rep-2.zip *~ *.swp *.swo
 
 INSTRUCCIONES.pdf: INSTRUCCIONES.Rmd
 	R --vanilla --slave < make.R
@@ -15,9 +15,9 @@ INSTRUCCIONES.pdf: INSTRUCCIONES.Rmd
 	wait
 	rm -rf figure
 
-rep-1.zip: INSTRUCCIONES.pdf datos.R
+rep-2.zip: INSTRUCCIONES.pdf datos.R
 	R --vanilla --slave < datos.R
 	wait
-	zip -r rep-1.zip rep-1
+	zip -r rep-2.zip rep-2
 
 
