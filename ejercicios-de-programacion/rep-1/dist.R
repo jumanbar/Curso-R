@@ -8,23 +8,24 @@ coory <- runif(20)
 # de cálculo tendríamos una matriz con las coordenadas de todos
 # los puntos.
 
-# Nota: cada vez que se corran estas dos líneas se van a generar nuevos puntos,
-# por lo que no es recomendable volver a hacer. Una forma de evitar que esto pase es
-# agregando numerales ("#") al comienzo de las líneas para evitar correrlas al
-# usar "source".
+# Cada vez que se corran estas dos líneas se van a generar nuevos puntos, por
+# lo que no es recomendable volver a hacer. Una forma de evitar que esto pase es
+# agregando numerales ("#") al comienzo de las líneas para evitar su ejecución al
+# usar source(dist.R).
 
 # Se pueden graficar los puntos con este comando:
 plot(coorx, coory)
 
-# Y finalmente agregamos el punto central:
+# junto con el punto central:
 points(0.5, 0.5, pch=19)
 
 # Instrucciones:
 # Para lograr el objetivo, debe seguir los siguentes pasos:
 # 1. Determinar los lados de los triángulos rectángulos imaginarios (cat.ad y cat.op)
-#    cuyas hipotenusas son son los segmentos entre el central y los demás puntos.
-# 2. Con la función hipot determinar el ancho de estas hipotenusas, las distancias
-#    del centro a los demás puntos (dst), partiendo de los catetos hallados.
+#    cuyas hipotenusas son son los segmentos entre el central y los demás puntos (AB)
+#    en la figura 1).
+# 2. Con la función hipot determinar el ancho de estas hipotenusas que son las 
+#    distancias del centro a los demás puntos (dst), partiendo de los catetos hallados.
 # 3. Con la función which o sus derivadas encontrar las posiciones del mínimo (i)
 #    y el máximo (j) dentro del vector de distancias.
 # 4. Utilizar estas posiciones para extraer las coordenadas correspondientes a

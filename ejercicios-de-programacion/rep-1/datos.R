@@ -6,11 +6,11 @@ nrep <- 1
 rdir <- paste('rep', nrep, sep='-')
 
 esperados <- c("datos", "notas.csv", "INSTRUCCIONES.pdf",
-	       "ejTriangs.R", "plotTriang.R",
+               "ejTriangs.R", "plotTriang.R",
                # Los archivos de los ejercicios deben estar en el orden 
                # correcto (para el menú de 'evaluar'):
-	       "hipot.R", "areaMax.R", "dist.R", "varianza.R", "zenon.R", "geom.R",
-	       "shannon-1.R", "shannon-2.R")
+               "hipot.R", "areaMax.R", "dist.R", "varianza.R", "zenon.R", "geom.R",
+               "shannon-1.R", "shannon-2.R")
 corregir <- esperados[- (1:5)]
 codigo <- lapply(corregir, readLines)
 names(codigo) <- corregir
@@ -114,19 +114,19 @@ cor1.b <- function() {
   # Evaluación de objetos: i, sol, amax
   source(tmp, local=TRUE)
   who <- which.max(a)
-	unlink(tmp)
+  unlink(tmp)
 
-	if (i == 72)
-		warning("  El i == 72, ¿tal vez su solución no sea genérica?", call. = FALSE)
+  if (i == 72)
+    warning("  El i == 72, ¿tal vez su solución no sea genérica?", call. = FALSE)
 
-	if (i != who)
-		stop("el valor de i obtenido no es el esperado", call. = FALSE)
-	if (sol != cat.ad[who])
-		stop("el valor de sol obtenido no es el esperado", call. = FALSE)
-	if (amax != a[who])
-		stop("el valor de amax obtenido no es el esperado", call. = FALSE)
+  if (i != who)
+    stop("el valor de i obtenido no es el esperado", call. = FALSE)
+  if (sol != cat.ad[who])
+    stop("el valor de sol obtenido no es el esperado", call. = FALSE)
+  if (amax != a[who])
+    stop("el valor de amax obtenido no es el esperado", call. = FALSE)
 
-	TRUE
+  TRUE
 }
 
 cor1.c <- function() {
@@ -154,20 +154,20 @@ cor1.c <- function() {
   j2 <- which.max(dst2)
   A2 <- c(coorx[i2], coory[i2])
   B2 <- c(coorx[j2], coory[j2])
-	tol <- 1e-20
+  tol <- 1e-20
 
-	if (any(abs(dst - dst2) > tol))
-		stop("los valores del dst obtenido no son los correctos", call. = FALSE)
-	if (i != i2)
-		stop("el valor de i obtenido no es el correcto", call. = FALSE)
-	if (j != j2)
-		stop("el valor de j obtenido no es el correcto", call. = FALSE)
-	if (any(abs(A - A2) > tol))
-		stop("los valores del A obtenido no son los correctos", call. = FALSE)
-	if (any(abs(B - B2) > tol))
-		stop("los valores de B obtenido no son los correctos", call. = FALSE)
+  if (any(abs(dst - dst2) > tol))
+    stop("los valores del dst obtenido no son los correctos", call. = FALSE)
+  if (i != i2)
+    stop("el valor de i obtenido no es el correcto", call. = FALSE)
+  if (j != j2)
+    stop("el valor de j obtenido no es el correcto", call. = FALSE)
+  if (any(abs(A - A2) > tol))
+    stop("los valores del A obtenido no son los correctos", call. = FALSE)
+  if (any(abs(B - B2) > tol))
+    stop("los valores de B obtenido no son los correctos", call. = FALSE)
 
-	TRUE
+  TRUE
 }
 
 ## Ej. 2
@@ -185,7 +185,7 @@ cor2.a <- function() {
   writeLines(arch, tmp)
 
   # Generación de datos
-  x <- runif (80, 40, 90)
+  x <- runif(80, 40, 90)
 
   # Evaluación de objetos: x_mean, s, out
   source(tmp, local=TRUE)
@@ -193,16 +193,20 @@ cor2.a <- function() {
   x_mean2 <- sum(x) / length(x)
   s2   <- (x - x_mean2) ** 2
   out2 <- sum(s2) / (length(x) - 1)
-	tol <- 1e-20
-	
+  tol <- 1e-20
+  
   if (abs(x_mean - x_mean2) > tol)
     stop("el valor de x_mean obtenido no es el correcto", call. = FALSE)
-	if (any(abs(s - s2) > tol))
-		stop("los valores del s obtenido no son los correctos", call. = FALSE)
+  if (any(abs(s - s2) > tol))
+    stop("los valores del s obtenido no son los correctos", call. = FALSE)
+  if (out - (sum(s2) / length(x) - 1) < tol)
+    warning("  No es lo mismo 'a / (b + c)' que 'a / b + c' ...", call. = FALSE)
+  if (out - ((1 / length(x) - 1) * sum(s2)) < tol)
+    warning("  No es lo mismo 'a / (b + c)' que 'a / b + c' ...", call. = FALSE)
   if (abs(out - out2) > tol)
     stop("el valor de out obtenido no es el correcto", call. = FALSE)
 
-	TRUE
+  TRUE
 }
 
 cor2.b <- function() {
@@ -223,18 +227,22 @@ cor2.b <- function() {
   e2 <- 1:n
   s2 <- 1 / (2 ** e)
   out2 <- sum(s2)
-	tol <- 1e-20
+  tol <- 1e-20
 
-	if (any(abs(e - e2) > tol))
-		stop("los valores del e obtenido no son los esperados", call. = FALSE)
-	if (any(abs(s - s2) > tol))
-		stop("los valores del s obtenido no son los esperados", call. = FALSE)
-	if (any(abs(out - out2) > tol))
-		stop("los valores del out obtenido no son los esperados", call. = FALSE)
-  if (n < 20)
+  if (n < 20) {
+		warning(" Recuerde que el n es el mínimo tal que '1 - out < 1e-6'", call. = FALSE)
     stop("el valor de n obtenido es muy bajo", call. = FALSE)
-  if (n > 20)
+	}
+  if (n > 20) {
+		warning(" Recuerde que el n es el mínimo tal que '1 - out < 1e-6'", call. = FALSE)
     stop("el valor de n obtenido es muy alto", call. = FALSE)
+  }
+  if (any(abs(e - e2) > tol))
+    stop("los valores del e obtenido no son los esperados", call. = FALSE)
+  if (any(abs(s - s2) > tol))
+    stop("los valores del s obtenido no son los esperados", call. = FALSE)
+  if (any(abs(out - out2) > tol))
+    stop("el valor del out obtenido no es el esperado", call. = FALSE)
   TRUE
 }
 
@@ -253,7 +261,7 @@ cor2.c <- function() {
   writeLines(arch, tmp)
 
   # Generación de datos
-  n <- 10
+  n <- sample(8:12, 1)
   z <- runif(1, 1, 4)
   
   # Evaluación de objetos: e, s, out
@@ -262,22 +270,22 @@ cor2.c <- function() {
   e2 <- 0:n
   s2 <- 1 / (z ** e2)
   out2 <- sum(s2)
-	tol <- 1e-10 # Acá la tolerancia es mayor que en otros ejercicios; se hicieron
+  tol <- 1e-10 # Acá la tolerancia es mayor que en otros ejercicios; se hicieron
                # pruebas y resultó necesario hacerlo.
 
-  if (length(e) != length(e2))
-	  stop("la longitud de e no es la esperada,
+  if (length(e) == n)
+    stop("la longitud de e no es la esperada,
           ¿es posible que el primer término sea 1 y no 0?", call. = FALSE)
-	if (any(abs(e - e2) > tol))
-	  stop("los valores del e obtenido no son los esperados", call. = FALSE)
-	if (any(abs(s - s2) > tol))
-		stop("los valores del s obtenido no son los esperados", call. = FALSE)
-	if (any(abs(out - out2) > tol))
-		stop("el valor del out obtenido no es el esperado", call. = FALSE)
-#   if (n != 20)
-#     stop("el valor de n obtenido no es el correcto", call. = FALSE)
+	if (length(e) != n + 1)
+		stop("la longitud de e no es la esperada", call. = FALSE)
+  if (any(abs(e - e2) > tol))
+    stop("los valores del e obtenido no son los esperados", call. = FALSE)
+  if (any(abs(s - s2) > tol))
+    stop("los valores del s obtenido no son los esperados", call. = FALSE)
+  if (any(abs(out - out2) > tol))
+    stop("el valor del out obtenido no es el esperado", call. = FALSE)
 
-	TRUE
+  TRUE
 }
 
 ## Ej. 3
@@ -306,30 +314,33 @@ cor3.a <- function() {
   p2 <- n2 / N2
   dim(p) <- NULL
   H2 <- - p2 %*% log2(p2)
-	tol <- 1e-20
+  tol <- 1e-20
 
-	if (any(abs(n - n2) > tol))
-		stop("los valores del n obtenido no son los esperados", call. = FALSE)
-	if (abs(N - N2) > tol)
-		stop("el valor del N obtenido no es el esperado", call. = FALSE)
-	if (any(abs(p - p2) > tol))
-		stop("los valores del p obtenido no son los esperados", call. = FALSE)
-	if (abs(H[1] - H2[1]) > tol)
-		stop("el valor del H obtenido no es el esperado", call. = FALSE)
+  if (any(abs(n - n2) > tol))
+    stop("los valores del n obtenido no son los esperados", call. = FALSE)
+  if (abs(N - N2) > tol)
+    stop("el valor del N obtenido no es el esperado", call. = FALSE)
+  if (any(abs(p - p2) > tol))
+    stop("los valores del p obtenido no son los esperados", call. = FALSE)
+  if (H < 0)
+    warning(" El H < 0, ¿olvidó el signo de menos?", call. = FALSE)
+  if (abs(H[1] - H2[1]) > tol)
+    stop("el valor del H obtenido no es el esperado", call. = FALSE)
 
-	# Deprecated:
-	#   gr2 <- grep('H<-', arch2)[1]
-	#   x1 <- grepl("p%*%log(p,2)", arch2[gr2], fixed=TRUE)
-	#   x2 <- grepl("p%*%log2(p)", arch2[gr2], fixed=TRUE)
+  # Deprecated:
+  #   gr2 <- grep('H<-', arch2)[1]
+  #   x1 <- grepl("p%*%log(p,2)", arch2[gr2], fixed=TRUE)
+  #   x2 <- grepl("p%*%log2(p)", arch2[gr2], fixed=TRUE)
 
-	if (!all(dim(H) == c(1, 1)) || class(H) != "matrix") {
-		warning(" ¿Es posible que haya usado una sumatoria para hallar H?", call. = FALSE)
-		stop("el operador %*% no ha sido usado correctamente", call. = FALSE)
+  if (!all(dim(H) == c(1, 1)) || class(H) != "matrix") {
+    warning(" ¿Es posible que haya usado una sumatoria para hallar H?", call. = FALSE)
+    stop("el operador %*% no ha sido usado correctamente", call. = FALSE)
+	}
 
-	if (any(grepl("diversity", arch)))
-		stop("la palabra 'diversity' figura en su script,\n  ¿está haciendo trampa con el paquete vegan?", call. = FALSE)
+  if (any(grepl("diversity", arch)))
+    stop("la palabra 'diversity' figura en su script,\n  ¿está haciendo trampa con el paquete vegan?", call. = FALSE)
 
-	TRUE
+  TRUE
 }
 
 cor3.b <- function() {
@@ -339,13 +350,13 @@ cor3.b <- function() {
 
   # Generación de datos
   coleccion <- sample(20, 50, replace=TRUE)
-	tol <- 1e-20
+  tol <- 1e-20
   
   # Evaluación de objetos: shannon
   if (abs(shannon(coleccion) - Shannon(coleccion)) > tol)
     stop("la salida de la función area no la esperada", call. = FALSE)
 
-	TRUE
+  TRUE
 }
 
 corAll <- list(cor1.a, cor1.b, cor1.c, cor2.a, cor2.b, cor2.c, cor3.a, cor3.b)
@@ -369,4 +380,5 @@ file.copy("../evaluar.R", rdir, recursive = TRUE)
 # zipfile <- paste(rdir, 'zip', sep = '.')
 # unlink(zipfile)
 # zip(zipfile, paste(rdir, '/', sep=''))
+
 

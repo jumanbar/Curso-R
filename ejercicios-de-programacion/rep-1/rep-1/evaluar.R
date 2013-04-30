@@ -1,6 +1,5 @@
 evaluar <- function(e) {
   #
-  cat("\nCargando funciones y datos para la corrección...\n\n")
   load('datos')
   nej <- length(corregir)
   hasmsj <- logical(nej)
