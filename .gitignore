@@ -8,8 +8,7 @@ ejercicios-de-programacion/*/figure
 *~
 *-sol.R
 *.html
-*.swo
-*.swp
+*.sw*
 *.png
 Curso-R.Rproj
 apuntes.*
