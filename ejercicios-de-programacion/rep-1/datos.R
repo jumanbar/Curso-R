@@ -7,7 +7,7 @@ rdir <- paste('rep', nrep, sep='-')
 
 esperados <- c("datos", "notas.csv", "INSTRUCCIONES.pdf",
                "ejTriangs.R", "plotTriang.R",
-               # Los archivos de los ejercicios deben estar en el orden 
+               # Los archivos de los ejercicios deben estar en el orden
                # correcto (para el menú de 'evaluar'):
                "hipot.R", "areaMax.R", "dist.R", "varianza.R", "zenon.R", "geom.R",
                "shannon-1.R", "shannon-2.R")
@@ -29,7 +29,7 @@ guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar', 'rel
 ### RELOAD
 
 reload <- function() {
-# Esta función sólo se puede usar trabajando desde el subdirectorio 
+# Esta función sólo se puede usar trabajando desde el subdirectorio
 # "Curso-R/ejercicios-de-programacion/rep-X/rep-X"
 
 # Uso:
@@ -132,7 +132,7 @@ cor1.b <- function() {
 cor1.c <- function() {
   # Cargar datos y script
   load('datos')
-  
+
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('dist.R')
   gr <- grep('#===', arch, useBytes = TRUE)
@@ -158,12 +158,20 @@ cor1.c <- function() {
 
   if (any(abs(dst - dst2) > tol))
     stop("los valores del dst obtenido no son los correctos", call. = FALSE)
+  if (i == j2)
+    warning("  ¿Tal vez i y j están alrevés?", call. = FALSE)
   if (i != i2)
     stop("el valor de i obtenido no es el correcto", call. = FALSE)
+  if (j == i2)
+    warning("  ¿Tal vez i y j son iguales?", call. = FALSE)
   if (j != j2)
     stop("el valor de j obtenido no es el correcto", call. = FALSE)
+  if (all(A == B2)) {
+    warning("  Su punto A es el más lejano, en lugar del más cercano", call. = FALSE)
   if (any(abs(A - A2) > tol))
     stop("los valores del A obtenido no son los correctos", call. = FALSE)
+  if (all(B == A2)) {
+    warning("  Su punto B es el más cercano, en lugar del más lejano", call. = FALSE)
   if (any(abs(B - B2) > tol))
     stop("los valores de B obtenido no son los correctos", call. = FALSE)
 
@@ -176,7 +184,7 @@ cor2.a <- function() {
   # Cargar datos y script
   load('datos')
   source('varianza.R')
-  
+
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('varianza.R')
   gr <- grep('#===', arch, useBytes = TRUE)
@@ -194,7 +202,7 @@ cor2.a <- function() {
   s2   <- (x - x_mean2) ** 2
   out2 <- sum(s2) / (length(x) - 1)
   tol <- 1e-20
-  
+
   if (abs(x_mean - x_mean2) > tol)
     stop("el valor de x_mean obtenido no es el correcto", call. = FALSE)
   if (any(abs(s - s2) > tol))
@@ -213,7 +221,7 @@ cor2.b <- function() {
   # Cargar datos y script
   load('datos')
   source('zenon.R')
-  
+
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('zenon.R')
   gr <- grep('#===', arch, useBytes = TRUE)
@@ -250,7 +258,7 @@ cor2.c <- function() {
   # Cargar datos y script
   load('datos')
   source('geom.R')
-  
+
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('geom.R')
   arch2 <- gsub(' ', '', arch)
@@ -263,7 +271,7 @@ cor2.c <- function() {
   # Generación de datos
   n <- sample(8:12, 1)
   z <- runif(1, 1, 4)
-  
+
   # Evaluación de objetos: e, s, out
   source(tmp, local=TRUE)
   unlink(tmp)
@@ -294,7 +302,7 @@ cor3.a <- function() {
   # Cargar datos y script
   load('datos')
   source('shannon-1.R')
-  
+
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('shannon-1.R')
   arch2 <- gsub(' ', '', arch)
@@ -305,7 +313,7 @@ cor3.a <- function() {
 
   # Generación de datos
   coleccion <- sample(20, 50, replace=TRUE)
-  
+
   # Evaluación de objetos: n, N, p, H y el operador %*%
   source(tmp, local=TRUE)
   unlink(tmp)
@@ -351,7 +359,7 @@ cor3.b <- function() {
   # Generación de datos
   coleccion <- sample(20, 50, replace=TRUE)
   tol <- 1e-20
-  
+
   # Evaluación de objetos: shannon
   if (abs(shannon(coleccion) - Shannon(coleccion)) > tol)
     stop("la salida de la función area no la esperada", call. = FALSE)
