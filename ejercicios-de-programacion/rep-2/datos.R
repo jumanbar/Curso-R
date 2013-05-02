@@ -25,7 +25,7 @@ guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar', 'rel
 ### RELOAD
 
 reload <- function() {
-# Esta función sólo se puede usar trabajando desde el subdirectorio 
+# Esta función sólo se puede usar trabajando desde el subdirectorio
 # "Curso-R/ejercicios-de-programacion/rep-X/rep-X"
 
 # Uso:
@@ -57,7 +57,7 @@ cl <- function() {
 
 gn <- function(cal)
   sample(c('V', 'M'), length(cal), replace=TRUE)
-  
+
 ct <- function(cal) {
   n <- length(cal)
   out <- character(n)
@@ -133,13 +133,13 @@ cor1.a <- function() {
   # Generación de datos nuevos aleatorios
   cal <- cl()
   gen <- gn(cal)
-  
+
   # Evaluación de objetos: p.apr
   source(tmp, local = TRUE)
-  unlink(tmp)  
+  unlink(tmp)
   apr2   <- sum(cal >= 5)
   p.apr2 <- 100 * apr2 / length(cal)
-	tol <- 1e-15
+	tol <- 1e-8 # Antes era 1e-15, pero era muy alto.
 
 	if (p.apr < 1)
 		warning("  El p.apr < 1, ¿tal vez no esté en porcentaje si no fracción?\n", call. = FALSE)
@@ -151,7 +151,7 @@ cor1.a <- function() {
 cor1.b <- function() {
   # Cargar datos y script
   load('datos')
-  
+
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('aprobados2.R')
   gr <- grep('#===', arch, useBytes = TRUE)
@@ -162,7 +162,7 @@ cor1.b <- function() {
   # Generación de datos nuevos aleatorios
   cal <- cl()
   gen <- gn(cal)
-  
+
   # Evaluación de objetos: p.apr.v, p.apr.m
   source(tmp, local = TRUE)
   unlink(tmp)
@@ -172,7 +172,7 @@ cor1.b <- function() {
   apr.m2 <- sum(m2 >= 5)
   p.apr.v2 <- 100 * apr.v2 / length(v2)
   p.apr.m2 <- 100 * apr.m2 / length(m2)
-	tol <- 1e-15
+	tol <- 1e-8
 
 	if (p.apr.v < 1)
 		warning("  El p.apr.v < 1, ¿tal vez no esté en porcentaje si no fracción?\n", call. = FALSE)
@@ -189,7 +189,7 @@ cor1.b <- function() {
 cor1.c <- function() {
   # Cargar datos y script
   load('datos')
-  
+
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('mejorcitos.R')
   gr <- grep('#===', arch, useBytes = TRUE)
@@ -241,13 +241,13 @@ cor1.d <- function() {
   cal <- cl()
   gen <- gn(cal)
   ctg2 <- ct(cal)
-	tol <- 1e-15
+	tol <- 1e-8
 
   # Evaluación de objetos: ctg y conteo
   source(tmp, local=TRUE)
   unlink(tmp)
   conteo2 <- table(ctg2)
-  
+
 	if (length(ctg) > length(ctg2))
 		warning(" El valor length(ctg) es demasiado grande", call. = FALSE)
 	if (length(ctg) < length(ctg2))
@@ -267,25 +267,25 @@ cor1.d <- function() {
 cor2.a <- function() {
   # Cargar datos y script
   load('datos')
-  
+
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('data.frame.R')
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
   writeLines(arch, tmp)
-  
+
   # Generación de datos
   cal <- cl()
   gen <- gn(cal)
   ctg <- ct(cal)
-	tol <- 1e-15
+	tol <- 1e-8
 
   # Evaluación de objetos: datos.calif
   source(tmp, local=TRUE)
   unlink(tmp)
-  datos.calif2 <- data.frame(nota = cal, 
-														 genero = gen, 
+  datos.calif2 <- data.frame(nota = cal,
+														 genero = gen,
 													 	 franja = ctg)
 
 	if (any(names(datos.calif) != names(datos.calif2))) {
@@ -304,20 +304,20 @@ cor2.a <- function() {
 cor2.b <- function() {
   # Cargar datos y script
   load('datos')
-  
+
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('ordenacion.R')
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
   writeLines(arch, tmp)
-  
+
   # Generación de datos
   cal <- cl()
   gen <- gn(cal)
   ctg <- ct(cal)
   datos.calif <- data.frame(nota = cal, genero = gen, franja = ctg)
-	tol <- 1e-15
+	tol <- 1e-8
 
   # Evaluación de objetos: datos.calif (ordenada)
   i2 <- order(datos.calif$nota)
@@ -344,7 +344,7 @@ cor2.b <- function() {
 cor2.c <- function() {
   # Cargar datos y script
   load('datos')
-  
+
   # Cortar el archivo original y crear uno temporal
   arch <- readLines('lista.R')
   arch2 <- gsub(' ', '', arch)
@@ -357,8 +357,8 @@ cor2.c <- function() {
   cal <- cl()
   gen <- gn(cal)
   ctg <- ct(cal)
-	tol <- 1e-15
-  
+	tol <- 1e-8
+
   # Evaluación de objetos: analisis.calif
   conteo <- table(ctg)
   names(conteo) <- c("A", "B", "C", "D")
@@ -373,9 +373,9 @@ cor2.c <- function() {
   p.apr.m <- 100 * apr.m / length(m)
   source(tmp, local=TRUE)
   unlink(tmp)
-  analisis.calif2 <- list(tabla = datos.calif, 
+  analisis.calif2 <- list(tabla = datos.calif,
 													conteo = conteo,
-                          aprob = list(atot = 100 * sum(cal >= 5) / length(cal), 
+                          aprob = list(atot = 100 * sum(cal >= 5) / length(cal),
 																			 avar = p.apr.v,
                                        amuj = p.apr.m))
 
@@ -444,21 +444,21 @@ cor2.d <- function() {
   apr.m <- sum(m >= 5)
   p.apr.v <- 100 * apr.v / length(v)
   p.apr.m <- 100 * apr.m / length(m)
-  a <- list(tabla = datos.calif, 
-						conteo = conteo, 
-						aprob = list(atot = 100 * sum(cal >= 5) / length(cal), 
-												 avar = p.apr.v, 
+  a <- list(tabla = datos.calif,
+						conteo = conteo,
+						aprob = list(atot = 100 * sum(cal >= 5) / length(cal),
+												 avar = p.apr.v,
 												 amuj = p.apr.m))
   class(a) <- "listaCalif"
-  
+
   # Evaluación de objetos: salida de print.listaCalif
   c1 <- capture.output(print.listaCalif(a))
   c2 <- capture.output(Print.listaCalif(a))
 
 	if (!all(c1 == c2)) {
-		mensajes <- c("\n  Ej. 2.d: la salida esparada es:\n", 
-									paste("   ", c2), 
-									"\n  pero la salida producida es:\n", 
+		mensajes <- c("\n  Ej. 2.d: la salida esparada es:\n",
+									paste("   ", c2),
+									"\n  pero la salida producida es:\n",
 									paste("   ", c1),
 									"(los valores fueron generados aleatoriamente)")
 		mensajes <- paste(mensajes, "\n")

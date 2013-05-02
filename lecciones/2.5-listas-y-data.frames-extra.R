@@ -1,9 +1,9 @@
-# Al igual que con las listas comunes, el operador $ sirve para llamar las
+﻿# Al igual que con las listas comunes, el operador $ sirve para llamar las
 # variables por sus nombres, en el caso de que los tengan:
 cars$speed
 iris$Petal.Length
 
-# Y al igual que en las listas también se pueden usar los números entre corche-
+# Y al igual que en las listas también se puede usar los números entre corche-
 # tes dobles:
 cars[[1]]
 iris[[3]]
@@ -20,7 +20,7 @@ class(cars[1])
 # [1] "data.frame"
 class(cars[[1]])
 # [1] "numeric"
-# En el último caso la clase del objeto es la misma que el de la variable
+# En el último caso la clase del objeto es la misma que la de la variable
 # correspondiente, o sea un vector numérico:
 class(cars$speed) # "numeric"
 

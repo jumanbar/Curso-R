@@ -1,4 +1,4 @@
-Lista de ideas y/o apuntes generales de cosas a mejorar 
+Lista de ideas y/o apuntes generales de cosas a mejorar
 =======================================================
 
 * Mejorar los ejercicios de corrección, al menos de los repartidos I y II, poniendo mensajes de error más específicos (se empezó a implementar en rep III).
@@ -27,7 +27,7 @@ username <- function() {
 )
 
 * Agregar ejercicios en funciones, más simples y más diversos:
-  - cambiar última y primer fila de una matriz; 
+  - cambiar última y primer fila de una matriz;
   - ordenar una matriz según los valores de cualquier columna, según número o nombre.
 
 * Ejercicio de programación:
@@ -91,3 +91,5 @@ Para el final del curso
   El año que viene debería haber una lección "cómo hacer el repartido"!!
 
 * algo que me olvidé!!
+
+* Foro: decirles que escriban el código en el foro, pero que después lo borren si está la duda solucionada.
