@@ -1,4 +1,4 @@
-## Listas y data.frames
+﻿## Listas y data.frames
  
 # Hasta ahora hemos visto vectores y matrices como las estructuras más sencillas
 # para organizar la información dentro de R. Una restricción importante es que
@@ -14,7 +14,7 @@
 
 # Una lista puede pensarse como un vector que contiene varios objetos, donde 
 # cada objeto puede ser de un tipo/clase diferente. Además los componentes de la
-# lista no tienen porqué tener la misma cantidad de elementos. Con la función 
+# lista no tienen por qué tener la misma cantidad de elementos. Con la función 
 # list podemos crear una lista de cero; por ejemplo:
 x <- list(rep('pepe', 3), 1:20)
 # En este caso, x contiene a un vector "character" y otro "numeric"; el primero 
@@ -156,7 +156,7 @@ summary(d)
 m <- matrix(1:25, 5, 5)
 as.data.frame(m)
 
-# Otros objetos pueden convertise en data.frame también con esta función. Se 
+# Otros objetos pueden convertirse en data.frame también con esta función. Se 
 # mencionará más sobre este tipo de funciones en la lección relacionada.
 
 # De todas maneras, tal vez la forma más común de incorporar una data.frame a 
@@ -184,12 +184,12 @@ iris[2, 5]
 
 # También sirven las funciones cbind y rbind, para pegar nuevos elementos, por 
 # columnas o filas respectivamente. Por ejemplo, sabiendo que iris tiene 150 
-# filas (lo que se puede averiguar con nrow o dim), puedo agregar el una nueva 
+# filas (lo que se puede averiguar con nrow o dim), puedo agregarle una nueva 
 # variable llamada "nuevaCol" con cbind de la manera siguiente:
 (x <- cbind(iris, nuevaCol=1:150))
 head(x)
 
-# Nótese cómo se nombro la nueva columna en el momento de agregarla.
+# Nótese cómo se nombró la nueva columna en el momento de agregarla.
 
 
 ## Otras observaciones
@@ -216,4 +216,4 @@ plot(Petal.Length ~ Species, data=iris)
 # Las listas y los data.frames son dos estructuras muy convenientes para
 # trabajar con datos. Su complejidad no es significativamente mayor al de las
 # matrices y sin embargo tienen diferencias que van a probar ser cruciales para
-# facilitar un diálogo fluído en análisis estadísticos y el trabajo con datos.
+# facilitar un diálogo fluido en análisis estadísticos y el trabajo con datos.

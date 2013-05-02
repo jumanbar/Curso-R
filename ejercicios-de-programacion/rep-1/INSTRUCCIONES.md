@@ -5,10 +5,12 @@ Ejercicios de programación I: Introducción
 
 - - -
 
-Archivos incluidos:
--------------------
+Instrucciones generales:
+------------------------
 
-El [archivo](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/rep-1.zip) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-1`**. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
+### Archivos incluidos:
+
+El archivo con los ejercicios del práctico debe bajarse y descomprimirse dentro de la carpeta del curso, creando la subcarpeta **`rep-1`**. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
 * **` hipot.R `**
 * **` areaMax.R `**
@@ -19,11 +21,7 @@ El [archivo](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programac
 * **` shannon-1.R `**
 * **` shannon-2.R `**
 
-Cada uno de estos archivos se corresponde con un ejercicio del repartido. Se trata de archivos de texto plano (equivalentes a un `.txt`, pero con una extensión diferente que sirve para que los programas que lo abren reconozcan la sintaxis). En cada archivo se indica con presición en dónde debe usted escribir su código (o modificar lo que ya está escrito). **Cuide siempre de no escribir en estos archivos ninguna línea de código ajena a los propósitos del ejercicio mismo**. Por ejemplo, debe tener cuidado de no dejar escritas líneas como `source(triangulo.R)` dentro del propio archivo `triangulo.R`, ya que esto genera problemas al momento de evaluar el ejercicio (básicamente es como pedirle al archivo que se evalúe a sí mismo, lo que hace que se vuelva a evaluar a sí mismo y así sigue un "circulo vicioso", hasta que se llega a los límites de procesamiento de la máquina). 
-
-Por esta razón, recomendamos usar un script aparte para este tipo de comandos, así como todos aquellos comandos usados para experimentar con posibles soluciones o simples juegos de progamación que usted quiera hacer. En el video "Guía para repartidos" mostramos un ejemplo a seguir en caso de que esta explicación no le resulte satisfactoria (ver también el documento [Dinámica de trabajo de los repartidos](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/dinamica-reps.pdf)).
-
-Nótese además que los cambios que se hacen al script del ejercicio son **invisibles** para R hasta el momento en que usted **guarda** el archivo a disco duro. Esta suele ser una fuente común de frustración entre principiantes (y no tanto).
+Cada uno de estos archivos se corresponde con un ejercicio del repartido. Se trata de archivos de texto plano (como un `.txt`, pero con una extensión diferente). En cada archivo se indica con precisión en dónde debe usted escribir su código (o modificar lo que ya está escrito). Para que el sistema de corrección funcione bien, **no cambie** el texto que se encuentra por fuera, incluyendo las que se usan para indicar el inicio y el final del mismo. Nótese además que **esto no impide** ampliar o reducir el espacio que usted tiene para escribir, subiendo o bajando cualquiera de las "líneas límite" del archivo.
 
 Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modificados** para que el método de calificación automático funcione correctamente.
 
@@ -34,6 +32,8 @@ Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modif
 
 Mecanismo de corrección:
 ------------------------
+
+Nota: más recomendaciones **importantes** se hacen en el documento [Dinámica de los repartidos](http://goo.gl/P5Wnq).
 
 Lo primero que debe hacer es cargar el archivo `evaluar.R` con la función `source`:
 
@@ -58,15 +58,19 @@ evaluar()
 ```
 
 
-y además podrá en todo momento verificar su puntaje con la función `verNotas()`. Una vez terminados los ejercicios del repartido, usted deberá subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-1”, a la [sección de entregas](http://eva.universidad.edu.uy/mod/assignment/view.php?id=93616) de la portada del curso en la plataforma EVA.
+y además podrá en todo momento verificar su puntaje con la función `verNotas()`. Tenga siempre en cuenta que, a **menos que sea indicado** por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben servir aún si se modifican los datos originales (i.e.: no use valores fijos si no comandos). Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos **se indica claramente en dónde se inicia y dónde finaliza su código** y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.
 
+### Al finalizar
+
+Una vez terminados y guardados los archivos de los ejercicios del repartido, usted deberá ejecutar `evaluar()` y seleccionar la última opción ("Todos") y luego subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-1”, a la [sección de entregas](http://eva.universidad.edu.uy/mod/assignment/view.php?id=95125) de la portada del curso en la plataforma EVA. Este archivo se podrá reemplazar con uno más nuevo, en caso de que desee corregir algún error; en caso de querer que el archivo sea corregido antes de la fecha de entrega, puede cambiarle el nombre a "datos-finalizado", pero en ese caso la nota no se cambiará de ahí en adelante.
 
 ### Código de Honor
 
-Si bien animamos a que los estudiantes trabajen en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos importante que los estudiantes no miren el código creado por sus compañeros ya que esto supone un sabotaje a su propio proceso de aprendizaje. Como profesores estamos comprometidos a pedir tareas para las cuales hayamos dado las herramientas correctas y las explicaciones adecuadas como para que todos puedan encontrar su propio camino para resolver los ejercicios.
+Si bien animamos a que trabaje en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos necesario que no utilize el código creado por sus compañeros, si no que debe programar sus propias instrucciones, ya que de lo contrario supone un sabotaje a su propio proceso de aprendizaje. Esto implica también evitar, en la medida de lo posible, exponer el código propio a sus colegas. Como profesores estamos comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y explicaciones adecuadas a fin de que pueda encontrar su propio camino para resolver los ejercicios.
+
+En casos de planteos de dudas a través del foro, en los que considere que es imposible expresar un problema sin exponer su própio código, entonces es aceptable hacerlo. De todas formas en estos casos es preferible que envíe su código por correo electrónico directamente a un profesor, explicando la problemática.
 
 - - -
-
 
 1. Geometría
 ------------
@@ -125,6 +129,8 @@ co(3, 5)
 ```
 
 
+Pero también recuerde que estas funciones deben hacer el cálculo correcto *para cualquier par de valores* de catetos e hipotenusas, es decir deben ser _**genéricas**_ (con la restricción de que la hipotenusa siempre es mayor que los catetos).
+
 Nota: dado que para obtener el cateto se hace una resta, a cuyo resultado se debe hallar la raíz cuadrada, considere que debe evitar valores negativos. La forma más básica de evitarlo es encontrando el valor absoluto, usando la función `abs`.
 
 ### 1.b Área máxima
@@ -149,7 +155,7 @@ for (i in 1:length(cat.ad)) {
 
 Si usted ejecuta este código, podrá ver que el área máxima está cercana a 25 y que el ancho del cateto adyacente correspondiente es aproximadamente 7.1 (si ejecuta el script "ejTriang.R" puede visualizar todos estos triángulos). Pero este es un método sumamente engorroso en comparación a lo aque se puede hacer en R. Para empezar, como se menciona en la lección 1.2, en su versión escrita la menos, el cálculo de todas estas áreas (y de los catetos opuestos asociados) se puede hacer sin loops. Esta capacidad de R es muy importante para aumentar la velocidad de ejecución de ciertas tareas y se denomina **vectorización**.
 
-El siguiente es un ejemplo de vectorización, ya que calcula todos los valores posibles de `cat.op` y `a` sin utilizar un **loop** (es decir, no utiliza el comando especial `for` mostrado anteriormente). Para el caso que las áreas, este código sirve para calcular todos estos valores de áreas:
+El siguiente es un ejemplo de vectorización, ya que calcula todos los valores posibles de `cat.op` y `a` sin utilizar un **loop** (es decir, no utiliza el comando especial `for` mostrado anteriormente). Para el caso que las áreas, ejecute el siguiente código:
 
 
 ```r
@@ -161,7 +167,7 @@ a <- area(cat.ad, cat.op)  # Cálculo de las áreas
 ```
 
 
-Nótese el uso de la función `seq` para crear una secuencia de valores entre $0.001$ y $h - 0.001$, utilizados como anchos de los distintos catetos adyacentes. De esta forma sólo quedaría buscar cuál de los valores de área es el mayor y determinar en qué posición se encuentra. Esto lo deberá hacer usted, completando el código en el archivo "areaMax.R". Para ello recomendamos considerar dos funciones de R:
+De esta forma tiene un vector `a` con todos los valores de áreas. Nótese el uso de la función `seq` para crear una secuencia de valores entre $0.001$ y $h - 0.001$, utilizados como anchos de los distintos catetos adyacentes. De esta forma sólo quedaría buscar cuál de los valores de área es el mayor y determinar en qué posición se encuentra. Esto lo deberá hacer usted, completando el código en el archivo "areaMax.R". Para ello recomendamos considerar dos funciones de R:
 
 * Las funciones `which` o `which.max` se pueden utilizar para encontrar la posición (i.e.: un número entero positivo) del valor máximo dentro de un vector (siendo la primera una opción más versatil en verdad). Utilice la documentación para aprender más de estas funciones y así encontrar la posición del valor máximo dentro del vector `a`. 
 
@@ -173,9 +179,24 @@ Cuando complete el código podrá confirmar que ha encontrado verdaderamente el 
 
 ```r
 plot(cat.ad, a, type = "l", ylab = "Área", main = "Área máxima: línea roja")
-abline(v = cat.ad[i], col = "red", lwd = 2)
+abline(v = cat.ad[i], h = amax, col = "red", lwd = 1.3, lty = 3)
 ```
 
+
+Adicionalmente, si su solución es realmente genérica entonces el resultado del siguiente código debe terminar en `TRUE`:
+
+
+```r
+hip <- rnorm(1, 10)
+cat.ad <- runif(100, 0.1, hip - 0.1)
+cat.op <- co(cat.ad, hip)
+a <- area(cat.ad, cat.op)
+source("areaMax.R")
+max(a) == amax  # ¿TRUE or FALSE?
+```
+
+
+(Lo que hace este código es crear valores aleatorios de los objetos `hip`, `cat.ad`, `cat.op` y `a` y verificar que su código funciona con estos.)
 
 ### 1.c Distancias entre puntos
 
@@ -185,7 +206,7 @@ La definición de distancia euclidiana se basa en el teorema de pitágoras. Para
 
 - - -
 
-![Figura 1](figure/unnamed-chunk-10.png) 
+![triángulo ABC](figure/unnamed-chunk-11.png) 
 
 
 **Figura 1:** Los puntos A, B y C de coordenadas $(x_A, y_A)$, $(x_B, y_B)$ y $(x_B, y_A)$ pueden formar un triángulo rectángulo como muestra la figura, cuyos catetos tienen los valores indicados entre paréntesis. Por lo tanto, la distancia entre A y B es la hipotenusa del triángulo y se puede hallar con la fórmula de Pitágoras.  
@@ -195,7 +216,7 @@ Nota: puede reproducir este gráfico con la función `plotTriang` contenida en e
 
 En el presente ejercicio vamos a utilizar este concepto, así como las recién aprendidas funciones `which` y `which.max`, y también `which.min`. La idea es encontrar distancias entre puntos y determinar distancias mínimas y máximas. En el archivo "dist.R" el código inicial (8 líneas) debería reproducir un gráfico muy similar a la **Figura 2**.
 
-![Figura 2](figure/unnamed-chunk-11.png) 
+![puntos en el plano](figure/unnamed-chunk-12.png) 
 
 
 Los objetos `coorx` y `coory` son las coordenadas en los ejes x e y respectivamente de todos los puntos blancos. Estos fueron obtenidos con un generador de números aleatorios. El punto negro en el centro de la figura es nuestro foco de interés.
@@ -213,7 +234,7 @@ points(coorx[j], coory[j], pch = 19, col = "darkgreen")
 ```
 
 
-Complete el código del archivo "dist.R" para completar esta parte del ejercicio.
+Complete el código del archivo "dist.R" para completar esta parte del ejercicio y recuerde que su solución debe servir sin importar la ubicación exacta de los puntos en el plano.
 
 2. Cálculo de sumatorias
 ------------------------
@@ -245,13 +266,24 @@ En donde $\overline{x}$ denota el valor promedio de la muestra de datos, calcula
 
 Script: varianza.R
 
-En el archivo "varianza.R" usted deberá escribir los pasos necesarios para calcular la varianza del vector `x` que se muestra en el archivo (siga las instrucciones incluidas en los comentarios).  Para confirmar que su resultado es correcto, puede ejecutar el comando `var(x)`, el cual debería devolver el mismo valor que el objeto `out`.
+En el archivo "varianza.R" usted deberá escribir los pasos necesarios para calcular la varianza del vector de ejemplo `x` que se muestra en el archivo (siga las instrucciones incluidas en los comentarios). 
+
+Si su solución es correcta, lo cual implica que es genérica, entonces el valor de `out` obtenido coincidirá con la salida de la función `var`. Puede correr las siguientes líneas varias veces para determinar si esto es así:
+
+
+```r
+source("varianza.R")
+out == var(x)
+```
+
+
+Esto producirá un `TRUE` o un `FALSE` en caso de que `out` esté bien o mal calculado, respectivamente.
 
 ### 2.b Paradoja de Zenón
 
 Script: zenon.R
 
-Según la clásica [paradoja de la dicotomía de Zenón](https://es.wikipedia.org/wiki/Paradojas_de_Zen%C3%B3n#La_dicotom.C3.ADa)(http://xkcd.com/1153/) es imposible caminar de un punto A a un punto B, debido a que primero debemos movernos la mitad del camino, posteriormente avanzar la mitad de la mitad del camino y así ad infinitum, sin llegar jamás a B. Esto se traduce en avanzar primero 1/2 de camino, luego 1/4, luego 1/8, luego 1/16 y así sucesivamente. Entonces, luego de $n$ pasos de este tipo se alcanza una fracción de camino equivalente a:
+Según la clásica [paradoja de la dicotomía](https://es.wikipedia.org/wiki/Paradojas_de_Zen%C3%B3n#La_dicotom.C3.ADa) de [Zenón](http://xkcd.com/1153/) es imposible caminar de un punto A a un punto B, debido a que primero debemos movernos la mitad del camino, posteriormente avanzar la mitad de la mitad del camino y así ad infinitum, sin llegar jamás a B. Esto se traduce en avanzar primero 1/2 de camino, luego 1/4, luego 1/8, luego 1/16 y así sucesivamente. Entonces, luego de $n$ pasos de este tipo se alcanza una fracción de camino equivalente a:
 
 $$
   Z_n = \sum_{i=1}^{i=n} \frac{1}{2 ^ i} \;=\;
@@ -261,20 +293,24 @@ $$
 
 (¡nótese que el primer valor de $i$ es 1 y no 0!)
 
-Si es cierta la proposición de Zenón, entonces no importa que tan grande sea $n$, esta sumatoria siempre será menor a 1, a pesar de que el límite de la misma cuando $n \to \infty$ es 1. Podemos verificar numéricamente esta afirmación usando R: si elegimos un valor $\varepsilon$ arbitrariamente pequeño, entonces podemos encontrar un $n$ tal que $1 - Z_n < \varepsilon$.
+Si es cierta la proposición de Zenón, entonces no importa que tan grande sea $n$, esta sumatoria siempre será menor a 1, a pesar ser este el límite de la misma cuando $n \to \infty$. Podemos verificar numéricamente esta afirmación usando R: si elegimos un valor $\varepsilon$ arbitrariamente pequeño, entonces podemos encontrar un $n$ tal que $1 - Z_n < \varepsilon$.
 
 En este ejercicio, usted deberá completar el código del archivo "zenon.R" según las instrucciones que se indican en el mismo. Para que usted pueda tener una referencia, considere que si el código se hace correctamente, la sumatoria entonces para $n = 3$ el valor `out` debería ser 0.875.
 
-Además usted debe probar distintos valores del entero `n`, con el fin de encontrar aquel entero mínimo necesario para lograr un valor de `out` tal que la diferencia entre `out` y 1 debe ser menor a 0.000001 (i.e.: 1e-06). Puede comprobar que su resultado cumple con esa premisa con el comando `1 - out < 1e-06`. 
+Además usted debe probar distintos valores del entero `n`, con el fin de encontrar aquel entero mínimo necesario para lograr un valor de `out` tal que la diferencia entre `out` y 1 debe ser menor a 0.000001 (i.e.: `1e-06`). Puede comprobar que su resultado cumple con esa premisa con el comando `1 - out < 1e-06`. 
 
-Nota: en este ejercicio, y *a diferencia de la mayoría de los casos* de este curso, la respuesta para el valor de `n` debe ser un número entero (i.e.: 42), el cual usted deberá escribir en la línea correspondiente del archivo "zenon.R".
+Nota: en este ejercicio, y *a diferencia de la mayoría de los casos* de este curso, la respuesta para el valor de `n` no es general, si no que debe ser un número entero (i.e.: 42), el cual usted deberá escribir en la línea correspondiente del archivo "zenon.R".
 
-Para visualizar la convergencia de la serie puede usar el comando:
+Para visualizar la convergencia de su serie puede usar el comando:
+
+
 
 
 ```r
 plot(cumsum(s), type = "o", xlab = "n", ylab = expression(Z[n]))
 ```
+
+![Serie de Zenón](figure/unnamed-chunk-17.png) 
 
 
 
@@ -292,14 +328,14 @@ $$
 
 (Nota: ahora el primer término corresponde a i=0, por lo que a toda $S_n$ se le agrega un +1 en comparación con la misma sumatoria empezando por i=1.)
 
-Un resultado importante es que la serie converge a un valor determinado (es decir, tiene un límite finito para $n \to \infty$) para todos los z tales que $1 > \|z\|$ (1 mayor al valor absoluto de $z$). El objetivo de este ejercicio es confirmar este resultado. Para esto debe completarse el código del archivo `geom.R`, siguiendo las instrucciones que allí se indican.
+Un resultado importante es que la serie converge a un valor determinado (es decir, tiene un límite finito para $n \to \infty$) para todos los z tales que $1 < \|z\|$ (1 menor al valor absoluto de $z$). El objetivo de este ejercicio es confirmar este resultado. Para esto debe completarse el código del archivo `geom.R`, siguiendo las instrucciones que allí se indican.
 
 Nota: en este ejercicio utilice valores para `n` y `z` a elección (siendo el primero entero y positivo).
 
 Si el código es correcto, el resultado `out` debería ser idéntico (o casi igual, debido a pequeños errores numéricos de redondeo) al valor de la siguiente fórmula:
 
 $$
-  S_n = \frac{1 - z ^ {- n}}{1 - z ^ {-1}}
+  S_n = \frac{1 - z ^ {- (n - 1)}}{1 - z ^ {-1}}
 $$
 
 - - -
@@ -315,7 +351,7 @@ $$
 
 (La base del logaritmo no es demasiado importante, pero en este ejercicio nos vamos a regir a esta definición en particular; es decir, vamos a usar logarítmo de base 2)
 
-Aquí $S$ es el número total de categorías o especies y $p_i$ es la frecuencia relativa de la categoría i. Es decir:
+Aquí $S$ es el número total de categorías o especies y $p_i$ es la frecuencia relativa de la categoría $i$. Es decir:
 
 $$
   p_i = \frac{n_i}{N}
@@ -353,9 +389,28 @@ simplemente, ignorando detalles de transposición. De hecho los vectores en R no
 
 En este ejercicio deberá completar el archivo "shannon-1.R" de forma que sea capaz de calcular el valor de H para el vector `coleccion` o *cualquier otro vector* de R, utilizando el producto escalar de vectores para calcular el resultado de la sumatoria. Para el caso particular de `coleccion`, el $H$ esperado es de 2.699514.
 
-#### Observaciones a tener en cuenta:
+
+```r
+coleccion <- c(9, 6, 3, 3, 6, 1, 5, 5, 5, 3, 2, 7, 2, 1)
+```
+
 
 El cálculo del $H$ puede dividirse en (1) calcular los valores de $p_i$ y (2) realizar la sumatoria. Para calcular los $p_i$ es necesario a su vez tener los $n_i$ y el valor $N$. Para estas tareas las funciones `table` y `length` pueden ser de gran ayuda. La primera sirve para hacer un conteo de la cantidad de objetos por categoría, mientras que la función `length` devuelve la cantidad de elementos de un vector cualquiera. No dude en consultar la documentación de R de estas dos funciones en caso de que no comprenda del todo bien su accionar.
+  
+Nota: para verificar que su solución sirve para cualquier vector, puede instalar el paquete `vegan`, el cual cuenta con la función `diversity` para calcular el índice Shannon-Wiener (aunque a partir de datos de conteo, a diferencia del vector `coleccion`). El siguiente código sirve como verificación:
+
+
+```r
+install.packages("vegan")  # Si el paquete no está instalado
+library(vegan)  # Para cargar el paquete
+coleccion <- rpois(42, 6)  # Para crear un vector aleatorio
+source("shannon-1.R")  # Calcula H
+H1 <- diversity(table(coleccion), base = 2)  # Calcula H1
+H - H1 < 1e-13  # Si es TRUE, su código está bien
+```
+
+
+
 
 ### 3.b Extra: función `shannon`
 
@@ -383,5 +438,5 @@ shannon(x)
 ```
 
 
-(Nota: el segundo comando toma la `frase` y la parte en todos los caracteres que la componen)
+(Nota: el segundo comando toma la `frase` y la parte en todos los caracteres que la componen; se podría también modificar el código de verificación del ejercicio anterior para utilizar la función `diversity` y compararla con la suya.)
 

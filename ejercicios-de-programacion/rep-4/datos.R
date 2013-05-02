@@ -5,13 +5,13 @@
 nrep <- 4
 rdir <- paste('rep', nrep, sep='-')
 
-esperados <- c("evaluar.R", "datos", "notas.csv", "INSTRUCCIONES.pdf",
+esperados <- c("datos", "notas.csv", "INSTRUCCIONES.pdf",
                "edu.data.rda", "HandbookSpanish.pdf",
                # Los archivos de los ejercicios deben estar en el orden 
                # correcto (para el menú de 'evaluar'):
                "triangulo.R", "educacion.R", "cambiaPares.R", "radio.R", 
                "distancias.R")
-corregir <- esperados[- (1:6)]
+corregir <- esperados[- (1:5)]
 codigo <- lapply(corregir, readLines)
 names(codigo) <- corregir
 ejnum  <- c('1', '2', '3.a', '3.b', '3.c')
@@ -272,7 +272,8 @@ borrar <- file.path(rdir, borrar)
 unlink(borrar, recursive = TRUE)
 
 file.copy(esperados, rdir, recursive = TRUE)
-zipfile <- paste(rdir, 'zip', sep = '.')
-unlink(zipfile)
-zip(zipfile, paste(rdir, '/', sep=''))
+file.copy("../evaluar.R", rdir, recursive = TRUE)
+# zipfile <- paste(rdir, 'zip', sep = '.')
+# unlink(zipfile)
+# zip(zipfile, paste(rdir, '/', sep=''))
 

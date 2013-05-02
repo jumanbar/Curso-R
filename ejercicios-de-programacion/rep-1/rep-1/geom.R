@@ -1,6 +1,8 @@
-# Instrucciones: generar un código que pueda calcular el valor de una serie 
+# Instrucciones: 
+# Generar un código que pueda calcular el valor de una serie 
 # geométrica para valores arbitrarios de n y z (i.e.: elíjalos usted mismo).
-# Objetos:
+
+# Objetos a obtener:
 # n: número entero positivo; el número de términos de la serie.
 # z: número real; el denominador de la fórmula de la serie S_n
 # e: representa los exponentes de cada término de la serie. Nótese que la
@@ -13,12 +15,12 @@
 
 n <- 20
 
-z <- 
+z <- 0
 
-e <-
+e <- 0
 
-s <- 
+s <- 0
 
-out <- 
+out <- 0
 
 #====== Aquí finaliza su código =====#

@@ -68,15 +68,16 @@
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\subsection{Archivos incluidos:}
+\subsection{Instrucciones generales:}
 
-El
-\href{http://eva.universidad.edu.uy/file.php/1454/ejercicios\_de\_programacion/rep-1.zip}{archivo}
-con los ejercicios del práctico debe bajarse y descomprimirse en disco
-duro, creando la carpeta \textbf{\texttt{rep-1}}. Usted deberá abrir el
-RStudio y seleccionar dicha carpeta como su directorio de trabajo con
-\texttt{setwd} o en RStudio la combinación \textbf{Ctrl + Shift + K}. En
-esta carpeta se encuentran algunos archivos que usted deberá modificar:
+\subsubsection{Archivos incluidos:}
+
+El archivo con los ejercicios del práctico debe bajarse y descomprimirse
+dentro de la carpeta del curso, creando la subcarpeta
+\textbf{\texttt{rep-1}}. Usted deberá abrir el RStudio y seleccionar
+dicha carpeta como su directorio de trabajo con \texttt{setwd} o en
+RStudio la combinación \textbf{Ctrl + Shift + K}. En esta carpeta se
+encuentran algunos archivos que usted deberá modificar:
 
 \begin{itemize}
 \item
@@ -97,33 +98,15 @@ esta carpeta se encuentran algunos archivos que usted deberá modificar:
   \textbf{\texttt{shannon-2.R}}
 \end{itemize}
 Cada uno de estos archivos se corresponde con un ejercicio del
-repartido. Se trata de archivos de texto plano (equivalentes a un
-\texttt{.txt}, pero con una extensión diferente que sirve para que los
-programas que lo abren reconozcan la sintaxis). En cada archivo se
-indica con presición en dónde debe usted escribir su código (o modificar
-lo que ya está escrito). \textbf{Cuide siempre de no escribir en estos
-archivos ninguna línea de código ajena a los propósitos del ejercicio
-mismo}. Por ejemplo, debe tener cuidado de no dejar escritas líneas como
-\texttt{source(triangulo.R)} dentro del propio archivo
-\texttt{triangulo.R}, ya que esto genera problemas al momento de evaluar
-el ejercicio (básicamente es como pedirle al archivo que se evalúe a sí
-mismo, lo que hace que se vuelva a evaluar a sí mismo y así sigue un
-``circulo vicioso'', hasta que se llega a los límites de procesamiento
-de la máquina).
-
-Por esta razón, recomendamos usar un script aparte para este tipo de
-comandos, así como todos aquellos comandos usados para experimentar con
-posibles soluciones o simples juegos de progamación que usted quiera
-hacer. En el video ``Guía para repartidos'' mostramos un ejemplo a
-seguir en caso de que esta explicación no le resulte satisfactoria (ver
-también el documento
-\href{http://eva.universidad.edu.uy/file.php/1454/ejercicios\_de\_programacion/dinamica-reps.pdf}{Dinámica
-de trabajo de los repartidos}).
-
-Nótese además que los cambios que se hacen al script del ejercicio son
-\textbf{invisibles} para R hasta el momento en que usted \textbf{guarda}
-el archivo a disco duro. Esta suele ser una fuente común de frustración
-entre principiantes (y no tanto).
+repartido. Se trata de archivos de texto plano (como un \texttt{.txt},
+pero con una extensión diferente). En cada archivo se indica con
+precisión en dónde debe usted escribir su código (o modificar lo que ya
+está escrito). Para que el sistema de corrección funcione bien,
+\textbf{no cambie} el texto que se encuentra por fuera, incluyendo las
+que se usan para indicar el inicio y el final del mismo. Nótese además
+que \textbf{esto no impide} ampliar o reducir el espacio que usted tiene
+para escribir, subiendo o bajando cualquiera de las ``líneas límite''
+del archivo.
 
 Adicionalmente los siguientes archivos son necesarios, pero \textbf{no
 deben ser modificados} para que el método de calificación automático
@@ -140,6 +123,9 @@ funcione correctamente.
   \texttt{INSTRUCCIONES.pdf}
 \end{itemize}
 \subsection{Mecanismo de corrección:}
+
+Nota: más recomendaciones \textbf{importantes} se hacen en el documento
+\href{http://goo.gl/P5Wnq}{Dinámica de los repartidos}.
 
 Lo primero que debe hacer es cargar el archivo \texttt{evaluar.R} con la
 función \texttt{source}:
@@ -174,23 +160,49 @@ comando:
 \end{Highlighting}
 \end{Shaded}
 y además podrá en todo momento verificar su puntaje con la función
-\texttt{verNotas()}. Una vez terminados los ejercicios del repartido,
-usted deberá subir el archivo ''datos'' (sin extensión), incluido en la
-carpeta ''rep-1'', a la
-\href{http://eva.universidad.edu.uy/mod/assignment/view.php?id=93616}{sección
-de entregas} de la portada del curso en la plataforma EVA.
+\texttt{verNotas()}. Tenga siempre en cuenta que, a \textbf{menos que
+sea indicado} por la letra del ejercicio, las soluciones deben ser
+genéricas y por lo tanto deben servir aún si se modifican los datos
+originales (i.e.: no use valores fijos si no comandos). Usualmente se
+utilizan valores generados de forma aleatoria para las correcciones
+automáticas. Los objetos que son evaluados en la corrección automática
+estarán indicados con un asterísco en las instrucciones de cada script.
+Nótese además que en los archivos \textbf{se indica claramente en dónde
+se inicia y dónde finaliza su código} y que debe respetar esta
+organización para que la corrección de los ejercicios funcione bien.
+
+\subsubsection{Al finalizar}
+
+Una vez terminados y guardados los archivos de los ejercicios del
+repartido, usted deberá ejecutar \texttt{evaluar()} y seleccionar la
+última opción (``Todos'') y luego subir el archivo ''datos'' (sin
+extensión), incluido en la carpeta ''rep-1'', a la
+\href{http://eva.universidad.edu.uy/mod/assignment/view.php?id=95125}{sección
+de entregas} de la portada del curso en la plataforma EVA. Este archivo
+se podrá reemplazar con uno más nuevo, en caso de que desee corregir
+algún error; en caso de querer que el archivo sea corregido antes de la
+fecha de entrega, puede cambiarle el nombre a ``datos-finalizado'', pero
+en ese caso la nota no se cambiará de ahí en adelante.
 
 \subsubsection{Código de Honor}
 
-Si bien animamos a que los estudiantes trabajen en equipos y que haya un
-intercambio fluido en los foros del curso, es fundamental que las
-respuestas a los cuestionarios y ejercicios de programación sean fruto
-del trabajo individual. En particular, consideramos importante que los
-estudiantes no miren el código creado por sus compañeros ya que esto
-supone un sabotaje a su propio proceso de aprendizaje. Como profesores
-estamos comprometidos a pedir tareas para las cuales hayamos dado las
-herramientas correctas y las explicaciones adecuadas como para que todos
-puedan encontrar su propio camino para resolver los ejercicios.
+Si bien animamos a que trabaje en equipos y que haya un intercambio
+fluido en los foros del curso, es fundamental que las respuestas a los
+cuestionarios y ejercicios de programación sean fruto del trabajo
+individual. En particular, consideramos necesario que no utilize el
+código creado por sus compañeros, si no que debe programar sus propias
+instrucciones, ya que de lo contrario supone un sabotaje a su propio
+proceso de aprendizaje. Esto implica también evitar, en la medida de lo
+posible, exponer el código propio a sus colegas. Como profesores estamos
+comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y
+explicaciones adecuadas a fin de que pueda encontrar su propio camino
+para resolver los ejercicios.
+
+En casos de planteos de dudas a través del foro, en los que considere
+que es imposible expresar un problema sin exponer su própio código,
+entonces es aceptable hacerlo. De todas formas en estos casos es
+preferible que envíe su código por correo electrónico directamente a un
+profesor, explicando la problemática.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
@@ -269,6 +281,11 @@ resultados:
 \begin{verbatim}
 ## [1] 4
 \end{verbatim}
+Pero también recuerde que estas funciones deben hacer el cálculo
+correcto \emph{para cualquier par de valores} de catetos e hipotenusas,
+es decir deben ser \emph{\textbf{genéricas}} (con la restricción de que
+la hipotenusa siempre es mayor que los catetos).
+
 Nota: dado que para obtener el cateto se hace una resta, a cuyo
 resultado se debe hallar la raíz cuadrada, considere que debe evitar
 valores negativos. La forma más básica de evitarlo es encontrando el
@@ -316,8 +333,8 @@ aumentar la velocidad de ejecución de ciertas tareas y se denomina
 El siguiente es un ejemplo de vectorización, ya que calcula todos los
 valores posibles de \texttt{cat.op} y \texttt{a} sin utilizar un
 \textbf{loop} (es decir, no utiliza el comando especial \texttt{for}
-mostrado anteriormente). Para el caso que las áreas, este código sirve
-para calcular todos estos valores de áreas:
+mostrado anteriormente). Para el caso que las áreas, ejecute el
+siguiente código:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -327,6 +344,7 @@ para calcular todos estos valores de áreas:
 \NormalTok{a <- }\KeywordTok{area}\NormalTok{(cat.ad, cat.op)  }\CommentTok{# Cálculo de las áreas}
 \end{Highlighting}
 \end{Shaded}
+De esta forma tiene un vector \texttt{a} con todos los valores de áreas.
 Nótese el uso de la función \texttt{seq} para crear una secuencia de
 valores entre $0.001$ y $h - 0.001$, utilizados como anchos de los
 distintos catetos adyacentes. De esta forma sólo quedaría buscar cuál de
@@ -355,9 +373,26 @@ verdaderamente el valor máximo con los comandos:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(cat.ad, a, }\DataTypeTok{type =} \StringTok{"l"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"Área"}\NormalTok{, }\DataTypeTok{main =} \StringTok{"Área máxima: línea roja"}\NormalTok{)}
-\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \NormalTok{cat.ad[i], }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{v =} \NormalTok{cat.ad[i], }\DataTypeTok{h =} \NormalTok{amax, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{, }\DataTypeTok{lwd =} \FloatTok{1.3}\NormalTok{, }\DataTypeTok{lty =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+Adicionalmente, si su solución es realmente genérica entonces el
+resultado del siguiente código debe terminar en \texttt{TRUE}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{hip <- }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{cat.ad <- }\KeywordTok{runif}\NormalTok{(}\DecValTok{100}\NormalTok{, }\FloatTok{0.1}\NormalTok{, hip - }\FloatTok{0.1}\NormalTok{)}
+\NormalTok{cat.op <- }\KeywordTok{co}\NormalTok{(cat.ad, hip)}
+\NormalTok{a <- }\KeywordTok{area}\NormalTok{(cat.ad, cat.op)}
+\KeywordTok{source}\NormalTok{(}\StringTok{"areaMax.R"}\NormalTok{)}
+\KeywordTok{max}\NormalTok{(a) == amax  }\CommentTok{# ¿TRUE or FALSE?}
+\end{Highlighting}
+\end{Shaded}
+(Lo que hace este código es crear valores aleatorios de los objetos
+\texttt{hip}, \texttt{cat.ad}, \texttt{cat.op} y \texttt{a} y verificar
+que su código funciona con estos.)
+
 \subsubsection{1.c Distancias entre puntos}
 
 Script: dist.R
@@ -371,8 +406,8 @@ cartesianas de los mismos, tal como lo muestra la Figura 1.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics{figure/unnamed-chunk-10.png}
-\caption{Figura 1}
+\includegraphics{figure/unnamed-chunk-11.png}
+\caption{triángulo ABC}
 \end{figure}
 
 \textbf{Figura 1:} Los puntos A, B y C de coordenadas $(x_A, y_A)$,
@@ -395,8 +430,8 @@ código inicial (8 líneas) debería reproducir un gráfico muy similar a la
 
 \begin{figure}[htbp]
 \centering
-\includegraphics{figure/unnamed-chunk-11.png}
-\caption{Figura 2}
+\includegraphics{figure/unnamed-chunk-12.png}
+\caption{puntos en el plano}
 \end{figure}
 
 Los objetos \texttt{coorx} y \texttt{coory} son las coordenadas en los
@@ -424,7 +459,8 @@ código:
 \end{Highlighting}
 \end{Shaded}
 Complete el código del archivo ``dist.R'' para completar esta parte del
-ejercicio.
+ejercicio y recuerde que su solución debe servir sin importar la
+ubicación exacta de los puntos en el plano.
 
 \subsection{2. Cálculo de sumatorias}
 
@@ -472,11 +508,23 @@ $(x_i - \overline{x}) ^ 2$.
 Script: varianza.R
 
 En el archivo ``varianza.R'' usted deberá escribir los pasos necesarios
-para calcular la varianza del vector \texttt{x} que se muestra en el
-archivo (siga las instrucciones incluidas en los comentarios). Para
-confirmar que su resultado es correcto, puede ejecutar el comando
-\texttt{var(x)}, el cual debería devolver el mismo valor que el objeto
-\texttt{out}.
+para calcular la varianza del vector de ejemplo \texttt{x} que se
+muestra en el archivo (siga las instrucciones incluidas en los
+comentarios).
+
+Si su solución es correcta, lo cual implica que es genérica, entonces el
+valor de \texttt{out} obtenido coincidirá con la salida de la función
+\texttt{var}. Puede correr las siguientes líneas varias veces para
+determinar si esto es así:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source}\NormalTok{(}\StringTok{"varianza.R"}\NormalTok{)}
+\NormalTok{out == }\KeywordTok{var}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+Esto producirá un \texttt{TRUE} o un \texttt{FALSE} en caso de que
+\texttt{out} esté bien o mal calculado, respectivamente.
 
 \subsubsection{2.b Paradoja de Zenón}
 
@@ -484,13 +532,13 @@ Script: zenon.R
 
 Según la clásica
 \href{https://es.wikipedia.org/wiki/Paradojas\_de\_Zen\%C3\%B3n\#La\_dicotom.C3.ADa}{paradoja
-de la dicotomía de Zenón}(http://xkcd.com/1153/) es imposible caminar de
-un punto A a un punto B, debido a que primero debemos movernos la mitad
-del camino, posteriormente avanzar la mitad de la mitad del camino y así
-ad infinitum, sin llegar jamás a B. Esto se traduce en avanzar primero
-1/2 de camino, luego 1/4, luego 1/8, luego 1/16 y así sucesivamente.
-Entonces, luego de $n$ pasos de este tipo se alcanza una fracción de
-camino equivalente a:
+de la dicotomía} de \href{http://xkcd.com/1153/}{Zenón} es imposible
+caminar de un punto A a un punto B, debido a que primero debemos
+movernos la mitad del camino, posteriormente avanzar la mitad de la
+mitad del camino y así ad infinitum, sin llegar jamás a B. Esto se
+traduce en avanzar primero 1/2 de camino, luego 1/4, luego 1/8, luego
+1/16 y así sucesivamente. Entonces, luego de $n$ pasos de este tipo se
+alcanza una fracción de camino equivalente a:
 
 \[
   Z_n = \sum_{i=1}^{i=n} \frac{1}{2 ^ i} \;=\;
@@ -501,11 +549,11 @@ camino equivalente a:
 (¡nótese que el primer valor de $i$ es 1 y no 0!)
 
 Si es cierta la proposición de Zenón, entonces no importa que tan grande
-sea $n$, esta sumatoria siempre será menor a 1, a pesar de que el límite
-de la misma cuando $n \to \infty$ es 1. Podemos verificar numéricamente
-esta afirmación usando R: si elegimos un valor $\varepsilon$
-arbitrariamente pequeño, entonces podemos encontrar un $n$ tal que
-$1 - Z_n < \varepsilon$.
+sea $n$, esta sumatoria siempre será menor a 1, a pesar ser este el
+límite de la misma cuando $n \to \infty$. Podemos verificar
+numéricamente esta afirmación usando R: si elegimos un valor
+$\varepsilon$ arbitrariamente pequeño, entonces podemos encontrar un $n$
+tal que $1 - Z_n < \varepsilon$.
 
 En este ejercicio, usted deberá completar el código del archivo
 ``zenon.R'' según las instrucciones que se indican en el mismo. Para que
@@ -516,21 +564,28 @@ debería ser 0.875.
 Además usted debe probar distintos valores del entero \texttt{n}, con el
 fin de encontrar aquel entero mínimo necesario para lograr un valor de
 \texttt{out} tal que la diferencia entre \texttt{out} y 1 debe ser menor
-a 0.000001 (i.e.: 1e-06). Puede comprobar que su resultado cumple con
-esa premisa con el comando \texttt{1 - out \textless{} 1e-06}.
+a 0.000001 (i.e.: \texttt{1e-06}). Puede comprobar que su resultado
+cumple con esa premisa con el comando
+\texttt{1 - out \textless{} 1e-06}.
 
 Nota: en este ejercicio, y \emph{a diferencia de la mayoría de los
-casos} de este curso, la respuesta para el valor de \texttt{n} debe ser
-un número entero (i.e.: 42), el cual usted deberá escribir en la línea
-correspondiente del archivo ``zenon.R''.
+casos} de este curso, la respuesta para el valor de \texttt{n} no es
+general, si no que debe ser un número entero (i.e.: 42), el cual usted
+deberá escribir en la línea correspondiente del archivo ``zenon.R''.
 
-Para visualizar la convergencia de la serie puede usar el comando:
+Para visualizar la convergencia de su serie puede usar el comando:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{plot}\NormalTok{(}\KeywordTok{cumsum}\NormalTok{(s), }\DataTypeTok{type =} \StringTok{"o"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{ylab =} \KeywordTok{expression}\NormalTok{(Z[n]))}
 \end{Highlighting}
 \end{Shaded}
+\begin{figure}[htbp]
+\centering
+\includegraphics{figure/unnamed-chunk-17.png}
+\caption{Serie de Zenón}
+\end{figure}
+
 \subsubsection{2.c Extra: series geométricas}
 
 Script: geom.R
@@ -551,7 +606,7 @@ por i=1.)
 
 Un resultado importante es que la serie converge a un valor determinado
 (es decir, tiene un límite finito para $n \to \infty$) para todos los z
-tales que $1 > \|z\|$ (1 mayor al valor absoluto de $z$). El objetivo de
+tales que $1 < \|z\|$ (1 menor al valor absoluto de $z$). El objetivo de
 este ejercicio es confirmar este resultado. Para esto debe completarse
 el código del archivo \texttt{geom.R}, siguiendo las instrucciones que
 allí se indican.
@@ -564,7 +619,7 @@ Si el código es correcto, el resultado \texttt{out} debería ser idéntico
 de la siguiente fórmula:
 
 \[
-  S_n = \frac{1 - z ^ {- n}}{1 - z ^ {-1}}
+  S_n = \frac{1 - z ^ {- (n - 1)}}{1 - z ^ {-1}}
 \]
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
@@ -591,7 +646,7 @@ ejercicio nos vamos a regir a esta definición en particular; es decir,
 vamos a usar logarítmo de base 2)
 
 Aquí $S$ es el número total de categorías o especies y $p_i$ es la
-frecuencia relativa de la categoría i. Es decir:
+frecuencia relativa de la categoría $i$. Es decir:
 
 \[
   p_i = \frac{n_i}{N}
@@ -650,8 +705,11 @@ producto escalar de vectores para calcular el resultado de la sumatoria.
 Para el caso particular de \texttt{coleccion}, el $H$ esperado es de
 2.699514.
 
-\paragraph{Observaciones a tener en cuenta:}
-
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{coleccion <- }\KeywordTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{7}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 El cálculo del $H$ puede dividirse en (1) calcular los valores de $p_i$
 y (2) realizar la sumatoria. Para calcular los $p_i$ es necesario a su
 vez tener los $n_i$ y el valor $N$. Para estas tareas las funciones
@@ -662,6 +720,22 @@ elementos de un vector cualquiera. No dude en consultar la documentación
 de R de estas dos funciones en caso de que no comprenda del todo bien su
 accionar.
 
+Nota: para verificar que su solución sirve para cualquier vector, puede
+instalar el paquete \texttt{vegan}, el cual cuenta con la función
+\texttt{diversity} para calcular el índice Shannon-Wiener (aunque a
+partir de datos de conteo, a diferencia del vector \texttt{coleccion}).
+El siguiente código sirve como verificación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"vegan"}\NormalTok{)  }\CommentTok{# Si el paquete no está instalado}
+\KeywordTok{library}\NormalTok{(vegan)  }\CommentTok{# Para cargar el paquete}
+\NormalTok{coleccion <- }\KeywordTok{rpois}\NormalTok{(}\DecValTok{42}\NormalTok{, }\DecValTok{6}\NormalTok{)  }\CommentTok{# Para crear un vector aleatorio}
+\KeywordTok{source}\NormalTok{(}\StringTok{"shannon-1.R"}\NormalTok{)  }\CommentTok{# Calcula H}
+\NormalTok{H1 <- }\KeywordTok{diversity}\NormalTok{(}\KeywordTok{table}\NormalTok{(coleccion), }\DataTypeTok{base =} \DecValTok{2}\NormalTok{)  }\CommentTok{# Calcula H1}
+\NormalTok{H - H1 < }\FloatTok{1e-13}  \CommentTok{# Si es TRUE, su código está bien}
+\end{Highlighting}
+\end{Shaded}
 \subsubsection{3.b Extra: función \texttt{shannon}}
 
 Script: shannon-2.R
@@ -695,6 +769,8 @@ correctamente y el resultado debería ser el predicho por el objeto
 ## [1] 3.708
 \end{verbatim}
 (Nota: el segundo comando toma la \texttt{frase} y la parte en todos los
-caracteres que la componen)
+caracteres que la componen; se podría también modificar el código de
+verificación del ejercicio anterior para utilizar la función
+\texttt{diversity} y compararla con la suya.)
 
 \end{document}

@@ -97,7 +97,9 @@ feedback <- function(r, s) {
   if (!is.character(r) && r > 0) {
     cat('El script "', s, '" está perfecto, ¡Buen trabajo!\n\n', sep='')
   } else {
-    cat('El script "', s, '" tiene algún error, lo siento :-(\n\n', sep='')
+    cat('El script "', s, '" tiene algún error, lo siento :-(
+    -> Verifique que su solución sea genérica y que sigue
+       todas las consignas de la letra. \n\n', sep='')
   }
 }
 

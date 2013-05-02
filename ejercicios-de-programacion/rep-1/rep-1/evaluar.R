@@ -1,17 +1,42 @@
+#options(encoding = "utf-8")
 evaluar <- function(e) {
   #
-  cat("\nCargando funciones y datos para la corrección...\n\n")
-  load('datos')
+  w <- try(load('datos'), silent = TRUE)
+  if (class(w) == "try-error") {
+    mensaje <- c("Tal vez ud. no esté trabajando en el directorio correcto,", 
+                 "   su directorio de trabajo actual es:",
+                 paste("   '", getwd(), "'", sep=""),
+                 "   en caso necesario cambie de directorio con setwd, ej.:",
+                 "   >>   setwd('~/CursoR/rep-X')",
+                 "   (note que el camino a su carpeta puede ser diferente)")
+    warning(paste(mensaje, "\n", sep=""), call. = FALSE)
+    stop("evaluar no pudo encontrar el archivo 'datos', no se puede continuar ...", call. = FALSE)
+  }
   nej <- length(corregir)
   hasmsj <- logical(nej)
   arc <- dir()
   #
+  if (tolower(getOption("encoding")) != "utf-8") {
+    mensaje <- c("¡El encoding actual no es UTF-8!",
+                 "lo cual es un problema con tildes y enies,",
+                 "ajuste su configuracion con el comando:",
+                 ">>   options(encoding = 'utf-8')",
+                 "y luego vuelva a ejecutar:",
+                 ">>   source('evaluar.R')")
+    mensaje <- paste(mensaje, "\n", sep = "")
+    warning(mensaje, call. = FALSE) 
+  }
   
   if (!all(f <- esperados %in% arc)) {
-    cat("\n Faltan los siguientes archivos en el directorio de trabajo:\n")
-    cat(paste("   - ", esperados[!f], '\n', sep=''), '\n', sep='')    
-    cat(" ¡La corrección no puede continuar hasta que no se solucione este problema!\n\n")
-    return('Pruebe de nuevo entonces...')
+    mensaje <- c("  Tal vez ud. no esté trabajando en el directorio correcto,", 
+                 "  utilice setwd para seleccionar la carpeta del repartido, ej.:",
+                 "  >>   setwd('~/CursoR/rep-X')",
+                 "  (note que el camino a su carpeta puede ser diferente)")
+    warning(paste(mensaje, "\n", sep=""), call. = FALSE)
+    cat("\n Faltan los siguientes archivos en el wd actual:\n")
+    cat(paste("   - ", esperados[!f], '\n', sep=''), '\n', sep='')
+    cat(" El wd actual es:\n  '", getwd(), "'\n\n", sep="")
+    stop("\n  ¡la corrección no puede continuar hasta que no se solucione este problema!", call. = FALSE)
   }
 
   ### Elección del archivo (y por lo tanto el ejercicio) a corregir
@@ -97,7 +122,9 @@ feedback <- function(r, s) {
   if (!is.character(r) && r > 0) {
     cat('El script "', s, '" está perfecto, ¡Buen trabajo!\n\n', sep='')
   } else {
-    cat('El script "', s, '" tiene algún error, lo siento :-(\n\n', sep='')
+    cat('El script "', s, '" tiene algún error, lo siento :-(
+    -> Verifique que su solución sea genérica y que sigue
+       todas las consignas de la letra. \n\n', sep='')
   }
 }
 
