@@ -30,8 +30,8 @@ cat.op <- coory - 0.5
 dst <- sqrt(cat.ad ^ 2 + cat.op ^ 2)
 i <- which.min(dst)
 j <- which.max(dst)
-A <- c(coorx[i], coory[i])
-B <- c(coorx[j], coory[j])
+A <- c(coorx[j], coory[j])
+B <- c(coorx[i], coory[i])
 
 #====== Aquí finaliza su código =====#
 

@@ -26,18 +26,12 @@ points(0.5, 0.5, pch=19)
 #===== Su código comienza aquí: =====#
 
 cat.ad <-
-
 cat.op <-
-
 dst <-
-
 i <-
-
-j <- 
-
-A <- c( , )
-
-B <- c( , )
+j <-
+A <- 
+B <-
 
 #====== Aquí finaliza su código =====#
 

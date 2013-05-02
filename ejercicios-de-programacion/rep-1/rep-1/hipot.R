@@ -7,14 +7,16 @@ hipot <- function(cat.ad , cat.op) {
 
 #===== Su código comienza aquí: =====#
 
-area <- function( ) {
+area <- function(cat.ad, cat.op) {
 # Acepta como argumentos los valores de los dos catetos.
 
+   
 }
 
-co <- function( ) {
+co <- function(cat.ad, hipot) {
 # Acepta como argumentos el valor del cateto adyacente y de la hipotenusa (¡en ese orden!)
 
+   
 }
 #===== Su código termina aquí =======#
 
