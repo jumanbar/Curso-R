@@ -27,7 +27,7 @@ Para aprovechar todas las ventajas, sugerimos fuertemente seguir los siguientes 
 
 ### Formato Markdown
 
-A la derecha de Modo de Uso tiene un [ejemplo de uso de Markdown](LINK A "MARKDOWN") bastante completo. El caso más básico es el de diferenciar líneas de texto normal y de código (con fuente `monospace`):
+A la derecha de Modo de Uso tiene un [ejemplo de uso de Markdown](http://imser2013.ribbot.com/pages/5182f7f336dce400020003c0) bastante completo. El caso más básico es el de diferenciar líneas de texto normal y de código (con fuente `monospace`):
 
     Texto normal con `código` entre medio.
 
