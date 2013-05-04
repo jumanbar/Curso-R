@@ -325,17 +325,18 @@ cor2.b <- function() {
   source(tmp, local=TRUE)
   unlink(tmp)
 
-	if (any(grepl("arrange", arch)))
-		stop("la palabra 'arrange' figura en su script,\n  ¿está haciendo trampa con el paquete plyr?", call. = FALSE)
-	if (all(rownames(datos.calif) == 1:nrow(datos.calif)))
-		warning("los nombres de las filas de datos.calif están ordenados,\n  ¿está haciendo trampa con el paquete plyr?", call. = FALSE)
-
 	if (!all(datos.calif$nota - datos.calif2$nota < tol))
 		stop("los valores de datos.calif$nota no coinciden con los esperados", call. = FALSE)
 	if (any(datos.calif$genero != datos.calif2$genero))
 		stop("los valores de datos.calif$genero no coinciden con los esperados", call. = FALSE)
 	if (any(datos.calif$franja != datos.calif2$franja))
 		stop("los valores de datos.calif$franja no coinciden con los esperados", call. = FALSE)
+  
+	if (any(grepl("arrange", arch)))
+		stop("la palabra 'arrange' figura en su script,\n  ¿está haciendo trampa con el paquete plyr?", call. = FALSE)
+	if (all(rownames(datos.calif) == 1:nrow(datos.calif)))
+		warning("los nombres de las filas de datos.calif están ordenados,\n  ¿está haciendo trampa con el paquete plyr?", call. = FALSE)
+
 	TRUE
 }
 

@@ -42,7 +42,7 @@ Print.listaCalif <- function(x) {
 
 nr <- 1e5
 o <- numeric(nr)
-tol <- 1e-15
+tol <- 1e-8
 for (i in 1:nr) {
   cal <- cl()
   p <- sum(cal >= 5)
