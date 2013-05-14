@@ -5,20 +5,21 @@
 nrep <- 2
 rdir <- paste('rep', nrep, sep='-')
 
-esperados <- c("datos", "notas.csv", "INSTRUCCIONES.pdf", "calificaciones.R",
-               "aprobados.R", "aprobados2.R", "mejorcitos.R", "franjas.R", "data.frame.R", "ordenacion.R",
-               "lista.R", "print.listaCalif.R")
-corregir <- esperados[- (1:4)]
+esperados <- c("datos", "notas.csv", "INSTRUCCIONES.pdf", "calificaciones.R")
+# Los archivos de los ejercicios deben estar en el orden 
+# correcto (para el menú de 'evaluar'):
+corregir <- c("aprobados.R", "aprobados2.R", "mejorcitos.R", "franjas.R", 
+              "data.frame.R", "ordenacion.R", "lista.R", "print.listaCalif.R")
+esperados <- c(esperados, corregir)
 codigo <- lapply(corregir, readLines)
 names(codigo) <- corregir
 ejnum  <- c('1.a', '1.b', '1.c', '1.d', '2.a', '2.b', '2.c', '2.d')
-
 notas <- data.frame(Parte = c(ejnum, 'Total (%)'),
                     Nota=numeric(length(corregir) + 1),
                     Script=c(corregir, '--'))
 write.csv2(notas, file='notas.csv', row.names=FALSE)
 extras <- '2.d'
-oblg   <- length(ejnum) - length(extras)
+oblg   <- sum(!(ejnum %in% extras))
 guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar', 'reload',
              'notas', 'codigo', 'corAll')
 
@@ -457,7 +458,7 @@ cor2.d <- function() {
   c2 <- capture.output(Print.listaCalif(a))
 
 	if (!all(c1 == c2)) {
-		mensajes <- c("\n  Ej. 2.d: la salida esparada es:\n",
+		mensajes <- c("\n  Ej. 2.d: la salida esperada es:\n",
 									paste("   ", c2),
 									"\n  pero la salida producida es:\n",
 									paste("   ", c1),

@@ -1,4 +1,13 @@
-#options(encoding = "utf-8")
+
+if (tolower(getOption("encoding")) != "utf-8") {
+  msjenc <- c("\n¡El encoding actual no es UTF-8!\n",
+              "lo cual es un problema con tildes y enies,",
+              "ajuste su configuracion con el comando:\n",
+              "   options(encoding = 'utf-8')\n")
+  msjenc <- paste(msjenc, "\n", sep = "")
+  stop(msjenc, call. = FALSE) 
+}
+
 evaluar <- function(e) {
   #
   w <- try(load('datos'), silent = TRUE)
@@ -17,12 +26,12 @@ evaluar <- function(e) {
   arc <- dir()
   #
   if (tolower(getOption("encoding")) != "utf-8") {
-    mensaje <- c("¡El encoding actual no es UTF-8!",
+    mensaje <- c("\n¡El encoding actual no es UTF-8!\n",
                  "lo cual es un problema con tildes y enies,",
-                 "ajuste su configuracion con el comando:",
-                 ">>   options(encoding = 'utf-8')",
-                 "y luego vuelva a ejecutar:",
-                 ">>   source('evaluar.R')")
+                 "ajuste su configuracion con el comando:\n",
+                 "   options(encoding = 'utf-8')\n",
+                 "y luego vuelva a ejecutar:\n",
+                 "   source('evaluar.R')\n")
     mensaje <- paste(mensaje, "\n", sep = "")
     warning(mensaje, call. = FALSE) 
   }
@@ -95,7 +104,7 @@ evaluar <- function(e) {
     cat("Se generaron los siguientes mensajes de error:\n")
     for (i in 1:sum(hasmsj)) {
       cat('\n* Al corregir el ej. ', msjEjNum[i], ', archivo ', msjArch[i], ':\n==>> ', sep='')
-      cat(msj[i])
+      cat(msj[i], sep='')
     }
   }
   cat('\n==============================\n')

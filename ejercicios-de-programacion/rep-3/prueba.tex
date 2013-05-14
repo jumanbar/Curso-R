@@ -1,5 +1,7 @@
 \documentclass[]{article}
 \hyphenation{co-rres-pon-dien-tes te-ner E-ben-sper-ger de-pre-da-do-res dis-po-ni-ble be-ne-fi-cio-sa in-di-vi-dual so-cia-li-dad mos-tra-ron fuen-tes a-cep-ta-ble ta-ma-ño o-pues-ta mo-de-lo es-tu-dian-tes e-jer-ci-cios co-rres-pon-dien-te mo-di-fi-ca-dos mo-di-fi-car-lo ma-ni-pu-lar}
+\hyphenation{co-rres-pon-dien-tes te-ner E-ben-sper-ger de-pre-da-do-res dis-po-ni-ble be-ne-fi-cio-sa in-di-vi-dual so-cia-li-dad mos-tra-ron fuen-tes a-cep-ta-ble ta-ma-ño o-pues-ta mo-de-lo es-tu-dian-tes e-jer-ci-cios co-rres-pon-dien-te mo-di-fi-ca-dos mo-di-fi-car-lo ma-ni-pu-lar}
+\hyphenation{co-rres-pon-dien-tes te-ner E-ben-sper-ger de-pre-da-do-res dis-po-ni-ble be-ne-fi-cio-sa in-di-vi-dual so-cia-li-dad mos-tra-ron fuen-tes a-cep-ta-ble ta-ma-ño o-pues-ta mo-de-lo es-tu-dian-tes e-jer-ci-cios co-rres-pon-dien-te mo-di-fi-ca-dos mo-di-fi-car-lo ma-ni-pu-lar}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifxetex
@@ -78,14 +80,15 @@
 
 \subsection{Archivos incluidos:}
 
-El \href{http://goo.gl/eFUKY}{archivo} con los ejercicios del práctico
-debe bajarse y descomprimirse en disco duro, creando la carpeta
-\textbf{\texttt{rep-3}} (nota: no debe dentro de ningún disco, partición
-o carpeta protegida a la escritura, como puede ser un disco duro externo
-de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta
-como su directorio de trabajo con \texttt{setwd} o en RStudio la
-combinación \textbf{Ctrl + Shift + K}. En esta carpeta se encuentran
-algunos archivos que usted deberá modificar:
+El
+\href{http://eva.universidad.edu.uy/file.php/1454/ejercicios\_de\_programacion/rep-1.zip}{archivo}
+con los ejercicios del práctico debe bajarse y descomprimirse en disco
+duro, creando la carpeta \textbf{\texttt{rep-2}} (nota: no debe dentro
+de ningún disco, partición o carpeta protegida a la escritura, como
+puede ser un disco duro externo de backup). Usted deberá abrir el
+RStudio y seleccionar dicha carpeta como su directorio de trabajo con
+\texttt{setwd} o en RStudio la combinación \textbf{Ctrl + Shift + K}. En
+esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
 \begin{itemize}
 \item
@@ -117,12 +120,9 @@ funcione correctamente.
 \item
   \texttt{INSTRUCCIONES.pdf}
 \item
-  \texttt{est.RData}
+  \texttt{est.rda}
 \end{itemize}
 \subsection{Mecanismo de corrección:}
-
-Nota: más recomendaciones \textbf{importantes} se hacen en el documento
-\href{http://goo.gl/P5Wnq}{Dinámica de los repartidos}.
 
 Lo primero que debe hacer es cargar el archivo evaluar.R con la función
 \texttt{source} y la codificación de caracteres ``UTF-8'' (lo cual
@@ -161,14 +161,14 @@ comando:
 y además podrá en todo momento verificar su puntaje con la función
 \texttt{verNotas()}. Tenga siempre en cuenta que, a \textbf{menos que
 sea indicado} por la letra del ejercicio, las soluciones deben ser
-genéricas y por lo tanto deben servir aún si se modifican los datos
-originales (i.e.: no use valores fijos si no comandos). Usualmente se
-utilizan valores generados de forma aleatoria para las correcciones
-automáticas. Los objetos que son evaluados en la corrección automática
-estarán indicados con un asterísco en las instrucciones de cada script.
-Nótese además que en los archivos \textbf{se indica claramente en dónde
-se inicia y dónde finaliza su código} y que debe respetar esta
-organización para que la corrección de los ejercicios funcione bien.
+genéricas y por lo tanto deben obtenerse con el código de los scripts en
+lugar de ser valores fijos. Usualmente se utilizan valores generados de
+forma aleatoria para las correcciones automáticas. Los objetos que son
+evaluados en la corrección automática estarán indicados con un asterísco
+en las instrucciones de cada script. Nótese además que en los archivos
+\textbf{se indica claramente en dónde se inicia y dónde finaliza su
+código} y que debe respetar esta organización para que la corrección de
+los ejercicios funcione bien.
 
 \subsubsection{Al finalizar}
 
@@ -176,7 +176,7 @@ Una vez terminados y guardados los archivos de los ejercicios del
 repartido, usted deberá ejecutar \texttt{evaluar()} y seleccionar la
 última opción (``Todos'') y luego subir el archivo ''datos'' (sin
 extensión), incluido en la carpeta ''rep-1'', a la
-\href{http://eva.universidad.edu.uy/mod/assign/view.php?id=122712}{sección
+\href{http://eva.universidad.edu.uy/mod/assignment/view.php?id=95125}{sección
 de entregas} de la portada del curso en la plataforma EVA. Este archivo
 se podrá reemplazar con uno más nuevo, en caso de que desee corregir
 algún error; en caso de querer que el archivo sea corregido antes de la
@@ -185,23 +185,15 @@ en ese caso la nota no se cambiará de ahí en adelante.
 
 \subsubsection{Código de Honor}
 
-Si bien animamos a que trabaje en equipos y que haya un intercambio
-fluido en los foros del curso, es fundamental que las respuestas a los
-cuestionarios y ejercicios de programación sean fruto del trabajo
-individual. En particular, consideramos necesario que no utilize el
-código creado por sus compañeros, si no que debe programar sus propias
-instrucciones, ya que de lo contrario supone un sabotaje a su propio
-proceso de aprendizaje. Esto implica también evitar, en la medida de lo
-posible, exponer el código propio a sus colegas. Como profesores estamos
-comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y
-explicaciones adecuadas a fin de que pueda encontrar su propio camino
-para resolver los ejercicios.
-
-En casos de planteos de dudas a través del foro, en los que considere
-que es imposible expresar un problema sin exponer su própio código,
-entonces es aceptable hacerlo. De todas formas en estos casos es
-preferible que envíe su código por correo electrónico directamente a un
-profesor, explicando la problemática.
+Si bien animamos a que los estudiantes trabajen en equipos y que haya un
+intercambio fluido en los foros del curso, es fundamental que las
+respuestas a los cuestionarios y ejercicios de programación sean fruto
+del trabajo individual. En particular, consideramos importante que los
+estudiantes no miren el código creado por sus compañeros ya que esto
+supone un sabotaje a su propio proceso de aprendizaje. Como profesores
+estamos comprometidos a pedir tareas para las cuales hayamos dado las
+herramientas correctas y las explicaciones adecuadas como para que todos
+puedan encontrar su propio camino para resolver los ejercicios.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
@@ -249,8 +241,7 @@ Heladas, Area, Division
 \end{verbatim}
 Por último, en la variable \texttt{Division} también queremos cambiar
 los nombres de los 9 niveles (se trata de un factor) a una versión en
-español. Específicamente (en el mismo orden y respetando mayúsculas y
-minúsculas):
+español. Específicamente (en el mismo orden y respetando mayúsculas y minúsculas):
 
 \begin{verbatim}
 Noreste Central, Sudeste Central, Atlantico Central, Montania,
@@ -279,7 +270,7 @@ ejecuta ahora el comando
 podrá notar que para las columnas \texttt{Ingresos} y \texttt{Analf}
 figura un conteo de la cantidad de NA's. Esto quiere decir que hay datos
 faltantes (``Not Available''; ver en
-\href{http://eva.universidad.edu.uy/mod/glossary/view.php?id=116962}{el
+\href{http://eva.universidad.edu.uy/mod/glossary/showentry.php?courseid=1454\&concept=NA}{el
 glosario} para mayor información). Esto suele ser un problema para
 trabajar con datos en general y por lo tanto es importante encontrar la
 forma sortear este tipo de obstáculos.
@@ -296,7 +287,7 @@ todos los pasos necesarios para
 \item
   seleccionar los valores de analfabetismo de los estados correctos y
 \item
-  sustituir los \texttt{NA} de la data.frame \texttt{usa2}, columna
+  sustituir los NA de la data.frame \texttt{usa2}, columna
   \texttt{Analf}, por estos datos seleccionados.
 \end{enumerate}
 Nótese que la data.frame \texttt{usa} debe permanecer incambiada y se
@@ -321,21 +312,6 @@ que
 \NormalTok{y %in% x.}
 \end{Highlighting}
 \end{Shaded}
-El siguiente es un ejemplo que puede servir de guía:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{a <- }\KeywordTok{c}\NormalTok{(}\StringTok{"ta"}\NormalTok{, }\StringTok{"te"}\NormalTok{, }\StringTok{"ti"}\NormalTok{)}
-\NormalTok{b <- }\KeywordTok{c}\NormalTok{(}\StringTok{"ta"}\NormalTok{, }\StringTok{"ti"}\NormalTok{)}
-\NormalTok{a %in% b}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-## [1]  TRUE FALSE  TRUE
-\end{verbatim}
-(Con esto se pueden obtener las posiciones en las que \texttt{a}
-contiene los mismos elementos que \texttt{b}.)
-
 \subsubsection{1.c Eliminar filas sin datos de ingresos}
 
 Script: ``filtrado.R''
@@ -351,46 +327,9 @@ Para esto usted deberá escribir el código necesario en el archivo
 llamada \texttt{usa2}, y servirá para obtener finalmente una data.frame
 \texttt{usa3} a través de la eliminación de las observaciones de
 \texttt{usa2}, columna \texttt{Ingresos}, en las que ocurren valores
-\texttt{NA}'s.
+NA's.
 
-El siguiente es un mini ejemplo que puede servir como referencia. Aquí
-le cambiamos a \texttt{NA} algunos valores a la una data.frame
-\texttt{datos} y luego eliminamos las filas correspondientes.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{datos <- }\KeywordTok{head}\NormalTok{(cars)}
-\NormalTok{datos[}\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{), }\DecValTok{2}\NormalTok{] <- }\OtherTok{NA}
-
-\CommentTok{# La data.frame antes:}
-\NormalTok{datos}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-##   speed dist
-## 1     4    2
-## 2     4   10
-## 3     7   NA
-## 4     7   22
-## 5     8   NA
-## 6     9   10
-\end{verbatim}
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{# La data.frame después:}
-\NormalTok{datos.filtrado}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-##   speed dist
-## 1     4    2
-## 2     4   10
-## 4     7   22
-## 6     9   10
-\end{verbatim}
-\paragraph{Sugerencia:}
-
-Utilizar la función \texttt{subset} para esta tarea.
+(Pista: considere usar la función \texttt{subset} para esta tarea).
 
 \subsubsection{1.d Extra: función para estandarizar valores de un
 vector}
@@ -404,13 +343,11 @@ Muchas veces es útil al analizar datos transformar variables usando
 distintas fórmulas. Una de ellas es la estandarización de datos,
 utilizando la fórmula:
 
-\[
-  Z_i = \frac{X_i - \mu}{\sigma}
-\]
+\[Z = \frac{X - \mu}{\sigma}\]
 
-En donde $X_i$ representa el iésimo de los datos originales, $\mu$ es el
-valor promedio de todos los $X_i$, $\sigma$ es el desvío estándar de los
-$X_i$ y los $Z_i$ son los valores estandarizados.
+En donde $X$ representa a los datos originales, $\mu$ es el valor
+promedio de los $X$, $sigma$ es el desvío estándar de los $X$ y los $Z$
+son los valores estandarizados.
 
 En este ejercicio usted deberá crear una función llamada \texttt{est}
 (puede tomar como ejemplo las realizadas en el primer repartido u otras
@@ -421,24 +358,23 @@ escribir el código necesario en el archivo ``est.R''.
 
 Aconsejamos utilizar las funciones \texttt{mean} y \texttt{sd} para
 obtener $\mu$ y $\sigma$ respectivamente. Además es deseable que las
-normalizaciones de datos no se vean afectadas por la ocurrencia de
-\texttt{NA}'s. Por lo tanto, es necesario utilizar el argumento
-\texttt{na.rm} de dichas funciones para que \texttt{est} maneje
-correctamente los \texttt{NA}'s. En caso de que la haya construido bien,
-debería obtener resultados como el siguiente:
+normalizaciones de datos no se vean afectadas por la ocurrencia de NA's.
+Por lo tanto, es necesario utilizar el argumento \texttt{na.rm} de
+dichas funciones para que \texttt{est} maneje correctamente los NA's. En
+caso de que la haya construido bien, debería obtener resultados como el
+siguiente:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <- }\KeywordTok{c}\NormalTok{(}\FloatTok{4.5}\NormalTok{, }\FloatTok{12.3}\NormalTok{, }\FloatTok{5.8}\NormalTok{, }\FloatTok{9.4}\NormalTok{, }\FloatTok{7.3}\NormalTok{, }\OtherTok{NA}\NormalTok{)}
+\NormalTok{x <- }\KeywordTok{c}\NormalTok{(}\FloatTok{4.5}\NormalTok{, }\FloatTok{12.3}\NormalTok{, }\FloatTok{5.8}\NormalTok{, }\FloatTok{9.4}\NormalTok{, }\FloatTok{7.9}\NormalTok{, }\OtherTok{NA}\NormalTok{)}
 \KeywordTok{est}\NormalTok{(x)}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
-## [1] -1.0911  1.4418 -0.6690  0.5001 -0.1819      NA
+## [1] -1.13584  1.41000 -0.71153  0.46347 -0.02611       NA
 \end{verbatim}
-Nótese que si la función \texttt{est} no maneja correctamente los
-\texttt{NA}'s, entonces el resultado sería igual a
-\texttt{rep(NA, length(x))}.
+Nótese que si la función \texttt{est} no maneja correctamente los NA's,
+entonces el resultado sería igual a \texttt{rep(NA, 6)}.
 
 \subsubsection{1.e Estandarizar los datos}
 
@@ -463,7 +399,7 @@ con el comando:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{load}\NormalTok{(}\StringTok{"est.RData"}\NormalTok{)}
+\KeywordTok{load}\NormalTok{(}\StringTok{"est.rda"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 En el script ``transformar.R'' se indica específicamente en qué línea
@@ -501,23 +437,15 @@ En este ejercicio se propone crear una nueva columna de clase ``factor''
 en la data.frame \texttt{usa3}, utilizando la función \texttt{cut}.
 Dicho factor deberá llamarse \texttt{Ing.Cat} (como se ilustra en el
 script), tener 4 niveles y ser construido en base a la columna
-\texttt{Ingresos} de \texttt{usa3}. Esta variable representará entonces
-las 4 categorías de ingreso (promedio, por estado) de EE.UU. Si el
-ejercicio fue hecho correctamente, el conteo de ocurrencias de cada
+\texttt{Ingresos} de \texttt{usa3}. Esta variable representará
+entonces las 4 categorías de ingreso (promedio, por estado) de EE.UU. Si
+el ejercicio fue hecho correctamente, el conteo de ocurrencias de cada
 nivel del factor será:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{> }\KeywordTok{tabulate}\NormalTok{(usa3$Ing.Cat)}
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{12} \DecValTok{19} \DecValTok{11}  \DecValTok{1}
-\end{Highlighting}
-\end{Shaded}
-Para que este factor sea más legible, se pueden cambiar los nombres de
-los niveles:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{levels}\NormalTok{(usa3$Ing.Cat) <- }\KeywordTok{c}\NormalTok{(}\StringTok{"D"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"A"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 En segundo lugar, se utilizará la función \texttt{tapply}, una variante
@@ -535,26 +463,34 @@ En dónde \texttt{x} es típicamente un vector numérico, \texttt{f} es un
 factor cuya longitud equivale a la de \texttt{x} y \texttt{fu} es una
 función de R (p.ej.: \texttt{mean}). Aquí lo que haría este comando es
 ejecutar la función \texttt{fu} tantas veces como niveles tiene
-\texttt{f} usando como entrada los elementos de \texttt{x} que se
-corresponden con las ocurrencias de dicho nivel. Es decir, se ejecuta
+\texttt{f} y en cada vez lo hace usando como entrada los elementos de
+\texttt{x} que se corresponden con las ocurrencias de dicho nivel. Es
+decir, primero ejecuta
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{fu}\NormalTok{(x[f == }\KeywordTok{levels}\NormalTok{(f)[i]])}
+\KeywordTok{fu}\NormalTok{(x[f == }\KeywordTok{levels}\NormalTok{(f)[}\DecValTok{1}\NormalTok{]])}
 \end{Highlighting}
 \end{Shaded}
-siendo \texttt{i} variable en \texttt{1:length(levels(f))}. Como
-resultado devuelve una lista en la que cada elemento se corresponde con
-la salida de uno de estos comandos.
+luego
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{fu}\NormalTok{(x[f == }\KeywordTok{levels}\NormalTok{(f)[}\DecValTok{2}\NormalTok{]])}
+\end{Highlighting}
+\end{Shaded}
+y así sucesivamente hasta llegar al último nivel de \texttt{f}. Como
+resultado devuelve una lista en la que cada elemento se corresponde
+con la salida de uno de estos comandos.
 
 Lo que usted deberá ejecutar aquí es la función \texttt{tapply} sobre el
-vector numérico \texttt{Analf}, con \texttt{Ing.Cat} como factor de
-referencia (ambas columnas de \texttt{usa3}) y la función
-\texttt{summary}. El resultado, tal como se muestra en el archivo de
-código fuente, debe guardarse en el objeto \texttt{salidaTapply}.
+vector \texttt{Analf}, con \texttt{Ing.Cat} como referencia (ambas
+columnas de \texttt{usa3}) y la función \texttt{summary}. El resultado,
+tal como se muestra en el archivo de código fuente, debe guardarse en el
+objeto \texttt{salidaTapply}.
 
 Finalmente debe hacer algo similar con la función \texttt{boxplot}, cuya
-sintaxis es tal vez más sencilla que \texttt{tapply}, por ejemplo:
+sintaxis es mucho más sencilla que \texttt{tapply}, por ejemplo:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -571,8 +507,8 @@ Figura 1 de este repartido.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics{figure/unnamed-chunk-19.png}
-\caption{Salida de boxplot}
+\includegraphics{figure/unnamed-chunk-15.png}
+\caption{Ejemplo de boxplot}
 \end{figure}
 
 \subsubsection{1.g Exportar}
@@ -587,17 +523,11 @@ deberá cumplir con las siguientes condiciones:
 \item
   Deberá guardar correctamente los nombres de las filas y columnas.
 \item
-  El separador de columnas deberá ser el caracter \texttt{;}.
+  El separador de columnas deberá ser el caracter ``;''.
 \item
-  El punto decimal debe estar indicado con el caracter \texttt{,}.
+  El punto decimal debe estar indicado con el caracter ``,''
 \end{enumerate}
 Consulte las lecciones o la ayuda de R en \texttt{?write.table} para
-determinar el comando adecuado para realizar esta operación. En la
-carpeta del repartido se incluye el archivo
-\textbf{usa-norm-ejemplo.csv} para que usted pueda comparar con su
-resultado (puede abrirlo con un programa de hojas de cálculo o con un
-editor de texto plano, como bloc de notas o RStudio, para ver su
-estructura interna). Nótese que este ejemplo sólo tiene 10 filas
-elegidas al azar.
+determinar el comando adecuado para realizar esta operación.
 
 \end{document}

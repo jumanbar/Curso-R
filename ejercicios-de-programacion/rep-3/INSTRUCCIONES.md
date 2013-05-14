@@ -3,12 +3,12 @@ Ejercicios de programación III: Trabajo con datos
 
 ### [IMSER 2012]
 
-___
+- - -
 
 Archivos incluidos:
 -------------------
 
-El [archivo](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/rep-1.zip) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-2`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
+El [archivo](http://goo.gl/eFUKY) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-3`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
 * **` importar.R `**
 * **` parche.R `**
@@ -24,10 +24,12 @@ Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modif
 * ` notas.csv `
 * ` datos `
 * ` INSTRUCCIONES.pdf `
-* ` est.rda `
+* ` est.RData `
 
 Mecanismo de corrección:
 ------------------------
+
+Nota: más recomendaciones **importantes** se hacen en el documento [Dinámica de los repartidos](http://goo.gl/P5Wnq).
 
 Lo primero que debe hacer es cargar el archivo evaluar.R con la función `source` y la codificación de caracteres "UTF-8" (lo cual afecta a la función `evaluar` en particular), de la siguiente manera:
 
@@ -52,19 +54,20 @@ evaluar()
 ```
 
 
-y además podrá en todo momento verificar su puntaje con la función `verNotas()`. Tenga siempre en cuenta que, a **menos que sea indicado** por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben obtenerse con el código de los scripts en lugar de ser valores fijos. Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos **se indica claramente en dónde se inicia y dónde finaliza su código** y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.
+y además podrá en todo momento verificar su puntaje con la función `verNotas()`. Tenga siempre en cuenta que, a **menos que sea indicado** por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben servir aún si se modifican los datos originales (i.e.: no use valores fijos si no comandos). Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos **se indica claramente en dónde se inicia y dónde finaliza su código** y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.
 
 ### Al finalizar
 
-Una vez terminados y guardados los archivos de los ejercicios del repartido, usted deberá ejecutar `evaluar()` y seleccionar la última opción ("Todos") y luego subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-1”, a la [sección de entregas](http://eva.universidad.edu.uy/mod/assignment/view.php?id=95125) de la portada del curso en la plataforma EVA. Este archivo se podrá reemplazar con uno más nuevo, en caso de que desee corregir algún error; en caso de querer que el archivo sea corregido antes de la fecha de entrega, puede cambiarle el nombre a "datos-finalizado", pero en ese caso la nota no se cambiará de ahí en adelante.
+Una vez terminados y guardados los archivos de los ejercicios del repartido, usted deberá ejecutar `evaluar()` y seleccionar la última opción ("Todos") y luego subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-1”, a la [sección de entregas](http://eva.universidad.edu.uy/mod/assign/view.php?id=122712) de la portada del curso en la plataforma EVA. Este archivo se podrá reemplazar con uno más nuevo, en caso de que desee corregir algún error; en caso de querer que el archivo sea corregido antes de la fecha de entrega, puede cambiarle el nombre a "datos-finalizado", pero en ese caso la nota no se cambiará de ahí en adelante.
 
 
 ### Código de Honor
 
-Si bien animamos a que los estudiantes trabajen en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos importante que los estudiantes no miren el código creado por sus compañeros ya que esto supone un sabotaje a su propio proceso de aprendizaje. Como profesores estamos comprometidos a pedir tareas para las cuales hayamos dado las herramientas correctas y las explicaciones adecuadas como para que todos puedan encontrar su propio camino para resolver los ejercicios.
+Si bien animamos a que trabaje en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos necesario que no utilize el código creado por sus compañeros, si no que debe programar sus propias instrucciones, ya que de lo contrario supone un sabotaje a su propio proceso de aprendizaje. Esto implica también evitar, en la medida de lo posible, exponer el código propio a sus colegas. Como profesores estamos comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y explicaciones adecuadas a fin de que pueda encontrar su propio camino para resolver los ejercicios.
 
+En casos de planteos de dudas a través del foro, en los que considere que es imposible expresar un problema sin exponer su própio código, entonces es aceptable hacerlo. De todas formas en estos casos es preferible que envíe su código por correo electrónico directamente a un profesor, explicando la problemática.
 
-___
+- - -
 
 
 1. Datos de EEUU
@@ -88,10 +91,11 @@ Pero además de importar los datos a su área de trabajo, el script debe tambié
     Abrev, Poblacion, Ingresos, Analf, Esp.Vida, Homicidio, Sec.Grad, 
     Heladas, Area, Division
 
-Por último, en la variable `Division` también queremos cambiar los nombres de los 9 niveles (se trata de un factor) a una versión en español. Específicamente:
+Por último, en la variable `Division` también queremos cambiar los nombres de los 9 niveles (se trata de un factor) a una versión en español. Específicamente (en el mismo orden y respetando mayúsculas y minúsculas):
 
-    Nueva Inglaterra, Atlantico Central, Atlantico Sur, Sudeste Central,
-    Sudoeste Central, Noreste Central, Noroeste Central, Montania, Pacifico
+    Noreste Central, Sudeste Central, Atlantico Central, Montania,
+    Nueva Inglaterra, Pacifico, Atlantico Sur, Noroeste Central,
+    Sudoeste Central
 
 Nótese que no se usan tildes ni eñes en los nombres para evitar problemas de codificación de caracteres y que se deben respetar mayúsculas y minúsculas.
 
@@ -110,13 +114,13 @@ summary(usa)
 ```
 
 
-podrá notar que para las columnas `Ingresos` y `Analf` figura un conteo de la cantidad de NA's. Esto quiere decir que hay datos faltantes ("Not Available"; ver en [el glosario](http://eva.universidad.edu.uy/mod/glossary/showentry.php?courseid=1454&concept=NA) para mayor información). Esto suele ser un problema para trabajar con datos en general y por lo tanto es importante encontrar la forma sortear este tipo de obstáculos.
+podrá notar que para las columnas `Ingresos` y `Analf` figura un conteo de la cantidad de NA's. Esto quiere decir que hay datos faltantes ("Not Available"; ver en [el glosario](http://eva.universidad.edu.uy/mod/glossary/view.php?id=116962) para mayor información). Esto suele ser un problema para trabajar con datos en general y por lo tanto es importante encontrar la forma sortear este tipo de obstáculos.
 
 Afortunadamente en este caso tenemos una tabla de datos auxiliar que nos permite completar lo que nos falta para la columna `Analf` (tasa de analfabetismo). Esta tabla auxiliar está en el archivo "usa-extra.csv". Para completar el ejercicio, usted deberá completar todos los pasos necesarios para
 
 1. importar estos datos,
 2. seleccionar los valores de analfabetismo de los estados correctos y
-3. sustituir los NA de la data.frame `usa2`, columna `Analf`, por estos datos seleccionados.
+3. sustituir los `NA` de la data.frame `usa2`, columna `Analf`, por estos datos seleccionados.
 
 Nótese que la data.frame `usa` debe permanecer incambiada y se debe crear el objeto `usa2` para hacer estas modificaciones. Nótese también que "usa-extra.csv" es una tabla muy distinta a la planilla original, incluyendo sólo 2 columnas y menor cantidad de filas, por lo que la única manera de determinar la ubicación de los valores correctos es a través del uso de los nombres de los estados como referencia. En este sentido es bueno recordar que el operador lógico `%in%` puede ser de mucha utilidad; también es importante recordar que este no es un operador conmutativo; es decir no es lo mismo
 
@@ -134,15 +138,73 @@ y %in% x.
 ```
 
 
+El siguiente es un ejemplo que puede servir de guía:
+
+
+
+```r
+a <- c("ta", "te", "ti")
+b <- c("ta", "ti")
+a %in% b
+```
+
+```
+## [1]  TRUE FALSE  TRUE
+```
+
+(Con esto se pueden obtener las posiciones en las que `a` contiene los mismos elementos que `b`.)
+
 ### 1.c Eliminar filas sin datos de ingresos
 
 Script: "filtrado.R"
 
 Así como para el analfabetismo tuvimos una forma de llenar un vacío de datos, para el caso de la columna "Ingresos" no tenemos la misma suerte. Por lo tanto, considerando que lo mejor es dejar de lado los casos en que hay ausencia de datos, en esta parte del ejercicio vamos a eliminar las filas correspondientes de "usa2".
 
-Para esto usted deberá escribir el código necesario en el archivo "filtrado.R". Este código debe asumir la existencia de una data.frame llamada `usa2`, y servirá para obtener finalmente una data.frame `usa3` a través de la eliminación de las observaciones de `usa2`, columna `Ingresos`, en las que ocurren valores NA's.
+Para esto usted deberá escribir el código necesario en el archivo "filtrado.R". Este código debe asumir la existencia de una data.frame llamada `usa2`, y servirá para obtener finalmente una data.frame `usa3` a través de la eliminación de las observaciones de `usa2`, columna `Ingresos`, en las que ocurren valores `NA`'s.
 
-(Pista: considere usar la función `subset` para esta tarea).
+El siguiente es un mini ejemplo que puede servir como referencia. Aquí le cambiamos a `NA` algunos valores a la una data.frame `datos` y luego eliminamos las filas correspondientes.
+
+
+```r
+datos <- head(cars)
+datos[c(3, 5), 2] <- NA
+
+# La data.frame antes:
+datos
+```
+
+```
+##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7   NA
+## 4     7   22
+## 5     8   NA
+## 6     9   10
+```
+
+
+
+
+
+
+```r
+# La data.frame después:
+datos.filtrado
+```
+
+```
+##   speed dist
+## 1     4    2
+## 2     4   10
+## 4     7   22
+## 6     9   10
+```
+
+
+#### Sugerencia:
+
+Utilizar la función `subset` para esta tarea.
 
 ### 1.d Extra: función para estandarizar valores de un vector
 
@@ -152,28 +214,30 @@ Script: "est.R"
 
 Muchas veces es útil al analizar datos transformar variables usando distintas fórmulas. Una de ellas es la estandarización de datos, utilizando la fórmula:
 
-$$Z = \frac{X - \mu}{\sigma}$$
+$$
+  Z_i = \frac{X_i - \mu}{\sigma}
+$$
 
-En donde $X$ representa a los datos originales, $\mu$ es el valor promedio de los $X$, $sigma$ es el desvío estándar de los $X$ y los $Z$ son los valores estandarizados.
+En donde $X_i$ representa el iésimo de los datos originales, $\mu$ es el valor promedio de todos los $X_i$, $\sigma$ es el desvío estándar de los $X_i$ y los $Z_i$ son los valores estandarizados.
 
 En este ejercicio usted deberá crear una función llamada `est` (puede tomar como ejemplo las realizadas en el primer repartido u otras mostradas en las lecciones) que tome como entrada **un sólo argumento**: un vector numérico cualquiera y devuelva otro vector numérico con los valores estandarizados del original. Para esto deberá escribir el código necesario en el archivo "est.R".
 
-Aconsejamos utilizar las funciones `mean` y `sd` para obtener $\mu$ y $\sigma$ respectivamente. Además es deseable que las normalizaciones de datos no se vean afectadas por la ocurrencia de NA's. Por lo tanto, es necesario utilizar el argumento `na.rm` de dichas funciones para que `est` maneje correctamente los NA's. En caso de que la haya construido bien, debería obtener resultados como el siguiente:
+Aconsejamos utilizar las funciones `mean` y `sd` para obtener $\mu$ y $\sigma$ respectivamente. Además es deseable que las normalizaciones de datos no se vean afectadas por la ocurrencia de `NA`'s. Por lo tanto, es necesario utilizar el argumento `na.rm` de dichas funciones para que `est` maneje correctamente los `NA`'s. En caso de que la haya construido bien, debería obtener resultados como el siguiente:
 
 
 
 
 ```r
-x <- c(4.5, 12.3, 5.8, 9.4, 7.9, NA)
+x <- c(4.5, 12.3, 5.8, 9.4, 7.3, NA)
 est(x)
 ```
 
 ```
-## [1] -1.13584  1.41000 -0.71153  0.46347 -0.02611       NA
+## [1] -1.0911  1.4418 -0.6690  0.5001 -0.1819      NA
 ```
 
 
-Nótese que si la función `est` no maneja correctamente los NA's, entonces el resultado sería igual a `rep(NA, 6)`.
+Nótese que si la función `est` no maneja correctamente los `NA`'s, entonces el resultado sería igual a `rep(NA, length(x))`.
 
 ### 1.e Estandarizar los datos
 
@@ -185,7 +249,7 @@ En este ejercicio el objetivo es usar la función `est` creada en el ejercicio a
 
 
 ```r
-load("est.rda")
+load("est.RData")
 ```
 
 
@@ -207,12 +271,20 @@ Finalmente, tome en cuenta también que el objeto final que usted debe crear, ll
 
 Script: "nuevo-factor.R"
 
-En este ejercicio se propone crear una nueva columna de clase "factor" en la data.frame `usa3`, utilizando la función `cut`. Dicho factor deberá llamarse `Ing.Cat` (como se ilustra en el script), tener 4 niveles y ser construido en base a la columna `Ingresos` de `usa3`. Este a variable representará entonces las 4 categorías de ingreso (promedio, por estado) de EE.UU. Si el ejercicio fue hecho correctamente, el conteo de ocurrencias de cada nivel del factor será:
+En este ejercicio se propone crear una nueva columna de clase "factor" en la data.frame `usa3`, utilizando la función `cut`. Dicho factor deberá llamarse `Ing.Cat` (como se ilustra en el script), tener 4 niveles y ser construido en base a la columna `Ingresos` de `usa3`. Esta variable representará entonces las 4 categorías de ingreso (promedio, por estado) de EE.UU. Si el ejercicio fue hecho correctamente, el conteo de ocurrencias de cada nivel del factor será:
 
 
 ```r
 > tabulate(usa3$Ing.Cat)
 [1] 12 19 11  1
+```
+
+
+Para que este factor sea más legible, se pueden cambiar los nombres de los niveles:
+
+
+```r
+levels(usa3$Ing.Cat) <- c("D", "C", "B", "A")
 ```
 
 
@@ -224,27 +296,19 @@ tapply(x, f, fu)
 ```
 
 
-En dónde `x` es típicamente un vector numérico, `f` es un factor cuya longitud equivale a la de `x` y `fu` es una función de R (p.ej.: `mean`). Aquí lo que haría este comando es ejecutar la función `fu` tantas veces como niveles tiene `f` y en cada vez lo hace usando como entrada los elementos de `x` que se corresponden con las ocurrencias de dicho factor. Es decir, primero ejecuta
+En dónde `x` es típicamente un vector numérico, `f` es un factor cuya longitud equivale a la de `x` y `fu` es una función de R (p.ej.: `mean`). Aquí lo que haría este comando es ejecutar la función `fu` tantas veces como niveles tiene `f` usando como entrada los elementos de `x` que se corresponden con las ocurrencias de dicho nivel. Es decir, se ejecuta
 
 
 ```r
-fu(x[f == levels(f)[1]])
+fu(x[f == levels(f)[i]])
 ```
 
 
-luego
+siendo `i` variable en `1:length(levels(f))`. Como resultado devuelve una lista en la que cada elemento se corresponde con la salida de uno de estos comandos.
 
+Lo que usted deberá ejecutar aquí es la función `tapply` sobre el vector numérico `Analf`, con `Ing.Cat` como factor de referencia (ambas columnas de `usa3`) y la función `summary`. El resultado, tal como se muestra en el archivo de código fuente, debe guardarse en el objeto `salidaTapply`.
 
-```r
-fu(x[f == levels(f)[2]])
-```
-
-
-y así sucesivamente hasta llegar al último nivel de `f`. Como resultado devuelve una lista en la que cada elemento es se corresponde con la salida de uno de estos comandos.
-
-Lo que usted deberá ejecutar aquí es la función `tapply` sobre el vector `Analf`, con `Ing.Cat` como referencia (ambas columnas de `usa3`) y la función `summary`. El resultado, tal como se muestra en el archivo de código fuente, debe guardarse en el objeto `salidaTapply`.
-
-Finalmente debe hacer algo similar con la función `boxplot`, cuya sintaxis es mucho más sencilla que `tapply`, por ejemplo:
+Finalmente debe hacer algo similar con la función `boxplot`, cuya sintaxis es tal vez más sencilla que `tapply`, por ejemplo:
 
 
 ```r
@@ -252,9 +316,9 @@ boxplot(y ~ f, d)
 ```
 
 
-Aquí `d` es una data.frame, mientras que `y` y `f` son columnas de `d` de las clases "numeric" y "factor" respectivamente. Nuevamente las columnas a utilizar son `Analf` e `Ing.Cat`, de la data.frame `usa3`. La salida de esta función es doble, por un lado un objeto (el cual deberá guardar bajo el nombre `salidaBoxplot`) y por otro una gráfica similar a la siguiente:
+Aquí `d` es una data.frame, mientras que `y` y `f` son columnas de `d` de las clases "numeric" y "factor" respectivamente. Nuevamente las columnas a utilizar son `Analf` e `Ing.Cat`, de la data.frame `usa3`. La salida de esta función es doble, por un lado un objeto (el cual deberá guardar bajo el nombre `salidaBoxplot`) y por otro una gráfica similar a la Figura 1 de este repartido.
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png) 
+![Salida de boxplot](figure/unnamed-chunk-19.png) 
 
 
 ### 1.g Exportar
@@ -264,7 +328,8 @@ Script: "exportar.R"
 Finalmente se deberá exportar la data.frame `usaNorm` a un archivo de texto plano. Dicho archivo se llamará "usa-norm.csv" y deberá cumplir con las siguientes condiciones:
 
 1. Deberá guardar correctamente los nombres de las filas y columnas.
-2. El separador de columnas deberá ser el caracter ";".
-3. El punto decimal debe estar indicado con el caracter ","
+2. El separador de columnas deberá ser el caracter `;`.
+3. El punto decimal debe estar indicado con el caracter `,`.
 
-Consulte las lecciones o la ayuda de R en `?write.table` para determinar el comando adecuado para realizar esta operación.
+Consulte las lecciones o la ayuda de R en `?write.table` para determinar el comando adecuado para realizar esta operación. En la carpeta del repartido se incluye el archivo **usa-norm-ejemplo.csv** para que usted pueda comparar con su resultado (puede abrirlo con un programa de hojas de cálculo o con un editor de texto plano, como bloc de notas o RStudio, para ver su estructura interna). Nótese que este ejemplo sólo tiene 10 filas elegidas al azar.
+
