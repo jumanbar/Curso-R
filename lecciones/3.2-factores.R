@@ -61,7 +61,7 @@ edades <- rpois(150, 25)
 # son estos rangos ("Levels"). Se usa la notación estándar de matemáticas 
 # para indicar intervalos semiabiertos: paréntesis curvo para el extremo 
 # "abierto" y paréntesis recto/corchete para el extremo "cerrado".
-# (también en Wikipedia:)
+# (más detalles en Wikipedia:)
 browseURL('https://es.wikipedia.org/wiki/Intervalo_%28matem%C3%A1tica%29#Intervalo_semiabierto')
 
 
@@ -112,4 +112,5 @@ nlevels(f)
 # imprime en la consola (si es un factor se imprimen los "Levels:..." al final).
 # En el caso de importación de datos, la opción por defecto es que las columnas
 # con texto se interpetan como factores. Esto se puede evitar usando el argumen-
-# to "stringsAsFactor = FALSE".
+# to "stringsAsFactor = FALSE" en las funciones read.xxxx
+

@@ -90,6 +90,9 @@ Para el final del curso
 * INSISTIR MUCHO, POR EJEMPLO EN LA LETRA DE REPARTIDOS, CON LO DE LAS SOLUCIONES GENÉRICAS!!!
   El año que viene debería haber una lección "cómo hacer el repartido"!!
 
-* algo que me olvidé!!
+* Recomendar que tengan una configuración de teclado fácil (que los símbolos que se ven en las teclas son los que se escriben en la consola). Esto se puede agregar en alguno de los documentos de guía del curso.
+
+* También estaría bueno unificar todos los documentos de guía.
 
 * Foro: decirles que escriban el código en el foro, pero que después lo borren si está la duda solucionada.
+

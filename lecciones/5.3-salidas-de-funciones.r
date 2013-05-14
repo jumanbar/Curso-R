@@ -17,9 +17,9 @@ v <- 15:25  # Vamos a necesitar un objeto 'v' para los ejemplos.
 # contenida en el cuerpo de la misma. Si tomamos como ejemplo la siguiente
 # función
 
-f <- function(v) {
-  v <- v[!is.na(v)]
-  p <- sum(v) / length(v)
+f <- function(x) {
+  x <- x[!is.na(x)]
+  p <- sum(x) / length(x)
   p
 }
 f(v)
@@ -29,9 +29,9 @@ f(v)
 # operación. Intentemos ver qué pasa si suprimimos la llamada a 'p', y nos que-
 # damos sólo con la operación anterior pero sin asignar el resultado.
 
-f <- function(v) {
-  v <- v[!is.na(v)]
-  sum(v) / length(v)
+f <- function(x) {
+  x <- x[!is.na(x)]
+  sum(x) / length(x)
 }
 f(v)
 
@@ -39,9 +39,9 @@ f(v)
 # Veamos ahora qué sucede si asignamos el objeto 'p', pero no lo llamamos al
 # final del cuerpo de 'f'.
 
-f <- function(v) {
-  v <- v[!is.na(v)]
-  p <- sum(v) / length(v)
+f <- function(x) {
+  x <- x[!is.na(x)]
+  p <- sum(x) / length(x)
 }
 f(v)
 
@@ -57,9 +57,9 @@ a
 # comando 'return', utilizando como argumento el objeto que queremos en la
 # salida.
 
-f <- function(v) {
-  v <- v[!is.na(v)]
-  p <- sum(v) / length(v)
+f <- function(x) {
+  x <- x[!is.na(x)]
+  p <- sum(x) / length(x)
   if (p > 15) return(15)
   p
 }
@@ -73,10 +73,10 @@ f(v + 20)
 # Otro comando que se puede utilizar es 'invisible', que hace que la salida de
 # nuestra función no sea impresa en la consola.
 
-f <- function(v) {
-  v <- v[!is.na(v)]
-  p <- sum(v) / length(v)
-  invisible(p)
+f <- function(x) {
+  x <- x[!is.na(x)]
+  p <- sum(x) / length(x)
+  inxisible(p)
 }
 f(v)
 
@@ -93,9 +93,9 @@ a
 # necesitamos obtener más de un resultado de nuestra función. La solución más
 # sencilla y frecuente es usar listas.
 
-f <- function(v) {
-  v <- v[!is.na(v)]
-  p <- sum(v) / length(v)
+f <- function(x) {
+  x <- x[!is.na(x)]
+  p <- sum(x) / length(x)
   m <- matrix(rnorm(9, mean = p), 3, 3)
   list(prom = p, matriz = m)
 }
@@ -113,3 +113,4 @@ f(v)
 #   instrucciones, pero esto cambia al usar 'return'.
 # - El uso de listas (generalmente nombradas) suele ser una solución útil para
 #   obtener salidas elaboradas cuando no nos alcanza con un objeto sencillo.
+

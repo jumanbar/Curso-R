@@ -108,14 +108,16 @@ davuelta(x)
 # Podemos ver que sobra un 3 al principio del vector.
 
 # Para descubrirlo vamos a mostrar tres métodos posibles, los cuales son
-# sumamente efectivos si se utilizan correctamente: (1) Imprimir en consola,
-# (2) usar el depurador de R o (3) usar "browser". El orden en que se van a ver
-# indica una creciente sofisticación y, en general, un aumento en la eficiencia
-# de los métodos para hallar errores. En la práctica no es la idea usar los tres
-# métodos en cada ocasión, la elección del método correcto en general depende
-# del tipo de error.
-# Los tres métodos requieren de una cierta intuición, entendimiento del código
-# de la función que queremos arreglar, práctica y paciencia.
+# sumamente efectivos si se utilizan correctamente: 
+#   (1) Imprimir en consola,
+#   (2) usar el depurador de R o 
+#   (3) usar "browser". 
+# Este orden indica una creciente sofisticación y, en general, un aumento en 
+# la eficiencia de los métodos para hallar errores. En la práctica no es la 
+# idea usar los tres métodos en cada ocasión, la elección del método correcto 
+# en general depende del tipo de error. Los tres métodos requieren de una cierta 
+# intuición, entendimiento del código de la función que queremos arreglar, 
+# práctica y paciencia.
 
 ## MÉTODO 1: IMPRIMIR EN LA CONSOLA
 # Este método es el más simple. Se trata cambiar la función para que imprima en
@@ -146,8 +148,8 @@ davuelta <- function(x) {
 
 # Nota: tanto "cat" como "print" sirven para imprimir cosas en la pantalla, sin
 # embargo tienen algunas diferencias sutiles (que no vamos a profundizar aquí).
-# El caracter especial "\n" indica el fin de línea. Es posible que en windows
-# sea más conveniente usar "\r".
+# El caracter especial "\n" indica el fin de línea (es posible que en windows
+# sea más conveniente usar "\r").
 
 # Al ejecutar la función, vamos a ver lo siguiente
 davuelta(x)
@@ -271,10 +273,13 @@ out <- c(x2, x1)
 out
 # [1] 4 5 6 1 2 3
 
+# Ojo: esto no es una corrección de la función. Para hacer una correción definitiva
+# hay que cambiar el script original en el cual la definimos.
+
 # Entonces ya sabemos que es lo que hay que hacer. Pero antes de hacerlo, vamos
 # a pasar al tercer método. Suponiendo que ya terminó la depuración y salimos
 # del ambiente de ejecución de la misma, se debe quitar la "bandera" a la
-# función, de dos maneras posibles:
+# función, de dos maneras posibles, corriendo:
 undebug(davuelta)
 # o definiendo nuevamente la función, ya sea corriendo las líneas de comando o
 # cargando el archivo correspondiente con 'source'. Al definir nuevamente la
@@ -374,3 +379,4 @@ traceback()
 # obvias. Es bueno recordar que existen y saber cómo funcionan, ya que muchas
 # veces un error sencillo nos puede estar complicando la vida mucho rato y no
 # perdemos demasiado tiempo buscándolo si conocemos las herramientas adecuadas.
+

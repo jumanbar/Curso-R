@@ -124,9 +124,15 @@ table(x)
 # devolviendo el resultado en un formato diferente (requiere instalar el paquete
 # plyr por supuesto):
 
+# install.packages("plyr") # Si no lo tiene instalado
 library(plyr)
 count(iris$Sepal.Width)
 count(as.vector(iris$Species))
+
+# Nota: el paquete plyr es muy popular para trabajar con datos; no lo veremos
+# en este curso, pero recomendamos que lo explore si considera que le puede 
+# interesar (el siguiente es un link por el cual se puede empezar).
+browseURL("http://plyr.had.co.nz/09-user/")
 
 
 ## Calculos en tablas:
@@ -135,6 +141,9 @@ count(as.vector(iris$Species))
 # una tabla de datos. Un ejemplo sencillo son las funciones colMeans, 
 # rowMeans, colSums y rowSums (vea la ayuda para entender qué hacen). Pero 
 # para el caso general, el grupo de funciones "apply" es muy práctico.
+
+# (el paquete plyr tiene un conjunto de funciones alternativas a las *apply , 
+# supuestamente más intuitiva)
 
 # Función "apply":
 # Es una función que "aplica" otra función a un conjunto de datos según un
@@ -222,3 +231,4 @@ sapply(USArrests, mean)
 # que rascar la superficie de lo que se puede hacer con funciones pre-armadas.
 # Para el lector y el usuario ávido, recomendamos adentrarse en el uso de los
 # paquetes reshape2, gdata, bigtabulate y plyr.
+

@@ -71,3 +71,4 @@ identical(salida1, salida2) # TRUE
 # el proceso, sin necesidad de ir guardando los pasos intermedios como objetos.
 # Otro uso común es en combinación con la función 'with', la que veremos en el
 # módulo de trabajo con datos.
+

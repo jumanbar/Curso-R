@@ -49,11 +49,11 @@ read.table(file = "ejemplo1.txt", header = TRUE, sep = "\t", dec = ".")
 # problemas.
 
 # Si ud. logró importar correctamente el archivo, deberá ver una data.frame 
-# en la consola, en donde las filas van de 's1' a 's5', las columnas de la 'b'
-# a la 'e' y se encuetran llena de ceros y unos, mientras que la primera 
-# ('a'), tiene números con valores decimales. Puede abrir el archivo de texto 
-# en un editor de texto plano (como el editor de scripts de RStudio o el 
-# notepad) para comparar este objeto con su contraparte en archivo.
+# en la consola, en donde la primer col. va de 's1' a 's5', los nombres de las 
+# columnas de la 'b' a la 'e' y se encuetran llena de ceros y unos, mientras 
+# que la primera ('a'), tiene números con valores decimales. Puede abrir el 
+# archivo de texto en un editor de texto plano (como el editor de scripts de 
+# RStudio o el notepad) para comparar este objeto con su contraparte en archivo.
 
 # Es importante entender los argumentos de la función 'read.table', los cuales 
 # veremos ahora:
@@ -61,8 +61,8 @@ read.table(file = "ejemplo1.txt", header = TRUE, sep = "\t", dec = ".")
 #   este debe tener la extensión del archivo, en este caso es un txt. Nótese que 
 #   dicho nombre debe ser escrito entre comillas.
 # header: es un argumento lógico que cuando es TRUE, como en este caso, nos
-#   indica que el nombre de las variables (columnas) en nuestro archivo de 
-#   calculo original, sino que deben tenerse en cuenta y no forman parte de las
+#   indica que el nombre de las variables (columnas) está en nuestro archivo de 
+#   calculo original, que deben tenerse en cuenta y no forman parte de las
 #   filas de la tabla importada (juegue con el argumento cambiando ahora su 
 #   valor a FALSE).
 # sep: es el argumento que indica como hemos separado los distintos caracteres
@@ -78,12 +78,19 @@ read.table(file = "ejemplo1.txt", header = TRUE, sep = "\t", dec = ".")
 #   PC configurada para trabajar en inglés, en la que los decimales no se 
 #   indican con comas, si no con puntos; el segundo caso es el normal para 
 #   programas en español).
+#   Nótese la extensión .txt o .csv es sólo un rótulo y no determina de por sí
+#   cuál es el separador de campos (i.e.: un .txt puede usar comas para separar
+#   campos, a pesar de ir contra la convención).
 # dec: es el argumento que indica el símbolo de los decimales de los números 
 #   en nuestro archivo de texto. La opción más adecuada depende de la 
 #   configuración de idioma del programa con el que se creó el archivo de 
 #   texto a importar. Nótese que en el caso de archivos csv pueden darse 
 #   confusiones entre separadores de columnas y decimales, por lo que hay que 
 #   estar atento a estos detalles.
+
+# Nota: en la experiencia de los profesores del curso hemos visto que OpenOffice o
+# LibreOffice suelen mostrar más flexibilidad a la hora de elegir los valores de sep
+# y dec, tanto al importar como al exportar planillas (en comparación con Excel).
 
 # Existen otros argumentos en la función 'read.table' como row.names (para
 # ponerle nombre a las filas), col.names (para ponerle nombres a las columnas
@@ -104,6 +111,8 @@ ej1 <- read.table(file = "ejemplo1.txt", header = TRUE, sep = "\t", dec = ".")
 # se puede ejecutar:
 ej2 <- read.table(file = "ejemplo2.csv", header = TRUE, sep = ";", dec = ".")
 
+# Nonta: es posible que el valor de dec deba ser "," en lugar de "."
+
 # Observe que 'ej2' es igual al archivo importado en formato txt 'ej1',
 # pero algunos de los argumentos cambian, por lo cuale debe ser cuidadoso y
 # prolijo a la hora de elejir.
@@ -111,10 +120,10 @@ ej2 <- read.table(file = "ejemplo2.csv", header = TRUE, sep = ";", dec = ".")
 # Alternativamente puede utilizar las funciones read.csv, read.csv2 y sus 
 # contrapartes write.csv y write.csv2. Estas son simplemente una "envoltura" 
 # (wrapper en inglés) de read y write .table, es decir, una variante con 
-# argumentos por defecto específicos, diseñadas para respetar las 
-# convenciones de Excel y por lo tanto ser generalmente más confiables (aunque
-# dichas convenciones muchas veces no se utilizan en bases de datos 
-# descargables por la web).
+# argumentos por defecto específicos, diseñadas para respetar las convenciones 
+# de Excel y por lo tanto ser generalmente más confiables (aunque dichas 
+# convenciones muchas veces no se utilizan en bases de datos descargables 
+# de la web).
 
 # En particular, write.csv usa "." para el punto decimal y una "," para la 
 # separación de columnas, mientras que write.csv2 usa una "," para el punto 
@@ -193,7 +202,7 @@ write.table(ejemplo1, file = "ejemplo3.txt", sep = "\t", eol = "\n", dec = ".",
 # El importar datos en R es el primer paso en general para poder realizar nuestros
 # análsis. Por lo tanto, es importante comprender como estos son ingresados y
 # como el R los reconoce, de lo contrario nos puede no solo traer errores que
-# nos impidan realizar los análsis sino también obtener resultados no erróneos.
+# nos impidan realizar los análsis sino también obtener resultados erróneos.
 
 # En general el importar y exportar datos se hace necesario cuando trabajamos 
 # con varios programas. Sin embargo, en caso de trabajar únicamente con R, lo 
@@ -208,5 +217,6 @@ write.table(ejemplo1, file = "ejemplo3.txt", sep = "\t", eol = "\n", dec = ".",
 # dBase) para importar y exportar datos desde R.
 
 
-# [1]
+# [1]: Pregunta en Stack Overflow, respecto a los detalles de read.csv y write.csv:
 browseURL('http://stackoverflow.com/questions/12512062/why-write-csv-and-read-csv-are-not-consistent')
+

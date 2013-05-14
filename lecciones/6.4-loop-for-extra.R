@@ -139,3 +139,4 @@ for (n in 3:20) {
   fibo[n] <- fibo[n - 1] + fibo[n - 2]
 }
 plot(fibo, log='y', type='o')
+

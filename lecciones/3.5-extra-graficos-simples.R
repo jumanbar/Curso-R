@@ -102,3 +102,4 @@ hist(iris$Sepal.Length, breaks = 15)
 # [1]
 # Las fórmulas en R son una clase de objeto muy particular (¡otra más!), la 
 # cual será explorada en mayor profundidad en la unidad siguiente.
+

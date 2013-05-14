@@ -9,7 +9,7 @@
 # los programas propios, si se aplican regularmente.
  
 # En este caso vamos a mostrar las reglas que utilizan los empleados de la
-# empresa google para trabajar con scripts de R. Notarán que en nuestro curso
+# empresa Google para trabajar con scripts de R. Notarán que en nuestro curso
 # seguimos la mayoría de ellas, si bien no todas. Lo importante, más allá de
 # seguir una u otra regla, es mantener una coherencia en el estilo de cada
 # uno, o el del equipo de trabajo.
@@ -233,3 +233,4 @@ CalculateSampleCovariance <- function(x, y, verbose = TRUE) {
 # (http://google-styleguide.googlecode.com/svn/trunk/google-r-style.html)
 # Alguna documentación extra se puede encontrar en 'R Coding Conventions'
 # (http://www.maths.lth.se/help/R/RCC/).
+

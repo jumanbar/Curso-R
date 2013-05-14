@@ -192,3 +192,70 @@ v
 # similitudes y diferencias, y pertenecen a clases diferentes:
 class(u)
 class(v)
+
+
+## Paquete reshape2
+
+# Según la descripción en la página de reshape2 (http://had.co.nz/reshape/):
+
+# Reshape hace (o intenta hacer) más fácil lo que usted ha luchado por lograr con 
+# tapply, by, aggregate, xtabs y summarise. También es útil para ajustar sus datos 
+# a la estructura correcta para usar en gráficos de ggplot o lattice.
+
+# Primero cargue el paquete:
+# install.packages("reshape2") # Si no lo tiene instalado
+library(reshape2)
+
+# Función melt:
+# "Mueve valores de varias columnas a una sola", usando una o más columnas como
+# "identidad". Veamos un ejemplo, con la base de datos "airquality" que ya viene
+# con R:
+
+# Primero vamos a cear un ejemplo de juguete, una data.frame con datos organizados
+# de una forma mixta: por filas y por columnas
+
+medidas <- matrix(rpois(5 * 4, 30), 4, 5)
+colnames(medidas) <- paste("estacion", 1:5, sep = ".")
+datos <- data.frame(dia.noche = gl(2, 2, labels = c("dia", "noche")),
+                    trat = rep(c("A", "B"), 2))
+datos <- cbind(datos, medidas)
+
+# Un vistazo a los datos de juguete:
+datos
+
+# Ahora haremos melt para esta data.frame, tomando como variables de identidad
+# las columnas dia.noche y trat:
+mdatos <- melt(datos, id=c("dia.noche", "trat"))
+mdatos
+
+# Como se puede ver, todas las variables que están por fuera del argumento
+# id quedaron en una misma columna: "variable", una variable de clase factor
+# y sus niveles son los nombres de las columnas fuera de id.
+
+# A su vez, los valores originales de aquellas columnas se ponen todos juntos 
+# la nueva variable "value".
+
+# Como resultado, el número de filas de mdatos es igual a 20; es el número de
+# filas de datos * el número de columnas que no son "id" (= 2 en este caso):
+nrow(datos) * (ncol(datos) - 2)
+
+# Una consecuencia secundaria, y nada despreciable, es que ahora es más sencillo
+# graficar los valores según tratamientos:
+
+plot(value ~ trat, mdatos)
+plot(value ~ dia.noche, mdatos)
+plot(value ~ variable, mdatos)
+
+# Con ggplot2 se pueden hacer unos gráficos muy interesantes con facilidad:
+# install.packages("ggplot2") # Si no está instalado
+library(ggplot2)
+p <- ggplot(mdatos, aes(y = value))
+p + geom_point(aes(x = variable, color = dia.noche), size = 4)
+p + geom_point(aes(x = variable, color = dia.noche, shape = trat), size = 4)
+
+# Ejemplo con boxplot:
+p + geom_boxplot(aes(x = variable, color = dia.noche))
+p + geom_boxplot(aes(x = variable, color = trat))
+
+# (el paquete ggplot2 no lo veremos en el curso)
+
