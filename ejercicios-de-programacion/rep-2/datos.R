@@ -1,6 +1,13 @@
 ################################################################################
 ################################################################################
 
+
+###############################################################
+# ATENCIÓN: FALTA TERMINAR DE IMPLEMENTAR LAS NUEVAS FUNCIONES:
+# mkmsj.xxx
+# objnames
+###############################################################
+
 ## NÚMERO DE REPARTIDO!
 nrep <- 2
 rdir <- paste('rep', nrep, sep='-')
@@ -257,14 +264,21 @@ cor1.d <- function() {
 	if (length(ctg) < length(ctg2))
 		warning(" El valor length(ctg) es demasiado pequeño", call. = FALSE)
 
-	if (!all(ctg == ctg2))
-		stop("el vector ctg obtenido no coincide con lo esperado", call. = FALSE)
-	if (!all(conteo - conteo2 < tol))
-		stop("los valores del vector conteo obtenido no coinciden con lo esperado", call. = FALSE)
-	if (!all(names(conteo) == names(conteo2), na.rm = TRUE)) {
-		warning(" Los nombres esperados para conteo son 'A', 'B', 'C' y 'D'", call. = FALSE)
-		stop("los nombres del vector conteo obtenido no coinciden con lo esperado", call. = FALSE)
-	}
+	if (!all(ctg == ctg2)) {
+    warning("  Se ha generado un nuevo vector cal de forma aleatoria para la corrección", call. = FALSE)
+		mensaje <- mkmsj.v("El vector ctg obtenido no coincide con el esperado",
+                       ctg, ctg2, tol)
+    return(mensaje)
+  }
+	if (!all(conteo == conteo2)) {
+		mensaje <- mkmsj.v("los valores del vector conteo obtenido no coinciden con lo esperado",
+                       conteo, conteo2, tol)
+    if (is.logical(mensaje)) break
+    return(mensaje)
+  }
+
+  objnames(names(conteo2), conteo, "conteo")
+
 	TRUE
 }
 
@@ -291,21 +305,15 @@ cor2.a <- function() {
   datos.calif2 <- data.frame(nota = cal,
 														 genero = gen,
 													 	 franja = ctg)
+  
+  objnames(names(datos.calif2), datos.calif, "datos.calif")
 
-  if (any(is.na(names(datos.calif)))) {
-		warning(" Los nombres esperados son 'nota', 'genero' y 'franja'", call. = FALSE)
-    stop("hay NAs en los nombres de las columnas de datos.calif", call. = FALSE)
+  if (!all(datos.calif == datos.calif2)) {
+    mensaje <- mkmsj.df("los valores de datos.calif no son los esperados",
+                        datos.calif, datos.calif2, tol)
+    return(mensaje)
   }
-	if (any(names(datos.calif) != names(datos.calif2))) {
-		warning(" Los nombres esperados son 'nota', 'genero' y 'franja'", call. = FALSE)
-		stop("los nombres de las variables en datos.calif no parecen estar correctos", call. = FALSE)
-	}
-	if (!all(cal - datos.calif$nota < tol))
-		stop("los valores de datos.calif$nota no coinciden con los de cal", call. = FALSE)
-	if (any(gen != datos.calif$genero))
-		stop("los valores de datos.calif$genero no coinciden con los de gen", call. = FALSE)
-	if (any(ctg != datos.calif$franja))
-		stop("los valores de datos.calif$franja no coinciden con los de ctg", call. = FALSE)
+
   TRUE
 }
 
@@ -404,22 +412,20 @@ cor2.c <- function() {
 		warning("  ¿tal vez la data.frame no está ordenada por la variable nota? (ver ej. 2.b)", call. = FALSE)
 
   if (!all(analisis.calif$tabla == datos.calif)) {
-    mensaje <- mkmsj.df("Hay valores de analisis.calif$tabla no esperados", analisis.calif$tabla, datos.calif)
+    mensaje <- mkmsj.df("Hay valores de analisis.calif$tabla no esperados", 
+                        analisis.calif$tabla, datos.calif, tol)
+    if (is.logical(mensaje)) break
     return(mensaje)
   }
 
-	if (any(analisis.calif$tabla$nota - analisis.calif2$tabla$nota > tol))
-		stop("los valores de analisis.calif$tabla$nota no coinciden con los esperados", call. = FALSE)
-	if (any(analisis.calif$tabla$genero != analisis.calif2$tabla$genero))
-		stop("los valores de analisis.calif$tabla$genero no coinciden con los esperados", call. = FALSE)
-	if (any(analisis.calif$tabla$franja != analisis.calif2$tabla$franja))
-		stop("los valores de analisis.calif$tabla$franja no coinciden con los esperados", call. = FALSE)
-	if (!all(conteo - analisis.calif$conteo < tol))
-		stop("los valores del vector analisis.calif$conteo no son los esperados", call. = FALSE)
+	if (!all(conteo - analisis.calif$conteo < tol)) {
+    mensaje <- mkmsj.v("Los valores del vector analisis.calif$conteo no son los esperados",
+                        analisis.calif$tabla, datos.calif, tol)
+    return(mensaje)
+  }
 
 	if (with(analisis.calif$aprob, any(atot <= 1 | avar <= 1 | amuj <= 1)))
-		warning("  Al menos uno de los valores de analisis.calif$aprob es <= 1,
-    ¿tal vez no esté en porcentaje si no fracción?\n", call. = FALSE)
+		warning("  Al menos uno de los valores de analisis.calif$aprob es <= 1,\n  ¿tal vez no esté en porcentaje si no fracción?\n", call. = FALSE)
 
 	if (!all(analisis.calif$aprob$atot - analisis.calif2$aprob$atot < tol))
 		stop("el valor de analisis.calif$aprob$atot no es el esperado", call. = FALSE)

@@ -253,7 +253,7 @@ cor1.e <- function() {
   arch2 <- gsub(' ', '', arch)
   app <- grep('apply', arch2)
 
-  if (!grepl('apply', arch))
+  if (!any(grepl('apply', arch)))
     stop("la función apply no figura en su código", call. = FALSE)
 
   arch[app] <- sub('est', 'estX', arch[app])
@@ -283,7 +283,7 @@ cor1.e <- function() {
   } else {
     if (!is.numeric(datosNumericos)) {
       clase <- class(datosNumericos[1])
-      stop(paste("datosNumericos no es una matriz numérica si no", calse), call. = FALSE)
+      stop(paste("datosNumericos no es una matriz numérica si no", clase), call. = FALSE)
     }
   }
 
@@ -336,14 +336,14 @@ cor1.f <- function() {
   arch <- arch[gr[1]:gr[2]]
   arch <- sacarComentarios(arch)
 
-  if (!grepl('tapply', arch))
+  if (!any(grepl('tapply', arch)))
     stop("la función tapply no figura en su código", call. = FALSE)
 
   tp <- grep('tapply',  arch)
-  if (!grepl('summary', arch[tp]))
+  if (!any(grepl('summary', arch[tp])))
     stop("la función summary no figura en la línea de tapply", call. = FALSE)
 
-  if (!grepl('boxplot', arch))
+  if (!any(grepl('boxplot', arch)))
     stop("la función boxplot no figura en su código", call. = FALSE)
 
   bx <- grep('boxplot', arch)

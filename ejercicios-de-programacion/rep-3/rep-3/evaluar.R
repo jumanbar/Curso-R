@@ -22,7 +22,7 @@ evaluar <- function(e) {
     stop("evaluar no pudo encontrar el archivo 'datos', no se puede continuar ...", call. = FALSE)
   }
   nej <- length(corregir)
-  hasmsj <- logical(nej)
+  #   hasmsj <- logical(nej)
   arc <- dir()
   #
   if (tolower(getOption("encoding")) != "utf-8") {
@@ -57,13 +57,13 @@ evaluar <- function(e) {
     s <- menu(c(paste('Ej. (', ejnum, "): ", corregir, sep=""), 'Todos'),
               title="Elija el archivo que desea corregir:")
   }
-  msj <- NULL
+  msj <- vector("list", nej)
   if (s > nej) {
     for (i in 1:nej) {
       r <- try(corAll[[i]](), silent = TRUE)
       if (is.character(r) || is.na(r)) {
-        msj <- c(msj, r)
-        hasmsj[i] <- TRUE
+        msj[[i]] <- r
+        #         hasmsj[i] <- TRUE
         notas$Nota[i] <- 0
       } else {
         notas$Nota[i] <- r
@@ -72,8 +72,8 @@ evaluar <- function(e) {
   } else {
     r <- try(corAll[[s]](), silent = TRUE)
     if (is.character(r) || is.na(r)) {
-      msj <- c(msj, r)
-      hasmsj[s] <- TRUE
+      msj[[s]] <- r
+      #       hasmsj[s] <- TRUE
       notas$Nota[s] <- 0
     } else {
       notas$Nota[s] <- r
@@ -98,13 +98,15 @@ evaluar <- function(e) {
     cat('Ninguno por ahora')
   }
   cat('\n\n')
-  if (!is.null(msj)) {
+  hasmsj <- !sapply(msj, is.null)
+  if (any(hasmsj)) {
     msjEjNum <- ejnum[hasmsj]
     msjArch  <- corregir[hasmsj]
     cat("Se generaron los siguientes mensajes de error:\n")
     for (i in 1:sum(hasmsj)) {
-      cat('\n* Al corregir el ej. ', msjEjNum[i], ', archivo ', msjArch[i], ':\n==>> ', sep='')
-      cat(msj[i], sep='')
+      cat('\n* Al corregir el ej. ', msjEjNum[i], ', archivo ', msjArch[i], ':\n', sep='')
+      msj.i <- paste("| ", msj[hasmsj][[1]])
+      cat(msj.i, sep='')
     }
   }
   cat('\n==============================\n')
