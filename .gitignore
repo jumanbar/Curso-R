@@ -10,6 +10,7 @@ ejercicios-de-programacion/*/figure
 *.html
 *.sw*
 *.png
+Rplots.pdf
 Curso-R.Rproj
 apuntes.*
 .Rprofile

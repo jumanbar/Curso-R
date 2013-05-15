@@ -49,6 +49,9 @@ reload <- function() {
 
 ### FUNCIONES AUXILIARES:
 
+source("../auxiliares.R")
+guardar <- c(guardar, objetos)
+
 cl <- function() {
   cal <- rpois(260 + sample(20, 1), 6)
   cal[cal > 12] <- 12
@@ -258,7 +261,7 @@ cor1.d <- function() {
 		stop("el vector ctg obtenido no coincide con lo esperado", call. = FALSE)
 	if (!all(conteo - conteo2 < tol))
 		stop("los valores del vector conteo obtenido no coinciden con lo esperado", call. = FALSE)
-	if (!all(names(conteo) == names(conteo2))) {
+	if (!all(names(conteo) == names(conteo2), na.rm = TRUE)) {
 		warning(" Los nombres esperados para conteo son 'A', 'B', 'C' y 'D'", call. = FALSE)
 		stop("los nombres del vector conteo obtenido no coinciden con lo esperado", call. = FALSE)
 	}
@@ -289,6 +292,10 @@ cor2.a <- function() {
 														 genero = gen,
 													 	 franja = ctg)
 
+  if (any(is.na(names(datos.calif)))) {
+		warning(" Los nombres esperados son 'nota', 'genero' y 'franja'", call. = FALSE)
+    stop("hay NAs en los nombres de las columnas de datos.calif", call. = FALSE)
+  }
 	if (any(names(datos.calif) != names(datos.calif2))) {
 		warning(" Los nombres esperados son 'nota', 'genero' y 'franja'", call. = FALSE)
 		stop("los nombres de las variables en datos.calif no parecen estar correctos", call. = FALSE)
@@ -377,33 +384,29 @@ cor2.c <- function() {
   unlink(tmp)
   analisis.calif2 <- list(tabla = datos.calif,
 													conteo = conteo,
-                          aprob = list(atot = 100 * sum(cal >= 5) / length(cal),
+                          aprob = list(atot = p.apr,
 																			 avar = p.apr.v,
                                        amuj = p.apr.m))
+  if (identical(analisis.calif, analisis.calif2))
+    return(TRUE)
 
 	# Nombres:
-	if (!all(names(analisis.calif) == names(analisis.calif2)))
-		stop("los nombres de analisis.calif no son los esperados", call. = FALSE)
-	if (!all(names(analisis.calif$tabla) == names(analisis.calif2$tabla))) {
-		warning(" Los nombres esperados para la tabla son 'nota', 'genero' y 'franja'", call. = FALSE)
-		stop("los nombres de la data.frame analisis.calif$tabla no son los esperados", call. = FALSE)
-	}
-	if (!all(names(analisis.calif$conteo) == names(analisis.calif2$conteo))) {
-		warning(" Los nombres esperados para conteo son 'A', 'B', 'C' y 'D'", call. = FALSE)
-		stop("los nombres del vector analisis.calif$conteo no son los esperados", call. = FALSE)
-	}
-	if (!all(names(analisis.calif$aprob) == names(analisis.calif2$aprob)))
-		stop("los nombres de la sublista analisis.calif$aprob no son los esperados", call. = FALSE)
+  objnames(names(analisis.calif2), analisis.calif, "analisis.calif")
 
-	# Clases:
-	if (!is.data.frame(analisis.calif$tabla))
-		stop("la clase del objeto analisis.calif$tabla no es data.frame", call. = FALSE)
-	if (!is.list(analisis.calif$aprob))
-		stop("la clase del objeto analisis.calif$aprob no es list", call. = FALSE)
+  objnames(names(analisis.calif2$tabla), analisis.calif$tabla, "analisis.calif$tabla")
+
+  objnames(names(analisis.calif2$conteo), analisis.calif$conteo, "analisis.calif$conteo")
+
+  objnames(names(analisis.calif2$aprob), analisis.calif$aprob, "analisis.calif$aprob")
 
 	# Valores:
 	if (any(analisis.calif$tabla$nota != sort(analisis.calif$tabla$nota)))
 		warning("  ¿tal vez la data.frame no está ordenada por la variable nota? (ver ej. 2.b)", call. = FALSE)
+
+  if (!all(analisis.calif$tabla == datos.calif)) {
+    mensaje <- mkmsj.df("Hay valores de analisis.calif$tabla no esperados", analisis.calif$tabla, datos.calif)
+    return(mensaje)
+  }
 
 	if (any(analisis.calif$tabla$nota - analisis.calif2$tabla$nota > tol))
 		stop("los valores de analisis.calif$tabla$nota no coinciden con los esperados", call. = FALSE)

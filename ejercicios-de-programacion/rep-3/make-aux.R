@@ -82,7 +82,7 @@ mkmsj.df <- function(msj.base = "", df.obs, df.esp) {
   # df.obs, df.esp: data.frames observadas y esperadas respect.
   donde <- which(df.obs != df.esp, arr.ind = TRUE)
   output <- cbind(donde, df.obs[donde], df.esp[donde])
-  output[,2] <- colnames(usa)[as.numeric(output[,2])]
+  output[,2] <- colnames(df.obs)[as.numeric(output[,2])]
   colnames(output) <- c("Fila", "Columna", "Valor observado", "Valore esperado")
   output <- capture.output(print(output))
   mensaje <- c(paste(msj.base, ",\n", sep=""),
@@ -98,7 +98,7 @@ mkmsj.m <- function(msj.base = "", m.obs, m.esp) {
   # m.obs, m.esp: matrices observadas y esperadas respect.
   donde <- which(m.obs != m.esp, arr.ind = TRUE)
   output <- cbind(donde, m.obs[donde], m.esp[donde])
-  colnames(output) <- c("Fila", "Columna", "Valor observado", "Valore esperado")
+  colnames(output) <- c("Fila", "Columna", "Valor observado", "Valor esperado")
   output <- capture.output(print(output))
   mensaje <- c(paste(msj.base, ",\n", sep=""),
                "las diferencias observadas son las siguientes:\n\n", 
