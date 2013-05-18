@@ -4,14 +4,16 @@
 # ATENCIÓN: FALTA TERMINAR DE IMPLEMENTAR LAS NUEVAS FUNCIONES:
 # mkmsj.xxx
 # objnames
-# cut.script
 # ADEMÁS SE ESTÁ REESTRUCTURANDO TODO EL SISTEMA DE CORRECCIÓN!
 ###############################################################
+
 cor1.a <- function() {
   # Cargar 'datos'
   load('auxiliar.RData')
 
-  # Cortar el archivo original y crear uno temporal
+  # Se mantienen lineas viejas "de ejemplo"
+
+  # Lee el archivo
   arch <- cut.script('1.a-aprobados.R')
   #   arch <- readLines('aprobados.R')
   #   gr <- grep('#===', arch, useBytes = TRUE)
@@ -31,7 +33,7 @@ cor1.a <- function() {
 	tol <- 1e-8 # Antes era 1e-15, pero era muy alto.
 
 	if (p.apr < 1)
-		warning("  El p.apr < 1, ¿tal vez no esté en porcentaje si no fracción?", call. = FALSE)
+		warning("(1.b) El p.apr < 1, ¿tal vez no esté en porcentaje si no fracción?", call. = FALSE)
 	if (abs(p.apr2 - p.apr) > tol)
 		stop("El valor obtenido no coincide con el esperado", call. = FALSE)
   TRUE
@@ -41,20 +43,15 @@ cor1.b <- function() {
   # Cargar datos y script
   load('auxiliar.RData')
 
-  # Cortar el archivo original y crear uno temporal
-  arch <- readLines('1.b-aprobados2.R')
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  tmp <- tempfile()
-  writeLines(arch, tmp)
+  # Lee el archivo
+  arch <- cut.script('1.b-aprobados2.R')
 
   # Generación de datos nuevos aleatorios
   cal <- cl()
   gen <- gn(cal)
 
   # Evaluación de objetos: p.apr.v, p.apr.m
-  source(tmp, local = TRUE)
-  unlink(tmp)
+  eval(parse(text = arch))
   v2 <- cal[gen == 'V']
   m2 <- cal[gen == 'M']
   apr.v2 <- sum(v2 >= 5)
@@ -64,9 +61,9 @@ cor1.b <- function() {
 	tol <- 1e-8
 
 	if (p.apr.v < 1)
-		warning("  El p.apr.v < 1, ¿tal vez no esté en porcentaje si no fracción?", call. = FALSE)
+		warning("(1.b) El p.apr.v < 1, ¿tal vez no esté en porcentaje si no fracción?", call. = FALSE)
 	if (p.apr.m < 1)
-		warning("  El p.apr.m < 1, ¿tal vez no esté en porcentaje si no fracción?", call. = FALSE)
+		warning("(1.b) El p.apr.m < 1, ¿tal vez no esté en porcentaje si no fracción?", call. = FALSE)
 
 	if (abs(p.apr.v2 - p.apr.v) > tol)
 		stop("El valor obtenido de p.apr.v no coincide con el esperado", call. = FALSE)
@@ -79,12 +76,8 @@ cor1.c <- function() {
   # Cargar datos y script
   load('auxiliar.RData')
 
-  # Cortar el archivo original y crear uno temporal
-  arch <- readLines('1.c-mejorcitos.R')
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  tmp <- tempfile()
-  writeLines(arch, tmp)
+  # Leer el archivo
+  arch <- cut.script('1.c-mejorcitos.R')
 
   # Generación de datos
   cal <- cl()
@@ -92,21 +85,20 @@ cor1.c <- function() {
 	# No necesita tol!
 
   # Evaluación de objetos: i, mejores
-  source(tmp, local=TRUE)
-  unlink(tmp)
+  eval(parse(text = arch))
   n2   <- length(cal)
   ord2 <- sort(cal)
   i2   <- ceiling(n2 * 0.75)
   mejores2 <- ord2[i2:n2]
 
 	if (i == i2 - 1)
-		warning("  El i obtenido es un poco menor a lo esperado", call. = FALSE)
+		warning("(1.c) El i obtenido es un poco menor a lo esperado", call. = FALSE)
 
 	if (round(i) - i != 0)
 		stop("el i obtenido no parece ser un número entero", call. = FALSE)
 
 	if (!any(grepl("ceiling", arch)))
-		warning("  La función usada para obtener el i parece no ser la correcta", call. = FALSE)
+		warning("(1.c) La función usada para obtener el i parece no ser la correcta", call. = FALSE)
 
 	if (i != i2)
 		stop("el valor de i obtenido no es el esperado", call. = FALSE)
@@ -119,12 +111,8 @@ cor1.d <- function() {
   # Cargar datos y script
   load('auxiliar.RData')
 
-  # Cortar el archivo original y crear uno temporal
-  arch <- readLines('1.d-franjas.R')
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  tmp <- tempfile()
-  writeLines(arch, tmp)
+  # Lee el archivo
+  arch <- cut.script('1.d-franjas.R')
 
   # Generación de datos
   cal <- cl()
@@ -133,17 +121,16 @@ cor1.d <- function() {
 	tol <- 1e-8
 
   # Evaluación de objetos: ctg y conteo
-  source(tmp, local=TRUE)
-  unlink(tmp)
+  eval(parse(text = arch))
   conteo2 <- table(ctg2)
 
 	if (length(ctg) > length(ctg2))
-		warning("  El valor length(ctg) es demasiado grande", call. = FALSE)
+		warning("(1.d) El valor length(ctg) es demasiado grande", call. = FALSE)
 	if (length(ctg) < length(ctg2))
-		warning("  El valor length(ctg) es demasiado pequeño", call. = FALSE)
+		warning("(1.d)  El valor length(ctg) es demasiado pequeño", call. = FALSE)
 
 	if (!all(ctg == ctg2)) {
-    warning("  Se ha generado un nuevo vector cal de forma aleatoria para la corrección", call. = FALSE)
+    warning("(1.d) Se ha generado un nuevo vector cal de forma aleatoria para la corrección", call. = FALSE)
 		mensaje <- mkmsj.v("El vector ctg obtenido no coincide con el esperado",
                        ctg, ctg2, tol)
     return(mensaje)
@@ -164,12 +151,8 @@ cor2.a <- function() {
   # Cargar datos y script
   load('auxiliar.RData')
 
-  # Cortar el archivo original y crear uno temporal
-  arch <- readLines('2.a-data.frame.R')
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  tmp <- tempfile()
-  writeLines(arch, tmp)
+  # Lee el archivo
+  arch <- cut.script('2.a-data.frame.R')
 
   # Generación de datos
   cal <- cl()
@@ -178,8 +161,7 @@ cor2.a <- function() {
 	tol <- 1e-8
 
   # Evaluación de objetos: datos.calif
-  source(tmp, local=TRUE)
-  unlink(tmp)
+  eval(parse(text = arch))
   datos.calif2 <- data.frame(nota = cal,
 														 genero = gen,
 													 	 franja = ctg)
@@ -199,12 +181,8 @@ cor2.b <- function() {
   # Cargar datos y script
   load('auxiliar.RData')
 
-  # Cortar el archivo original y crear uno temporal
-  arch <- readLines('2.b-ordenacion.R')
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  tmp <- tempfile()
-  writeLines(arch, tmp)
+  # Lee el archivo
+  arch <- cut.script('2.b-ordenacion.R')
 
   # Generación de datos
   cal <- cl()
@@ -216,8 +194,7 @@ cor2.b <- function() {
   # Evaluación de objetos: datos.calif (ordenada)
   i2 <- order(datos.calif$nota)
   datos.calif2 <- datos.calif[i2,]
-  source(tmp, local=TRUE)
-  unlink(tmp)
+  eval(parse(text = arch))
 
 	if (!all(datos.calif$nota - datos.calif2$nota < tol))
 		stop("los valores de datos.calif$nota no coinciden con los esperados", call. = FALSE)
@@ -228,8 +205,8 @@ cor2.b <- function() {
   
 	if (any(grepl("arrange", arch)))
 		stop("la palabra 'arrange' figura en su script,\n  ¿está haciendo trampa con el paquete plyr?", call. = FALSE)
-	if (all(rownames(datos.calif) == 1:nrow(datos.calif)))
-		warning("los nombres de las filas de datos.calif están ordenados,\n  ¿está haciendo trampa con el paquete plyr?", call. = FALSE)
+  #   if (all(rownames(datos.calif) == 1:nrow(datos.calif)))
+  #     warning("(2.b) Los nombres de las filas de datos.calif están ordenados,\n  ¿está haciendo trampa con el paquete plyr?", call. = FALSE)
 
 	TRUE
 }
@@ -241,12 +218,7 @@ cor2.c <- function() {
   load('auxiliar.RData')
 
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('2.c-lista.R')
-  arch2 <- gsub(' ', '', arch)
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  tmp <- tempfile()
-  writeLines(arch, tmp)
+  arch <- cut.script('2.c-lista.R')
 
   # Generación de datos
   cal <- cl()
@@ -266,13 +238,12 @@ cor2.c <- function() {
   p.apr <- 100 * sum(cal >= 5) / length(cal)
   p.apr.v <- 100 * apr.v / length(v)
   p.apr.m <- 100 * apr.m / length(m)
-  source(tmp, local=TRUE)
-  unlink(tmp)
   analisis.calif2 <- list(tabla = datos.calif,
 													conteo = conteo,
                           aprob = list(atot = p.apr,
 																			 avar = p.apr.v,
                                        amuj = p.apr.m))
+  eval(parse(text = arch))
   if (identical(analisis.calif, analisis.calif2))
     return(TRUE)
 
@@ -287,7 +258,7 @@ cor2.c <- function() {
 
 	# Valores:
 	if (any(analisis.calif$tabla$nota != sort(analisis.calif$tabla$nota)))
-		warning("  ¿tal vez la data.frame no está ordenada por la variable nota? (ver ej. 2.b)", call. = FALSE)
+		warning("(2.c)  ¿tal vez la data.frame no está ordenada por la variable nota? (ver ej. 2.b)", call. = FALSE)
 
   if (!all(analisis.calif$tabla == datos.calif)) {
     mensaje <- mkmsj.df("Hay valores de analisis.calif$tabla no esperados", 
@@ -303,7 +274,7 @@ cor2.c <- function() {
   }
 
 	if (with(analisis.calif$aprob, any(atot <= 1 | avar <= 1 | amuj <= 1)))
-		warning("  Al menos uno de los valores de analisis.calif$aprob es <= 1,\n  ¿tal vez no esté en porcentaje si no fracción?\n", call. = FALSE)
+		warning("(2.c) Al menos uno de los valores de analisis.calif$aprob es <= 1,\n  ¿tal vez no esté en porcentaje si no fracción?\n", call. = FALSE)
 
 	if (!all(analisis.calif$aprob$atot - analisis.calif2$aprob$atot < tol))
 		stop("el valor de analisis.calif$aprob$atot no es el esperado", call. = FALSE)
@@ -345,7 +316,7 @@ cor2.d <- function() {
   c2 <- capture.output(plc(a))
 
 	if (!all(c1 == c2)) {
-		mensajes <- c("\n  Ej. 2.d: la salida esperada es:\n",
+		mensajes <- c("(2.d): la salida esperada es:\n",
 									paste("   ", c2),
 									"\n  pero la salida producida es:\n",
 									paste("   ", c1),

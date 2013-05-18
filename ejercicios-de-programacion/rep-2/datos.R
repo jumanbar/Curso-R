@@ -23,16 +23,6 @@ if (!file.exists(rdir))
 # Borrar todos los contenidos:
 unlink(file.path(rdir, dir(rdir)), recursive = TRUE)
 
-
-### FUNCIONES AUXILIARES:
-source("../auxiliares.R", local = TRUE)
-source("correctores.R")
-clist <- vector("list") # Lista con funciones de corrección
-txt <- paste0("clist$cor", ejnum, " <- cor", ejnum)
-eval(parse(text = txt))
-guardar <- c(objetos$generales, objetos[[gsub("-", ".", rdir)]], "clist")
-save(guardar, file = "auxiliar.RData")
-
 ## ARCHIVOS AUXILIARES:
 aux <- c("info.RData", "auxiliar.RData", "INSTRUCCIONES.pdf", "calificaciones.R", "ej2.RData")
 
@@ -45,11 +35,6 @@ corregir <- sort(corregir)
 ## El total de los esperados...:
 esperados <- c(aux, corregir)
 
-## Guardando el código:
-codigo <- lapply(corregir, cut.script)
-names(codigo) <- corregir
-class(codigo) <- "codigo"
-
 ## Números de ejercicios
 cor.split <- strsplit(corregir, "-")
 ejnum <- unlist(cor.split)[grepl("^[0-9]", unlist(cor.split))]
@@ -57,13 +42,28 @@ ejnum <- unlist(cor.split)[grepl("^[0-9]", unlist(cor.split))]
 # xx <- xx[-8]
 # file.copy(xx, corregir)
 
+### FUNCIONES AUXILIARES:
+source("../auxiliares.R")
+source("correctores.R")
+clist <- vector("list") # Lista con funciones de corrección
+txt <- paste0("clist$cor", ejnum, " <- cor", ejnum)
+eval(parse(text = txt))
+guardar <- c(objetos$generales, objetos[[gsub("-", ".", rdir)]], "clist")
+save(list = guardar, file = "auxiliar.RData")
+
 notas <- data.frame(Parte = c(ejnum, 'Total (%)'),
                     Nota=numeric(length(corregir) + 1),
                     Script=c(corregir, '--'))
-write.csv2(notas, file='notas.csv', row.names=FALSE)
+# class(notas) <- "notas"
+# write.csv2(notas, file='notas.csv', row.names=FALSE)
 # extras <- '2.d'
 extras  <- ejnum[grep("extra", corregir)] 
 ob.sum <- sum(!(ejnum %in% extras)) # Cuantos són los obligatorios?
+
+## Guardando el código:
+codigo <- lapply(corregir, cut.script)
+names(codigo) <- corregir
+class(codigo) <- "codigo"
 
 info <- list(nrep      = nrep, 
              rdir      = rdir,

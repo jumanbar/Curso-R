@@ -15,23 +15,7 @@
 # con generadores de números aleatorios.
 #===== Su código comienza aquí: =====#
 
-# datos.calif <- data.frame (cal, gen, ctg)
-# names(datos.calif) <- c("nota","genero","franja")
-
-
-analisis.calif$tabla <- datos.calif
-
-analisis.calif$conteo <- table (ctg)
-
-atot <- (p.apr)
-avar <- (p.apr.v)
-amuj <- (p.apr.m)
-aprob <- list (atot=p.apr, avar=p.apr.v, amuj=p.apr.m)
-
-analisis.calif$aprob <- list (atot, avar, amuj)
-
-
-analisis.calif <- list(tabla ,conteo, aprob)
+analisis.calif <- 0
 
 #====== Aquí finaliza su código =====#
 

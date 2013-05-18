@@ -17,7 +17,7 @@ mkmsj <- function(msj.base = "", obs, esp) {
                paste("  ", output, "\n", sep = ""))
   mensaje
 }
-objetos$generales <- c(objetos$generales, "mksmsj")
+# objetos$generales <- c(objetos$generales, "mkmsj")
 
 
 mkmsj.v <- function(msj.base = "", vec.obs, vec.esp, tol = 1e-8) {
@@ -54,7 +54,7 @@ mkmsj.v <- function(msj.base = "", vec.obs, vec.esp, tol = 1e-8) {
     mensaje <- c(mensaje, "(se muestran sólo las primeras 10 diferencias)\n")
   mensaje
 }
-objetos$generales <- c(objetos$generales, "mkmsj.v")
+# objetos$generales <- c(objetos$generales, "mkmsj.v")
 
 
 mkmsj.m <- function(msj.base = "", m.obs, m.esp, tol = 1e-8) {
@@ -89,7 +89,7 @@ mkmsj.m <- function(msj.base = "", m.obs, m.esp, tol = 1e-8) {
     mensaje <- c(mensaje, "(se muestran sólo las primeras 10 diferencias)\n")
   mensaje
 }
-objetos$generales <- c(objetos$generales, "mkmsj.m")
+# objetos$generales <- c(objetos$generales, "mkmsj.m")
 
 
 mkmsj.df <- function(msj.base = "", df.obs, df.esp, tol = 1e-8) {

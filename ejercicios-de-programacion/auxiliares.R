@@ -19,7 +19,7 @@ objetos$rep.6 <- NULL
 
 # Las funciones mkmsj
 source("../mkmsj.R") # Se supone que esto es llamado desde una carpeta rep-X
-objetos$generales <- c(objetos$generales, "mksmsj", "mksmsj.v", "mksmsj.m", "mksmsj.df")
+objetos$generales <- c(objetos$generales, "mkmsj", "mkmsj.v", "mkmsj.m", "mkmsj.df")
 
 objnames <- function(esp, obj, oname, filas = FALSE) {
 
@@ -228,6 +228,10 @@ check.datos.date <- function() {
 objetos$generales <- c(objetos$generales, "check.datos.date")
 
 
+# print.notas <- function(x)
+#   print.data.frame(x, row.names = FALSE, right = FALSE)
+# objetos$generales <- c(objetos$generales, "print.notas")
+#   print.data.frame(read.csv2('notas.csv'), row.names=FALSE, right=FALSE)
 
 ## ======================================================================= ##
 
@@ -259,7 +263,7 @@ ct <- function(cal) {
 objetos$rep.2 <- c(objetos$rep.2, "ct")
 
 
-plf <- function(x) {
+plc <- function(x) {
   # print.listaCalif
   cat('Porcentaje total de aprobaciones:', round(x$aprob$atot, 2), '%\n')
   cat('  En varones:', round(x$aprob$avar, 2), '%\n')
