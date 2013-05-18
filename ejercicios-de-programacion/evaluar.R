@@ -83,9 +83,9 @@ evaluar <- function(e) {
   ### Feedback general:
   cat('\n==========RESULTADOS==========\n\n')
   bien <- notas$Nota[- nrow(notas)] > 0
-  notaActual <- 100 * sum(bien) / oblg
+  notaActual <- 100 * sum(bien) / ob.sum
   notas$Nota[nrow(notas)] <- round(notaActual)
-  # Nota: oblg es el número de ejercicios obligatorios. Si hay optativos, se
+  # Nota: ob.sum es el número de ejercicios obligatorios. Si hay optativos, se
   # suman sus valores y entonces se puede llegar a porcentajes mayores a 100.
   if (s <= nej) {
     feedback(r, corregir[s])
@@ -111,7 +111,7 @@ evaluar <- function(e) {
   }
   cat('\n==============================\n')
 
-  cat('\nTotal hasta ahora:', sum(bien), 'de', oblg, 'ejercicios; NOTA:', round(notaActual), '% \n\n')
+  cat('\nTotal hasta ahora:', sum(bien), 'de', ob.sum, 'ejercicios; NOTA:', round(notaActual), '% \n\n')
   
   if (sum(bien) == nej)
     cat("¡¡Felicitaciones, ha alcanzado la nota máxima!!\n")

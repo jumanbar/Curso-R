@@ -335,7 +335,7 @@ cor2.d <- function() {
 
   # Evaluación de objetos: salida de print.listaCalif
   c1 <- capture.output(print.listaCalif(a))
-  c2 <- capture.output(Print.listaCalif(a))
+  c2 <- capture.output(plc(a))
 
 	if (!all(c1 == c2)) {
 		mensajes <- c("\n  Ej. 2.d: la salida esperada es:\n",
