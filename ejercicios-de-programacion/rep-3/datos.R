@@ -50,6 +50,19 @@ reload <- function() {
 
 ### FUNCIONES Y DATOS AUXILIARES:
 
+cut.script <- function(arch) {
+  arch <- readLines(arch)
+  gr <- grep('#===', arch, useBytes = TRUE)
+  arch <- arch[gr[1]:gr[2]]
+  arch <- sacar.comentarios(arch)
+  tmp <- tempfile()
+  writeLines(arch, tmp)
+  return(tmp)
+}
+guardar <- c(guardar, 'cut.script')
+
+# source('../auxiliares.R')
+# guardar <- c(guardar, objetos)
 source('make-aux.R')
 load('auxiliar.RData')
 
@@ -62,11 +75,7 @@ cor1.a <- function() {
   load('datos')
 
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('importar.R')
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  tmp <- tempfile()
-  writeLines(arch, tmp)
+  tmp <- cut.script('importar.')
   
   # Evaluación de objetos: usa
   source(tmp, local = TRUE)
@@ -116,11 +125,7 @@ cor1.b <- function() {
   # Cargar datos
   load('datos')
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('parche.R')
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  tmp <- tempfile()
-  writeLines(arch, tmp)
+  tmp <- cut.script('parche.R')
 
   # Evaluación de objetos: usa2
   .usainc()
@@ -162,11 +167,7 @@ cor1.c <- function() {
   load('datos')
   
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('filtrado.R')
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  tmp <- tempfile()
-  writeLines(arch, tmp)
+  tmp <- cut.script('filtrado.R')
 
   # Generación de datos
 #   browser()
@@ -247,7 +248,7 @@ cor1.e <- function() {
   arch <- readLines('transformar.R')
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
-  arch <- sacarComentarios(arch)
+  arch <- sacar.comentarios(arch)
   tmp <- tempfile()
   writeLines(arch, tmp)
   arch2 <- gsub(' ', '', arch)
@@ -334,7 +335,7 @@ cor1.f <- function() {
   arch <- readLines('nuevo-factor.R')
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
-  arch <- sacarComentarios(arch)
+  arch <- sacar.comentarios(arch)
 
   if (!any(grepl('tapply', arch)))
     stop("la función tapply no figura en su código", call. = FALSE)

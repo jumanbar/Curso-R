@@ -10,7 +10,7 @@
 
 #===== Su código comienza aquí: =====#
 
-p.apr <- 0
+p.apr <- 100 * sum(cal >= 5) / length(cal)
 
 #====== Aquí finaliza su código =====#
 

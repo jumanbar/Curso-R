@@ -1,13 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <!-- saved from url=(0014)about:internet -->
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Ejercicio de programación IV: Estructuras de Control</title>
-
-<base target="_blank"/>
+<title>Ejercicios de programación IV: Funciones</title>
 
 <style type="text/css">
 body, td {
@@ -53,13 +50,14 @@ pre {
    margin-top: 0;
    max-width: 95%;
    border: 1px solid #ccc;
+   white-space: pre-wrap;
 }
 
 pre code {
    display: block; padding: 0.5em;
 }
 
-code.r {
+code.r, code.cpp {
    background-color: #F8F8F8;
 }
 
@@ -133,7 +131,6 @@ hr {
       page-break-after: avoid; 
    }
 }
-
 </style>
 
 <!-- Styles for R syntax highlighter -->
@@ -174,102 +171,71 @@ var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/<
 hljs.initHighlightingOnLoad();
 </script>
 
-
 <!-- MathJax scripts -->
 <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
-
 </head>
 
 <body>
-<h1>Ejercicio de programación IV: Estructuras de Control</h1>
+<h1>Ejercicios de programación IV: Funciones</h1>
 
 <h3>[IMSER 2012]</h3>
 
-<h2>Archivos incluidos</h2>
+<hr/>
 
-<p>El <a href="https://github.com/jumanbar/Curso-R/blob/master/ejercicios-de-programacion/ejercicio4/ej4.zip?raw=true">archivo</a> con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta <strong><code>ej4</code></strong>. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo (con el menú <strong>Tools &gt; Set Working Directory &gt; Choose Directory&hellip;</strong> o la combinación <strong>Ctrl + Shift + K</strong>). En esta carpeta se encuentran algunos archivos que usted deberá modificar:</p>
+<h2>Archivos incluidos:</h2>
 
-<ul>
-<li><strong><code>fibonacci.R</code></strong></li>
-<li><strong><code>funcionFibonacci.R</code></strong></li>
-</ul>
-
-<p>Adicionalmente los siguientes archivos son necesarios, pero <strong>no deben ser cambiados</strong>.</p>
+<p>El <a href="http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/rep-1.zip">archivo</a> con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta <strong><code>rep-2</code>** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con <code>setwd</code> o en RStudio la combinación **Ctrl + Shift + K</strong>. En esta carpeta se encuentran algunos archivos que usted deberá modificar:</p>
 
 <ul>
-<li><strong><code>evaluar.R</code></strong></li>
-<li><strong><code>notas.csv</code></strong></li>
-<li><strong><code>datos</code></strong></li>
+<li><strong><code>importar.R</code></strong></li>
 </ul>
 
-<p>Lo primero que debe hacer es ejecutar el siguiente comando para cargar las funciones de corrección:</p>
+<p>Adicionalmente los siguientes archivos son necesarios, pero <strong>no deben ser modificados</strong> para que el método de calificación automático funcione correctamente.</p>
 
-<pre><code>source(&quot;evaluar.R&quot;)
-</code></pre>
+<ul>
+<li><code>evaluar.R</code></li>
+<li><code>notas.csv</code></li>
+<li><code>datos</code></li>
+<li><code>INSTRUCCIONES.pdf</code></li>
+</ul>
 
-<pre><code>source(&quot;evaluar.R&quot;)
+<h2>Mecanismo de corrección:</h2>
+
+<p>Lo primero que debe hacer es cargar el archivo evaluar.R con la función <code>source</code> y la codificación de caracteres &ldquo;UTF-8&rdquo; (lo cual afecta a la función <code>evaluar</code> en particular), de la siguiente manera:</p>
+
+<pre><code class="r">options(encoding = &quot;utf-8&quot;)
+source(&quot;evaluar.R&quot;)
 </code></pre>
 
 <p>Si usted ha ejecutado todos los pasos anteriores correctamente, la siguiente frase debería verse en la consola:</p>
 
-<pre><code>
- Código fuente cargado correctamente
-
+<pre><code>Archivo de codigo fuente cargado correctamente
 </code></pre>
 
 <p>En caso de que ocurra un error o se vea otro mensaje en la consola, verifique que los archivos se descomprimieron correctamente y que usted está trabajando en la carpeta correspondiente con el comando <code>getwd()</code>.</p>
 
-<p>Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:</p>
+<p>Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio y <strong>guardando el archivo</strong> correspondiente en el disco duro, usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:</p>
 
-<pre><code>evaluar()
+<pre><code class="r">evaluar()
 </code></pre>
 
-<h3>Entrega de ejercicios</h3>
+<p>y además podrá en todo momento verificar su puntaje con la función <code>verNotas()</code>. Tenga siempre en cuenta que, a <strong>menos que sea indicado</strong> por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben obtenerse con el código de los scripts en lugar de ser valores fijos. Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos <strong>se indica claramente en dónde se inicia y dónde finaliza su código</strong> y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.</p>
 
-<p>Una vez terminados los ejercicios, se debe subir el archivo &ldquo;datos&rdquo;, incluidos en la carpeta <strong><code>ej4</code></strong> al EVA en la página de entrega de los ejercicios.</p>
+<h3>Al finalizar</h3>
+
+<p>Una vez terminados y guardados los archivos de los ejercicios del repartido, usted deberá ejecutar <code>evaluar()</code> y seleccionar la última opción (&ldquo;Todos&rdquo;) y luego subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-1”, a la <a href="http://eva.universidad.edu.uy/mod/assignment/view.php?id=95125">sección de entregas</a> de la portada del curso en la plataforma EVA. Este archivo se podrá reemplazar con uno más nuevo, en caso de que desee corregir algún error; en caso de querer que el archivo sea corregido antes de la fecha de entrega, puede cambiarle el nombre a &ldquo;datos-finalizado&rdquo;, pero en ese caso la nota no se cambiará de ahí en adelante.</p>
+
+<h3>Código de Honor</h3>
+
+<p>Si bien animamos a que los estudiantes trabajen en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos importante que los estudiantes no miren el código creado por sus compañeros ya que esto supone un sabotaje a su propio proceso de aprendizaje. Como profesores estamos comprometidos a pedir tareas para las cuales hayamos dado las herramientas correctas y las explicaciones adecuadas como para que todos puedan encontrar su propio camino para resolver los ejercicios.</p>
 
 <hr/>
 
-<h2>Ejercicio 1: secuencia de Fibonacci</h2>
-
-<p>Ideada por el matemático italiano <a href="https://es.wikipedia.org/wiki/Fibonacci">Fibonacci</a>, la serie homónima se trata de una secuencia de números creada con una regla muy simple. Se trata simplemente de sumar los dos números anteriores para generar el siguiente, comenzando por el 0 y el 1. Así el tercer número es 1 = 1 + 0, el cuarto número es 2 = 1 + 1, el quinto número es 3 = 2 + 1, etc. Matemáticamente se puede describir como una secuencia \( S \) que sigue la siguiente ecuación:</p>
-
-<p>\[ 
-  S_i = S_{i - 1} + S_{i - 2}
- \]</p>
-
-<p>y agregando la condición de que los valores iniciales \( S_0 \) y \( S_1 \) equivalen a 1. Así los primeros 10 números de la secuencia de Fibonacci son: 0, 1, 1, 2, 3, 5, 8, 13, 21 y 34.</p>
-
-<h3>1a. Calcular los valores del \( S_0 \) al \( S_{20} \).</h3>
-
-<p>En este ejercicio usted deberá trabajar modificando el archivo <code>fibonacci.R</code>. En el mismo usted encontrará que el vector <code>fibo</code> es el designado para guardar los primeros 20 elementos de la secuencia. Para lograr hacer esta secuencia usted tendrá que crear un loop del tipo <code>for</code> con el número correcto de iteraciones. No olvide considerar que los primeros dos elementos de la secuencia ya están agregados al vector <code>fibo</code> a la hora de determinar el número de iteraciones así como los valores de <code>i</code> inicial e <code>i</code> final.</p>
-
-<p>Puede comprobar que su resultado es correcto comparando la siguiente imagen, generada con los comandos:</p>
-
-<pre><code class="r">i &lt;- 0:19
-plot(fibo ~ i, main = &quot;Secuencia de Fibonacci&quot;, ylab = expression(S[i]), xlab = &quot;i&quot;)
-</code></pre>
-
-<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-2"/> </p>
-
-<h3>1b. Crear una función genérica</h3>
-
-<p>En esta parte del ejercicio usted trabajará modificando el archivo <code>funcionFibonacci.R</code>. El objetivo de este archivo es crear una función que calcule la secuencia de Fibonacci para una cantidad de números arbitraria. Tome en cuenta que el código es casi idéntico al contenido en el archivo <code>fibonacci.R</code>, pero debe ser modificado estratégicamente para que el argumento <code>n</code> modifique el resultado final.</p>
-
-<p>Si usted ha modificado correctamente el archivo <code>funcionFibonacci.R</code> entonces el siguiente comando debería devolver el resultado que se muestra aquí:</p>
-
-<pre><code class="r">funcionFibonacci(13)
-</code></pre>
-
-<pre><code>##  [1]   0   1   1   2   3   5   8  13  21  34  55  89 144
-</code></pre>
-
-<hr/>
+<h2>1. Triángulos, volumen II</h2>
 
 </body>
 
 </html>
-

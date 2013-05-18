@@ -96,3 +96,4 @@ Para el final del curso
 
 * Foro: decirles que escriban el código en el foro, pero que después lo borren si está la duda solucionada.
 
+* Unificar todos los documentos en 1!

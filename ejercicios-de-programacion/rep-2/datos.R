@@ -6,11 +6,14 @@
 # ATENCIÓN: FALTA TERMINAR DE IMPLEMENTAR LAS NUEVAS FUNCIONES:
 # mkmsj.xxx
 # objnames
+# cut.script
 ###############################################################
 
 ## NÚMERO DE REPARTIDO!
 nrep <- 2
-rdir <- paste('rep', nrep, sep='-')
+rdir <- paste0('rep-', nrep)
+rep.date <- format(Sys.time(), "%Y-%m-%d %H:%M")
+url.desc <- "http://goo.gl/b4l9D"
 
 esperados <- c("datos", "notas.csv", "INSTRUCCIONES.pdf", "calificaciones.R")
 # Los archivos de los ejercicios deben estar en el orden 
@@ -27,7 +30,7 @@ notas <- data.frame(Parte = c(ejnum, 'Total (%)'),
 write.csv2(notas, file='notas.csv', row.names=FALSE)
 extras <- '2.d'
 oblg   <- sum(!(ejnum %in% extras))
-guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar', 'reload',
+guardar <- c('nrep', 'rep.date', 'esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar', 'reload',
              'notas', 'codigo', 'corAll')
 
 ### RELOAD
@@ -58,48 +61,6 @@ reload <- function() {
 
 source("../auxiliares.R")
 guardar <- c(guardar, objetos)
-
-cl <- function() {
-  cal <- rpois(260 + sample(20, 1), 6)
-  cal[cal > 12] <- 12
-  cal[cal == 0] <- 1
-  cal
-}
-
-gn <- function(cal)
-  sample(c('V', 'M'), length(cal), replace=TRUE)
-
-ct <- function(cal) {
-  n <- length(cal)
-  out <- character(n)
-  out[cal <= 3] <- 'A'
-  out[3 < cal & cal <= 6] <- 'B'
-  out[6 < cal & cal <= 9] <- 'C'
-  out[9 < cal] <- 'D'
-  out
-}
-
-Print.listaCalif <- function(x) {
-  cat('Porcentaje total de aprobaciones:', round(x$aprob$atot, 2), '%\n')
-  cat('  En varones:', round(x$aprob$avar, 2), '%\n')
-  cat('  En mujeres:', round(x$aprob$amuj, 2), '%\n')
-  #===== Su código comienza aquí: =====#
-  ptot <- mean(x$tabla$nota)
-  pvar <- mean(x$tabla$nota[x$tabla$genero == 'V'])
-  pmuj <- mean(x$tabla$nota[x$tabla$genero == 'M'])
-  #====== Aquí finaliza su código =====#
-  cat('La nota promedio fue de:', round(ptot, 2), '\n')
-  cat('  En varones:', round(pvar, 2), '\n')
-  cat('  En mujeres:', round(pmuj, 2), '\n')
-  cnt <- x$conteo
-
-  if (all(is.na(as.numeric(conteo))))
-		stop('x$conteo no tiene números si no cadenas de caracteres')
-
-  names(cnt) <- c('1--3', '4--6', '7--9', '10--12')
-  cat('Conteos por franja de nota:\n')
-  print(cnt)
-}
 
 ### ARCHIVO AUXILIAR
 
@@ -135,19 +96,20 @@ cor1.a <- function() {
   load('datos')
 
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('aprobados.R')
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  tmp <- tempfile()
-  writeLines(arch, tmp)
+  arch <- cut.script('aprobados.R')
+  #   arch <- readLines('aprobados.R')
+  #   gr <- grep('#===', arch, useBytes = TRUE)
+  #   arch <- arch[gr[1]:gr[2]]
+  #   tmp <- tempfile()
 
   # Generación de datos nuevos aleatorios
   cal <- cl()
   gen <- gn(cal)
 
   # Evaluación de objetos: p.apr
-  source(tmp, local = TRUE)
-  unlink(tmp)
+  #   source(tmp, local = TRUE)
+  #   unlink(tmp)
+  eval(parse(text = arch))
   apr2   <- sum(cal >= 5)
   p.apr2 <- 100 * apr2 / length(cal)
 	tol <- 1e-8 # Antes era 1e-15, pero era muy alto.
@@ -260,9 +222,9 @@ cor1.d <- function() {
   conteo2 <- table(ctg2)
 
 	if (length(ctg) > length(ctg2))
-		warning(" El valor length(ctg) es demasiado grande", call. = FALSE)
+		warning("  El valor length(ctg) es demasiado grande", call. = FALSE)
 	if (length(ctg) < length(ctg2))
-		warning(" El valor length(ctg) es demasiado pequeño", call. = FALSE)
+		warning("  El valor length(ctg) es demasiado pequeño", call. = FALSE)
 
 	if (!all(ctg == ctg2)) {
     warning("  Se ha generado un nuevo vector cal de forma aleatoria para la corrección", call. = FALSE)
@@ -471,7 +433,7 @@ cor2.d <- function() {
 									paste("   ", c2),
 									"\n  pero la salida producida es:\n",
 									paste("   ", c1),
-									"(los valores fueron generados aleatoriamente)")
+									"  (los valores fueron generados aleatoriamente)")
 		mensajes <- paste(mensajes, "\n")
 		warning(mensajes, call. = FALSE)
 		stop("la salida en consola difiere de lo esperado", call. = FALSE)
@@ -484,6 +446,7 @@ corAll <- list(cor1.a, cor1.b, cor1.c, cor1.d, cor2.a, cor2.b, cor2.c, cor2.d)
 ################################################################################
 
 ### GUARDAR TODO
+guardar <- unique(guardar)
 save(list = guardar, file = 'datos')
 
 ### REINICIAR EL DIRECTORIO Y ZIP FILE

@@ -1,36 +1,89 @@
-evaluar <- function() {
+evaluar <- function(e) {
   #
   cat("\nCargando funciones y datos para la corrección...\n\n")
   load('datos')
-  arch <- dir()
+  nej <- length(corregir)
+  hasmsj <- logical(nej)
+  arc <- dir()
   #
   
-  if (!all(f <- esperados %in% arch)) {
+  if (!all(f <- esperados %in% arc)) {
     cat("\n Faltan los siguientes archivos en el directorio de trabajo:\n")
     cat(paste("   - ", esperados[!f], '\n', sep=''), '\n', sep='')    
     cat(" ¡La corrección no puede continuar hasta que no se solucione este problema!\n\n")
-    return('bye!')
+    return('Pruebe de nuevo entonces...')
   }
 
   ### Elección del archivo (y por lo tanto el ejercicio) a corregir
-  s  <- menu(corregir, title="Elija los archivos que desea corregir:")
-  r <- do.call(paste('cor_', gsub('.R', '', corregir[s]), sep=''), list(a=1))
-  notas$Nota[s] <- r
+  if (!missing(e)) {
+    if (length(e) > 1)
+      stop('Seleccione un único ejercicio o todos juntos (i.e.: ', nej + 1, ').')
+    s <- e
+  } else {
+    s <- menu(c(paste('Ej. (', ejnum, "): ", corregir, sep=""), 'Todos'),
+              title="Elija el archivo que desea corregir:")
+  }
+  msj <- NULL
+  if (s > nej) {
+    for (i in 1:nej) {
+      r <- try(corAll[[i]](), silent = TRUE)
+      if (is.character(r) || is.na(r)) {
+        msj <- c(msj, r)
+        hasmsj[i] <- TRUE
+        notas$Nota[i] <- 0
+      } else {
+        notas$Nota[i] <- r
+      }
+    }
+  } else {
+    r <- try(corAll[[s]](), silent = TRUE)
+    if (is.character(r) || is.na(r)) {
+      msj <- c(msj, r)
+      hasmsj[s] <- TRUE
+      notas$Nota[s] <- 0
+    } else {
+      notas$Nota[s] <- r
+    }
+  }
 
-  ### Feedback:
+  ### Feedback general:
   cat('\n==========RESULTADOS==========\n\n')
-  feedback(r, corregir[s])
-  notaActual <- 100 * sum(notas$Nota[- nrow(notas)]) / oblg
-  notas$Nota[nrow(notas)] <- notaActual
+  bien <- notas$Nota[- nrow(notas)] > 0
+  notaActual <- 100 * sum(bien) / oblg
+  notas$Nota[nrow(notas)] <- round(notaActual)
   # Nota: oblg es el número de ejercicios obligatorios. Si hay optativos, se
   # suman sus valores y entonces se puede llegar a porcentajes mayores a 100.
+  if (s <= nej) {
+    feedback(r, corregir[s])
+  }
+  correctos <- ejnum[bien]
+  cat('Ejercicios correctos:\n\n==>> ')
+  if (sum(bien) > 0) {
+    cat(correctos, sep=', ')
+  } else {
+    cat('Ninguno por ahora')
+  }
+  cat('\n\n')
+  if (!is.null(msj)) {
+    msjEjNum <- ejnum[hasmsj]
+    msjArch  <- corregir[hasmsj]
+    cat("Se generaron los siguientes mensajes de error:\n")
+    for (i in 1:sum(hasmsj)) {
+      cat('\n* Al corregir el ej. ', msjEjNum[i], ', archivo ', msjArch[i], ':\n==>> ', sep='')
+      cat(msj[i])
+    }
+  }
   cat('\n==============================\n')
 
-  cat('\nNota total hasta ahora:\n\n')
+  cat('\nTotal hasta ahora:', sum(bien), 'de', oblg, 'ejercicios; NOTA:', round(notaActual), '% \n\n')
   
-  print.data.frame(notas, row.names=FALSE, right=FALSE)
-  cat('\n')
-
+  if (sum(bien) == nej)
+    cat("¡¡Felicitaciones, ha alcanzado la nota máxima!!\n")
+  
+#   print.data.frame(notas, row.names=FALSE, right=FALSE)
+#   cat('\n')
+  codigo <- lapply(corregir, readLines)
+  names(codigo) <- corregir
   write.csv2(notas, file='notas.csv', row.names=FALSE)
   save(list=guardar, file='datos')
 }
@@ -41,11 +94,11 @@ verNotas <- function()
 
 ### FUNCIÓN DE FEEDBACK
 feedback <- function(r, s) {
-  if (r) {
-    cat('El script "', s, '" está perfecto, ¡Buen trabajo!\n', sep='')
+  if (!is.character(r) && r > 0) {
+    cat('El script "', s, '" está perfecto, ¡Buen trabajo!\n\n', sep='')
   } else {
-    cat('El script "', s, '" tiene algún error, lo sientimos :(\n', sep='')
+    cat('El script "', s, '" tiene algún error, lo siento :-(\n\n', sep='')
   }
 }
 
-cat("\n Código fuente cargado correctamente\n\n")
+cat("\n Archivo de codigo fuente cargado correctamente\n\n")
