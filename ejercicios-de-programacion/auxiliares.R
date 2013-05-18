@@ -1,5 +1,12 @@
 
-objetos <- NULL
+objetos <- vector("list")
+objetos$generales <- NULL
+objetos$rep.1 <- NULL
+objetos$rep.2 <- NULL
+objetos$rep.3 <- NULL
+objetos$rep.4 <- NULL
+objetos$rep.5 <- NULL
+objetos$rep.6 <- NULL
 
 ### GENERALES
 
@@ -19,7 +26,7 @@ mkmsj <- function(msj.base = "", obs, esp) {
                paste("  ", output, "\n", sep = ""))
   mensaje
 }
-objetos <- c(objetos, "mkmsj")
+objetos$generales <- c(objetos$generales, "mksmsj")
 
 
 mkmsj.v <- function(msj.base = "", vec.obs, vec.esp, tol = 1e-8) {
@@ -56,7 +63,7 @@ mkmsj.v <- function(msj.base = "", vec.obs, vec.esp, tol = 1e-8) {
     mensaje <- c(mensaje, "(se muestran sólo las primeras 10 diferencias)\n")
   mensaje
 }
-objetos <- c(objetos, "mkmsj.v")
+objetos$generales <- c(objetos$generales, "mkmsj.v")
 
 
 mkmsj.m <- function(msj.base = "", m.obs, m.esp, tol = 1e-8) {
@@ -91,7 +98,7 @@ mkmsj.m <- function(msj.base = "", m.obs, m.esp, tol = 1e-8) {
     mensaje <- c(mensaje, "(se muestran sólo las primeras 10 diferencias)\n")
   mensaje
 }
-objetos <- c(objetos, "mkmsj.m")
+objetos$generales <- c(objetos$generales, "mkmsj.m")
 
 
 mkmsj.df <- function(msj.base = "", df.obs, df.esp, tol = 1e-8) {
@@ -141,7 +148,7 @@ mkmsj.df <- function(msj.base = "", df.obs, df.esp, tol = 1e-8) {
     mensaje <- c(mensaje, "(se muestran sólo las primeras 10 diferencias)\n")
   mensaje
 }
-objetos <- c(objetos, "mkmsj.df")
+objetos$generales <- c(objetos$generales, "mkmsj.df")
 
 
 objnames <- function(esp, obj, oname, filas = FALSE) {
@@ -179,6 +186,7 @@ objnames <- function(esp, obj, oname, filas = FALSE) {
 	}
   FALSE
 }
+objetos$generales <- c(objetos$generales, "objnames")
 
 sacar.comentarios <- function(s) {
   # s: vector character
@@ -195,7 +203,7 @@ sacar.comentarios <- function(s) {
   s <- s[s != ""] # Saco líneas en blanco
   gsub(" +$", "", s) # Borra espacios al final de las líneas
 }
-objetos <- c(objetos, "sacar.comentarios")
+objetos$generales <- c(objetos$generales, "sacar.comentarios")
 
 cut.script <- function(arch, cut.str = "#===") {
   # arch: nombre del script de R (= 1 ejercicio)
@@ -212,7 +220,7 @@ cut.script <- function(arch, cut.str = "#===") {
   #   return(tmp)
   return(arch)
 }
-objetos <- c(objetos, 'cut.script')
+objetos$generales <- c(objetos$generales, 'cut.script')
 
 
 ### FUNCIÓN DE FEEDBACK
@@ -226,10 +234,13 @@ feedback <- function(r, s) {
        todas las consignas de la letra. \n\n', sep='')
   }
 }
-objetos <- c(objetos, 'feedback')
+objetos$generales <- c(objetos$generales, 'feedback')
 
-
+# PRINT.CODIGO
+# Función que ayuda a ver de forma "más linda" el código de los estudiantes
+# en el momento de corregir.
 print.codigo <- function(x) {
+  # class(x) <- "codigo"
   # x es una lista cuyos elementos
   # son vectores character:
   #   líneas de código
@@ -240,13 +251,13 @@ print.codigo <- function(x) {
     cat(out, sep="")
   }
 }
-objetos <- c(objetos, 'print.codigo')
+# objetos$generales$print.codigo <- print.codigo
+objetos$generales <- c(objetos$generales, 'print.codigo')
 
 
 ### RELOAD
-
+# Para facilitar el hacer pruebas en cambios en los correctores
 # Hay que probar esta última versión
-
 reload <- function() {
 # Esta función sólo se puede usar trabajando desde el subdirectorio
 # "Curso-R/ejercicios-de-programacion/rep-X/rep-X"
@@ -269,7 +280,7 @@ reload <- function() {
   #   unlink(tmp)
   out <- file.copy('datos', rdir, overwrite = TRUE)
 }
-objetos <- c(objetos, "reload")
+objetos$generales <- c(objetos$generales, "reload")
 
 
 ### CHEQUEAR ÚLTIMA VERSIÓN DE "DATOS":
@@ -343,6 +354,7 @@ check.datos.date <- function() {
   #   }
   return(TRUE)
 }
+objetos$generales <- c(objetos$generales, "check.datos.date")
 
 
 
@@ -356,12 +368,12 @@ cl <- function() {
   cal[cal == 0] <- 1
   cal
 }
-objetos <- c(objetos, "cl")
+objetos$rep.2 <- c(objetos$rep.2, "cl")
 
 
 gn <- function(cal)
   sample(c('V', 'M'), length(cal), replace=TRUE)
-objetos <- c(objetos, "gn")
+objetos$rep.2 <- c(objetos$rep.2, "gn")
 
 
 ct <- function(cal) {
@@ -373,7 +385,7 @@ ct <- function(cal) {
   out[9 < cal] <- 'D'
   out
 }
-objetos <- c(objetos, "ct")
+objetos$rep.2 <- c(objetos$rep.2, "ct")
 
 
 Print.listaCalif <- function(x) {
@@ -397,9 +409,9 @@ Print.listaCalif <- function(x) {
   cat('Conteos por franja de nota:\n')
   print(cnt)
 }
-objetos <- c(objetos, "Print.listaCalif")
+objetos$rep.2 <- c(objetos$rep.2, "Print.listaCalif")
 
-### ARCHIVO AUXILIAR
+### ARCHIVO AUXILIAR: ej2.RData
 
 cal <- cl()
 gen <- gn(cal)
@@ -434,11 +446,11 @@ save(cal, gen, ctg, p.apr, p.apr.v, p.apr.m, datos.calif, conteo, analisis.calif
   write.csv2(usa.inc, file = 'usa-extra.csv')
   warning("Como parte de la correción, se han cambiado algunos valores del archivo 'usa-extra.csv'\n", call. = FALSE)
 }
-objetos <- c(objetos, ".usainc")
+objetos$rep.3 <- c(objetos$rep.3, ".usainc")
 
 .z <- function(x) (x - mean(x, na.rm = T)) / sd(x, na.rm = T)
 est <- function(x) .z(x)
-objetos <- c(objetos, ".z", "est")
+objetos$rep.3 <- c(objetos$rep.3, ".z", "est")
 
 # save(objetos, file = "auxiliares.rda")
 
