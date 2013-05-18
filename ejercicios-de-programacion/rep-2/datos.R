@@ -3,20 +3,16 @@
 
 
 ###############################################################
-# ATENCIÓN: FALTA TERMINAR DE IMPLEMENTAR LAS NUEVAS FUNCIONES:
-# mkmsj.xxx
-# objnames
-# cut.script
-# ADEMÁS SE ESTÁ REESTRUCTURANDO TODO EL SISTEMA DE CORRECCIÓN!
+# ATENCIÓN:
+#   - info.RData: tabla de notas y muchos objetos utilizados por evaluar sobre todo.
+#   - auxiliar.RData: correctores y funciones asociadas (tanto del repartido como generales).
 ###############################################################
-
-# make.datos.R <- function() {
 
 ## NÚMERO DE REPARTIDO!
 #   nrep <- 2
 #   rdir <- paste0('rep-', nrep)
 rdir <- basename(getwd())
-nrep <- gsub("[[:alpha:][:punct:]]", "", repdir)
+nrep <- gsub("[[:alpha:][:punct:]]", "", rdir)
 rep.date <- format(Sys.time(), "%Y-%m-%d %H:%M") # Fecha en que se hizo "datos"
 url.desc <- "http://goo.gl/b4l9D" # URL acortada para bajar el archivo datos
 
@@ -56,9 +52,10 @@ class(codigo) <- "codigo"
 
 ## Números de ejercicios
 cor.split <- strsplit(corregir, "-")
-# ejnum <- unlist(cor.split)[1:length(cor.split) %% 2 == 1]
-ejnum <- unlist(cor.split)[grep("^[0-9]", unlist(cor.split))]
-# ejnum <- c('1.a', '1.b', '1.c', '1.d', '2.a', '2.b', '2.c', '2.d')
+ejnum <- unlist(cor.split)[grepl("^[0-9]", unlist(cor.split))]
+# xx <- unlist(cor.split)[!grepl("^[0-9]", unlist(cor.split))]
+# xx <- xx[-8]
+# file.copy(xx, corregir)
 
 notas <- data.frame(Parte = c(ejnum, 'Total (%)'),
                     Nota=numeric(length(corregir) + 1),

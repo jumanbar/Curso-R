@@ -1,11 +1,18 @@
 ### FUNCIONES DE CORRECCIÓN:
 
+###############################################################
+# ATENCIÓN: FALTA TERMINAR DE IMPLEMENTAR LAS NUEVAS FUNCIONES:
+# mkmsj.xxx
+# objnames
+# cut.script
+# ADEMÁS SE ESTÁ REESTRUCTURANDO TODO EL SISTEMA DE CORRECCIÓN!
+###############################################################
 cor1.a <- function() {
   # Cargar 'datos'
-  load('datos')
+  load('auxiliar.RData')
 
   # Cortar el archivo original y crear uno temporal
-  arch <- cut.script('aprobados.R')
+  arch <- cut.script('1.a-aprobados.R')
   #   arch <- readLines('aprobados.R')
   #   gr <- grep('#===', arch, useBytes = TRUE)
   #   arch <- arch[gr[1]:gr[2]]
@@ -24,7 +31,7 @@ cor1.a <- function() {
 	tol <- 1e-8 # Antes era 1e-15, pero era muy alto.
 
 	if (p.apr < 1)
-		warning("  El p.apr < 1, ¿tal vez no esté en porcentaje si no fracción?\n", call. = FALSE)
+		warning("  El p.apr < 1, ¿tal vez no esté en porcentaje si no fracción?", call. = FALSE)
 	if (abs(p.apr2 - p.apr) > tol)
 		stop("El valor obtenido no coincide con el esperado", call. = FALSE)
   TRUE
@@ -32,10 +39,10 @@ cor1.a <- function() {
 
 cor1.b <- function() {
   # Cargar datos y script
-  load('datos')
+  load('auxiliar.RData')
 
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('aprobados2.R')
+  arch <- readLines('1.b-aprobados2.R')
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
@@ -57,23 +64,23 @@ cor1.b <- function() {
 	tol <- 1e-8
 
 	if (p.apr.v < 1)
-		warning("  El p.apr.v < 1, ¿tal vez no esté en porcentaje si no fracción?\n", call. = FALSE)
+		warning("  El p.apr.v < 1, ¿tal vez no esté en porcentaje si no fracción?", call. = FALSE)
 	if (p.apr.m < 1)
-		warning("  El p.apr.m < 1, ¿tal vez no esté en porcentaje si no fracción?\n", call. = FALSE)
+		warning("  El p.apr.m < 1, ¿tal vez no esté en porcentaje si no fracción?", call. = FALSE)
 
 	if (abs(p.apr.v2 - p.apr.v) > tol)
-		stop("El valor obtenido no coincide con el esperado", call. = FALSE)
+		stop("El valor obtenido de p.apr.v no coincide con el esperado", call. = FALSE)
 	if (abs(p.apr.m2 - p.apr.m) > tol)
-		stop("El valor obtenido no coincide con el esperado", call. = FALSE)
+		stop("El valor obtenido de p.apr.m no coincide con el esperado", call. = FALSE)
   TRUE
 }
 
 cor1.c <- function() {
   # Cargar datos y script
-  load('datos')
+  load('auxiliar.RData')
 
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('mejorcitos.R')
+  arch <- readLines('1.c-mejorcitos.R')
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
@@ -110,10 +117,10 @@ cor1.c <- function() {
 
 cor1.d <- function() {
   # Cargar datos y script
-  load('datos')
+  load('auxiliar.RData')
 
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('franjas.R')
+  arch <- readLines('1.d-franjas.R')
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
@@ -155,10 +162,10 @@ cor1.d <- function() {
 
 cor2.a <- function() {
   # Cargar datos y script
-  load('datos')
+  load('auxiliar.RData')
 
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('data.frame.R')
+  arch <- readLines('2.a-data.frame.R')
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
@@ -190,10 +197,10 @@ cor2.a <- function() {
 
 cor2.b <- function() {
   # Cargar datos y script
-  load('datos')
+  load('auxiliar.RData')
 
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('ordenacion.R')
+  arch <- readLines('2.b-ordenacion.R')
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
@@ -231,10 +238,10 @@ cor2.b <- function() {
 
 cor2.c <- function() {
   # Cargar datos y script
-  load('datos')
+  load('auxiliar.RData')
 
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('lista.R')
+  arch <- readLines('2.c-lista.R')
   arch2 <- gsub(' ', '', arch)
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
@@ -310,8 +317,8 @@ cor2.c <- function() {
 
 cor2.d <- function() {
   # Cargar datos y script
-  load('datos')
-  source('print.listaCalif.R')
+  load('auxiliar.RData')
+  source('2.d-extra-print.listaCalif.R')
 
   # Generación de datos
   cal <- cl()
