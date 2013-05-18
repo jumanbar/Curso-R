@@ -399,6 +399,28 @@ Print.listaCalif <- function(x) {
 }
 objetos <- c(objetos, "Print.listaCalif")
 
+### ARCHIVO AUXILIAR
+
+cal <- cl()
+gen <- gn(cal)
+ctg <- ct(cal)
+datos.calif <- data.frame(nota = cal,
+													genero = gen,
+													franja = ctg)
+datos.calif <- datos.calif[order(cal),]
+conteo <- table(ctg)
+p.apr <- 100 * sum(cal >= 5) / length(cal)
+v <- cal[gen == "V"]
+m <- cal[gen == "M"]
+p.apr.v <- 100 * sum(v >= 5) / length(v)
+p.apr.m <- 100 * sum(m >= 5) / length(m)
+analisis.calif <- list(tabla = datos.calif,
+											 conteo = table(ctg),
+											 aprob = list(atot = p.apr,
+																		avar = p.apr.v,
+																		amuj = p.apr.m))
+save(cal, gen, ctg, p.apr, p.apr.v, p.apr.m, datos.calif, conteo, analisis.calif,
+		 file = "ej2.RData")
 
 ## ======================================================================= ##
 
