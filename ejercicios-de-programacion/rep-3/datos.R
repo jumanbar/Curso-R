@@ -149,8 +149,8 @@ cor1.b <- function() {
   }
 
   if (!identical(usa2$Analf, usaX$Analf)) {
-    mensaje <- mkmsj.v("Los valores de usa2$Analf no son los esperados,\n",
-                        usa2$Analf, usaX$Analf)
+    mensaje <- mkmsj.df("Los valores de usa2$Analf no son los esperados,\n",
+                        usa2["Analf"], usaX["Analf"])
     return(mensaje)
   }
 
