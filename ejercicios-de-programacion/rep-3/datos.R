@@ -433,8 +433,8 @@ cor1.g <- function() {
   unlink(tmp)
   usa.norm <- readLines('usa-norm.csv')
 
-  if (grepl("\"\";", usa.norm[1]))
-    usa.norm[1] <- sub("\"\";", "", usa.norm[1])
+  if (grepl("^\"\";", usa.norm[1]))
+    usa.norm[1] <- sub("^\"\";", "", usa.norm[1])
   usa.import <- read.table('usa-norm.csv', header = TRUE, sep = ";", dec = ",", row.names = 1)
 
   if (ncol(usa.import) != ncol(usa.importX)) {
