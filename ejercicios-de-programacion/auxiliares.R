@@ -318,6 +318,7 @@ check.datos.date <- function() {
   if (dif > 0.5) {
     cat("Su versión de 'datos' es", dif2, attr(dif2, "units"), "más vieja que la disponible para bajar\n")
     cat("==>> Se recomienda descargar una nueva versión del archivo 'datos'\n")
+  }
   if (dif > 0 && dif <= 0.5) {
     cat("Su versión de 'datos' es", dif2, attr(dif2, "units"), "más vieja que la disponible para bajar\n")
     warning("Es probable que se trate de la misma versión, por ser tan poca la diferencia de tiempo")

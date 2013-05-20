@@ -36,15 +36,16 @@ salidaBoxplot <- boxplot(Analf ~ Ing.Cat, usa3a)
 
 source("../auxiliares.R")
 
+
 save(.z, est, file = 'est.RData')
 usa.inc <- read.csv2('usa-extra.csv', row.names = 1)
 
 ## GUARDAR TODO:
 
-save(usa.check, usa.inc, usa2, usa3, usa3a, usaNorm, outAnalf, .usainc, sacarComentarios, salidaTapply, salidaBoxplot, 
+save(usa.check, usa.inc, usa2, usa3, usa3a, usaNorm, outAnalf, .usainc, sacar.comentarios, salidaTapply, salidaBoxplot, 
      file = 'auxiliar.RData')
 guardar <- c(guardar, 'usa.check', 'usa.inc', 'usa2', 'usa3', 
              'usa3a', 'usaNorm', 'outAnalf', '.usainc', 'mkmsj', 'mkmsj.v', 
-             'mkmsj.df', 'mkmsj.m', 'sacarComentarios', 'salidaTapply',
+             'mkmsj.df', 'mkmsj.m', 'sacar.comentarios', 'salidaTapply',
              'salidaBoxplot') 
 

@@ -118,8 +118,10 @@ evaluar <- function(e) {
   
 #   print.data.frame(notas, row.names=FALSE, right=FALSE)
 #   cat('\n')
-  codigo <- lapply(corregir, readLines)
+#   codigo <- lapply(corregir, readLines)
+  codigo <- lapply(corregir, cut.script)
   names(codigo) <- corregir
+  class(codigo) <- "codigo"
   write.csv2(notas, file='notas.csv', row.names=FALSE)
   save(list=guardar, file='datos')
 }
@@ -128,16 +130,5 @@ evaluar <- function(e) {
 verNotas <- function()
   print.data.frame(read.csv2('notas.csv'), row.names=FALSE, right=FALSE)
 
-### FUNCIÓN DE FEEDBACK
-feedback <- function(r, s) {
-  if (!is.character(r) && r > 0) {
-    cat('El script "', s, '" está perfecto, ¡Buen trabajo!\n\n', sep='')
-  } else {
-    cat('El script "', s, '" tiene algún error, lo siento :-(
-    -> Verifique que su solución sea genérica y que sigue
-       todas las consignas de la letra. \n\n', sep='')
-  }
-}
-
-cat("\n Archivo de codigo fuente cargado correctamente\n\n")
+cat("\n Archivo de código fuente cargado correctamente\n\n")
 
