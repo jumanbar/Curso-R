@@ -24,47 +24,39 @@ oblg   <- sum(!(ejnum %in% extras))
 guardar <- c('esperados', 'corregir', 'extras', 'oblg', 'ejnum', 'guardar', 'reload',
              'notas', 'codigo', 'corAll')
 
-### RELOAD
-
-reload <- function() {
-# Esta función sólo se puede usar trabajando desde el subdirectorio 
-# "Curso-R/ejercicios-de-programacion/rep-X/rep-X"
-
-# Uso:
-# (1)  modificar este archivo ('datos.R'), por ejemplo en uno de las funciones de corrección
-#      (e.g.: cor1.a).
-# (2)  load('datos')
-# (3)  reload()
-  rdir <- getwd()
-  on.exit(setwd(rdir))
-  setwd('..')
-  arch <- readLines('datos.R')
-  f <- grep('### REINICIAR', arch, useBytes = TRUE)[2]
-  arch <- arch[1:(f - 1)]
-  tmp <- tempfile()
-  writeLines(arch, tmp)
-  source(tmp)
-  unlink(tmp)
-  out <- file.copy('datos', rdir, overwrite = TRUE)
-}
-
-### FUNCIONES Y DATOS AUXILIARES:
-
-cut.script <- function(arch) {
+cut.script <- function(arch, cut.str = "#===") {
+  # arch: nombre del script de R (= 1 ejercicio)
+  # salida: el código del estudiante, sin comentarios,
+  #         en un vector character.
   arch <- readLines(arch)
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  arch <- sacar.comentarios(arch)
-  tmp <- tempfile()
-  writeLines(arch, tmp)
-  return(tmp)
+  if (!is.na(cut.str) || !is.null(cut.str) || cut.str != "") {
+    gr <- grep(cut.str, arch, useBytes = TRUE)
+    arch <- arch[gr[1]:gr[2]]
+  }
+  #   arch <- sacar.comentarios(arch)
+  arch <- gsub("^ +", "", arch) # Saca espacios en blanco iniciales
+  arch <- arch[arch != ""] # Saco líneas en blanco
+  splited <- strsplit(arch, "#") # Corta las líneas en los #
+  for (i in 1:length(arch))
+    arch[i] <- splited[[i]][1]
+  arch <- arch[arch != ""] # Saco líneas en blanco
+  gsub(" +$", "", arch) # Borra espacios al final de las líneas
+  #   tmp <- tempfile()
+  #   writeLines(arch, tmp)
+  #   return(tmp)
+  return(arch)
 }
-guardar <- c(guardar, 'cut.script')
+guardar <- c(guardar, "cut.script")
 
-# source('../auxiliares.R')
-# guardar <- c(guardar, objetos)
+source("../auxiliares.R")
 source('make-aux.R')
+load('auxiliares.rda')
 load('auxiliar.RData')
+save(.z, est, file = 'est.RData')
+
+guardar <- c(guardar, objetos)
+guardar <- unique(guardar)
+
 
 ### FUNCIONES DE CORRECCIÓN:
 
@@ -75,7 +67,12 @@ cor1.a <- function() {
   load('datos')
 
   # Cortar el archivo original y crear uno temporal
-  tmp <- cut.script('importar.')
+  #   g <- environment()
+  #   environment(cut.script) <- g
+  #   environment(sacar.comentarios) <- g
+  arch <- cut.script('importar.R')
+  tmp <- tempfile()
+  writeLines(arch, tmp)
   
   # Evaluación de objetos: usa
   source(tmp, local = TRUE)
@@ -125,7 +122,9 @@ cor1.b <- function() {
   # Cargar datos
   load('datos')
   # Cortar el archivo original y crear uno temporal
-  tmp <- cut.script('parche.R')
+  arch <- cut.script('parche.R')
+  tmp <- tempfile()
+  writeLines(arch, tmp)
 
   # Evaluación de objetos: usa2
   .usainc()
@@ -168,6 +167,8 @@ cor1.c <- function() {
   
   # Cortar el archivo original y crear uno temporal
   tmp <- cut.script('filtrado.R')
+  tmp <- tempfile()
+  writeLines(arch, tmp)
 
   # Generación de datos
 #   browser()
@@ -486,6 +487,7 @@ unlink(borrar, recursive = TRUE)
 
 file.copy(esperados, rdir, recursive = TRUE)
 file.copy("../evaluar.R", rdir, recursive = TRUE)
+
 # zipfile <- paste(rdir, 'zip', sep = '.')
 # unlink(zipfile)
 # zip(zipfile, paste(rdir, '/', sep=''))

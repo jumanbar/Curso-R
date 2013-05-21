@@ -189,30 +189,31 @@ sacar.comentarios <- function(s) {
   s <- gsub("^ +", "", s) # Saca espacios en blanco iniciales
   s <- s[s != ""] # Saco líneas en blanco
   splited <- strsplit(s, "#") # Corta las líneas en los #
-  for (i in 1:length(s)) {
+  for (i in 1:length(s))
     s[i] <- splited[[i]][1]
-  }
   s <- s[s != ""] # Saco líneas en blanco
   gsub(" +$", "", s) # Borra espacios al final de las líneas
 }
 objetos <- c(objetos, "sacar.comentarios")
 
-cut.script <- function(arch, cut.str = "#===") {
+# Dejo esta copia de cup.sript (diferente a la de los archivos datos.R) para usar en el futuro
+# cuando se haga el paquete IMSER.
+# cut.script <- function(arch, cut.str = "#===") {
   # arch: nombre del script de R (= 1 ejercicio)
   # salida: el código del estudiante, sin comentarios,
   #         en un vector character.
-  arch <- readLines(arch)
-  if (!is.na(cut.str) || !is.null(cut.str) || cut.str != "") {
-    gr <- grep(cut.str, arch, useBytes = TRUE)
-    arch <- arch[gr[1]:gr[2]]
-  }
-  arch <- sacar.comentarios(arch)
+#   arch <- readLines(arch)
+#   if (!is.na(cut.str) || !is.null(cut.str) || cut.str != "") {
+#     gr <- grep(cut.str, arch, useBytes = TRUE)
+#     arch <- arch[gr[1]:gr[2]]
+#   }
+#   arch <- sacar.comentarios(arch) # Esta función no la vé!!! por eso hay que poner cut.script en datos.R
   #   tmp <- tempfile()
   #   writeLines(arch, tmp)
   #   return(tmp)
-  return(arch)
-}
-objetos <- c(objetos, 'cut.script')
+#   return(arch)
+# }
+# objetos <- c(objetos, 'cut.script')
 
 
 ### FUNCIÓN DE FEEDBACK
@@ -250,7 +251,8 @@ objetos <- c(objetos, 'print.codigo')
 reload <- function() {
 # Esta función sólo se puede usar trabajando desde el subdirectorio
 # "Curso-R/ejercicios-de-programacion/rep-X/rep-X"
-
+# ATENCIÓN: sólo modifica el archivo "datos", dejando todos los scripts como
+#           estaban.
 # Uso:
 # (1)  modificar este archivo ('datos.R'), por ejemplo en uno de las funciones de corrección
 #      (e.g.: cor1.a).
@@ -407,10 +409,10 @@ objetos <- c(objetos, "Print.listaCalif")
 
 .usainc <- function() {
   load('datos')
-  n <- is.na(usa.inc$Analf)
-  #   usa.inc$Analf[n] <- outAnalf + sample(c(-0.1, 0.1), sum(n), replace = TRUE)
-  usa.inc$Analf[n] <- outAnalf + round(runif(sum(n), -0.1, 0.1), 1)
-  write.csv2(usa.inc, file = 'usa-extra.csv')
+  n <- is.na(usa.extraX$Analf)
+  #   usa.extraX$Analf[n] <- outAnalf + sample(c(-0.1, 0.1), sum(n), replace = TRUE)
+  usa.extraX$Analf[n] <- outAnalf + round(runif(sum(n), -0.1, 0.1), 1)
+  write.csv2(usa.extraX, file = 'usa-extra.csv')
   warning("Como parte de la correción, se han cambiado algunos valores del archivo 'usa-extra.csv'\n", call. = FALSE)
 }
 objetos <- c(objetos, ".usainc")
@@ -419,6 +421,6 @@ objetos <- c(objetos, ".usainc")
 est <- function(x) .z(x)
 objetos <- c(objetos, ".z", "est")
 
-# save(objetos, file = "auxiliares.rda")
+save(list = objetos, file = "auxiliares.rda")
 
 
