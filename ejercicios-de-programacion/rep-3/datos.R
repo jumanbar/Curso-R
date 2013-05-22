@@ -55,6 +55,7 @@ load('auxiliar.RData')
 save(.z, est, file = 'est.RData')
 
 guardar <- c(guardar, objetos)
+
 guardar <- unique(guardar)
 
 
@@ -85,28 +86,33 @@ cor1.a <- function() {
 
   if (!is.data.frame(usa))
     stop("usa no es 'data.frame'", call. = FALSE)
+  cat("is.data.frame(usa) ... OK\n")
 
   if (!all(dim(usa) == dim(usa.check))) {
-    mensaje <- mkmsj.v("las dimensiones de usa no son las esperadas",
-                       dim(usa), dim(usa.check))
-    return(mensaje)
+    stop("las dimensiones de usa no son las esperadas, ",
+         "deberían ser: ", paste(dim(usa.check), collapse = " "),
+         ", pero son: ", paste(dim(usa), collapse = " "), call. = FALSE)
   }
+  cat("dim(usa) ... OK\n")
 
   if (all(toupper(cn) == toupper(cn2)) && any(cn != cn2))
     warning(" Parece haber un problema de mayúsculas/minúsculas en los nombres de las columnas", call. = FALSE)
   if (!all(cn == cn2))
     stop("Los nombres de las columnas de usa no son los esperados", call. = FALSE)
+  cat("colnames(usa) ... OK\n")
 
   if (all(toupper(cn) == toupper(cn2)) && any(cn != cn2))
     warning(" Parece haber un problema de mayúsculas/minúsculas en los nombres de las filas", call. = FALSE)
   if (!identical(rn, rn2))
     stop("Los nombres de las filas de usa no son los esperados", call. = FALSE)
+  cat("rownames(usa) ... OK\n")
 
   if (!all(usa == usa.check, na.rm = TRUE)) {
     mensaje <- mkmsj.df("Hay valores en la data.frame usa que no son los esperados",
                         usa, usa.check)
     return(mensaje)
   }
+  cat("valores de data.frame usa ... OK\n")
 
   clases1 <- sapply(usa, class)
   clases2 <- sapply(usa.check, class)
@@ -115,6 +121,8 @@ cor1.a <- function() {
                        clases1, clases2)
     return(mensaje)
   }
+  cat("clases de data.frame usa ... OK\n")
+
   TRUE
 }
 
@@ -138,26 +146,34 @@ cor1.b <- function() {
   source(tmp, local = TRUE)
   unlink(tmp)
 
+  if (identical(usa2, usaX))
+    return(TRUE)
+
   if (!is.data.frame(usa2))
     stop("usa2 no es 'data.frame'", call. = FALSE)
+  cat("is.data.frame(usa2) ... OK\n")
 
   # Asegurarse de que no hay NA en Analf:
   if (any(is.na(usa2$Analf))) {
     donde <- paste(which(is.na(usa2$Analf)), collapse = " ")
     return(paste("La columna Analf aún tiene valores NA en las posiciones:", donde, "\n", sep = " "))
   }
+  cat("¿hay NA's en usa2$Analf? ... OK\n")
 
   if (!identical(usa2$Analf, usaX$Analf)) {
     mensaje <- mkmsj.df("Los valores de usa2$Analf no son los esperados,\n",
                         usa2["Analf"], usaX["Analf"])
     return(mensaje)
   }
+  cat("valores de usa2$Analf ... OK\n")
 
   if (!all(usa2 == usaX, na.rm = TRUE)) {
     mensaje <- mkmsj.df("Hay valores en la data.frame usa2 que no son los esperados",
                         usa2, usaX)
     return(mensaje)
   }
+  cat("valores de usa2 ... OK\n")
+
   TRUE
 }
 
@@ -166,7 +182,7 @@ cor1.c <- function() {
   load('datos')
   
   # Cortar el archivo original y crear uno temporal
-  tmp <- cut.script('filtrado.R')
+  arch <- cut.script('filtrado.R')
   tmp <- tempfile()
   writeLines(arch, tmp)
 
@@ -182,20 +198,26 @@ cor1.c <- function() {
   source(tmp, local = TRUE)
   unlink(tmp)
 
+  if (identical(usa3, usaX))
+    return(TRUE)
+
   if (!is.data.frame(usa3))
     stop("usa3 no es 'data.frame'", call. = FALSE)
+  cat("is.data.frame(usa3) ... OK\n")
 
   if (any(is.na(usa3$Ingresos))) {
     warning(" Ej. 1.c: En la corrección los NA son puestos en posiciones aleatorias de la columna", call. = FALSE)
     donde <- paste(which(is.na(usa3$Ingresos)), collapse = " ")
     return(paste("La columna Ingresos aún tiene valores NA en las posiciones:", donde, "\n", sep = " "))
   }
+  cat("¿hay NA's en usa3$Ingresos? ... OK\n")
 
   if (!all(usa3 == usaX, na.rm = TRUE)) {
     mensaje <- mkmsj.df("Hay valores en la data.frame usa3 que no son los esperados",
                         usa3, usaX)
     return(mensaje)
   }
+  cat("valores de usa3 ... OK\n")
 
   TRUE
 }
@@ -223,21 +245,33 @@ cor1.d <- function() {
   # Evaluación de objetos: ctg y conteo
   source(tmp, local=TRUE)
   unlink(tmp)
+
+  if (!is.function(est.foo))
+    stop("El objeto est no es una función", call. = FALSE)
+  cat("is.function(est) ... OK\n")
+
   x <- rnorm(100, 15, 3)
   x[sample(100, 3)] <- NA
   o1 <- est.foo(x)
   o2 <- estX(x)
 
+  if (identical(o1, o2))
+    return(TRUE)
+
   if (all(is.na(o1)))
     stop("los valores de salida de est son todos NA", call. = FALSE)
+  cat("¿salida de est todos NA's? ... OK\n")
 
-  if (is.na(o1) != is.na(x)) {
+  if (!all(is.na(o1) == is.na(x))) {
     warning("  En la corrección se utiliza un vector aleatorio como entrada de est (con NA's)", call. = FALSE)
     stop("las posiciones de los NA en la salida de est no son idénticas a las del vector de entrada", call. = FALSE)
   }
+  cat("ubicación de los NA's ... OK\n")
 
   if (!all(o1 == o2, na.rm = TRUE))
     stop("los valores de salida de la función est no es idéntica a la esperada", call. = FALSE)
+  cat("salida de est ... OK\n")
+
   TRUE
 }
 
@@ -257,6 +291,7 @@ cor1.e <- function() {
 
   if (!any(grepl('apply', arch)))
     stop("la función apply no figura en su código", call. = FALSE)
+  cat("¿función apply en el código? ... OK\n")
 
   arch[app] <- sub('est', 'estX', arch[app])
   writeLines(arch, tmp)
@@ -275,6 +310,7 @@ cor1.e <- function() {
 
   if (!is.data.frame(datosNumericos) && !is.matrix(datosNumericos))
     stop("datosNumericos no es de clase matrix ni data.frame", call. = FALSE)
+  cat("¿datosNumericos es matrix/data.frame?... OK\n")
 
   if (is.data.frame(datosNumericos)) {
     num <- sapply(datosNumericos, is.numeric)
@@ -288,42 +324,50 @@ cor1.e <- function() {
       stop(paste("datosNumericos no es una matriz numérica si no", clase), call. = FALSE)
     }
   }
+  cat("clase de datosNumericos ... OK\n")
 
   if (!all(datosNumericos == datosNumericosX, na.rm = TRUE)) {
     mensaje <- mkmsj.df("datosNumericos no coincide con los valores de las columnas numéricas de usa3",
                         datosNumericos, datosNumericosX)
     return(mensaje)
   }
+  cat("valores de datosNumericos ... OK\n")
 
   if (!is.matrix(datosTrans))
     stop("datosTrans no es de clase matrix", call. = FALSE)
+  cat("is.matrix(datosTrans) ... OK\n")
 
   if (!all(datosTrans == datosTransX, na.rm = TRUE)) {
     mensaje <- mkmsj.m("Los valores de datosTrans no coinciden con los valores esperados",
                         datosTrans, datosTransX)
     return(mensaje)
   }
+  cat("valores de datosTrans ... OK\n")
 
   if (!is.data.frame(usaNorm))
     stop("usaNorm no es de clase data.frame", call. = FALSE)
+  cat("is.data.frame(usaNorm) ... OK\n")
 
   if (!all(colnames(usaNorm) == colnames(usaNormX))) {
     mensaje <- mkmsj.v("los nombres de las columnas de usaNorm no son los correctos",
                        colnames(usaNorm), colnames(usaNormX))
     return(mensaje)
   }
+  cat("colnames(usaNorm) ... OK\n")
 
   if (!all(rownames(usaNorm) == rownames(usaNormX))) {
     mensaje <- mkmsj.v("los nombres de las filas de usaNorm no son los correctos",
                        rownames(usaNorm), rownames(usaNormX))
     return(mensaje)
   }
+  cat("rownames(usaNorm) ... OK\n")
 
   if (!all(usaNorm == usaNormX, na.rm = TRUE)) {
     mensaje <- mkmsj.df("los valores de usaNorm no coinciden con los esperados",
                         usaNorm, usaNormX)
     return(mensaje)
   }
+  cat("valores de usaNorm ... OK\n")
   
   TRUE
 }
@@ -340,13 +384,16 @@ cor1.f <- function() {
 
   if (!any(grepl('tapply', arch)))
     stop("la función tapply no figura en su código", call. = FALSE)
+  cat("¿está tapply? ... OK\n")
 
   tp <- grep('tapply',  arch)
   if (!any(grepl('summary', arch[tp])))
     stop("la función summary no figura en la línea de tapply", call. = FALSE)
+  cat("¿está summary? ... OK\n")
 
   if (!any(grepl('boxplot', arch)))
     stop("la función boxplot no figura en su código", call. = FALSE)
+  cat("¿está boxplot? ... OK\n")
 
   bx <- grep('boxplot', arch)
   arch <- c(arch[1:(bx - 1)],
@@ -375,16 +422,19 @@ cor1.f <- function() {
 
   if (!any("Ing.Cat" %in% names(usa3a)))
     stop("no hay columna llamada 'Ing.Cat' en usa3", call. = FALSE)
+  cat("¿Ing.Cat en usa3? ... OK\n")
 
   if (!is.factor(usa3a$Ing.Cat))
     stop("la columna Ing.Cat de usa3 no es de clase factor", call. = FALSE)
+  cat("is.factor(usa3$Ing.Cat) ... OK\n")
 
   if (nlevels(usa3a$Ing.Cat) != 4)
     stop("el factor usa3$Ing.Cat no tiene 4 niveles como debería", call. = FALSE)
+  cat("número de niveles de usa3$Ing.Cat ... OK\n")
 
   if (!all(levels(usa3a$Ing.Cat) == c("D", "C", "B", "A"))) {
     levels(usa3a$Ing.Cat) <- c("D", "C", "B", "A")
-    msj <- c("Se cambiaron los nombres de los niveles del factor:\n",
+    msj <- c("En la corrección se cambiaron los nombres de los niveles del factor:\n",
              "  > levels(usa3$Ing.Cat) <- c('D', 'C', 'B', 'A')\n")
     warning(msj, call. = FALSE)
   }
@@ -395,12 +445,18 @@ cor1.f <- function() {
                        usa3a$Ing.Cat, usaX$Ing.Cat)
     return(mensaje)
   }
+  cat("valores de usa3$Ing.Cat ... OK\n")
 
-  if (!identical(salidaTapply, salidaTapplyX))
+  if (!identical(salidaTapply, salidaTapplyX)) {
+    if (!all(names(salidaTapply) == names(salidaTapplyX)))
+      warning("  Los nombres de los elementos de salidaTapply no son los esperados", call. = FALSE)
     stop("El objeto salidaTapply resultante difiere del esperado", call. = FALSE)
+  }
+  cat("salidaTapply ... OK\n")
 
   if (!identical(salidaBoxplot, salidaBoxplotX))
     stop("El objeto salidaBoxplot resultante difiere del esperado", call. = FALSE)
+  cat("salidaBoxplot ... OK\n")
 
   TRUE
 }
@@ -430,6 +486,10 @@ cor1.g <- function() {
 
 
   # Evaluación de objetos: archivo 'usa-norm.csv'
+  #   if (!file.exists("usa-norm.csv"))
+  #     stop("no existe el archivo usa-norm.csv en la carpeta de trabajo", call. = FALSE)
+  #   cat("existe el archivo usa-norm.csv ... OK\n")
+
   source(tmp, local=TRUE)
   unlink(tmp)
   usa.norm <- readLines('usa-norm.csv')
@@ -444,27 +504,32 @@ cor1.g <- function() {
     warning(mensaje, call. = FALSE)
     stop("Aparentemente el separador de columnas no es ';'", call. = FALSE)
   }
+  cat("separador de columnas en usa-norm.csv ... OK\n")
 
   if (!is.numeric(usa.import[,sample(2:9, 1)]))
     stop("Aparentemente el punto decimal no es ','", call. = FALSE)
+  cat("decimales en usa-norm.csv ... OK\n")
 
   if (!all(colnames(usa.importX) == colnames(usa.import))) {
     mensaje <- mkmsj.v("Los nombres de las columnas no se guardaron correctamente",
                        colnames(usa.import), colnames(usa.importX))
     return(mensaje)
   }
+  cat("encabezados en usa-norm.csv ... OK\n")
 
   if (!all(rownames(usa.importX) == rownames(usa.import))) {
     mensaje <- mkmsj.v("Los nombres de las filas no se guardaron correctamente",
                        rownames(usa.import), rownames(usa.importX))
     return(mensaje)
   }
+  cat("nombres de filas en usa-norm.csv ... OK\n")
 
   if (!all(usa.importX == usa.import, na.rm = TRUE)) {
     mensaje <- mkmsj.df("Los valores de usa.norm parece que no se guardaron correctamente",
                         usa.import, usa.importX)
     return(mensaje)
   }
+  cat("valores en usa-norm.csv ... OK\n")
 
   TRUE
 }

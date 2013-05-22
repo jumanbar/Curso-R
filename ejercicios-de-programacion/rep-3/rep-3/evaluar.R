@@ -36,7 +36,7 @@ evaluar <- function(e) {
     warning(mensaje, call. = FALSE) 
   }
   
-  if (!all(f <- esperados %in% arc)) {
+  if (!all(f <- esperados %in% arc)) { # Es lo mismo poner f <- file.exists(esperados)
     mensaje <- c("  Tal vez ud. no esté trabajando en el directorio correcto,", 
                  "  utilice setwd para seleccionar la carpeta del repartido, ej.:",
                  "  >>   setwd('~/CursoR/rep-X')",
@@ -105,7 +105,7 @@ evaluar <- function(e) {
     cat("Se generaron los siguientes mensajes de error:\n")
     for (i in 1:sum(hasmsj)) {
       cat('\n* Al corregir el ej. ', msjEjNum[i], ', archivo ', msjArch[i], ':\n', sep='')
-      msj.i <- paste("| ", msj[hasmsj][[1]])
+      msj.i <- paste("| ", msj[hasmsj][[i]])
       cat(msj.i, sep='')
     }
   }

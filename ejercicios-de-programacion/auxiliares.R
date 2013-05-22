@@ -262,7 +262,7 @@ reload <- function() {
   on.exit(setwd(rdir))
   setwd('..')
   arch.datos <- readLines('datos.R')
-  linea.final <- grep('### REINICIAR', arch.datos, useBytes = TRUE)[2]
+  linea.final <- grep('### REINICIAR', arch.datos, useBytes = TRUE)
   arch.datos <- arch.datos[1:(linea.final - 1)]
   eval(parse(text = arch.datos))
   #   tmp <- tempfile()
