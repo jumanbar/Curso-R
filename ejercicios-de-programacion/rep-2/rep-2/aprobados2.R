@@ -12,8 +12,8 @@
 
 # v: calificacinones de los estudiantes varones
 # m: calificaciones de las estudiantes mujeres
-# apr.v: cantidad total de aprovados varones (notas mayores o iguales a 5)
-# apr.m: cantidad total de aprovadas mujeres (notas mayores o iguales a 5)
+# apr.v: cantidad total de aprobados varones (notas mayores o iguales a 5)
+# apr.m: cantidad total de aprobadas mujeres (notas mayores o iguales a 5)
 
 # Note además que en la evaluación automática cal y gen serán sustituidos por 
 # vectores creados aleatoriamente.
@@ -33,4 +33,3 @@ p.apr.v <- 0
 p.apr.m <- 0
 
 #====== Aquí finaliza su código =====#
-

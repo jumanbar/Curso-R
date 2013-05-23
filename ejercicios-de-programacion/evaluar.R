@@ -1,17 +1,20 @@
 
-if (tolower(getOption("encoding")) != "utf-8") {
-  msjenc <- c("\n¡El encoding actual no es UTF-8!\n",
-              "lo cual es un problema con tildes y enies,",
-              "ajuste su configuracion con el comando:\n",
-              "   options(encoding = 'utf-8')\n")
-  msjenc <- paste(msjenc, "\n", sep = "")
-  stop(msjenc, call. = FALSE) 
-}
+# if (tolower(getOption("encoding")) != "utf-8") {
+#   msjenc <- c("\n¡El encoding actual no es UTF-8!\n",
+#               "lo cual es un problema con tildes y enies,",
+#               "ajuste su configuracion con el comando:\n",
+#               "   options(encoding = 'utf-8')\n")
+#   msjenc <- paste(msjenc, "\n", sep = "")
+#   stop(msjenc, call. = FALSE) 
+# }
+cat("Los siguientes caracteres deben ser vocales con acento:\n",
+    "  á - é - í - ó - ú\n",
+    "Si no se ven correctamente corra el siguiente comando:\n",
+    "  source('evaluar.R', encoding = 'UTF-8')\n\n", sep = "")
 
 evaluar <- function(e) {
   #
-  w <- try(load('datos'), silent = TRUE)
-  if (class(w) == "try-error") {
+  if (!file.exists("datos")) {
     mensaje <- c("Tal vez ud. no esté trabajando en el directorio correcto,", 
                  "   su directorio de trabajo actual es:",
                  paste("   '", getwd(), "'", sep=""),
@@ -21,20 +24,21 @@ evaluar <- function(e) {
     warning(paste(mensaje, "\n", sep=""), call. = FALSE)
     stop("evaluar no pudo encontrar el archivo 'datos', no se puede continuar ...", call. = FALSE)
   }
+  load("datos")
   nej <- length(corregir)
   #   hasmsj <- logical(nej)
   arc <- dir()
   #
-  if (tolower(getOption("encoding")) != "utf-8") {
-    mensaje <- c("\n¡El encoding actual no es UTF-8!\n",
-                 "lo cual es un problema con tildes y enies,",
-                 "ajuste su configuracion con el comando:\n",
-                 "   options(encoding = 'utf-8')\n",
-                 "y luego vuelva a ejecutar:\n",
-                 "   source('evaluar.R')\n")
-    mensaje <- paste(mensaje, "\n", sep = "")
-    warning(mensaje, call. = FALSE) 
-  }
+  #   if (tolower(getOption("encoding")) != "utf-8") {
+  #     mensaje <- c("\n¡El encoding actual no es UTF-8!\n",
+  #                  "lo cual es un problema con tildes y enies,",
+  #                  "ajuste su configuracion con el comando:\n",
+  #                  "   options(encoding = 'utf-8')\n",
+  #                  "y luego vuelva a ejecutar:\n",
+  #                  "   source('evaluar.R')\n")
+  #     mensaje <- paste(mensaje, "\n", sep = "")
+  #     warning(mensaje, call. = FALSE) 
+  #   }
   
   if (!all(f <- esperados %in% arc)) { # Es lo mismo poner f <- file.exists(esperados)
     mensaje <- c("  Tal vez ud. no esté trabajando en el directorio correcto,", 
@@ -130,5 +134,5 @@ evaluar <- function(e) {
 verNotas <- function()
   print.data.frame(read.csv2('notas.csv'), row.names=FALSE, right=FALSE)
 
-cat("\n Archivo de código fuente cargado correctamente\n\n")
+# cat("\n Archivo de código fuente cargado correctamente\n\n")
 

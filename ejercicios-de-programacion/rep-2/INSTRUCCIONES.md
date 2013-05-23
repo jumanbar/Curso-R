@@ -10,7 +10,7 @@ Instrucciones generales:
 
 ### Archivos incluidos:
 
-El [archivo](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/rep-1.zip) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-2`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
+El archivo con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-2`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
 * **` aprobados.R `**
 * **` aprobados2.R `**

@@ -2,8 +2,10 @@
 ################################################################################
 
 ## NÚMERO DE REPARTIDO!
-nrep <- 3
-rdir <- paste('rep', nrep, sep='-')
+# nrep <- X
+# rdir <- paste('rep', nrep, sep='-')
+rdir <- basename(getwd())
+nrep <- as.numeric(gsub("[a-z,[:punct:]]", "", rdir))
 
 esperados <- c("datos", "notas.csv", "INSTRUCCIONES.pdf",
                "est.RData", "usa.xls", "usa-extra.csv")
@@ -28,7 +30,7 @@ cut.script <- function(arch, cut.str = "#===") {
   # arch: nombre del script de R (= 1 ejercicio)
   # salida: el código del estudiante, sin comentarios,
   #         en un vector character.
-  arch <- readLines(arch, encoding="UTF-8")
+  arch <- readLines(arch, encoding = "UTF-8")
   if (!is.na(cut.str) || !is.null(cut.str) || cut.str != "") {
     gr <- grep(cut.str, arch, useBytes = TRUE)
     arch <- arch[gr[1]:gr[2]]
@@ -228,7 +230,7 @@ cor1.d <- function() {
   # Cargar datos
   load('datos')
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('est.R', encoding="UTF-8")
+  arch <- readLines('est.R', encoding = "UTF-8")
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   tmp <- tempfile()
@@ -280,7 +282,7 @@ cor1.e <- function() {
   load('datos')
   
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('transformar.R', encoding="UTF-8")
+  arch <- readLines('transformar.R', encoding = "UTF-8")
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   arch <- sacar.comentarios(arch)
@@ -377,7 +379,7 @@ cor1.f <- function() {
   load('datos')
 
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('nuevo-factor.R', encoding="UTF-8")
+  arch <- readLines('nuevo-factor.R', encoding = "UTF-8")
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
   arch <- sacar.comentarios(arch)
@@ -468,7 +470,7 @@ cor1.g <- function() {
   load('datos')
   
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('exportar.R', encoding="UTF-8")
+  arch <- readLines('exportar.R', encoding = "UTF-8")
   arch2 <- gsub(' ', '', arch)
   gr <- grep('#===', arch, useBytes = TRUE)
   arch <- arch[gr[1]:gr[2]]
@@ -479,7 +481,7 @@ cor1.g <- function() {
   tmp2 <- tempfile()
   write.table(usaNorm, tmp2, row.names = TRUE, 
               col.names = TRUE, sep = ";", dec = ",")
-  usa.tmp <- readLines(tmp2, encoding="UTF-8")
+  usa.tmp <- readLines(tmp2, encoding = "UTF-8")
   usa.importX <- read.table(tmp2, header = TRUE, sep = ";", dec = ",",
                             row.names = 1)
   unlink(tmp2)
@@ -492,7 +494,7 @@ cor1.g <- function() {
 
   source(tmp, local=TRUE)
   unlink(tmp)
-  usa.norm <- readLines('usa-norm.csv', encoding="UTF-8")
+  usa.norm <- readLines('usa-norm.csv', encoding = "UTF-8")
 
   if (grepl("^\"\";", usa.norm[1]))
     usa.norm[1] <- sub("^\"\";", "", usa.norm[1])

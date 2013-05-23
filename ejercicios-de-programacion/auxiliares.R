@@ -12,7 +12,7 @@ mkmsj <- function(msj.base = "", obs, esp) {
     return(TRUE)
   output <- c(obs, esp)
   output <- c(as.character(obs), as.character(esp))
-  names(output) <- c("Valor observado", "Valor esperado")
+  names(output) <- c("Obs.", "Esp.")
   output <- capture.output(print(output))
   mensaje <- c(paste(msj.base, ",\n", sep=""),
                "la diferencia observada es la siguiente:\n\n", 
@@ -32,7 +32,7 @@ mkmsj.v <- function(msj.base = "", vec.obs, vec.esp, tol = 1e-8) {
   tabla <- cbind(vec.obs[donde], vec.esp[donde])
   if (is.factor(vec.obs))
     tabla <- cbind(as.character(vec.obs[donde]), as.character(vec.esp[donde]))
-  colnames(tabla) <- c("Valor observado", "Valor esperado")
+  colnames(tabla) <- c("Obs.", "Esp.")
   if (is.null(names(vec.obs)))
     rownames(tabla) <- paste("Posición ", donde, ":", sep = "")
   if (is.numeric(vec.obs)) {
@@ -67,7 +67,7 @@ mkmsj.m <- function(msj.base = "", m.obs, m.esp, tol = 1e-8) {
   donde <- which(m.obs != m.esp, arr.ind = TRUE)
   dif <- rep(NA, nrow(donde))
   tabla <- cbind(donde, m.obs[donde], m.esp[donde], dif)
-  colnames(tabla) <- c("Fila", "Columna", "Valor observado", "Valor esperado", "Dif.")
+  colnames(tabla) <- c("Fila", "Col.", "Obs.", "Esp.", "Dif.")
   if (is.numeric(m.obs)) {
     dif <- abs(tabla[,3] - tabla[,4])
     tabla[,5] <- dif
@@ -103,7 +103,7 @@ mkmsj.df <- function(msj.base = "", df.obs, df.esp, tol = 1e-8) {
   dif <- rep(NA, nrow(donde))
   tabla <- cbind(donde, df.obs[donde], df.esp[donde], dif)
   tabla[,2] <- colnames(df.obs)[donde[,2]]
-  colnames(tabla) <- c("Fila", "Columna", "Valor observado", "Valor esperado", "Dif.")
+  colnames(tabla) <- c("Fila", "Col.", "Obs.", "Esp.", "Dif.")
   num <- sapply(df.obs, is.numeric)
   dnum <- num[donde[,2]]
   if (any(dnum)) {
@@ -202,7 +202,7 @@ objetos <- c(objetos, "sacar.comentarios")
   # arch: nombre del script de R (= 1 ejercicio)
   # salida: el código del estudiante, sin comentarios,
   #         en un vector character.
-#   arch <- readLines(arch)
+#   arch <- readLines(arch, encoding="UTF-8")
 #   if (!is.na(cut.str) || !is.null(cut.str) || cut.str != "") {
 #     gr <- grep(cut.str, arch, useBytes = TRUE)
 #     arch <- arch[gr[1]:gr[2]]
