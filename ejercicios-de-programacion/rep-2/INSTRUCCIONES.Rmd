@@ -38,7 +38,7 @@ Nota: más recomendaciones **importantes** se hacen en el documento [Dinámica d
 Lo primero que debe hacer es cargar el archivo evaluar.R con la función `source` y la codificación de caracteres "UTF-8" (lo cual afecta a la función `evaluar` en particular), de la siguiente manera:
 
 ```{r eval=FALSE}
-source("evaluar.R", encoding = "utf-8")
+source("evaluar.R", encoding = "UTF-8")
 ```
 
 Si usted ha ejecutado todos los pasos anteriores correctamente, la siguiente frase debería verse en la consola:
