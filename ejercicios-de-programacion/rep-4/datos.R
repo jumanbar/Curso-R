@@ -51,14 +51,28 @@ cut.script <- function(arch, cut.str = "#===") {
 guardar <- c(guardar, "cut.script")
 
 source("../auxiliares.R")
-source('make-aux.R')
-load('auxiliares.rda')
-load('auxiliar.RData')
-save(.z, est, file = 'est.RData')
-
-guardar <- c(guardar, objetos)
-
-guardar <- unique(guardar)
+a <- readLines("tmp.R", encoding = "UTF-8")
+a <- a[a != ""]
+a <- sacar.comentarios(a)
+pline <- a[grep("plot", a)]
+cortado <- strsplit(pline, ",")[[1]]
+cortado <- gsub(" +$", "", cortado)
+parg <- cortado[1]
+cortado <- gsub(")$", "", cortado)
+main <- cortado[grep("main", cortado)]
+# main.text <- strsplit(main, "[\",']")[[1]][2]
+main.text <- strsplit(main, "=")[[1]][2]
+main.text <- eval(parse(text = main.text))
+xlab <- cortado[grep("xlab", cortado)]
+# xlab.text <- strsplit(xlab, "[\",']")[[1]][2]
+xlab.text <- strsplit(xlab, "=")[[1]][2]
+xlab.text <- eval(parse(text = xlab.text))
+ylab <- cortado[grep("ylab", cortado)]
+# ylab.text <- strsplit(ylab, "[\",']")[[1]][2]
+ylab.text <- strsplit(ylab, "=")[[1]][2]
+ylab.text <- eval(parse(text = ylab.text))
+xxx <- cortado[grep("xxx", cortado)]
+length(xxx) == 0
 
 
 ### FUNCIONES DE CORRECCIÓN:

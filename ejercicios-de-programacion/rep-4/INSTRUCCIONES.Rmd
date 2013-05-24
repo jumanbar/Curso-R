@@ -1,14 +1,14 @@
-Ejercicios de programación III: Trabajo con datos
-=================================================
+Ejercicios de programación IV: Gráficos y estadística
+=====================================================
 
-### [IMSER 2012]
+### [IMSER 2013]
 
 - - -
 
 Archivos incluidos:
 -------------------
 
-El [archivo](http://goo.gl/eFUKY) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-3`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
+El [archivo](http://goo.gl/eFUKY) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-X`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
 * **` xxxx.R `**
 
@@ -116,218 +116,176 @@ dpois.pacientes <- function(lambda) {
 max.lambda <- max(sapply(lambda.min:lambda.max, dpois.pacientes))
 ```
 
+2. blablablablabla
+------------------
 
-1. Datos de EEUU
-----------------
+#### a.
+Importar la tabla de la hoja de cálculo a R; el objeto resultante debe ser una data.frame llamada `magic` y sus columnas deben llamarse `body.size`, `sex` y `height` (i.e.: los valores que R asigna por defecto).
 
-En la carpeta del repartido 'rep-3' se encuentra una planilla de cálculo en formato xls, llamada "usa.xls". Esta planilla tiene una serie de variables medidas para los cincuenta estados de EE.UU., durante los años setenta. Para mayor información de estos datos, ejecute el comando `?state`.
-
-A partir de esta base de datos vamos a trabajar a lo largo de todo el repartido, ejercitando las habilidades y conocimientos necesarios para modificar y manipular data.frames. Esta es la principal clase de objeto para trabajar con datos que tiene R y por lo tanto nos centramos principalmente en esta.
-
-
-### 1.a Importar los datos
-
-Script: "importar.R"
-
-Lo primero que se debe hacer es importar los datos a R. Para ello usted deberá exportar la planilla de cálculo desde excell u otro programa capaz de trabajar con ella. Dicha exportación deberá hacerse en un archivo de texto plano (cuyas extensiones suelen ser .txt o .csv). En la evaluación automática no se corregirá dicho archivo, pero es necesario que se encuentre en la carpeta del repartido para que pueda ejecutarse el script "importar.R".
-
-En dicho archivo usted deberá crear el código necesario para importar los datos a R usando alguna de las variantes de `read.table`. La única condición importante es que la primer columna (los nombres de los estados de EE.UU.) debe importarse como los nombres de filas de la data.frame resultante en R. Dicha data.frame deberá llamarse `usa` (ver instrucciones en el arcihvo "importar.R").
-
-Pero además de importar los datos a su área de trabajo, el script debe también cambiarle los nombres de las variables al español. Específicamente, los nombres de las variables de la data.frame deben ser (en el mismo orden y respetando mayúsculas y minúsculas):
-
-    Abrev, Poblacion, Ingresos, Analf, Esp.Vida, Homicidio, Sec.Grad, 
-    Heladas, Area, Division
-
-Por último, en la variable `Division` también queremos cambiar los nombres de los 9 niveles (se trata de un factor) a una versión en español. Específicamente (en el mismo orden y respetando mayúsculas y minúsculas):
-
-    Noreste Central, Sudeste Central, Atlantico Central, Montania,
-    Nueva Inglaterra, Pacifico, Atlantico Sur, Noroeste Central,
-    Sudoeste Central
-
-Nótese que no se usan tildes ni eñes en los nombres para evitar problemas de codificación de caracteres y que se deben respetar mayúsculas y minúsculas.
-
-(Pista: considere usar la función `levels` para esta tarea.)
-
-
-### 1.b Corregir datos de analfabetismo
-
-Script: "parche.R"
-
-Este ejercicio parte de la base que usted logró importar con éxito los datos de "usa.xls" como se indica en el ejercicio anterior. Si usted ejecuta ahora el comando
-
-```{r eval=FALSE}
-summary(usa)
-```
-
-podrá notar que para las columnas `Ingresos` y `Analf` figura un conteo de la cantidad de NA's. Esto quiere decir que hay datos faltantes ("Not Available"; ver en [el glosario](http://eva.universidad.edu.uy/mod/glossary/view.php?id=116962) para mayor información). Esto suele ser un problema para trabajar con datos en general y por lo tanto es importante encontrar la forma sortear este tipo de obstáculos.
-
-Afortunadamente en este caso tenemos una tabla de datos auxiliar que nos permite completar lo que nos falta para la columna `Analf` (tasa de analfabetismo). Esta tabla auxiliar está en el archivo "usa-extra.csv". Para completar el ejercicio, usted deberá completar todos los pasos necesarios para
-
-1. importar estos datos,
-2. seleccionar los valores de analfabetismo de los estados correctos y
-3. sustituir los `NA` de la data.frame `usa2`, columna `Analf`, por estos datos seleccionados.
-
-Nótese que la data.frame `usa` debe permanecer incambiada y se debe crear el objeto `usa2` para hacer estas modificaciones. Nótese también que "usa-extra.csv" es una tabla muy distinta a la planilla original, incluyendo sólo 2 columnas y menor cantidad de filas, por lo que la única manera de determinar la ubicación de los valores correctos es a través del uso de los nombres de los estados como referencia. En este sentido es bueno recordar que el operador lógico `%in%` puede ser de mucha utilidad; también es importante recordar que este no es un operador conmutativo; es decir no es lo mismo
-
-```{r eval = FALSE}
-x %in% y
-```
-
-que
-
-```{r eval = FALSE}
-y %in% x.
-```
-
-El siguiente es un ejemplo que puede servir de guía:
-
+Debe guardarse en la carpeta del parcial el archivo de texto (.txt o .csv) utilizado para la importación.
 
 ```{r}
-a <- c("ta", "te", "ti")
-b <- c("ta", "ti")
-a %in% b 
+magic <- read.csv2("datos.csv")
 ```
-(Con esto se pueden obtener las posiciones en las que `a` contiene los mismos elementos que `b`.)
 
-### 1.c Eliminar filas sin datos de ingresos
-
-Script: "filtrado.R"
-
-Así como para el analfabetismo tuvimos una forma de llenar un vacío de datos, para el caso de la columna "Ingresos" no tenemos la misma suerte. Por lo tanto, considerando que lo mejor es dejar de lado los casos en que hay ausencia de datos, en esta parte del ejercicio vamos a eliminar las filas correspondientes de "usa2".
-
-Para esto usted deberá escribir el código necesario en el archivo "filtrado.R". Este código debe asumir la existencia de una data.frame llamada `usa2`, y servirá para obtener finalmente una data.frame `usa3` a través de la eliminación de las observaciones de `usa2`, columna `Ingresos`, en las que ocurren valores `NA`'s.
-
-El siguiente es un mini ejemplo que puede servir como referencia. Aquí le cambiamos a `NA` algunos valores a la una data.frame `datos` y luego eliminamos las filas correspondientes.
+#### b.
+Generar un vector aleatorio llamado `age`, compuesto por números enteros positivos entre 18 y 35 aprox. (este rango puede tener cierta flexibilidad). Nota: debe ser generado con una función creadora de valores aleatorios, y se deben permitir ocurrencias repetidas del mismo valor.
 
 ```{r}
-datos <- head(cars)
-datos[c(3, 5), 2] <- NA
-
-# La data.frame antes:
-datos
+age <- rpois(40, nrow(magic))
 ```
 
-```{r, echo = FALSE}
-datos.filtrado <- datos[- c(3, 5), ]
-```
+#### c.
+Agregar la variable `age` al data.frame `magic`.
 
 ```{r}
-# La data.frame después:
-datos.filtrado
+magic$age <- age
 ```
 
-#### Sugerencia:
+#### d.
+La variable `sex` del data.frame presenta los valores 1 y 2. Transformar esta variable en factor. Luego modificar los nombres de los niveles del mismo a `"mujer"` y `"hombre"` (correspondientes a los valores originales 1 y 2 respectivamente).
 
-Utilizar la función `subset` para esta tarea.
+```{r}
+magic$sex <- as.factor(magic$sex)
+levels(magic$sex) <- c("mujer", "hombre")
+```
 
-### 1.d Extra: función para estandarizar valores de un vector
+#### e.
+Crear la variable factorial `agef` basada en `age` de forma tal que cuente con 3 niveles (dividiendo el rango en 3 franjas etarias de igual amplitud). Agregar dicha variable a la data.frame `magic`.
 
-(*Este ejercicio es opcional, aunque puede sumar puntos en su calificación final del repartido*)
+```{r}
+magic$agef <- cut(magic$age, 3)
+```
 
-Script: "est.R"
+#### f.
+Nombrar a cada uno de los niveles de la variable `agef` (dentro de `magic`) como `"novatos"`, `"intermedios"`, `"expertos"`, en ese orden.
 
-Muchas veces es útil al analizar datos transformar variables usando distintas fórmulas. Una de ellas es la estandarización de datos, utilizando la fórmula:
+```{r}
+levels(magic$agef) <- c("novatos", "intermedios", "expertos")
+```
+
+#### g.
+Cambiar los nombres de las columnas del data.frame a `"peso"`, `"sexo"`, `"altura"`, `"edad"` y `"edadf"`.
+
+```{r}
+names(magic) <- c("peso", "sexo", "altura", "edad", "edadf")
+```
+
+#### h.
+Graficar: peso en función de sexo. El gráfico debe ser un diagrama de cajas y tener las etiquetas "Sexo", "Peso (Kg)" en los ejes correspondientes, así como el título: "Peso en función del sexo".
+
+```{r}
+plot(peso ~ sexo, magic, main = "Peso en función del sexo", xlab = "Sexo", ylab = "Peso (Kg)")
+```
+
+#### i.
+Realizar un anova con la variable de respuesta `peso` y la variable explicativa `sexo`; guardar el resultado en el objeto `peso.sexo`.
+
+```{r}
+peso.sexo <- aov(peso ~ sexo, magic)
+```
+
+#### j.
+Crear los objetos `peso.hombre` y `peso.mujer` con los valores esperados de peso para los sexos respectivos, según los resultados del modelo `peso.sexo` creado en el punto anterior (considere la interpretación de los coeficientes del anova dada en la lección correspondiente).
+
+```{r}
+peso.mujer <- coef(peso.sexo)[1]
+peso.hombre <- sum(coef(peso.sexo))
+# o 
+peso.mujer <- mean(magic$peso[magic$sexo == "mujer"])
+peso.hombre <- mean(magic$peso[magic$sexo == "hombre"])
+# o
+ag <- aggregate(peso ~ sexo, data = magic, FUN = mean)
+peso.mujer <- ag[1, 2]
+peso.hombre <- ag[2, 2]
+
+# Otros usos cool de aggregate:
+aggregate(peso ~ sexo + edadf, data=magic, FUN=mean)
+aggregate(cbind(peso, altura) ~ sexo, data=magic, FUN=mean)
+```
+
+#### k.
+Graficar: $altura ^ 2$ (altura al cuadrado) en función del peso.
+
+```{r}
+plot(altura ^ 2 ~ peso, magic)
+```
+
+#### l.
+Realizar una regresión lineal entre estas dos variables ($altura ^ 2$ ~ peso) sin intercepto. El modelo obtenido debe guardarse en el objeto `altura.peso`.
+
+```{r}
+altura.peso <- lm(altura ^ 2 ~ peso - 1, magic)
+```
+
+#### m.
+Realizar una regresión lineal entre estas dos variables ($altura ^ 2$ ~ peso) sin intercepto, pero esta vez excluyendo a los outliers de peso (es decir, aquellos tales que peso > 120 Kg). Guardar el modelo en el objeto `altura.peso2`.
+
+```{r}
+altura.peso2 <- lm(altura ^ 2 ~ peso - 1, magic, subset = peso <= 120)
+```
+
+#### n.
+Utilizando los coeficientes obtenidos en este segundo modelo, determine la altura esperada para la secuencia de pesos:  
 
 $$
-  Z_i = \frac{X_i - \mu}{\sigma}
+  a ^ 2 = c \cdot p
+  a = \sqrt{c \cdot p}
 $$
 
-En donde $X_i$ representa el iésimo de los datos originales, $\mu$ es el valor promedio de todos los $X_i$, $\sigma$ es el desvío estándar de los $X_i$ y los $Z_i$ son los valores estandarizados.
-
-En este ejercicio usted deberá crear una función llamada `est` (puede tomar como ejemplo las realizadas en el primer repartido u otras mostradas en las lecciones) que tome como entrada **un sólo argumento**: un vector numérico cualquiera y devuelva otro vector numérico con los valores estandarizados del original. Para esto deberá escribir el código necesario en el archivo "est.R".
-
-Aconsejamos utilizar las funciones `mean` y `sd` para obtener $\mu$ y $\sigma$ respectivamente. Además es deseable que las normalizaciones de datos no se vean afectadas por la ocurrencia de `NA`'s. Por lo tanto, es necesario utilizar el argumento `na.rm` de dichas funciones para que `est` maneje correctamente los `NA`'s. En caso de que la haya construido bien, debería obtener resultados como el siguiente:
-
-```{r echo = FALSE}
-est <- function(x) (x - mean(x, na.rm = T)) / sd(x, na.rm = T)
-```
 ```{r}
-x <- c(4.5, 12.3, 5.8, 9.4, 7.3, NA)
-est(x)
+p <- seq(40, 120, by = 0.5)
+ae <- sqrt(coef(altura.peso) * p)
+```
+    
+Los valores de altura esperados se deben guardar en un objeto llamado `ae`.
+
+(Nótese que el modelo establece la relación del peso con la $altura ^ 2$, pero no con la altura per se). 
+
+#### o.
+Guardar en el objeto `r2` el valor del $R^2$ (*no ajustado*) del modelo (es decir, el coeficiente de determinación o "proporción de varianza explicada"). Cuidado: no confundir con el $R^2$ ajustado.
+
+```{r}
+s <- summary(altura.peso)
+r2 <- s$r.squared
 ```
 
-Nótese que si la función `est` no maneja correctamente los `NA`'s, entonces el resultado sería igual a `rep(NA, length(x))`.
+#### p.  
+Agregar al último gráfico creado anteriormente las líneas correspondientes a ambas regresiones lineales, utilizando diferentes trazos y/o colores para diferenciarlas.
 
-### 1.e Estandarizar los datos
-
-Script: "transformar.R"
-
-La estandarización o normalización es una tranformación común en el análisis de datos. En general para cualquier tipo de transformación, si se trata de un trabajo con matrices o data.frames, es común en R el uso de las funciónes del tipo `apply`, ya que permiten modificar varias columnas en un sólo comando y además pueden ser más eficientes (en particular `lapply` o `sapply`) cuando se trabaja con grandes cantidades de datos.
-
-En este ejercicio el objetivo es usar la función `est` creada en el ejercicio anterior, en conjunción con `apply`, para transformar las columnas de clase "numeric" de nuestra data.frame `usa3`. Específicamente, debe usar `apply` para transformar el objeto `datosNumericos`, el cual están en el script "trasnformar.R". En caso de **no haber hecho** el ejercicio 1.d, puede cargar una función `est` hecha de antemano con el comando:
-
-```{r eval = FALSE}
-load('est.RData')
+```{r}
+abline(altura.peso)
+abline(altura.peso2, col=2)
 ```
 
-En el script "transformar.R" se indica específicamente en qué línea debe utilizarse `apply` para que la evaluación del ejercicio funcione correctamente (i.e.: la línea en que se crea el objeto `datosTrans`). Si usted ha creado correctamente el objeto `datosTrans`, entonces este será de clase "matrix" y los promedios de las columnas `Poblacion` y `Area` serán respectivamente:
+#### q.
+Agregar una línea vertical indicando el valor 120 en el eje del peso; utilice un estilo de línea diferente a los anteriores (con color y/o trazo diferente).
 
-```{r eval = FALSE}
-colMeans(datosTrans[, c('Poblacion', 'Area')])
-    Poblacion          Area 
--6.745250e-17 -2.678736e-17
+```{r}
+abline(v = 120, lty = 2)
 ```
 
-Finalmente, tome en cuenta también que el objeto final que usted debe crear, llamado `usaNorm`, debe ser de clase 'data.frame' y debe tener las mismas columnas de clase "factor" del objeto inicial `usa3`. También deben coincidir los nombres de filas y columnas. Para esto recomendamos primero coercionar `usaNorm` en una data.frame con la función correspondiente y luego unir el objeto resultante con las columnas "factor" de `usa3` (siempre manteniendo el orden de columnas).
+#### r.
+Superponer al mismo gráfico los puntos de los outliers en peso, utilizando un símbolo diferente (y opcionalmente, un color distinto), de forma tal que se puedan diferenciar a simple vista.
 
-### 1.f Extra: un nuevo factor
-
-(*Este ejercicio es opcional, aunque puede sumar puntos en su calificación final del repartido*)
-
-Script: "nuevo-factor.R"
-
-En este ejercicio se propone crear una nueva columna de clase "factor" en la data.frame `usa3`, utilizando la función `cut`. Dicho factor deberá llamarse `Ing.Cat` (como se ilustra en el script), tener 4 niveles y ser construido en base a la columna `Ingresos` de `usa3`. Esta variable representará entonces las 4 categorías de ingreso (promedio, por estado) de EE.UU. Si el ejercicio fue hecho correctamente, el conteo de ocurrencias de cada nivel del factor será:
-
-```{r eval = FALSE}
-> tabulate(usa3$Ing.Cat)
-[1] 12 19 11  1
+```{r}
+points(altura ^ 2 ~ peso, magic, subset = peso > 120, pch = 19)
 ```
 
-Para que este factor sea más legible, se pueden cambiar los nombres de los niveles:
+#### s.
+Agregar una última variable, llamada `IMC`, a la data.frame `magic`: el [índice IMC](http://es.wikipedia.org/wiki/%C3%8Dndice_de_masa_corporal) correspondiente a cada participante, calculado como:
 
-```{r eval = FALSE}
-levels(usa3$Ing.Cat) <- c("D", "C", "B", "A")
+$$
+  IMC = \frac{Peso (Kg)}{Altura ^ 2 (m)}
+$$
+
+```{r}
+magic$IMC <- with(magic, peso / (altura ** 2))
 ```
 
-En segundo lugar, se utilizará la función `tapply`, una variante bastante especializada de `apply` (y muy similar a la función `by`), para analizar los valores de analfabetismo correspondientes a estas categorías de ingresos. La función `tapply` se usa con la siguiente sintaxis:
+#### t.
+Exportar la data.frame `magic` a un archivo de texto plano (.txt o .csv), conteniendo todas las columnas agregadas y los encabezados, pero excluyendo los nombres de fila.
 
-```{r eval = FALSE}
-tapply(x, f, fu)
+```{r}
+write.csv2(magic, "magic.csv", row.names = FALSE)
 ```
-
-En dónde `x` es típicamente un vector numérico, `f` es un factor cuya longitud equivale a la de `x` y `fu` es una función de R (p.ej.: `mean`). Aquí lo que haría este comando es ejecutar la función `fu` tantas veces como niveles tiene `f` usando como entrada los elementos de `x` que se corresponden con las ocurrencias de dicho nivel. Es decir, se ejecuta
-
-```{r eval = FALSE}
-fu(x[f == levels(f)[i]])
-```
-
-siendo `i` variable en `1:length(levels(f))`. Como resultado devuelve una lista en la que cada elemento se corresponde con la salida de uno de estos comandos.
-
-Lo que usted deberá ejecutar aquí es la función `tapply` sobre el vector numérico `Analf`, con `Ing.Cat` como factor de referencia (ambas columnas de `usa3`) y la función `summary`. El resultado, tal como se muestra en el archivo de código fuente, debe guardarse en el objeto `salidaTapply`.
-
-Finalmente debe hacer algo similar con la función `boxplot`, cuya sintaxis es tal vez más sencilla que `tapply`, por ejemplo:
-
-```{r eval = FALSE}
-boxplot(y ~ f, d)
-```
-
-Aquí `d` es una data.frame, mientras que `y` y `f` son columnas de `d` de las clases "numeric" y "factor" respectivamente. Nuevamente las columnas a utilizar son `Analf` e `Ing.Cat`, de la data.frame `usa3`. La salida de esta función es doble, por un lado un objeto (el cual deberá guardar bajo el nombre `salidaBoxplot`) y por otro una gráfica similar a la Figura 1 de este repartido.
-
-```{r echo = FALSE, fig.cap = "Salida de boxplot"}
-# load('preparacion.RData')
-load('auxiliar.RData')
-boxplot(Analf ~ Ing.Cat, usa3a)
-```
-
-### 1.g Exportar
-
-Script: "exportar.R"
-
-Finalmente se deberá exportar la data.frame `usaNorm` a un archivo de texto plano. Dicho archivo se llamará "usa-norm.csv" y deberá cumplir con las siguientes condiciones:
-
-1. Deberá guardar correctamente los nombres de las filas y columnas.
-2. El separador de columnas deberá ser el caracter `;`.
-3. El punto decimal debe estar indicado con el caracter `,`.
-
-Consulte las lecciones o la ayuda de R en `?write.table` para determinar el comando adecuado para realizar esta operación. En la carpeta del repartido se incluye el archivo **usa-norm-ejemplo.csv** para que usted pueda comparar con su resultado (puede abrirlo con un programa de hojas de cálculo o con un editor de texto plano, como bloc de notas o RStudio, para ver su estructura interna). Nótese que este ejemplo sólo tiene 10 filas elegidas al azar.
-

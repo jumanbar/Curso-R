@@ -15,6 +15,10 @@ cat("Los siguientes caracteres deben ser vocales con acento:\n",
 evaluar <- function(e) {
   #
   if (!file.exists("datos")) {
+    if (file.exists("datos.txt")) {
+      file.rename("datos.txt", "datos")
+      warning("Se cambió el nombre del archivo 'datos.txt' por 'datos'")
+    }
     mensaje <- c("Tal vez ud. no esté trabajando en el directorio correcto,", 
                  "   su directorio de trabajo actual es:",
                  paste("   '", getwd(), "'", sep=""),
