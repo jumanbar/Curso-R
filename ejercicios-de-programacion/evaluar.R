@@ -14,11 +14,15 @@ cat("Los siguientes caracteres deben ser vocales con acento:\n",
 
 evaluar <- function(e) {
   #
+  arc <- dir()
+  if (any(grepl("datos.", arc))) {
+    n <- grep("datos.", arc)
+    file.rename(arc[n], "datos")
+    warning("Se cambió el nombre del archivo '", arc[n], "' por 'datos'")
+  }
   if (!file.exists("datos")) {
-    if (file.exists("datos.txt")) {
-      file.rename("datos.txt", "datos")
-      warning("Se cambió el nombre del archivo 'datos.txt' por 'datos'")
-    }
+    #     if (file.exists("datos.txt")) {
+    # Por si existe un archivo datos.txt o cualquier datos.XXX
     mensaje <- c("Tal vez ud. no esté trabajando en el directorio correcto,", 
                  "   su directorio de trabajo actual es:",
                  paste("   '", getwd(), "'", sep=""),
@@ -31,7 +35,6 @@ evaluar <- function(e) {
   load("datos")
   nej <- length(corregir)
   #   hasmsj <- logical(nej)
-  arc <- dir()
   #
   #   if (tolower(getOption("encoding")) != "utf-8") {
   #     mensaje <- c("\n¡El encoding actual no es UTF-8!\n",
@@ -44,6 +47,7 @@ evaluar <- function(e) {
   #     warning(mensaje, call. = FALSE) 
   #   }
   
+  arc <- dir()
   if (!all(f <- esperados %in% arc)) { # Es lo mismo poner f <- file.exists(esperados)
     mensaje <- c("  Tal vez ud. no esté trabajando en el directorio correcto,", 
                  "  utilice setwd para seleccionar la carpeta del repartido, ej.:",

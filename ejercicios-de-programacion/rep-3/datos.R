@@ -48,8 +48,8 @@ cut.script <- function(arch, cut.str = "#===") {
 }
 guardar <- c(guardar, "cut.script")
 
-source("../auxiliares.R")
-source('make-aux.R')
+source("../auxiliares.R", encoding="UTF-8")
+source('make-aux.R', encoding="UTF-8")
 load('auxiliares.rda')
 load('auxiliar.RData')
 save(.z, est, file = 'est.RData')
@@ -76,7 +76,7 @@ cor1.a <- function() {
   writeLines(arch, tmp)
   
   # Evaluación de objetos: usa
-  source(tmp, local = TRUE)
+  source(tmp, local = TRUE, encoding="UTF-8")
   unlink(tmp)
 
   cn  <- colnames(usa)
@@ -143,7 +143,7 @@ cor1.b <- function() {
   usaX <- usa.check
   usa  <- usaX
   usaX$Analf[nas] <- parche
-  source(tmp, local = TRUE)
+  source(tmp, local = TRUE, encoding="UTF-8")
   unlink(tmp)
 
   if (identical(usa2, usaX))
@@ -195,7 +195,7 @@ cor1.c <- function() {
   usaX <- subset(usaX, !is.na(Ingresos))
 
   # Evaluación de objetos: usa3
-  source(tmp, local = TRUE)
+  source(tmp, local = TRUE, encoding="UTF-8")
   unlink(tmp)
 
   if (identical(usa3, usaX))
@@ -243,7 +243,7 @@ cor1.d <- function() {
     (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
 
   # Evaluación de objetos: ctg y conteo
-  source(tmp, local=TRUE)
+  source(tmp, local=TRUE, encoding="UTF-8")
   unlink(tmp)
 
   if (!is.function(est.foo))
@@ -305,7 +305,7 @@ cor1.e <- function() {
   usaNormX <- cbind(usa3['Abrev'], datosTransX, usa3['Division'])
 
   # Evaluación de objetos: datosNumericos, datosTrans, usaNorm
-  source(tmp, local = TRUE)
+  source(tmp, local = TRUE, encoding="UTF-8")
   unlink(tmp)
 
   if (!is.data.frame(datosNumericos) && !is.matrix(datosNumericos))
@@ -415,7 +415,7 @@ cor1.f <- function() {
   unlink(tmp3)
 
   # Evaluación de objetos: usa3, salidaTapply, salidaBoxplot
-  source(tmp, local=TRUE)
+  source(tmp, local=TRUE, encoding="UTF-8")
   unlink(tmp)
   unlink(tmp2)
   usa3a <- usa3 # Para tener a mano uno con el cual hacer pruebas... (usa3a es creado también en make-aux.R)
@@ -490,7 +490,7 @@ cor1.g <- function() {
   #     stop("no existe el archivo usa-norm.csv en la carpeta de trabajo", call. = FALSE)
   #   cat("existe el archivo usa-norm.csv ... OK\n")
 
-  source(tmp, local=TRUE)
+  source(tmp, local=TRUE, encoding="UTF-8")
   unlink(tmp)
   usa.norm <- readLines('usa-norm.csv', encoding="UTF-8")
 
@@ -555,4 +555,4 @@ file.copy("../evaluar.R", rdir, recursive = TRUE)
 
 zipfile <- paste(rdir, 'zip', sep = '.')
 unlink(zipfile)
-zip(zipfile, paste(rdir, '/', sep=''))
+# zip(zipfile, paste(rdir, '/', sep=''))
