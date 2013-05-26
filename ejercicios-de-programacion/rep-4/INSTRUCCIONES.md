@@ -26,9 +26,11 @@ Nota: más recomendaciones **importantes** se hacen en el documento [Dinámica d
 
 Lo primero que debe hacer es cargar el archivo evaluar.R con la función `source` y la codificación de caracteres "UTF-8" (lo cual afecta a la función `evaluar` en particular), de la siguiente manera:
 
-```{r eval=FALSE}
+
+```r
 source("evaluar.R", encoding = "utf-8")
 ```
+
 
 Si usted ha ejecutado todos los pasos anteriores correctamente, al usar el comando `ls()` verá que `"evaluar"` figura en su sesión y además en la consola debería ver lo siguiente:
 
@@ -39,9 +41,11 @@ Si usted ha ejecutado todos los pasos anteriores correctamente, al usar el coman
 
 Usted trabajará modificando los contenidos de los archivos de los ejercicios con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio y **guardando el archivo** correspondiente en el disco duro, usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:
 
-```{r eval=FALSE}
+
+```r
 evaluar()
 ```
+
 
 y además podrá en todo momento verificar su puntaje con la función `verNotas()`. Tenga siempre en cuenta que, a **menos que sea indicado** por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben servir aún si se modifican los datos originales (i.e.: no use valores fijos si no comandos). Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos **se indica claramente en dónde se inicia y dónde finaliza su código** y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.
 
@@ -81,49 +85,69 @@ transformado: logaritmo natural de los valores de densidad obtenidos.
 promedio: promedio de todos los valores transformados. Observe que esta función debe ser negativa para que los valores sean positivos.
 `max.lambda`: valor de lambda para el cual es máxima la función `dpois.pacientes`. Los valores de lambda debe estar comprendidos entre 1 y 4.
 
-```{r}
+
+```r
 npac <- 5000
 true.lambda <- 4
 respuestas <- rpois(npac, true.lambda)
 
-pacientes <- data.frame(A = as.numeric(names(table(respuestas))), 
-                        B = as.numeric(table(respuestas)))
-barplot(pacientes[,2])
+pacientes <- data.frame(A = as.numeric(names(table(respuestas))), B = as.numeric(table(respuestas)))
+barplot(pacientes[, 2])
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
+
+```r
 
 lambda.min <- 1
 lambda.max <- 8
 
-pacientes <- read.table("pacientes.csv", header=TRUE, sep=",")
+pacientes <- read.table("pacientes.csv", header = TRUE, sep = ",")
+```
+
+```
+## Warning: no fue posible abrir el archivo 'pacientes.csv': No such file or
+## directory
+```
+
+```
+## Error: no se puede abrir la conexión
+```
+
+```r
 
 dpois.pacientes <- function(lambda) {
-  
-  densidad <- dpois(pacientes[, 1], lambda)
-  transformado <- log(densidad)
-  promedio <- - mean(transformado)
-  
+    
+    densidad <- dpois(pacientes[, 1], lambda)
+    transformado <- log(densidad)
+    promedio <- -mean(transformado)
+    
 }
 
 dpois.pacientes <- function(lambda) {
-  
-  densidad <- dpois(pacientes[, 1], lambda)
-  dens.obs <- pacientes[,2] / sum(pacientes[,2])
-  transformado <- log(densidad)
-  trans.obs <- log(dens.obs)
-  promedio <- - mean(transformado - trans.obs)
-  
+    
+    densidad <- dpois(pacientes[, 1], lambda)
+    dens.obs <- pacientes[, 2]/sum(pacientes[, 2])
+    transformado <- log(densidad)
+    trans.obs <- log(dens.obs)
+    promedio <- -mean(transformado - trans.obs)
+    
 }
 
 max.lambda <- max(sapply(lambda.min:lambda.max, dpois.pacientes))
 ```
+
 
 1. Campeonato de Magic
 ----------------------
 
 El juego [Magic: el encuentro](https://es.wikipedia.org/wiki/Magic:_el_encuentro), popular entre muchos jóvenes aficionados a los generos literarios de fantasía y los juegos de rol, congrega campeonatos mundiales regularmente. Pensando en estos campeonatos, creamos una data.frame de datos ficticios de los participantes. Para a agregar a su sesión de R una data.frame llamada `magic` con dichos datos, ejecute:
 
-```{r, cache=TRUE}
+
+```r
 source("hacemagia.R")
 ```
+
 
 A partir de esta data.frame haremos varios análisis sencillos y algunos gráficos correspondientes.
 
@@ -133,23 +157,25 @@ La variable `genero` de la data.frame presenta los valores 1 y 2. Transforme est
 
 Por ejemplo, la variable original:
 
-```{r, eval = FALSE}
+
+```r
 > magic$genero[1:4]
 [1] 1 2 1 2
 ```
 
-```{r, echo = FALSE}
-magic$genero <- as.factor(magic$genero)
-levels(magic$genero) <- c("mujer", "hombre")
-```
+
+
+
 
 ... y la variable modificada:
 
-```{r, eval = FALSE}
+
+```r
 > magic$genero[1:4]
 [1] mujer  hombre mujer  hombre
 Levels: mujer hombre
 ```
+
 
 ### 1.b Histogramas
 
@@ -159,13 +185,8 @@ Aquí debe hacer un gráfico como el de la figura 1. Se trata de dos histogramas
 
 Con la función `par` se pueden determinar la cantidad de gráficos que vamos a tener dentro de cada figura. Para eso se usa alguno de los parámetros `mfcol` o `mfrow` (no al mismo tiempo). Utilice estos parámetros correctamente para lograr dividir la figura en dos gráficos tal como en el ejemplo.
 
-```{r, echo = FALSE, fig.cap = "Histograma de las alturas de mujeres y hombres (ej. 1.b)", fig.width = 4.5}
-par(mfcol = c(2:1))
-hist.m <- hist(magic$altura[magic$genero == "mujer"], breaks = 10, 
-               main = "Mujeres", xlab = "Altura (m)", ylab = "Conteo")
-hist.h <- hist(magic$altura[magic$genero == "hombre"], breaks = 10, 
-               main = "Hombres", xlab = "Altura (m)", ylab = "Conteo")
-```
+![Histograma de las alturas de mujeres y hombres (ej. 1.b)](figure/unnamed-chunk-8.png) 
+
 
 #### ii. función `hist`
 
@@ -183,33 +204,34 @@ En este ejercicio simplemente vamos a graficar utilizando los argumentos que edi
 
 Recuerde que para agregar estos elementos debe utilizar los parámetros gráficos de R, los cuales aparecen listados en la ayuda de la función `par`. Estos parámetros se utilizan como argumentos al momento de llamar a plot, por ejemplo:
 
-```{r, eval = FALSE}
+
+```r
 plot(speed ~ dist, data = cars, col = "red")
 ```
+
 
 Aquí se utiliza el parámetro `col` como argumento de `plot`, asignándole el valor "red". Nótese que también se pueden asignar parámetros con comandos del tipo `par(parametro = "valor")`, pero en este ejercicio no está contemplada esta opción, por lo que no debe utilizarla.
 
 Para hacer este gráfico tanto `plot` como `boxplot` son opciones válidas. Recuerde respetar mayúsculas y minúsculas en los textos, así como la ausencia de tildes. La corrección sólo contempla el uso de objetos de clase "formula" para hacer el plot. Es decir, debe nombrar las variables siguiendo el esquema `y ~ x`, como en el ejemplo anterior (use `?plot.formula` para ver la documentación). También es necesario que utilice el nombre del argumento `data` para indicar el data.frame (i.e.: `data = magic`).
 
-```{r, echo = FALSE, fig.cap = "Gráfico de cajas (ej. 1.c)", fig.width=5, fig.height=5}
-plot(peso ~ genero, data = magic, main = "Peso en funcion del genero", xlab = "Genero", ylab = "Peso (Kg)")
-```
+![Gráfico de cajas (ej. 1.c)](figure/unnamed-chunk-10.png) 
+
 
 ### 1.d Anova
 
 Realizar un anova con la variable de respuesta `peso` y la variable explicativa `genero`; guardar el resultado en el objeto `peso.genero`.
 
-```{r, echo = FALSE, cache = TRUE}
-peso.genero <- aov(peso ~ genero, magic)
-```
+
+
 
 #### j.
 Crear los objetos `peso.hombre` y `peso.mujer` con los valores esperados de peso para los sexos respectivos, según los resultados del modelo `peso.genero` creado en el punto anterior (considere la interpretación de los coeficientes del anova dada en la lección correspondiente).
 
-```{r}
+
+```r
 peso.mujer <- coef(peso.genero)[1]
 peso.hombre <- sum(coef(peso.genero))
-# o 
+# o
 peso.mujer <- mean(magic$peso[magic$genero == "mujer"])
 peso.hombre <- mean(magic$peso[magic$genero == "hombre"])
 # o
@@ -218,30 +240,52 @@ peso.mujer <- ag[1, 2]
 peso.hombre <- ag[2, 2]
 
 # Otros usos cool de aggregate:
-aggregate(peso ~ genero + edadf, data=magic, FUN=mean)
-aggregate(cbind(peso, altura) ~ genero, data=magic, FUN=mean)
+aggregate(peso ~ genero + edadf, data = magic, FUN = mean)
 ```
+
+```
+## Error: objeto 'edadf' no encontrado
+```
+
+```r
+aggregate(cbind(peso, altura) ~ genero, data = magic, FUN = mean)
+```
+
+```
+##   genero  peso altura
+## 1  mujer 57.92  1.599
+## 2 hombre 67.14  1.732
+```
+
 
 #### k.
 Graficar: $altura ^ 2$ (altura al cuadrado) en función del peso.
 
-```{r}
-plot(altura ^ 2 ~ peso, magic)
+
+```r
+plot(altura^2 ~ peso, magic)
 ```
+
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
+
 
 #### l.
 Realizar una regresión lineal entre estas dos variables ($altura ^ 2$ ~ peso) sin intercepto. El modelo obtenido debe guardarse en el objeto `altura.peso`.
 
-```{r}
-altura.peso <- lm(altura ^ 2 ~ peso - 1, magic)
+
+```r
+altura.peso <- lm(altura^2 ~ peso - 1, magic)
 ```
+
 
 #### m.
 Realizar una regresión lineal entre estas dos variables ($altura ^ 2$ ~ peso) sin intercepto, pero esta vez excluyendo a los outliers de peso (es decir, aquellos tales que peso > 120 Kg). Guardar el modelo en el objeto `altura.peso2`.
 
-```{r}
-altura.peso2 <- lm(altura ^ 2 ~ peso - 1, magic, subset = peso <= 120)
+
+```r
+altura.peso2 <- lm(altura^2 ~ peso - 1, magic, subset = peso <= 120)
 ```
+
 
 #### n.
 Utilizando los coeficientes obtenidos en este segundo modelo, determine la altura esperada para la secuencia de pesos:  
@@ -251,10 +295,12 @@ $$
   a = \sqrt{c \cdot p}
 $$
 
-```{r}
+
+```r
 p <- seq(40, 120, by = 0.5)
 ae <- sqrt(coef(altura.peso) * p)
 ```
+
     
 Los valores de altura esperados se deben guardar en un objeto llamado `ae`.
 
@@ -263,32 +309,59 @@ Los valores de altura esperados se deben guardar en un objeto llamado `ae`.
 #### o.
 Guardar en el objeto `r2` el valor del $R^2$ (*no ajustado*) del modelo (es decir, el coeficiente de determinación o "proporción de varianza explicada"). Cuidado: no confundir con el $R^2$ ajustado.
 
-```{r}
+
+```r
 s <- summary(altura.peso)
 r2 <- s$r.squared
 ```
 
+
 #### p.  
 Agregar al último gráfico creado anteriormente las líneas correspondientes a ambas regresiones lineales, utilizando diferentes trazos y/o colores para diferenciarlas.
 
-```{r}
+
+```r
 abline(altura.peso)
-abline(altura.peso2, col=2)
 ```
+
+```
+## Error: plot.new has not been called yet
+```
+
+```r
+abline(altura.peso2, col = 2)
+```
+
+```
+## Error: plot.new has not been called yet
+```
+
 
 #### q.
 Agregar una línea vertical indicando el valor 120 en el eje del peso; utilice un estilo de línea diferente a los anteriores (con color y/o trazo diferente).
 
-```{r}
+
+```r
 abline(v = 120, lty = 2)
 ```
+
+```
+## Error: plot.new has not been called yet
+```
+
 
 #### r.
 Superponer al mismo gráfico los puntos de los outliers en peso, utilizando un símbolo diferente (y opcionalmente, un color distinto), de forma tal que se puedan diferenciar a simple vista.
 
-```{r}
-points(altura ^ 2 ~ peso, magic, subset = peso > 120, pch = 19)
+
+```r
+points(altura^2 ~ peso, magic, subset = peso > 120, pch = 19)
 ```
+
+```
+## Error: plot.new has not been called yet
+```
+
 
 #### s.
 Agregar una última variable, llamada `IMC`, a la data.frame `magic`: el [índice IMC](http://es.wikipedia.org/wiki/%C3%8Dndice_de_masa_corporal) correspondiente a cada participante, calculado como:
@@ -297,16 +370,20 @@ $$
   IMC = \frac{Peso (Kg)}{Altura ^ 2 (m)}
 $$
 
-```{r}
-magic$IMC <- with(magic, peso / (altura ** 2))
+
+```r
+magic$IMC <- with(magic, peso/(altura^2))
 ```
+
 
 #### t.
 Exportar la data.frame `magic` a un archivo de texto plano (.txt o .csv), conteniendo todas las columnas agregadas y los encabezados, pero excluyendo los nombres de fila.
 
-```{r}
+
+```r
 write.csv2(magic, "magic.csv", row.names = FALSE)
 ```
+
 
 latex
 

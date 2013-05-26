@@ -3,6 +3,152 @@ objetos <- NULL
 
 ### GENERALES
 
+arget <- function(arg, cortado) {
+  # Devuelve el valor que el usuario le asigna al argumento arg
+  arg.part <- cortado[grep(arg, cortado)]
+  texto <- strsplit(arg.part, "=")[[1]][2]
+  eval(parse(text = texto))
+}
+
+### Dejo esta copia de cup.sript (diferente a la de los archivos datos.R) para usar en el futuro
+### cuando se haga el paquete IMSER.
+# cut.script <- function(arch, cut.str = "#===") {
+  # arch: nombre del script de R (= 1 ejercicio)
+  # salida: el código del estudiante, sin comentarios,
+  #         en un vector character.
+#   arch <- readLines(arch, encoding="UTF-8")
+#   if (!is.na(cut.str) || !is.null(cut.str) || cut.str != "") {
+#     gr <- grep(cut.str, arch, useBytes = TRUE)
+#     arch <- arch[gr[1]:gr[2]]
+#   }
+#   arch <- sacar.comentarios(arch) # Esta función no la vé!!! por eso hay que poner cut.script en datos.R
+  #   tmp <- tempfile()
+  #   writeLines(arch, tmp)
+  #   return(tmp)
+#   return(arch)
+# }
+# objetos <- c(objetos, 'cut.script')
+
+### CHEQUEAR ÚLTIMA VERSIÓN DE "DATOS":
+
+# Para implementar a futuro.
+# Todavía no puesta a prueba, pero en principio sirve.
+
+# Código tomado de: http://stackoverflow.com/questions/16578397/check-if-there-is-a-newer-version-of-my-local-file-in-github-with-r/16583492#16583492
+# Gracias Dieter Menne por la colaboración! (http://stackoverflow.com/users/229794/dieter-menne)
+
+check.datos.date <- function() {
+  # Se supone que se debe ejecutar desde la carpeta del repartido... en un futuro estaría bueno que no sea necesario,
+  # sobre todo si se hace un paquete del curso.
+  repdir <- basename(getwd())
+  if (!grepl("rep-[0-9]", repdir)) {
+    warning("No se pudo chequear la fecha del archivo datos, debido a que no se encuentra en el directorio de trabajo del repartido")
+    return(FALSE)
+  }
+  cat("Repartido actual:", gsub("[[:alpha:][:punct:]]", "", repdir), "\n")
+  inst.pack <- rownames(installed.packages())
+  if (!grepl("RCurl", inst.pack))
+    install.packages("RCurl", repo = "http://mirror.fcaglp.unlp.edu.ar/CRAN/")
+  if (!grepl("rjson", inst.pack))
+    install.packages("rjson", repo = "http://mirror.fcaglp.unlp.edu.ar/CRAN/")
+
+  require(RCurl)
+  require(rjson)
+
+  #   repdir <- "rep-2" # De prueba, comentar después
+  destination <- "datos" # Debe ser en el directorio actual
+  repo <- "https://api.github.com/repos/jumanbar/Curso-R/"
+  path <- paste0("ejercicios-de-programacion/", repdir, "/", destination)
+  myopts <- curlOptions(useragent = "Mozilla/5.0", ssl.verifypeer = FALSE)
+
+  d <- fromJSON(getURL(paste0(repo, "commits?path=", path), 
+                      useragent = "Mozilla/5.0", ssl.verifypeer = FALSE))[[1]]
+  #   gitDate  <- as.POSIXct(d$commit$author$date)
+  git.date <- paste(gsub("Z", "", strsplit(d$commit$author$date, "T")[[1]]), collapse = " ")
+  #   git.date <- gsub(":[[:digit:][:punct:]]+$", "", git.date)
+  git.date <- gsub(":[[:digit:]]+$", "", git.date)
+  load("datos")
+  dif <- difftime(git.date, rep.date, units = "hours")
+  dif2 <- difftime(git.date, rep.date)
+  if (dif <= 0)
+    cat("No hay versión nueva disponible del archivo 'datos'\n")
+  if (dif > 0.5) {
+    cat("Su versión de 'datos' es", dif2, attr(dif2, "units"), "más vieja que la disponible para bajar\n")
+    cat("==>> Se recomienda descargar una nueva versión del archivo 'datos'\n")
+  }
+  if (dif > 0 && dif <= 0.5) {
+    cat("Su versión de 'datos' es", dif2, attr(dif2, "units"), "más vieja que la disponible para bajar\n")
+    warning("Es probable que se trate de la misma versión, por ser tan poca la diferencia de tiempo")
+  }
+
+  s <- menu(c("Si", "No"), title="¿Desea descargar el archivo?")
+  if (s == 1) {
+    browseURL(url.desc)
+    cat("Recuerde guardarlo en la carpeta del repartido:\n>>  ", getwd(), "\n")
+    cat("sustituyendo al archivo 'datos' actual\n")
+  }
+
+  # Esto sería para bajar la nueva versión, todavía no funciona...
+  #   MustDownload <- !file.exists(destination) |  file.info(destination)$mtime > gitDate
+  #   if (MustDownload){
+  #     url <- d$url
+  #     commit = fromJSON(getURL(url, .opts=myopts))
+  #     files = unlist(lapply(commit$files,"[[","filename"))
+  #     rawfile = commit$files[[which(files==path)]]$raw_url
+  #     download.file(rawfile,destination,quiet=TRUE)
+  #     Sys.setFileTime(destination,gitDate)
+  #     cat("Nuevo archivo 'datos' descargado")
+  #   }
+  return(TRUE)
+}
+
+cut.script <- function(arch, cut.str = "#===") {
+  # arch: nombre del script de R (= 1 ejercicio)
+  # salida: el código del estudiante, sin comentarios,
+  #         en un vector character.
+  arch <- readLines(arch, encoding = "UTF-8")
+  if (!is.na(cut.str) || !is.null(cut.str) || cut.str != "") {
+    gr <- grep(cut.str, arch, useBytes = TRUE)
+    arch <- arch[gr[1]:gr[2]]
+  }
+  #   arch <- sacar.comentarios(arch)
+  arch <- gsub("^ +", "", arch) # Saca espacios en blanco iniciales
+  arch <- arch[arch != ""] # Saco líneas en blanco
+  splited <- strsplit(arch, "#") # Corta las líneas en los #
+  for (i in 1:length(arch))
+    arch[i] <- splited[[i]][1]
+  arch <- arch[arch != ""] # Saco líneas en blanco
+  gsub(" +$", "", arch) # Borra espacios al final de las líneas
+  #   tmp <- tempfile()
+  #   writeLines(arch, tmp)
+  #   return(tmp)
+  return(arch)
+}
+objetos <- c(objetos, 'cut.script')
+
+### FUNCIÓN DE FEEDBACK
+# Trabaja con evaluar
+feedback <- function(r, s) {
+  if (!is.character(r) && r > 0) {
+    cat('El script "', s, '" está perfecto, ¡Buen trabajo!\n\n', sep='')
+  } else {
+    cat('El script "', s, '" tiene algún error, lo siento :-(
+    -> Verifique que su solución sea genérica y que sigue
+       todas las consignas de la letra. \n\n', sep='')
+  }
+}
+objetos <- c(objetos, 'feedback')
+
+get.cortado <- function(linea) {
+  cortado <- strsplit(linea, ",")[[1]] # Dividen en las comas
+  cortado <- gsub(" +$", "", cortado) # Corta espacios en blanco sobre el final
+  parg <- cortado[1] # Primer argumento (y función plot o boxplot)
+  cortado <- cortado[-1]
+  parg <- strsplit(parg, "\\(")[[1]][2] # Primer argumento sólo
+  cortado <- gsub(")$", "", cortado) # Quita el paréntesis sobre el final
+  c(parg, cortado)
+}
+
 mkmsj <- function(msj.base = "", obs, esp) {
   # msj.base: mensaje indicando en qué objeto está el error,
   #           ej.: El or XXX no coincide con lo esperado
@@ -180,56 +326,6 @@ objnames <- function(esp, obj, oname, filas = FALSE) {
   FALSE
 }
 
-sacar.comentarios <- function(s) {
-  # s: vector character
-  # Saca comentarios en un vector character, el cual se supone
-  # que contiene líneas de código R (cada elemento de s = una
-  # línea de código).
-  # i.e.: saca todo lo que viene después del # en cada línea
-  s <- gsub("^ +", "", s) # Saca espacios en blanco iniciales
-  s <- s[s != ""] # Saco líneas en blanco
-  splited <- strsplit(s, "#") # Corta las líneas en los #
-  for (i in 1:length(s))
-    s[i] <- splited[[i]][1]
-  s <- s[s != ""] # Saco líneas en blanco
-  gsub(" +$", "", s) # Borra espacios al final de las líneas
-}
-objetos <- c(objetos, "sacar.comentarios")
-
-# Dejo esta copia de cup.sript (diferente a la de los archivos datos.R) para usar en el futuro
-# cuando se haga el paquete IMSER.
-# cut.script <- function(arch, cut.str = "#===") {
-  # arch: nombre del script de R (= 1 ejercicio)
-  # salida: el código del estudiante, sin comentarios,
-  #         en un vector character.
-#   arch <- readLines(arch, encoding="UTF-8")
-#   if (!is.na(cut.str) || !is.null(cut.str) || cut.str != "") {
-#     gr <- grep(cut.str, arch, useBytes = TRUE)
-#     arch <- arch[gr[1]:gr[2]]
-#   }
-#   arch <- sacar.comentarios(arch) # Esta función no la vé!!! por eso hay que poner cut.script en datos.R
-  #   tmp <- tempfile()
-  #   writeLines(arch, tmp)
-  #   return(tmp)
-#   return(arch)
-# }
-# objetos <- c(objetos, 'cut.script')
-
-
-### FUNCIÓN DE FEEDBACK
-# Trabaja con evaluar
-feedback <- function(r, s) {
-  if (!is.character(r) && r > 0) {
-    cat('El script "', s, '" está perfecto, ¡Buen trabajo!\n\n', sep='')
-  } else {
-    cat('El script "', s, '" tiene algún error, lo siento :-(
-    -> Verifique que su solución sea genérica y que sigue
-       todas las consignas de la letra. \n\n', sep='')
-  }
-}
-objetos <- c(objetos, 'feedback')
-
-
 print.codigo <- function(x) {
   # x es una lista cuyos elementos
   # son vectores character:
@@ -242,7 +338,6 @@ print.codigo <- function(x) {
   }
 }
 objetos <- c(objetos, 'print.codigo')
-
 
 ### RELOAD
 
@@ -273,81 +368,21 @@ reload <- function() {
 }
 objetos <- c(objetos, "reload")
 
-
-### CHEQUEAR ÚLTIMA VERSIÓN DE "DATOS":
-
-# Para implementar a futuro.
-# Todavía no puesta a prueba, pero en principio sirve.
-
-# Código tomado de: http://stackoverflow.com/questions/16578397/check-if-there-is-a-newer-version-of-my-local-file-in-github-with-r/16583492#16583492
-# Gracias Dieter Menne por la colaboración! (http://stackoverflow.com/users/229794/dieter-menne)
-
-check.datos.date <- function() {
-  # Se supone que se debe ejecutar desde la carpeta del repartido... en un futuro estaría bueno que no sea necesario,
-  # sobre todo si se hace un paquete del curso.
-  repdir <- basename(getwd())
-  if (!grepl("rep-[0-9]", repdir)) {
-    warning("No se pudo chequear la fecha del archivo datos, debido a que no se encuentra en el directorio de trabajo del repartido")
-    return(FALSE)
-  }
-  cat("Repartido actual:", gsub("[[:alpha:][:punct:]]", "", repdir), "\n")
-  inst.pack <- rownames(installed.packages())
-  if (!grepl("RCurl", inst.pack))
-    install.packages("RCurl", repo = "http://mirror.fcaglp.unlp.edu.ar/CRAN/")
-  if (!grepl("rjson", inst.pack))
-    install.packages("rjson", repo = "http://mirror.fcaglp.unlp.edu.ar/CRAN/")
-
-  require(RCurl)
-  require(rjson)
-
-  #   repdir <- "rep-2" # De prueba, comentar después
-  destination <- "datos" # Debe ser en el directorio actual
-  repo <- "https://api.github.com/repos/jumanbar/Curso-R/"
-  path <- paste0("ejercicios-de-programacion/", repdir, "/", destination)
-  myopts <- curlOptions(useragent = "Mozilla/5.0", ssl.verifypeer = FALSE)
-
-  d <- fromJSON(getURL(paste0(repo, "commits?path=", path), 
-                      useragent = "Mozilla/5.0", ssl.verifypeer = FALSE))[[1]]
-  #   gitDate  <- as.POSIXct(d$commit$author$date)
-  git.date <- paste(gsub("Z", "", strsplit(d$commit$author$date, "T")[[1]]), collapse = " ")
-  #   git.date <- gsub(":[[:digit:][:punct:]]+$", "", git.date)
-  git.date <- gsub(":[[:digit:]]+$", "", git.date)
-  load("datos")
-  dif <- difftime(git.date, rep.date, units = "hours")
-  dif2 <- difftime(git.date, rep.date)
-  if (dif <= 0)
-    cat("No hay versión nueva disponible del archivo 'datos'\n")
-  if (dif > 0.5) {
-    cat("Su versión de 'datos' es", dif2, attr(dif2, "units"), "más vieja que la disponible para bajar\n")
-    cat("==>> Se recomienda descargar una nueva versión del archivo 'datos'\n")
-  }
-  if (dif > 0 && dif <= 0.5) {
-    cat("Su versión de 'datos' es", dif2, attr(dif2, "units"), "más vieja que la disponible para bajar\n")
-    warning("Es probable que se trate de la misma versión, por ser tan poca la diferencia de tiempo")
-  }
-
-  s <- menu(c("Si", "No"), title="¿Desea descargar el archivo?")
-  if (s == 1) {
-    browseURL(url.desc)
-    cat("Recuerde guardarlo en la carpeta del repartido:\n>>  ", getwd(), "\n")
-    cat("sustituyendo al archivo 'datos' actual\n")
-  }
-
-  # Esto sería para bajar la nueva versión, todavía no funciona...
-  #   MustDownload <- !file.exists(destination) |  file.info(destination)$mtime > gitDate
-  #   if (MustDownload){
-  #     url <- d$url
-  #     commit = fromJSON(getURL(url, .opts=myopts))
-  #     files = unlist(lapply(commit$files,"[[","filename"))
-  #     rawfile = commit$files[[which(files==path)]]$raw_url
-  #     download.file(rawfile,destination,quiet=TRUE)
-  #     Sys.setFileTime(destination,gitDate)
-  #     cat("Nuevo archivo 'datos' descargado")
-  #   }
-  return(TRUE)
+sacar.comentarios <- function(s) {
+  # s: vector character
+  # Saca comentarios en un vector character, el cual se supone
+  # que contiene líneas de código R (cada elemento de s = una
+  # línea de código).
+  # i.e.: saca todo lo que viene después del # en cada línea
+  s <- gsub("^ +", "", s) # Saca espacios en blanco iniciales
+  s <- s[s != ""] # Saco líneas en blanco
+  splited <- strsplit(s, "#") # Corta las líneas en los #
+  for (i in 1:length(s))
+    s[i] <- splited[[i]][1]
+  s <- s[s != ""] # Saco líneas en blanco
+  gsub(" +$", "", s) # Borra espacios al final de las líneas
 }
-
-
+objetos <- c(objetos, "sacar.comentarios")
 
 ## ======================================================================= ##
 

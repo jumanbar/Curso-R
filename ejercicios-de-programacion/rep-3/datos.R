@@ -96,15 +96,15 @@ cor1.a <- function() {
   cat("dim(usa) ... OK\n")
 
   if (all(toupper(cn) == toupper(cn2)) && any(cn != cn2))
-    warning(" Parece haber un problema de mayúsculas/minúsculas en los nombres de las columnas", call. = FALSE)
+    warning("parece haber un problema de mayúsculas/minúsculas en los nombres de las columnas", call. = FALSE)
   if (!all(cn == cn2))
-    stop("Los nombres de las columnas de usa no son los esperados", call. = FALSE)
+    stop("los nombres de las columnas de usa no son los esperados", call. = FALSE)
   cat("colnames(usa) ... OK\n")
 
   if (all(toupper(cn) == toupper(cn2)) && any(cn != cn2))
-    warning(" Parece haber un problema de mayúsculas/minúsculas en los nombres de las filas", call. = FALSE)
+    warning("parece haber un problema de mayúsculas/minúsculas en los nombres de las filas", call. = FALSE)
   if (!identical(rn, rn2))
-    stop("Los nombres de las filas de usa no son los esperados", call. = FALSE)
+    stop("los nombres de las filas de usa no son los esperados", call. = FALSE)
   cat("rownames(usa) ... OK\n")
 
   if (!all(usa == usa.check, na.rm = TRUE)) {
@@ -206,7 +206,7 @@ cor1.c <- function() {
   cat("is.data.frame(usa3) ... OK\n")
 
   if (any(is.na(usa3$Ingresos))) {
-    warning(" Ej. 1.c: En la corrección los NA son puestos en posiciones aleatorias de la columna", call. = FALSE)
+    warning("ej. 1.c: En la corrección los NA son puestos en posiciones aleatorias de la columna", call. = FALSE)
     donde <- paste(which(is.na(usa3$Ingresos)), collapse = " ")
     return(paste("La columna Ingresos aún tiene valores NA en las posiciones:", donde, "\n", sep = " "))
   }
@@ -247,7 +247,7 @@ cor1.d <- function() {
   unlink(tmp)
 
   if (!is.function(est.foo))
-    stop("El objeto est no es una función", call. = FALSE)
+    stop("el objeto est no es una función", call. = FALSE)
   cat("is.function(est) ... OK\n")
 
   x <- rnorm(100, 15, 3)
@@ -263,7 +263,7 @@ cor1.d <- function() {
   cat("¿salida de est todos NA's? ... OK\n")
 
   if (!all(is.na(o1) == is.na(x))) {
-    warning("  En la corrección se utiliza un vector aleatorio como entrada de est (con NA's)", call. = FALSE)
+    warning("en la corrección se utiliza un vector aleatorio como entrada de est (con NA's)", call. = FALSE)
     stop("las posiciones de los NA en la salida de est no son idénticas a las del vector de entrada", call. = FALSE)
   }
   cat("ubicación de los NA's ... OK\n")
@@ -434,13 +434,13 @@ cor1.f <- function() {
 
   if (!all(levels(usa3a$Ing.Cat) == c("D", "C", "B", "A"))) {
     levels(usa3a$Ing.Cat) <- c("D", "C", "B", "A")
-    msj <- c("En la corrección se cambiaron los nombres de los niveles del factor:\n",
+    msj <- c("en la corrección se cambiaron los nombres de los niveles del factor:\n",
              "  > levels(usa3$Ing.Cat) <- c('D', 'C', 'B', 'A')\n")
     warning(msj, call. = FALSE)
   }
 
   if (!all(usa3a$Ing.Cat == usaX$Ing.Cat)) {
-    warning("  Ej. 1.f: se crearon valores aleatorios de usa3$Ingresos para la corrección.", call. = FALSE)
+    warning("ej. 1.f: se crearon valores aleatorios de usa3$Ingresos para la corrección.", call. = FALSE)
     mensaje <- mkmsj.v("El el factor usa3$Ing.Cat obtenido difiere del esperado",
                        usa3a$Ing.Cat, usaX$Ing.Cat)
     return(mensaje)
@@ -449,13 +449,13 @@ cor1.f <- function() {
 
   if (!identical(salidaTapply, salidaTapplyX)) {
     if (!all(names(salidaTapply) == names(salidaTapplyX)))
-      warning("  Los nombres de los elementos de salidaTapply no son los esperados", call. = FALSE)
-    stop("El objeto salidaTapply resultante difiere del esperado", call. = FALSE)
+      warning("los nombres de los elementos de salidaTapply no son los esperados", call. = FALSE)
+    stop("el objeto salidaTapply resultante difiere del esperado", call. = FALSE)
   }
   cat("salidaTapply ... OK\n")
 
   if (!identical(salidaBoxplot, salidaBoxplotX))
-    stop("El objeto salidaBoxplot resultante difiere del esperado", call. = FALSE)
+    stop("el objeto salidaBoxplot resultante difiere del esperado", call. = FALSE)
   cat("salidaBoxplot ... OK\n")
 
   TRUE
@@ -499,19 +499,19 @@ cor1.g <- function() {
   usa.import <- read.table('usa-norm.csv', header = TRUE, sep = ";", dec = ",", row.names = 1)
 
   if (ncol(usa.import) != ncol(usa.importX)) {
-    mensaje <- mkmsj.v("Al importar usa-norm.csv el número de columnas no es el esperado",
+    mensaje <- mkmsj.v("al importar usa-norm.csv el número de columnas no es el esperado",
                        ncol(usa.import), ncol(usa.importX))
     warning(mensaje, call. = FALSE)
-    stop("Aparentemente el separador de columnas no es ';'", call. = FALSE)
+    stop("aparentemente el separador de columnas no es ';'", call. = FALSE)
   }
   cat("separador de columnas en usa-norm.csv ... OK\n")
 
   if (!is.numeric(usa.import[,sample(2:9, 1)]))
-    stop("Aparentemente el punto decimal no es ','", call. = FALSE)
+    stop("aparentemente el punto decimal no es ','", call. = FALSE)
   cat("decimales en usa-norm.csv ... OK\n")
 
   if (!all(colnames(usa.importX) == colnames(usa.import))) {
-    mensaje <- mkmsj.v("Los nombres de las columnas no se guardaron correctamente",
+    mensaje <- mkmsj.v("los nombres de las columnas no se guardaron correctamente",
                        colnames(usa.import), colnames(usa.importX))
     return(mensaje)
   }

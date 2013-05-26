@@ -1,14 +1,14 @@
 Ejercicios de programación III: Trabajo con datos
 =================================================
 
-### [IMSER 2012]
+### [IMSER 2013]
 
 - - -
 
 Archivos incluidos:
 -------------------
 
-El [archivo](http://goo.gl/eFUKY) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-3`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
+El [archivo](http://goo.gl/eFUKY) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-X`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
 * **` importar.R `**
 * **` parche.R `**
@@ -202,7 +202,7 @@ Script: "transformar.R"
 
 La estandarización o normalización es una tranformación común en el análisis de datos. En general para cualquier tipo de transformación, si se trata de un trabajo con matrices o data.frames, es común en R el uso de las funciónes del tipo `apply`, ya que permiten modificar varias columnas en un sólo comando y además pueden ser más eficientes (en particular `lapply` o `sapply`) cuando se trabaja con grandes cantidades de datos.
 
-En este ejercicio el objetivo es usar la función `est` creada en el ejercicio anterior, en conjunción con `apply`, para transformar las columnas de clase "numeric" de nuestra data.frame `usa3`. Específicamente, debe usar `apply` para transformar el objeto `datosNumericos`, el cual están en el script "trasnformar.R". En caso de **no haber hecho** el ejercicio 1.d, puede cargar una función `est` hecha de antemano con el comando:
+En este ejercicio el objetivo es usar la función `est` creada en el ejercicio anterior, en conjunción con `apply`, para transformar las columnas numéricas de nuestra data.frame `usa3` (i.e.: tanto "numeric" como "integer")). Específicamente, debe usar `apply` para transformar el objeto `datosNumericos`, el cual están en el script "trasnformar.R". En caso de **no haber hecho** el ejercicio 1.d, puede cargar una función `est` hecha de antemano con el comando:
 
 ```{r eval = FALSE}
 load('est.RData')

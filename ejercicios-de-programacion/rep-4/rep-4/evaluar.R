@@ -7,7 +7,7 @@
 #   msjenc <- paste(msjenc, "\n", sep = "")
 #   stop(msjenc, call. = FALSE) 
 # }
-cat("Los siguientes caracteres deben ser vocales con tilde:\n",
+cat("Los siguientes caracteres deben ser vocales con acento:\n",
     "  á - é - í - ó - ú\n",
     "Si no se ven correctamente corra el siguiente comando:\n",
     "  source('evaluar.R', encoding = 'UTF-8')\n\n", sep = "")
