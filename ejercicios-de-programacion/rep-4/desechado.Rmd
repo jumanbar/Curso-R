@@ -1,0 +1,185 @@
+
+
+1. Distribución de funciones
+----------------------------
+
+El data.frame "Pacientes" presenta dos columnas, con datos obtenidos de 100 pacientes consultados: por un lado (col. 1) la el número de consultas médicas por año y por otro (col. 2) la frecuencia obtenida para ese valor (i.e.: la cantidad de veces que ese número fue respondido). Por lo tanto, podemos observar por ejemplo que XX personas consultadas concurren una vez por año médico. Si vemos el histograma de la segunda variable (`barplot(pacientes[, 2])`) para conocer la distribución del evento podemos observar que la cantidad de pacientes que visitan al medico anualmente puede ser descrito por una FDP del tipo Poisson.
+
+Recuerde que la distribución de probabilidad de Poisson presenta como única variable a $\lambda$ que es la media y la varianza de la FDP. Para mayores consultas busque en la ayuda `?dpois`.
+
+Se desea conocer cual es el máximo valor de $\lambda$ para el rango de valores dado. Este valor obtenido del parámetro será el que maximice la densidad de datos de los pacientes. (???)
+
+Para esto primero debe realizar una función genérica que permita calcular la densidad de probabilidad para cada dato.
+Esta función se llama `dpois.pacientes`. Note que se transforman los datos con el logaritmo natural debido a que es mas sencillo calcular el máximo de un número.
+
+Luego se debe definir el argumento lambda de la función `dpois.pacientes`, el cual es una secuencia de valores de dicho parámetro. Esto servirá para conocer cuál es el máximo valor esperado de pacientes por año que concurre al médico. Para esto último recomendamos utilizar y consultar en la ayuda la función `sapply`.
+
+previamente el estudiante deberá importar la tabla pacientes, la cual será un data.frame con el mismo nombre.
+
+
+densidad: densidad de probabilidad para cada dato $x_i$ que se distribuye con una función de probabilidad tipo Poisson.
+transformado: logaritmo natural de los valores de densidad obtenidos.
+promedio: promedio de todos los valores transformados. Observe que esta función debe ser negativa para que los valores sean positivos.
+`max.lambda`: valor de lambda para el cual es máxima la función `dpois.pacientes`. Los valores de lambda debe estar comprendidos entre 1 y 4.
+
+```{r}
+npac <- 5000
+true.lambda <- 4
+respuestas <- rpois(npac, true.lambda)
+
+pacientes <- data.frame(A = as.numeric(names(table(respuestas))), 
+                        B = as.numeric(table(respuestas)))
+barplot(pacientes[,2])
+
+lambda.min <- 1
+lambda.max <- 8
+
+pacientes <- read.table("pacientes.csv", header=TRUE, sep=",")
+
+dpois.pacientes <- function(lambda) {
+  
+  densidad <- dpois(pacientes[, 1], lambda)
+  transformado <- log(densidad)
+  promedio <- - mean(transformado)
+  
+}
+
+dpois.pacientes <- function(lambda) {
+  
+  densidad <- dpois(pacientes[, 1], lambda)
+  dens.obs <- pacientes[,2] / sum(pacientes[,2])
+  transformado <- log(densidad)
+  trans.obs <- log(dens.obs)
+  promedio <- - mean(transformado - trans.obs)
+  
+}
+
+max.lambda <- max(sapply(lambda.min:lambda.max, dpois.pacientes))
+```
+
+#### s.
+Agregar una última variable, llamada `IMC`, a la data.frame `magic`: el [índice IMC](http://es.wikipedia.org/wiki/%C3%8Dndice_de_masa_corporal) correspondiente a cada participante, calculado como:
+
+$$
+  IMC = \frac{Peso (Kg)}{Altura ^ 2 (m)}
+$$
+
+```{r}
+magic$IMC <- with(magic, peso / (altura ** 2))
+```
+
+#### t.
+Exportar la data.frame `magic` a un archivo de texto plano (.txt o .csv), conteniendo todas las columnas agregadas y los encabezados, pero excluyendo los nombres de fila.
+
+```{r}
+write.csv2(magic, "magic.csv", row.names = FALSE)
+```
+
+latex
+
+La hoja de calculo llamada 'datos.xls' contiene tres variables muestreadas. La
+primer variable son los tamaños corporales (en Kg) de 40 competidores del ultimo Mundial de Magic, 20 hombres y 20 mujeres. La segunda variable es el genero de los mismos, codificados como 1 para mujeres y 2 para varones. La tercer
+variable es la altura de los participantes, en metros.
+
+Debe Importar la tabla de la hoja de calculo a R; el objeto resultante debe ser
+una data.frame llamada magic y sus columnas deben llamarse body.size, sex
+y height (i.e.: los valores que R asigna por defecto).
+
+### 1.b
+
+Generar un vector aleatorio llamado `age`, compuesto por números **enteros positivos** entre 18 y 35. Su código debe ser capaz de corregir aquellos valores que caigan fuera de este rango (lo cual puede ocurrir o no, según el método que utilice o simplemente el azar), de forma tal que los elementos menores a 18 sean sustituidos por 18 y los mayores a 35 sean sustituidos por 35.
+
+Por ejemplo, si inicialmente su vector `age` es así: 
+
+    > age
+     [1] 35 25 30 44 17 23 36 31 25 33
+
+Entonces su código debería identificar que hay un 17, un 36 y un 44, y sustituirlos por 18, 35 y 35, para obtener un vector como el siguiente:
+
+    > age
+     [1] 35 25 30 35 18 23 35 31 25 33
+
+Texto
+
+```{r, echo = FALSE}
+age <- rpois(nrow(magic), 30)
+age[age > 35] <- 35
+age[age < 18] <- 18
+```
+
+Nota: la función `range` es una forma rápida de ver si el máximo y el mínimo del vector cumplen con el requisito mencionado.
+
+#### c.
+Agregar la variable `age` al data.frame `magic`.
+
+```{r}
+magic$age <- age
+```
+
+
+#### e.
+Crear la variable factorial `agef` basada en `age` de forma tal que cuente con 3 niveles (dividiendo el rango en 3 franjas etarias de igual amplitud). Agregar dicha variable a la data.frame `magic`.
+
+```{r}
+magic$agef <- cut(magic$age, 3)
+```
+
+#### f.
+Nombrar a cada uno de los niveles de la variable `agef` (dentro de `magic`) como `"novatos"`, `"intermedios"`, `"expertos"`, en ese orden.
+
+```{r}
+levels(magic$agef) <- c("novatos", "intermedios", "expertos")
+```
+
+#### g.
+Cambiar los nombres de las columnas del data.frame a `"peso"`, `"sexo"`, `"altura"`, `"edad"` y `"edadf"`.
+
+```{r}
+names(magic) <- c("peso", "sexo", "altura", "edad", "edadf")
+```
+
+
+### 1.d Anova
+
+Realizar un anova con la variable de respuesta `peso` y la variable explicativa `genero`; guardar el resultado en el objeto `peso.genero`.
+
+```{r, echo = FALSE, cache = TRUE}
+peso.genero <- aov(peso ~ genero, magic)
+```
+
+#### j.
+Crear los objetos `peso.hombre` y `peso.mujer` con los valores esperados de peso para los sexos respectivos, según los resultados del modelo `peso.genero` creado en el punto anterior (considere la interpretación de los coeficientes del anova dada en la lección correspondiente).
+
+```{r}
+peso.mujer <- coef(peso.genero)[1]
+peso.hombre <- sum(coef(peso.genero))
+# o 
+peso.mujer <- mean(magic$peso[magic$genero == "mujer"])
+peso.hombre <- mean(magic$peso[magic$genero == "hombre"])
+# o
+ag <- aggregate(peso ~ genero, data = magic, FUN = mean)
+peso.mujer <- ag[1, 2]
+peso.hombre <- ag[2, 2]
+
+# Otros usos cool de aggregate:
+aggregate(peso ~ genero + edadf, data=magic, FUN=mean)
+aggregate(cbind(peso, altura) ~ genero, data=magic, FUN=mean)
+```
+
+## Ejemplo de GGPLOT
+
+```{r, fig.cap = "Ejemplo de ggplot"}
+library(ggplot2)
+pp <- ggplot(magic, aes(peso, altura ** 2)) + ylab(expression(A^2)) + xlab("Peso (Kg)")
+pp <- pp + geom_point(size = 3, aes(color = genero, shape = genero))
+pp
+```
+
+Y finalmente agregar algunas líneas:
+
+```{r}
+pp <- pp + geom_vline(xintercept = 95, linetype = 2)
+pp + geom_abline(slope = coef(reg.b))
+```
+
+Nótese que la figura no es igual a la creada anteriormente, pero si 

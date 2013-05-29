@@ -6,6 +6,8 @@ objetos <- NULL
 arget <- function(arg, cortado) {
   # Devuelve el valor que el usuario le asigna al argumento arg
   arg.part <- cortado[grep(arg, cortado)]
+  if (length(arg.part) == 0)
+    stop("el argumento ", arg, " no fue encontrado", call. = FALSE)
   texto <- strsplit(arg.part, "=")[[1]][2]
   eval(parse(text = texto))
 }
@@ -157,12 +159,26 @@ mkmsj <- function(msj.base = "", obs, esp) {
   if (obs == esp)
     return(TRUE)
   output <- c(obs, esp)
-  output <- c(as.character(obs), as.character(esp))
+  if (!is.numeric(obs) || !is.numeric(esp)) {
+    if (tolower(obs) == tolower(esp))
+      warning("parece haber un error de mayúsculas/minúsculas!", call. = FALSE)
+    output <- c(as.character(obs), as.character(esp))
+  }
   names(output) <- c("Obs.", "Esp.")
+  if (is.numeric(obs) && is.numeric(esp)) {
+    dif <- abs(obs - esp)
+    #     dif <- format(dif, digits = 3, scientific = TRUE)
+    output <- c(output, dif)
+    names(output)[3] <- "Dif."
+  }
+  op <- options(digits = 4, scipen=1)
   output <- capture.output(print(output))
-  mensaje <- c(paste(msj.base, ",\n", sep=""),
+  options(op)
+  if (msj.base != "")
+    msj.base <- paste(msj.base, ",\n", sep="")
+  mensaje <- c(msj.base,
                "la diferencia observada es la siguiente:\n\n", 
-               paste("  ", output, "\n", sep = ""))
+               paste("  ", output, "\n", sep = ""), "\n")
   mensaje
 }
 objetos <- c(objetos, "mkmsj")
@@ -176,28 +192,33 @@ mkmsj.v <- function(msj.base = "", vec.obs, vec.esp, tol = 1e-8) {
   donde <- which(vec.obs != vec.esp)
   dif <- rep(NA, length(donde))
   tabla <- cbind(vec.obs[donde], vec.esp[donde])
-  if (is.factor(vec.obs))
+  if (!is.numeric(vec.obs) || is.numeric(vec.esp)) {
+    if (all(tolower(vec.obs) == tolower(vec.esp)))
+      warning("parece haber un error de mayúsculas/minúsculas!", call. = FALSE)
     tabla <- cbind(as.character(vec.obs[donde]), as.character(vec.esp[donde]))
+  }
   colnames(tabla) <- c("Obs.", "Esp.")
   if (is.null(names(vec.obs)))
     rownames(tabla) <- paste("Posición ", donde, ":", sep = "")
   if (is.numeric(vec.obs)) {
     dif <- abs(tabla[,1] - tabla[,2])
+    cond <- dif > tol
     tabla <- cbind(tabla, Dif. = dif)
-    tabla <- tabla[dif > tol, , drop=FALSE]
+    #     tabla <- format(tabla, digits = 3, scientific = NA)
+    tabla <- tabla[cond, , drop=FALSE]
     if (nrow(tabla) == 0)
       return(FALSE)
   }
   if (c1 <- nrow(tabla) > 10)
     tabla <- tabla[1:10,]
-  op <- options(digits = 10)
+  op <- options(scipen = 1, digits = 4)
   output <- capture.output(print(tabla))
   options(op)
   if (msj.base != "")
     msj.base <- paste(msj.base, ",\n", sep="")
   mensaje <- c(msj.base,
                "las diferencias observadas son las siguientes:\n\n", 
-               paste("  ", output, "\n", sep = ""))
+               paste("  ", output, "\n", sep = ""), "\n")
   if (c1)
     mensaje <- c(mensaje, "(se muestran sólo las primeras 10 diferencias)\n")
   mensaje
@@ -222,17 +243,19 @@ mkmsj.m <- function(msj.base = "", m.obs, m.esp, tol = 1e-8) {
       return(FALSE)
   } else {
     tabla <- tabla[,-5]
+    if (any(tolower(tabla[,3]) == tolower(tabla[,4])))
+      warning("puede haber problemas de mayúsculas/minúsculas", call. = FALSE)
   }
   if (c1 <- nrow(tabla) > 10)
     tabla <- tabla[1:10,]
-  op <- options(digits = 10)
+  op <- options(scipen = 1, digits = 4)
   output <- capture.output(print(tabla))
   options(op)
   if (msj.base != "")
     msj.base <- paste(msj.base, ",\n", sep="")
   mensaje <- c(msj.base,
                "las diferencias observadas son las siguientes:\n\n", 
-               paste("  ", output, "\n", sep = ""))
+               paste("  ", output, "\n", sep = ""), "\n")
   if (c1)
     mensaje <- c(mensaje, "(se muestran sólo las primeras 10 diferencias)\n")
   mensaje
@@ -264,7 +287,7 @@ mkmsj.df <- function(msj.base = "", df.obs, df.esp, tol = 1e-8) {
     dif[dnum] <- abs(num.obs - num.esp)
     tabla[dnum,3] <- num.obs 
     tabla[dnum,4] <- num.esp 
-    tabla[,5] <- dif
+    tabla[,5] <- format(dif, digits=3, scientific=TRUE)
     sel <- dif > tol
     if (!any(sel))
       tabla <- tabla[,-5]
@@ -275,14 +298,14 @@ mkmsj.df <- function(msj.base = "", df.obs, df.esp, tol = 1e-8) {
   }
   if (c1 <- nrow(tabla) > 10)
     tabla <- tabla[1:10,]
-  op <- options(digits = 10)
+  op <- options(scipen = 1, digits = 4)
   output <- capture.output(print(tabla))
   options(op)
   if (msj.base != "")
     msj.base <- paste(msj.base, ",\n", sep="")
   mensaje <- c(msj.base,
                "las diferencias observadas son las siguientes:\n\n", 
-               paste("  ", output, "\n", sep = ""))
+               paste("  ", output, "\n", sep = ""), "\n")
   if (c1)
     mensaje <- c(mensaje, "(se muestran sólo las primeras 10 diferencias)\n")
   mensaje
@@ -356,7 +379,7 @@ reload <- function() {
   rdir <- getwd()
   on.exit(setwd(rdir))
   setwd('..')
-  arch.datos <- readLines('datos.R')
+  arch.datos <- readLines('datos.R', encoding = "UTF-8")
   linea.final <- grep('### REINICIAR', arch.datos, useBytes = TRUE)
   arch.datos <- arch.datos[1:(linea.final - 1)]
   eval(parse(text = arch.datos))

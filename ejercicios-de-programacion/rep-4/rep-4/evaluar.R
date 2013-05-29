@@ -7,10 +7,6 @@
 #   msjenc <- paste(msjenc, "\n", sep = "")
 #   stop(msjenc, call. = FALSE) 
 # }
-cat("Los siguientes caracteres deben ser vocales con acento:\n",
-    "  á - é - í - ó - ú\n",
-    "Si no se ven correctamente corra el siguiente comando:\n",
-    "  source('evaluar.R', encoding = 'UTF-8')\n\n", sep = "")
 
 evaluar <- function(e) {
   #
@@ -34,20 +30,8 @@ evaluar <- function(e) {
   }
   load("datos")
   nej <- length(corregir)
-  #   hasmsj <- logical(nej)
-  #
-  #   if (tolower(getOption("encoding")) != "utf-8") {
-  #     mensaje <- c("\n¡El encoding actual no es UTF-8!\n",
-  #                  "lo cual es un problema con tildes y enies,",
-  #                  "ajuste su configuracion con el comando:\n",
-  #                  "   options(encoding = 'utf-8')\n",
-  #                  "y luego vuelva a ejecutar:\n",
-  #                  "   source('evaluar.R')\n")
-  #     mensaje <- paste(mensaje, "\n", sep = "")
-  #     warning(mensaje, call. = FALSE) 
-  #   }
-  
   arc <- dir()
+  esperados <- gsub("../", "", esperados)
   if (!all(f <- esperados %in% arc)) { # Es lo mismo poner f <- file.exists(esperados)
     mensaje <- c("  Tal vez ud. no esté trabajando en el directorio correcto,", 
                  "  utilice setwd para seleccionar la carpeta del repartido, ej.:",
@@ -142,5 +126,11 @@ evaluar <- function(e) {
 verNotas <- function()
   print.data.frame(read.csv2('notas.csv'), row.names=FALSE, right=FALSE)
 
-# cat("\n Archivo de código fuente cargado correctamente\n\n")
+cat("\nArchivo de código fuente cargado correctamente\n\n")
+
+cat("Chequeo de encoding:\n",
+    "  Los siguientes caracteres deben ser vocales con tilde:\n",
+    "    á - é - í - ó - ú\n",
+    "  Si *no se ven correctamente* corra el siguiente comando:\n",
+    "    source('evaluar.R', encoding = 'UTF-8')\n\n", sep = "")
 

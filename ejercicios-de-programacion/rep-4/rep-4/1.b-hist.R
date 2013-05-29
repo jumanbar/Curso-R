@@ -6,12 +6,14 @@
 # par y el argumento mfcol o mfrow correctamente.
 # En el gráfico superior debe ir la distribución de alturas de las mujeres,
 # mientras que en el inferior estará la de los hombres. Ambos histogramas
-# deben tener 15 celdas (breaks)(ver ayuda de hist).
+# deben tener 25 celdas (breaks)(ver ayuda de hist).
 # Debe además guardar las salidas de la función hist en los objetos hist.m
 # y hist.h (mujeres y hombres respectivamente).
 
 # Objetivos:
 
+# mfcol/mfrow*: (no es un objeto a crear) es el argumento/parámetro gráfico
+#               que deben manipular correctamente.
 # hist.m*: salida de la función hist aplicada a las alturas de las
 #          mujeres.
 # hist.h*: salida de la función hist aplicada a las alturas de los

@@ -15,8 +15,11 @@ peso[hombres] <- rnorm(nr / 2, 70, 6)
 peso <- round(peso, 1)
 altura <- sqrt(peso / IMC)
 altura <- round(altura, 2)
+top3 <- sort(peso, decreasing = TRUE)[1:3]
+cuales <- which(peso %in% top3)[1:3]
+peso[cuales] <- 95 + abs(rnorm(3, 0, 7))
 magic <- data.frame(peso = peso, genero = genero, altura = altura)
 
 # aggregate(altura ~ genero, data=magic, FUN = summary)
-rm(nr, mujeres, hombres, genero, IMC, peso, altura)
+# rm(nr, mujeres, hombres, genero, IMC, peso, altura, top3, cuales)
 

@@ -67,6 +67,10 @@ Lista de ideas y/o apuntes generales de cosas a mejorar
   - mensajes de aviso o error deben empezar con minúscula y sin espacios al principio. si son de warning debe indicar el número de ejercicio ("ej. 1.a: se detectó un problema con ...").
   - los archivos de los ejercicios deben empezar con el número de ejercicio: 1.a-aprobados.R
 
+* Aclarar mejor el uso de is.na, is.null e is.nan
+
+* Aclarar en las letras de los repartidos que muchas cosas que se piden son para que funcione bien la correción automática. Esto sobre todo con el repartido 1. Se agregaría al video y la lección que se va a hacer (mejorar) para repartidos.
+
 Para el final del curso
 -----------------------
 

@@ -1,4 +1,4 @@
-# Rep. IV - ej. 1.d
+# Rep. IV - ej. 1.c
 
 # Instrucciones: 
 # El objetivo es crear un gráfico de cajas del peso de los participantes
@@ -9,10 +9,11 @@
 
 # Objetivos:
 
-# Título*: debe ser "Peso en funcion del genero". Se omiten los tildes para 
-#          evitar problemas de encoding.
-# Etiquetas*: los ejes deben estar etiquetados correctamente, con los textos
-#             "Genero" y "Peso (Kg)", horizontal y vertical respectivamente.
+# Título*: (no es un objeto a crear) debe ser "Peso en funcion del genero". 
+#          Se omiten los tildes para evitar problemas de encoding.
+# Etiquetas*: (no es un objeto a crear) los ejes deben estar etiquetados 
+#             correctamente, con los textos "Genero" y "Peso (Kg)", horizontal 
+#             y vertical respectivamente.
 
 # Notas: 
 # 1. una nueva data.frame magic es creada internamente en cada corrección.

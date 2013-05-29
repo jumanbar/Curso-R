@@ -2,12 +2,12 @@
 nr <- sample(25:35, 1) * 2
 mujeres <- sample(nr, nr / 2)
 hombres <- (1:nr)[- mujeres]
-# sexo <- character(nr)
-sexo <- numeric(nr)
-# sexo[mujeres] <- "mujer"
-sexo[mujeres] <- 1
-# sexo[hombres] <- "hombre"
-sexo[hombres] <- 2
+# genero <- character(nr)
+genero <- numeric(nr)
+# genero[mujeres] <- "mujer"
+genero[mujeres] <- 1
+# genero[hombres] <- "hombre"
+genero[hombres] <- 2
 IMC <- rnorm(nr, 21.75, 2)
 peso <- numeric(nr)
 peso[mujeres] <- rnorm(nr / 2, 58, 4)
@@ -15,8 +15,11 @@ peso[hombres] <- rnorm(nr / 2, 70, 6)
 peso <- round(peso, 1)
 altura <- sqrt(peso / IMC)
 altura <- round(altura, 2)
-magic <- data.frame(peso = peso, sexo = sexo, altura = altura)
+top3 <- sort(peso, decreasing = TRUE)[1:3]
+cuales <- which(peso %in% top3)[1:3]
+peso[cuales] <- 95 + abs(rnorm(3, 0, 7))
+magic <- data.frame(peso = peso, genero = genero, altura = altura)
 
-# aggregate(altura ~ sexo, data=magic, FUN = summary)
-rm(nr, mujeres, hombres, sexo, IMC, peso, altura)
+# aggregate(altura ~ genero, data=magic, FUN = summary)
+# rm(nr, mujeres, hombres, genero, IMC, peso, altura, top3, cuales)
 

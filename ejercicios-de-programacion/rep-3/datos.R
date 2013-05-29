@@ -228,23 +228,25 @@ cor1.d <- function() {
   # Cargar datos
   load('datos')
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('est.R', encoding="UTF-8")
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  tmp <- tempfile()
+  #   arch <- readLines('est.R', encoding="UTF-8")
+  arch <- cut.script("est.R")
+  #   gr <- grep('#===', arch, useBytes = TRUE)
+  #   arch <- arch[gr[1]:gr[2]]
+  #   tmp <- tempfile()
 #   arch2 <- gsub(' ', '', arch)
 #   f <- grep('est<-', arch2)
 #   arch[f] <- sub('est', 'est.foo', arch[f])
   arch <- c(arch, "est.foo <- est")
-  writeLines(arch, tmp)
+  #   writeLines(arch, tmp)
 
   # Generación de datos
   estX <- function(x)
     (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
 
   # Evaluación de objetos: ctg y conteo
-  source(tmp, local=TRUE, encoding="UTF-8")
-  unlink(tmp)
+  #   source(tmp, local=TRUE, encoding="UTF-8")
+  #   unlink(tmp)
+  eval(parse(text = arch))
 
   if (!is.function(est.foo))
     stop("el objeto est no es una función", call. = FALSE)
@@ -382,6 +384,9 @@ cor1.f <- function() {
   arch <- arch[gr[1]:gr[2]]
   arch <- sacar.comentarios(arch)
 
+  if (all(usa3$Ing.Cat == 0))
+    stop("usa3$Ing.Cat == 0 en toda su extensión ¿olvidó guardar sus cambios en el código?", call. = FALSE)
+
   if (!any(grepl('tapply', arch)))
     stop("la función tapply no figura en su código", call. = FALSE)
   cat("¿está tapply? ... OK\n")
@@ -468,12 +473,9 @@ cor1.g <- function() {
   load('datos')
   
   # Cortar el archivo original y crear uno temporal
-  arch <- readLines('exportar.R', encoding="UTF-8")
-  arch2 <- gsub(' ', '', arch)
-  gr <- grep('#===', arch, useBytes = TRUE)
-  arch <- arch[gr[1]:gr[2]]
-  tmp <- tempfile()
-  writeLines(arch, tmp)
+  arch <- cut.script("exportar.R")
+  if (length(arch) == 0)
+    stop("no hay código en el archivo, ¿olvidó guardar los cambios?", call. = FALSE)
 
   # Generación de datos
   tmp2 <- tempfile()
@@ -490,8 +492,8 @@ cor1.g <- function() {
   #     stop("no existe el archivo usa-norm.csv en la carpeta de trabajo", call. = FALSE)
   #   cat("existe el archivo usa-norm.csv ... OK\n")
 
-  source(tmp, local=TRUE, encoding="UTF-8")
-  unlink(tmp)
+  eval(parse(text = arch))
+
   usa.norm <- readLines('usa-norm.csv', encoding="UTF-8")
 
   if (grepl("^\"\";", usa.norm[1]))

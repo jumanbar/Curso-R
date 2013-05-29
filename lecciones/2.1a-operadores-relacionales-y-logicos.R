@@ -36,6 +36,22 @@
 # clases. Además de los valores, deberemos tener en cuenta este tipo de
 # detalles.
 
+## Casos particulares: NA, NULL y NaN
+# Estos valores especiales no se pueden usar con estos comparadores. Para
+# identificarlos en cambio se usan las funciones is.xxx. Por ejemplo:
+
+is.na(NA)     # TRUE
+is.na(5)      # FALSE
+5 == NA       # NA
+
+is.null(NULL) # TRUE
+is.nan(NaN)   # TRUE
+
+# Nota:
+# - NA   : "Not Available", no disponible.
+# - NULL : objeto "vacío"
+# - NaN  : "Not a Number", no es un número (ej.: log(-1), sqrt(-1))
+
 # En el caso de que las operaciones involucren vectores, los resultados
 # dependerán de la entrada de la operación. Ej:
 x <- -5:5

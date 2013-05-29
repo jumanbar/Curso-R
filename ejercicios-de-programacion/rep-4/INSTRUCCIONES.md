@@ -8,16 +8,21 @@ Ejercicios de programación IV: Gráficos y estadística
 Archivos incluidos:
 -------------------
 
-El [archivo](http://goo.gl/eFUKY) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-X`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
+El archivo con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-X`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
-* **` xxxx.R `**
+* **` 1.a-genero.R `**
+* **` 1.b-hist.R `**
+* **` 1.c-cajas.R `**
+* **` 1.d-regresion.R `**
+* **` 1.e-dispersion.R `**
 
 Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modificados** para que el método de calificación automático funcione correctamente.
 
 * ` evaluar.R `
-* ` notas.csv `
 * ` datos `
 * ` INSTRUCCIONES.pdf `
+* ` hacemagia.R `
+* ` auxiliar.RData `
 
 Mecanismo de corrección:
 ------------------------
@@ -28,16 +33,29 @@ Lo primero que debe hacer es cargar el archivo evaluar.R con la función `source
 
 
 ```r
-source("evaluar.R", encoding = "utf-8")
+source("evaluar.R", encoding = "UTF-8")
 ```
 
 
+Nótese que hemos dejado de usar la función `options`, de forma que de ahora en más **no ejecute el comando**:
+
+
+```r
+options(encoding = "utf-8")  # No me ejecuten!
+```
+
+
+Este cambio se debe a que hemos detectado que esta elección trae más problemas que soluciones.
+
 Si usted ha ejecutado todos los pasos anteriores correctamente, al usar el comando `ls()` verá que `"evaluar"` figura en su sesión y además en la consola debería ver lo siguiente:
 
-    Los siguientes caracteres deben ser vocales con acento:
-      á - é - í - ó - ú
-    Si no se ven correctamente corra el siguiente comando:
-      source('evaluar.R', encoding = 'UTF-8')
+    Archivo de código fuente cargado correctamente
+
+    Chequeo de encoding:
+      Los siguientes caracteres deben ser vocales con tilde:
+        á - é - í - ó - ú
+      Si *no se ven correctamente* corra el siguiente comando:
+        source('evaluar.R', encoding = 'UTF-8')
 
 Usted trabajará modificando los contenidos de los archivos de los ejercicios con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio y **guardando el archivo** correspondiente en el disco duro, usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:
 
@@ -61,81 +79,6 @@ Si bien animamos a que trabaje en equipos y que haya un intercambio fluido en lo
 En casos de planteos de dudas a través del foro, en los que considere que es imposible expresar un problema sin exponer su própio código, entonces es aceptable hacerlo. De todas formas en estos casos es preferible que envíe su código por correo electrónico directamente a un profesor, explicando la problemática.
 
 - - -
-
-
-1. Distribución de funciones
-----------------------------
-
-El data.frame "Pacientes" presenta dos columnas, con datos obtenidos de 100 pacientes consultados: por un lado (col. 1) la el número de consultas médicas por año y por otro (col. 2) la frecuencia obtenida para ese valor (i.e.: la cantidad de veces que ese número fue respondido). Por lo tanto, podemos observar por ejemplo que XX personas consultadas concurren una vez por año médico. Si vemos el histograma de la segunda variable (`barplot(pacientes[, 2])`) para conocer la distribución del evento podemos observar que la cantidad de pacientes que visitan al medico anualmente puede ser descrito por una FDP del tipo Poisson.
-
-Recuerde que la distribución de probabilidad de Poisson presenta como única variable a $\lambda$ que es la media y la varianza de la FDP. Para mayores consultas busque en la ayuda `?dpois`.
-
-Se desea conocer cual es el máximo valor de $\lambda$ para el rango de valores dado. Este valor obtenido del parámetro será el que maximice la densidad de datos de los pacientes. (???)
-
-Para esto primero debe realizar una función genérica que permita calcular la densidad de probabilidad para cada dato.
-Esta función se llama `dpois.pacientes`. Note que se transforman los datos con el logaritmo natural debido a que es mas sencillo calcular el máximo de un número.
-
-Luego se debe definir el argumento lambda de la función `dpois.pacientes`, el cual es una secuencia de valores de dicho parámetro. Esto servirá para conocer cuál es el máximo valor esperado de pacientes por año que concurre al médico. Para esto último recomendamos utilizar y consultar en la ayuda la función `sapply`.
-
-previamente el estudiante deberá importar la tabla pacientes, la cual será un data.frame con el mismo nombre.
-
-
-densidad: densidad de probabilidad para cada dato $x_i$ que se distribuye con una función de probabilidad tipo Poisson.
-transformado: logaritmo natural de los valores de densidad obtenidos.
-promedio: promedio de todos los valores transformados. Observe que esta función debe ser negativa para que los valores sean positivos.
-`max.lambda`: valor de lambda para el cual es máxima la función `dpois.pacientes`. Los valores de lambda debe estar comprendidos entre 1 y 4.
-
-
-```r
-npac <- 5000
-true.lambda <- 4
-respuestas <- rpois(npac, true.lambda)
-
-pacientes <- data.frame(A = as.numeric(names(table(respuestas))), B = as.numeric(table(respuestas)))
-barplot(pacientes[, 2])
-```
-
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
-
-```r
-
-lambda.min <- 1
-lambda.max <- 8
-
-pacientes <- read.table("pacientes.csv", header = TRUE, sep = ",")
-```
-
-```
-## Warning: no fue posible abrir el archivo 'pacientes.csv': No such file or
-## directory
-```
-
-```
-## Error: no se puede abrir la conexión
-```
-
-```r
-
-dpois.pacientes <- function(lambda) {
-    
-    densidad <- dpois(pacientes[, 1], lambda)
-    transformado <- log(densidad)
-    promedio <- -mean(transformado)
-    
-}
-
-dpois.pacientes <- function(lambda) {
-    
-    densidad <- dpois(pacientes[, 1], lambda)
-    dens.obs <- pacientes[, 2]/sum(pacientes[, 2])
-    transformado <- log(densidad)
-    trans.obs <- log(dens.obs)
-    promedio <- -mean(transformado - trans.obs)
-    
-}
-
-max.lambda <- max(sapply(lambda.min:lambda.max, dpois.pacientes))
-```
 
 
 1. Campeonato de Magic
@@ -179,6 +122,8 @@ Levels: mujer hombre
 
 ### 1.b Histogramas
 
+Nota: la corrección de este ejercicio asume que usted ya cambió la columna `genero` según las instrucciones de 1.a.
+
 Aquí debe hacer un gráfico como el de la figura 1. Se trata de dos histogramas de los valores de alturas de los participantes, separados por sexo. En el histograma de arriba se encuentran las alturas de las mujeres, y de los hombres en el de abajo. Para lograr este gráfico hay que comprender al menos dos comandos:
 
 #### i. función `par` 
@@ -190,7 +135,10 @@ Con la función `par` se pueden determinar la cantidad de gráficos que vamos a 
 
 #### ii. función `hist`
 
-Con la función `hist` usted puede graficar rápidamente un histograma en R. En este caso tiene que utilizar los valores de altura, pero recuerde **separar por hombres y mujeres** antes de hacer los dos histogramas. Por otro lado debe fijar la cantidad de celdas/breaks en *15*, utilizando el argumento correcto de la función. Es posible que en la figura final este número no coincida con la cantidad de barras, ya que actúa tan sólo como una sugerencia para `hist`.
+Con la función `hist` usted puede graficar rápidamente un histograma en R. En este caso tiene que utilizar los valores de altura, pero recuerde **separar por hombres y mujeres** antes de hacer los dos histogramas. Por otro lado debe fijar la cantidad de celdas/cortes en *25*, utilizando el argumento correcto de la función. Es posible que en la figura final este número no coincida con la cantidad de barras, ya que actúa tan sólo como una sugerencia para `hist`.
+
+Nota: la cantidad de cortes asignada parece una exageración, pero se trata de un número que sirve a los propósitos de la corrección automática.
+
 
 ### 1.c Gráfico de cajas
 
@@ -214,184 +162,72 @@ Aquí se utiliza el parámetro `col` como argumento de `plot`, asignándole el v
 
 Para hacer este gráfico tanto `plot` como `boxplot` son opciones válidas. Recuerde respetar mayúsculas y minúsculas en los textos, así como la ausencia de tildes. La corrección sólo contempla el uso de objetos de clase "formula" para hacer el plot. Es decir, debe nombrar las variables siguiendo el esquema `y ~ x`, como en el ejemplo anterior (use `?plot.formula` para ver la documentación). También es necesario que utilice el nombre del argumento `data` para indicar el data.frame (i.e.: `data = magic`).
 
+Por último, las variables deben ser los nombres de las columnas: no sirven opciones como `cars$dist` o `cars[,2]`; debe usarse directamente `dist`.
+
 ![Gráfico de cajas (ej. 1.c)](figure/unnamed-chunk-10.png) 
 
 
-### 1.d Anova
-
-Realizar un anova con la variable de respuesta `peso` y la variable explicativa `genero`; guardar el resultado en el objeto `peso.genero`.
-
-
-
-
-#### j.
-Crear los objetos `peso.hombre` y `peso.mujer` con los valores esperados de peso para los sexos respectivos, según los resultados del modelo `peso.genero` creado en el punto anterior (considere la interpretación de los coeficientes del anova dada en la lección correspondiente).
+Nota: si no tiene hecha la parte 1.a puede cargar una data.frame `magic` auxiliar con el comando:
 
 
 ```r
-peso.mujer <- coef(peso.genero)[1]
-peso.hombre <- sum(coef(peso.genero))
-# o
-peso.mujer <- mean(magic$peso[magic$genero == "mujer"])
-peso.hombre <- mean(magic$peso[magic$genero == "hombre"])
-# o
-ag <- aggregate(peso ~ genero, data = magic, FUN = mean)
-peso.mujer <- ag[1, 2]
-peso.hombre <- ag[2, 2]
-
-# Otros usos cool de aggregate:
-aggregate(peso ~ genero + edadf, data = magic, FUN = mean)
-```
-
-```
-## Error: objeto 'edadf' no encontrado
-```
-
-```r
-aggregate(cbind(peso, altura) ~ genero, data = magic, FUN = mean)
-```
-
-```
-##   genero  peso altura
-## 1  mujer 57.92  1.599
-## 2 hombre 67.14  1.732
+load("auxiliar.RData")
 ```
 
 
-#### k.
-Graficar: $altura ^ 2$ (altura al cuadrado) en función del peso.
+### 1.d Regresiones lineales
+
+En este ejercicio usted hará la regresión lineal entre dos variables: la altura elevada al cuadrado (*variable de respuesta*) en función del peso (*variable explicativa*) de los participantes del campeonato. Debido a que lo esperable es que a medida que el peso se aproxima a 0 la altura también lo haga, la regresión se hará **sin intercepto**. El objeto `reg.a` será esta regresión, la cual debe crearse con la función `lm`.
+
+Posteriormente hará otra regresión, pero eliminando outliers (`reg.b`; ver fig. 3). Se detectó que hay algunos participantes con un peso mucho mayor al esperable por su altura. Por eso es más razonable eliminar estos valores para obtener una regresión que sirva para hacer predicciones útiles. Haga una regresión idéntica a la anterior, pero de tal forma que **no se usen** las filas de `magic` tales que el peso es igual o mayor a 95 Kg.
+
+![se muestran en rojo los outliers; la recta es reg.b.](figure/unnamed-chunk-12.png) 
 
 
-```r
-plot(altura^2 ~ peso, magic)
-```
-
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
-
-
-#### l.
-Realizar una regresión lineal entre estas dos variables ($altura ^ 2$ ~ peso) sin intercepto. El modelo obtenido debe guardarse en el objeto `altura.peso`.
-
-
-```r
-altura.peso <- lm(altura^2 ~ peso - 1, magic)
-```
-
-
-#### m.
-Realizar una regresión lineal entre estas dos variables ($altura ^ 2$ ~ peso) sin intercepto, pero esta vez excluyendo a los outliers de peso (es decir, aquellos tales que peso > 120 Kg). Guardar el modelo en el objeto `altura.peso2`.
-
-
-```r
-altura.peso2 <- lm(altura^2 ~ peso - 1, magic, subset = peso <= 120)
-```
-
-
-#### n.
-Utilizando los coeficientes obtenidos en este segundo modelo, determine la altura esperada para la secuencia de pesos:  
+Con esta segunda regresión ahora usted va a hacer predicciones de alturas en base un vector de pesos generado aleatoriamente (`p`). Considere que si $a$ es la altura y $c$ es el coeficiente obtenido en la regresión lineal (i.e.: la pendiente de la recta), entonces se debe cumplir que:
 
 $$
   a ^ 2 = c \cdot p
+$$
+
+$$
   a = \sqrt{c \cdot p}
 $$
 
+El objeto `ae` deberá ser un vector con las alturas esperadas dado el vector de pesos `p`.
 
-```r
-p <- seq(40, 120, by = 0.5)
-ae <- sqrt(coef(altura.peso) * p)
-```
-
+Finalmente guardará el valor del [coeficiente de determinación](https://en.wikipedia.org/wiki/Coefficient_of_determination) o $R^2$ en el objeto `r2`. Para obtener este valor recuerde que la función `summary` aplicada a objetos `lm`[1] devuelve un objeto de tipo lista, el cual incluye el valor del $R^2$. Para ubicar fácilmente en dónde se encuentra este valor en la lista `str` puede ser una función muy útil. Por supuesto que también puede basarse en un libro de texto para hallar este valor.
     
-Los valores de altura esperados se deben guardar en un objeto llamado `ae`.
-
-(Nótese que el modelo establece la relación del peso con la $altura ^ 2$, pero no con la altura per se). 
-
-#### o.
-Guardar en el objeto `r2` el valor del $R^2$ (*no ajustado*) del modelo (es decir, el coeficiente de determinación o "proporción de varianza explicada"). Cuidado: no confundir con el $R^2$ ajustado.
+[1]: i.e. `summary.lm`, aunque por supuesto no hay que poner el `.lm` final, ya que `summary` es una función genérica.
 
 
-```r
-s <- summary(altura.peso)
-r2 <- s$r.squared
-```
+### 1.e Gráfico de dispersión  
+
+En este ejercicio se propone reproducir una figura como la 4. Para eso el código ya está a medio hacer, usted sólamente necesita ajustar los objetos que se crean antes de los plots para que se asemeje a lo que se ve en el ejemplo. Tiene libertad para elegir ciertos parámetros, como los colores o el tipo de puntos. 
+
+De todas formas, el órden en que se pusieron las funciones no es el correcto, por lo que deberá mover de lugar las líneas de código que se encuentran bajo el marcador `##!`. La clave está en identificar cuáles son funciones de "alto nivel" ("High Level Plot functions") y cuáles no. Una vez que ordena por alto/bajo nivel, el resto puede ordenarlo como prefiera.
+
+También podrá agregar nuevos argumentos a los plots, como 
+
+![Gráfico de dispersión, ej. 1.e](figure/unnamed-chunk-13.png) 
 
 
-#### p.  
-Agregar al último gráfico creado anteriormente las líneas correspondientes a ambas regresiones lineales, utilizando diferentes trazos y/o colores para diferenciarlas.
-
-
-```r
-abline(altura.peso)
-```
-
-```
-## Error: plot.new has not been called yet
-```
-
-```r
-abline(altura.peso2, col = 2)
-```
-
-```
-## Error: plot.new has not been called yet
-```
-
-
-#### q.
-Agregar una línea vertical indicando el valor 120 en el eje del peso; utilice un estilo de línea diferente a los anteriores (con color y/o trazo diferente).
+Nota: si no tiene hechas las partes 1.a y/o 1.d puede cargar una data.frame `magic` auxiliar, así como la regresión `reg.b` necesaria, con el comando:
 
 
 ```r
-abline(v = 120, lty = 2)
-```
-
-```
-## Error: plot.new has not been called yet
+load("auxiliar.RData")
 ```
 
 
-#### r.
-Superponer al mismo gráfico los puntos de los outliers en peso, utilizando un símbolo diferente (y opcionalmente, un color distinto), de forma tal que se puedan diferenciar a simple vista.
+### 1.f Leyenda (sin calificación)
 
+(*Este ejercicio no se podrá evaluar con el mecanismo de corrección automática y por lo tanto no entrará en la nota total. Puede considerarlo simplemente como un ejercicio "desafío".*)
 
-```r
-points(altura^2 ~ peso, magic, subset = peso > 120, pch = 19)
-```
+El objetivo es sencillo: tratar de lograr un resultado similar a la figura 5. Como este no tiene puntaje es totalmente opcional. Invitamos a todos los interesados a que usen el foro y compartan sus códigos a fin de encontrar una solución o posibles mejoras al gráfico en cuestión. 
 
-```
-## Error: plot.new has not been called yet
-```
+Pistas: para generar el gráfico de ejemplo (fig. 5) se usaron las siguientes funciones: `plot`, `points`, `abline`, `legend`, `text`, `rug`, `format`, `bquote`, `expression`, `summary`, `round`, `paste0` y algunas otras muy comunes.
 
+![el gráfico 'desafío', ej. 1.f](figure/unnamed-chunk-15.png) 
 
-#### s.
-Agregar una última variable, llamada `IMC`, a la data.frame `magic`: el [índice IMC](http://es.wikipedia.org/wiki/%C3%8Dndice_de_masa_corporal) correspondiente a cada participante, calculado como:
-
-$$
-  IMC = \frac{Peso (Kg)}{Altura ^ 2 (m)}
-$$
-
-
-```r
-magic$IMC <- with(magic, peso/(altura^2))
-```
-
-
-#### t.
-Exportar la data.frame `magic` a un archivo de texto plano (.txt o .csv), conteniendo todas las columnas agregadas y los encabezados, pero excluyendo los nombres de fila.
-
-
-```r
-write.csv2(magic, "magic.csv", row.names = FALSE)
-```
-
-
-latex
-
-La hoja de calculo llamada `datos.xls' contiene tres variables muestreadas. La
-primer variable son los tamaños corporales (en Kg) de 40 competidores del ultimo Mundial de Magic, 20 hombres y 20 mujeres. La segunda variable es el genero de los mismos, codificados como 1 para mujeres y 2 para varones. La tercer
-variable es la altura de los participantes, en metros.
-
-Debe Importar la tabla de la hoja de calculo a R; el objeto resultante debe ser
-una data.frame llamada magic y sus columnas deben llamarse body.size, sex
-y height (i.e.: los valores que R asigna por defecto).
 
