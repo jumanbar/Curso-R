@@ -11,6 +11,7 @@ arget <- function(arg, cortado) {
   texto <- strsplit(arg.part, "=")[[1]][2]
   eval(parse(text = texto))
 }
+objetos <- c(objetos, "arget")
 
 ### Dejo esta copia de cup.sript (diferente a la de los archivos datos.R) para usar en el futuro
 ### cuando se haga el paquete IMSER.
@@ -150,6 +151,7 @@ get.cortado <- function(linea) {
   cortado <- gsub(")$", "", cortado) # Quita el paréntesis sobre el final
   c(parg, cortado)
 }
+objetos <- c(objetos, "get.cortado")
 
 mkmsj <- function(msj.base = "", obs, esp) {
   # msj.base: mensaje indicando en qué objeto está el error,
@@ -348,6 +350,7 @@ objnames <- function(esp, obj, oname, filas = FALSE) {
 	}
   FALSE
 }
+objetos <- c(objetos, "objnames")
 
 print.codigo <- function(x) {
   # x es una lista cuyos elementos

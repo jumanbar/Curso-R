@@ -1,9 +1,10 @@
 ### NÚMERO DE REPARTIDO!
 rdir <- basename(getwd())
 nrep <- as.numeric(gsub("[[:alpha:][:punct:]]", "", rdir))
-rep.date <- format(Sys.time(), "%Y-%m-%d %H:%M") # Fecha en que se hizo "datos"
+rep.date <- format(Sys.time(), "%Y-%m-%d %H:%M %Z") # Fecha en que se hizo "datos"
 url.datos <- "http://goo.gl/ZbJA0" # URL acortada para bajar el archivo datos
 guardar <- c("guardar", "rdir", "nrep", "rep.date", "url.datos")
+writeLines(rep.date, paste0("~/../Dropbox/IMSER/fecha-datos-", rdir, ".txt"))
 
 # Existe ya el subdir?
 if (!file.exists(rdir))
