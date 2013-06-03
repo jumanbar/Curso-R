@@ -13,8 +13,12 @@ evaluar <- function(e) {
   arc <- dir()
   if (any(grepl("datos.", arc))) {
     n <- grep("datos.", arc)
-    file.rename(arc[n], "datos")
-    warning("Se cambió el nombre del archivo '", arc[n], "' por 'datos'")
+    file.rename(arc[n[1]], "datos")
+    warning("Se cambió el nombre del archivo '", arc[n[1]], "' por 'datos'")
+    if (length(n) > 1) {
+      warning("Siguen habiendo archivos llamados ", paste(n[-1], collapse = " "), 
+              "en la carpeta del repartido; borre estos archivos para evitar problemas con la corrección")
+    }
   }
   if (!file.exists("datos")) {
     #     if (file.exists("datos.txt")) {
