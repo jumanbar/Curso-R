@@ -75,22 +75,27 @@ cor1.b <- function() {
     stop("la función par no figura en su código", call. = FALSE)
   cat("función par en el código ... OK\n")
 
-  if (length(parlines) > 1)
+  if (length(parlines) > 1) {
     arch <- arch[- parlines[2:length(parlines)]]
-  arch <- c(arch, "opp <- par(mfcol = c(1, 1))")
+    warning("ej. 1.b: la función par aparecía varias veces, ", 
+            "se descartan todas menos la primer ocurrencia", call. = FALSE)
+  }
+  arch <- c(arch, "opp <- par(mfcol = c(1, 1))") # en opp va a quedar mfcol siempre
+  #   arch <- c(arch, "opp <- par(mfrow = c(1, 1))")
   png(tmp)
     eval(parse(text = arch))
   dev.off()
   unlink(tmp)
 
-  if (!any(mf <- c("mfcol", "mfrow") %in% names(opp)))
+  if (!grepl("mfcol", arch[parlines[1]]) && !grepl("mfrow", arch[parlines[1]]))
     stop("no parece haber utilizado mfcol ni mfrow con la función par", call. = FALSE)
   cat("uso de mfcol/mfrow ... OK\n")
+    #   if (!any(mf <- c("mfcol", "mfrow") %in% names(opp)))
 
-  mf <- c("mfcol", "mfrow")[mf]
+  #   mf <- c("mfcol", "mfrow")[mf]
 
-  if (!all(opp[[mf]] == c(2, 1))) {
-    mensaje <- mkmsj.v("los valores de mfcol/mfrow no son los esperados", opp[[mf]], c(2, 1))
+  if (!all(opp$mfcol == 2:1)) {
+    mensaje <- mkmsj.v("los valores de mfcol/mfrow no son los esperados", opp$mfcol, 2:1)
     stop(mensaje)
   }
   cat("valor de mfcol/mfrow ... OK\n")

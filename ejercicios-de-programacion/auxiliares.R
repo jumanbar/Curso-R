@@ -194,7 +194,7 @@ mkmsj.v <- function(msj.base = "", vec.obs, vec.esp, tol = 1e-8) {
   donde <- which(vec.obs != vec.esp)
   dif <- rep(NA, length(donde))
   tabla <- cbind(vec.obs[donde], vec.esp[donde])
-  if (!is.numeric(vec.obs) || is.numeric(vec.esp)) {
+  if (!is.numeric(vec.obs) || !is.numeric(vec.esp)) {
     if (all(tolower(vec.obs) == tolower(vec.esp)))
       warning("parece haber un error de mayúsculas/minúsculas!", call. = FALSE)
     tabla <- cbind(as.character(vec.obs[donde]), as.character(vec.esp[donde]))
