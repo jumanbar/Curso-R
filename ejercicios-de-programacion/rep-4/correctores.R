@@ -5,7 +5,7 @@ cor1.a <- function(dbg = FALSE) {
   # Cargar 'datos'
   if (!dbg)
     load('datos')
-  source("hacemagia.R")
+  source("hacemagia.R", local = TRUE)
   arch <- cut.script('1.a-genero.R')
 
   if (length(arch) == 0) # No hay nada escrito
@@ -59,7 +59,7 @@ cor1.b <- function() {
   #   
   #   if (!is.factor(magic$genero))
   #     warning("la variable magic$genero no es de clase factor", call. = FALSE)
-  source("hacemagia.R")
+  source("hacemagia.R", local = TRUE)
   magic$genero <- as.factor(magic$genero)
   levels(magic$genero) <- c("mujer", "hombre")
 
