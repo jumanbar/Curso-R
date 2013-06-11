@@ -191,10 +191,12 @@ hljs.initHighlightingOnLoad();
 
 <ul>
 <li><strong><code>1-triangulo.R</code></strong></li>
-<li><strong><code>2-educacion.R</code></strong></li>
-<li><strong><code>3.a-cambiaPares.R</code></strong></li>
+<li><strong><code>2.a-filtroc.R</code></strong></li>
+<li><strong><code>2.b-extra-aplicar.R</code></strong></li>
+<li><strong><code>2.c-educacion.R</code></strong></li>
+<li><strong><code>3.a-cambia.pares.R</code></strong></li>
 <li><strong><code>3.b-radio.R</code></strong></li>
-<li><strong><code>3.c-distancias.R</code></strong></li>
+<li><strong><code>3.c-extra-distancias.R</code></strong></li>
 </ul>
 
 <p>Adicionalmente los siguientes archivos son necesarios, pero <strong>no deben ser modificados</strong> para que el método de calificación automático funcione correctamente: </p>
@@ -240,6 +242,10 @@ Chequeo de encoding:
 </code></pre>
 
 <p>y además podrá en todo momento verificar su puntaje con la función <code>verNotas()</code>. Tenga siempre en cuenta que, a <strong>menos que sea indicado</strong> por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben servir aún si se modifican los datos originales (i.e.: no use valores fijos si no comandos). Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos <strong>se indica claramente en dónde se inicia y dónde finaliza su código</strong> y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.</p>
+
+<h4>NOTA:</h4>
+
+<p>se agregó la función <code>fecha.datos</code> para facilitar el acceso al a información de 1. cuál es la versión que usted tiene en su pc y 2. cómo encontrar la fecha de la última versión.</p>
 
 <h3>Al finalizar</h3>
 
@@ -387,7 +393,7 @@ filtroc(edu.data, &quot;Tm&quot;)  # Se usan mayúsculas y minúsculas
 
 <h3>2.b Extra: aplicar</h3>
 
-<p>El objetivo es hacer una función que combine las funciones <code>filtroc</code> (ej. 2.a) y <code>apply</code>. Esta función se llamará <code>aplicar</code>.</p>
+<p>El objetivo es hacer una función que combine las funciones <code>filtroc</code> (ej. 2.a) y <code>apply</code>. Esta función se llamará <code>aplicar</code>. Durante la corrección el sistema utilizará su propia versión de <code>filtroc</code>.</p>
 
 <h4>Argumentos:</h4>
 
@@ -426,7 +432,7 @@ aplicar(edu.data, &quot;pA&quot;, mean, na.rm = TRUE)
 
 <p>La función <code>educacion</code> será la que calcule el <code>PC</code> (&ldquo;porcentaje de colnclusión&rdquo; o de &ldquo;finalización&rdquo; de la primaria) y además haga la regresión entre <code>TA</code> y <code>PC</code>. La función supone de antemano que todas las columnas tienen nombres con los prefijos <code>TM</code>, <code>PA</code> o <code>TA</code>, y además que hay una única columna <code>TA</code>. Si a usted le interesa puede agregar más argumentos para que su función no parta de este supuesto, pero es una opción no contemplada por el ejercicio.</p>
 
-<p>Note que en este ejercicio es posible utilizar las funciones que se piden en 2.a y 2.b, si bien no es obligatorio.</p>
+<p>Note que en este ejercicio es posible utilizar las funciones que se piden en 2.a y 2.b, si bien no es obligatorio. De todas formas, durante la corrección el sistema usará su propia versión de dichas funciones.</p>
 
 <h4>Argumentos:</h4>
 
@@ -493,53 +499,41 @@ e$reg
 ##  $ PC     : num  88 78.9 94.3 71 61.2 ...
 </code></pre>
 
-<h3>2.d Graficos personalizados</h3>
-
-<p>Función genérica (recuerdos&hellip;): plot.edu. La función tomará un objeto como los que devuelve <code>educacion</code> (de clase &ldquo;edu&rdquo;) y va a hacer un gráfico simple: TA en función de PC, con la línea de la regresión superpuesta y además los labels adecuados.</p>
-
-<p>Nótese que al ser un objeto creado con <code>educacion</code>, sabemos de antemano que tendrá dos columnas llamadas <code>TA</code> y <code>PC</code>.</p>
-
 <hr/>
 
-<h2>3. Funciones en problemas</h2>
+<h2>3. Funciones con problemas</h2>
 
-<p>En este ejercicio se propone arreglar el código de algunas funciones simples (y otra no tan simple). Para esto la idea es utilizar
-los métodos y conceptos vertidos en la lección 5.4: <strong>Depuración de funciones</strong>.</p>
+<p>En este ejercicio se propone arreglar el código de algunas funciones simples (y otra no tan simple). Para esto la idea es utilizar los métodos y conceptos vertidos en la lección 5.4: <strong>Depuración de funciones</strong>.</p>
+
+<p>Recuerde que hay errores más comunes que otros. Por ejemplo funciones, operadores u objetos <strong>mal escritos</strong>, <strong>paréntesis</strong>, <strong>llaves</strong>, o <strong>corchetes</strong> mal cerrados y <strong>errores de indización</strong> (como poner 1 sólo número para indizar una matriz), son de los más frecuentes. Otros también &ldquo;populares&rdquo; son el utilizar de forma inconsistente las comillas (i.e.: mezclar <code>&quot;</code> con <code>&#39;</code> descuidadamente) u olvidar poner una coma entre argumentos. Recomendamos tengan cerca la lección 1.3 extra: <strong>errores y afines</strong>.</p>
 
 <h3>3.a Cambiador de valores en subíndices pares&hellip;</h3>
 
-<p>Script: cambiaPares.R</p>
+<p>Esta sencilla función toma un vector <code>x</code> y cambia aquellos valores que se encuentran en las posiciones pares del mismo (<code>x[2]</code>, <code>x[4]</code>, etc.), usando como sustitutos los elementos del vector <code>subs</code> (el segundo argumento). Un ejemplo de salida de esta función puede ser el siguiente:</p>
 
-<p>Esta sencilla función toma un vector <code>x</code> y cambia aquellos valores que se encuentran en las posiciones pares del mismo (<code>x[2]</code>,
-<code>x[4]</code>, etc.), usando como sustitutos los elementos del vector <code>subs</code> (el segundo argumento). Un ejemplo de salida de esta función
-puede ser el siguiente:</p>
-
-<pre><code class="r">cambiaPares(1:6, NA)
+<pre><code class="r">cambia.pares(1:6, NA)
 </code></pre>
 
 <pre><code>## [1]  1 NA  3 NA  5 NA
 </code></pre>
 
-<p>El objetivo de este ejercicio es arreglar el código de la función contenida en el script asociado de forma tal que ejecute correctamente su tarea.</p>
+<p>El objetivo de este ejercicio es arreglar el código de la función contenida en el script asociado de forma tal que ejecute correctamente su tarea. El código tiene cuatro errores, </p>
 
 <h3>3.b Radios</h3>
-
-<p>Script: radio.R</p>
 
 <p>La función radio toma como argumento el valor <code>r</code>, un número cualquiera, y calcula tres valores asociados con circunferencias y esferas: el perímetro (P), área (A; de la circunferencia) y volumen (V; de la esfera), utilizando las fórmulas:</p>
 
 <p>\[
-P = 2 \cdot \pi \cdot r
+  P = 2 \cdot \pi \cdot r
 \]
 \[
-A = \pi \cdot r^2
+  A = \pi \cdot r^2
 \]
 \[
-V = \frac{4 \cdot \pi \cdot r^3}{3}
+  V = \frac{4 \cdot \pi \cdot r^3}{3}
 \]</p>
 
-<p>La función está pensada para generar una salida invisible, al mismo tiempo que imprimir en la consola los resultados obtenidos
-(nótese el uso de la función <code>cat</code> para este cometido). El siguiente es un ejemplo de salida de la función: </p>
+<p>La función está pensada para generar una salida invisible, al mismo tiempo que imprimir en la consola los resultados obtenidos (nótese el uso de la función <code>cat</code> para este cometido). El siguiente es un ejemplo de salida de la función: </p>
 
 <pre><code class="r">x &lt;- radio(5)
 </code></pre>
@@ -556,41 +550,45 @@ V = \frac{4 \cdot \pi \cdot r^3}{3}
 ##  31.42  78.54 523.60
 </code></pre>
 
-<p>El objetivo de este ejercicio es arreglar el código de la función contenida en el script asociado de forma tal que ejecute correctamente su tarea.</p>
+<p>El objetivo de este ejercicio es arreglar el código de la función contenida en el script asociado de forma tal que ejecute correctamente su tarea. En total hay 5 errores (aunque 1 de ellos incluye 2 cambios en una misma línea).</p>
 
 <h3>3.c Extra: encuentra distancias</h3>
 
-<p>Script: distancias.R</p>
+<p>La función <code>distancias</code>, escrita en el archivo &ldquo;distancias.R&rdquo;, busca realizar una tarea parecida a la que ya se hizo en el Repartido I del curso: calcular las distancias de un punto a un conjunto de coordenadas (ej. 1.c). En este caso se utiliza un <a href="http://www.johndcook.com/blog/2010/06/02/whats-so-hard-about-finding-a-hypotenuse/">algoritmo alternativo</a> para calcular las distancias, el cual es más robusto dadas las limitaciones de las computadoras.</p>
 
-<pre><code>## Warning: no fue posible abrir el archivo &#39;correctos/distancias.R&#39;: No such
-## file or directory
-</code></pre>
-
-<pre><code>## Error: no se puede abrir la conexión
-</code></pre>
-
-<p>La función <code>distancias</code>, escrita en el archivo &ldquo;distancias.R&rdquo;, busca realizar una tarea parecida a la que ya se hizo en el Repartido I
-del curso: calcular las distancias de un punto a un conjunto de coordenadas (ej. 1.c). En este caso se utiliza un <a href="http://www.johndcook.com/blog/2010/06/02/whats-so-hard-about-finding-a-hypotenuse/">algoritmo
-alternativo</a> para calcular las distancias, el cual es más robusto dadas las limitaciones de las computadoras.</p>
-
-<p>El significado de los argumentos de la función están explicados en el propio archivo, así como varios de los pasos internos, a través
-del uso de comentarios. Al igual que en ejercicios anteriores, el objetivo es corregir los errores que tiene el archivo para que la
-función <code>distancias</code> cumpla su tarea correctamente. El siguiente es un ejemplo de cómo debería ser la salida de la función
-(incluyendo la figura):</p>
+<p>El significado de los argumentos de la función están explicados en el propio archivo, así como varios de los pasos internos, a través del uso de comentarios. Al igual que en ejercicios anteriores, el objetivo es corregir los errores que tiene el archivo para que la función <code>distancias</code> cumpla su tarea correctamente. El siguiente es un ejemplo de cómo debería ser la salida de la función (incluyendo la figura):</p>
 
 <pre><code class="r">pts &lt;- matrix(rnorm(20), ncol = 2)
 x &lt;- distancias(pts, p = c(0.3, -0.1))
 </code></pre>
 
-<pre><code>## Error: no se pudo encontrar la función &quot;distancias&quot;
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAAe1BMVEX9/v0AAAAAADkAAGUAOWUAOY8AZo8AZrUAzQA5AAA5ADk5AGU5OY85ZrU5j485j9plAABlADllAGVlOQBlOTlltf2POQCPOTmPOWWPZgCPtY+P29qP2/21ZgC124+1/rW1/v3ajzna/v39tWX924/9/rX9/tr9/v3/AAARqvjZAAAAKXRSTlP///////////////////////////////////////////////////8A/+zSMngAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAmnSURBVHic7d0BW9pWGEDhRdepq5vUTdqtuokE6P//hSMRChZkCfcm9ybnvE9Xntb2W+ox3BCB/LQS0k+pN0BpGB7K8FCGhzI8lOGhDA9leCjDQxkeyvBQhocyPJThoQwPZXgow0MZHsrwUIaHMjyU4aEMD2V4KMNDGR7K8FCGhzI8lOGhDA9leCjDQxkeyvBQhocyPJThoQwPZXgow0MZHsrwUIaHMjyU4aEMD2V4KMNDGR7K8FCGhzI8lOGhDA9leCjDQxkeKiR8oZx1GD7g76prhocyPJThoQwPZXgow0MZHsrwUIaHCg5f3tQnAC+f244erP893TkIoeGX04f6dv7hpeXooSpWo/inhYZf3D+/uW0+eqgMX3OPH6jgNX4xcY0fIo/qoQwPFSv83sFdw+d4KCn3eCjDQxkeyvBQwWfuJpsjucMH8obPWfAev5zenTdaSYXf1S8+PZ41Wkm5xkMZHsrwUIaHMjyU4aEMD2V4KMNDGR7K8FCGhzI8lOGhDA9leCjDQxkeyvBQhocyPJThoQwPZXgow0MZHsrwUIaHMjyU4aEMD2V4KMNDGR7K8FCGhzI8lOGhDA9leCjDQxkeyvBQhocyPJThoQwPZXgow0ONPrwXPjxu7OFHcu3n+AwPZXiosYd3jX/H6MPrOMNDGR7K8FCGhzI8lOGhDA9leCjDQxkeKjT84v55tZgUxYeXtqOVVITwVftV+Vvb0UoqQvjy9uV1z283WkkFh59cfP1S7fG3B/f1hs9Z+MHdclpcreaXBzu84bPmUT2U4aFihd87uCu2zt8qdc49HsrwUMHhy5v6bt2j+oEJDb+cPtS388NztobPWYxz9fu3zUcrKfd4qOA1vvrWnGv8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" alt="salida gráfica de la función distancias"/> </p>
+
+<pre><code>## d.max = 1.75 - punto: -1.45 -0.11 
+## d.min = 0.28 - punto: 0.05 -0.23
 </code></pre>
 
 <pre><code class="r">x
 </code></pre>
 
-<pre><code>##      P      A      V 
-##  31.42  78.54 523.60
+<pre><code>## $dists
+## d.max d.min 
+## 1.748 0.282 
+## 
+## $posiciones
+## i.max i.min 
+##     9     3 
+## 
+## $puntos
+##              x       y
+## d.max -1.44832 -0.1123
+## d.min  0.04928 -0.2291
+## 
+## $centro
+## [1]  0.3 -0.1
 </code></pre>
+
+<p>Hay 5 errores para corregir, pero dos de ellos no van a generar ningún mensaje de error ni de aviso, excepto al usar <code>evaluar</code>.</p>
 
 </body>
 

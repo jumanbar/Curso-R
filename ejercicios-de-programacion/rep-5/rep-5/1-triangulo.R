@@ -1,10 +1,9 @@
-# Rep. V - ej. 2
+# Rep. V - ej. 1
 
 # Instrucciones: 
-# La función educacion debe modificarse para que calcule los PC = TM * PA / 100,
-# agregue una columna con estos valores a la data.frame de entrada y devuelva los valores de:
-#   - coeficientes
-#   - p.valor
+# Debe editar la función triángulo de forma tal que devuelva los valores de:
+#   - hipotenusa
+#   - área
 #   - ángulo adyacente
 #   - ángulo opuesto
 # de cualquier par de valores asignados a los argumentos (catetos adyacente y
@@ -13,35 +12,22 @@
 # Objetivo:
 # La salida debe ser un único objeto de clase list, cuyos elementos serán
 # nombrados tal como se indica en la letra (sin usar tildes).
-# out: objeto de salida de la función.
 
 # Nota: para obtener los ángulos necesitará las funciones asin y acos.
 
 #===== Su código comienza aquí: =====#
 
-educacion <- function(  ){
+triangulo <- function(cat.ad, cat.op) {
+  # Acepta como argumentos los valores de los dos catetos.
 
 
+  
+  
+  
+  
 
-
-
-
-
-
-
-
-
-
-  out <- 0
-  class(out) <- "edu"
-  out
 
 }
 
-#====== Aquí finaliza su código =====#
-
-
-
-
-
+#===== Su código termina aquí =======#
 

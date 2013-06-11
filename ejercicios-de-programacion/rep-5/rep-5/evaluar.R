@@ -1,17 +1,51 @@
+
+# if (tolower(getOption("encoding")) != "utf-8") {
+#   msjenc <- c("\n¡El encoding actual no es UTF-8!\n",
+#               "lo cual es un problema con tildes y enies,",
+#               "ajuste su configuracion con el comando:\n",
+#               "   options(encoding = 'utf-8')\n")
+#   msjenc <- paste(msjenc, "\n", sep = "")
+#   stop(msjenc, call. = FALSE) 
+# }
+
 evaluar <- function(e) {
   #
-  cat("\nCargando funciones y datos para la corrección...\n\n")
-  load('datos')
-  nej <- length(corregir)
-  hasmsj <- logical(nej)
   arc <- dir()
-  #
-  
-  if (!all(f <- esperados %in% arc)) {
-    cat("\n Faltan los siguientes archivos en el directorio de trabajo:\n")
-    cat(paste("   - ", esperados[!f], '\n', sep=''), '\n', sep='')    
-    cat(" ¡La corrección no puede continuar hasta que no se solucione este problema!\n\n")
-    return('Pruebe de nuevo entonces...')
+  if (any(grepl("datos.", arc))) {
+    n <- grep("datos.", arc)
+    file.rename(arc[n[1]], "datos")
+    warning("Se cambió el nombre del archivo '", arc[n[1]], "' por 'datos'")
+    if (length(n) > 1) {
+      warning("Siguen habiendo archivos llamados ", paste(n[-1], collapse = " "), 
+              "en la carpeta del repartido; borre estos archivos para evitar problemas con la corrección")
+    }
+  }
+  if (!file.exists("datos")) {
+    #     if (file.exists("datos.txt")) {
+    # Por si existe un archivo datos.txt o cualquier datos.XXX
+    mensaje <- c("Tal vez ud. no esté trabajando en el directorio correcto,", 
+                 "   su directorio de trabajo actual es:",
+                 paste("   '", getwd(), "'", sep=""),
+                 "   en caso necesario cambie de directorio con setwd, ej.:",
+                 "   >>   setwd('~/CursoR/rep-X')",
+                 "   (note que el camino a su carpeta puede ser diferente)")
+    warning(paste(mensaje, "\n", sep=""), call. = FALSE)
+    stop("evaluar no pudo encontrar el archivo 'datos', no se puede continuar ...", call. = FALSE)
+  }
+  load("datos")
+  nej <- length(corregir)
+  arc <- dir()
+  esperados <- gsub("../", "", esperados)
+  if (!all(f <- esperados %in% arc)) { # Es lo mismo poner f <- file.exists(esperados)
+    mensaje <- c("  Tal vez ud. no esté trabajando en el directorio correcto,", 
+                 "  utilice setwd para seleccionar la carpeta del repartido, ej.:",
+                 "  >>   setwd('~/CursoR/rep-X')",
+                 "  (note que el camino a su carpeta puede ser diferente)")
+    warning(paste(mensaje, "\n", sep=""), call. = FALSE)
+    cat("\n Faltan los siguientes archivos en el wd actual:\n")
+    cat(paste("   - ", esperados[!f], '\n', sep=''), '\n', sep='')
+    cat(" El wd actual es:\n  '", getwd(), "'\n\n", sep="")
+    stop("\n  ¡la corrección no puede continuar hasta que no se solucione este problema!", call. = FALSE)
   }
 
   ### Elección del archivo (y por lo tanto el ejercicio) a corregir
@@ -23,13 +57,13 @@ evaluar <- function(e) {
     s <- menu(c(paste('Ej. (', ejnum, "): ", corregir, sep=""), 'Todos'),
               title="Elija el archivo que desea corregir:")
   }
-  msj <- NULL
+  msj <- vector("list", nej)
   if (s > nej) {
     for (i in 1:nej) {
       r <- try(corAll[[i]](), silent = TRUE)
       if (is.character(r) || is.na(r)) {
-        msj <- c(msj, r)
-        hasmsj[i] <- TRUE
+        msj[[i]] <- r
+        #         hasmsj[i] <- TRUE
         notas$Nota[i] <- 0
       } else {
         notas$Nota[i] <- r
@@ -38,8 +72,8 @@ evaluar <- function(e) {
   } else {
     r <- try(corAll[[s]](), silent = TRUE)
     if (is.character(r) || is.na(r)) {
-      msj <- c(msj, r)
-      hasmsj[s] <- TRUE
+      msj[[s]] <- r
+      #       hasmsj[s] <- TRUE
       notas$Nota[s] <- 0
     } else {
       notas$Nota[s] <- r
@@ -64,13 +98,15 @@ evaluar <- function(e) {
     cat('Ninguno por ahora')
   }
   cat('\n\n')
-  if (!is.null(msj)) {
+  hasmsj <- !sapply(msj, is.null)
+  if (any(hasmsj)) {
     msjEjNum <- ejnum[hasmsj]
     msjArch  <- corregir[hasmsj]
     cat("Se generaron los siguientes mensajes de error:\n")
     for (i in 1:sum(hasmsj)) {
-      cat('\n* Al corregir el ej. ', msjEjNum[i], ', archivo ', msjArch[i], ':\n==>> ', sep='')
-      cat(msj[i])
+      cat('\n* Al corregir el ej. ', msjEjNum[i], ', archivo ', msjArch[i], ':\n', sep='')
+      msj.i <- paste("| ", msj[hasmsj][[i]])
+      cat(msj.i, sep='')
     }
   }
   cat('\n==============================\n')
@@ -82,8 +118,10 @@ evaluar <- function(e) {
   
 #   print.data.frame(notas, row.names=FALSE, right=FALSE)
 #   cat('\n')
-  codigo <- lapply(corregir, readLines)
+#   codigo <- lapply(corregir, readLines)
+  codigo <- lapply(corregir, cut.script)
   names(codigo) <- corregir
+  class(codigo) <- "codigo"
   write.csv2(notas, file='notas.csv', row.names=FALSE)
   save(list=guardar, file='datos')
 }
@@ -92,13 +130,18 @@ evaluar <- function(e) {
 verNotas <- function()
   print.data.frame(read.csv2('notas.csv'), row.names=FALSE, right=FALSE)
 
-### FUNCIÓN DE FEEDBACK
-feedback <- function(r, s) {
-  if (!is.character(r) && r > 0) {
-    cat('El script "', s, '" está perfecto, ¡Buen trabajo!\n\n', sep='')
-  } else {
-    cat('El script "', s, '" tiene algún error, lo siento :-(\n\n', sep='')
-  }
+fecha.datos <- function() {
+  load("datos")
+  cat("La fecha de su archivo datos es:\n  ", rep.date, "\n")
+  cat("Link para ver fecha de la útima versión:\n  ", url.fecha, "\n")
+  cat("Link para descargar la útima versión:\n  ", url.datos, "\n")
 }
 
-cat("\n Archivo de codigo fuente cargado correctamente\n\n")
+cat("\nArchivo de código fuente cargado correctamente\n\n")
+
+cat("Chequeo de encoding:\n",
+    "  Los siguientes caracteres deben ser vocales con tilde:\n",
+    "    á - é - í - ó - ú\n",
+    "  Si *no se ven correctamente* corra el siguiente comando:\n",
+    "    source('evaluar.R', encoding = 'UTF-8')\n\n", sep = "")
+

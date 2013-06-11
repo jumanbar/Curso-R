@@ -90,9 +90,9 @@ cor2.a <- function() {
   msj <- c("\nLa función filtroc no funciona correctamente. Usando",
            "\ncomo prueba la siguiente data.frame (m):", 
            "\n\n", paste0(capture.output(m), "\n"),
-           paste0("\n>> ", llamado, " # devuelve:"),
+           paste0("\n>> ", llamado, " \n## devuelve:"),
            "\n\n", paste0(capture.output(out1), "\n"),
-           "\ncuando se esperaba:", 
+           "\n##cuando se esperaba:", 
            "\n\n", paste0(capture.output(out2), "\n"))
   if (!identical(out1, out2))
     stop(msj, call. = FALSE)
@@ -109,8 +109,8 @@ cor2.a <- function() {
 cor2.b <- function() {
   load('datos')
   filtroc <- fc
-  #   source('2.b-aplicar.R', encoding = 'UTF-8')
-  source('tmp.R', encoding = 'UTF-8')
+  source('2.b-aplicar.R', encoding = 'UTF-8')
+  #   source('tmp.R', encoding = 'UTF-8')
 
   if (is.null(formals(aplicar)))
     stop("la función aplicar no parece tener argumentos definidos", call. = FALSE)
@@ -170,9 +170,9 @@ cor2.b <- function() {
   msj <- c("\nLa función aplicar no funciona correctamente. Usando",
            "\ncomo prueba la siguiente data.frame (m):", 
            "\n\n", paste0(capture.output(m), "\n"),
-           paste0("\n>> ", txt1, " # devuelve:"),
+           paste0("\n>> ", txt1, " \n## devuelve:"),
            "\n\n", paste0(capture.output(out1), "\n"),
-           "\ncuando se esperaba:", 
+           "\n##cuando se esperaba:", 
            "\n\n", paste0(capture.output(out2), "\n"))
   if (!identical(out1, out2)) {
     if (f == "sample")
@@ -191,8 +191,8 @@ cor2.c <- function() {
   d <- edu.data
 
   # Evaluación de la función "educacion":
-  #   source('2.c-educacion.R', encoding = "UTF-8")
-  source('tmp.R', encoding = "UTF-8")
+  source('2.c-educacion.R', encoding = "UTF-8")
+  #   source('tmp.R', encoding = "UTF-8")
 
   if (is.null(formals(educacion)))
     stop("la función educacion no parece tener argumentos definidos", call. = FALSE)
@@ -271,7 +271,7 @@ cor2.c <- function() {
   ra <- out1$reg[v]
   attr(ra[[1]], "names") <- letters[1:length(ra[[1]])]
   rb <- out2$reg[v]
-  attr(rb[[1]], "names") <- letters[1:length(ra[[1]])]
+  attr(rb[[1]], "names") <- letters[1:length(rb[[1]])]
   ra$ta <- out1$reg[[12]][,1]
   ra$pc <- out1$reg[[12]][,2]
   rb$ta <- out2$reg[[12]][,1]
@@ -279,8 +279,12 @@ cor2.c <- function() {
   c1 <- capture.output(out1$reg$call)
   c2 <- capture.output(out2$reg$call)
 
-  if (!identical(ra, rb))
+  if (!identical(ra, rb)) {
+    warning("ej. 2.c: el llamado a lm en su función es:\n>> ", c1,
+            "\nmientras que lo esperado es:\n>> ", c2, 
+            "\n¿tal vez aquí está el problema?", call. = FALSE)
     stop("hay alguna diferencia en la regresión respecto a lo esperado", call. = FALSE)
+  }
   cat("regresión TA ~ PC\n")
 
   TRUE
@@ -289,53 +293,141 @@ cor2.c <- function() {
 cor3.a <- function() {
   # Cargar datos
   load('datos')
+  #   source('3.a-cambia.pares.R', encoding = 'UTF-8')
+  source('tmp.R', encoding = 'UTF-8')
   
   # Generación de datos
-  n <- sample(10:100, 1)
-  v <- rpois(n, 80)
-  s <- - rpois(1, 300)
-  source('cambiaPares.R', local = TRUE)
-  out1 <- cambiaPares(v, s)
+  clase <- sample(c("num", "cha"), 1)
+  size <- sample(c(3, 8), 1)
+  v <- switch(clase, 
+              num = rpois(size, 40), 
+              cha = sample(c("coco", "palta", "pera", "mango"), size, replace = TRUE))
+
+  clase <- sample(c("num", "cha"), 1)
+  s <- switch(clase, num = - rpois(1, 80), cha = "PAPA")
+  size <- sample(c("uno", "muchos"), 1)
+  npar <- sum(1:length(v) %% 2 == 0)
+  ini <- sample(1:100, 1)
+  if (is.character(s))
+    s <- switch(size, uno = s, muchos = paste0(s, ".", ini:(ini + npar - 1))) 
+  if (is.numeric(s))
+    s <- switch(size, uno = s, muchos = s - (ini:(ini + npar -1)))
+
+  out1 <- cambia.pares(v, s)
   out2 <- cpr(v, s)
+
+  msj <- c("\nLa función cambia.pares no funciona correctamente. Usando",
+           "\ncomo prueba los siguientes vectores:",
+           "\nv:\n", paste0(capture.output(v), "\n"),
+           "\ns:\n", paste0(capture.output(s), "\n"),
+           paste0("\n>> cambia.pares(v, s) \n## devuelve:"),
+           "\n\n", paste0(capture.output(out1), "\n"),
+           "\n##cuando se esperaba:", 
+           "\n\n", paste0(capture.output(out2), "\n"))
+
   if (!identical(out1, out2))
-    stop("¡el script 'cambiaPares.R' aún tiene errores!", call. = FALSE)
+    stop(msj, call. = FALSE)
+  cat("salida de cambia.pares ... OK\n")
+
   TRUE
 }
 
 cor3.b <- function() {
   # Cargar datos
   load('datos')
+  #   source('3.b-radio.R', encoding = "UTF-8")
+  source('tmp.R', encoding = "UTF-8")
 
   # Generación de datos
-  r <- rnorm(1, sd = 30)
-  source('radio.R', local = TRUE)
+  r <- rpois(1, 30) * sample(c(-1, 1), 1)
+  cat("probando con:\n>> radio(", r, ")\n", sep = "")
   p1 <- capture.output(out1 <- radio(r))
-  p1 <- gsub(' ', '', p1)
+  #   p1 <- gsub(' ', '', p1)
   p2 <- capture.output(out2 <- rad(r))
-  p2 <- gsub(' ', '', p2)
-  if (!all(p1 == p2))
-    stop("el mensaje que 'radio' imprime en la consola no coincide con el esperado.", call. = FALSE)
+  #   p2 <- gsub(' ', '', p2)
+  msj <- c("\nLa función radio no funciona correctamente. El llamado:",
+           paste0("\n>> radio(", r, ") \n## devuelve:"),
+           "\n\n", paste0(capture.output(p1), "\n"),
+           "\n##cuando se esperaba:", 
+           "\n\n", paste0(capture.output(p2), "\n"))
+
+  if (!identical(p1, p2))
+    stop(msj, call. = FALSE)
+  cat("salida impresa ... OK\n")
+
   if (!identical(out1, out2))
-    stop("el objeto de salida ('salida') es distinto al esperado.", call. = FALSE)
+    stop(mkmsj.v("el objeto de salida es distinto al esperado.", out1, out2), call. = FALSE)
+  cat("vector de salida ... OK\n")
   TRUE
 }
 
 cor3.c <- function() {
-  # ARREGLAR PARA 2013: LA FUNCIÓN NO EVALÚA SI SE PRODUCE UN GRÁFICO O NO... (ES DECIR,
-  # IGNORA EL ERROR DE LA LÍNEA 34 ("!"ver debe cambiarse por "ver"
   # Cargar datos
   load('datos')
-  
+  #   f <- "tmp.R"
+  f <- '3.c-distancias.R'
+  source(f, encoding = "UTF-8")
+  on.exit({
+    devs <- dev.list()
+    if (any(names(devs) == "png")) {
+      devs <- devs[grepl("png", names(devs))] 
+      for (i in devs)
+        dev.off(i)
+    }
+  })
+
   # Generación de datos
-  p <- rnorm(2)
+  seed <- sample(1:300, 1)
+  set.seed(seed)
+  p <- round(rnorm(2), 2)
   x <- matrix(rnorm(80, sd = 30), ncol = 2)
-  source('distancias.R', local = TRUE)
+
+  png(tmp <- tempfile())
   p1 <- capture.output(out1 <- distancias(x, p, FALSE))
   p2 <- capture.output(out2 <- dis(x, p, FALSE))
+  dev.off()
+  unlink(tmp)
+
+  msj1 <- c("\nLa función distancias no funciona correctamente. El llamado:",
+            "\n>> set.seed(", seed, ")", 
+            "\n>> p <- round(rnorm(2), 2)", 
+            "\n>> x <- matrix(rnorm(80, sd = 30), ncol = 2)", 
+            paste0("\n>> distancias(x, p, FALSE) \n## imprime:"),
+            "\n\n", paste0(p1, "\n"),
+            "\n##cuando se esperaba:", 
+            "\n\n", paste0(p2, "\n"))
+
   if (!identical(p1, p2))
-    stop("¡el script 'distancias.R' aún tiene errores!", call. = FALSE)
-  if (!identical(out1, out2))
-    stop("¡el script 'distancias.R' aún tiene errores (en el objeto de salida)!", call. = FALSE)
+    stop(msj1, call. = FALSE)
+  cat("salida impresa en la consola ... OK\n")
+
+  msj2 <- c("\nLa función distancias no funciona correctamente. El llamado:",
+            "\n>> set.seed(", seed, ")", 
+            "\n>> p <- round(rnorm(2), 2)", 
+            "\n>> x <- matrix(rnorm(80, sd = 30), ncol = 2)", 
+            paste0("\n>> distancias(x, p, FALSE) \n## devuelve:"),
+            "\n\n", paste0(capture.output(out1), "\n"),
+            "\n##cuando se esperaba:", 
+            "\n\n", paste0(capture.output(out2), "\n"))
+
+  if (!identical(p1, p2))
+    stop(msj2, call. = FALSE)
+  cat("objeto de salida de distancias ... OK\n")
+
+  arch <- cut.script(f)
+  pline <- grep("plot", arch)
+  pls <- (pline + 1):(pline + 3)
+  arch <- arch[-pls]
+  arch[pline] <- "return(TRUE)"
+  arch[pline + 2] <- "return(FALSE)"
+
+  eval(parse(text = arch))
+  out3 <- distancias(x, p, FALSE)
+
+  if (out3)
+    stop("su función hace un gráfico cuando ver = FALSE, en lugar de ver = TRUE", call. = FALSE)
+  cat("¿se puede 'ver'? ... OK\n")
+
   TRUE
 }
 

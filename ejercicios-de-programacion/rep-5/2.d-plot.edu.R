@@ -1,26 +1,23 @@
 # Rep. V - ej. 2.d
 
-# Instrucciones: 
-# Debe editar la función triángulo de forma tal que devuelva los valores de:
-#   - hipotenusa
-#   - área
-#   - ángulo adyacente
-#   - ángulo opuesto
-# de cualquier par de valores asignados a los argumentos (catetos adyacente y
-# opuesto).
+# NO IMPLEMENTADO TODAVÍA (6/2013)
 
-# Objetivo:
-# La salida debe ser un único objeto de clase list, cuyos elementos serán
-# nombrados tal como se indica en la letra (sin usar tildes).
+# Instrucciones:
 
-# Nota: para obtener los ángulos necesitará las funciones asin y acos.
+# Argumentos:
+# - x:
+# - ...:
+
+# Salida:
+# NULL
 
 #===== Su código comienza aquí: =====#
 
-plot.edu <- function(x) {
-
-  plot(TA ~ PC, x, xlab = "Porcentaje de conclusión", ylab = "Tasa de analfabetismo")
-
+plot.edu <- function(x, ...) {
+  plot(TA ~ PC, x$datos, main = "Tasa de alfabetización y porcentaje de conclusión",
+       ylab = "T.A. (15 a 24 años)", xlab = "P.C.", ...)
+  abline(x$reg, col = 2)
+  NULL
 }
 
 #===== Su código termina aquí =======#

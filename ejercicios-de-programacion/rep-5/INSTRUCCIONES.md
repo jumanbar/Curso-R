@@ -11,10 +11,12 @@ Archivos incluidos:
 El archivo con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-X`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
 * **` 1-triangulo.R `**
-* **` 2-educacion.R `**
-* **` 3.a-cambiaPares.R `**
+* **` 2.a-filtroc.R  `**
+* **` 2.b-extra-aplicar.R `**
+* **` 2.c-educacion.R `**
+* **` 3.a-cambia.pares.R `**
 * **` 3.b-radio.R `**
-* **` 3.c-distancias.R `**
+* **` 3.c-extra-distancias.R `**
 
 Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modificados** para que el método de calificación automático funcione correctamente: 
 
@@ -66,6 +68,10 @@ evaluar()
 
 
 y además podrá en todo momento verificar su puntaje con la función `verNotas()`. Tenga siempre en cuenta que, a **menos que sea indicado** por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben servir aún si se modifican los datos originales (i.e.: no use valores fijos si no comandos). Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos **se indica claramente en dónde se inicia y dónde finaliza su código** y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.
+
+#### NOTA:
+se agregó la función `fecha.datos` para facilitar el acceso al a información de 1. cuál es la versión que usted tiene en su pc y 2. cómo encontrar la fecha de la última versión.
+
 
 ### Al finalizar
 
@@ -222,7 +228,7 @@ Antes de utilizar `grep` convertir las letras de la `clave` a mayúsculas/minús
 
 ### 2.b Extra: aplicar
 
-El objetivo es hacer una función que combine las funciones `filtroc` (ej. 2.a) y `apply`. Esta función se llamará `aplicar`.
+El objetivo es hacer una función que combine las funciones `filtroc` (ej. 2.a) y `apply`. Esta función se llamará `aplicar`. Durante la corrección el sistema utilizará su propia versión de `filtroc`.
 
 #### Argumentos:
 
@@ -265,7 +271,7 @@ Nota: en este ejemplo el argumento especial `...` sirve para enviar el argumento
 
 La función `educacion` será la que calcule el `PC` ("porcentaje de colnclusión" o de "finalización" de la primaria) y además haga la regresión entre `TA` y `PC`. La función supone de antemano que todas las columnas tienen nombres con los prefijos `TM`, `PA` o `TA`, y además que hay una única columna `TA`. Si a usted le interesa puede agregar más argumentos para que su función no parta de este supuesto, pero es una opción no contemplada por el ejercicio.
 
-Note que en este ejercicio es posible utilizar las funciones que se piden en 2.a y 2.b, si bien no es obligatorio.
+Note que en este ejercicio es posible utilizar las funciones que se piden en 2.a y 2.b, si bien no es obligatorio. De todas formas, durante la corrección el sistema usará su propia versión de dichas funciones.
 
 #### Argumentos:
 
@@ -333,33 +339,24 @@ str(e$datos)
 ```
 
 
-### 2.d Graficos personalizados
-
-Función genérica (recuerdos...): plot.edu. La función tomará un objeto como los que devuelve `educacion` (de clase "edu") y va a hacer un gráfico simple: TA en función de PC, con la línea de la regresión superpuesta y además los labels adecuados.
-
-Nótese que al ser un objeto creado con `educacion`, sabemos de antemano que tendrá dos columnas llamadas `TA` y `PC`.
-
 - - -
 
-3. Funciones en problemas
+3. Funciones con problemas
 -------------------------
 
-En este ejercicio se propone arreglar el código de algunas funciones simples (y otra no tan simple). Para esto la idea es utilizar
-los métodos y conceptos vertidos en la lección 5.4: **Depuración de funciones**.
+En este ejercicio se propone arreglar el código de algunas funciones simples (y otra no tan simple). Para esto la idea es utilizar los métodos y conceptos vertidos en la lección 5.4: **Depuración de funciones**.
+
+Recuerde que hay errores más comunes que otros. Por ejemplo funciones, operadores u objetos **mal escritos**, **paréntesis**, **llaves**, o **corchetes** mal cerrados y **errores de indización** (como poner 1 sólo número para indizar una matriz), son de los más frecuentes. Otros también "populares" son el utilizar de forma inconsistente las comillas (i.e.: mezclar `"` con `'` descuidadamente) u olvidar poner una coma entre argumentos. Recomendamos tengan cerca la lección 1.3 extra: **errores y afines**.
 
 ### 3.a Cambiador de valores en subíndices pares...
 
-Script: cambiaPares.R
-
-Esta sencilla función toma un vector `x` y cambia aquellos valores que se encuentran en las posiciones pares del mismo (`x[2]`,
-`x[4]`, etc.), usando como sustitutos los elementos del vector `subs` (el segundo argumento). Un ejemplo de salida de esta función
-puede ser el siguiente:
+Esta sencilla función toma un vector `x` y cambia aquellos valores que se encuentran en las posiciones pares del mismo (`x[2]`, `x[4]`, etc.), usando como sustitutos los elementos del vector `subs` (el segundo argumento). Un ejemplo de salida de esta función puede ser el siguiente:
 
 
 
 
 ```r
-cambiaPares(1:6, NA)
+cambia.pares(1:6, NA)
 ```
 
 ```
@@ -367,26 +364,23 @@ cambiaPares(1:6, NA)
 ```
 
 
-El objetivo de este ejercicio es arreglar el código de la función contenida en el script asociado de forma tal que ejecute correctamente su tarea.
+El objetivo de este ejercicio es arreglar el código de la función contenida en el script asociado de forma tal que ejecute correctamente su tarea. El código tiene cuatro errores, 
 
 ### 3.b Radios
-
-Script: radio.R
 
 La función radio toma como argumento el valor `r`, un número cualquiera, y calcula tres valores asociados con circunferencias y esferas: el perímetro (P), área (A; de la circunferencia) y volumen (V; de la esfera), utilizando las fórmulas:
 
 $$
-P = 2 \cdot \pi \cdot r
+  P = 2 \cdot \pi \cdot r
 $$
 $$
-A = \pi \cdot r^2
+  A = \pi \cdot r^2
 $$
 $$
-V = \frac{4 \cdot \pi \cdot r^3}{3}
+  V = \frac{4 \cdot \pi \cdot r^3}{3}
 $$
 
-La función está pensada para generar una salida invisible, al mismo tiempo que imprimir en la consola los resultados obtenidos
-(nótese el uso de la función `cat` para este cometido). El siguiente es un ejemplo de salida de la función: 
+La función está pensada para generar una salida invisible, al mismo tiempo que imprimir en la consola los resultados obtenidos (nótese el uso de la función `cat` para este cometido). El siguiente es un ejemplo de salida de la función: 
 
 
 
@@ -411,32 +405,17 @@ x
 ```
 
 
-El objetivo de este ejercicio es arreglar el código de la función contenida en el script asociado de forma tal que ejecute correctamente su tarea.
+El objetivo de este ejercicio es arreglar el código de la función contenida en el script asociado de forma tal que ejecute correctamente su tarea. En total hay 5 errores (aunque 1 de ellos incluye 2 cambios en una misma línea).
 
 
 ### 3.c Extra: encuentra distancias
 
-Script: distancias.R
 
 
-```
-## Warning: no fue posible abrir el archivo 'correctos/distancias.R': No such
-## file or directory
-```
 
-```
-## Error: no se puede abrir la conexión
-```
+La función `distancias`, escrita en el archivo "distancias.R", busca realizar una tarea parecida a la que ya se hizo en el Repartido I del curso: calcular las distancias de un punto a un conjunto de coordenadas (ej. 1.c). En este caso se utiliza un [algoritmo alternativo](http://www.johndcook.com/blog/2010/06/02/whats-so-hard-about-finding-a-hypotenuse/) para calcular las distancias, el cual es más robusto dadas las limitaciones de las computadoras.
 
-
-La función `distancias`, escrita en el archivo "distancias.R", busca realizar una tarea parecida a la que ya se hizo en el Repartido I
-del curso: calcular las distancias de un punto a un conjunto de coordenadas (ej. 1.c). En este caso se utiliza un [algoritmo
-alternativo](http://www.johndcook.com/blog/2010/06/02/whats-so-hard-about-finding-a-hypotenuse/) para calcular las distancias, el cual es más robusto dadas las limitaciones de las computadoras.
-
-El significado de los argumentos de la función están explicados en el propio archivo, así como varios de los pasos internos, a través
-del uso de comentarios. Al igual que en ejercicios anteriores, el objetivo es corregir los errores que tiene el archivo para que la
-función `distancias` cumpla su tarea correctamente. El siguiente es un ejemplo de cómo debería ser la salida de la función
-(incluyendo la figura):
+El significado de los argumentos de la función están explicados en el propio archivo, así como varios de los pasos internos, a través del uso de comentarios. Al igual que en ejercicios anteriores, el objetivo es corregir los errores que tiene el archivo para que la función `distancias` cumpla su tarea correctamente. El siguiente es un ejemplo de cómo debería ser la salida de la función (incluyendo la figura):
 
 
 ```r
@@ -444,8 +423,11 @@ pts <- matrix(rnorm(20), ncol = 2)
 x <- distancias(pts, p = c(0.3, -0.1))
 ```
 
+![salida gráfica de la función distancias](figure/unnamed-chunk-17.png) 
+
 ```
-## Error: no se pudo encontrar la función "distancias"
+## d.max = 1.75 - punto: -1.45 -0.11 
+## d.min = 0.28 - punto: 0.05 -0.23
 ```
 
 ```r
@@ -453,9 +435,23 @@ x
 ```
 
 ```
-##      P      A      V 
-##  31.42  78.54 523.60
+## $dists
+## d.max d.min 
+## 1.748 0.282 
+## 
+## $posiciones
+## i.max i.min 
+##     9     3 
+## 
+## $puntos
+##              x       y
+## d.max -1.44832 -0.1123
+## d.min  0.04928 -0.2291
+## 
+## $centro
+## [1]  0.3 -0.1
 ```
 
 
+Hay 5 errores para corregir, pero dos de ellos no van a generar ningún mensaje de error ni de aviso, excepto al usar `evaluar`.
 

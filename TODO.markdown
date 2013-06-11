@@ -76,6 +76,8 @@ Lista de ideas y/o apuntes generales de cosas a mejorar
 
 * Chequear que en ejercicios anteriores el estudiante haya hecho bien las funciones para usar sus versiones en los subsiguientes (ej: funciones filtroc y aplicar en 2.c).
 
+* Nuevo ejercicio: 2.d "gráficos personalizados". Ver los archivos tmp.Rmd y 2.d-plot.edu.R
+
 Para el final del curso
 -----------------------
 

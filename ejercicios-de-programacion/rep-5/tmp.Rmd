@@ -1,0 +1,7 @@
+
+### 2.d Graficos personalizados
+
+Función genérica (recuerdos...): plot.edu. La función tomará un objeto como los que devuelve `educacion` (de clase "edu") y va a hacer un gráfico simple: TA en función de PC, con la línea de la regresión superpuesta y además los labels adecuados.
+
+Nótese que al ser un objeto creado con `educacion`, sabemos de antemano que tendrá dos columnas llamadas `TA` y `PC`.
+

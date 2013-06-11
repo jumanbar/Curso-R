@@ -1,3 +1,29 @@
+# Rep. V - ej. 3.c
+
+# Instrucciones: 
+# Arreglar la función distancias para que ejecute correctamente
+# sus cometidos. Hay 5 errores para corregir.
+
+# Argumentos:
+# - pnt: matriz numérica de 2 columnas y al menos 2 filas
+# - p: vector numérico de 2 elementos, coordenadas cartesianas
+#      del punto "central"
+# - ver: valor lógico; si TRUE la función debería hacer un
+#        gráfico como el de la letra.
+
+# Salida:
+# Un objeto lista con 4 elementos:
+# - dists: distancias a los puntos más lejano y cercano respecto
+#          a p (vector numérico de 2 elementos).
+# - posiciones: 2 índices con las posiciones (números de fila) de
+#               los puntos más lejano y cercano en la matriz de
+#               entrada pnt.
+# - puntos: matriz de 2 x 2 con las coordenadas de los puntos más
+#           lejano y cercano respectivamente.
+# - centro: ídem que el argumento p
+
+#===== Su código comienza aquí: =====#
+
 distancias <- function(pnt, p = c(0, 0), ver = TRUE)
 # Calclula las distancias desde un punto "central" p a un conjunto de puntos
 # en el plano, cuyas coordenadas se encuentran en la matriz pnt. La opción ver
@@ -16,7 +42,7 @@ distancias <- function(pnt, p = c(0, 0), ver = TRUE)
   mp <- matrix(p, nrow = nrow(pnt), ncol = 2, byrow = TRUE)
   catetos <- abs(pnt - mp)            # Medidas de todos los "catetos"
   ord <- t(apply(catetos, 1, sort)    # Catetos mayores en columna 2
-  r <- ord[1] / ord[2]                # Divide la columna 1 sobre la 2 (min / max)
+  r <- ord[1] / ord[2]                # Divide la columna 1 sobre la 2 de ord (min / max)
   dists <- ord[, 2] * sqrt(1 + r ^ 2) # Fórmula final
 
   # A guardar posiciones y valores de distancias:
@@ -50,4 +76,6 @@ distancias <- function(pnt, p = c(0, 0), ver = TRUE)
 
 # Ej:
 # distancias(matrix(rnorm(20), ncol = 2))
+
+#===== Su código termina aquí =======#
 

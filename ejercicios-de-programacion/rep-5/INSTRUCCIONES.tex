@@ -1,17 +1,21 @@
 \documentclass[]{article}
 \hyphenation{co-rres-pon-dien-tes te-ner E-ben-sper-ger de-pre-da-do-res dis-po-ni-ble be-ne-fi-cio-sa in-di-vi-dual so-cia-li-dad mos-tra-ron fuen-tes a-cep-ta-ble ta-ma-ño o-pues-ta mo-de-lo es-tu-dian-tes e-jer-ci-cios co-rres-pon-dien-te mo-di-fi-ca-dos mo-di-fi-car-lo ma-ni-pu-lar}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\ifxetex
-  \usepackage{fontspec,xltxtra,xunicode}
-  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-\else
-  \ifluatex
-    \usepackage{fontspec}
-    \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-  \else
-    \usepackage[utf8]{inputenc}
+\usepackage{fixltx2e} % provides \textsubscript
+% use microtype if available
+\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \usepackage{fontspec}
+  \ifxetex
+    \usepackage{xltxtra,xunicode}
   \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
 \fi
 \usepackage{color}
 \usepackage{fancyvrb}
@@ -53,53 +57,61 @@
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
               unicode=false, % unicode breaks when used with xetex
-              xetex,
-              colorlinks=true,
-              linkcolor=blue]{hyperref}
+              xetex]{hyperref}
 \else
-  \usepackage[unicode=true,
-              colorlinks=true,
-              linkcolor=blue]{hyperref}
+  \usepackage[unicode=true]{hyperref}
 \fi
-\hypersetup{breaklinks=true, pdfborder={0 0 0}}
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={},
+            pdftitle={},
+            colorlinks=true,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \setcounter{secnumdepth}{0}
 
+\author{}
+\date{}
 
 \begin{document}
 
-\section{Ejercicios de programación IV: Funciones}
+\section{Ejercicios de programación V: Funciones}
 
-\subsubsection{{[}IMSER 2012{]}}
+\subsubsection{{[}IMSER 2013{]}}
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
 \subsection{Archivos incluidos:}
 
-El
-\href{http://eva.universidad.edu.uy/file.php/1454/ejercicios\_de\_programacion/rep-1.zip}{archivo}
-con los ejercicios del práctico debe bajarse y descomprimirse en disco
-duro, creando la carpeta \textbf{\texttt{rep-2}} (nota: no debe dentro
-de ningún disco, partición o carpeta protegida a la escritura, como
-puede ser un disco duro externo de backup). Usted deberá abrir el
+El archivo con los ejercicios del práctico debe bajarse y descomprimirse
+en disco duro, creando la carpeta \textbf{\texttt{rep-X}} (nota: no debe
+dentro de ningún disco, partición o carpeta protegida a la escritura,
+como puede ser un disco duro externo de backup). Usted deberá abrir el
 RStudio y seleccionar dicha carpeta como su directorio de trabajo con
 \texttt{setwd} o en RStudio la combinación \textbf{Ctrl + Shift + K}. En
 esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{triangulo.R}}
+  \textbf{\texttt{1-triangulo.R}}
 \item
-  \textbf{\texttt{educacion.R}}
+  \textbf{\texttt{2.a-filtroc.R}}
 \item
-  \textbf{\texttt{cambiaPares.R}}
+  \textbf{\texttt{2.b-extra-aplicar.R}}
 \item
-  \textbf{\texttt{radio.R}}
+  \textbf{\texttt{2.c-educacion.R}}
 \item
-  \textbf{\texttt{distancias.R}}
+  \textbf{\texttt{3.a-cambia.pares.R}}
+\item
+  \textbf{\texttt{3.b-radio.R}}
+\item
+  \textbf{\texttt{3.c-extra-distancias.R}}
 \end{itemize}
+
 Adicionalmente los siguientes archivos son necesarios, pero \textbf{no
 deben ser modificados} para que el método de calificación automático
 funcione correctamente:
@@ -108,17 +120,19 @@ funcione correctamente:
 \item
   \texttt{datos}
 \item
-  \texttt{evaluar}
+  \texttt{evaluar.R}
 \item
-  \texttt{notas.csv}
-\item
-  \texttt{edu.data.rda}
+  \texttt{edu.data.RData}
 \item
   \texttt{HandbookSpanish.pdf}
 \item
   \texttt{INSTRUCCIONES.pdf}
 \end{itemize}
+
 \subsection{Mecanismo de corrección:}
+
+Nota: más recomendaciones \textbf{importantes} se hacen en el documento
+\href{http://goo.gl/P5Wnq}{Dinámica de los repartidos}.
 
 Lo primero que debe hacer es cargar el archivo evaluar.R con la función
 \texttt{source} y la codificación de caracteres ``UTF-8'' (lo cual
@@ -127,44 +141,66 @@ manera:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{options}\NormalTok{(}\DataTypeTok{encoding =} \StringTok{"utf-8"}\NormalTok{)}
-\KeywordTok{source}\NormalTok{(}\StringTok{"evaluar.R"}\NormalTok{)}
+\KeywordTok{source}\NormalTok{(}\StringTok{"evaluar.R"}\NormalTok{, }\DataTypeTok{encoding =} \StringTok{"UTF-8"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-Si usted ha ejecutado todos los pasos anteriores correctamente, la
-siguiente frase debería verse en la consola:
+
+Nótese que hemos dejado de usar la función \texttt{options}, de forma
+que de ahora en más \textbf{no ejecute el comando}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{options}\NormalTok{(}\DataTypeTok{encoding =} \StringTok{"utf-8"}\NormalTok{)  }\CommentTok{# No me ejecuten!}
+\end{Highlighting}
+\end{Shaded}
+
+Este cambio se debe a que hemos detectado que esta elección trae más
+problemas que soluciones.
+
+Si usted ha ejecutado todos los pasos anteriores correctamente, al usar
+el comando \texttt{ls()} verá que \texttt{"evaluar"} figura en su sesión
+y además en la consola debería ver lo siguiente:
 
 \begin{verbatim}
-Archivo de codigo fuente cargado correctamente
-\end{verbatim}
-En caso de que ocurra un error o se vea otro mensaje en la consola,
-verifique que los archivos se descomprimieron correctamente y que usted
-está trabajando en la carpeta correspondiente con el comando
-\texttt{getwd()}.
+Archivo de código fuente cargado correctamente
 
-Usted trabajará modificando los contenidos de dichos archivos con
-RStudio (u otro programa de su preferencia) según las consignas que se
-describen a continuación. Luego de terminar cada ejercicio y
-\textbf{guardando el archivo} correspondiente en el disco duro, usted
-podrá verificar rápidamente si su respuesta es correcta ejecutando el
-comando:
+Chequeo de encoding:
+  Los siguientes caracteres deben ser vocales con tilde:
+    á - é - í - ó - ú
+  Si *no se ven correctamente* corra el siguiente comando:
+    source('evaluar.R', encoding = 'UTF-8')
+\end{verbatim}
+
+Usted trabajará modificando los contenidos de los archivos de los
+ejercicios con RStudio (u otro programa de su preferencia) según las
+consignas que se describen a continuación. Luego de terminar cada
+ejercicio y \textbf{guardando el archivo} correspondiente en el disco
+duro, usted podrá verificar rápidamente si su respuesta es correcta
+ejecutando el comando:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{evaluar}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
+
 y además podrá en todo momento verificar su puntaje con la función
 \texttt{verNotas()}. Tenga siempre en cuenta que, a \textbf{menos que
 sea indicado} por la letra del ejercicio, las soluciones deben ser
-genéricas y por lo tanto deben obtenerse con el código de los scripts en
-lugar de ser valores fijos. Usualmente se utilizan valores generados de
-forma aleatoria para las correcciones automáticas. Los objetos que son
-evaluados en la corrección automática estarán indicados con un asterísco
-en las instrucciones de cada script. Nótese además que en los archivos
-\textbf{se indica claramente en dónde se inicia y dónde finaliza su
-código} y que debe respetar esta organización para que la corrección de
-los ejercicios funcione bien.
+genéricas y por lo tanto deben servir aún si se modifican los datos
+originales (i.e.: no use valores fijos si no comandos). Usualmente se
+utilizan valores generados de forma aleatoria para las correcciones
+automáticas. Los objetos que son evaluados en la corrección automática
+estarán indicados con un asterísco en las instrucciones de cada script.
+Nótese además que en los archivos \textbf{se indica claramente en dónde
+se inicia y dónde finaliza su código} y que debe respetar esta
+organización para que la corrección de los ejercicios funcione bien.
+
+\paragraph{NOTA:}
+
+se agregó la función \texttt{fecha.datos} para facilitar el acceso al a
+información de 1. cuál es la versión que usted tiene en su pc y 2. cómo
+encontrar la fecha de la última versión.
 
 \subsubsection{Al finalizar}
 
@@ -172,7 +208,7 @@ Una vez terminados y guardados los archivos de los ejercicios del
 repartido, usted deberá ejecutar \texttt{evaluar()} y seleccionar la
 última opción (``Todos'') y luego subir el archivo ''datos'' (sin
 extensión), incluido en la carpeta ''rep-1'', a la
-\href{http://eva.universidad.edu.uy/mod/assignment/view.php?id=95125}{sección
+\href{http://eva.universidad.edu.uy/mod/assign/view.php?id=103966}{sección
 de entregas} de la portada del curso en la plataforma EVA. Este archivo
 se podrá reemplazar con uno más nuevo, en caso de que desee corregir
 algún error; en caso de querer que el archivo sea corregido antes de la
@@ -181,36 +217,42 @@ en ese caso la nota no se cambiará de ahí en adelante.
 
 \subsubsection{Código de Honor}
 
-Si bien animamos a que los estudiantes trabajen en equipos y que haya un
-intercambio fluido en los foros del curso, es fundamental que las
-respuestas a los cuestionarios y ejercicios de programación sean fruto
-del trabajo individual. En particular, consideramos importante que los
-estudiantes no miren el código creado por sus compañeros ya que esto
-supone un sabotaje a su propio proceso de aprendizaje. Como profesores
-estamos comprometidos a pedir tareas para las cuales hayamos dado las
-herramientas correctas y las explicaciones adecuadas como para que todos
-puedan encontrar su propio camino para resolver los ejercicios.
+Si bien animamos a que trabaje en equipos y que haya un intercambio
+fluido en los foros del curso, es fundamental que las respuestas a los
+cuestionarios y ejercicios de programación sean fruto del trabajo
+individual. En particular, consideramos necesario que no utilice el
+código creado por sus compañeros, si no que debe programar sus propias
+instrucciones, ya que de lo contrario supone un sabotaje a su propio
+proceso de aprendizaje. Esto implica también evitar, en la medida de lo
+posible, exponer el código propio a sus colegas. Como profesores estamos
+comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y
+explicaciones adecuadas a fin de que pueda encontrar su propio camino
+para resolver los ejercicios.
+
+En casos de planteos de dudas a través del foro, en los que considere
+que es imposible expresar un problema sin exponer su própio código,
+entonces es aceptable hacerlo. De todas formas en estos casos es
+preferible que envíe su código por correo electrónico directamente a un
+profesor, explicando la problemática.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
 \subsection{1. Triángulos, volumen II}
 
-Script: triangulo.R
-
-Si hacemos un poco de memoria recordaremos el ejercicio 1 del repartido
-I. En el mismo tomábamos los catetos de un triángulo rectángulo y
+Si hacemos un poco de memoria recordaremos que en el ejercicio 1 del
+repartido I, tomábamos los catetos de un triángulo rectángulo y
 escribíamos el código necesario para calcular el valor de la hipotenusa
-y el área del mismo. Como recordaremos, el valor de la hipotenusa se
+y el área del mismo. Como vimos entonces, el valor de la hipotenusa se
 calcula como:
 
 \[
-hip = \sqrt{cat.op ^ 2 + cat.ad ^ 2}
+  hip = \sqrt{cat.op ^ 2 + cat.ad ^ 2}
 \]
 
-mientras que el área del triángulo es:
+mientras que el área del triángulo rectángulo es:
 
 \[
-A = \frac{cat.op \cdot cat.ad}{2}
+  A = \frac{cat.op \cdot cat.ad}{2}
 \]
 
 A partir de los valores de los catetos y de la hipotenusa es posible
@@ -218,17 +260,17 @@ calcular el valor de los restantes ángulos del triángulo, siendo el
 ángulo adyacente
 
 \[
-\alpha_{ad} = arccos \left( \frac{cat.ad}{hip} \right)
+  \alpha_{ad} = arccos \left( \frac{cat.ad}{hip} \right)
 \]
 
 y el ángulo opuesto
 
 \[
-\alpha_{op} = arccos \left( \frac{cat.op}{hip} \right)
+  \alpha_{op} = arccos \left( \frac{cat.op}{hip} \right)
 \]
 
 En el presente ejercicio debemos escribir el código de una función
-llamada \texttt{triangulo} que, a partir de los mismos datos de las
+llamada \texttt{triangulo} que, a partir de los mismos argumentos de las
 funciones \texttt{area} e \texttt{hipot} de aquella ocasión, o sea de
 los catetos de un triángulo rectángulo, calcule la hipotenusa, el área y
 los ángulos adyacente y opuesto del triángulo. La salida de la función
@@ -238,11 +280,16 @@ deberá ser una lista con los objetos denominados de la siguiente manera:
 expresados en grados. En R, la salida de las funciones trigonométricas,
 como \texttt{asin} y \texttt{acos} están expresadas en radianes, por lo
 que se deberá hacer la transformación correspondiente, teniendo en
-cuenta que $\pi$ radianes equivalen a $180^o$.
+cuenta que $\pi$ radianes equivalen a $180^o$, y por lo tanto:
 
-A modo de ejemplo, la salida deseada al evaluar esta función con el
-cateto adyacente y el opuesto valiendo respectivamente 4 y 3, sería la
-siguiente:
+\[
+  \alpha_{gr} = 180 \cdot \frac{\alpha_{rad}}{\pi}
+\]
+
+siendo $\alpha_{gr}$ y $\alpha_{rad}$ los equivalentes en grados y
+radianes de un ángulo $\alpha$ cualquiera. A modo de ejemplo, la salida
+deseada al evaluar esta función con el cateto adyacente y el opuesto
+valiendo respectivamente 4 y 3, sería la siguiente:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -260,11 +307,13 @@ siguiente:
 \NormalTok{[}\DecValTok{1}\NormalTok{] }\FloatTok{53.1301}
 \end{Highlighting}
 \end{Shaded}
+
+(Recuerde que la función triángulo debe dar el resultado correcto para
+cualquier par de valores positivos que sean asignados a los argumentos.)
+
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
 \subsection{2. Educación}
-
-Script: educacion.R
 
 La Organización de la Naciones Unidas (ONU) en el año 2011
 \href{http://mdgs.un.org/unsd/mdg/Resources/Static/Products/Progress2011/11-31342\%20\%28S\%29\%20MDG\%20Report\%202011\_Book\%20LR.pdf}{presentó
@@ -282,8 +331,8 @@ incorporaban lo que ha llegado a conocerse con el nombre de `ocho
 objetivos de desarrollo del milenio', incluidas 18 metas con plazos
 cronológicos delimitados''
 (\href{http://unstats.un.org/unsd/publication/seriesf/Seriesf\_95s.pdf}{Fuente}).
-
 \end{quote}
+
 Para este ejercicio se utilizarán tres de los indicadores que han sido
 propuestos para cumplir con el objetivo 2 de los ODM
 \href{http://www.undp.org/content/undp/es/home/mdgoverview/mdg\_goals/mdg2/}{Lograr
@@ -291,64 +340,244 @@ la enseñanza primaria universal}:
 
 \begin{itemize}
 \item
-  Tasa Neta de Matriculación en la Enseñanza Primaria (TM).
+  Tasa Neta de Matriculación en la Enseñanza Primaria (\texttt{TM}).
 \item
   Porcentaje de alumnos que comienzan el primer grado y llegan al quinto
-  grado (PA).
+  grado (\texttt{PA}).
 \item
-  Tasa de alfabetización de personas entre 15 y 24 años (TA).
+  Tasa de alfabetización de personas entre 15 y 24 años (\texttt{TA}).
 \end{itemize}
+
 Las tres variables están expresadas en porcentaje. El objetivo es
 realizar un cálculo grueso del porcentaje de niños que completan la
-educación primaria (PC) para ciertos paises, a partir de TA y PA, usando
-la fórmula: $PC = (TM \cdot PA) / 100$. Finalmente se hará una regresión
-entre la tasa de alfabetización y el porcentaje de conclusión de
-primaria calculado.
+educación primaria (\texttt{PC}) para ciertos paises, a partir de
+\texttt{TM} y \texttt{PA}, usando la fórmula:
+$PC = (TM \cdot PA) / 100$. Finalmente se hará una regresión entre la
+tasa de alfabetización y el porcentaje de finalización de primaria
+calculado (i.e.: \texttt{TA} en función de \texttt{PC}).
 
-El archivo ``edu.data.rda'' contiene una data.frame llamada
+El archivo ``edu.data.RData'' contiene una data.frame llamada
 \texttt{edu.data} con datos de varios años para ciertos países, usando
 las abreviaciones de arriba para cada indicador (importar a R con
 \texttt{load} o los botones de RStudio). Los datos fueron extraidos de
 la \href{http://mdgs.un.org/unsd/mdg/Data.aspx}{portada oficial} de la
 ONU para los indicadores de los OMD.
 
-\paragraph{Entradas:}
+Sin embargo no vamos a ir directamente a este cálculo, si no a
+desarrollar funciones que permitan hacerlo rápidamente con cualquier
+tabla de datos con una estructura similar a la que usamos como ejemplo.
 
-ud. deberá crear una función llamada \texttt{educación}, la cual deberá
-aceptar los siguientes argumentos, en este orden (si quiere puede
-asignar valores por defecto a uno o a varios de estos argumentos):
+\subsubsection{2.a Filtro por columnas}
+
+Ya vimos que la función subset sirve para filtrar observaciones, las
+filas, en un data.frame con el fin de eliminar aquellas que no sirven a
+nuestros propósitos. En este ejercicio usted hará una función que haga
+algo similar, pero con las columnas. Considere la función \texttt{grep}.
+Esta sirve para reconocer patrones en vectores character, es decir,
+puede identificar palabras en un texto. Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"glucosa"}\NormalTok{, }\StringTok{"citosina"}\NormalTok{, }\StringTok{"timina"}\NormalTok{, }\StringTok{"ribosa"}\NormalTok{, }\StringTok{"adenina"}\NormalTok{, }\StringTok{"sacarosa"}\NormalTok{, }\StringTok{"guanina"}\NormalTok{)}
+\NormalTok{i <-}\StringTok{ }\KeywordTok{grep}\NormalTok{(}\StringTok{"osa"}\NormalTok{, v)}
+\NormalTok{v[i]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "glucosa"  "ribosa"   "sacarosa"
+\end{verbatim}
+
+Como se puede ver aquí, \texttt{grep} devuelve un vector numérico con
+las posiciones de \texttt{v} tales que el string ``osa'' es parte de la
+palabra (en este casos, nombres de monosacáridos). Esto por supuesto
+puede usarse con nombres de columnas y es lo que se pide que usted haga
+en este ejercicio.
+
+Vamos a usar esta capacidad para filtrar data.frames según sus nombres
+de columnas. En el script de este ejercicio, usted deberá codificar la
+función \texttt{filtroc}.
+
+\paragraph{Argumentos:}
 
 \begin{itemize}
 \item
-  \texttt{x}: data.frame con los datos de entrada (\texttt{edu.data}).
+  \texttt{x}: una data.frame con nombres de columnas útiles para hacer
+  el filtrado.
 \item
-  \texttt{tmcol}: columnas correspondientes al indicador TM (en números
-  o nombres, debería ser irrelevante).
-\item
-  \texttt{pacol}: columnas correspondientes al indicador PA (en números
-  o nombres, debería ser irrelevante).
-\item
-  \texttt{tacol}: columna correspondiente al indicador TA (en número o
-  nombre, debería ser irrelevante).
+  \texttt{clave}: string utilizado para seleccionar columnas (i.e.: un
+  vector character de longitud 1). \textbf{Importante}: no debe importar
+  si la \texttt{clave} está en mayúsculas o minúsculas (i.e.: da lo
+  mismo usar \texttt{"TM"}, \texttt{"tm"} o \texttt{"tM"}). Para esto
+  puede usar las funciones \texttt{tolower} o \texttt{toupper} para
+  manipular vectores character.
 \end{itemize}
+
 \paragraph{Acciones:}
 
-la función deberá realizar los siguiente pasos:
+\begin{enumerate}[1.]
+\item
+  Con alguna de las funciones \texttt{grep} determinar cuáles son las
+  columnas de \texttt{x} que contienen el string \texttt{clave}.
+\item
+  Devolver un data.frame con las columnas seleccionadas en punto
+  anterior. Esto puede ser un problema cuando se selecciona una sola
+  columna (e.g.: la columna \texttt{TA} en \texttt{edu.data}). Para
+  evitarlos indice la data.frame \texttt{x} sin usar coma (vea la
+  diferencia entre escribir \texttt{edu.data{[},11{]}} y
+  \texttt{edu.data{[}11{]}} como ejemplo ilustrador).
+\end{enumerate}
+
+El siguiente ejemplo debería ilustrar mejor el funcionamiento esperado
+de \texttt{filtroc}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{load}\NormalTok{(}\StringTok{"edu.data.RData"}\NormalTok{)}
+\KeywordTok{filtroc}\NormalTok{(edu.data, }\StringTok{"Tm"}\NormalTok{)  }\CommentTok{# Se usan mayúsculas y minúsculas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   TM_2005 TM_2006 TM_2007 TM_2008 TM_2009
+## Aruba                97.5    98.3    98.7    97.5    94.7
+## Colombia             96.3    95.3    94.2    93.7    93.2
+## Cuba                 95.2    96.1    98.8    99.5    99.8
+## El Salvador          95.1    95.0    94.7    94.6    94.6
+## Guatemala            95.1    96.4    97.2    96.8      NA
+## México               99.6    99.6    99.4    99.5    99.6
+## Nicaragua            94.6    92.9    93.1    94.4      NA
+## Panamá               99.1    99.0    99.0    98.9    97.1
+## Paraguay             95.1    93.2    90.8    88.2    85.7
+## Perú                 99.6    99.7    99.7    98.2    97.2
+## Trinidad y Tobago    91.3      NA    96.9    95.0    96.0
+## Uruguay              97.6    99.9      NA    99.3    99.5
+## Venezuela            92.8    93.4    94.4      NA    94.2
+\end{verbatim}
+
+Nótese que esto permite elegir columnas con datos de \texttt{TM} sin
+importar el año en que fueron tomados.
+
+\paragraph{Sugerencia:}
+
+Antes de utilizar \texttt{grep} convertir las letras de la
+\texttt{clave} a mayúsculas/minúsculas según su preferencia; lo mismo
+para un vector con los nombres de columnas de \texttt{x} (pero no para
+los nombres de la data.frame en sí). Luego utilice estos vectores como
+entrada de \texttt{grep}.
+
+\subsubsection{2.b Extra: aplicar}
+
+El objetivo es hacer una función que combine las funciones
+\texttt{filtroc} (ej. 2.a) y \texttt{apply}. Esta función se llamará
+\texttt{aplicar}. Durante la corrección el sistema utilizará su propia
+versión de \texttt{filtroc}.
+
+\paragraph{Argumentos:}
+
+\begin{itemize}
+\item
+  \texttt{x}: una data.frame cualquiera.
+\item
+  \texttt{clave}: clave para seleccionar columnas (ver \texttt{filtroc},
+  ej. 2.a).
+\item
+  \texttt{FUN}: función a aplicar a las filas de los datos de
+  \texttt{x}, una vez que se seleccionan las columnas.
+\item
+  \texttt{...}: argumento especial, utilizado para enviar argumentos
+  nombrados a la función \texttt{FUN}, cualquiera sea esta (puede ser
+  una cantidad arbitraria de argumentos; \texttt{?dotsMethods} o el
+  \href{http://cran.r-project.org/doc/manuals/r-release/R-intro.html\#The-three-dots-argument}{el
+  manual introductorio} para ver la ayuda de R respecto a este argumento
+  especial).
+\end{itemize}
+
+\paragraph{Acciones:}
+
+\begin{enumerate}[1.]
+\item
+  Seleccionará las columnas de \texttt{x} según la \texttt{clave}
+  dispuesta por el usuario (tal como lo debería hacer la función
+  \texttt{filtro}), resultando en un data.frame.
+\item
+  Aplicará la función \texttt{FUN} a todas las \emph{filas} de la
+  data.frame resultante del paso anterior (se sugiere usar
+  \texttt{apply} aquí).
+\item
+  Devolverá un vector con los valores obtenidos en el paso anterior.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{load}\NormalTok{(}\StringTok{"edu.data.RData"}\NormalTok{)}
+\KeywordTok{aplicar}\NormalTok{(edu.data, }\StringTok{"pA"}\NormalTok{, mean, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Aruba          Colombia              Cuba       El Salvador 
+##             90.43             83.50             96.30             74.90 
+##         Guatemala            México         Nicaragua            Panamá 
+##             63.53             92.82             47.50             87.84 
+##          Paraguay              Perú Trinidad y Tobago           Uruguay 
+##             78.15             87.42             91.40             93.88 
+##         Venezuela 
+##             90.36
+\end{verbatim}
+
+Nota: en este ejemplo el argumento especial \texttt{...} sirve para
+enviar el argumento nombrado \texttt{na.rm = TRUE} a la función
+\texttt{mean} (a través del argumento \texttt{...} de la propia función
+\texttt{apply}). Los demás argumentos son: \texttt{x = edu.data},
+\texttt{clave = "Tm"} y \texttt{FUN = mean}. En la corrección automática
+se utilizarán otras funciones y argumentos para poner a prueba el
+ejercicio.
+
+\subsubsection{2.c Función educación}
+
+La función \texttt{educacion} será la que calcule el \texttt{PC}
+(``porcentaje de colnclusión'' o de ``finalización'' de la primaria) y
+además haga la regresión entre \texttt{TA} y \texttt{PC}. La función
+supone de antemano que todas las columnas tienen nombres con los
+prefijos \texttt{TM}, \texttt{PA} o \texttt{TA}, y además que hay una
+única columna \texttt{TA}. Si a usted le interesa puede agregar más
+argumentos para que su función no parta de este supuesto, pero es una
+opción no contemplada por el ejercicio.
+
+Note que en este ejercicio es posible utilizar las funciones que se
+piden en 2.a y 2.b, si bien no es obligatorio. De todas formas, durante
+la corrección el sistema usará su propia versión de dichas funciones.
+
+\paragraph{Argumentos:}
+
+\begin{itemize}
+\item
+  \texttt{x}: data.frame con los datos de entrada (como
+  \texttt{edu.data}), en la que deben estar los TM, PA y TA, tal como se
+  explica anteriormente.
+\end{itemize}
+
+\paragraph{Acciones:}
 
 \begin{enumerate}[1.]
 \item
   Calcular, por país/fila, el promedio de los valores de TM y de PA.
+  Para esto pueden ser útiles las funciones \texttt{filtroc} del
+  ejercicio 2.a y \texttt{aplicar} del 2.b.
 \item
-  Calcular con estos el valor promedio de PC para cada país.
+  Calcular con estos el valor de PC para cada país (lo que debe hacerse
+  con los promedios de TM y PA obtenidos en el punto anterior).
 \item
   Agregar estos tres valores calculados como columnas a la data.frame de
   entrada (\texttt{x}).
 \item
   Realizar una regresión lineal de TA en función de PC.
 \item
-  Devolver los valores calculados y los datos más importantes de la
-  regresión.
+  Devolver un objeto de clase list con 1. la regresión y 2. la
+  data.frame modificada
 \end{enumerate}
+
 Nota: los cálculos de promedios deben hacerse dejando de lado los
 valores \texttt{NA}.
 
@@ -359,78 +588,82 @@ cual debe contener los siguientes objetos (y en el mismo orden):
 
 \begin{itemize}
 \item
-  \texttt{coeficientes}: los coeficientes de la regresión de TA en
-  función de PC.
-\item
-  \texttt{p.valor}: el p.valor de la regresión correspondiente a los
-  coeficientes (ver salida de \texttt{summary} para obtenerlos).
-\item
-  \texttt{r2}: el coeficiente de determinación ($R^2$) de la regresión
-  (el cual puede calcularse usando una fórmula o la función
-  \texttt{summary}).
+  \texttt{reg}: el objeto \texttt{lm} obtenido al hacer la regresión
+  lineal.
 \item
   \texttt{datos}: data.frame con los datos originales más las columnas
-  correspondientes a los promedios de TM, PA y PC, en ese orden.
+  correspondientes a los promedios de \texttt{TM}, \texttt{PA} y
+  \texttt{PC}, en ese orden.
 \end{itemize}
+
 Nota: la función \texttt{summary} además de imprimir en la consola datos
-útiles de una regresión, también genera una \textbf{salida invisible}
-(ver lección 5.3).
+útiles de una regresión necesarios para este ejercicio, también genera
+una \textbf{salida invisible} (ver lección 5.3).
 
 El siguiente es un ejemplo obtenido con los datos y una función
-\texttt{educacion} completada (la figura incluida también se generó con
-esta función, pero para la tarea es opcional):
+\texttt{educacion} completada:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{load}\NormalTok{(}\StringTok{"edu.data.rda"}\NormalTok{)}
-\NormalTok{x <- }\KeywordTok{educacion}\NormalTok{(edu.data, }\DecValTok{1}\NormalTok{:}\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{:}\DecValTok{10}\NormalTok{, }\DecValTok{11}\NormalTok{)}
+\KeywordTok{load}\NormalTok{(}\StringTok{"edu.data.RData"}\NormalTok{)}
+\NormalTok{e <-}\StringTok{ }\KeywordTok{educacion}\NormalTok{(edu.data)}
+\NormalTok{e$reg}
 \end{Highlighting}
 \end{Shaded}
-\begin{figure}[htbp]
-\centering
-\includegraphics{figure/unnamed-chunk-5.png}
-\caption{regresión de TA en función de PC (salida gráfica opcional de la
-función educacion)}
-\end{figure}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = TA ~ PC, data = x)
+## 
+## Coefficients:
+## (Intercept)           PC  
+##      75.095        0.268
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x$coeficientes}
+\KeywordTok{str}\NormalTok{(e$datos)}
 \end{Highlighting}
 \end{Shaded}
+
 \begin{verbatim}
-## (Intercept)          PC 
-##     75.0948      0.2679 
+## 'data.frame':    13 obs. of  14 variables:
+##  $ TM_2005: num  97.5 96.3 95.2 95.1 95.1 99.6 94.6 99.1 95.1 99.6 ...
+##  $ TM_2006: num  98.3 95.3 96.1 95 96.4 99.6 92.9 99 93.2 99.7 ...
+##  $ TM_2007: num  98.7 94.2 98.8 94.7 97.2 99.4 93.1 99 90.8 99.7 ...
+##  $ TM_2008: num  97.5 93.7 99.5 94.6 96.8 99.5 94.4 98.9 88.2 98.2 ...
+##  $ TM_2009: num  94.7 93.2 99.8 94.6 NA 99.6 NA 97.1 85.7 97.2 ...
+##  $ PA_2005: num  NA 80.8 96.9 67.3 63.3 92.1 50.2 85.2 76.2 NA ...
+##  $ PA_2006: num  93.4 85.2 96.8 68.9 62.5 92.3 43.9 88.2 79.1 89.7 ...
+##  $ PA_2007: num  86.5 NA 96.1 75.7 64.8 91.5 48.4 85.2 79.2 82 ...
+##  $ PA_2008: num  91.4 NA 95.5 76.1 NA 94 NA 86.8 78.1 87.6 ...
+##  $ PA_2009: num  NA 84.5 96.2 86.5 NA 94.2 NA 93.8 NA 90.4 ...
+##  $ TA     : num  99.1 98 100 94.9 87 ...
+##  $ TM     : num  97.3 94.5 97.9 94.8 96.4 ...
+##  $ PA     : num  90.4 83.5 96.3 74.9 63.5 ...
+##  $ PC     : num  88 78.9 94.3 71 61.2 ...
 \end{verbatim}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x$p.valor}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-## (Intercept)          PC 
-##   2.329e-10   6.259e-05 
-\end{verbatim}
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{x$r2}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-## [1] 0.7803
-\end{verbatim}
+
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\subsection{3. Funciones en problemas}
+\subsection{3. Funciones con problemas}
 
 En este ejercicio se propone arreglar el código de algunas funciones
 simples (y otra no tan simple). Para esto la idea es utilizar los
 métodos y conceptos vertidos en la lección 5.4: \textbf{Depuración de
 funciones}.
 
-\subsubsection{3.a Cambiador de valores en subíndices pares\ldots{}}
+Recuerde que hay errores más comunes que otros. Por ejemplo funciones,
+operadores u objetos \textbf{mal escritos}, \textbf{paréntesis},
+\textbf{llaves}, o \textbf{corchetes} mal cerrados y \textbf{errores de
+indización} (como poner 1 sólo número para indizar una matriz), son de
+los más frecuentes. Otros también ``populares'' son el utilizar de forma
+inconsistente las comillas (i.e.: mezclar \texttt{"} con \texttt{'}
+descuidadamente) u olvidar poner una coma entre argumentos. Recomendamos
+tengan cerca la lección 1.3 extra: \textbf{errores y afines}.
 
-Script: cambiaPares.R
+\subsubsection{3.a Cambiador de valores en subíndices pares\ldots{}}
 
 Esta sencilla función toma un vector \texttt{x} y cambia aquellos
 valores que se encuentran en las posiciones pares del mismo
@@ -440,19 +673,19 @@ salida de esta función puede ser el siguiente:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{cambiaPares}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{6}\NormalTok{, }\OtherTok{NA}\NormalTok{)}
+\KeywordTok{cambia.pares}\NormalTok{(}\DecValTok{1}\NormalTok{:}\DecValTok{6}\NormalTok{, }\OtherTok{NA}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
 \begin{verbatim}
 ## [1]  1 NA  3 NA  5 NA
 \end{verbatim}
+
 El objetivo de este ejercicio es arreglar el código de la función
 contenida en el script asociado de forma tal que ejecute correctamente
-su tarea.
+su tarea. El código tiene cuatro errores,
 
 \subsubsection{3.b Radios}
-
-Script: radio.R
 
 La función radio toma como argumento el valor \texttt{r}, un número
 cualquiera, y calcula tres valores asociados con circunferencias y
@@ -460,11 +693,11 @@ esferas: el perímetro (P), área (A; de la circunferencia) y volumen (V;
 de la esfera), utilizando las fórmulas:
 
 \[
-P = 2 \cdot \pi \cdot r
+  P = 2 \cdot \pi \cdot r
 \] \[
-A = \pi \cdot r^2
+  A = \pi \cdot r^2
 \] \[
-V = \frac{4 \cdot \pi \cdot r^3}{3}
+  V = \frac{4 \cdot \pi \cdot r^3}{3}
 \]
 
 La función está pensada para generar una salida invisible, al mismo
@@ -474,30 +707,33 @@ ejemplo de salida de la función:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x <- }\KeywordTok{radio}\NormalTok{(}\DecValTok{5}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{radio}\NormalTok{(}\DecValTok{5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
 \begin{verbatim}
 ## Perímetro: 31.42 
 ## Área:      78.54 
-## Volumen:   523.6 
+## Volumen:   523.6
 \end{verbatim}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x}
 \end{Highlighting}
 \end{Shaded}
+
 \begin{verbatim}
 ##      P      A      V 
-##  31.42  78.54 523.60 
+##  31.42  78.54 523.60
 \end{verbatim}
+
 El objetivo de este ejercicio es arreglar el código de la función
 contenida en el script asociado de forma tal que ejecute correctamente
-su tarea.
+su tarea. En total hay 5 errores (aunque 1 de ellos incluye 2 cambios en
+una misma línea).
 
 \subsubsection{3.c Extra: encuentra distancias}
-
-Script: distancias.R
 
 La función \texttt{distancias}, escrita en el archivo ``distancias.R'',
 busca realizar una tarea parecida a la que ya se hizo en el Repartido I
@@ -517,42 +753,47 @@ figura):
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{pts <- }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{20}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
-\NormalTok{x <- }\KeywordTok{distancias}\NormalTok{(pts, }\DataTypeTok{p =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.3}\NormalTok{, -}\FloatTok{0.1}\NormalTok{))}
+\NormalTok{pts <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{20}\NormalTok{), }\DataTypeTok{ncol =} \DecValTok{2}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{distancias}\NormalTok{(pts, }\DataTypeTok{p =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.3}\NormalTok{, -}\FloatTok{0.1}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
-\begin{verbatim}
-## d.max = 3.26 - punto: -0.25 3.12 
-## d.min = 0.65 - punto: 0.93 -0.26 
-\end{verbatim}
+
 \begin{figure}[htbp]
 \centering
-\includegraphics{figure/unnamed-chunk-11.png}
+\includegraphics{figure/unnamed-chunk-17.png}
 \caption{salida gráfica de la función distancias}
 \end{figure}
+
+\begin{verbatim}
+## d.max = 1.75 - punto: -1.45 -0.11 
+## d.min = 0.28 - punto: 0.05 -0.23
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{x}
 \end{Highlighting}
 \end{Shaded}
+
 \begin{verbatim}
 ## $dists
-##  d.max  d.min 
-## 3.2629 0.6493 
+## d.max d.min 
+## 1.748 0.282 
 ## 
 ## $posiciones
 ## i.max i.min 
-##     5    10 
+##     9     3 
 ## 
 ## $puntos
-##             x       y
-## d.max -0.2500  3.1162
-## d.min  0.9289 -0.2618
+##              x       y
+## d.max -1.44832 -0.1123
+## d.min  0.04928 -0.2291
 ## 
 ## $centro
 ## [1]  0.3 -0.1
-## 
 \end{verbatim}
+
+Hay 5 errores para corregir, pero dos de ellos no van a generar ningún
+mensaje de error ni de aviso, excepto al usar \texttt{evaluar}.
 
 \end{document}
