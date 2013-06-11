@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Ejercicios de programación IV: Funciones</title>
+<title>Ejercicios de programación V: Funciones</title>
 
 <style type="text/css">
 body, td {
@@ -179,62 +179,418 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>Ejercicios de programación IV: Funciones</h1>
+<h1>Ejercicios de programación V: Funciones</h1>
 
-<h3>[IMSER 2012]</h3>
+<h3>[IMSER 2013]</h3>
 
 <hr/>
 
 <h2>Archivos incluidos:</h2>
 
-<p>El <a href="http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/rep-1.zip">archivo</a> con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta <strong><code>rep-2</code>** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con <code>setwd</code> o en RStudio la combinación **Ctrl + Shift + K</strong>. En esta carpeta se encuentran algunos archivos que usted deberá modificar:</p>
+<p>El archivo con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta <strong><code>rep-X</code>** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con <code>setwd</code> o en RStudio la combinación **Ctrl + Shift + K</strong>. En esta carpeta se encuentran algunos archivos que usted deberá modificar:</p>
 
 <ul>
-<li><strong><code>importar.R</code></strong></li>
+<li><strong><code>1-triangulo.R</code></strong></li>
+<li><strong><code>2-educacion.R</code></strong></li>
+<li><strong><code>3.a-cambiaPares.R</code></strong></li>
+<li><strong><code>3.b-radio.R</code></strong></li>
+<li><strong><code>3.c-distancias.R</code></strong></li>
 </ul>
 
-<p>Adicionalmente los siguientes archivos son necesarios, pero <strong>no deben ser modificados</strong> para que el método de calificación automático funcione correctamente.</p>
+<p>Adicionalmente los siguientes archivos son necesarios, pero <strong>no deben ser modificados</strong> para que el método de calificación automático funcione correctamente: </p>
 
 <ul>
-<li><code>evaluar.R</code></li>
-<li><code>notas.csv</code></li>
 <li><code>datos</code></li>
+<li><code>evaluar.R</code></li>
+<li><code>edu.data.RData</code></li>
+<li><code>HandbookSpanish.pdf</code></li>
 <li><code>INSTRUCCIONES.pdf</code></li>
 </ul>
 
 <h2>Mecanismo de corrección:</h2>
 
+<p>Nota: más recomendaciones <strong>importantes</strong> se hacen en el documento <a href="http://goo.gl/P5Wnq">Dinámica de los repartidos</a>.</p>
+
 <p>Lo primero que debe hacer es cargar el archivo evaluar.R con la función <code>source</code> y la codificación de caracteres &ldquo;UTF-8&rdquo; (lo cual afecta a la función <code>evaluar</code> en particular), de la siguiente manera:</p>
 
-<pre><code class="r">options(encoding = &quot;utf-8&quot;)
-source(&quot;evaluar.R&quot;)
+<pre><code class="r">source(&quot;evaluar.R&quot;, encoding = &quot;UTF-8&quot;)
 </code></pre>
 
-<p>Si usted ha ejecutado todos los pasos anteriores correctamente, la siguiente frase debería verse en la consola:</p>
+<p>Nótese que hemos dejado de usar la función <code>options</code>, de forma que de ahora en más <strong>no ejecute el comando</strong>:</p>
 
-<pre><code>Archivo de codigo fuente cargado correctamente
+<pre><code class="r">options(encoding = &quot;utf-8&quot;)  # No me ejecuten!
 </code></pre>
 
-<p>En caso de que ocurra un error o se vea otro mensaje en la consola, verifique que los archivos se descomprimieron correctamente y que usted está trabajando en la carpeta correspondiente con el comando <code>getwd()</code>.</p>
+<p>Este cambio se debe a que hemos detectado que esta elección trae más problemas que soluciones.</p>
 
-<p>Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio y <strong>guardando el archivo</strong> correspondiente en el disco duro, usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:</p>
+<p>Si usted ha ejecutado todos los pasos anteriores correctamente, al usar el comando <code>ls()</code> verá que <code>&quot;evaluar&quot;</code> figura en su sesión y además en la consola debería ver lo siguiente:</p>
+
+<pre><code>Archivo de código fuente cargado correctamente
+
+Chequeo de encoding:
+  Los siguientes caracteres deben ser vocales con tilde:
+    á - é - í - ó - ú
+  Si *no se ven correctamente* corra el siguiente comando:
+    source(&#39;evaluar.R&#39;, encoding = &#39;UTF-8&#39;)
+</code></pre>
+
+<p>Usted trabajará modificando los contenidos de los archivos de los ejercicios con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio y <strong>guardando el archivo</strong> correspondiente en el disco duro, usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:</p>
 
 <pre><code class="r">evaluar()
 </code></pre>
 
-<p>y además podrá en todo momento verificar su puntaje con la función <code>verNotas()</code>. Tenga siempre en cuenta que, a <strong>menos que sea indicado</strong> por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben obtenerse con el código de los scripts en lugar de ser valores fijos. Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos <strong>se indica claramente en dónde se inicia y dónde finaliza su código</strong> y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.</p>
+<p>y además podrá en todo momento verificar su puntaje con la función <code>verNotas()</code>. Tenga siempre en cuenta que, a <strong>menos que sea indicado</strong> por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben servir aún si se modifican los datos originales (i.e.: no use valores fijos si no comandos). Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos <strong>se indica claramente en dónde se inicia y dónde finaliza su código</strong> y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.</p>
 
 <h3>Al finalizar</h3>
 
-<p>Una vez terminados y guardados los archivos de los ejercicios del repartido, usted deberá ejecutar <code>evaluar()</code> y seleccionar la última opción (&ldquo;Todos&rdquo;) y luego subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-1”, a la <a href="http://eva.universidad.edu.uy/mod/assignment/view.php?id=95125">sección de entregas</a> de la portada del curso en la plataforma EVA. Este archivo se podrá reemplazar con uno más nuevo, en caso de que desee corregir algún error; en caso de querer que el archivo sea corregido antes de la fecha de entrega, puede cambiarle el nombre a &ldquo;datos-finalizado&rdquo;, pero en ese caso la nota no se cambiará de ahí en adelante.</p>
+<p>Una vez terminados y guardados los archivos de los ejercicios del repartido, usted deberá ejecutar <code>evaluar()</code> y seleccionar la última opción (&ldquo;Todos&rdquo;) y luego subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-1”, a la <a href="http://eva.universidad.edu.uy/mod/assign/view.php?id=103966">sección de entregas</a> de la portada del curso en la plataforma EVA. Este archivo se podrá reemplazar con uno más nuevo, en caso de que desee corregir algún error; en caso de querer que el archivo sea corregido antes de la fecha de entrega, puede cambiarle el nombre a &ldquo;datos-finalizado&rdquo;, pero en ese caso la nota no se cambiará de ahí en adelante.</p>
 
 <h3>Código de Honor</h3>
 
-<p>Si bien animamos a que los estudiantes trabajen en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos importante que los estudiantes no miren el código creado por sus compañeros ya que esto supone un sabotaje a su propio proceso de aprendizaje. Como profesores estamos comprometidos a pedir tareas para las cuales hayamos dado las herramientas correctas y las explicaciones adecuadas como para que todos puedan encontrar su propio camino para resolver los ejercicios.</p>
+<p>Si bien animamos a que trabaje en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos necesario que no utilice el código creado por sus compañeros, si no que debe programar sus propias instrucciones, ya que de lo contrario supone un sabotaje a su propio proceso de aprendizaje. Esto implica también evitar, en la medida de lo posible, exponer el código propio a sus colegas. Como profesores estamos comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y explicaciones adecuadas a fin de que pueda encontrar su propio camino para resolver los ejercicios.</p>
+
+<p>En casos de planteos de dudas a través del foro, en los que considere que es imposible expresar un problema sin exponer su própio código, entonces es aceptable hacerlo. De todas formas en estos casos es preferible que envíe su código por correo electrónico directamente a un profesor, explicando la problemática.</p>
 
 <hr/>
 
 <h2>1. Triángulos, volumen II</h2>
+
+<p>Si hacemos un poco de memoria recordaremos que en el ejercicio 1 del repartido I, tomábamos los catetos de un triángulo rectángulo y escribíamos el código necesario para calcular el valor de la hipotenusa y el área del mismo. Como vimos entonces, el valor de la hipotenusa se calcula como:</p>
+
+<p>\[
+  hip = \sqrt{cat.op ^ 2 + cat.ad ^ 2}
+\]</p>
+
+<p>mientras que el área del triángulo rectángulo es:</p>
+
+<p>\[
+  A = \frac{cat.op \cdot cat.ad}{2}
+\]</p>
+
+<p>A partir de los valores de los catetos y de la hipotenusa es posible calcular el valor de los restantes ángulos del triángulo, siendo el ángulo adyacente</p>
+
+<p>\[
+  \alpha_{ad} = arccos \left( \frac{cat.ad}{hip} \right)
+\]</p>
+
+<p>y el ángulo opuesto</p>
+
+<p>\[
+  \alpha_{op} = arccos \left( \frac{cat.op}{hip} \right)
+\]</p>
+
+<p>En el presente ejercicio debemos escribir el código de una función llamada <code>triangulo</code> que, a partir de los mismos argumentos de las funciones <code>area</code> e <code>hipot</code> de aquella ocasión, o sea de los catetos de un triángulo rectángulo, calcule la hipotenusa, el área y los ángulos adyacente y opuesto del triángulo. La salida de la función deberá ser una lista con los objetos denominados de la siguiente manera: <code>hipotenusa</code>, <code>area</code>, <code>angulo.adyacente</code> y <code>angulo.opuesto</code>, en ese orden. Los ángulos deberán estar expresados en grados. En R, la salida de las funciones trigonométricas, como <code>asin</code> y <code>acos</code> están expresadas en radianes, por lo que se deberá hacer la transformación correspondiente, teniendo en cuenta que \(\pi\) radianes equivalen a \(180^o\), y por lo tanto:</p>
+
+<p>\[
+  \alpha_{gr} = 180 \cdot \frac{\alpha_{rad}}{\pi}
+\]</p>
+
+<p>siendo \(\alpha_{gr}\) y \(\alpha_{rad}\) los equivalentes en grados y radianes de un ángulo \(\alpha\) cualquiera. A modo de ejemplo, la salida deseada al evaluar esta función con el cateto adyacente y el opuesto valiendo respectivamente 4 y 3, sería la siguiente:</p>
+
+<pre><code class="r">triangulo(4, 3)
+$hipotenusa
+[1] 5
+
+$area
+[1] 6
+
+$angulo.adyacente
+[1] 36.8699
+
+$angulo.opuesto
+[1] 53.1301
+</code></pre>
+
+<p>(Recuerde que la función triángulo debe dar el resultado correcto para cualquier par de valores positivos que sean asignados a los argumentos.)</p>
+
+<hr/>
+
+<h2>2. Educación</h2>
+
+<p>La Organización de la Naciones Unidas (ONU) en el año 2011 <a href="http://mdgs.un.org/unsd/mdg/Resources/Static/Products/Progress2011/11-31342%20%28S%29%20MDG%20Report%202011_Book%20LR.pdf">presentó un informe</a> basado en indicadores utilizados para medir y supervisar los Objetivos de Desarrollo del Milenio (ODM).</p>
+
+<blockquote>
+<p>&ldquo;La Declaración del Milenio de las Naciones Unidas de 2000, basada en las conferencias mundiales de las Naciones Unidas durante el decenio de 1990, representó un fuerte compromiso con el derecho al desarrollo, la paz y la seguridad, la igualdad de género, la erradicación de las numerosas dimensiones de la pobreza y el desarrollo humano sostenible. En la Declaración, adoptada por 147 jefes de Estado y 189 Estados, se incorporaban lo que ha llegado a conocerse con el nombre de &#39;ocho objetivos de desarrollo del milenio&#39;, incluidas 18 metas con plazos cronológicos delimitados&rdquo; (<a href="http://unstats.un.org/unsd/publication/seriesf/Seriesf_95s.pdf">Fuente</a>).</p>
+</blockquote>
+
+<p>Para este ejercicio se utilizarán tres de los indicadores que han sido propuestos para cumplir con el objetivo 2 de los ODM <a href="http://www.undp.org/content/undp/es/home/mdgoverview/mdg_goals/mdg2/">Lograr la enseñanza primaria universal</a>:</p>
+
+<ul>
+<li>Tasa Neta de Matriculación en la Enseñanza Primaria (<code>TM</code>).</li>
+<li>Porcentaje de alumnos que comienzan el primer grado y llegan al quinto grado (<code>PA</code>).</li>
+<li>Tasa de alfabetización de personas entre 15 y 24 años (<code>TA</code>).</li>
+</ul>
+
+<p>Las tres variables están expresadas en porcentaje. El objetivo es realizar un cálculo grueso del porcentaje de niños que completan la educación primaria (<code>PC</code>) para ciertos paises, a partir de <code>TM</code> y <code>PA</code>, usando la fórmula: \(PC = (TM \cdot PA) / 100\). Finalmente se hará una regresión entre la tasa de alfabetización y el porcentaje de finalización de primaria calculado (i.e.: <code>TA</code> en función de <code>PC</code>).</p>
+
+<p>El archivo “edu.data.RData” contiene una data.frame llamada <code>edu.data</code> con datos de varios años para ciertos países, usando las abreviaciones de arriba para cada indicador (importar a R con <code>load</code> o los botones de RStudio). Los datos fueron extraidos de la <a href="http://mdgs.un.org/unsd/mdg/Data.aspx">portada oficial</a> de la ONU para los indicadores de los OMD.</p>
+
+<p>Sin embargo no vamos a ir directamente a este cálculo, si no a desarrollar funciones que permitan hacerlo rápidamente con cualquier tabla de datos con una estructura similar a la que usamos como ejemplo.</p>
+
+<h3>2.a Filtro por columnas</h3>
+
+<p>Ya vimos que la función subset sirve para filtrar observaciones, las filas, en un data.frame con el fin de eliminar aquellas que no sirven a nuestros propósitos. En este ejercicio usted hará una función que haga algo similar, pero con las columnas. Considere la función <code>grep</code>. Esta sirve para reconocer patrones en vectores character, es decir, puede identificar palabras en un texto. Por ejemplo:</p>
+
+<pre><code class="r">v &lt;- c(&quot;glucosa&quot;, &quot;citosina&quot;, &quot;timina&quot;, &quot;ribosa&quot;, &quot;adenina&quot;, &quot;sacarosa&quot;, &quot;guanina&quot;)
+i &lt;- grep(&quot;osa&quot;, v)
+v[i]
+</code></pre>
+
+<pre><code>## [1] &quot;glucosa&quot;  &quot;ribosa&quot;   &quot;sacarosa&quot;
+</code></pre>
+
+<p>Como se puede ver aquí, <code>grep</code> devuelve un vector numérico con las posiciones de <code>v</code> tales que el string &ldquo;osa&rdquo; es parte de la palabra (en este casos, nombres de monosacáridos). Esto por supuesto puede usarse con nombres de columnas y es lo que se pide que usted haga en este ejercicio.</p>
+
+<p>Vamos a usar esta capacidad para filtrar data.frames según sus nombres de columnas. En el script de este ejercicio, usted deberá codificar la función <code>filtroc</code>.</p>
+
+<h4>Argumentos:</h4>
+
+<ul>
+<li><code>x</code>: una data.frame con nombres de columnas útiles para hacer el filtrado.</li>
+<li><code>clave</code>: string utilizado para seleccionar columnas (i.e.: un vector character de longitud 1). <strong>Importante</strong>: no debe importar si la <code>clave</code> está en mayúsculas o minúsculas (i.e.: da lo mismo usar <code>&quot;TM&quot;</code>, <code>&quot;tm&quot;</code> o <code>&quot;tM&quot;</code>). Para esto puede usar las funciones <code>tolower</code> o <code>toupper</code> para manipular vectores character.</li>
+</ul>
+
+<h4>Acciones:</h4>
+
+<ol>
+<li>Con alguna de las funciones <code>grep</code> determinar cuáles son las columnas de <code>x</code> que contienen el string <code>clave</code>.</li>
+<li>Devolver un data.frame con las columnas seleccionadas en punto anterior. Esto puede ser un problema cuando se selecciona una sola columna (e.g.: la columna <code>TA</code> en <code>edu.data</code>). Para evitarlos indice la data.frame <code>x</code> sin usar coma (vea la diferencia entre escribir <code>edu.data[,11]</code> y <code>edu.data[11]</code> como ejemplo ilustrador).</li>
+</ol>
+
+<p>El siguiente ejemplo debería ilustrar mejor el funcionamiento esperado de <code>filtroc</code>:</p>
+
+<pre><code class="r">load(&quot;edu.data.RData&quot;)
+filtroc(edu.data, &quot;Tm&quot;)  # Se usan mayúsculas y minúsculas
+</code></pre>
+
+<pre><code>##                   TM_2005 TM_2006 TM_2007 TM_2008 TM_2009
+## Aruba                97.5    98.3    98.7    97.5    94.7
+## Colombia             96.3    95.3    94.2    93.7    93.2
+## Cuba                 95.2    96.1    98.8    99.5    99.8
+## El Salvador          95.1    95.0    94.7    94.6    94.6
+## Guatemala            95.1    96.4    97.2    96.8      NA
+## México               99.6    99.6    99.4    99.5    99.6
+## Nicaragua            94.6    92.9    93.1    94.4      NA
+## Panamá               99.1    99.0    99.0    98.9    97.1
+## Paraguay             95.1    93.2    90.8    88.2    85.7
+## Perú                 99.6    99.7    99.7    98.2    97.2
+## Trinidad y Tobago    91.3      NA    96.9    95.0    96.0
+## Uruguay              97.6    99.9      NA    99.3    99.5
+## Venezuela            92.8    93.4    94.4      NA    94.2
+</code></pre>
+
+<p>Nótese que esto permite elegir columnas con datos de <code>TM</code> sin importar el año en que fueron tomados.</p>
+
+<h4>Sugerencia:</h4>
+
+<p>Antes de utilizar <code>grep</code> convertir las letras de la <code>clave</code> a mayúsculas/minúsculas según su preferencia; lo mismo para un vector con los nombres de columnas de <code>x</code> (pero no para los nombres de la data.frame en sí). Luego utilice estos vectores como entrada de <code>grep</code>.</p>
+
+<h3>2.b Extra: aplicar</h3>
+
+<p>El objetivo es hacer una función que combine las funciones <code>filtroc</code> (ej. 2.a) y <code>apply</code>. Esta función se llamará <code>aplicar</code>.</p>
+
+<h4>Argumentos:</h4>
+
+<ul>
+<li><code>x</code>: una data.frame cualquiera.</li>
+<li><code>clave</code>: clave para seleccionar columnas (ver <code>filtroc</code>, ej. 2.a).</li>
+<li><code>FUN</code>: función a aplicar a las filas de los datos de <code>x</code>, una vez que se seleccionan las columnas.</li>
+<li><code>...</code>: argumento especial, utilizado para enviar argumentos nombrados a la función <code>FUN</code>, cualquiera sea esta (puede ser una cantidad arbitraria de argumentos; <code>?dotsMethods</code> o el <a href="http://cran.r-project.org/doc/manuals/r-release/R-intro.html#The-three-dots-argument">el manual introductorio</a> para ver la ayuda de R respecto a este argumento especial).</li>
+</ul>
+
+<h4>Acciones:</h4>
+
+<ol>
+<li>Seleccionará las columnas de <code>x</code> según la <code>clave</code> dispuesta por el usuario (tal como lo debería hacer la función <code>filtro</code>), resultando en un data.frame.</li>
+<li>Aplicará la función <code>FUN</code> a todas las <em>filas</em> de la data.frame resultante del paso anterior (se sugiere usar <code>apply</code> aquí).</li>
+<li>Devolverá un vector con los valores obtenidos en el paso anterior.</li>
+</ol>
+
+<pre><code class="r">load(&quot;edu.data.RData&quot;)
+aplicar(edu.data, &quot;pA&quot;, mean, na.rm = TRUE)
+</code></pre>
+
+<pre><code>##             Aruba          Colombia              Cuba       El Salvador 
+##             90.43             83.50             96.30             74.90 
+##         Guatemala            México         Nicaragua            Panamá 
+##             63.53             92.82             47.50             87.84 
+##          Paraguay              Perú Trinidad y Tobago           Uruguay 
+##             78.15             87.42             91.40             93.88 
+##         Venezuela 
+##             90.36
+</code></pre>
+
+<p>Nota: en este ejemplo el argumento especial <code>...</code> sirve para enviar el argumento nombrado <code>na.rm = TRUE</code> a la función <code>mean</code> (a través del argumento <code>...</code> de la propia función <code>apply</code>). Los demás argumentos son: <code>x = edu.data</code>, <code>clave = &quot;Tm&quot;</code> y <code>FUN = mean</code>. En la corrección automática se utilizarán otras funciones y argumentos para poner a prueba el ejercicio.</p>
+
+<h3>2.c Función educación</h3>
+
+<p>La función <code>educacion</code> será la que calcule el <code>PC</code> (&ldquo;porcentaje de colnclusión&rdquo; o de &ldquo;finalización&rdquo; de la primaria) y además haga la regresión entre <code>TA</code> y <code>PC</code>. La función supone de antemano que todas las columnas tienen nombres con los prefijos <code>TM</code>, <code>PA</code> o <code>TA</code>, y además que hay una única columna <code>TA</code>. Si a usted le interesa puede agregar más argumentos para que su función no parta de este supuesto, pero es una opción no contemplada por el ejercicio.</p>
+
+<p>Note que en este ejercicio es posible utilizar las funciones que se piden en 2.a y 2.b, si bien no es obligatorio.</p>
+
+<h4>Argumentos:</h4>
+
+<ul>
+<li><code>x</code>: data.frame con los datos de entrada (como <code>edu.data</code>), en la que deben estar los TM, PA y TA, tal como se explica anteriormente.</li>
+</ul>
+
+<h4>Acciones:</h4>
+
+<ol>
+<li>Calcular, por país/fila, el promedio de los valores de TM y de PA. Para esto pueden ser útiles las funciones <code>filtroc</code> del ejercicio 2.a y <code>aplicar</code> del 2.b.</li>
+<li>Calcular con estos el valor de PC para cada país (lo que debe hacerse con los promedios de TM y PA obtenidos en el punto anterior).</li>
+<li>Agregar estos tres valores calculados como columnas a la data.frame de entrada (<code>x</code>).</li>
+<li>Realizar una regresión lineal de TA en función de PC.</li>
+<li>Devolver un objeto de clase list con 1. la regresión y 2. la data.frame modificada</li>
+</ol>
+
+<p>Nota: los cálculos de promedios deben hacerse dejando de lado los valores <code>NA</code>.</p>
+
+<h4>Salida:</h4>
+
+<p><code>educacion</code> debe devolver un objeto de clase <code>list</code>, el cual debe contener los siguientes objetos (y en el mismo orden):</p>
+
+<ul>
+<li><code>reg</code>: el objeto <code>lm</code> obtenido al hacer la regresión lineal.</li>
+<li><code>datos</code>: data.frame con los datos originales más las columnas correspondientes a los promedios de <code>TM</code>, <code>PA</code> y <code>PC</code>, en ese orden.</li>
+</ul>
+
+<p>Nota: la función <code>summary</code> además de imprimir en la consola datos útiles de una regresión necesarios para este ejercicio, también genera una <strong>salida invisible</strong> (ver lección 5.3).</p>
+
+<p>El siguiente es un ejemplo obtenido con los datos y una función <code>educacion</code> completada:</p>
+
+<pre><code class="r">load(&quot;edu.data.RData&quot;)
+e &lt;- educacion(edu.data)
+e$reg
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = TA ~ PC, data = x)
+## 
+## Coefficients:
+## (Intercept)           PC  
+##      75.095        0.268
+</code></pre>
+
+<pre><code class="r">str(e$datos)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    13 obs. of  14 variables:
+##  $ TM_2005: num  97.5 96.3 95.2 95.1 95.1 99.6 94.6 99.1 95.1 99.6 ...
+##  $ TM_2006: num  98.3 95.3 96.1 95 96.4 99.6 92.9 99 93.2 99.7 ...
+##  $ TM_2007: num  98.7 94.2 98.8 94.7 97.2 99.4 93.1 99 90.8 99.7 ...
+##  $ TM_2008: num  97.5 93.7 99.5 94.6 96.8 99.5 94.4 98.9 88.2 98.2 ...
+##  $ TM_2009: num  94.7 93.2 99.8 94.6 NA 99.6 NA 97.1 85.7 97.2 ...
+##  $ PA_2005: num  NA 80.8 96.9 67.3 63.3 92.1 50.2 85.2 76.2 NA ...
+##  $ PA_2006: num  93.4 85.2 96.8 68.9 62.5 92.3 43.9 88.2 79.1 89.7 ...
+##  $ PA_2007: num  86.5 NA 96.1 75.7 64.8 91.5 48.4 85.2 79.2 82 ...
+##  $ PA_2008: num  91.4 NA 95.5 76.1 NA 94 NA 86.8 78.1 87.6 ...
+##  $ PA_2009: num  NA 84.5 96.2 86.5 NA 94.2 NA 93.8 NA 90.4 ...
+##  $ TA     : num  99.1 98 100 94.9 87 ...
+##  $ TM     : num  97.3 94.5 97.9 94.8 96.4 ...
+##  $ PA     : num  90.4 83.5 96.3 74.9 63.5 ...
+##  $ PC     : num  88 78.9 94.3 71 61.2 ...
+</code></pre>
+
+<h3>2.d Graficos personalizados</h3>
+
+<p>Función genérica (recuerdos&hellip;): plot.edu. La función tomará un objeto como los que devuelve <code>educacion</code> (de clase &ldquo;edu&rdquo;) y va a hacer un gráfico simple: TA en función de PC, con la línea de la regresión superpuesta y además los labels adecuados.</p>
+
+<p>Nótese que al ser un objeto creado con <code>educacion</code>, sabemos de antemano que tendrá dos columnas llamadas <code>TA</code> y <code>PC</code>.</p>
+
+<hr/>
+
+<h2>3. Funciones en problemas</h2>
+
+<p>En este ejercicio se propone arreglar el código de algunas funciones simples (y otra no tan simple). Para esto la idea es utilizar
+los métodos y conceptos vertidos en la lección 5.4: <strong>Depuración de funciones</strong>.</p>
+
+<h3>3.a Cambiador de valores en subíndices pares&hellip;</h3>
+
+<p>Script: cambiaPares.R</p>
+
+<p>Esta sencilla función toma un vector <code>x</code> y cambia aquellos valores que se encuentran en las posiciones pares del mismo (<code>x[2]</code>,
+<code>x[4]</code>, etc.), usando como sustitutos los elementos del vector <code>subs</code> (el segundo argumento). Un ejemplo de salida de esta función
+puede ser el siguiente:</p>
+
+<pre><code class="r">cambiaPares(1:6, NA)
+</code></pre>
+
+<pre><code>## [1]  1 NA  3 NA  5 NA
+</code></pre>
+
+<p>El objetivo de este ejercicio es arreglar el código de la función contenida en el script asociado de forma tal que ejecute correctamente su tarea.</p>
+
+<h3>3.b Radios</h3>
+
+<p>Script: radio.R</p>
+
+<p>La función radio toma como argumento el valor <code>r</code>, un número cualquiera, y calcula tres valores asociados con circunferencias y esferas: el perímetro (P), área (A; de la circunferencia) y volumen (V; de la esfera), utilizando las fórmulas:</p>
+
+<p>\[
+P = 2 \cdot \pi \cdot r
+\]
+\[
+A = \pi \cdot r^2
+\]
+\[
+V = \frac{4 \cdot \pi \cdot r^3}{3}
+\]</p>
+
+<p>La función está pensada para generar una salida invisible, al mismo tiempo que imprimir en la consola los resultados obtenidos
+(nótese el uso de la función <code>cat</code> para este cometido). El siguiente es un ejemplo de salida de la función: </p>
+
+<pre><code class="r">x &lt;- radio(5)
+</code></pre>
+
+<pre><code>## Perímetro: 31.42 
+## Área:      78.54 
+## Volumen:   523.6
+</code></pre>
+
+<pre><code class="r">x
+</code></pre>
+
+<pre><code>##      P      A      V 
+##  31.42  78.54 523.60
+</code></pre>
+
+<p>El objetivo de este ejercicio es arreglar el código de la función contenida en el script asociado de forma tal que ejecute correctamente su tarea.</p>
+
+<h3>3.c Extra: encuentra distancias</h3>
+
+<p>Script: distancias.R</p>
+
+<pre><code>## Warning: no fue posible abrir el archivo &#39;correctos/distancias.R&#39;: No such
+## file or directory
+</code></pre>
+
+<pre><code>## Error: no se puede abrir la conexión
+</code></pre>
+
+<p>La función <code>distancias</code>, escrita en el archivo &ldquo;distancias.R&rdquo;, busca realizar una tarea parecida a la que ya se hizo en el Repartido I
+del curso: calcular las distancias de un punto a un conjunto de coordenadas (ej. 1.c). En este caso se utiliza un <a href="http://www.johndcook.com/blog/2010/06/02/whats-so-hard-about-finding-a-hypotenuse/">algoritmo
+alternativo</a> para calcular las distancias, el cual es más robusto dadas las limitaciones de las computadoras.</p>
+
+<p>El significado de los argumentos de la función están explicados en el propio archivo, así como varios de los pasos internos, a través
+del uso de comentarios. Al igual que en ejercicios anteriores, el objetivo es corregir los errores que tiene el archivo para que la
+función <code>distancias</code> cumpla su tarea correctamente. El siguiente es un ejemplo de cómo debería ser la salida de la función
+(incluyendo la figura):</p>
+
+<pre><code class="r">pts &lt;- matrix(rnorm(20), ncol = 2)
+x &lt;- distancias(pts, p = c(0.3, -0.1))
+</code></pre>
+
+<pre><code>## Error: no se pudo encontrar la función &quot;distancias&quot;
+</code></pre>
+
+<pre><code class="r">x
+</code></pre>
+
+<pre><code>##      P      A      V 
+##  31.42  78.54 523.60
+</code></pre>
 
 </body>
 

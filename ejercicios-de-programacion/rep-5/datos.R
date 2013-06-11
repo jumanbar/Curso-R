@@ -1,4 +1,76 @@
 ################################################################################
+### NÚMERO DE REPARTIDO!
+rdir <- basename(getwd())
+nrep <- as.numeric(gsub("[[:alpha:][:punct:]]", "", rdir))
+rep.date <- format(Sys.time(), "%Y-%m-%d %H:%M %Z") # Fecha en que se hizo "datos"
+url.datos <- "" # URL acortada para bajar el archivo datos
+if (url.datos == "") stop("FALTA URL.DATOS!")
+url.fecha <- "https://www.dropbox.com/s/yupjqgoe33fdu3c/fecha-datos-rep-5.txt"
+guardar <- c("guardar", "rdir", "nrep", "rep.date", "url.datos")
+writeLines(rep.date, paste0("~/../Dropbox/IMSER/fecha-datos-", rdir, ".txt"))
+
+# Existe ya el subdir?
+if (!file.exists(rdir))
+  dir.create(rdir)
+
+### BORRAR LOS ARCHIVOS:
+unlink(file.path(rdir, dir(rdir)), recursive = TRUE)
+
+### ARCHIVOS AUXILIARES:
+aux <- c("../evaluar.R", "datos", "INSTRUCCIONES.pdf", "edu.data.rda", "HandbookSpanish.pdf")
+
+### SCRIPTS DE EJERCICIOS:
+# Es importante que un guión separe el número del nombre en sí...
+# Formato:
+# [1-N].[a-z]-[palabra en minúscula, sólo letras].R
+corregir <- c("1-triangulo.R", "2.a-filtroc.R", "3.a-cambiaPares.R", "3.b-radio.R", "3.c-extra-distancias.R")
+corregir <- sort(corregir)
+guardar  <- c(guardar, "corregir", "aux")
+
+### Números de ejercicios
+cor.split <- strsplit(corregir, "-")
+ejnum <- unlist(cor.split)[grepl("^[0-9]", unlist(cor.split))]
+
+### FUNCIONES AUXILIARES:
+source("../auxiliares.R", encoding = "UTF-8")
+guardar <- c(guardar, objetos)
+
+### CORRECTORES
+source("correctores.R", encoding = "UTF-8")
+corAll <- vector("list") # Lista con funciones de corrección
+eval(parse(text = paste0("corAll$cor", ejnum, " <- cor", ejnum)))
+guardar <- c(guardar, "corAll")
+
+### NOTAS
+extras <- ejnum[grep("extra", corregir)]
+# extras <- ''
+oblg <- sum(!(ejnum %in% extras)) # Cuantos són los obligatorios?
+notas <- data.frame(Parte = c(ejnum, 'Total (%)'),
+                    Nota=numeric(length(corregir) + 1),
+                    Script=c(corregir, '--'))
+guardar <- c(guardar, "ejnum", "notas", "extras", "oblg")
+
+### AUXILIAR.RDATA
+source("make-aux.R", encoding = "UTF-8")
+aux <- c(aux, "auxiliar.RData")
+
+## Guardando el código:
+codigo <- lapply(corregir, cut.script)
+names(codigo) <- corregir
+class(codigo) <- "codigo"
+guardar <- c(guardar, "codigo")
+
+### El total de los esperados...:
+esperados <- c(aux, corregir) # evaluar.R todavía no!!
+guardar <- c(guardar, "esperados")
+
+### GUARDAR TODO
+guardar <- unique(guardar)
+save(list = guardar, file = 'datos')
+
+file.copy(esperados, rdir, recursive = TRUE)
+
+
 ################################################################################
 
 ## NÚMERO DE REPARTIDO!
@@ -128,136 +200,6 @@ dis <- function(pnt, p = c(0, 0), ver = TRUE) {
 
 guardar <- c(guardar, 'tri', 'edu', 'cpr', 'rad', 'dis')
 
-### FUNCIONES DE CORRECCIÓN:
-
-## Ej. 1
-cor1 <- function() {
-  load('datos')
-
-  # Evaluación de la función "triangulo":
-  source('triangulo.R', local = TRUE)
-  ca <- rpois(1, 10)
-  co <- rpois(1, 10)
-  out1 <- triangulo(ca, co)
-  names(out1) <- tolower(names(out1))
-  out2 <- tri(ca, co)
-  tol <- 1e-4
-  if (!is.list(out1))
-    stop("la salida no es una lista", call. = FALSE)
-  if (!all(names(out1) == names(out2)))
-    stop("los nombres del objeto de salida no coinciden con los esperados", call. = FALSE)
-  if (abs(out1$hipotenusa - out2$hipotenusa) > tol)
-    stop("el valor de la hipotenusa no es correcto", call. = FALSE)
-  if (abs(out1$area - out2$area) > tol)
-    stop("el valor del area no es correcto", call. = FALSE)
-  if (abs(out1$angulo.adyacente - out2$angulo.adyacente) > tol)
-    stop("el valor del angulo.adyacente no es correcto", call. = FALSE)
-  if (abs(out1$angulo.opuesto - out2$angulo.opuesto) > tol)
-    stop("el valor del angulo.opuesto no es correcto", call. = FALSE)
-  TRUE
-}
-
-cor2 <- function() {
-  # Cargar datos
-  load('datos')
-  load('edu.data.rda')
-
-  # Evaluación de la función "educacion":
-  source('educacion.R', local = TRUE)
-  fnames1 <- sort(names(formals(educacion)))
-  fnames2 <- sort(names(formals(edu)))
-  e <- edu.data[- sample(nrow(edu.data), 1), sample(ncol(edu.data))]
-  tmc <- grep('TM', names(e))
-  pac <- grep('PA', names(e))
-  tac <- grep('TA', names(e))
-  tmp <- tempfile()
-  png(tmp)
-  out1 <- educacion(x=e, tmcol=tmc, pacol=pac, tacol=tac)
-  dev.off()
-  unlink(tmp)
-  names(out1) <- tolower(names(out1))
-  out2 <- edu(x=e, tmcol=tmc, pacol=pac, tacol=tac)
-  tm <- out2$datos$TM
-  pa <- out2$datos$PA
-  pc <- out2$datos$PC
-  if (!all(fnames1 == fnames2))
-    stop("los nombres de los argumentos no son los indicados por la letra")
-  if (!is.list(out1))
-    stop("la salida no es una lista", call. = FALSE)
-  if (!all(names(out1) == names(out2)))
-    stop("los nombres del objeto de salida no coinciden con los esperados", call. = FALSE)
-  if (!all(out1$coeficientes == out2$coeficientes))
-    stop("los valores de los coeficientes no son correctos", call. = FALSE)
-  if (!all(out1$p.valor == out2$p.valor))
-    stop("los valores de los p.valor no son correctos", call. = FALSE)
-  if (out1$r2 != out2$r2)
-    stop("los valores del r2 no son correctos", call. = FALSE)
-  if (!is.data.frame(out1$datos))
-    stop("los datos de la salida no están en formato de data.frame", call. = FALSE)
-  if (!any(apply(out1$datos == tm, 2, all)))
-    stop("falta o está mal la columna con los TM promedios en los datos de salida", call. = FALSE)
-  if (!any(apply(out1$datos == pa, 2, all)))
-    stop("falta o está mal la columna con los PA promedios en los datos de salida", call. = FALSE)
-  if (!any(apply(out1$datos == pc, 2, all)))
-    stop("falta o está mal la columna con los PC promedios en los datos de salida", call. = FALSE)
-  TRUE
-}
-
-cor3.a <- function() {
-  # Cargar datos
-  load('datos')
-  
-  # Generación de datos
-  n <- sample(10:100, 1)
-  v <- rpois(n, 80)
-  s <- - rpois(1, 300)
-  source('cambiaPares.R', local = TRUE)
-  out1 <- cambiaPares(v, s)
-  out2 <- cpr(v, s)
-  if (!identical(out1, out2))
-    stop("¡el script 'cambiaPares.R' aún tiene errores!", call. = FALSE)
-  TRUE
-}
-
-cor3.b <- function() {
-  # Cargar datos
-  load('datos')
-
-  # Generación de datos
-  r <- rnorm(1, sd = 30)
-  source('radio.R', local = TRUE)
-  p1 <- capture.output(out1 <- radio(r))
-  p1 <- gsub(' ', '', p1)
-  p2 <- capture.output(out2 <- rad(r))
-  p2 <- gsub(' ', '', p2)
-  if (!all(p1 == p2))
-    stop("el mensaje que 'radio' imprime en la consola no coincide con el esperado.", call. = FALSE)
-  if (!identical(out1, out2))
-    stop("el objeto de salida ('salida') es distinto al esperado.", call. = FALSE)
-  TRUE
-}
-
-cor3.c <- function() {
-  # ARREGLAR PARA 2013: LA FUNCIÓN NO EVALÚA SI SE PRODUCE UN GRÁFICO O NO... (ES DECIR,
-  # IGNORA EL ERROR DE LA LÍNEA 34 ("!"ver debe cambiarse por "ver"
-  # Cargar datos
-  load('datos')
-  
-  # Generación de datos
-  p <- rnorm(2)
-  x <- matrix(rnorm(80, sd = 30), ncol = 2)
-  source('distancias.R', local = TRUE)
-  p1 <- capture.output(out1 <- distancias(x, p, FALSE))
-  p2 <- capture.output(out2 <- dis(x, p, FALSE))
-  if (!identical(p1, p2))
-    stop("¡el script 'distancias.R' aún tiene errores!", call. = FALSE)
-  if (!identical(out1, out2))
-    stop("¡el script 'distancias.R' aún tiene errores (en el objeto de salida)!", call. = FALSE)
-  TRUE
-}
-corAll <- list(cor1, cor2, cor3.a, cor3.b, cor3.c)
-
-################################################################################
 
 ### GUARDAR TODO
 save(list = guardar, file = 'datos')

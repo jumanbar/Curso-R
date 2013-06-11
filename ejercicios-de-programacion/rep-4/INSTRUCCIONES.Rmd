@@ -211,7 +211,7 @@ En este ejercicio se propone reproducir una figura como la 4. Para eso el códig
 
 De todas formas, el órden en que se pusieron las funciones no es el correcto, por lo que deberá mover de lugar las líneas de código que se encuentran bajo el marcador `##!`. La clave está en identificar cuáles son funciones de "alto nivel" ("High Level Plot functions") y cuáles no. Una vez que ordena por alto/bajo nivel, el resto puede ordenarlo como prefiera.
 
-También podrá agregar nuevos argumentos a los plots, como 
+También podrá agregar o modificar argumentos en los plots, como pueden ser `main` o `lwd`, por mencionar algunos.
 
 ```{r, echo = FALSE, fig.cap = "Gráfico de dispersión, ej. 1.e"}
 cols <- c("seagreen", colors()[330], "orangered")

@@ -130,6 +130,13 @@ evaluar <- function(e) {
 verNotas <- function()
   print.data.frame(read.csv2('notas.csv'), row.names=FALSE, right=FALSE)
 
+fecha.datos <- function() {
+  load("datos")
+  cat("La fecha de su archivo datos es:\n  ", rep.date, "\n")
+  cat("Link para ver fecha de la útima versión:\n  ", url.fecha, "\n")
+  cat("Link para descargar la útima versión:\n  ", url.datos, "\n")
+}
+
 cat("\nArchivo de código fuente cargado correctamente\n\n")
 
 cat("Chequeo de encoding:\n",

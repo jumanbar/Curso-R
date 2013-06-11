@@ -129,6 +129,7 @@ cut.script <- function(arch, cut.str = "#===") {
 }
 objetos <- c(objetos, 'cut.script')
 
+
 ### FUNCIÓN DE FEEDBACK
 # Trabaja con evaluar
 feedback <- function(r, s) {
@@ -197,7 +198,7 @@ mkmsj.v <- function(msj.base = "", vec.obs, vec.esp, tol = 1e-8) {
   if (!is.numeric(vec.obs) || !is.numeric(vec.esp)) {
     if (all(tolower(vec.obs) == tolower(vec.esp)))
       warning("parece haber un error de mayúsculas/minúsculas!", call. = FALSE)
-    tabla <- cbind(as.character(vec.obs[donde]), as.character(vec.esp[donde]))
+    #     tabla <- cbind(as.character(vec.obs[donde]), as.character(vec.esp[donde]))
   }
   colnames(tabla) <- c("Obs.", "Esp.")
   if (is.null(names(vec.obs)))
@@ -482,6 +483,99 @@ objetos <- c(objetos, ".usainc")
 est <- function(x) .z(x)
 objetos <- c(objetos, ".z", "est")
 
-save(list = objetos, file = "auxiliares.rda")
+# save(list = objetos, file = "auxiliares.rda")
 
+## ======================================================================= ##
+
+### REP 5
+
+tri <- function(cat.ad, cat.op) {
+  hipot <- sqrt(cat.ad ** 2 + cat.op ** 2)
+  area  <- cat.op * cat.ad / 2
+  ang.ad <- acos(cat.ad / hipot) * 180 / pi
+  ang.op <- asin(cat.ad / hipot) * 180 / pi
+  out <- list(hipotenusa = hipot, area = area, 
+              angulo.adyacente = ang.ad, 
+              angulo.opuesto = ang.op)
+  out
+}
+objetos <- c(objetos, "tri")
+
+edu <- function(x) {
+  TM <- ap(x, "tm", mean, na.rm = TRUE)
+  PA <- ap(x, "pa", mean, na.rm = TRUE)
+  TA <- fc(x, "ta")
+  PC <- TM * PA / 100
+  x <- cbind(x, TM, PA, PC)
+  regresion <- lm(TA ~ PC, x)
+  out <- list(reg=regresion, datos=x)
+  class(out) <- "edu"
+  out
+}
+objetos <- c(objetos, "edu")
+
+ap <- function(x, clave, FUN, ...) {
+  filtrada <- fc(x, clave)
+  apply(filtrada, 1, FUN, ...)
+}
+objetos <- c(objetos, "ap")
+
+fc <- function(x, clave) { # Filtro por columnas
+  clavex <- tolower(clave)
+  nombrex <- tolower(names(x))
+  x[grep(clavex, nombrex)]
+}
+objetos <- c(objetos, "fc")
+
+cpr <- function(x, subs=0) {
+  len <- length(x)
+  pares <- seq(2, len, by=2)
+  x[pares] <- subs
+  return(x)
+}
+objetos <- c(objetos, "cpr")
+
+rad <- function(r) {
+  r <- abs(r)
+  perimetro <- 2 * pi * r
+  area      <- pi * r ^ 2
+  volumen   <- 4 * pi * r ^ 3 / 3
+  cat('Perímetro:', round(perimetro, 2), '\n')
+  cat('Área:     ', round(area, 2), '\n')
+  cat('Volumen:  ', round(volumen, 2), '\n')
+  salida <- c(P=perimetro, A=area, V=volumen)
+  invisible(salida)
+}
+objetos <- c(objetos, "rad")
+
+dis <- function(pnt, p = c(0, 0), ver = TRUE) {
+  if (!(class(pnt) %in% c('data.frame', 'matrix')) || !is.numeric(pnt) || ncol(pnt) != 2)
+        stop('El objeto pnt no tiene el formato adecuado')
+  if (!is.numeric(p) || length(p) != 2)
+        stop('El objeto p no es numérico o tiene longitud != 2')
+  mp <- matrix(p, nrow = nrow(pnt), ncol = 2, byrow = TRUE)
+  catetos <- abs(pnt - mp)            
+  ord <- t(apply(catetos, 1, sort))   
+  r <- ord[,1] / ord[, 2]             
+  dists <- ord[, 2] * sqrt(1 + r ^ 2) 
+  i.max <- which.max(dists)
+  i.min <- which.min(dists)
+  d.max <- dists[i.max]
+  d.min <- dists[i.min]
+  pout <- pnt[c(i.max, i.min), ]
+  rownames(pout) <- c('d.max', 'd.min')
+  colnames(pout) <- c('x', 'y')
+  if (ver) {
+    plot(pnt, xlab = 'Longitud', ylab = 'Latitud')
+    points(p[1], p[2], pch = 19)
+    points(pnt[c(i.max, i.min), ], pch = 19, col = 2:3)
+    segments(p[1], p[2], pout[, 1], pout[, 2], col = 2:3, lwd = 2)
+  }
+  cat('d.max =', round(d.max, 2), '- punto:', round(pout[1, ], 2), '\n')
+  cat('d.min =', round(d.min, 2), '- punto:', round(pout[2, ], 2), '\n')
+  list(dists = c(d.max = d.max, d.min = d.min),
+       posiciones = c(i.max = i.max, i.min = i.min),
+       puntos = pout, centro = p)
+}
+objetos <- c(objetos, "dis")
 

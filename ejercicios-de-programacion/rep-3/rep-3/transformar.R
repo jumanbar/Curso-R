@@ -3,12 +3,8 @@
 # Instrucciones: 
 # Utilizar la función apply y la función est para transformar (normalizar) 
 # los datos de la data.frame usa3. No es necesario haber completado el 
-# ejercicio 1.d (función est) para hacer esta parte. Las siguientes líneas 
-# sirven para cargar una función est alternativa en estos casos:
-
-if (!exists('est')) {
-  load('est.RData')
-}
+# ejercicio 1.d (función est) para hacer esta parte, ya que si puede
+# cargar una función est para el ejercicio con el comando load('est.RData')
 
 # Objetivos:
 

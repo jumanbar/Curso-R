@@ -1,8 +1,6 @@
 Lista de ideas y/o apuntes generales de cosas a mejorar
 =======================================================
 
-* Mejorar los ejercicios de corrección, al menos de los repartidos I y II, poniendo mensajes de error más específicos (se empezó a implementar en rep III).
-
 * Ídem con la función `reload` del rep III.
 
 * Mejorar lecciones extras en general.
@@ -36,14 +34,9 @@ Lista de ideas y/o apuntes generales de cosas a mejorar
 
 * Poner lugar para que pongan el nombre en los parciales o cualquier script de ejercicios...
 
-
-* > As someone said, if you want to understand something, explain it to another person, but if you really want to understand it, explain it to a computer.
-
-* > Si quieres entender algo, explícaselo a otra persona, pero si realmente quieres entenderlo, explícaselo a una computadora.
+* > As someone said, if you want to understand something, explain it to another person, but if you really want to understand it, explain it to a computer.  ("Si quieres entender algo, explícaselo a otra persona, pero si realmente quieres entenderlo, explícaselo a una computadora.")
 
 * Agregar la función "stack" en la parte de manipulación de datos.
-
-* Agregar en la unidad 5 (funciones) cuestionarios más parecidos a los de la unidad 6 (aquellos en los que hay que agregar errores, fill in the blanks, etc).
 
 * [Para la idea del paquete imser, aprovechar que ahora .Rprofile y .Renviron funcionan en windows! (tienen que ir en ~)(ver: http://www.biostat.wisc.edu/~kbroman/Rintro/). De esta forma se puede agregar fácilmente un path determinado (o cambiarlo cuando sea necesario) para la carpeta del curso.]
 
@@ -71,6 +64,18 @@ Lista de ideas y/o apuntes generales de cosas a mejorar
 
 * Aclarar en las letras de los repartidos que muchas cosas que se piden son para que funcione bien la correción automática. Esto sobre todo con el repartido 1. Se agregaría al video y la lección que se va a hacer (mejorar) para repartidos.
 
+* Mejorar corrección del 1.b del repartido 4: http://imser2013.ribbot.com/posts/51b0ecac203f03000200065d
+
+* Aclarar que en los videos no va a estar todo para que resuelvan los repartidos; tienen que indagar en la ayuda u otras fuentes (foros, google, etc)
+
+* Diversificar las aplicaciones de los repartidos (ej: ejemplos relativos a sociología; se puede preguntar a exestudiantes a ver si se quieren colaborar elaborando problemas nuevos).
+
+### Unidad 5
+
+* Agregar en la unidad 5 (funciones) cuestionarios más parecidos a los de la unidad 6 (aquellos en los que hay que agregar errores, fill in the blanks, etc).
+
+* Chequear que en ejercicios anteriores el estudiante haya hecho bien las funciones para usar sus versiones en los subsiguientes (ej: funciones filtroc y aplicar en 2.c).
+
 Para el final del curso
 -----------------------
 
@@ -78,29 +83,6 @@ Para el final del curso
 	- ud. le gustaria que el curso dure menos tiempo ?
 	- ud. considera que hubiera podido realizar los modulos en una semana ?
 	- ud. considera que si le dan dos semanas por modulo pero es capaz de realizarlo en una, utilizaría igualmetne las dos semanas?
-
-
-TAREAS (lista hecha el 7-3-2013 en la PUC):
-===========================================
-
-* Lista de dudas x unidad en el foro (Juan unidades 4-6, Carlita 1-3)
-
-* Aclarar que en los videos no va a estar todo para que resuelvan los repartidos; tienen que indagar en la ayuda u otras fuentes (foros, google, etc)
-
-* Diversificar las aplicaciones de los repartidos (ej: ejemplos relativos a sociología; se puede preguntar a exestudiantes a ver si se quieren colaborar elaborando problemas nuevos).
-
-* Cuestionarios:
-  - contenidos de las próximas lecciones?
-	- mejorar la calidad en general (preguntas más interesantes, más claras; más preguntas en algunos casos que están muy cortos)
-	- Determinar el número máximo de intentos para múltple opción?
-
-* Para inicio del curso:
-  - Video mostrando los puntos más importantes de la dinámica de las lecciones y cuestionarios
-	- Video mostrando la dinámica de los repartidos (cómo llenar un script, dónde ejecutar los comandos, etc).
-
-* Notas finales: N = 0.4 * C + 0.6 * R
-(N: nota, C: promedio cuestionarios, R: promedio repartidos)
-
 
 
 
