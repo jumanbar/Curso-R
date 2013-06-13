@@ -4,7 +4,7 @@
 # aún en un lenguaje orientado a la estadística como R. Anteriormente nos
 # ocupamos de distintos tipos de objeto que podemos encontrar en R. En la pre-
 # sente unidad nos dedicaremos a la comprensión de la estructura y funcionamien-
-# to de las funciones, así como en la creación y corrección de las mismas.
+# to de las funciones, así como a la creación y corrección de las mismas.
 
 ## ¿Para qué hacer funciones?
 
@@ -55,7 +55,7 @@ area (12, 10)  # o de cualquier otro.
 # par de valores de base y altura a una función que corre para cualquier par de
 # valores. En este sentido, la abstracción es similar a lo que uno ve en las
 # matemáticas, en el sentido de pasar de valores particulares a símbolos que
-# pueden ser sustituídos en una ecuación por valores conocidos, logrando poder
+# pueden ser sustituidos en una ecuación por valores conocidos, logrando poder
 # aplicar la función a cualquier situación similar.
 
 # Otro ejemplo más ilustrativo puede ser el siguiente: teniendo un vector `x` de
@@ -118,4 +118,3 @@ g()
 
 # En la próxima lección exploraremos los componentes que hacen a las funciones,
 # en una suerte de lección de anatomía de las mismas.
-

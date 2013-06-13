@@ -6,8 +6,8 @@ cor1 <- function() {
   load('datos')
 
   # Evaluación de la función "triangulo":
-  #   source('1-triangulo.R', local = TRUE)
-  source('tmp.R', local = TRUE)
+  source('1-triangulo.R', local = TRUE)
+  #   source('tmp.R', local = TRUE)
   ca <- rpois(1, 10)
   co <- rpois(1, 10)
   out1 <- triangulo(ca, co)
@@ -293,8 +293,8 @@ cor2.c <- function() {
 cor3.a <- function() {
   # Cargar datos
   load('datos')
-  #   source('3.a-cambia.pares.R', encoding = 'UTF-8')
-  source('tmp.R', encoding = 'UTF-8')
+  source('3.a-cambia.pares.R', encoding = 'UTF-8')
+  #   source('tmp.R', encoding = 'UTF-8')
   
   # Generación de datos
   clase <- sample(c("num", "cha"), 1)
@@ -335,8 +335,8 @@ cor3.a <- function() {
 cor3.b <- function() {
   # Cargar datos
   load('datos')
-  #   source('3.b-radio.R', encoding = "UTF-8")
-  source('tmp.R', encoding = "UTF-8")
+  source('3.b-radio.R', encoding = "UTF-8")
+  #   source('tmp.R', encoding = "UTF-8")
 
   # Generación de datos
   r <- rpois(1, 30) * sample(c(-1, 1), 1)

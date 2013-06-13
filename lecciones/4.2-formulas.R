@@ -1,32 +1,42 @@
 ## Fórmulas
 
-# En R las fórmulas son utilizadas para describir modelos o más en general, relaciones entre variables. Estas fórmulas se escriben con el operador '~' y otros más comunes pero de uso distinto al normal, como '+' y '*'. Sirven especialmente para trabajar con modelos de regresión y varias funciones gráficas.
+# En R las fórmulas son utilizadas para describir modelos o más en general, relaciones 
+# entre variables. Estas fórmulas se escriben con el operador '~' y otros más comunes
+# pero de uso distinto al normal, como '+' y '*'. Sirven especialmente para trabajar
+# con modelos de regresión y varias funciones gráficas.
 
 # Formula genérica (no correr):
 variable.de.respuesta ~ variables.explicativas
 
-# Aquí la fórmula está dada por el operador "~"; a la izquierda está la variable de respuesta, a la derecha la o las variables explicativas.
+# Aquí la fórmula está dada por el operador "~"; a la izquierda está la variable de
+# respuesta, a la derecha la o las variables explicativas.
 
-## El "~" (virgulilla) debería leerse como "es modelado por" o "es modelado como una función de".
+# El "~" (virgulilla) debería leerse como "es modelado por" o "es modelado como una
+# función de".
 
-# Si el estudiante desea profundizar, puede utilizar el comnado:
+# Si el estudiante desea profundizar, puede utilizar el comando:
 ?formula
 
-# En esta lección nos vamos a enfocar en el uso de fórmulas para ANOVA y análisis de regresión, con la esperanza de dar los elementos para que cada estudiante pueda profundizar mejor en este tema por su cuenta, en caso de que le sea necesario.
+# En esta lección nos vamos a enfocar en el uso de fórmulas para ANOVA y análisis de
+# regresión, con la esperanza de dar los elementos para que cada estudiante pueda 
+# profundizar mejor en este tema por su cuenta, en caso de que le sea necesario.
 
-# En R existen varias funciones, tales como aov (Analysis of Variance), lm (Linear Models) y glm (Generalized Linear Models),
-# que usan objetos de la clase "formula" para especificar las variables que deben ser incluidas en el análisis o modelo.
+# En R existen varias funciones, tales como aov (Analysis of Variance), lm (Linear 
+# Models) y glm (Generalized Linear Models), que usan objetos de la clase "formula" 
+# para especificar las variables que deben ser incluidas en el análisis o modelo.
 # Normalmente la fórmula es incluida como el primer argumento de la función.
 # Siguiendo con el ejemplo (no correr):
 
 regresion_simple <- lm(variable.de.respuesta ~ variables.explicativas, data=DataFrame)
 
-# el argumento data es impresindible para indicarle al R de donde debe sacar los datos para realizar la regresión; es como cuando en el Excel, marcamos las columnas que queremos que sean utilizadas para graficar...
+# el argumento data es imprescindible para indicarle al R de donde debe sacar
+# los datos para realizar la regresión; es como cuando en el Excel marcamos las
+# columnas que queremos que sean utilizadas para graficar...
 
 # Las fórmulas, a pesar de ser similares a los comandos normales, no funcionan 
 # del todo igual respecto a las convenciones con las que todos estamos
 # familiarizados. El primer objetivo de estas es especificar un modelo
-# estadístico. Esto ayuda a simplicar la interfase con el usuario, pero implica
+# estadístico. Esto ayuda a simplificar la interfase con el usuario, pero implica
 # que primero este debe aprender la sintáxis propia de estas expresiones.
 
 # Veamos algunos ejemplos para ir entendiendo la lógica:
@@ -52,19 +62,22 @@ form2 <- y ~ - 1 + x # o
 form2 <- y ~ x - 1   # o
 form2 <- y ~ x + 0
 
-# Ahora algunos comandos anteriores van a tener lijeras diferencias...
+# Ahora algunos comandos anteriores van a tener ligeras diferencias...
 class(form2)
 plot(form2)
 lm(form2)                  # nótese que solo nos brinda el parámetro pendiente
 abline(lm(form))           # la recta anterior...
 abline(lm(form2), col = 2) # nótese en donde corta el nuevo gráfico
 
-# Hasta ahora sólo usamos una variable explicativa, "x". Sin embargo podemos agregar otras variables usando el operador "+":
+# Hasta ahora sólo usamos una variable explicativa, "x". Sin embargo podemos 
+# agregar otras variables usando el operador "+":
 y ~ x + z
 
 # Nótese que el significado de "+" no es el mismo que en una suma aritmética.
-# Aquí simplemente se está incluyendo a la variable "z" en el modelo ("y es modelado como función de x y z").
-# A este tipo de modelos con más de una variable explicativa se les llama comunmente Regresión Múltiple, pero eso ya lo veremos más adelante...
+# Aquí simplemente se está incluyendo a la variable "z" en el modelo ("y es 
+# modelado como función de x y z").
+# A este tipo de modelos con más de una variable explicativa se les llama 
+# comúnmente Regresión Múltiple, pero eso ya lo veremos más adelante...
 
 # Nota: podemos usar una matriz para agrupar por columnas las variables explicativas.
 # Siguiendo el ejemplo anterior:
@@ -108,7 +121,6 @@ y ~ x + log(z)
 # :        | x:z             | incluye la interacción entre estas variables
 # *        | x*z             | incluye el efecto aditivo de las variables y la
 #          |                 | interacción entre ambas.
-#          |                 | entre ambas.
 # /        | x/z             | anidamiento: incluye a z anidado en x (= x + x:z)
 # %in%     | z %in% x        | ídem que el anterior
 # |        | x|z             | condicional: incluye a x dado z
@@ -128,21 +140,24 @@ y ~ x + log(z)
 y ~ u + v + w + u:v + u:w + v:w + u:v:w
 y ~ u * v * w
 y ~ (u + v + w) ^ 3
-# Son tres formas distintas de decir lo mismo: y es función de las variables u, v, w y de todas las interacciones posibles.
+# Son tres formas distintas de decir lo mismo: y es función de las variables
+# u, v, w y de todas las interacciones posibles.
 
-# Si queremos quitar la interacción de tres vías, cualquiera de las tres siguientes es válida:
+# Si queremos quitar la interacción de tres vías, cualquiera de las tres siguientes
+# es válida:
 y ~ u + v + w + u:v + u:w + v:w
 y ~ u * v * w - u:v:w
 y ~ (u + v + w) ^ 2
 
-# El tipo de variable explicativa que se utiliza (binarias, categórica (factores) o numérica) determina la naturaleza del análisis.
+# El tipo de variable explicativa que se utiliza (binarias, categórica (factores)
+# o numérica) determina la naturaleza del análisis.
 
 # Por ejemplo, si "u" y "v" son factores:
 y ~ u + v
-# indica un modelo de análisis de varianza (¡peroo sin los términos de 
+# indica un modelo de análisis de varianza (¡pero sin los términos de 
 # interacción!).
 
-# Si "u" y "v" fueran numerical, entonces sería una regresión múltiple.
+# Si "u" y "v" fueran numericas, entonces sería una regresión múltiple.
 
 # Si "A" es un factor y "x" es una variable numérica, entonces
 y ~ A + x
@@ -153,7 +168,7 @@ y ~ A + x
 
 # EXTRA
 
-# Normalmente la fórmula es incluida como el primer argumento de las función que
+# Normalmente la fórmula es incluida como el primer argumento de las funciones que
 # aceptan argumentos de esta clase. Por ejemplo, para hacer una regresión lineal
 # entre el largo de sépalo y ancho de sépalo de la especie setosa, incluida en 
 # la tabla "iris":

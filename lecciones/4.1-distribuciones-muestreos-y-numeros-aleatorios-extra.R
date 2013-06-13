@@ -14,7 +14,7 @@ qqnorm(qqx)
 # cuartiles (correspondientes a los percentiles 25% y 75%). 
 qqline(qqx, col='red', lwd=2)
 # ¿Qué pasa si hago una prueba similar con un x generado con runif?
-# Comparar con la curva de pnorm, ¿Se parecen?¿Tiene lógica?
+# Comparar con la curva de pnorm, ¿Se parecen? ¿Tiene lógica?
 
 
 ## Distribución Uniforme
@@ -32,7 +32,7 @@ hist(x)  # Es bastante horizontal el patrón, como indica la teoría.
 # el mín. y máx. mencionados.
 
 # Cómo dice el nombre, la distribución uniforme es equiprobable para
-# todos los valores incluídos en un intervalo dado, buscando representar el 
+# todos los valores incluidos en un intervalo dado, buscando representar el 
 # espectro completo de los números reales contenidos en el mismo. Por lo tanto, 
 # a diferencia de sample, no se restringe a un conjunto discreto y finito de 
 # números, si no que muestrea de un conjunto (en teoría) infinito de valores. 

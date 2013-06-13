@@ -1,30 +1,28 @@
 
 ## Distribuciones
 
-# A modo general, una Distribución es una herramienta matemática que 
-# generaliza la noción de una función.
+# A modo general, una Distribución es una herramienta matemática que generaliza 
+# la noción de una función.
 
-# En R podemos ver la lista de todas las distribuciones que se encuentran 
-# incluidas en el paquete 'stats', utilizando el siguiente comando:
+# En R podemos ver la lista de todas las distribuciones que se encuentran incluidas
+# en el paquete 'stats', utilizando el siguiente comando:
 ?Distributions
 
-# Cuatro grandes grupos de funciones de distribución de probabilidad se 
-# encuentran disponibles en dicho paquete: función de densidad (Density), 
-# función de distribución acumulativa (cumulative distribution function), 
-# función cuantil (quantile function) y generadores de números al azar 
-# (random variate generation).
-# Cada función se denomina e identifica con la primer letra seguido del 
-# nombre de la variable (discreta o continua).
+# Cuatro grandes grupos de funciones de distribución de probabilidad se encuentran
+# disponibles en dicho paquete: función de densidad (Density), función de 
+# distribución acumulativa (cumulative distribution function), función cuantil 
+# (quantile function) y generadores de números al azar (random variate generation).
+# Cada función se denomina e identifica con la primer letra seguida del nombre de la
+# variable (discreta o continua).
 # dxxx
 # pxxx
 # qxxx
 # rxxx
 
-# Ejemplo: Distibución Normal o Gaussiana
+# Ejemplo: Distribución Normal o Gaussiana
 
 # dnorm : Función de Densidad de Probabilidad (PDF en inglés).
-# pnorm : Función de Distribución de Probabilidad (CDF en inglés; 
-#         probabilidad acumulada).
+# pnorm : Función de Distribución de Probabilidad (CDF en inglés; probabilidad acumulada).
 # qnorm : Función de Cuantiles.
 # rnorm : Generador aleatorio de números con distribución normal.
 # En la ayuda de R se pueden ver las cuatro funciones incluidas para la
@@ -51,7 +49,7 @@
 dnorm(0) # cuánto vale la media y el desvío de esta distribución?
 # 0.3989423
 
-# Para la función de densidad con una distribución normal y media = 6, el valor 
+# Para la función de densidad con una distribución normal y media = 6, el valor
 # en cero vale:
 dnorm(0, mean = 6)
 # 6.075883e-09
@@ -61,18 +59,18 @@ dnorm(0, mean = 6)
 dnorm(0, mean = 6, sd = 10)
 # 0.03332246
 
-# Si quiero averigual el valor para tres números diferentes, los debo concatenar con 
-# la función c:
+# Si quiero averiguar el valor para tres números diferentes, los debo concatenar
+# con la función c:
 dc <- dnorm(c(1, 3, 7))
 # 2.419707e-01 4.431848e-03 9.134720e-12
 
-# Si quiero conocer para un determinada secuencia de valores como se comporta la función 
-# de distribución de densidad, primero debo generar la secuencia:
+# Si quiero conocer para una determinada secuencia de valores cómo se comporta 
+# la función de distribución de densidad, primero debo generar la secuencia:
 dx <- seq(-8, 8, by = 0.025)
 # dx es un vector con valores entre -20 y 20 tomados de a 0,1.
 dy <- dnorm(dx)
-# dy usa los valores generados en dx y calcula los valores para la función de densidad 
-# con distribución normal
+# dy usa los valores generados en dx y calcula los valores para la función de 
+# densidad con distribución normal
 plot(dx, dy, type = 'l')
 
 # ahora le cambiamos la media y el desvío
@@ -109,7 +107,7 @@ plot(px, pz)
 
 # qnorm
 # Matemáticamente es la función inversa a pnorm (f^-1(x), no 1/f(x)).
-# Ejemplo: para una variable al azar con distribución normal, de media 0 y desvío 1, 
+# Ejemplo: para una variable al azar con distribución normal, de media 0 y desvío 1,
 # la función de probabilidad que devuelve es el usualmente llamado Z-score.
 
 # El ejemplo tal vez más conocido es el del valor de z correspondiente a un alfa de
@@ -167,9 +165,10 @@ x <- rnorm(1000, mean=0, sd=4)
 mean(x)  # Debería ser cercano a 0
 sd(x)    # y este cercano a 1
 
-# De acuerdo a la ley de los grandes números, cuánto mayor es la cantidad de elementos 
-# de x, más cercanos a 0 y 1 son estos valores... invitamos al usuario a que explore lo 
-# que ocurre con estos valores al cambiar el primer argumento de rnorm.
+# De acuerdo a la ley de los grandes números, cuánto mayor es la cantidad de 
+# elementos de x, más cercanos a 0 y 1 son estos valores... invitamos al usuario 
+# a que explore lo que ocurre con estos valores al cambiar el primer argumento de 
+# rnorm.
 
 # Podemos hacer un resumen de los números generados:
 summary(x)
@@ -194,7 +193,7 @@ hist(x, freq = FALSE, add = TRUE)
 # dnorm
 # otra forma de graficar una función de densidad:
 curve(dnorm(x), from=-3.5, to=3.5) # recuerde quien era x...
-# La función curve dibuja la curva de la función correspondiente dentro de los 
+# La función curve dibuja la curva de la función correspondiente dentro de los
 # límites pautados por 'from' y 'to'.
 
 # pnorm
@@ -210,7 +209,7 @@ x <- rnorm(1000)
 hist(x, freq=FALSE)
 curve(dnorm(x), add=TRUE, col='blue', lwd=2)
 lines(density(x), col='red', lwd=2)
-# la función line ajusta una línea al modelo propuesto.
+# la función lines ajusta una línea al modelo propuesto.
 
 
 ## Función sample (muestreos aleatorios)
@@ -223,15 +222,16 @@ sample(1:5)
 sample(1:5)
 sample(1:5)
 
-# como el lector puede observar, cada nueva corrida del comando genera un 
-# muestreo aleatorio, por lo tanto es esperable que el orden de los números 
-# sea siempre distinto. Intente probar con una mayor cantidad de números o 
-# correr varias veces el argumento de arriba...
+# como el lector puede observar, cada nueva corrida del comando genera un muestreo
+# aleatorio, por lo tanto es esperable que el orden de los números sea siempre 
+# distinto. Intente probar con una mayor cantidad de números o correr varias veces
+# el argumento de arriba...
 
 # Nótese que este comando es básicamente el equivalente a tomar aleatoriamente 
-# elementos de un conjunto,tal como sucede en una lotería o un sorteo. 
+# elementos de un conjunto,
+# tal como sucede en una lotería o un sorteo. 
 
-# En la ayuda se pueden ver varios argumentos para modificar el comortamiento 
+# En la ayuda se pueden ver varios argumentos para modificar el comportamiento 
 # de la función. Veamos algunos ejemplos:
 sample(1:5, replace=TRUE)  # muestro con reposición
 sample(1:5, 2)             # muestrea sólo dos valores, sin reposición
@@ -242,8 +242,8 @@ sample(1:5, 2, replace = TRUE) # los dos casos anteriores combinados
 sample(c('Homero', 'Marge', 'Bart', 'Lisa', 'Maggie'), 3, replace=TRUE) # nombres
 sample(letters, 5) # letras
 
-# Algo que puede confundir: si le damos solamente un número como entrada, 
-# puede tener comportamientos tal vez inesperados:
+# Algo que puede confundir: si le damos solamente un número como entrada, puede
+# tener comportamientos tal vez inesperados:
 sample(10)     # esto es idéntico a pedir "sample(1:10)"
 sample(10.3)   # redondea 10.3 --> 10, así que es igual que el anterior o a:
 sample(floor(10.3)) # La función floor es para redondear "hacia abajo"
@@ -254,7 +254,7 @@ sample(-10.3)  # el comportamiento es distinto ahora, por ser negativo ...
 # argumento permite asignar distintos valores de peso a cada uno de los 
 # elementos del vector a muestrear.
 
-# Consierando el siguiente ejemplo genérico (no correr):
+# Considerando el siguiente ejemplo genérico (no correr):
 sample(x, 100, replace = T, prob = p)
 
 # Aquí p debe tener la misma longitud/length que x, de forma que se asignen 
@@ -278,7 +278,7 @@ x['5'] / x['10']  # ¿Es el valor que esperábamos?
 # prob puede aceptar valores decimales, incluso pueden asignarse
 # probabilidades, aunque da error si alguno es negativo.
 # Internamente los valores son siempre convertidos a un valor
-# de probabilidad (entre 0 y 1); si el usuario ingresa lo siguigente:
+# de probabilidad (entre 0 y 1); si el usuario ingresa lo siguiente:
 # prob=c(A, B, C)
 # Entonces transforma los valores así:
 # a = A / (A + B + C)
@@ -286,4 +286,3 @@ x['5'] / x['10']  # ¿Es el valor que esperábamos?
 # c = C / (A + B + C)
 # Y utiliza a, b y c como las probabilidades de que sean muestreados
 # los elementos correspondiente del vector a muestrear.
-

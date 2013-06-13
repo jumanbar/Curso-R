@@ -426,8 +426,8 @@ x <- distancias(pts, p = c(0.3, -0.1))
 ![salida gráfica de la función distancias](figure/unnamed-chunk-17.png) 
 
 ```
-## d.max = 1.75 - punto: -1.45 -0.11 
-## d.min = 0.28 - punto: 0.05 -0.23
+## d.max = 2.33 - punto: -0.56 2.06 
+## d.min = 0.35 - punto: -0.02 -0.24
 ```
 
 ```r
@@ -436,17 +436,17 @@ x
 
 ```
 ## $dists
-## d.max d.min 
-## 1.748 0.282 
+##  d.max  d.min 
+## 2.3268 0.3486 
 ## 
 ## $posiciones
 ## i.max i.min 
-##     9     3 
+##     3    10 
 ## 
 ## $puntos
 ##              x       y
-## d.max -1.44832 -0.1123
-## d.min  0.04928 -0.2291
+## d.max -0.56210  2.0612
+## d.min -0.01781 -0.2432
 ## 
 ## $centro
 ## [1]  0.3 -0.1

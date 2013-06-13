@@ -44,7 +44,7 @@ salida2 <- {
   matriz
   # Cuando ponemos el nombre al final indicamos que es el objeto
   # al que vamos a asignar el nombre de salida2
-  # Este critero funciona igual cuando se crean funciones usando { }
+  # Este criterio funciona igual cuando se crean funciones usando { }
 }
 # FIN #
 
@@ -71,4 +71,3 @@ identical(salida1, salida2) # TRUE
 # el proceso, sin necesidad de ir guardando los pasos intermedios como objetos.
 # Otro uso común es en combinación con la función 'with', la que veremos en el
 # módulo de trabajo con datos.
-

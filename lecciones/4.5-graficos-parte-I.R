@@ -12,16 +12,16 @@
 # que se pueden hacer cambios paso por paso y lograr resultados bastante
 # complejos y reproducibles. 
 
-# Cuando se realiza un gráfico en en la consola de R, este nos abre una nueva
+# Cuando se realiza un gráfico en la consola de R, este nos abre una nueva
 # ventana con el gráfico resultante. Sin embargo, cuando realizamos un nuevo
-# gráfico no se abre otra ventana: el nuevo sutituye al anterior. En este 
+# gráfico no se abre otra ventana: el nuevo sustituye al anterior. En este 
 # sentido, para no perder el grafico previo es necesario abrir una nueva 
 # ventana en la consola de R y así poder tener ambos gráficos para visualizarlos
 # Para abrir una nueva ventana en la consola de R:
 # X11()        para UNIX (y Windows)
 # windows()    para Windows
 # and quartz() para Mac OS X
-# Esto sirve para poder visualizar mas de un gráfico en R.
+# Esto sirve para poder visualizar más de un gráfico en R.
 # En RStudio esto no es problema, dado que en la ventana 'Plot' es posible
 # visualizar más de un gráfico. A medida que vamos realizando distintos
 # gráficos, estos se van almacenando en dicha ventana sin la necesidad de
@@ -29,11 +29,11 @@
 # tiene un conjunto de botones que nos permiten realizar distintas cosas...
 # Empezando por arriba y a la izquierda se encuentran dos 'flechas celestes' que
 # apuntan hacia la izquierda y la derecha. Esto nos permite ir viendo en la
-# venta de plot los distintos gráficos creados. El sigueinte boton es el del
+# venta de plot los distintos gráficos creados. El siguiente botón es el del
 # 'Zoom', este permite agrandar la imagen obtenida para una mejor visualización.
 # El botón 'Export' nos permite guardar la imagen que estamos observando en
 # formato imagen (.jpg) o en pdf. Sino la podemos copiar al clipboard y luego
-# pegarla en algún programa de imgen para poder editarla como LibreOffice o
+# pegarla en algún programa de imagen para poder editarla como LibreOffice o
 # PowerPoint. Los dos últimos botones sirven para borrar el gráfico que
 # estamos observando o todos los gráfico obtenidos, respectivamente.  
 
@@ -47,7 +47,7 @@
 ?par
 
 # De la página del curso se puede bajar un pdf con una referencia rápida de los
-# parámetros de par más comunmente usados (aunque esto depende de cada uno 
+# parámetros de par más comúnmente usados (aunque esto depende de cada uno 
 # claro). Para bajarla ejecutar:
 browseURL('http://eva.universidad.edu.uy/file.php/1454/pdf/tabla-par.pdf')
 
@@ -60,8 +60,8 @@ x <- sort(rnorm(100))
 # márgenes de la ventana del gráfico.
 op <- par(mar=c(5, 6, 4, 2))
 
-# Aća estoy cambiando el tamaño de los margenes del gráfico. En este caso
-# sólamente los dos primeros valores que equivalen al margen inferior y al
+# Acá estoy cambiando el tamaño de los márgenes del gráfico. En este caso
+# solamente los dos primeros valores que equivalen al margen inferior y al
 # margen izquierdo.
 # Estos números están puestos en sentido horario, empezando por el margen
 # inferior (inf, izq., arr, der).
@@ -105,7 +105,7 @@ p <- palette('default')
 # vamos a usar en esta lección, pero que puede ser de mucha utilidad.
  
 # Hay muchos nombres de colores posibles, los cuales se pueden conocer con la
-# funcion 'colors':
+# función 'colors':
 ?colors
 colors()
  
@@ -214,16 +214,16 @@ text(1:25, 1:25 + 3, labels=1:25)
 text(10.5, 27, labels='Los números indican el código correspondiente a cada punto',
      adj=.5) # Observe que cuando son letras éstas deben estar entre comillas
 
-# Otra función para agregar texto, levemente difernte...
+# Otra función para agregar texto, levemente diferente...
 plot(Sepal.Length ~ Sepal.Width, subset=Species == 'setosa', data=iris)
 mtext("estoy en el lado 3", side=3, line=2)
 # Escribe texto en uno (algunos o todos) los márgenes del gráfico, puede ser
 # dentro o fuera de la figura
 # El segundo argumento, 'side', marca el margen (1=bottom, 2=left, 3=top,
 # 4=right)
-# El argumento 'line' mueve a partir de la linea del grafico (contorno) el 
-# texto escritonhacia afuera del grafico (valores positivos) y hacia adentro 
-# (vaalores negativos)
+# El argumento 'line' mueve a partir de la línea del gráfico (contorno) el 
+# texto escrito hacia afuera del gráfico (valores positivos) y hacia adentro 
+# (valores negativos)
 
 
 # 3. Gráficos múltiples
@@ -244,18 +244,18 @@ par(op)
 
 # Para finalizar con esta parte les queremos dar a conocer la función 'locator'...
 
-la función 'locator' nos brinda la posición exacta de cualquier punto dentro
+# la función 'locator' nos brinda la posición exacta de cualquier punto dentro
 # del gráfico. Para esto debemos hacer click con el mouse y nos devuelve las 
 # coordenadas x e y
 
 locator(n=1) 
-# n es la cantidad de puntos que queremos tener como corrdenadas
+# n es la cantidad de puntos que queremos tener como coordenadas
 # en este caso una sola
 
 # Otra utilidad...
 plot(Sepal.Length ~ Sepal.Width, subset=Species == 'setosa', data=iris)
 legend(locator(n=1), legend=c("el texto aparece en donde se hace clik con el mouse"))
-# En este caso el argumento 'locator' permite poner el texto que deseamos en el
-# exacto con solo hacer un click sobre gráfico...
+# En este caso el argumento 'locator' permite poner el texto que deseamos en el lugar
+# exacto con solo hacer un click sobre el gráfico...
 # It's Awesome!
 

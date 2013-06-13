@@ -11,7 +11,7 @@ manipulate(
  	a = slider(1, 15)
 )
  
-# Para ver como funcionan:
+# Para ver cómo funcionan:
 ?slider
 ?picker
 ?checkbox

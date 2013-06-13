@@ -1,9 +1,9 @@
 # GRÁFICOS: parte II
 
 # Como vimos en la lección 3.5 (gráficos simples para visualizar datos)
-# existen una gran diversidad de funciones en R que nos permiten visualizar
+# existe una gran diversidad de funciones en R que nos permiten visualizar
 # nuestros datos. No obstante, muchas veces nos interesa obtener gráficos de los
-# modelos estadísticos evaluados como resultado visual de nuestros análsis. La
+# modelos estadísticos evaluados como resultado visual de nuestros análisis. La
 # función genérica 'plot' nos permite obtener dicho resultado:
 ?plot
 
@@ -16,7 +16,7 @@ plot(x, y)
 # variable 'x' y el segundo la variable 'y'. Sin embargo, es posible utilizar
 # otros argumentos para dicha función.
 
-# Por ejemplo si deseamos visualizar graficamente el primer modelo lineal simple
+# Por ejemplo si deseamos visualizar gráficamente el primer modelo lineal simple
 # utilizado en la lección 4.3 (regresión simple):
 
 lm1 <- lm(dist ~ speed, data=cars)
@@ -26,21 +26,21 @@ plot(dist ~ speed, data=cars, col="red")
 
 # Si bien en la ayuda de dicha función nos dice que el primer argumento es la
 # variable 'x' y el segundo es la variable 'y', observe que nosotros en este
-# caso le estamos dando como primer argumeto la fórmula de nuestro modelo
-# lineal y como segundo el data.frame en donde se encuetran nuestros datos.
-# Esta es otra forma de obtener un gráfico x-y y en R aparce como la función
-# 'plot.formula', aunque si ud. va  la ayuda observará que en realidad se
+# caso le estamos dando como primer argumento la fórmula de nuestro modelo
+# lineal y como segundo el data.frame en donde se encuentran nuestros datos.
+# Esta es otra forma de obtener un gráfico x-y y en R aparece como la función
+# 'plot.formula', aunque si ud. va a la ayuda observará que en realidad se
 # utiliza la función 'plot'...
 ?plot.formula
 
 plot(cars$dist ~ cars$speed, col="blue")
-# Otra forma de obtener el mismo resultado. En esta caso no es necesrio
+# Otra forma de obtener el mismo resultado. En este caso no es necesario
 # utilizar el argumento 'data' porque con el signo '$' ya le estamos indicando a
 # la función de donde debe obtener la información para realizar la acción.
 
 plot(speed, dist, data=cars, col="green")
 # Este gráfico tiene la misma sintaxis que el primer ejemplo, primero la
-# variable 'x', luego la variable 'y', no hay un fórmula... y nos deveulve el
+# variable 'x', luego la variable 'y', no hay un fórmula... y nos devuelve el
 # mismo gráfico (los colores son para poder diferenciarlos y que no se vean todos
 # iguales). Esto da cuenta de que ambas formas sirven y queda a elección de cada
 # uno la manera más sencilla que le sirva para entender la sintaxis.
@@ -50,32 +50,32 @@ plot(dist ~ speed, data=cars, subset=dist > 20)
 # Como puede observar el argumento 'subset' también sirve como un filtro para
 # las variables a graficar. En este caso si ud. compara cualquiera de los tres
 # gráficos anteriores con este nuevo gráfico podrá observar como cambian las
-# escalas en los ejes y como disminuyen la cantidad de puntos (datos) graficados.
+# escalas en los ejes y como disminuye la cantidad de puntos (datos) graficados.
 
 
 # Usando la función gráfica llamada 'abline' podemos agregar la recta al
 # gráfico cuya pendiente y corte en el eje 'y' se obtienen del modelo lineal
 # 'lm1' en este caso:
-abline(lm1) # observe que se escribe elmodelo dentro de la función
-# En este caso la función 'abline' esta utilizando los argumentos 'a' y  'b',
+abline(lm1) # observe que se escribe el modelo dentro de la función
+# En este caso la función 'abline' está utilizando los argumentos 'a' y  'b',
 # para mayor información consulte la ayuda:
 ?abline
 
 # Es lo mismo que haber escrito:
 abline(coef(lm1)[1], coef(lm1)[2])
 # En este caso el primer argumento 'a' es el primer coeficiente del modelo
-# 'lm1'es decir el corte en ele eje 'y' y el segundo argumeto 'b' es el valor de
+# 'lm1'es decir el corte en el eje 'y' y el segundo argumento 'b' es el valor de
 # la pendiente. Utilizamos la función 'coef' porque esta nos brinda el valor de
-# los parámetros arriba descritos. A su vez se utiliza la identación con los
-# '[]' poruqe dicha función deveuelve los valores en un vector y cada parámetro
+# los parámetros arriba descritos. A su vez se utiliza la sangria con los
+# '[]' porque dicha función devuelve los valores en un vector y cada parámetro
 # presenta una posición. Para más información consulte en la ayuda de R:
 ?coef
 
-# Recuerde que la función 'abline' también puede ser utilizado para otros
-# casos que no sean modelos estadśiticos explicados en la parte I.
+# Recuerde que la función 'abline' también puede ser utilizada para otros
+# casos que no sean modelos estadísticos explicados en la parte I.
 
-# Esta función también acepta argumetos de la función 'par' para diagramar la
-# o las líneas que desamos que sean graficadas.
+# Esta función también acepta argumentos de la función 'par' para diagramar la
+# o las líneas que deseemos sean graficadas.
 # Por ejemplo:
 lm_iris <- lm(Sepal.Length ~ Sepal.Width, data=iris) # modelo lineal
 plot(Sepal.Length ~ Sepal.Width, data=iris) # gráfico que lo representa
@@ -104,8 +104,8 @@ legend("topleft", title = "Species",
        bty ='n', lty = c(1:3), pch=1:3, col=1:3, lwd = 1.5, cex=0.8)
 
 
-# Muchas veces nos intersa ver como se distribuyen las frecuencias de
-# nuestros datos, si estos presentan algún tipo de distriubución teórica
+# Muchas veces nos interesa ver como se distribuyen las frecuencias de
+# nuestros datos, si estos presentan algún tipo de distribución teórica
 # conocida o simplemente presentan una distribución azarosa. Para este tipo de
 # casos existe una buena forma de visualizar lo planteado anteriormente y es a
 # través de la función 'hist':
@@ -121,7 +121,7 @@ hist(iris$Sepal.Width)
 hist(iris$Sepal.Width, breaks=20)
 
 # Observe que en el eje 'y' se grafican las frecuencias para cada rango de
-# valores presente en el eje 'x'. Ahora si preferimos conocer cual es la densidad
+# valores presente en el eje 'x'. Ahora si preferimos conocer cuál es la densidad
 # de dichos valores debemos cambiar el argumento lógico 'freq' que por defecto
 # es TRUE: 
 hist(iris$Sepal.Width, breaks=20, freq=F)
@@ -132,28 +132,28 @@ hist(iris$Sepal.Width, breaks=20, freq=F)
 hist(iris$Sepal.Width, col=2, main="Histograma", xlab="Ancho del Sepalo",
      ylab="Frecuencia", xlim=c(1.5, 4.5), font=2)
 
-# Cuando nos intersa visualizar distintos estadísticos descriptivos para
-# nuestras variables categóricas, existe una función llamda 'boxplot':
+# Cuando nos interesa visualizar distintos estadísticos descriptivos para
+# nuestras variables categóricas, existe una función llamada 'boxplot':
 ?boxplot
 
 # La fórmula que requiere esta función es del tipo y ~ grp, donde 'y' es la
-# variable de respuesta, esta debe ser continua y 'grp' son los ditintos grupos
+# variable de respuesta, esta debe ser continua y 'grp' son los distintos grupos
 # que queremos comparar o visualizar en relación a 'y'. Por ejemplo:
 boxplot(Temp ~ Month, data=airquality)
 
-# Aqui se esta graficando la variable continual Temperatura en función de cada
+# Aquí se está graficando la variable continua Temperatura en función de cada
 # uno de los 5 Meses de estudio (grupos).
 # La interpretación...
 # Los límites de la caja dan cuenta del primer y tercer cuartil (ver lección
 # correspondiente para complementar). Es decir, la caja limita entre el 25% y
 # 75% de los datos. La mediana es la línea que se observa (segundo cuartil),
-# en donde se encuentran el 50% de loa datos. Los bigotes que salen
-# de la caja hacen refencia la valor mínimo y al valor máximo. Por último,
-# los puntos que se encuentran más alla de los bigotes son posibles valores
+# en donde se encuentran el 50% de los datos. Los bigotes que salen
+# de la caja hacen referencia la valor mínimo y al valor máximo. Por último,
+# los puntos que se encuentran más allá de los bigotes son posibles valores
 # extremos que aparecen separados porque su valor excede una vez y media el
-# rango de la caja (recorrido intercuartilico).
+# rango de la caja (recorrido intercuartílico).
 
-# Como veniámos viendo hasta ahora tanbién es posible diagramar un boxplot
+# Como veníamos viendo hasta ahora también es posible diagramar un boxplot
 # con los argumentos 'prestados' por la función 'par':
 
 boxplot(Temp ~ Month, data=airquality, col=2:6, main="Boxplot", xlab="Meses",

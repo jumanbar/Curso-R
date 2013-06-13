@@ -17,21 +17,21 @@ v <- 15:25  # Vamos a necesitar un objeto 'v' para los ejemplos.
 # contenida en el cuerpo de la misma. Si tomamos como ejemplo la siguiente
 # función
 
-f <- function(x) {
-  x <- x[!is.na(x)]
-  p <- sum(x) / length(x)
+f <- function(v) {
+  v <- v[!is.na(v)]
+  p <- sum(v) / length(v)
   p
 }
 f(v)
 
 # la salida va a ser el valor de 'p', en este caso el promedio de 'v'.
-# Él último comando no necesita ser la llamada a un objeto, puede ser una
+# El último comando no necesita ser la llamada a un objeto, puede ser una
 # operación. Intentemos ver qué pasa si suprimimos la llamada a 'p', y nos que-
 # damos sólo con la operación anterior pero sin asignar el resultado.
 
-f <- function(x) {
-  x <- x[!is.na(x)]
-  sum(x) / length(x)
+f <- function(v) {
+  v <- v[!is.na(v)]
+  sum(v) / length(v)
 }
 f(v)
 
@@ -39,9 +39,9 @@ f(v)
 # Veamos ahora qué sucede si asignamos el objeto 'p', pero no lo llamamos al
 # final del cuerpo de 'f'.
 
-f <- function(x) {
-  x <- x[!is.na(x)]
-  p <- sum(x) / length(x)
+f <- function(v) {
+  v <- v[!is.na(v)]
+  p <- sum(v) / length(v)
 }
 f(v)
 
@@ -57,9 +57,9 @@ a
 # comando 'return', utilizando como argumento el objeto que queremos en la
 # salida.
 
-f <- function(x) {
-  x <- x[!is.na(x)]
-  p <- sum(x) / length(x)
+f <- function(v) {
+  v <- v[!is.na(v)]
+  p <- sum(v) / length(v)
   if (p > 15) return(15)
   p
 }
@@ -73,10 +73,10 @@ f(v + 20)
 # Otro comando que se puede utilizar es 'invisible', que hace que la salida de
 # nuestra función no sea impresa en la consola.
 
-f <- function(x) {
-  x <- x[!is.na(x)]
-  p <- sum(x) / length(x)
-  inxisible(p)
+f <- function(v) {
+  v <- v[!is.na(v)]
+  p <- sum(v) / length(v)
+  invisible(p)
 }
 f(v)
 
@@ -93,9 +93,9 @@ a
 # necesitamos obtener más de un resultado de nuestra función. La solución más
 # sencilla y frecuente es usar listas.
 
-f <- function(x) {
-  x <- x[!is.na(x)]
-  p <- sum(x) / length(x)
+f <- function(v) {
+  v <- v[!is.na(v)]
+  p <- sum(v) / length(v)
   m <- matrix(rnorm(9, mean = p), 3, 3)
   list(prom = p, matriz = m)
 }
@@ -113,4 +113,3 @@ f(v)
 #   instrucciones, pero esto cambia al usar 'return'.
 # - El uso de listas (generalmente nombradas) suele ser una solución útil para
 #   obtener salidas elaboradas cuando no nos alcanza con un objeto sencillo.
-

@@ -9,7 +9,7 @@
 # los programas propios, si se aplican regularmente.
  
 # En este caso vamos a mostrar las reglas que utilizan los empleados de la
-# empresa Google para trabajar con scripts de R. Notarán que en nuestro curso
+# empresa google para trabajar con scripts de R. Notarán que en nuestro curso
 # seguimos la mayoría de ellas, si bien no todas. Lo importante, más allá de
 # seguir una u otra regla, es mantener una coherencia en el estilo de cada
 # uno, o el del equipo de trabajo.
@@ -51,6 +51,9 @@
 # La longitud de línea máxima son 80 caracteres (a veces es difícil...)
  
 # Indentación
+
+# La palabra indentación es un anglicismo, pero es tan extendido en informática
+# que lo mantenemos, a pesar de que el término correcto es "sangría".
  
 # Cuando introducimos un condicional o función en varias líneas y necesitamos 
 # indentar lo que va dentro, usar dos espacios, no tabulaciones, ni mezclar 
@@ -93,7 +96,7 @@ if(debug)
 # CORRECTO:
 if (debug)
  
-# Espacio extra están bien si sirven para alinear signos similares
+# Espacio extra está bien si sirve para alinear signos similares
  
 plot(x    = xCoord,
      y    = dataMat[, makeColName(metric, ptiles[1], "roiOpt")],
@@ -177,9 +180,9 @@ x <- 5
  
 # Definición de funciones y llamadas
  
-# En las definiciones de funciones deben listarse primero los argumentos sin 
+# En las definiciones de funciones debe listarse primero los argumentos sin 
 # valores por defecto, y luego aquellos que tienen valores por omisión.
-# Tanto en la definición como en la llamada a funciones, se pueden utilizar
+# Tanto en la definición como en la llamada a funciones, se puede utilizar
 # varias líneas. Se pasa a la siguiente línea entre argumentos.
  
 # INCORRECTO: 
@@ -233,4 +236,3 @@ CalculateSampleCovariance <- function(x, y, verbose = TRUE) {
 # (http://google-styleguide.googlecode.com/svn/trunk/google-r-style.html)
 # Alguna documentación extra se puede encontrar en 'R Coding Conventions'
 # (http://www.maths.lth.se/help/R/RCC/).
-

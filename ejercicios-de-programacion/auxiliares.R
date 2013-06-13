@@ -502,9 +502,12 @@ tri <- function(cat.ad, cat.op) {
 objetos <- c(objetos, "tri")
 
 edu <- function(x) {
-  TM <- ap(x, "tm", mean, na.rm = TRUE)
-  PA <- ap(x, "pa", mean, na.rm = TRUE)
-  TA <- fc(x, "ta")
+  tmcol <- grep("tm", tolower(colnames(x)))
+  TM <- apply(x[tmcol], 1, mean, na.rm = TRUE)
+  pacol <- grep("pa", tolower(colnames(x)))
+  PA <- apply(x[pacol], 1, mean, na.rm = TRUE)
+  tacol <- grep("ta", tolower(colnames(x)))
+  TA <- x[tacol]
   PC <- TM * PA / 100
   x <- cbind(x, TM, PA, PC)
   regresion <- lm(TA ~ PC, x)
@@ -515,7 +518,9 @@ edu <- function(x) {
 objetos <- c(objetos, "edu")
 
 ap <- function(x, clave, FUN, ...) {
-  filtrada <- fc(x, clave)
+  clavex <- tolower(clave)
+  nombrex <- tolower(names(x))
+  filtrada <- x[grep(clavex, nombrex)]
   apply(filtrada, 1, FUN, ...)
 }
 objetos <- c(objetos, "ap")

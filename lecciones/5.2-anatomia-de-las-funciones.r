@@ -113,8 +113,8 @@ x
 # hasta entenderlo bien. A modo de guía, veamos la lista de objetos visibles
 # para una función de R.
 # - objetos definidos en los argumentos
-# - objetos creados en el cuerpo de la funcion (hasta acá son los
-#   pertenenecientes al ambiente de la propia función).
+# - objetos creados en el cuerpo de la función (hasta acá son los
+#   pertenecientes al ambiente de la propia función).
 # - objetos existentes en ambientes "parentales" (todos los "antepasados").
 
 # Para entender un poco mejor esto, nótese que el objeto 'w', definido en para-
@@ -129,4 +129,3 @@ f(3, 4)
 
 # Esperando que esta lección complemente en buena forma lo visto en el video, la
 # próxima lección será acerca de la salida de las funciones.
-

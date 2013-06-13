@@ -3,7 +3,7 @@
 # Es inevitable tener errores al programar. En inglés el término para
 # referirse a un error de programación es "bug"
 # (http://es.wikipedia.org/wiki/Error_de_software), y por lo tanto, la
-# expresión para la tarea de eliminar estos erorres es "debug"; en español
+# expresión para la tarea de eliminar estos errores es "debug"; en español
 # "depurar"
 
 # En R se puede usar la función 'debug' para inspeccionar el ambiente temporal
@@ -17,7 +17,7 @@
 # archivo 'davuelta.R', y se va modificando y guardando el archivo, en esta
 # lección vamos a trabajar directamente sobre el código de la función.
 
-# La función que usaremos se denomina 'davuelta'. Esta funcion sirve para "dar
+# La función que usaremos se denomina 'davuelta'. Esta función sirve para "dar
 # vuelta" un vector: cambia la primer mitad de sus elementos por la segunda. Ej:
 # si x = 1 2 3 4
 # el resultado debe ser:
@@ -108,16 +108,14 @@ davuelta(x)
 # Podemos ver que sobra un 3 al principio del vector.
 
 # Para descubrirlo vamos a mostrar tres métodos posibles, los cuales son
-# sumamente efectivos si se utilizan correctamente: 
-#   (1) Imprimir en consola,
-#   (2) usar el depurador de R o 
-#   (3) usar "browser". 
-# Este orden indica una creciente sofisticación y, en general, un aumento en 
-# la eficiencia de los métodos para hallar errores. En la práctica no es la 
-# idea usar los tres métodos en cada ocasión, la elección del método correcto 
-# en general depende del tipo de error. Los tres métodos requieren de una cierta 
-# intuición, entendimiento del código de la función que queremos arreglar, 
-# práctica y paciencia.
+# sumamente efectivos si se utilizan correctamente: (1) Imprimir en consola,
+# (2) usar el depurador de R o (3) usar "browser". El orden en que se van a ver
+# indica una creciente sofisticación y, en general, un aumento en la eficiencia
+# de los métodos para hallar errores. En la práctica no es la idea usar los tres
+# métodos en cada ocasión, la elección del método correcto en general depende
+# del tipo de error.
+# Los tres métodos requieren de una cierta intuición, entendimiento del código
+# de la función que queremos arreglar, práctica y paciencia.
 
 ## MÉTODO 1: IMPRIMIR EN LA CONSOLA
 # Este método es el más simple. Se trata cambiar la función para que imprima en
@@ -148,8 +146,8 @@ davuelta <- function(x) {
 
 # Nota: tanto "cat" como "print" sirven para imprimir cosas en la pantalla, sin
 # embargo tienen algunas diferencias sutiles (que no vamos a profundizar aquí).
-# El caracter especial "\n" indica el fin de línea (es posible que en windows
-# sea más conveniente usar "\r").
+# El caracter especial "\n" indica el fin de línea. Es posible que en windows
+# sea más conveniente usar "\r".
 
 # Al ejecutar la función, vamos a ver lo siguiente
 davuelta(x)
@@ -273,13 +271,10 @@ out <- c(x2, x1)
 out
 # [1] 4 5 6 1 2 3
 
-# Ojo: esto no es una corrección de la función. Para hacer una correción definitiva
-# hay que cambiar el script original en el cual la definimos.
-
 # Entonces ya sabemos que es lo que hay que hacer. Pero antes de hacerlo, vamos
 # a pasar al tercer método. Suponiendo que ya terminó la depuración y salimos
 # del ambiente de ejecución de la misma, se debe quitar la "bandera" a la
-# función, de dos maneras posibles, corriendo:
+# función, de dos maneras posibles:
 undebug(davuelta)
 # o definiendo nuevamente la función, ya sea corriendo las líneas de comando o
 # cargando el archivo correspondiente con 'source'. Al definir nuevamente la
@@ -347,7 +342,7 @@ ls()
 # El último paso para corregir una función es verificar que anda. Para esto la
 # tenemos que someter a pruebas exigentes, de forma que estemos seguros de que
 # realmente hace lo que nosotros necesitamos que haga. En nuestro caso lo
-# primero que debemos hacer es cambiar la línea en que se definía x2.
+# primero que debemos hacer es cambiar la línea en que se define x2.
 
 davuelta <- function(x) {
   len <- length(x)
@@ -366,7 +361,7 @@ davuelta(-3:3)         # debería dar error
 davuelta(-3:4)
 davuelta(letters[1:6]) # con caracteres debería andar también
 
-# Com último detalle, se puede utilizar la función 'traceback' para revisar los
+# Como último detalle, se puede utilizar la función 'traceback' para revisar los
 # errores obtenidos, con el detalle de que nos da información sobre qué función
 # estaba corriendo en el momento en que se obtuvo el error, y concretamente qué
 # función estaba corriendo dentro de ésta.
@@ -379,4 +374,3 @@ traceback()
 # obvias. Es bueno recordar que existen y saber cómo funcionan, ya que muchas
 # veces un error sencillo nos puede estar complicando la vida mucho rato y no
 # perdemos demasiado tiempo buscándolo si conocemos las herramientas adecuadas.
-

@@ -35,23 +35,23 @@ summary(lmm1)
 
 # En este caso tenemos tres parámetros estimados en total, dos pendientes y un intercepto.
 
-# Otra forma de ver cuales son los coeficientes, como vimos en la lección anterior, es con el comando coef:
+# Otra forma de ver cuáles son los coeficientes, como vimos en la lección anterior, es con el comando coef:
 coef(lmm1)
 
 # (Intercept)       Girth      Height 
 # -57.9876589   4.7081605   0.3392512 
 
-# Si queremos saber cueles son los residuales del modelo, utilizo la función residuals:
+# Si queremos saber cuáles son los residuales del modelo, utilizo la función residuals:
   
 residuals(lmm1)
 
 # La interpretación de la salida es similar a la de la regresión simple, salvo que en este caso hay dos pendientes y no solo una.
 summary(lmm1)
 # Ahora cada parámetro obtenido (excepto el intercepto) es una pendiente parcial, que debe ser interpretada como:
-# cuanto cambia la variable de respuesta cuando me muevo una unidad de mi pendiente Xi mantendiendo a mis otras pendientes constantes. En este caso como no hay interacción entre las vaiables solo se esta evaluando el efecto directo de cada una de ellas sobre la variable respuesta y estamos dejando de lados los efectos indirectos.
+# cuanto cambia la variable de respuesta cuando me muevo una unidad de mi pendiente Xi manteniendo a mis otras pendientes constantes. En este caso como no hay interacción entre las variables solo se está evaluando el efecto directo de cada una de ellas sobre la variable respuesta y estamos dejando de lados los efectos indirectos.
 
 
-# En el caso de la regresión multiple, la relación funcional esta dada entre una variable de respuesta y k-variables explicativas. En este sentido, debemos tener en cuenta la correlación entre las distintas variables independientes, la interacción entre ellas y cuidar que el modelo no quede sobreajustado.
+# En el caso de la regresión múltiple, la relación funcional está dada entre una variable de respuesta y k-variables explicativas. En este sentido, debemos tener en cuenta la correlación entre las distintas variables independientes, la interacción entre ellas y cuidar que el modelo no quede sobreajustado.
 
 
 
