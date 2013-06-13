@@ -109,7 +109,7 @@ cor2.a <- function() {
 cor2.b <- function() {
   load('datos')
   filtroc <- fc
-  source('2.b-aplicar.R', encoding = 'UTF-8')
+  source('2.b-extra-aplicar.R', encoding = 'UTF-8', local = TRUE)
   #   source('tmp.R', encoding = 'UTF-8')
 
   if (is.null(formals(aplicar)))
@@ -180,6 +180,8 @@ cor2.b <- function() {
     stop(msj, call. = FALSE)
   }
   cat("salida de aplicar ... OK\n")
+
+  TRUE
 }
 
 cor2.c <- function() {
@@ -365,7 +367,7 @@ cor3.c <- function() {
   # Cargar datos
   load('datos')
   #   f <- "tmp.R"
-  f <- '3.c-distancias.R'
+  f <- '3.c-extra-distancias.R'
   source(f, encoding = "UTF-8")
   on.exit({
     devs <- dev.list()
