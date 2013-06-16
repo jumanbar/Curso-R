@@ -1,9 +1,6 @@
 ## Estructuras de control: loops (for)
 
-# Los "loops" ("lazos" en español) son comandos especiales que sirven para hacer
-# ejecutar una tarea una cantidad arbitraria de veces; se llama iteración a cada
-# una de estas repeticiones. Sirven para hacer en segundos lo que manualmente
-# llevaría horas, días o sería simplemente demasiado.
+# Los "loops" ("lazos" o "bucles" en español) son comandos especiales que sirven para hacer ejecutar una tarea una cantidad arbitraria de veces; se llama iteración a cada una de estas repeticiones. Sirven para hacer en segundos lo que manualmente llevaría horas, días o sería simplemente demasiado.
 
 # Los comandos más universales para hacer loops en programación son "for" y
 # "while", y en R esto no es distinto.

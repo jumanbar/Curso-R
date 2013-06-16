@@ -1,39 +1,23 @@
-Ejercicio de programación IV: Estructuras de Control
+Ejercicio de programación VI: Estructuras de Control
 ====================================================
 
-### [IMSER 2012]
+### [IMSER 2013]
 
-Archivos incluidos
-------------------
+De otros años:
 
-El [archivo](https://github.com/jumanbar/Curso-R/blob/master/ejercicios-de-programacion/ejercicio4/ej4.zip?raw=true) con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`ej4`**. Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo (con el menú **Tools > Set Working Directory > Choose Directory...** o la combinación **Ctrl + Shift + K**). En esta carpeta se encuentran algunos archivos que usted deberá modificar:
-* **` fibonacci.R `**
-* **` funcionFibonacci.R `**
+* Ejercicio de programación:
+  - for: hacer un script que cuente por fila de una matriz la cantidad de elementos que cumplan una condición (mayores que 0, por ejemplo)
+  - complementar con un ej. extra que haga lo mismo pero usando apply
 
-Adicionalmente los siguientes archivos son necesarios, pero **no deben ser cambiados**.
-* **` evaluar.R `**
-* **` notas.csv `**
-* **` datos `**
+* Cambiar parte d del útimo parcial: si el bus tiene el máximo de pasajeros no sube a más nadie y si tiene el mínimo (0) no baja nadie.
 
-Lo primero que debe hacer es ejecutar el siguiente comando para cargar las funciones de corrección:
+* Crecimiento exponencial ...?
 
-    source("evaluar.R")
+* Caminata del borracho?
 
-Si usted ha ejecutado todos los pasos anteriores correctamente, la siguiente frase debería verse en la consola:
+* Símil función preg?
 
-    Código fuente cargado correctamente
-
-En caso de que ocurra un error o se vea otro mensaje en la consola, verifique que los archivos se descomprimieron correctamente y que usted está trabajando en la carpeta correspondiente con el comando `getwd()`.
-
-Usted trabajará modificando los contenidos de dichos archivos con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:
-
-    evaluar()
-
-### Entrega de ejercicios
-
-Una vez terminados los ejercicios, se debe subir el archivo "datos", incluidos en la carpeta **`ej4`** al EVA en la página de entrega de los ejercicios.
-
-********
+* Loops con errores: un while que es infinito, un for que tiene mal puesto el rango, ...
 
 Ejercicio 1: secuencia de Fibonacci
 -----------------------------------
@@ -79,5 +63,166 @@ funcionFibonacci <- function(n = 20) {
 funcionFibonacci(13)
 ```
 
-********
+- - -
+
+Parcial II
+==========
+
+#### Curso IMSER 2012
+
+Instrucciones:
+--------------
+
+En el archivo “[parcial-II.R](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/parcial-II.R)” ud. tiene un script en el cual deberá guardar todos los comandos del ejercicio, siguiendo la demarcación que se muestra en el mismo.
+
+Nota: los ejercicios del parcial son dependientes de los anteriores en el sentido de que utilizan objetos creados, pero no implica que no se puedan tratar de resolver independientemente.
+
+Los ejercicios con (``*``) presentan un puntaje de 1.5, mientras que los que no tienen (``*``) equivalen a 1 punto.
+
+Una vez terminado el parcial usted deberá subir a la [página del EVA](http://eva.universidad.edu.uy/mod/assignment/view.php?id=102998) el archivo “parcial-II.R” con su código.
+
+- - -
+
+Letra
+-----
+
+Para simular la cantidad de pasajeros de un ómnibus urbano se ha creado el código que aparece sobre el final del ejercicio (y que también se encuentra en el script parcial-II.R). El criterio es el siguiente: el bus recorre 25 paradas, empezando el trayecto sin pasajeros. En cada parada se subirá una cantidad aleatoria de entre 0 a 6 personas (siendo todas las cantidades equiprobables), pero debido a que existe un máximo estipulado de 44 pasajeros, a partir del momento en que se alcanza ese valor el vehículo deja de subir gente.
+
+- - -
+
+### (``*``) a. Código incompleto
+
+Completar el código: las líneas en blanco que se encuentran dentro de los límites del código indican en dónde debe cambiarse. **El resto de las líneas están correctas**.
+
+Código fuente:
+
+```{r, eval = FALSE}
+# Preparación:
+paradas <- 25
+pasajeros <- 0
+
+registro[1] <- pasajeros
+for (i in 1:paradas) {
+
+  # A ver si no se llenó:
+  if (pasajeros >= 44) {
+    # Ajuste por si llega a 44 antes de terminar:
+    registro[i:paradas] <- 44
+    cat('Bus lleno!\n') # Mensaje de aviso...
+    break
+  } # <- este no estaba
+
+  # Si no se corta el loop, se agrega un nuevo registro:
+  registro[i] <- pasajeros
+  # Para ir viendo cuánto hay:
+  cat('Parada', i, 'hay', pasajeros, 'pasajeros\n')
+}
+plot(registro, xlab='Parada', ylab='No. de pasajeros')
+```
+
+Sugerencias: (1) la función ``sample`` puede ser útil para simular la subida de pasajeros. (2) Tanto en este como en los siguientes ejercicios, en caso de no estar seguro/a de cómo proceder, puede facilitar mucho la tarea hacer un diagrama de flujo sencillo antes de empezar a escribir código.
+
+```{r, eval = TRUE, echo = FALSE}
+set.seed(11)
+paradas <- 25
+pasajeros <- 0
+registro <- numeric(paradas)
+registro[1] <- pasajeros
+for (i in 1:paradas) {
+  pasajeros <- pasajeros + sample(0:6, 1)
+  if (pasajeros >= 44) {
+    registro[i:paradas] <- 44
+    break
+  }
+  registro[i] <- pasajeros
+}
+```
+
+La siguiente imagen se obtuvo haciendo la simulación, ejecutando previamente ``set.seed(11)`` y luego el comando gráfico:
+
+```{r}
+plot(registro, xlab='Parada', ylab='No. de pasajeros')
+```
+
+- - -
+
+### b. Cambio de loop
+
+Modifique el código de la parte anterior de forma tal que haga lo mismo, pero utilizando un loop ``while``.
+
+Sugerencias: (1) agrege manualmente una variable (p.ej.: ``i``) que sirva para indexar los distintos objetos y recuerde actualizarla en la linea correcta del código y (2) usar un ``if`` posterior al loop puede ser útil para sustituir los ceros del final por 44 en el vector registro (aunque no es de ninguna manera el único método).
+
+Nota: el gráfico que se dió en la parte anterior tamibén aplica para este ejercicio. 
+
+### (``*``) c. Función ``bus``
+
+Modifique el código reparado en la parte **a** para crear una función llamada ``bus`` que ejecute la misma simulación, en la que el número de paradas y capacidad máxima del bus sean los argumentos de la misma. El nombre de estos argumentos son a su elección.
+
+Como salida la función debe devolver simplemente el vector ``registro``.
+
+Nota: recuerde que esta función debe trabajar correctamente para cualquier elección del número de paradas y máximo de pasajeros. En el siguiente ejemplo se muestra un caso que puede servir de referencia:
+
+```{r, eval = TRUE, echo = FALSE}
+bus <- function(paradas = 25, maximo = 44) {
+  pasajeros <- 0
+  registro <- numeric(paradas)
+	registro[1] <- pasajeros
+	for (i in 1:paradas) {
+		pasajeros <- pasajeros + sample(0:6, 1)
+		if (pasajeros >= maximo) {
+			registro[i:paradas] <- maximo
+			cat('Bus lleno!\n')
+			break
+		}
+		registro[i] <- pasajeros
+		cat('Parada', i, 'hay', pasajeros, 'pasajeros\n')
+	}
+	plot(registro, xlab='Parada', ylab='No. de pasajeros')
+	registro
+}
+```
+
+```{r, eval = TRUE}
+set.seed(11)
+# Nro. de paradas = 40
+# Máximo de pasajeros = 80
+x <- bus(40, 80)
+```
+
+- - -
+
+### d. Gente que también baja
+
+Hacer una variante del código (de cualquiera de las partes anteriores) en la que además de subir personas, a partir de la parada 10 se bajen entre 1 y 5 pasajeros por parada. Tanto la subida y la bajada deben ejecutarse **antes** de determinar si se alcanzó el máximo estipulado de pasajeros y por lo tanto si debe dejar de detenerse el bus en las paradas.
+
+Sugerencia: puede ser muy útil hacer un diagrama de flujo sencillo para planificar el código antes de escribirlo.
+
+El siguiente es un ejemplo del resultado de aplicar los cambios que se piden en la función ``bus``:
+
+```{r, eval = TRUE, echo = FALSE}
+bus <- function(paradas = 25, maximo = 44) {
+  pasajeros <- 0
+	registro <- numeric(paradas)
+	registro[1] <- pasajeros
+	for (i in 1:paradas) {
+		pasajeros <- pasajeros + sample(0:6, 1)
+		if (i >= 10)
+			pasajeros <- pasajeros - sample(1:5, 1)
+	  registro[i] <- pasajeros
+		if (pasajeros >= maximo) {
+			registro[i:paradas] <- maximo
+			cat('Bus lleno!\n')
+			break
+		}
+		cat('Parada', i, 'hay', pasajeros, 'pasajeros\n')
+	}
+	plot(registro, xlab='Parada', ylab='No. de pasajeros')
+	registro
+}
+```
+
+```{r, eval = TRUE}
+set.seed(11)
+x <- bus(30, 60)
+```
 

@@ -1,4 +1,4 @@
-## Estructuras de control: el loop 'while'
+## LOOP WHILE:
 
 # Habiendo visto en la lección anterior el uso y ejemplos del loop for, haremos
 # lo propio con el loop 'while', que requiere del cumplimiento de una o más

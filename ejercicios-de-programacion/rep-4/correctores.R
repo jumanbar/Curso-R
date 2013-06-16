@@ -372,7 +372,7 @@ cor1.e <- function() {
 
   pesoline <- grep("sbs.peso", arch[pointsline])
 
-  if (pointsline[pesoline] > pointsline[- pesoline])
+  if (pointsline[pesoline] < pointsline[- pesoline])
     warning("los outliers se grafican antes que los valores de los hombres, a diferencia de la fig. 4", call. = FALSE)
   
   png(tmp <- tempfile())
@@ -394,16 +394,24 @@ cor1.e <- function() {
   }
   cat("vector pchs ... OK\n")
 
-  if (xlim[1] > min(magic$peso))
+  if (xlim[1] > min(magic$peso)) {
+    warning("se utilizó una nueva data.frame magic para la corrección", call. = FALSE)
     stop("el límite inferior en el eje horizonal del gráfico es demasiado alto", call. = FALSE)
-  if (xlim[2] < max(magic$peso))
+  }
+  if (xlim[2] < max(magic$peso)) {
+    warning("se utilizó una nueva data.frame magic para la corrección", call. = FALSE)
     stop("el límite superior en el eje horizonal del gráfico es demasiado bajo", call. = FALSE)
+  }
   cat("vector xlim ... OK\n")
   
-  if (ylim[1] > min(magic$altura ^ 2))
+  if (ylim[1] > min(magic$altura ^ 2)) {
+    warning("se utilizó una nueva data.frame magic para la corrección", call. = FALSE)
     stop("el límite inferior en el eje vertical del gráfico es demasiado alto", call. = FALSE)
-  if (ylim[2] < max(magic$altura ^ 2))
+  }
+  if (ylim[2] < max(magic$altura ^ 2)) {
+    warning("se utilizó una nueva data.frame magic para la corrección", call. = FALSE)
     stop("el límite superior en el eje vertical del gráfico es demasiado bajo", call. = FALSE)
+  }
   cat("vector ylim ... OK\n")
 
   if (ltys[1] == 1)

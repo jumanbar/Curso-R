@@ -118,24 +118,3 @@ for (i in 1:49) {
   posicion[i + 1] <- posicion[i] + moneda[i]
 }
 
-## FOR INEVITABLES
-# En varias ocasiones encontraremos que es realmente inevitable utilizar un loop
-# for. Muchas veces esto ocurre porque en cada iteración es necesario utilizar
-# valores "anteriores" de un vector o matriz. Por ejemplo, si consideramos la
-# conocida serie de Fibonacci, la cual empieza con dos 1 y se calcula cada valor
-# siguiente sumando los dos anteriores.
-
-# Es decir, si f(n) es el enésimo valor de la serie, una forma de describir
-# la serie es (empezando por n = 3):
-# f(n) = f(n - 1) + f(n - 2)
-
-# Los primeros valores son:
-# 0 1 1 2 3 5 8 13 21 34 55 89 ...
-
-# Calculemos los primeros 20 elementos de la serie:
-fibo <- numeric(20)
-fibo[1:2] <- 0:1
-for (n in 3:20) {
-  fibo[n] <- fibo[n - 1] + fibo[n - 2]
-}
-plot(fibo, log='y', type='o')

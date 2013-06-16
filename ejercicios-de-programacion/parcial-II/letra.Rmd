@@ -44,6 +44,7 @@ for (i in 1:paradas) {
     registro[i:paradas] <- 44
     cat('Bus lleno!\n') # Mensaje de aviso...
     break
+  } # <- este no estaba
 
   # Si no se corta el loop, se agrega un nuevo registro:
   registro[i] <- pasajeros

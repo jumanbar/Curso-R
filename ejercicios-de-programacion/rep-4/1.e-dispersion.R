@@ -38,14 +38,28 @@ if (!exists("reg.b"))
 
 #===== Su código comienza aquí: =====#
 
-cols <- c(1, 1, 1)
-pchs <- c(1, 1, 1)
-ltys <- c(NA, NA)
-xlim <- c(0, 0)
-ylim <- c(0, 0)
-sbs.muj  <- !logical(nrow(magic))
-sbs.peso <- !logical(nrow(magic))
-sbs.hom  <- !logical(nrow(magic))
+# cols <- c(1, 1, 1)
+# pchs <- c(1, 1, 1)
+# ltys <- c(NA, NA)
+# xlim <- c(0, 0)
+# ylim <- c(0, 0)
+# sbs.muj  <- !logical(nrow(magic))
+# sbs.peso <- !logical(nrow(magic))
+# sbs.hom  <- !logical(nrow(magic))
+cols <- c('green',"grey","red")
+pchs <- c(20, 19,17)
+ltys <- c(2, 1)
+xlim <- c(min(magic$peso),max(magic$peso))
+ylim <- c(min(magic$altura)^2, max(magic$altura)^2)
+
+sbm<-magic$genero=="mujer"
+sbp<-(magic$peso>=95)
+sbh<-magic$genero=="hombre"
+sbs.muj  <-as.logical(sbm)
+sbs.peso <- as.logical(sbp)
+sbs.hom  <- as.logical(sbh)
+
+
 
 ##!
 
