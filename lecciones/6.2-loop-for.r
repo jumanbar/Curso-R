@@ -224,6 +224,9 @@ fibo(22)
 # calcularlos. Dicho de otra forma, los loops son inevitables para calcular 
 # secuencias definidas por Relaciones de Recurrencia 
 # (https://es.wikipedia.org/wiki/Relaci%C3%B3n_de_recurrencia).
+# Nota: muchas veces estas relaciones de recurrencia también tienen soluciones
+# cerradas, lo que implica que en esos casos tampoco es estrictamente necesario
+# usar un loop (en R) para calcular los valores de la sucesión.
 
 ## LOOPS FOR ANIDADOS:
 
@@ -242,6 +245,7 @@ for (i in 1:nrow(m)) {
 # Como fácilmente se puede comprobar, este código simplemente imprime todos los
 # elementos de la matriz m. Nótese: que la variable i se usa para las filas y 
 # la variable j para las columnas. 
+
 
 ## RESUMEN
 # Hemos visto el tipo de loop más comunmente utilizado en programación. El loop

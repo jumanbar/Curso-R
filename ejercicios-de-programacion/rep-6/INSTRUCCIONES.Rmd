@@ -19,6 +19,51 @@ De otros años:
 
 * Loops con errores: un while que es infinito, un for que tiene mal puesto el rango, ...
 
+- - -
+
+1. Conteos por fila
+-------------------
+
+### 1.a Loop for
+
+Suponga que usted debe regularmente analizar matrices con datos, con cantidades de filas variables y con varios datos faltantes (`NA`s) en ubicaciones imposibles de determinar de antemano. Una de las tareas que se le pide realizar cotidianamente es hacer un conteo de la cantidad de `NA`s *por filas* de la matriz. Para no tener que hacerlo manualmente, usted decide que lo mejor es crear un script de R con el cual hacer este conteo automáticamente.
+
+Para hacer el script lo mejor es usar una matriz de prueba con la cual hacer pruebas. Para esto sirven las siguientes líneas (que también se encuentran en el script del ejercicio):
+
+```{r}
+# Generación de la matriz datos:
+datos <- matrix(rpois(rpois(1, 125) * 15, 43), ncol = 15)
+datos[sample(length(datos), rpois(1, 250))] <- NA
+```
+
+Para lograr su objetivo, usted deberá usar un loop `for`, con el cual completará el vector `out`, el cual contendrá las sumas de `NA`s por filas. Como un mini ejemplo, si su matriz `datos` es la siguiente:
+
+```{r}
+datos <- matrix(sample(100, 16), 4, 4)
+datos[c(1, 3, 7, 8, 11, 13, 14)] <- NA
+datos
+```
+```{r, echo = FALSE}
+out <- apply(datos, 1, function(x) sum(is.na(x)))
+```
+
+Entonces el vector `out` será así:
+```{r}
+out
+```
+
+
+### 1.b Extra: apply
+
+
+
+
+- - -
+
+2. todavía no se bien que
+-------------------------
+
+
 Ejercicio 1: secuencia de Fibonacci
 -----------------------------------
 
