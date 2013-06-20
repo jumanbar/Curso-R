@@ -275,9 +275,13 @@ cor2.c <- function() {
   rb <- out2$reg[v]
   attr(rb[[1]], "names") <- letters[1:length(rb[[1]])]
   ra$ta <- out1$reg[[12]][,1]
+  names(ra$ta) <- NULL
   ra$pc <- out1$reg[[12]][,2]
+  names(ra$pc) <- NULL
   rb$ta <- out2$reg[[12]][,1]
+  names(rb$ta) <- NULL
   rb$pc <- out2$reg[[12]][,2]
+  names(rb$pc) <- NULL
   c1 <- capture.output(out1$reg$call)
   c2 <- capture.output(out2$reg$call)
 
