@@ -26,7 +26,7 @@ De otros años:
 
 ### 1.a Loop for
 
-Suponga que usted debe regularmente analizar matrices de datos, obtenidos en recolecciones sucesivas y diferentes, con cantidades de filas variables. Una de las tareas que se le pide realizar cotidianamente es hacer un conteo de la cantidad de valores mayores a 45 *por cada fila* de la matriz. Para no tener que hacerlo manualmente, usted decide que lo mejor es crear un script de R con el cual hacer este conteo automáticamente.
+Suponga que usted debe analizar regularmente matrices de datos, obtenidos en muestreos sucesivos, con cantidades de filas variables. Una de las tareas que se le pide realizar cotidianamente es hacer un conteo de la cantidad de valores mayores a 45 *por cada fila* de la matriz. Para no tener que hacerlo manualmente, usted decide que lo mejor es crear un script de R con el cual hacer este conteo automáticamente.
 
 Para hacer el script lo mejor es usar una matriz de juguete con la cual hacer pruebas. Para esto sirven las siguientes líneas (que también se encuentran en el script del ejercicio):
 
@@ -42,8 +42,8 @@ datos <- datos[1:5, 1:5]
 datos
 ```
 ```{r, echo = FALSE}
-out <- apply(datos, 1, function(x, a) sum(x > a), a = 45)
 f <- function(x, u) sum(x > u)
+out <- apply(datos, 1, function(x, a) sum(x > a), a = 45)
 ```
 
 Entonces el vector `out` será así:
@@ -53,6 +53,8 @@ out
 ```
 
 (Este es un ejemplo creado con números al azar, por supuesto.)
+
+Nótese que el sistema de corrección espera que haya un `for` en el script (naturalmente) y que la *variable de iteración* (ver lección 6.2) tome como valores **números enteros positivos**.
 
 ### 1.b Extra: apply
 

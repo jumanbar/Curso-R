@@ -1,43 +1,75 @@
 ################################################################################
-## Creación del archivo 'datos' necesario para el repartido de Ejercicios de
-## Programación IV: Estructuras de Control
+### NÚMERO DE REPARTIDO!
+rdir <- basename(getwd())
+nrep <- as.numeric(gsub("[[:alpha:][:punct:]]", "", rdir))
+rep.date <- format(Sys.time(), "%Y-%m-%d %H:%M %Z") # Fecha en que se hizo "datos"
+url.datos <- "http://goo.gl/xgJ4E" # URL acortada para bajar el archivo datos
+if (url.datos == "") stop("FALTA URL.DATOS!")
+url.fecha <- "https://www.dropbox.com/s/yupjqgoe33fdu3c/fecha-datos-rep-5.txt"
+guardar <- c("guardar", "rdir", "nrep", "rep.date", "url.datos", "url.fecha")
+#writeLines(rep.date, paste0("~/Dropbox/IMSER/fecha-datos-", rdir, ".txt"))
+writeLines(rep.date, paste0("~/fecha-datos-", rdir, ".txt"))
+
+# Existe ya el subdir?
+if (!file.exists(rdir))
+  dir.create(rdir)
+
+### BORRAR LOS ARCHIVOS:
+unlink(file.path(rdir, dir(rdir)), recursive = TRUE)
+
+### ARCHIVOS AUXILIARES:
+aux <- c("../evaluar.R", "datos", "INSTRUCCIONES.pdf", "edu.data.RData", "HandbookSpanish.pdf")
+
+### SCRIPTS DE EJERCICIOS:
+# Es importante que un guión separe el número del nombre en sí...
+# Formato:
+# [1-N].[a-z]-[palabra en minúscula, sólo letras].R
+corregir <- c("1-triangulo.R", "2.a-filtroc.R", "2.b-extra-aplicar.R", "2.c-educacion.R", 
+              "3.a-cambia.pares.R", "3.b-radio.R", "3.c-extra-distancias.R")
+corregir <- sort(corregir)
+guardar  <- c(guardar, "corregir", "aux")
+
+### Números de ejercicios
+cor.split <- strsplit(corregir, "-")
+ejnum <- unlist(cor.split)[grepl("^[0-9]", unlist(cor.split))]
+
+### FUNCIONES AUXILIARES:
+source("../auxiliares.R", encoding = "UTF-8")
+guardar <- c(guardar, objetos)
+
+### CORRECTORES
+source("correctores.R", encoding = "UTF-8")
+corAll <- vector("list") # Lista con funciones de corrección
+eval(parse(text = paste0("corAll$cor", ejnum, " <- cor", ejnum)))
+guardar <- c(guardar, "corAll")
+
+### NOTAS
+extras <- ejnum[grep("extra", corregir)]
+# extras <- ''
+oblg <- sum(!(ejnum %in% extras)) # Cuantos són los obligatorios?
+notas <- data.frame(Parte = c(ejnum, 'Total (%)'),
+                    Nota=numeric(length(corregir) + 1),
+                    Script=c(corregir, '--'))
+guardar <- c(guardar, "ejnum", "notas", "extras", "oblg")
+
+### AUXILIAR.RDATA
+# source("make-aux.R", encoding = "UTF-8")
+# aux <- c(aux, "auxiliar.RData")
+
+## Guardando el código:
+codigo <- lapply(corregir, cut.script)
+names(codigo) <- corregir
+class(codigo) <- "codigo"
+guardar <- c(guardar, "codigo")
+
+### El total de los esperados...:
+esperados <- c(aux, corregir) # evaluar.R todavía no!!
+guardar <- c(guardar, "esperados")
+
+### GUARDAR TODO
+guardar <- unique(guardar)
+save(list = guardar, file = 'datos')
+
+file.copy(esperados, rdir, recursive = TRUE)
+
 ################################################################################
-esperados <- c("fibonacci.R", "funcionFibonacci.R", "evaluar.R", "datos", "notas.csv")
-corregir  <- c("fibonacci.R", "funcionFibonacci.R")
-notas <- data.frame(Parte=c('1.a', '1.b', 'Total (%)'), Script=c(corregir, '--'),
-                    Nota=numeric(length(corregir) + 1))
-write.csv2(notas, file='notas.csv', row.names=FALSE)
-oblg  <- 2
-
-fb <- function(n) {
-  f <- numeric(n) + 1
-  f[1] <- 0
-  for (i in 3:n) f[i] <- sum(f[(i - 1):(i - 2)])
-  f
-}
-
-### FUNCIONES DE CORRECCIÓN:
-
-cor_fibonacci <- function(a) {
-  load('datos')
-  source('fibonacci.R')
-  identical(fibo, fb(20)) * 1
-}
-
-cor_funcionFibonacci <- function(a) {
-  load('datos')
-  source('funcionFibonacci.R')
-  r <- 1
-#   n <- sample(10:50, 15, replace=!0)
-  for (i in 3:80) {
-    r <- r * identical(funcionFibonacci(i), fb(i))
-    if (!r)
-      break
-  }
-  r
-}
-
-################################################################################
-guardar <- c('esperados', 'corregir', 'oblg', 'fb', 'guardar', 'cor_fibonacci',
-             'cor_funcionFibonacci', 'notas')
-save(list=guardar, file='datos')

@@ -11,14 +11,12 @@
 
 # Generación de la matriz datos:
 datos <- matrix(rpois(rpois(1, 125) * 15, 43), ncol = 15)
-datos[sample(length(datos), rpois(1, 250))] <- NA
 
 #===== Su código comienza aquí: =====#
 
-out <- 0
-for (  ) {
-  
-}
+f <- 0   # f sería la función (opcional)
+
+out <- 0 # Aquí debe usar la función apply
 
 #===== Su código termina aquí =======#
 

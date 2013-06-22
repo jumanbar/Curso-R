@@ -16,7 +16,7 @@ datos <- matrix(rpois(rpois(1, 125) * 15, 43), ncol = 15)
 #===== Su código comienza aquí: =====#
 
 out <- 0
-for (  ) {
+for (  ) { # Debe usar el rango correcto de números enteros...
   
 }
 
