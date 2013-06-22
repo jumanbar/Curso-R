@@ -1,6 +1,6 @@
 cor1.a() {
   #   load("datos")
-     src("../auxiliares.R")
+  src("../auxiliares.R")
   arch <- cut.script("tmp.R")
   cat("TMP.R!!!!!!!!!!\n")
   #   arch <- cut.script("1.a-loop-for.R")
@@ -33,3 +33,4 @@ cor1.a() {
    
   TRUE
 }
+

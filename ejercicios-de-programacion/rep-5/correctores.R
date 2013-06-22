@@ -1,7 +1,6 @@
 
 ### FUNCIONES DE CORRECCIÓN:
 
-## Ej. 1
 cor1 <- function() {
   load('datos')
 
@@ -193,7 +192,7 @@ cor2.c <- function() {
   d <- edu.data
 
   # Evaluación de la función "educacion":
-  source('2.c-educacion.R', encoding = "UTF-8")
+  source('2.c-educacion.R', encoding = "UTF-8", local=TRUE)
   #   source('tmp.R', encoding = "UTF-8")
 
   if (is.null(formals(educacion)))
@@ -213,11 +212,17 @@ cor2.c <- function() {
     stop(mkmsj.v("los nombres de los argumentos de educacion no son los esperados", f1, f2), call. = FALSE)
   cat("nombres de los argumentos (educacion) ... OK\n")
 
-  pos <- sample(nrow(edu.data), 1)
-  txt <- paste0("edu.data <- edu.data[-", pos, ",]")
+  pos <- sample(nrow(edu.data), 6)
+  col <- sample(ncol(edu.data))
+  nu1 <- paste0(pos[- length(pos)], ",", collapse = " ")
+  post <- paste0("c(", nu1, " ", pos[length(pos)], ")")
+  nu2 <- paste0(col[- length(col)], ",", collapse = " ")
+  colt <- paste0("c(", nu2, " ", col[length(col)], ")")
+  txt <- paste0("edu.data <- edu.data[-", post, ", ", colt, "]")
 
-  cat("alterando la data.frame de entrada:\n>>  ", txt, "\n")
-  d <- d[-pos,]
+  cat("alterando la data.frame de entrada:\n>>  ", txt, 
+      "\n     (al azar se eliminan 6 filas y cambia el orden de las columnas)\n")
+  d <- d[-pos, col]
 
   out1 <- educacion(d)
   out2 <- edu(d)
@@ -258,7 +263,8 @@ cor2.c <- function() {
   cat("dimensiones de out$datos ... OK\n")
 
   if (!all(out1$datos == out2$datos, na.rm = TRUE)) {
-    warning("ej. 2.c: tal vez el orden de las columnas no sea el esperado", call. = FALSE)
+    warning("ej. 2.c: recuerde que la data.frame de entrada fue modificada al azar:\n   ", 
+            "Se eliminan 6 filas y cambia el orden de las columnas.", call. = FALSE)
     msj <- mkmsj.df("la data.frame datos contiene valores diferentes a los esperados",
                     out1$datos, out2$datos)
     stop(msj, call. = FALSE)
