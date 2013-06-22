@@ -18,14 +18,13 @@ if (!file.exists(rdir))
 unlink(file.path(rdir, dir(rdir)), recursive = TRUE)
 
 ### ARCHIVOS AUXILIARES:
-aux <- c("../evaluar.R", "datos", "INSTRUCCIONES.pdf", "edu.data.RData", "HandbookSpanish.pdf")
+aux <- c("../evaluar.R", "datos", "INSTRUCCIONES.pdf")
 
 ### SCRIPTS DE EJERCICIOS:
 # Es importante que un guión separe el número del nombre en sí...
 # Formato:
 # [1-N].[a-z]-[palabra en minúscula, sólo letras].R
-corregir <- c("1-triangulo.R", "2.a-filtroc.R", "2.b-extra-aplicar.R", "2.c-educacion.R", 
-              "3.a-cambia.pares.R", "3.b-radio.R", "3.c-extra-distancias.R")
+corregir <- c("1.a-loop-for.R", "1.b-extra-apply.R")
 corregir <- sort(corregir)
 guardar  <- c(guardar, "corregir", "aux")
 

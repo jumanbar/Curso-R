@@ -14,9 +14,10 @@ datos <- matrix(rpois(rpois(1, 125) * 15, 43), ncol = 15)
 
 #===== Su código comienza aquí: =====#
 
-f <- 0   # f sería la función (opcional)
+f <- function(x, u)   # f sería la función (opcional)
+  sum(x > u)
 
-out <- 0 # Aquí debe usar la función apply
+out <- apply(datos, 1, f, u = 45) # Aquí debe usar la función apply
 
 #===== Su código termina aquí =======#
 

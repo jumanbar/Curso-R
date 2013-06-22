@@ -55,9 +55,35 @@ cor1.a <- function() {
 
 cor1.b <- function() {
   load("datos")
-  src("../auxiliares.R")
-  arch <- cut.script("tmp.R")
-  cat("TMP.R!!!!!!!!!!\n")
-  #   arch <- cut.script("1.b-loop-for.R")
+  #   src("../auxiliares.R")
+  #   arch <- cut.script("tmp.R")
+  #   cat("TMP.R!!!!!!!!!!\n")
+  arch <- cut.script("1.b-extra-apply.R")
 
+  cat(">> Creando una nueva matriz 'datos' para la corrección:\n")
+  datos <- matrix(rpois(rpois(1, 125) * 15, 43), ncol = 15)
+  datos[sample(length(datos), 1)] <- 45
+  parsed <- parse(text = arch)
+  ddatos <- dim(datos)
+
+  cat(">> dimensiones de la matriz creada:", paste0(ddatos, collapse = " x "), "\n")
+
+  if (any(c(grepl("while", arch), grepl("for", arch))))
+    stop("la/s función/es while y/o apply figuran en su código, lo cual no está permitido", call. = FALSE)
+  cat("¿while o for? ... OK\n")
+
+  if (!any(grepl("apply", arch)))
+    stop("la función apply no se encuentra en su código", call. = FALSE)
+  cat("¿apply en el código? ... OK\n")
+
+  outX <- apply(datos, 1, function(x) sum(x > 45))
+
+  eval(parsed)
+  if (!all(out == outX)) {
+    msj <- mkmsj.v("los valores del vector out difieren de lo esperado", out, outX)
+    stop(msj, call. = FALSE)
+  }
+  cat("valores de out ... OK\n")
+
+  TRUE
 }
