@@ -5,10 +5,6 @@ Ejercicio de programación VI: Estructuras de Control
 
 De otros años:
 
-* Ejercicio de programación:
-  - for: hacer un script que cuente por fila de una matriz la cantidad de elementos que cumplan una condición (mayores que 0, por ejemplo)
-  - complementar con un ej. extra que haga lo mismo pero usando apply
-
 * Cambiar parte d del útimo parcial: si el bus tiene el máximo de pasajeros no sube a más nadie y si tiene el mínimo (0) no baja nadie.
 
 * Crecimiento exponencial ...?
@@ -67,8 +63,67 @@ Para completar el ejercicio deberá simplemente usar `apply` para lograr el mism
 2. todavía no se bien que
 -------------------------
 
+### 2.a Zenón recargado
 
+Hacer un while para encontrar el n para un valor arbitrario de $\varepsilon$, siguiendo las directivas del ejercicio de zenon.R
 
+Como seguramente recordará, en el Repartido I se propuso calcular la serie que representa a la [paradoja de Zenón](https://es.wikipedia.org/wiki/Paradojas_de_Zen%C3%B3n#La_dicotom.C3.ADa), cuyo valor para el enésimo elemento se definió como:
+
+$$
+  Z_n = \sum_{i=1}^{i=n} \frac{1}{2 ^ i} \;=\;
+  \frac{1}{2 ^ 1} + \frac{1}{2 ^ 2} + \frac{1}{2 ^ 3} + ... + \frac{1}{2 ^ n} \;=\;
+  \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + ... + \frac{1}{2 ^ n}
+$$
+
+En R, el valor de $Z_n$ se puede obtener con las siguientes líneas de código:
+
+```{r}
+n <- 20 # El n puede ser cualquiera en verdad...
+Zn <- sum(1 / (2 ^ (1:n)))
+```
+
+En ocasión de aquel primer repartido, el objetivo era encontrar el mínimo `n` que cumpliera la desigualdad $1 - Z_n < \varepsilon$, siendo $\varepsilon = 10 ^ {-6}$. El único método con que contaba en ese momento era manualmente cambiar el valor de `n` aumentando en una unidad, ejecutar el código y determinar manualmente si cumplía tal condición (para repetir el proceso en caso de que de no hacerlo). Sin embargo con las herramientas que usted a aprendido en esta unidad es posible ver que se pueden automatizar estos procedimientos, e incluso generalizarlo para cualquier $\varepsilon$. Este es el objetivo de este ejercicio.
+
+Para esto usted deberá usar el loop `while`, ya que es (en principio) el más adecuado para esta tarea, pues no sabemos de antemano cual va a ser el `n` "correcto". Además recuerde que el loop `while` necesita que se cumpla una condición para continuar su ejecución, tal como el procedimiento de encontrar el `n` correcto.
+
+El siguiente es la salida en la consola para el caso de `epsilon <- 5e-2`:
+
+```{r, echo = FALSE}
+n <- 1
+Zn <- sum(1 / (2 ^ (1:n)))
+epsilon <- 5e-2
+while (abs(1 - Zn) >= epsilon) {
+  n <- n + 1
+  Zn <- sum(1 / (2 ^ (1:n)))
+  cat("n =", n, "- Zn =", Zn, "\n")
+}
+```
+
+**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad y **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** debe utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
+
+### 2.b Guardar los valores
+
+Puede usar for o while, da lo mismo
+
+```{r, echo = FALSE, fig.cap = "Serie de Zenón, con n = 5"}
+n <- 1
+Zn <- sum(1 / (2 ^ (1:n)))
+epsilon <- 5e-2
+Z <- numeric(1e3)
+Z[n] <- Zn
+while (abs(1 - Zn) >= epsilon) {
+  n <- n + 1
+  Zn <- sum(1 / (2 ^ (1:n)))
+  cat("n =", n, "- Zn =", Zn, "\n")
+  Z[n] <- Zn
+}
+n
+1 - Zn 
+Z <- Z[1:n]
+plot(Z, xlab = "n", ylab = expression(Z[n]), type = "o", pch = 19, ylim = c(0.5, 1))
+```
+
+Nota: en el ejemplo de
 - - -
 
 Parcial II
@@ -106,10 +161,10 @@ Código fuente:
 # Preparación:
 paradas <- 25
 pasajeros <- 0
-
+## <<
 registro[1] <- pasajeros
 for (i in 1:paradas) {
-
+  ## <<
   # A ver si no se llenó:
   if (pasajeros >= 44) {
     # Ajuste por si llega a 44 antes de terminar:
@@ -117,7 +172,7 @@ for (i in 1:paradas) {
     cat('Bus lleno!\n') # Mensaje de aviso...
     break
   } # <- este no estaba
-
+  ## <<
   # Si no se corta el loop, se agrega un nuevo registro:
   registro[i] <- pasajeros
   # Para ir viendo cuánto hay:

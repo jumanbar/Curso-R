@@ -3,12 +3,11 @@
 rdir <- basename(getwd())
 nrep <- as.numeric(gsub("[[:alpha:][:punct:]]", "", rdir))
 rep.date <- format(Sys.time(), "%Y-%m-%d %H:%M %Z") # Fecha en que se hizo "datos"
-url.datos <- "http://goo.gl/xgJ4E" # URL acortada para bajar el archivo datos
+url.datos <- "http://goo.gl/wc89k" # URL acortada para bajar el archivo datos
 if (url.datos == "") stop("FALTA URL.DATOS!")
-url.fecha <- "https://www.dropbox.com/s/yupjqgoe33fdu3c/fecha-datos-rep-5.txt"
+url.fecha <- "https://www.dropbox.com/s/sos106yhuitq5cf/fecha-datos-rep-6.txt"
 guardar <- c("guardar", "rdir", "nrep", "rep.date", "url.datos", "url.fecha")
-#writeLines(rep.date, paste0("~/Dropbox/IMSER/fecha-datos-", rdir, ".txt"))
-writeLines(rep.date, paste0("~/fecha-datos-", rdir, ".txt"))
+writeLines(rep.date, paste0("~/Dropbox/IMSER/fecha-datos-", rdir, ".txt"))
 
 # Existe ya el subdir?
 if (!file.exists(rdir))

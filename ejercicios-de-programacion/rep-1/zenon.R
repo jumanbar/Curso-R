@@ -7,7 +7,7 @@
 
 # Objetos a obtener:
 # n: tiene asignado un valor de 3 para empezar, pero usted lo deberá cambiar 
-# para lograr el objetivo del problema (usando siempre valores enteros y positivos).
+#    para lograr el objetivo del problema (usando siempre valores enteros y positivos).
 # e: representa los exponentes de cada término en la fórmula en de la letra (es
 #    decir, 1, 2, 3, etc.. hasta n).
 # s: vector final que se va a usar para la sumatoria
@@ -24,3 +24,4 @@ s <- 0
 out <- 0
 
 #====== Aquí finaliza su código =====#
+

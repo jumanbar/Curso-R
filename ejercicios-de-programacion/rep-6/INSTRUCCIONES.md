@@ -5,10 +5,6 @@ Ejercicio de programación VI: Estructuras de Control
 
 De otros años:
 
-* Ejercicio de programación:
-  - for: hacer un script que cuente por fila de una matriz la cantidad de elementos que cumplan una condición (mayores que 0, por ejemplo)
-  - complementar con un ej. extra que haga lo mismo pero usando apply
-
 * Cambiar parte d del útimo parcial: si el bus tiene el máximo de pasajeros no sube a más nadie y si tiene el mínimo (0) no baja nadie.
 
 * Crecimiento exponencial ...?
@@ -26,33 +22,32 @@ De otros años:
 
 ### 1.a Loop for
 
-Suponga que usted debe regularmente analizar matrices con datos, con cantidades de filas variables y con varios datos faltantes (`NA`s) en ubicaciones imposibles de determinar de antemano. Una de las tareas que se le pide realizar cotidianamente es hacer un conteo de la cantidad de `NA`s *por filas* de la matriz. Para no tener que hacerlo manualmente, usted decide que lo mejor es crear un script de R con el cual hacer este conteo automáticamente.
+Suponga que usted debe analizar regularmente matrices de datos, obtenidos en muestreos sucesivos, con cantidades de filas variables. Una de las tareas que se le pide realizar cotidianamente es hacer un conteo de la cantidad de valores mayores a 45 *por cada fila* de la matriz. Para no tener que hacerlo manualmente, usted decide que lo mejor es crear un script de R con el cual hacer este conteo automáticamente.
 
-Para hacer el script lo mejor es usar una matriz de prueba con la cual hacer pruebas. Para esto sirven las siguientes líneas (que también se encuentran en el script del ejercicio):
+Para hacer el script lo mejor es usar una matriz de juguete con la cual hacer pruebas. Para esto sirven las siguientes líneas (que también se encuentran en el script del ejercicio):
 
 
 ```r
 # Generación de la matriz datos:
 datos <- matrix(rpois(rpois(1, 125) * 15, 43), ncol = 15)
-datos[sample(length(datos), rpois(1, 250))] <- NA
 ```
 
 
-Para lograr su objetivo, usted deberá usar un loop `for`, con el cual completará el vector `out`, el cual contendrá las sumas de `NA`s por filas. Como un mini ejemplo, si su matriz `datos` es la siguiente:
+Para lograr su objetivo, usted deberá usar un loop `for`, con el cual completará el vector `out`, el cual contendrá las sumas de valores mayores a 45 por filas. Como un mini ejemplo, si su matriz `datos` es la siguiente:
 
 
 ```r
-datos <- matrix(sample(100, 16), 4, 4)
-datos[c(1, 3, 8, 11, 13, 14)] <- NA
+datos <- datos[1:5, 1:5]
 datos
 ```
 
 ```
-##      [,1] [,2] [,3] [,4]
-## [1,]   NA   79   93   NA
-## [2,]   63   76   32   NA
-## [3,]   NA   45   NA   58
-## [4,]   19   NA   88   22
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,]   41   49   38   44   45
+## [2,]   37   45   49   40   37
+## [3,]   38   35   38   43   47
+## [4,]   37   51   43   35   39
+## [5,]   43   49   38   41   44
 ```
 
 
@@ -60,67 +55,93 @@ datos
 
 Entonces el vector `out` será así:
 
+
 ```r
 out
 ```
 
 ```
-## [1] 2 1 2 1
+## [1] 1 1 1 1 1
 ```
 
 
+(Este es un ejemplo creado con números al azar, por supuesto.)
+
+Nótese que el sistema de corrección espera que haya un `for` en el script (naturalmente) y que la *variable de iteración* (ver lección 6.2) tome como valores **números enteros positivos**.
 
 ### 1.b Extra: apply
 
+Luego de hacer el script del ejercicio 1.a, usted se da cuenta que lo mismo se puede hacer y de forma "más elegante" con una función `apply`. Para esto usted deduce que debe crear una función propia capaz de contar la cantidad de valores mayores a 45 (o a un valor variable, si usted lo prefiere) de un vector numérico cualquiera y luego aplicar esta función con `apply` a todas las filas de `datos` (note que cada fila es un vector cuando se las trata por separado).
 
+Para completar el ejercicio deberá simplemente usar `apply` para lograr el mismo vector `out` que en el ejercicio 1.a.
 
+- - -
 
+2. todavía no se bien que
+-------------------------
 
-Ejercicio 1: secuencia de Fibonacci
------------------------------------
+### 2.a Zenón recargado
 
-Ideada por el matemático italiano [Fibonacci](https://es.wikipedia.org/wiki/Fibonacci), la serie homónima se trata de una secuencia de números creada con una regla muy simple. Se trata simplemente de sumar los dos números anteriores para generar el siguiente, comenzando por el 0 y el 1. Así el tercer número es 1 = 1 + 0, el cuarto número es 2 = 1 + 1, el quinto número es 3 = 2 + 1, etc. Matemáticamente se puede describir como una secuencia $S$ que sigue la siguiente ecuación:
+Hacer un while para encontrar el n para un valor arbitrario de $\varepsilon$, siguiendo las directivas del ejercicio de zenon.R
+
+Como seguramente recordará, en el Repartido I se propuso calcular la serie que representa a la [paradoja de Zenón](https://es.wikipedia.org/wiki/Paradojas_de_Zen%C3%B3n#La_dicotom.C3.ADa), cuyo valor para el enésimo elemento se definió como:
 
 $$
-  S_i = S_{i - 1} + S_{i - 2}
+  Z_n = \sum_{i=1}^{i=n} \frac{1}{2 ^ i} \;=\;
+  \frac{1}{2 ^ 1} + \frac{1}{2 ^ 2} + \frac{1}{2 ^ 3} + ... + \frac{1}{2 ^ n} \;=\;
+  \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + ... + \frac{1}{2 ^ n}
 $$
 
-y agregando la condición de que los valores iniciales $S_0$ y $S_1$ equivalen a 1. Así los primeros 10 números de la secuencia de Fibonacci son: 0, 1, 1, 2, 3, 5, 8, 13, 21 y 34.
-
-### 1a. Calcular los valores del $S_0$ al $S_{20}$.
-
-En este ejercicio usted deberá trabajar modificando el archivo `fibonacci.R`. En el mismo usted encontrará que el vector `fibo` es el designado para guardar los primeros 20 elementos de la secuencia. Para lograr hacer esta secuencia usted tendrá que crear un loop del tipo `for` con el número correcto de iteraciones. No olvide considerar que los primeros dos elementos de la secuencia ya están agregados al vector `fibo` a la hora de determinar el número de iteraciones así como los valores de `i` inicial e `i` final.
-
-Puede comprobar que su resultado es correcto comparando la siguiente imagen, generada con los comandos:
-
-
+En R, el valor de $Z_n$ se puede obtener con las siguientes líneas de código:
 
 
 ```r
-i <- 0:19
-plot(fibo ~ i, main = "Secuencia de Fibonacci", ylab = expression(S[i]), xlab = "i")
-```
-
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
-
-
-### 1b. Crear una función genérica
-
-En esta parte del ejercicio usted trabajará modificando el archivo `funcionFibonacci.R`. El objetivo de este archivo es crear una función que calcule la secuencia de Fibonacci para una cantidad de números arbitraria. Tome en cuenta que el código es casi idéntico al contenido en el archivo `fibonacci.R`, pero debe ser modificado estratégicamente para que el argumento `n` modifique el resultado final.
-
-Si usted ha modificado correctamente el archivo `funcionFibonacci.R` entonces el siguiente comando debería devolver el resultado que se muestra aquí:
-
-
-
-```r
-funcionFibonacci(13)
-```
-
-```
-##  [1]   0   1   1   2   3   5   8  13  21  34  55  89 144
+n <- 20  # El n puede ser cualquiera en verdad...
+Zn <- sum(1/(2^(1:n)))
 ```
 
 
+En ocasión de aquel primer repartido, el objetivo era encontrar el mínimo `n` que cumpliera la desigualdad $1 - Z_n < \varepsilon$, siendo $\varepsilon = 10 ^ {-6}$. El único método con que contaba en ese momento era manualmente cambiar el valor de `n` aumentando en una unidad, ejecutar el código y determinar manualmente si cumplía tal condición (para repetir el proceso en caso de que de no hacerlo). Sin embargo con las herramientas que usted a aprendido en esta unidad es posible ver que se pueden automatizar estos procedimientos, e incluso generalizarlo para cualquier $\varepsilon$. Este es el objetivo de este ejercicio.
+
+Para esto usted deberá usar el loop `while`, ya que es (en principio) el más adecuado para esta tarea, pues no sabemos de antemano cual va a ser el `n` "correcto". Además recuerde que el loop `while` necesita que se cumpla una condición para continuar su ejecución, tal como el procedimiento de encontrar el `n` correcto.
+
+El siguiente es la salida en la consola para el caso de `epsilon <- 5e-2`:
+
+
+```
+## n = 2 - Zn = 0.75 
+## n = 3 - Zn = 0.875 
+## n = 4 - Zn = 0.9375 
+## n = 5 - Zn = 0.9688
+```
+
+
+*Recuerde que*: **1.** en cada iteración `n` debe aumentar en una unidad y **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** debe utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
+
+### 2.b Guardar los valores
+
+Puede usar for o while, da lo mismo
+
+
+```
+## n = 2 - Zn = 0.75 
+## n = 3 - Zn = 0.875 
+## n = 4 - Zn = 0.9375 
+## n = 5 - Zn = 0.9688
+```
+
+```
+## [1] 5
+```
+
+```
+## [1] 0.03125
+```
+
+![Serie de Zenón, con n = 5](figure/unnamed-chunk-7.png) 
+
+
+Nota: en el ejemplo de
 - - -
 
 Parcial II
@@ -159,11 +180,10 @@ Código fuente:
 # Preparación:
 paradas <- 25
 pasajeros <- 0
-
+## <<
 registro[1] <- pasajeros
 for (i in 1:paradas) {
-    
-    # A ver si no se llenó:
+    ## << A ver si no se llenó:
     if (pasajeros >= 44) 
         {
             # Ajuste por si llega a 44 antes de terminar:
@@ -171,8 +191,7 @@ for (i in 1:paradas) {
             cat("Bus lleno!\n")  # Mensaje de aviso...
             break
         }  # <- este no estaba
-    
-    # Si no se corta el loop, se agrega un nuevo registro:
+    ## << Si no se corta el loop, se agrega un nuevo registro:
     registro[i] <- pasajeros
     # Para ir viendo cuánto hay:
     cat("Parada", i, "hay", pasajeros, "pasajeros\n")
@@ -193,7 +212,7 @@ La siguiente imagen se obtuvo haciendo la simulación, ejecutando previamente ``
 plot(registro, xlab = "Parada", ylab = "No. de pasajeros")
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11.png) 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10.png) 
 
 
 - - -
@@ -262,7 +281,7 @@ x <- bus(40, 80)
 ## Bus lleno!
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
 
 
 - - -
@@ -317,6 +336,6 @@ x <- bus(30, 60)
 ## Parada 30 hay 15 pasajeros
 ```
 
-![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
 
 

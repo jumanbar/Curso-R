@@ -23,11 +23,9 @@ epsilon <- 1e-6
 
 #===== Su código comienza aquí: =====#
 
-n <- 1
-Zn <- sum(1 / (2 ^ (1:n)))
-while (1 - Zn > epsilon) {
-  n <- n + 1
-  Zn <- sum(1 / (2 ^ (1:n)))
+while (   ) {
+  
+
 
   # Esto es para mostrar el progreso en la consola:
   cat("n =", n, "- Zn =", Zn, "\n")

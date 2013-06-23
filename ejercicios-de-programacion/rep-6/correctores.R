@@ -19,6 +19,10 @@ cor1.a <- function() {
     stop("la/s función/es while y/o apply figuran en su código, lo cual no está permitido", call. = FALSE)
   cat("¿while o apply? ... OK\n")
 
+  if (!any(grepl("for", arch)))
+    stop("la función for no se encuentra en su código", call. = FALSE)
+  cat("¿for en el código? ... OK\n")
+
   fline <- grep("for", arch)
   eval(parsed[1:(fline - 1)])
 
@@ -69,7 +73,7 @@ cor1.b <- function() {
   cat(">> dimensiones de la matriz creada:", paste0(ddatos, collapse = " x "), "\n")
 
   if (any(c(grepl("while", arch), grepl("for", arch))))
-    stop("la/s función/es while y/o apply figuran en su código, lo cual no está permitido", call. = FALSE)
+    stop("la/s función/es while y/o for figuran en su código, lo cual no está permitido", call. = FALSE)
   cat("¿while o for? ... OK\n")
 
   if (!any(grepl("apply", arch)))
@@ -84,6 +88,76 @@ cor1.b <- function() {
     stop(msj, call. = FALSE)
   }
   cat("valores de out ... OK\n")
+
+  TRUE
+}
+
+cor2.a <- function() {
+  load("datos")
+  #   arch <- cut.script("2.a-zenon-recargado.R")
+  src("../auxiliares.R")
+  arch <- cut.script("tmp.R")
+  arch <- arch[!grepl("cat\\(", arch)]
+  cat("TMP.R!!!!!!!!!!\n")
+  wlogic <- grepl("while", arch)
+  wline <- arch[wlogic]
+
+  if (!any(wlogic))
+    stop("la función while no se encuentra en su código", call. = FALSE)
+  cat("¿while en el código? ... OK\n")
+
+  if (!grepl("epsilon", wline))
+    stop("la variable epsilon no aparece en la condición del while", call. = FALSE)
+  cat("¿epsilon en condición del while? ... OK\n")
+
+  if (any(grepl("epsilon", arch[!wlogic])))
+    stop("la variable epsilon sólo puede ser usada en la condición del while", call. = FALSE)
+  cat("¿epsilon afuera de condición while? ... OK\n")
+
+  epsilon <- sample(1:5, 1) * 10 ^ (- sample(4:6, 1))
+  epsci <- format(epsilon, scientific = TRUE)
+  cat(">> epsilon tomado para la corrección:", epsci, "\n")
+  arch <- gsub("epsilon", epsci, arch)
+  parsed <- parse(text = arch)
+  parsed
+
+  if (any(c(grepl("apply", arch), grepl("for", arch))))
+    stop("la/s función/es apply y/o for figuran en su código, lo cual no está permitido", call. = FALSE)
+  cat("¿apply o for? ... OK\n")
+
+  nX <- 1
+  ZnX <- sum(1 / (2 ^ (1:nX)))
+  while (1 - ZnX > epsilon) {
+    nX <- nX + 1
+    ZnX <- sum(1 / (2 ^ (1:nX)))
+  }
+
+  eval(parsed)
+
+  if (n != nX) {
+    msj <- mkmsj("para el epsilon usado (", epsci, ") el valor de n no es el esperado", n, nX)
+    stop(msj, call. = FALSE)
+  }
+  cat("valor de n ... OK\n")
+
+  if (abs(Zn - ZnX) > 1e-8) {
+    msj <- mkmsj("para el epsilon usado (", epsci, ") el valor de Zn no es el esperado", Zn, ZnX, 1e-8)
+    stop(msj, call. = FALSE)
+  }
+  cat("valor de Zn ... OK\n")
+
+  Zbackup <- Zn
+  Zn <- - sample(1:9, 1)
+  #   ab <- "1 - Zn >= epsilon"
+  aa <- strsplit(wline, "\\(")[[1]][2]
+  ab <- strsplit(aa, "\\)")[[1]][1]
+  ab <- gsub("epsilon", 1 - Zn, ab)
+  geq <- eval(parse(text = ab)) # si TRUE, está bien, si no está mal
+
+  if (!geq) {
+    stop("la condición del while no es la correcta, tal vez por usar un operador relacional incorrecto", 
+         call. = FALSE)
+  }
 
   TRUE
 }
