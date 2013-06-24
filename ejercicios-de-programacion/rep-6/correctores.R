@@ -99,44 +99,34 @@ cor2.a <- function() {
   load("datos")
   arch <- cut.script("2.a-zenon-recargado.R")
   arch <- arch[!grepl("cat\\(", arch)]
-  wlogic <- grepl("\\bwhile\\b", arch)
-  wnumb <- grep("\\bwhile\\b", arch)
-  wline <- arch[wlogic]
-  notwh <- arch[!wlogic]
+  whlog <- grepl("\\bwhile\\b", arch)
+  whnum <- grep("\\bwhile\\b", arch)
+  whlin <- arch[whlog]
+  notwh <- arch[!whlog]
 
-  if (!any(wlogic))
+  if (!any(whlog))
     stop("la función while no se encuentra en su código", call. = FALSE)
   cat("¿while en el código? ... OK\n")
 
-  if (wnumb == 1)
-    warning("El loop no parece tener líneas de 'Preparación'", call. = FALSE)
-  cat("¿Preparación?\n")
+  if (whnum == 1)
+    stop("El código no parece tener líneas de 'Preparación' para el loop", call. = FALSE)
+  cat("¿Preparación? ... OK\n")
 
-  #   first <- TRUE
-  #   arch <- c("X <- 1", 
-  #             arch[1:wnumb], 
-  #             "l1 <- !exists('n') || n != 1", 
-  #             "l2 <- !exists('Zn') || abs(Zn - .5) > 1e-8", 
-  #             "if ((l1 || l2) && first) {", 
-  #             "warning('ej. 2.a: es posible que la preparación del loop esté incompleta', call. = FALSE)",
-  #             "}",
-  #             "first <- FALSE",
-  #             "X <- X + 1",
-  #             "if (X > 1e3)",
-  #             "stop('el loop ha hecho más de 1000 iteraciones y se ha detenido forzosamente', call. = FALSE)",
-  #             arch[(wnumb + 1):length(arch)])
+  dowarn <- function()
+    warning("ej. 2.a: tal vez los objetos n y/o Zn o bien no están definidos", 
+            "o tienen valores incorrectos antes de iniciar el loop", call. = FALSE)
   arch <- c("X <- 1", 
-            arch[1:(wnumb - 1)],
+            arch[1:(whnum - 1)],
             "l1 <- !exists('n') || n != 1", 
             "l2 <- !exists('Zn') || abs(Zn - .5) > 1e-8", 
             "if (l1 || l2) dowarn()", 
-            arch[wnumb], 
+            arch[whnum], 
             "X <- X + 1",
             "if (X > 1e3)",
             "stop('el loop ha hecho más de 1000 iteraciones y se ha detenido forzosamente', call. = FALSE)",
-            arch[(wnumb + 1):length(arch)])
+            arch[(whnum + 1):length(arch)])
 
-  if (!grepl("\\bepsilon\\b", wline))
+  if (!grepl("\\bepsilon\\b", whlin))
     stop("la variable epsilon no aparece en la condición del while", call. = FALSE)
   cat("¿epsilon en condición del while? ... OK\n")
 
@@ -144,7 +134,8 @@ cor2.a <- function() {
     stop("la variable epsilon sólo puede ser usada en la condición del while", call. = FALSE)
   cat("¿epsilon afuera de condición while? ... OK\n")
 
-  epsilon <- sample(1:5, 1) * 10 ^ (- sample(4:6, 1))
+  #   epsilon <- sample(1:5, 1) * 10 ^ (- sample(4:6, 1))
+  epsilon <- round(runif(1), 2) * 10 ^ (- sample(4:6, 1))
   epsci <- format(epsilon, scientific = TRUE)
   cat(">> epsilon tomado para la corrección:", epsci, "\n")
   arch <- gsub("epsilon", epsci, arch)
@@ -179,7 +170,7 @@ cor2.a <- function() {
   Zbackup <- Zn
   Zn <- - sample(1:9, 1)
   #   ab <- "1 - Zn >= epsilon"
-  aa <- strsplit(wline, "\\(")[[1]][2]
+  aa <- strsplit(whlin, "\\(")[[1]][2]
   ab <- strsplit(aa, "\\)")[[1]][1]
   ab <- gsub("epsilon", 1 - Zn, ab)
   geq <- eval(parse(text = ab)) # si TRUE, está bien, si no está mal
@@ -202,35 +193,37 @@ cor2.b <- function() {
   load("datos")
   #   arch <- cut.script("2.a-zenon-recargado.R")
 
-  wlogic <- grepl("\\bwhile\\b", arch)
-  wnumb <- grep("\\bwhile\\b", arch)
-  wline <- arch[wlogic]
-  notwh <- arch[!wlogic]
+  whlog <- grepl("\\bwhile\\b", arch)
+  whnum <- grep("\\bwhile\\b", arch)
+  whlin <- arch[whlog]
+  notwh <- arch[!whlog]
 
-  if (!any(wlogic))
+  if (!any(whlog))
     stop("la función while no se encuentra en su código", call. = FALSE)
   cat("¿while en el código? ... OK\n")
 
-  if (wnumb == 1)
+  if (whnum == 1)
     stop("El código no parece tener líneas de 'Preparación' para el loop", call. = FALSE)
-  cat("¿Preparación?\n")
+  cat("¿Preparación? ... OK\n")
 
   dowarn <- function()
-    warning("ej. 2.a: los objetos n y/o Zn o bien no están definidos, o tienen valores ",
-            "incorrectos antes de iniciar el loop", call. = FALSE)
+    warning("ej. 2.b: tal vez los objetos n, Zn y/o Z o bien no están definidos", 
+            "o tienen valores incorrectos antes de iniciar el loop", call. = FALSE)
 
+  # Preparación: Z inicial 
   arch <- c("X <- 1", 
-            arch[1:(wnumb - 1)],
+            arch[1:(whnum - 1)],
             "l1 <- !exists('n') || n != 1", 
             "l2 <- !exists('Zn') || abs(Zn - .5) > 1e-8", 
-            "if (l1 || l2) dowarn()", 
-            arch[wnumb], 
+            "l3 <- !exists('Z') || abs(Z[1] - .5) > 1e-8", 
+            "if (l1 || l2 || l3) dowarn()", 
+            arch[whnum], 
             "X <- X + 1",
             "if (X > 1e3)",
             "stop('el loop ha hecho más de 1000 iteraciones y se ha detenido forzosamente', call. = FALSE)",
-            arch[(wnumb + 1):length(arch)])
+            arch[(whnum + 1):length(arch)])
 
-  if (!grepl("\\bepsilon\\b", wline))
+  if (!grepl("\\bepsilon\\b", whlin))
     stop("la variable epsilon no aparece en la condición del while", call. = FALSE)
   cat("¿epsilon en condición del while? ... OK\n")
 
@@ -238,7 +231,7 @@ cor2.b <- function() {
     stop("la variable epsilon sólo puede ser usada en la condición del while", call. = FALSE)
   cat("¿epsilon afuera de condición while? ... OK\n")
 
-  epsilon <- sample(1:5, 1) * 10 ^ (- sample(4:6, 1))
+  epsilon <- round(runif(1), 2) * 10 ^ (- sample(4:6, 1))
   epsci <- format(epsilon, scientific = TRUE)
   cat(">> epsilon tomado para la corrección:", epsci, "\n")
   arch <- gsub("epsilon", epsci, arch)
@@ -253,13 +246,25 @@ cor2.b <- function() {
     ZnX <- sum(1 / (2 ^ (1:nX)))
     ZX[nX] <- ZnX
     # Esto es para mostrar el progreso en la consola:
-    cat("nX =", nX, "- ZnX =", ZnX, "\nX")
   }
   ZX <- ZX[1:nX]
-  # Preparación: Z inicial 
 
-  # Loop: Z[n]
   # Final: Z
+  eval(parsed)
+
+  if (length(Z) != length(ZX))
+    warning(mkmsj("ej. 2.b: la longitud de Z no es la esperada", length(Z), length(ZX)), call. = FALSE)
+
+  if (Z[length(Z)] == 0)
+    stop("el último valor de Z es 0", call. = FALSE)
+  cat("ultimo valor de Z != 0 ... OK\n")
+
+  if (!all(abs(Z - ZX) < 1e-8)) {
+    msj <- mkmsj.v("Los valores de Z difieren de los esperados", Z, ZX)
+    stop(msj, call. = FALSE)
+  }
+  cat("todos los valores de Z ... OK\n")
 
   TRUE
 }
+

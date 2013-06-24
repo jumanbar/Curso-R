@@ -60,8 +60,8 @@ Para completar el ejercicio deberá simplemente usar `apply` para lograr el mism
 
 - - -
 
-2. todavía no se bien que
--------------------------
+2. Una vez más, Zenón
+---------------------
 
 ### 2.a Zenón recargado
 
@@ -77,7 +77,7 @@ $$
 
 En R, el valor de $Z_n$ se puede obtener con las siguientes líneas de código:
 
-```{r}
+```{r, eval = FALSE}
 n <- 20 # El n puede ser cualquiera en verdad...
 Zn <- sum(1 / (2 ^ (1:n)))
 ```
@@ -86,7 +86,7 @@ En ocasión de aquel primer repartido, el objetivo era encontrar el mínimo `n` 
 
 Para esto usted deberá usar el loop `while`, ya que es (en principio) el más adecuado para esta tarea, pues no sabemos de antemano cual va a ser el `n` "correcto". Además recuerde que el loop `while` necesita que se cumpla una condición para continuar su ejecución, tal como el procedimiento de encontrar el `n` correcto.
 
-La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2`:
+La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2` y empezando con `n <- 1` (aunque no lo muestre en la salida): 
 
 ```{r, echo = FALSE}
 n <- 1
@@ -99,11 +99,13 @@ while (abs(1 - Zn) >= epsilon) {
 }
 ```
 
-**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad, **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** debe utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
+**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad, **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** es lo mejor utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
 
 ### 2.b Guardar los valores
 
-Puede usar for o while, da lo mismo
+Luego de hacer la parte 2.a, usted decide que es buena idea tener toda la secuencia de valores de `Zn` que se van obteniendo en un único vector numérico, al cual llamará `Z`. Para esto es necesario modificar tanto la preparación como las instrucciones del loop, como recordará de las lecciones de la unidad 6.
+
+La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2` y empezando con `n <- 1` (aunque no lo muestre en la salida): 
 
 ```{r, echo = FALSE, fig.cap = "Serie de Zenón, con n (final) = 5"}
 n <- 1
@@ -123,7 +125,18 @@ Z <- Z[1:n]
 plot(Z, xlab = "n", ylab = expression(Z[n]), type = "o", pch = 19, ylim = c(0.5, 1))
 ```
 
-Nota: en el ejemplo de
+**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad, **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** es lo mejor utilizar el código indicado a continuación para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
+
+```{r, eval = FALSE}
+n <- 20 # El n puede ser cualquiera en verdad...
+Zn <- sum(1 / (2 ^ (1:n)))
+```
+
+La figura de ejemplo se obtuvo con el siguiente código:
+
+```{r, eval = FALSE}
+plot(Z, xlab = "n", ylab = expression(Z[n]), type = "o", pch = 19, ylim = c(0.5, 1))
+```
 
 - - -
 

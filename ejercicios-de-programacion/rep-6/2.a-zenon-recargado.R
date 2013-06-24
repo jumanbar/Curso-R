@@ -12,14 +12,14 @@
 # > Zn <- sum(1 / (2 ^ (1:n)))
 
 # Objetivos:
-# Utilizar el loop while No se permiten for, apply, ni similares.
+# Utilizar el loop while: no se permiten for, apply, ni similares.
 # n*: número entero el cual debe aumentar de a 1 en cada iteración (tomando
 #     los valores 1, 2, 3, 4, ...). Luego de correr el script, debe ser el 
 #     valor exacto que cumple la condición antedicha.
 # Zn*: enésimo valor de la serie tal como se la describe en la letra.
 
 # Valor de epsilon, ejecute esta línea para tener el objeto: 
-# > epsilon <- 1e-6
+epsilon <- 1e-6
 
 # Recuerde que sólo se usarán las líneas que vienen a continuación en la
 # corrección.
@@ -28,8 +28,8 @@
 
 
 
-while (   ) {
-  
+while () {
+
 
 
   # Esto es para mostrar el progreso en la consola:
