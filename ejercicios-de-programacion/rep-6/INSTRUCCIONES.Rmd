@@ -5,7 +5,6 @@ Ejercicio de programación VI: Estructuras de Control
 
 De otros años:
 
-* Cambiar parte d del útimo parcial: si el bus tiene el máximo de pasajeros no sube a más nadie y si tiene el mínimo (0) no baja nadie.
 
 * Crecimiento exponencial ...?
 
@@ -35,6 +34,7 @@ Para lograr su objetivo, usted deberá usar un loop `for`, con el cual completar
 
 ```{r}
 datos <- datos[1:5, 1:5]
+datos[sample(25, 1)] <- 46 # Alguno > 45 al menos
 datos
 ```
 ```{r, echo = FALSE}
@@ -86,7 +86,7 @@ En ocasión de aquel primer repartido, el objetivo era encontrar el mínimo `n` 
 
 Para esto usted deberá usar el loop `while`, ya que es (en principio) el más adecuado para esta tarea, pues no sabemos de antemano cual va a ser el `n` "correcto". Además recuerde que el loop `while` necesita que se cumpla una condición para continuar su ejecución, tal como el procedimiento de encontrar el `n` correcto.
 
-El siguiente es la salida en la consola para el caso de `epsilon <- 5e-2`:
+La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2`:
 
 ```{r, echo = FALSE}
 n <- 1
@@ -99,13 +99,13 @@ while (abs(1 - Zn) >= epsilon) {
 }
 ```
 
-**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad y **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** debe utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
+**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad, **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** debe utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
 
 ### 2.b Guardar los valores
 
 Puede usar for o while, da lo mismo
 
-```{r, echo = FALSE, fig.cap = "Serie de Zenón, con n = 5"}
+```{r, echo = FALSE, fig.cap = "Serie de Zenón, con n (final) = 5"}
 n <- 1
 Zn <- sum(1 / (2 ^ (1:n)))
 epsilon <- 5e-2
@@ -124,6 +124,7 @@ plot(Z, xlab = "n", ylab = expression(Z[n]), type = "o", pch = 19, ylim = c(0.5,
 ```
 
 Nota: en el ejemplo de
+
 - - -
 
 Parcial II
@@ -260,26 +261,67 @@ Sugerencia: puede ser muy útil hacer un diagrama de flujo sencillo para planifi
 
 El siguiente es un ejemplo del resultado de aplicar los cambios que se piden en la función ``bus``:
 
+* Cambiar parte d del útimo parcial: si el bus tiene el máximo de pasajeros no sube a más nadie y si tiene el mínimo (0) no baja nadie.
+
+#### Base:
+suben rpois(1, 3) en cada parada
+bajan rpois(1, 2) "
+
+#### a. Límites:
+no pueden haber más de `maximo` pasajeros
+no pueden haber menos de `0` pasajeros
+
+#### b. Heterogeneidad:
+entre las paradas 15 y 40 (inclusive) se sube mucho más gente: rpois(1, 8)
+a partir de la parada 33 se bajan muchos más: rpois(1, 5)
+
+#### c. Los extremos:
+nadie se baja antes de la parada 5
+nadie se sube a partir de la parada 45 (inclusive)
+
+#### d. Gente que no sube:
+Cantidad de gente que quiere subir pero no puede porque el bus está lleno.
+
+
 ```{r, eval = TRUE, echo = FALSE}
-bus <- function(paradas = 25, maximo = 44) {
-  pasajeros <- 0
-  registro <- numeric(paradas)
-  registro[1] <- pasajeros
-  for (i in 1:paradas) {
-    pasajeros <- pasajeros + sample(0:6, 1)
-    if (i >= 10)
-      pasajeros <- pasajeros - sample(1:5, 1)
-    registro[i] <- pasajeros
-    if (pasajeros >= maximo) {
-      registro[i:paradas] <- maximo
-      cat('Bus lleno!\n')
-      break
+paradas <- 50
+maximo  <- 60
+pasajeros <- rpois(1, 10)
+registro  <- numeric(paradas)
+nosuben   <- numeric(paradas)
+registro[1] <- pasajeros
+for (i in 1:paradas) {
+
+  # Bajan:
+  if (i > 4) {
+    if (i < 33) {
+      pasajeros <- pasajeros - rpois(1, 2)
+    } else {
+      pasajeros <- pasajeros - rpois(1, 5)
     }
-    cat('Parada', i, 'hay', pasajeros, 'pasajeros\n')
   }
-  plot(registro, xlab='Parada', ylab='No. de pasajeros')
-  registro
+
+  # Suben:
+  if (i < 45) {
+    if (15 <= i && i <= 35) {
+      pasajeros <- pasajeros + rpois(1, 8)
+    } else {
+      pasajeros <- pasajeros + rpois(1, 3)
+    }
+  }
+
+  # Límites:
+  if (pasajeros > maximo) {
+    nosuben[i] <- pasajeros - maximo
+    pasajeros <- maximo
+  }
+  if (pasajeros < 0)
+    pasajeros <- 0
+  registro[i] <- pasajeros
+  cat('Parada', i, 'hay', pasajeros, 'pasajeros\n')
 }
+plot(registro, type = "o", pch = 19, xlab='Parada', ylab='No. de pasajeros', ylim = c(0, max(registro)))
+points(nosuben, type = "o", pch = 19, col = 3)
 ```
 
 ```{r, eval = TRUE}

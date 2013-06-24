@@ -8,8 +8,8 @@
 
 # Deberá además colocar estas líneas en ubicaciones adecuadas del script,
 # sin límite en la cantidad de veces que las puede usar:
-n <- 1
-Zn <- sum(1 / (2 ^ (1:n)))
+# > n <- 1
+# > Zn <- sum(1 / (2 ^ (1:n)))
 
 # Objetivos:
 # Utilizar el loop while No se permiten for, apply, ni similares.
@@ -18,10 +18,15 @@ Zn <- sum(1 / (2 ^ (1:n)))
 #     valor exacto que cumple la condición antedicha.
 # Zn*: enésimo valor de la serie tal como se la describe en la letra.
 
-# Valor de epsilon (puede cambiarlo a placer):
-epsilon <- 1e-6
+# Valor de epsilon, ejecute esta línea para tener el objeto: 
+# > epsilon <- 1e-6
+
+# Recuerde que sólo se usarán las líneas que vienen a continuación en la
+# corrección.
 
 #===== Su código comienza aquí: =====#
+
+
 
 while (   ) {
   

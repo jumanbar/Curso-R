@@ -1,4 +1,4 @@
-# Rep. VI - ej. 2.a
+# Rep. VI - ej. 2.b
 
 # Instrucciones:
 # Debe utilizar un loop while para determinar el valor de n mínimo tal que 
@@ -23,28 +23,25 @@
 
 #===== Su código comienza aquí: =====#
 
-n <- 1
-Zn <- sum(1 / (2 ^ (1:n)))
-Z <- numeric(1e3)
-Z[n] <- Zn
-while (abs(1 - Zn) >= epsilon) {
-  n <- n + 1
-  Zn <- sum(1 / (2 ^ (1:n)))
-  Z[n] <- Zn
+
+
+
+
+while (  ) {
+
+  
+  
+  
+
+
+
   # Esto es para mostrar el progreso en la consola:
   cat("n =", n, "- Zn =", Zn, "\n")
 }
-Z <- Z[1:n]
 
 #===== Su código termina aquí =======#
 
 # Para ver el gráfico de los Zn:
 # plot(Z, xlab = "n", ylab = expression(Z[n]), type = "o", 
 #      pch = 19, ylim = c(0.5, 1))
-
-# debug(cor2.b)
-# undebug(cor2.b)
-# source("correctores.R")
-# cor2.b()
-# warnings()
 

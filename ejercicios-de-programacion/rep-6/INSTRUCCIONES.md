@@ -43,11 +43,11 @@ datos
 
 ```
 ##      [,1] [,2] [,3] [,4] [,5]
-## [1,]   41   49   38   44   45
-## [2,]   37   45   49   40   37
-## [3,]   38   35   38   43   47
-## [4,]   37   51   43   35   39
-## [5,]   43   49   38   41   44
+## [1,]   33   35   47   48   41
+## [2,]   49   34   43   56   52
+## [3,]   38   53   54   30   44
+## [4,]   50   51   31   31   38
+## [5,]   34   47   44   44   44
 ```
 
 
@@ -61,7 +61,7 @@ out
 ```
 
 ```
-## [1] 1 1 1 1 1
+## [1] 2 3 2 2 1
 ```
 
 
@@ -105,7 +105,7 @@ En ocasión de aquel primer repartido, el objetivo era encontrar el mínimo `n` 
 
 Para esto usted deberá usar el loop `while`, ya que es (en principio) el más adecuado para esta tarea, pues no sabemos de antemano cual va a ser el `n` "correcto". Además recuerde que el loop `while` necesita que se cumpla una condición para continuar su ejecución, tal como el procedimiento de encontrar el `n` correcto.
 
-El siguiente es la salida en la consola para el caso de `epsilon <- 5e-2`:
+La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2`:
 
 
 ```
@@ -116,7 +116,7 @@ El siguiente es la salida en la consola para el caso de `epsilon <- 5e-2`:
 ```
 
 
-*Recuerde que*: **1.** en cada iteración `n` debe aumentar en una unidad y **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** debe utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
+**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad, **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** debe utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
 
 ### 2.b Guardar los valores
 
@@ -142,6 +142,7 @@ Puede usar for o while, da lo mismo
 
 
 Nota: en el ejemplo de
+
 - - -
 
 Parcial II

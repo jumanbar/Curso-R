@@ -214,13 +214,12 @@ cor2.c <- function() {
 
   pos <- sample(nrow(edu.data), 6)
   col <- sample(ncol(edu.data))
-  nu1 <- paste0(pos[- length(pos)], ",", collapse = " ")
-  post <- paste0("c(", nu1, " ", pos[length(pos)], ")")
-  nu2 <- paste0(col[- length(col)], ",", collapse = " ")
-  colt <- paste0("c(", nu2, " ", col[length(col)], ")")
+  post <- deparse(pos)
+  colt <- deparse(col)
   txt <- paste0("edu.data <- edu.data[-", post, ", ", colt, "]")
+  txt <- gsub("L", "", txt)
 
-  cat("alterando la data.frame de entrada:\n>>  ", txt, 
+  cat(">> alterando la data.frame de entrada:\n>>  ", txt, 
       "\n     (al azar se eliminan 6 filas y cambia el orden de las columnas)\n")
   d <- d[-pos, col]
 
