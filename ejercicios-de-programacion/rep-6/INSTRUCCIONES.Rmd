@@ -107,7 +107,7 @@ Luego de hacer la parte 2.a, usted decide que es buena idea tener toda la secuen
 
 La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2` y empezando con `n <- 1` (aunque no lo muestre en la salida): 
 
-```{r, echo = FALSE, fig.cap = "Serie de Zenón, con n (final) = 5"}
+```{r fig1, echo = FALSE, fig.cap = "Serie de Zenón, con n (final) = 5"}
 n <- 1
 Zn <- sum(1 / (2 ^ (1:n)))
 epsilon <- 5e-2
@@ -132,181 +132,153 @@ n <- 20 # El n puede ser cualquiera en verdad...
 Zn <- sum(1 / (2 ^ (1:n)))
 ```
 
-La figura de ejemplo se obtuvo con el siguiente código:
+La figura 1 se obtuvo con el siguiente código:
 
 ```{r, eval = FALSE}
 plot(Z, xlab = "n", ylab = expression(Z[n]), type = "o", pch = 19, ylim = c(0.5, 1))
 ```
 
-- - -
-
-Parcial II
-==========
-
-#### Curso IMSER 2012
-
-Instrucciones:
---------------
-
-En el archivo “[parcial-II.R](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/parcial-II.R)” ud. tiene un script en el cual deberá guardar todos los comandos del ejercicio, siguiendo la demarcación que se muestra en el mismo.
-
-Nota: los ejercicios del parcial son dependientes de los anteriores en el sentido de que utilizan objetos creados, pero no implica que no se puedan tratar de resolver independientemente.
-
-Los ejercicios con (``*``) presentan un puntaje de 1.5, mientras que los que no tienen (``*``) equivalen a 1 punto.
-
-Una vez terminado el parcial usted deberá subir a la [página del EVA](http://eva.universidad.edu.uy/mod/assignment/view.php?id=102998) el archivo “parcial-II.R” con su código.
 
 - - -
 
-Letra
------
 
-Para simular la cantidad de pasajeros de un ómnibus urbano se ha creado el código que aparece sobre el final del ejercicio (y que también se encuentra en el script parcial-II.R). El criterio es el siguiente: el bus recorre 25 paradas, empezando el trayecto sin pasajeros. En cada parada se subirá una cantidad aleatoria de entre 0 a 6 personas (siendo todas las cantidades equiprobables), pero debido a que existe un máximo estipulado de 44 pasajeros, a partir del momento en que se alcanza ese valor el vehículo deja de subir gente.
+3. Línea urbana
+---------------
 
-- - -
+Como proyecto del gobierno municipal local, usted va a simular el trayecto de un ómnibus a través de su recorrido. El objetivo es obtener una simulación razonablemente fiel a los datos observados para esa línea. Se supone que dicho gobierno va a utilizar los datos generados y complementarlo con análisis matemáticos rigurosos, a fin de diseñar un sistema de transporte óptimo que tenga un buen balance entre el costo de flota y eficiencia de transporte.
 
-### (``*``) a. Código incompleto
+#### Nota:
+en este ejercicio, particularmente en las partes c y d, puede facilitar mucho la tarea hacer un diagrama de flujo sencillo antes de empezar a escribir código.
 
-Completar el código: las líneas en blanco que se encuentran dentro de los límites del código indican en dónde debe cambiarse. **El resto de las líneas están correctas**.
+### 3.a Poniendo límites
 
-Código fuente:
+Usted ya ha hecho un modelo que, si bien es muy crudo aún, tiene los componentes básicos necesarios. El código es el siguiente:
+
+```{r fig2, fig.cap = "Modelo 'crudo'; las líneas indican los límites que debería tener el nro. de pasajeros"}
+set.seed(0)
+paradas <- 50
+maximo  <- 60
+pasajeros <- rpois(1, 10)
+registro  <- numeric(paradas)
+registro[1] <- pasajeros
+for (i in 2:paradas) {
+  # Bajan:
+  pasajeros <- pasajeros - rpois(1, 2)
+  
+  # Suben:
+  pasajeros <- pasajeros + rpois(1, 3)
+  
+  registro[i] <- pasajeros # Actualiza registro
+}
+plot(registro, type = "o", pch = 19, xlab='Parada', 
+     ylab='No. de pasajeros', ylim = c(0, max(registro)))
+abline(h = c(0, maximo), lty = 3)
+```
+
+Como puede ver en el gráfico generado (fig. 2), la cantidad de pasajeros sobrepasa en ocasiones al menos uno de los límites posibles para un bus real (en este caso, el máximo es 60 y el mínimo es 0, naturalmente).
+
+El objetivo de este ejercicio tiene que ver con este último: **modificar el código de forma tal que se impongan límites a los valores posibles de `pasajeros`**. En particular, siempre que la cantidad de pasajeros sea mayor que el máximo estipulado (siendo que ya subieron y bajaron los pasajeros correspondientes a ese turno), debe corregirse el valor de `pasajeros`, dejándolo en el `maximo`. El caso análogo debe ocurrir si `pasajeros` toma valor negativo, cambiándolo por 0.
+
+(En la figura 3 se muestra una simulación en la que se cumplen estas condiciones.)
+
+### 3.b ¿Cuántos se quedan afuera?
+
+Uno de los principales objetivos del gobierno municipal es el de saber cuántos pasajeros quedan sin poder subir al bus en cada parada. Para esto es necesario registrar, en su simulación, el número de pasajeros que sobrepasan el límite máximo de la capacidad del vehículo.
+
+Usted decide crear un vector numérico, el cual tendrá tantos valores como paradas hay en el recorrido y registrará para cada una el la cantidad de personas que no han podido subir al vehículo. Dicho vector será `nosuben` y deberá tener la longitud correcta *antes* de iniciar el loop. La figura 3 muestra la progresión del número de pasajeros (negro) y personas que no pueden subir (verde) a través de una simulación.
+
+Note que el vector `nosuben` no puede tener valores negativos, su valor mínimo será 0.
+
+
+```{r fig3, echo = FALSE, fig.cap = "Simulación con límites y el vector nosuben en verde"}
+set.seed(999)
+paradas <- 50
+maximo  <- 60
+pasajeros <- rpois(1, 10)
+registro  <- numeric(paradas)
+nosuben   <- registro
+registro[1] <- pasajeros
+for (i in 2:paradas) {
+  pasajeros <- pasajeros - rpois(1, 2)
+  pasajeros <- pasajeros + rpois(1, 3)
+  if (pasajeros > maximo) {
+    nosuben[i] <- pasajeros - maximo
+    pasajeros <- maximo
+  }
+  pasajeros <- ifelse(pasajeros < 0, 0, pasajeros)
+  registro[i] <- pasajeros # Actualiza registro
+}
+plot(registro, type = "o", pch = 19, xlab='Parada', 
+     ylab='No. de pasajeros', ylim = c(0, max(registro)))
+points(nosuben, type = "o", pch = 19, col = 3)
+abline(h = c(0, maximo), lty = 3)
+```
+
+### 3.c Heterogeneidad
+
+El modelo creado no está nada mal, pero desde las oficinas de la municipalidad llegan reportes de que la cantidad de personas que suben y bajan varía mucho según la altura del recorrido en la que se encuentre el bus. Luego de mirar cuidadosamente los datos, usted concluye que:
+
+1. La cantidad de pasajeros que suben aumenta mucho en la la mitad del recorrido. Usted considera razonable decretar que a partir de la parada 15 y hasta la parada 35, el número promedio de gente que sube es de 8, en lugar de 3 como en el resto del recorrido. En otras palabras, en ese tramo, la cantida de pasajeros que deberá subir será `rpois(1, 8)`, mentras que en el resto del recorrido serán `rpois(1, 3)`.
+
+2. Con la gente que baja el patrón es diferente: aumenta bastante la bajada sobre todo en la segunda mitad del trayecto. En particular, a partir de la parada 33 usted considera razonable determinar que bajan 5 personas en promedio por parada. En otras palabras, antes de la parada 33 bajarán `rpois(1, 2)` por turno, luego serán `rpois(1, 5)`.
+
+#### Nota: 
+el sistema de corrección del ejercicio espera que usted use **siempre** líneas como estas para simular subidas o bajadas de pasajeros:
 
 ```{r, eval = FALSE}
-# Preparación:
-paradas <- 25
-pasajeros <- 0
-## <<
-registro[1] <- pasajeros
-for (i in 1:paradas) {
-  ## <<
-  # A ver si no se llenó:
-  if (pasajeros >= 44) {
-    # Ajuste por si llega a 44 antes de terminar:
-    registro[i:paradas] <- 44
-    cat('Bus lleno!\n') # Mensaje de aviso...
-    break
-  } # <- este no estaba
-  ## <<
-  # Si no se corta el loop, se agrega un nuevo registro:
-  registro[i] <- pasajeros
-  # Para ir viendo cuánto hay:
-  cat('Parada', i, 'hay', pasajeros, 'pasajeros\n')
-}
-plot(registro, xlab='Parada', ylab='No. de pasajeros')
+# Usando lambdas 2 y 3 como ejemplos:
+pasajeros <- pasajeros - rpois(1, 2) # Bajan
+pasajeros <- pasajeros + rpois(1, 3) # Suben
 ```
 
-Sugerencias: (1) la función ``sample`` puede ser útil para simular la subida de pasajeros. (2) Tanto en este como en los siguientes ejercicios, en caso de no estar seguro/a de cómo proceder, puede facilitar mucho la tarea hacer un diagrama de flujo sencillo antes de empezar a escribir código.
+(Aquí figuran 2 y 3 como promedio, pero en cada caso usted deberá cambiar el valor según lo que dice la letra.)
 
-```{r, eval = TRUE, echo = FALSE}
-set.seed(11)
-paradas <- 25
-pasajeros <- 0
-registro <- numeric(paradas)
-registro[1] <- pasajeros
-for (i in 1:paradas) {
-  pasajeros <- pasajeros + sample(0:6, 1)
-  if (pasajeros >= 44) {
-    registro[i:paradas] <- 44
-    break
-  }
-  registro[i] <- pasajeros
-}
-```
-
-La siguiente imagen se obtuvo haciendo la simulación, ejecutando previamente ``set.seed(11)`` y luego el comando gráfico:
-
-```{r}
-plot(registro, xlab='Parada', ylab='No. de pasajeros')
-```
-
-- - -
-
-### b. Cambio de loop
-
-Modifique el código de la parte anterior de forma tal que haga lo mismo, pero utilizando un loop ``while``.
-
-Sugerencias: (1) agrege manualmente una variable (p.ej.: ``i``) que sirva para indexar los distintos objetos y recuerde actualizarla en la linea correcta del código y (2) usar un ``if`` posterior al loop puede ser útil para sustituir los ceros del final por 44 en el vector registro (aunque no es de ninguna manera el único método).
-
-Nota: el gráfico que se dió en la parte anterior tamibén aplica para este ejercicio. 
-
-### (``*``) c. Función ``bus``
-
-Modifique el código reparado en la parte **a** para crear una función llamada ``bus`` que ejecute la misma simulación, en la que el número de paradas y capacidad máxima del bus sean los argumentos de la misma. El nombre de estos argumentos son a su elección.
-
-Como salida la función debe devolver simplemente el vector ``registro``.
-
-Nota: recuerde que esta función debe trabajar correctamente para cualquier elección del número de paradas y máximo de pasajeros. En el siguiente ejemplo se muestra un caso que puede servir de referencia:
-
-```{r, eval = TRUE, echo = FALSE}
-bus <- function(paradas = 25, maximo = 44) {
-  pasajeros <- 0
-  registro <- numeric(paradas)
-	registro[1] <- pasajeros
-	for (i in 1:paradas) {
-		pasajeros <- pasajeros + sample(0:6, 1)
-		if (pasajeros >= maximo) {
-			registro[i:paradas] <- maximo
-			cat('Bus lleno!\n')
-			break
-		}
-		registro[i] <- pasajeros
-		cat('Parada', i, 'hay', pasajeros, 'pasajeros\n')
-	}
-	plot(registro, xlab='Parada', ylab='No. de pasajeros')
-	registro
-}
-```
-
-```{r, eval = TRUE}
-set.seed(11)
-# Nro. de paradas = 40
-# Máximo de pasajeros = 80
-x <- bus(40, 80)
-```
-
-- - -
-
-### d. Gente que también baja
-
-Hacer una variante del código (de cualquiera de las partes anteriores) en la que además de subir personas, a partir de la parada 10 se bajen entre 1 y 5 pasajeros por parada. Tanto la subida y la bajada deben ejecutarse **antes** de determinar si se alcanzó el máximo estipulado de pasajeros y por lo tanto si debe dejar de detenerse el bus en las paradas.
-
-Sugerencia: puede ser muy útil hacer un diagrama de flujo sencillo para planificar el código antes de escribirlo.
-
-El siguiente es un ejemplo del resultado de aplicar los cambios que se piden en la función ``bus``:
-
-* Cambiar parte d del útimo parcial: si el bus tiene el máximo de pasajeros no sube a más nadie y si tiene el mínimo (0) no baja nadie.
-
-#### Base:
-suben rpois(1, 3) en cada parada
-bajan rpois(1, 2) "
-
-#### a. Límites:
-no pueden haber más de `maximo` pasajeros
-no pueden haber menos de `0` pasajeros
-
-#### b. Heterogeneidad:
-entre las paradas 15 y 40 (inclusive) se sube mucho más gente: rpois(1, 8)
-a partir de la parada 33 se bajan muchos más: rpois(1, 5)
-
-#### c. Los extremos:
-nadie se baja antes de la parada 5
-nadie se sube a partir de la parada 45 (inclusive)
-
-#### d. Gente que no sube:
-Cantidad de gente que quiere subir pero no puede porque el bus está lleno.
-
-
-```{r, eval = TRUE, echo = FALSE}
+```{r fig4, echo = FALSE, fig.cap = "La subida y bajada de pasajeros varía; las líneas verticales muestran los cambios en subidas (rojo) y bajadas (azul)"}
+set.seed(110)
 paradas <- 50
 maximo  <- 60
 pasajeros <- rpois(1, 10)
 registro  <- numeric(paradas)
 nosuben   <- numeric(paradas)
 registro[1] <- pasajeros
-for (i in 1:paradas) {
+for (i in 2:paradas) {
+  pasajeros <- pasajeros - ifelse(i < 33, rpois(1, 2), rpois(1, 5))
+  pasajeros <- pasajeros + ifelse(15 > i || i > 35, rpois(1, 3), rpois(1, 8))
+  if (pasajeros > maximo) {
+    nosuben[i] <- pasajeros - maximo
+    pasajeros <- maximo
+  }
+  if (pasajeros < 0) pasajeros <- 0
+  registro[i] <- pasajeros
+}
+plot(registro, type = "o", pch = 19, xlab='Parada', ylab='No. de pasajeros', ylim = c(0, max(registro)))
+points(nosuben, type = "o", pch = 19, col = 3)
+abline(h = c(0, maximo), lty = 3)
+abline(v = c(14.5, 35.5, 32.5), lty = 3, col = c(2, 2, 4))
+```
+
+### 3.d Extra: extremos
+
+Estando ya bastante conforme con la performance de su modelo, usted se da cuenta de un detalle: nadie, o como mucho una cantidad insignificante de personas, toma un ómnibus para recorrer menos de 5 paradas. Por esta razón decide modificar nuevamente su código para dar cuenta de este detalle. Las modificaciones son las siguientes:
+
+1. Si el bus se encuentra en una parada anterior a la quinta, nadie se bajará.
+
+2. Si el bus se encuentra en una parada posterior a la 45, nadie se subirá.
+
+La figura 5 muestra un ejemplo hecho incluyendo estas dos modificaciones. Como ya se ha mencionado anteriormente, es muy recomendable utilizar diagramas de flujo (como el mostrado en la lección 6.1) para entender la dinámica y poder crear el código de forma más ordenada y eficiente.
+
+```{r fig5, echo = FALSE, fig.cap = "Modelo final; líneas grises indican los extremos"}
+set.seed(666)
+paradas <- 50
+maximo  <- 60
+pasajeros <- rpois(1, 10)
+registro  <- numeric(paradas)
+nosuben   <- numeric(paradas)
+registro[1] <- pasajeros
+for (i in 2:paradas) {
 
   # Bajan:
-  if (i > 4) {
+  if (i > 5) {
     if (i < 33) {
       pasajeros <- pasajeros - rpois(1, 2)
     } else {
@@ -315,7 +287,7 @@ for (i in 1:paradas) {
   }
 
   # Suben:
-  if (i < 45) {
+  if (i < 46) {
     if (15 <= i && i <= 35) {
       pasajeros <- pasajeros + rpois(1, 8)
     } else {
@@ -335,6 +307,8 @@ for (i in 1:paradas) {
 }
 plot(registro, type = "o", pch = 19, xlab='Parada', ylab='No. de pasajeros', ylim = c(0, max(registro)))
 points(nosuben, type = "o", pch = 19, col = 3)
+abline(h = c(0, maximo), lty = 3)
+abline(v = c(14.5, 35.5, 32.5, 4.5, 45.5), lty = 3, col = c(2, 2, 4, 8, 8))
 ```
 
 ```{r, eval = TRUE}

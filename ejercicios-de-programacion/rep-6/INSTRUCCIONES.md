@@ -5,7 +5,6 @@ Ejercicio de programación VI: Estructuras de Control
 
 De otros años:
 
-* Cambiar parte d del útimo parcial: si el bus tiene el máximo de pasajeros no sube a más nadie y si tiene el mínimo (0) no baja nadie.
 
 * Crecimiento exponencial ...?
 
@@ -38,16 +37,17 @@ Para lograr su objetivo, usted deberá usar un loop `for`, con el cual completar
 
 ```r
 datos <- datos[1:5, 1:5]
+datos[sample(25, 1)] <- 46  # Alguno > 45 al menos
 datos
 ```
 
 ```
 ##      [,1] [,2] [,3] [,4] [,5]
-## [1,]   33   35   47   48   41
-## [2,]   49   34   43   56   52
-## [3,]   38   53   54   30   44
-## [4,]   50   51   31   31   38
-## [5,]   34   47   44   44   44
+## [1,]   45   45   43   37   42
+## [2,]   35   54   44   40   43
+## [3,]   44   53   43   35   46
+## [4,]   47   40   36   37   55
+## [5,]   41   53   52   45   44
 ```
 
 
@@ -61,7 +61,7 @@ out
 ```
 
 ```
-## [1] 2 3 2 2 1
+## [1] 0 1 2 2 2
 ```
 
 
@@ -77,8 +77,8 @@ Para completar el ejercicio deberá simplemente usar `apply` para lograr el mism
 
 - - -
 
-2. todavía no se bien que
--------------------------
+2. Una vez más, Zenón
+---------------------
 
 ### 2.a Zenón recargado
 
@@ -105,7 +105,7 @@ En ocasión de aquel primer repartido, el objetivo era encontrar el mínimo `n` 
 
 Para esto usted deberá usar el loop `while`, ya que es (en principio) el más adecuado para esta tarea, pues no sabemos de antemano cual va a ser el `n` "correcto". Además recuerde que el loop `while` necesita que se cumpla una condición para continuar su ejecución, tal como el procedimiento de encontrar el `n` correcto.
 
-La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2`:
+La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2` y empezando con `n <- 1` (aunque no lo muestre en la salida): 
 
 
 ```
@@ -116,11 +116,13 @@ La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2`:
 ```
 
 
-**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad, **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** debe utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
+**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad, **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** es lo mejor utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
 
 ### 2.b Guardar los valores
 
-Puede usar for o while, da lo mismo
+Luego de hacer la parte 2.a, usted decide que es buena idea tener toda la secuencia de valores de `Zn` que se van obteniendo en un único vector numérico, al cual llamará `Z`. Para esto es necesario modificar tanto la preparación como las instrucciones del loop, como recordará de las lecciones de la unidad 6.
+
+La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2` y empezando con `n <- 1` (aunque no lo muestre en la salida): 
 
 
 ```
@@ -138,72 +140,77 @@ Puede usar for o while, da lo mismo
 ## [1] 0.03125
 ```
 
-![Serie de Zenón, con n = 5](figure/unnamed-chunk-7.png) 
+![Serie de Zenón, con n (final) = 5](figure/fig1.png) 
 
 
-Nota: en el ejemplo de
-
-- - -
-
-Parcial II
-==========
-
-#### Curso IMSER 2012
-
-Instrucciones:
---------------
-
-En el archivo “[parcial-II.R](http://eva.universidad.edu.uy/file.php/1454/ejercicios_de_programacion/parcial-II.R)” ud. tiene un script en el cual deberá guardar todos los comandos del ejercicio, siguiendo la demarcación que se muestra en el mismo.
-
-Nota: los ejercicios del parcial son dependientes de los anteriores en el sentido de que utilizan objetos creados, pero no implica que no se puedan tratar de resolver independientemente.
-
-Los ejercicios con (``*``) presentan un puntaje de 1.5, mientras que los que no tienen (``*``) equivalen a 1 punto.
-
-Una vez terminado el parcial usted deberá subir a la [página del EVA](http://eva.universidad.edu.uy/mod/assignment/view.php?id=102998) el archivo “parcial-II.R” con su código.
-
-- - -
-
-Letra
------
-
-Para simular la cantidad de pasajeros de un ómnibus urbano se ha creado el código que aparece sobre el final del ejercicio (y que también se encuentra en el script parcial-II.R). El criterio es el siguiente: el bus recorre 25 paradas, empezando el trayecto sin pasajeros. En cada parada se subirá una cantidad aleatoria de entre 0 a 6 personas (siendo todas las cantidades equiprobables), pero debido a que existe un máximo estipulado de 44 pasajeros, a partir del momento en que se alcanza ese valor el vehículo deja de subir gente.
-
-- - -
-
-### (``*``) a. Código incompleto
-
-Completar el código: las líneas en blanco que se encuentran dentro de los límites del código indican en dónde debe cambiarse. **El resto de las líneas están correctas**.
-
-Código fuente:
+**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad, **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** es lo mejor utilizar el código indicado a continuación para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
 
 
 ```r
-# Preparación:
-paradas <- 25
-pasajeros <- 0
-## <<
-registro[1] <- pasajeros
-for (i in 1:paradas) {
-    ## << A ver si no se llenó:
-    if (pasajeros >= 44) 
-        {
-            # Ajuste por si llega a 44 antes de terminar:
-            registro[i:paradas] <- 44
-            cat("Bus lleno!\n")  # Mensaje de aviso...
-            break
-        }  # <- este no estaba
-    ## << Si no se corta el loop, se agrega un nuevo registro:
-    registro[i] <- pasajeros
-    # Para ir viendo cuánto hay:
-    cat("Parada", i, "hay", pasajeros, "pasajeros\n")
-}
-plot(registro, xlab = "Parada", ylab = "No. de pasajeros")
+n <- 20  # El n puede ser cualquiera en verdad...
+Zn <- sum(1/(2^(1:n)))
 ```
 
 
-Sugerencias: (1) la función ``sample`` puede ser útil para simular la subida de pasajeros. (2) Tanto en este como en los siguientes ejercicios, en caso de no estar seguro/a de cómo proceder, puede facilitar mucho la tarea hacer un diagrama de flujo sencillo antes de empezar a escribir código.
+La figura 1 se obtuvo con el siguiente código:
 
 
+```r
+plot(Z, xlab = "n", ylab = expression(Z[n]), type = "o", pch = 19, ylim = c(0.5, 
+    1))
+```
+
+
+
+- - -
+
+
+3. Línea urbana
+---------------
+
+Como proyecto del gobierno municipal local, usted va a simular el trayecto de un ómnibus a través de su recorrido. El objetivo es obtener una simulación razonablemente fiel a los datos observados para esa línea. Se supone que dicho gobierno va a utilizar los datos generados y complementarlo con análisis matemáticos rigurosos, a fin de diseñar un sistema de transporte óptimo que tenga un buen balance entre el costo de flota y eficiencia de transporte.
+
+### 3.a Modelo básico
+
+Usted ya ha hecho un modelo que, si bien es muy crudo aún, tiene los componentes básicos necesarios. El código es el siguiente:
+
+
+```r
+set.seed(0)
+paradas <- 50
+maximo <- 60
+pasajeros <- rpois(1, 10)
+registro <- numeric(paradas)
+registro[1] <- pasajeros
+for (i in 1:paradas) {
+    # Bajan:
+    pasajeros <- pasajeros - rpois(1, 2)
+    
+    # Suben:
+    pasajeros <- pasajeros + rpois(1, 3)
+    
+    registro[i] <- pasajeros  # Actualiza registro
+}
+plot(registro, type = "o", pch = 19, xlab = "Parada", ylab = "No. de pasajeros", 
+    ylim = c(0, max(registro)))
+abline(h = c(0, maximo), lty = 3)
+```
+
+![Modelo 'crudo'; las líneas indican los límites que debería tener el nro. de pasajeros](figure/fig2.png) 
+
+
+Como puede ver en el gráfico generado (fig. 2), la cantidad de pasajeros sobrepasa en ocasiones al menos uno de los límites posibles para un bus real (en este caso, el máximo es 60 y el mínimo es 0, naturalmente).
+
+El objetivo de este ejercicio tiene que ver con este último: **modificar el código de forma tal que se impongan límites a los valores posibles de `pasajeros`**. En particular, siempre que la cantidad de pasajeros sea mayor que el máximo estipulado (siendo que ya subieron y bajaron los pasajeros correspondientes a ese turno), debe corregirse el valor de `pasajeros`, dejándolo en el `maximo`. El caso análogo debe ocurrir si `pasajeros` toma valor negativo, cambiándolo por 0.
+
+### 3.b ¿Cuántos se quedan afuera?
+
+Uno de los principales objetivos del gobierno municipal es el de saber cuántos pasajeros quedan sin poder subir al bus en cada parada. Para esto es necesario registrar, en su simulación, el número de pasajeros que sobrepasan el límite máximo de la capacidad del vehículo.
+
+Usted decide crear un vector numérico, el cual tendrá tantos valores como paradas hay en el recorrido y registrará para cada una el la cantidad de personas que no han podido subir al vehículo. Dicho vector será `nosuben` y deberá tener la longitud correcta *antes* de iniciar el loop.
+
+
+![Simulación con límites y el vector nosuben en verde](figure/fig3.png) 
 
 
 La siguiente imagen se obtuvo haciendo la simulación, ejecutando previamente ``set.seed(11)`` y luego el comando gráfico:
@@ -213,9 +220,23 @@ La siguiente imagen se obtuvo haciendo la simulación, ejecutando previamente ``
 plot(registro, xlab = "Parada", ylab = "No. de pasajeros")
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10.png) 
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9.png) 
 
 
+### 3.c Heterogeneidad
+
+1. La cantidad de pasajeros que bajan o suben siempre se obtiene con la función `rpois(1, lambda)`, siendo `lambda` un número entero cualquiera. El sistema de corrección del ejercicio espera que usted use siempre líneas como estas para simular subidas o bajadas de pasajeros:
+
+Sugerencias: (1) la función ``sample`` puede ser útil para simular la subida de pasajeros. (2) Tanto en este como en los siguientes ejercicios, en caso de no estar seguro/a de cómo proceder, puede facilitar mucho la tarea hacer un diagrama de flujo sencillo antes de empezar a escribir código.
+
+```r
+# Usando lambdas 2 y 3 como ejemplos:
+pasajeros <- pasajeros - rpois(1, 2)
+pasajeros <- pasajeros + rpois(1, 3)
+```
+
+
+### 3.d Extremos
 - - -
 
 ### b. Cambio de loop
@@ -295,7 +316,83 @@ Sugerencia: puede ser muy útil hacer un diagrama de flujo sencillo para planifi
 
 El siguiente es un ejemplo del resultado de aplicar los cambios que se piden en la función ``bus``:
 
+* Cambiar parte d del útimo parcial: si el bus tiene el máximo de pasajeros no sube a más nadie y si tiene el mínimo (0) no baja nadie.
 
+#### Base:
+suben rpois(1, 3) en cada parada
+bajan rpois(1, 2) "
+
+#### a. Límites:
+no pueden haber más de `maximo` pasajeros
+no pueden haber menos de `0` pasajeros
+
+#### b. Heterogeneidad:
+entre las paradas 15 y 40 (inclusive) se sube mucho más gente: rpois(1, 8)
+a partir de la parada 33 se bajan muchos más: rpois(1, 5)
+
+#### c. Los extremos:
+nadie se baja antes de la parada 5
+nadie se sube a partir de la parada 45 (inclusive)
+
+#### d. Gente que no sube:
+Cantidad de gente que quiere subir pero no puede porque el bus está lleno.
+
+
+
+```
+## Parada 1 hay 12 pasajeros
+## Parada 2 hay 14 pasajeros
+## Parada 3 hay 15 pasajeros
+## Parada 4 hay 17 pasajeros
+## Parada 5 hay 19 pasajeros
+## Parada 6 hay 19 pasajeros
+## Parada 7 hay 18 pasajeros
+## Parada 8 hay 21 pasajeros
+## Parada 9 hay 21 pasajeros
+## Parada 10 hay 22 pasajeros
+## Parada 11 hay 23 pasajeros
+## Parada 12 hay 23 pasajeros
+## Parada 13 hay 21 pasajeros
+## Parada 14 hay 20 pasajeros
+## Parada 15 hay 22 pasajeros
+## Parada 16 hay 30 pasajeros
+## Parada 17 hay 33 pasajeros
+## Parada 18 hay 37 pasajeros
+## Parada 19 hay 44 pasajeros
+## Parada 20 hay 49 pasajeros
+## Parada 21 hay 60 pasajeros
+## Parada 22 hay 60 pasajeros
+## Parada 23 hay 60 pasajeros
+## Parada 24 hay 60 pasajeros
+## Parada 25 hay 60 pasajeros
+## Parada 26 hay 60 pasajeros
+## Parada 27 hay 60 pasajeros
+## Parada 28 hay 60 pasajeros
+## Parada 29 hay 60 pasajeros
+## Parada 30 hay 60 pasajeros
+## Parada 31 hay 60 pasajeros
+## Parada 32 hay 60 pasajeros
+## Parada 33 hay 60 pasajeros
+## Parada 34 hay 60 pasajeros
+## Parada 35 hay 60 pasajeros
+## Parada 36 hay 58 pasajeros
+## Parada 37 hay 59 pasajeros
+## Parada 38 hay 56 pasajeros
+## Parada 39 hay 57 pasajeros
+## Parada 40 hay 58 pasajeros
+## Parada 41 hay 55 pasajeros
+## Parada 42 hay 57 pasajeros
+## Parada 43 hay 55 pasajeros
+## Parada 44 hay 53 pasajeros
+## Parada 45 hay 49 pasajeros
+## Parada 46 hay 38 pasajeros
+## Parada 47 hay 35 pasajeros
+## Parada 48 hay 30 pasajeros
+## Parada 49 hay 28 pasajeros
+## Parada 50 hay 27 pasajeros
+```
+
+![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
 
 
 
@@ -314,27 +411,21 @@ x <- bus(30, 60)
 ## Parada 7 hay 10 pasajeros
 ## Parada 8 hay 12 pasajeros
 ## Parada 9 hay 18 pasajeros
-## Parada 10 hay 17 pasajeros
-## Parada 11 hay 15 pasajeros
-## Parada 12 hay 16 pasajeros
-## Parada 13 hay 17 pasajeros
-## Parada 14 hay 18 pasajeros
-## Parada 15 hay 19 pasajeros
-## Parada 16 hay 21 pasajeros
-## Parada 17 hay 22 pasajeros
-## Parada 18 hay 23 pasajeros
-## Parada 19 hay 22 pasajeros
-## Parada 20 hay 21 pasajeros
-## Parada 21 hay 20 pasajeros
-## Parada 22 hay 16 pasajeros
-## Parada 23 hay 18 pasajeros
-## Parada 24 hay 16 pasajeros
-## Parada 25 hay 14 pasajeros
-## Parada 26 hay 12 pasajeros
-## Parada 27 hay 14 pasajeros
-## Parada 28 hay 16 pasajeros
-## Parada 29 hay 13 pasajeros
-## Parada 30 hay 15 pasajeros
+## Parada 10 hay 18 pasajeros
+## Parada 11 hay 19 pasajeros
+## Parada 12 hay 22 pasajeros
+## Parada 13 hay 28 pasajeros
+## Parada 14 hay 33 pasajeros
+## Parada 15 hay 38 pasajeros
+## Parada 16 hay 42 pasajeros
+## Parada 17 hay 45 pasajeros
+## Parada 18 hay 47 pasajeros
+## Parada 19 hay 48 pasajeros
+## Parada 20 hay 51 pasajeros
+## Parada 21 hay 52 pasajeros
+## Parada 22 hay 56 pasajeros
+## Parada 23 hay 58 pasajeros
+## Bus lleno!
 ```
 
 ![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 

@@ -1,9 +1,6 @@
 
 cor1.a <- function() {
   load("datos")
-  #   src("../auxiliares.R")
-  #   arch <- cut.script("tmp.R")
-  #   cat("TMP.R!!!!!!!!!!\n")
   arch <- cut.script("1.a-loop-for.R")
   cat(">> Creando una nueva matriz 'datos' para la corrección:\n")
   datos <- matrix(rpois(rpois(1, 125) * 15, 43), ncol = 15)
@@ -59,9 +56,6 @@ cor1.a <- function() {
 
 cor1.b <- function() {
   load("datos")
-  #   src("../auxiliares.R")
-  #   arch <- cut.script("tmp.R")
-  #   cat("TMP.R!!!!!!!!!!\n")
   arch <- cut.script("1.b-extra-apply.R")
 
   cat(">> Creando una nueva matriz 'datos' para la corrección:\n")
@@ -93,9 +87,6 @@ cor1.b <- function() {
 }
 
 cor2.a <- function() {
-  #   src("../auxiliares.R")
-  #   arch <- cut.script("tmp.R")
-  #   cat("TMP.R!!!!!!!!!!\n")
   load("datos")
   arch <- cut.script("2.a-zenon-recargado.R")
   arch <- arch[!grepl("cat\\(", arch)]
@@ -113,7 +104,7 @@ cor2.a <- function() {
   cat("¿Preparación? ... OK\n")
 
   dowarn <- function()
-    warning("ej. 2.a: tal vez los objetos n y/o Zn o bien no están definidos", 
+    warning("2.a: tal vez los objetos n y/o Zn o bien no están definidos", 
             "o tienen valores incorrectos antes de iniciar el loop", call. = FALSE)
   arch <- c("X <- 1", 
             arch[1:(whnum - 1)],
@@ -176,7 +167,7 @@ cor2.a <- function() {
   geq <- eval(parse(text = ab)) # si TRUE, está bien, si no está mal
 
   if (!geq) {
-    warning("ej. 2.a: recuerde que la condición lógica necesaria para el loop while debe ser ",
+    warning("2.a: recuerde que la condición lógica necesaria para el loop while debe ser ",
             "exactamente complementaria a la condición de interrupción", call. = FALSE)
     stop("la condición del while no es la correcta, tal vez por usar un operador relacional incorrecto", 
          call. = FALSE)
@@ -186,12 +177,9 @@ cor2.a <- function() {
 }
 
 cor2.b <- function() {
-  src("../auxiliares.R")
-  arch <- cut.script("tmp.R")
-  arch <- arch[!grepl("cat\\(", arch)]
-  cat("TMP.R!!!!!!!!!!\n")
   load("datos")
-  #   arch <- cut.script("2.a-zenon-recargado.R")
+  arch <- cut.script("2.b-guardar-valores.R")
+  arch <- arch[!grepl("cat\\(", arch)]
 
   whlog <- grepl("\\bwhile\\b", arch)
   whnum <- grep("\\bwhile\\b", arch)
@@ -207,7 +195,7 @@ cor2.b <- function() {
   cat("¿Preparación? ... OK\n")
 
   dowarn <- function()
-    warning("ej. 2.b: tal vez los objetos n, Zn y/o Z o bien no están definidos", 
+    warning("2.b: tal vez los objetos n, Zn y/o Z o bien no están definidos", 
             "o tienen valores incorrectos antes de iniciar el loop", call. = FALSE)
 
   # Preparación: Z inicial 
@@ -265,6 +253,195 @@ cor2.b <- function() {
   }
   cat("todos los valores de Z ... OK\n")
 
+  TRUE
+}
+
+cor3.a <- function() {
+  load("datos")
+  arch <- cut.script("3.a-limites.R")
+
+  if (length(arch) == 0)
+    stop("su código parece vacío, ¿guardo los cambios que hizo?", call. = FALSE)
+  cat("código en archivo ... OK\n")
+  parsed <- eval(text = arch)
+
+  maximo <- sample(40:100, 1)
+  cat(">> nuevo maximo para la correccion: ", maximo, "\n")
+
+  pasajeros <- maximo + 1
+  cat(">> cantidad de pasajeros antes del código: ", pasajeros, "\n")
+  eval(parsed)
+  if (pasajeros != maximo) {
+    warning("3.a: ¡verifique los signos de *ambos* condicionales por las dudas!", call. = FALSE)
+    stop("el número de pasajeros es distinto al máximo cuando se sobrecarga el bus", call. = FALSE)
+  }
+  cat("¿pasajeros != maximo? ... OK\n")
+
+  pasajeros <- -1
+  cat(">> cantidad de pasajeros antes del código: ", pasajeros, "\n")
+  eval(parsed)
+  if (pasajeros < 0) {
+    warning("3.a: ¡verifique los signos de *ambos* condicionales por las dudas!", call. = FALSE)
+    stop("el número de pasajeros distinto a 0 cuando se vacía el bus", call. = FALSE)
+  }
+  cat("¿pasajeros != 0? ... OK\n")
+
+  TRUE
+}
+
+cor3.b <- function() {
+  load("datos")
+  arch <- cut.script("3.b-no-suben.R")
+
+  if (length(arch) == 0)
+    stop("su código parece vacío, ¿guardo los cambios que hizo?", call. = FALSE)
+  cat("código en archivo ... OK\n")
+  parsed <- eval(text = arch)
+
+  aaa <- gsub(" ", "", arch)
+  if (!any(grepl("nosuben\\[", aaa)))
+    warning("3.b: ¡El vector 'nosuben' parece no estar indizado!", call. = FALSE)
+
+  maximo  <- sample(40:100, 1)
+  i <- sample(40:100, 1)
+  nosuben <- numeric(100)
+  cat(">> nuevo maximo para la correccion: ", maximo, "\n")
+
+  suben <- rpois(1, 20) + 3
+  pasajeros <- maximo + suben
+  cat(">> cantidad de pasajeros antes del código: ", pasajeros, "\n")
+  eval(parsed)
+
+  if (pasajeros != maximo) {
+    stop("el número de pasajeros es distinto al máximo cuando se sobrecarga el bus", call. = FALSE)
+  }
+  cat("¿pasajeros != maximo? ... OK\n")
+
+  if (nosuben[i] != suben) {
+    stop(mkmsj("el número de personas que no suben es distinto al esperado", nosuben[i], suben), call. = FALSE)
+  }
+  cat("cantidad que no sube ... OK\n")
+
+  TRUE
+}
+
+cor3.c <- function() {
+  src("../auxiliares.R")
+  arch <- cut.script("tmp.R")
+  cat("TMP.R!!!!!!!!!!\n")
+  #   load("datos")
+  #   arch <- cut.script("3.c-heterogeneidad.R")
+
+  if (length(arch) == 0)
+    stop("su código parece vacío, ¿guardo los cambios que hizo?", call. = FALSE)
+  cat("código en archivo ... OK\n")
+  parsed <- parse(text = arch)
+
+  arch <- gsub(" ", "", arch)
+  pois <- paste0(c("- ", "- ", "+ ", "+ "), "rpois(1, ", c(2, 5, 3, 8), ")")
+  where <- c(bpoco = grep("-rpois\\(1\\,2\\)", arch),
+             bmucho = grep("-rpois\\(1\\,5\\)", arch),
+             spoco = grep("+rpois\\(1\\,3\\)", arch),
+             smucho = grep("+rpois\\(1\\,8\\)", arch))
+  nombres <- c("bpoco", "bmucho", "spoco", "smucho")
+  cond <- logical(4)
+  whcat <- character(length(where))
+  for (k in 1:4) {
+    logico <- grepl(nombres[k], names(where))
+    whcat[logico] <- nombres[k]
+    cond[k] <- any(logico)
+  }
+
+  if (!all(cond))
+    stop("la expresión '", pois[!cond][1], "' no se encontró en el archivo", call. = FALSE)
+  cat("rpois presentes ... OK\n")
+
+  for (k in 1:4) {
+    logico <- whcat == nombres[k]
+    donde <- where[logico]
+    arch[donde] <- paste(names(where)[logico], "<- TRUE")
+  }
+  tmp <- deparse(names(where))
+  mkobj <- gsub("\\\"", "", tmp) 
+  arch <- c(arch, paste0("objs <- ", mkobj))
+
+  ies <- c(sample(6:13, 1), 15, sample(16:32, 1), 33, 35, sample(37:50, 1))
+  nfilas <- paste0("i=", ies)
+  expsub <- pois[c(3, 4, 4, 4, 4, 3)]
+  expsub <- gsub(" ", "", expsub)
+  expbaj <- pois[c(1, 1, 1, 2, 2, 2)]
+  expbaj <- gsub(" ", "", expbaj)
+  expobs <- character(length(ies))
+  tabla <- data.frame(Bajan = expbaj, Bajan.Obs. = expobs,
+                      Suben = expsub, Suben.Obs. = expobs,
+                      stringsAsFactors = FALSE)
+  rownames(tabla) <- nfilas
+  for (k in 1:length(ies)) {
+    i <- ies[k]
+    for (h in 1:length(where))
+      assign(names(where)[h], FALSE)
+
+    eval(parse(text = arch))
+    names(objs) <- whcat
+    for (j in 1:4) {
+      sumar <- objs[whcat == nombres[j]]
+      if (sum(sumar) > 1)
+        stop("para i = ", i, " la expresión '", pois[j], "' se ejecutó más de una vez", call. = FALSE)
+      #       if (k == 6 && j > 2) browser()
+      if (sumar) {
+        if (j <= 2) {
+          tabla[k, 2] <- pois[names(sumar) == nombres]
+        } else {
+          tabla[k, 4] <- pois[names(sumar) == nombres]
+        }
+      }
+    }
+  }
+  tabla[,4] <- gsub(" ", "", tabla[,4])
+  tabla[,2] <- gsub(" ", "", tabla[,2])
+  tA <- tabla[c(1, 3)]
+  tB <- tabla[c(2, 4)]
+  if (!all(tA == tB)) {
+    out <- capture.output(tabla)
+    msj <- c("las expresiones ejecutadas no ocurrieron en los momentos esperados:\n\n",
+             paste0(out, "\n"),
+             "\n")
+    stop(msj, call. = FALSE)
+  }
+  cat("sumas y restas en los momentos apropiados ... OK\n")
+
+  maximo <- 1e3
+  m <- maximo
+  pasajeros <- rpois(1, 100)
+  pini <- pasajeros
+  ps   <- pasajeros
+  cat(">> nuevo maximo para la correccion: ", maximo, "\n")
+  cat(">> cantidad de pasajeros antes del código: ", pasajeros, "\n")
+
+  #   arch <- readLines("tmp.R", encoding = "UTF-8")
+  #   arch <- cut.script("tmp.R")
+  arch <- cut.script("3.c-heterogeneidad.R")
+  #   pline <- grep("plot", arch)
+  #   arch <- arch[2:pline - 1]
+
+  for (k in 1:length(ies)) {
+    i <- ies[k]
+    seed <- sample(1:100, 1)
+    set.seed(seed)
+    eval(parse(text = arch))
+    set.seed(seed)
+    if (i < 33) ps <- ps - rpois(1, 2) else ps <- ps - rpois(1, 5)
+    if (15 <= i && i <= 35) ps <- ps + rpois(1, 8) else ps <- ps + rpois(1, 3)
+    if (pasajeros != ps) {
+      mb <- paste0("para i = ", i, ",  nro. de pasajeros iniciales = ", pini, 
+                   " y capacidad máxima ", maximo, ",\n",
+                   "el número de pasajeros finales no es el esperado ", 
+                   "(se usó set.seed(", seed, "))") 
+      stop(mkmsj(mb, pasajeros, ps), call. = FALSE)
+    }
+  }
+  cat("cálculos de pasajeros ... OK\n")
+      
   TRUE
 }
 

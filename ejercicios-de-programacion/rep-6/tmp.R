@@ -1,52 +1,43 @@
-# Rep. VI - ej. 2.a
+# Rep. VI - ej. 3.c
 
 # Instrucciones:
-# Debe utilizar un loop while para determinar el valor de n mínimo tal que 
-# 1 - Zn < epsilon. Tenga en cuenta que el script debe funcionar bien sin 
-# importar el valor de epsilon que se elija (en la corrección automática 
-# epsilon va a ser aleatorio).
-
-# Deberá además colocar estas líneas en ubicaciones adecuadas del script,
-# sin límite en la cantidad de veces que las puede usar:
-#    n <- 1
-#    Zn <- sum(1 / (2 ^ (1:n)))
+# Completar el código (dentro de los límites indicados) para que la simulación
+# del ómnibus urbano incorpore las nuevas reglas descriptas en la letra.
 
 # Objetivos:
-# Utilizar el loop while No se permiten for, apply, ni similares.
-# n*: número entero el cual debe aumentar de a 1 en cada iteración (tomando
-#     los valores 1, 2, 3, 4, ...). Luego de correr el script, debe ser el 
-#     valor exacto que cumple la condición antedicha.
-# Zn*: enésimo valor de la serie tal como se la describe en la letra.
-# Z*: vector con todos los valores de Zn, empezando por n = 1 y terminando
-#     en el primer Zn tal que 1 - Zn < epsilon.
+# Utilizar sentencias condicionales de forma que se cumplan:
+# - Bajadas: si el bus ya llegó a la parada 33, bajan rpois(1, 5) personas por
+#            parada, de lo contrario son rpois(1, 2).
+# - Subidas: si el bus está entre la parada 15 y la 35, suben rpois(1, 8)
+#            personas por parada, de lo contrario son rpois(1, 3).j:w
 
-# Valor de epsilon (puede cambiarlo a placer):
-#    epsilon <- 1e-6
+paradas <- 50
+maximo  <- 60
+pasajeros <- rpois(1, 10)
+registro  <- numeric(paradas)
+nosuben   <- numeric(paradas)
+# Se da por descontado que no queda nadie afuera en la primer
+# parada del recorrido, por eso nosuben[1] == 0
+registro[1] <- pasajeros
+for (i in 2:paradas) {
+#================ Su código comienza aquí: ================#
+  # Bajan:
 
-#===== Su código comienza aquí: =====#
 
-n <- 1
-Zn <- sum(1 / (2 ^ (1:n)))
-Z <- numeric(1e3)
-Z[n] <- Zn
-while (1 - Zn >= epsilon) {
-  n <- n + 1
-  Zn <- sum(1 / (2 ^ (1:n)))
-  Z[n] <- Zn
-  # Esto es para mostrar el progreso en la consola:
-  cat("n =", n, "- Zn =", Zn, "\n")
+
+  # Suben:
+  
+
+
+  # Límites: (no es importante esta parte en este ejercicio)
+
+
+
+#================ Su código termina aquí ==================#
+  registro[i] <- pasajeros # Actualiza registro
 }
-Z <- Z[1:n]
+plot(registro, type = "o", pch = 19, xlab='Parada', 
+     ylab='No. de pasajeros', ylim = c(0, max(registro)))
+abline(h = c(0, maximo), lty = 3)
 
-#===== Su código termina aquí =======#
-
-# Para ver el gráfico de los Zn:
-# plot(Z, xlab = "n", ylab = expression(Z[n]), type = "o", 
-#      pch = 19, ylim = c(0.5, 1))
-
-# debug(cor2.b)
-# undebug(cor2.b)
-source("correctores.R")
-cor2.b()
-# warnings()
 
