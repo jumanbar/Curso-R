@@ -1,4 +1,5 @@
-# Condicionales (if / else):
+
+## Condicionales (if / else):
 # Sirven para ejecutar tareas en caso de que se cumpla una cierta condición de
 # interés. Nótese que se puede utilizar, y muchas veces se hace, para evitan 
 # que se ejecuten comandos si no se dán las condiciones necesarias.
@@ -9,6 +10,7 @@
 
 ## SINTÁXIS BÁSICA: IF
 # "if" ejecuta uno o más comandos si se da la condición entre paréntesis.
+# La estructura más elemnetal de un if es la siguiente (no correr):
 
 if (condición) comando
  
@@ -23,30 +25,53 @@ if (3 > 2) {
   print('imprime')
 }
 
+# En el curso IMSER favorecemos utilizar llaves o en todo caso, escribir en 
+# la línea siguiente si es una sóla línea (no correr):
+if (condicion) { # Este if tiene varios comandos...
+  comando1
+  comando2
+}
+if (condicion)   # Este if tiene solo un comando...
+  comando.unico
+
 ## SINTÁXIS BÁSICA: IF + ELSE
 # La combinación de 'if' + 'else' sirve para establecer tanto los comandos que
 # deben ejecutarse al darse una condición determinada, como aquellos que deben
 # ejecutarse al *no* darse dicha condición.
 
-# Se puede esquematizar con este diagrama de flujo (no correr):
-                        / Sí -----> comando1
-Se cumple la condición? |
-                        \ No -----> comando2
- 
 # La estructura básica de if / else es:
 if (condición) comando1 else comando2
 # Cuando se cumple una condición dada, se ejecuta el comando1, en caso
-# contrario, se ejecuta el comando2
+# contrario, se ejecuta el comando2. En este caso también se pueden usar
+# las llaves, pero si no se usan, todo debe ir en **una única línea**.
 
-# Estructura básica, pero usando {}:
-if (condición) {
+# En general es más fácil de leer y por lo tanto más recomendable usar esta
+# estructura (llaves)(no correr):
+if (condicion) {
   comando1 # Si la condición se cumple (TRUE)
 } else {
   comando2 # Si la condición no se cumple (FALSE)
 }
+# Nótese además que el uso de llaves permite insertar varios comandos en las
+# dos altenrnativas.
 
+# Un par if-else se puede esquematizar con este diagrama de flujo (no correr):
+                          Sí --> comando1
+¿Se cumple la condición?--|
+                          No --> comando2
+# Es lo que arbitrariamente llamamos una "bifurcación". Es importante notar que 
+# si tenemos solamente un if, también se puede considerar como una bifurcación, 
+# pero para facilitar la clasificación, vamos a reservar ese término sólo para
+# el caso anterior. Cuando solamente hay un if, se puede representar con este
+# diagrama:
+                          Sí --> comando1 ---+
+¿Se cumple la condición?--|                  |
+                          No --> comando2 <--+
+# Es decir, la diferencia fundamental es que el comando2 **siempre** se 
+# ejecutará, ya sea que se cumpla o no la condición del if.
  
-# Ejemplo: combinacion de un loop con if/else
+ 
+## Ejemplo: combinacion de un loop con if/else
  
 # Supongamos que mi objetivo es que se clasifiquen los números del 1 al 10, 
 # bajo el criterio: si es mayor que 5 es 'grande', de lo contrario es 'chico'.
@@ -93,7 +118,7 @@ clasif
 # que usar la combinación for + if + else
 
 
-## EJEMPLO: CUANDO IFELSE NO ALCANZA 
+## EJEMPLO: CUANDO LA FUNCIÓN IFELSE NO ALCANZA 
 # Hay casos sin embargo, en que usar loops combinados con if y else es
 # la mejor opción. Nótese que es necesario hacer un "anidamiento" de
 # bloques de comando...
@@ -119,10 +144,10 @@ for (i in 1:10) {
 clasif
  
 # Esquemáticamente, en cada iteración este es el flujo creado (no correr):
-         / Sí -----> "grande"
-(i > 5)? |                    / Sí -----> "mediano"
-         \ No -----> (i > 2)? |
-                              \ No -----> "chico"
+           Sí --> "grande"
+(i > 5)? --|                 Sí --> "mediano"
+           No --> (i > 2)? --|
+                             No --> "chico"
 
 
 # RESUMEN
