@@ -257,11 +257,11 @@ valores mayores a 45 por filas. Como un mini ejemplo, si su matriz
 \end{Shaded}
 \begin{verbatim}
 ##      [,1] [,2] [,3] [,4] [,5]
-## [1,]   41   46   39   32   50
-## [2,]   55   41   44   43   44
-## [3,]   40   46   43   38   47
-## [4,]   47   47   41   50   41
-## [5,]   47   47   43   51   49
+## [1,]   59   63   43   29   42
+## [2,]   36   48   43   40   50
+## [3,]   34   53   52   42   52
+## [4,]   47   49   38   46   50
+## [5,]   53   39   54   43   44
 \end{verbatim}
 Entonces el vector \texttt{out} será así:
 
@@ -271,7 +271,7 @@ Entonces el vector \texttt{out} será así:
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
-## [1] 2 1 2 3 4
+## [1] 2 2 3 4 2
 \end{verbatim}
 (Este es un ejemplo creado con números al azar, por supuesto.)
 
@@ -299,9 +299,6 @@ lograr el mismo vector \texttt{out} que en el ejercicio 1.a.
 
 \subsubsection{2.a Zenón recargado}
 
-Hacer un while para encontrar el n para un valor arbitrario de
-$\varepsilon$, siguiendo las directivas del ejercicio de zenon.R
-
 Como seguramente recordará, en el Repartido I se propuso calcular la
 serie que representa a la
 \href{https://es.wikipedia.org/wiki/Paradojas\_de\_Zen\%C3\%B3n\#La\_dicotom.C3.ADa}{paradoja
@@ -314,7 +311,8 @@ de Zenón}, cuyo valor para el enésimo elemento se definió como:
 \]
 
 En R, el valor de $Z_n$ se puede obtener con las siguientes líneas de
-código:
+código (recomendamos que use en particular la segunda línea en su
+script, para evitar problemas de redondeo):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -328,10 +326,9 @@ siendo $\varepsilon = 10 ^ {-6}$. El único método con que contaba en ese
 momento era manualmente cambiar el valor de \texttt{n} aumentando en una
 unidad, ejecutar el código y determinar manualmente si cumplía tal
 condición (para repetir el proceso en caso de que de no hacerlo). Sin
-embargo con las herramientas que usted a aprendido en esta unidad es
-posible ver que se pueden automatizar estos procedimientos, e incluso
-generalizarlo para cualquier $\varepsilon$. Este es el objetivo de este
-ejercicio.
+embargo con las \textbf{estructuras de control} es posible ver que se
+pueden automatizar estos procedimientos, e incluso generalizarlo para
+cualquier $\varepsilon$. Este es el objetivo de este ejercicio.
 
 Para esto usted deberá usar el loop \texttt{while}, ya que es (en
 principio) el más adecuado para esta tarea, pues no sabemos de antemano
@@ -351,19 +348,19 @@ La siguiente es la salida en la consola para el caso de
 ## n = 5 - Zn = 0.9688
 \end{verbatim}
 \textbf{Recuerde que}: \textbf{1.} en cada iteración \texttt{n} debe
-aumentar en una unidad, \textbf{2.} el script debe funcionar igual
-debien para cualquier valor de \texttt{epsilon} elegido y \textbf{3.} es
+aumentar en una unidad, \textbf{2.} el script debe funcionar igual de
+bien para cualquier valor de \texttt{epsilon} elegido y \textbf{3.} es
 lo mejor utilizar el código indicado anteriormente para obtener
 \texttt{Zn} o la corrección automática tendrá problemas con el redondeo
 de los valores.
 
 \subsubsection{2.b Guardar los valores}
 
-Luego de hacer la parte 2.a, usted decide que es buena idea tener toda
-la secuencia de valores de \texttt{Zn} que se van obteniendo en un único
-vector numérico, al cual llamará \texttt{Z}. Para esto es necesario
-modificar tanto la preparación como las instrucciones del loop, como
-recordará de las lecciones de la unidad 6.
+Luego de hacer la parte 2.a, usted decide que es buena idea guardar los
+valores de \texttt{Zn} un único vector numérico, al cual llamará
+\texttt{Z}. Para esto es necesario modificar tanto la preparación como
+las instrucciones del loop, como recordará de las lecciones de la unidad
+6.
 
 La siguiente es la salida en la consola para el caso de
 \texttt{epsilon \textless{}- 5e-2} y empezando con
@@ -375,31 +372,20 @@ La siguiente es la salida en la consola para el caso de
 ## n = 4 - Zn = 0.9375 
 ## n = 5 - Zn = 0.9688
 \end{verbatim}
-\begin{verbatim}
-## [1] 5
-\end{verbatim}
-\begin{verbatim}
-## [1] 0.03125
-\end{verbatim}
 \begin{figure}[htbp]
 \centering
 \includegraphics{figure/fig1.png}
 \caption{Serie de Zenón, con n (final) = 5}
 \end{figure}
 
-\textbf{Recuerde que}: \textbf{1.} en cada iteración \texttt{n} debe
-aumentar en una unidad, \textbf{2.} el script debe funcionar igual
-debien para cualquier valor de \texttt{epsilon} elegido y \textbf{3.} es
-lo mejor utilizar el código indicado a continuación para obtener
-\texttt{Zn} o la corrección automática tendrá problemas con el redondeo
-de los valores.
-
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{n <- }\DecValTok{20}  \CommentTok{# El n puede ser cualquiera en verdad...}
-\NormalTok{Zn <- }\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{/(}\DecValTok{2}\NormalTok{^(}\DecValTok{1}\NormalTok{:n)))}
+\NormalTok{Z}
 \end{Highlighting}
 \end{Shaded}
+\begin{verbatim}
+## [1] 0.5000 0.7500 0.8750 0.9375 0.9688
+\end{verbatim}
 La figura 1 se obtuvo con el siguiente código:
 
 \begin{Shaded}

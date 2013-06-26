@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.6.20)  25 JUN 2013 20:06
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.6.20)  25 JUN 2013 20:27
 entering extended mode
  %&-line parsing enabled.
 **INSTRUCCIONES.tex
@@ -551,35 +551,35 @@ on la funci^^Son
  []
 
 [2] [3] [4]
-LaTeX Font Info:    Try loading font information for U+msa on input line 303.
+LaTeX Font Info:    Try loading font information for U+msa on input line 307.
  (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 303.
+LaTeX Font Info:    Try loading font information for U+msb on input line 307.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OML+cmtt on input line 344
+LaTeX Font Info:    Try loading font information for OML+cmtt on input line 341
 .
-LaTeX Font Info:    No file OMLcmtt.fd. on input line 344.
+LaTeX Font Info:    No file OMLcmtt.fd. on input line 341.
 
 
 LaTeX Font Warning: Font shape `OML/cmtt/m/n' undefined
 (Font)              using `OML/cmm/m/it' instead
-(Font)              for symbol `textless' on input line 344.
+(Font)              for symbol `textless' on input line 341.
 
 [5] <figure/fig1.png, id=108, 505.89pt x 505.89pt>
 File: figure/fig1.png Graphic file (type png)
  <use figure/fig1.png>
 [6] [7 <./figure/fig1.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 442
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 428
 .
  (/usr/share/texmf/tex/latex/R/tex/latex/omscmtt.fd
 File: omscmtt.fd 
 )
 LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 442.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 428.
 <figure/fig2.png, id=121, 505.89pt x 505.89pt>
 File: figure/fig2.png Graphic file (type png)
  <use figure/fig2.png> [8]
@@ -587,10 +587,10 @@ File: figure/fig2.png Graphic file (type png)
 File: figure/fig3.png Graphic file (type png)
 
 <use figure/fig3.png> [10] [11 <./figure/fig3.png>]
-<figure/fig4.png, id=145, 505.89pt x 505.89pt>
+<figure/fig4.png, id=146, 505.89pt x 505.89pt>
 File: figure/fig4.png Graphic file (type png)
- <use figure/fig4.png> [12]
-[13 <./figure/fig4.png>] <figure/fig5.png, id=161, 505.89pt x 505.89pt>
+ <use figure/fig4.png> [12 <./figure/fig4.png>] [13] <figure/fig5.png, id=161, 
+505.89pt x 505.89pt>
 File: figure/fig5.png Graphic file (type png)
 
 <use figure/fig5.png> [14] [15 <./figure/fig5.png>] (./INSTRUCCIONES.aux)
@@ -605,7 +605,7 @@ Here is how much of TeX's memory you used:
  10079 multiletter control sequences out of 15000+50000
  7539 words of font info for 30 fonts, out of 3000000 for 9000
  48 hyphenation exceptions out of 8191
- 38i,6n,37p,432b,431s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,6n,37p,432b,425s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts
@@ -617,7 +617,7 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb>
-Output written on INSTRUCCIONES.pdf (15 pages, 244552 bytes).
+Output written on INSTRUCCIONES.pdf (15 pages, 243847 bytes).
 PDF statistics:
  223 PDF objects out of 1000 (max. 8388607)
  45 named destinations out of 1000 (max. 500000)

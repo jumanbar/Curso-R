@@ -115,11 +115,11 @@ datos
 
 ```
 ##      [,1] [,2] [,3] [,4] [,5]
-## [1,]   41   46   39   32   50
-## [2,]   55   41   44   43   44
-## [3,]   40   46   43   38   47
-## [4,]   47   47   41   50   41
-## [5,]   47   47   43   51   49
+## [1,]   59   63   43   29   42
+## [2,]   36   48   43   40   50
+## [3,]   34   53   52   42   52
+## [4,]   47   49   38   46   50
+## [5,]   53   39   54   43   44
 ```
 
 
@@ -133,7 +133,7 @@ out
 ```
 
 ```
-## [1] 2 1 2 3 4
+## [1] 2 2 3 4 2
 ```
 
 
@@ -154,8 +154,6 @@ Para completar el ejercicio deberá simplemente usar `apply` para lograr el mism
 
 ### 2.a Zenón recargado
 
-Hacer un while para encontrar el n para un valor arbitrario de $\varepsilon$, siguiendo las directivas del ejercicio de zenon.R
-
 Como seguramente recordará, en el Repartido I se propuso calcular la serie que representa a la [paradoja de Zenón](https://es.wikipedia.org/wiki/Paradojas_de_Zen%C3%B3n#La_dicotom.C3.ADa), cuyo valor para el enésimo elemento se definió como:
 
 $$
@@ -164,7 +162,7 @@ $$
   \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + ... + \frac{1}{2 ^ n}
 $$
 
-En R, el valor de $Z_n$ se puede obtener con las siguientes líneas de código:
+En R, el valor de $Z_n$ se puede obtener con las siguientes líneas de código (recomendamos que use en particular la segunda línea en su script, para evitar problemas de redondeo):
 
 
 ```r
@@ -173,7 +171,7 @@ Zn <- sum(1/(2^(1:n)))
 ```
 
 
-En ocasión de aquel primer repartido, el objetivo era encontrar el mínimo `n` que cumpliera la desigualdad $1 - Z_n < \varepsilon$, siendo $\varepsilon = 10 ^ {-6}$. El único método con que contaba en ese momento era manualmente cambiar el valor de `n` aumentando en una unidad, ejecutar el código y determinar manualmente si cumplía tal condición (para repetir el proceso en caso de que de no hacerlo). Sin embargo con las herramientas que usted a aprendido en esta unidad es posible ver que se pueden automatizar estos procedimientos, e incluso generalizarlo para cualquier $\varepsilon$. Este es el objetivo de este ejercicio.
+En ocasión de aquel primer repartido, el objetivo era encontrar el mínimo `n` que cumpliera la desigualdad $1 - Z_n < \varepsilon$, siendo $\varepsilon = 10 ^ {-6}$. El único método con que contaba en ese momento era manualmente cambiar el valor de `n` aumentando en una unidad, ejecutar el código y determinar manualmente si cumplía tal condición (para repetir el proceso en caso de que de no hacerlo). Sin embargo con las **estructuras de control** es posible ver que se pueden automatizar estos procedimientos, e incluso generalizarlo para cualquier $\varepsilon$. Este es el objetivo de este ejercicio.
 
 Para esto usted deberá usar el loop `while`, ya que es (en principio) el más adecuado para esta tarea, pues no sabemos de antemano cual va a ser el `n` "correcto". Además recuerde que el loop `while` necesita que se cumpla una condición para continuar su ejecución, tal como el procedimiento de encontrar el `n` correcto.
 
@@ -188,11 +186,11 @@ La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2` y empe
 ```
 
 
-**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad, **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** es lo mejor utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
+**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad, **2.** el script debe funcionar igual de bien para cualquier valor de `epsilon` elegido y **3.** es lo mejor utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
 
 ### 2.b Guardar los valores
 
-Luego de hacer la parte 2.a, usted decide que es buena idea tener toda la secuencia de valores de `Zn` que se van obteniendo en un único vector numérico, al cual llamará `Z`. Para esto es necesario modificar tanto la preparación como las instrucciones del loop, como recordará de las lecciones de la unidad 6.
+Luego de hacer la parte 2.a, usted decide que es buena idea guardar los valores de `Zn` un único vector numérico, al cual llamará `Z`. Para esto es necesario modificar tanto la preparación como las instrucciones del loop, como recordará de las lecciones de la unidad 6.
 
 La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2` y empezando con `n <- 1` (aunque no lo muestre en la salida): 
 
@@ -204,23 +202,15 @@ La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2` y empe
 ## n = 5 - Zn = 0.9688
 ```
 
-```
-## [1] 5
-```
-
-```
-## [1] 0.03125
-```
-
 ![Serie de Zenón, con n (final) = 5](figure/fig1.png) 
 
 
-**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad, **2.** el script debe funcionar igual debien para cualquier valor de `epsilon` elegido y **3.** es lo mejor utilizar el código indicado a continuación para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
-
-
 ```r
-n <- 20  # El n puede ser cualquiera en verdad...
-Zn <- sum(1/(2^(1:n)))
+Z
+```
+
+```
+## [1] 0.5000 0.7500 0.8750 0.9375 0.9688
 ```
 
 
