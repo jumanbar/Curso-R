@@ -3,16 +3,82 @@ Ejercicio de programación VI: Estructuras de Control
 
 ### [IMSER 2013]
 
-De otros años:
+- - -
+
+Archivos incluidos:
+-------------------
+
+El archivo con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-X`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
+
+* **` 1.a-loop-for.R `**
+* **` 1.b-extra-apply.R `**
+* **` 2.a-zenon-recargado.R `**
+* **` 2.b-guardar-valores.R `**
+* **` 3.a-limites.R `**
+* **` 3.b-no-suben.R `**
+* **` 3.c-extra-heterogeneidad.R `**
+* **` 3.d-extremos.R `**
+
+Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modificados** para que el método de calificación automático funcione correctamente: 
+
+* ` datos `
+* ` evaluar.R `
+* ` INSTRUCCIONES.pdf `
+
+Mecanismo de corrección:
+------------------------
+
+Nota: más recomendaciones **importantes** se hacen en el documento [Dinámica de los repartidos](http://goo.gl/P5Wnq).
+
+Lo primero que debe hacer es cargar el archivo evaluar.R con la función `source` y la codificación de caracteres "UTF-8" (lo cual afecta a la función `evaluar` en particular), de la siguiente manera:
+
+```{r eval=FALSE}
+source("evaluar.R", encoding = "UTF-8")
+```
+
+Nótese que hemos dejado de usar la función `options`, de forma que de ahora en más **no ejecute el comando**:
+
+```{r eval=FALSE}
+options(encoding = "utf-8") # No me ejecuten!
+```
+
+Este cambio se debe a que hemos detectado que esta elección trae más problemas que soluciones.
+
+Si usted ha ejecutado todos los pasos anteriores correctamente, al usar el comando `ls()` verá que `"evaluar"` figura en su sesión y además en la consola debería ver lo siguiente:
+
+    Archivo de código fuente cargado correctamente
+
+    Chequeo de encoding:
+      Los siguientes caracteres deben ser vocales con tilde:
+        á - é - í - ó - ú
+      Si *no se ven correctamente* corra el siguiente comando:
+        source('evaluar.R', encoding = 'UTF-8')
+    
+    Para comprobar la fecha de su archivo datos ejecute:
+    >> fecha.datos()
+
+Usted trabajará modificando los contenidos de los archivos de los ejercicios con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio y **guardando el archivo** correspondiente en el disco duro, usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:
+
+```{r eval=FALSE}
+evaluar()
+```
+
+y además podrá en todo momento verificar su puntaje con la función `verNotas()`. Tenga siempre en cuenta que, a **menos que sea indicado** por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben servir aún si se modifican los datos originales (i.e.: no use valores fijos si no comandos). Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos **se indica claramente en dónde se inicia y dónde finaliza su código** y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.
+
+#### NOTA:
+se agregó la función `fecha.datos` para facilitar el acceso al a información de (1) cuál es la versión que usted tiene en su PC y (2) cómo encontrar la fecha de la última versión.
 
 
-* Crecimiento exponencial ...?
+### Al finalizar
 
-* Caminata del borracho?
+Una vez terminados y guardados los archivos de los ejercicios del repartido, usted deberá ejecutar `evaluar()` y seleccionar la última opción ("Todos") y luego subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-X”, a la sección de entregas de la portada del curso en la plataforma EVA. Este archivo se podrá reemplazar con uno más nuevo, en caso de que desee corregir algún error; en caso de querer que el archivo sea corregido antes de la fecha de entrega, puede cambiarle el nombre a "datos-finalizado", pero en ese caso la nota no se cambiará de ahí en adelante.
 
-* Símil función preg?
 
-* Loops con errores: un while que es infinito, un for que tiene mal puesto el rango, ...
+### Código de Honor
+
+Si bien animamos a que trabaje en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos necesario que no utilice el código creado por sus compañeros, si no que debe programar sus propias instrucciones, ya que de lo contrario supone un sabotaje a su propio proceso de aprendizaje. Esto implica también evitar, en la medida de lo posible, exponer el código propio a sus colegas. Como profesores estamos comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y explicaciones adecuadas a fin de que pueda encontrar su propio camino para resolver los ejercicios.
+
+En casos de planteos de dudas a través del foro, en los que considere que es imposible expresar un problema sin exponer su própio código, entonces es aceptable hacerlo. De todas formas en estos casos es preferible que envíe su código por correo electrónico directamente a un profesor, explicando la problemática.
 
 - - -
 
@@ -261,9 +327,9 @@ abline(v = c(14.5, 35.5, 32.5), lty = 3, col = c(2, 2, 4))
 
 Estando ya bastante conforme con la performance de su modelo, usted se da cuenta de un detalle: nadie, o como mucho una cantidad insignificante de personas, toma un ómnibus para recorrer menos de 5 paradas. Por esta razón decide modificar nuevamente su código para dar cuenta de este detalle. Las modificaciones son las siguientes:
 
-1. Si el bus se encuentra en una parada anterior a la quinta, nadie se bajará.
+1. Si el bus se encuentra en una parada *anterior* a la quinta, nadie se bajará.
 
-2. Si el bus se encuentra en una parada posterior a la 45, nadie se subirá.
+2. Si el bus se encuentra en una parada *posterior* a la 45, nadie se subirá.
 
 La figura 5 muestra un ejemplo hecho incluyendo estas dos modificaciones. Como ya se ha mencionado anteriormente, es muy recomendable utilizar diagramas de flujo (como el mostrado en la lección 6.1) para entender la dinámica y poder crear el código de forma más ordenada y eficiente.
 
@@ -278,7 +344,7 @@ registro[1] <- pasajeros
 for (i in 2:paradas) {
 
   # Bajan:
-  if (i > 5) {
+  if (i >= 5) {
     if (i < 33) {
       pasajeros <- pasajeros - rpois(1, 2)
     } else {
@@ -309,10 +375,5 @@ plot(registro, type = "o", pch = 19, xlab='Parada', ylab='No. de pasajeros', yli
 points(nosuben, type = "o", pch = 19, col = 3)
 abline(h = c(0, maximo), lty = 3)
 abline(v = c(14.5, 35.5, 32.5, 4.5, 45.5), lty = 3, col = c(2, 2, 4, 8, 8))
-```
-
-```{r, eval = TRUE}
-set.seed(11)
-x <- bus(30, 60)
 ```
 

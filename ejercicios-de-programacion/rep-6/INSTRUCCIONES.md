@@ -3,16 +3,88 @@ Ejercicio de programación VI: Estructuras de Control
 
 ### [IMSER 2013]
 
-De otros años:
+- - -
+
+Archivos incluidos:
+-------------------
+
+El archivo con los ejercicios del práctico debe bajarse y descomprimirse en disco duro, creando la carpeta **`rep-X`** (nota: no debe dentro de ningún disco, partición o carpeta protegida a la escritura, como puede ser un disco duro externo de backup). Usted deberá abrir el RStudio y seleccionar dicha carpeta como su directorio de trabajo con `setwd` o en RStudio la combinación **Ctrl + Shift + K**. En esta carpeta se encuentran algunos archivos que usted deberá modificar:
+
+* **` 1.a-loop-for.R `**
+* **` 1.b-extra-apply.R `**
+* **` 2.a-zenon-recargado.R `**
+* **` 2.b-guardar-valores.R `**
+* **` 3.a-limites.R `**
+* **` 3.b-no-suben.R `**
+* **` 3.c-extra-heterogeneidad.R `**
+* **` 3.d-extremos.R `**
+
+Adicionalmente los siguientes archivos son necesarios, pero **no deben ser modificados** para que el método de calificación automático funcione correctamente: 
+
+* ` datos `
+* ` evaluar.R `
+* ` INSTRUCCIONES.pdf `
+
+Mecanismo de corrección:
+------------------------
+
+Nota: más recomendaciones **importantes** se hacen en el documento [Dinámica de los repartidos](http://goo.gl/P5Wnq).
+
+Lo primero que debe hacer es cargar el archivo evaluar.R con la función `source` y la codificación de caracteres "UTF-8" (lo cual afecta a la función `evaluar` en particular), de la siguiente manera:
 
 
-* Crecimiento exponencial ...?
+```r
+source("evaluar.R", encoding = "UTF-8")
+```
 
-* Caminata del borracho?
 
-* Símil función preg?
+Nótese que hemos dejado de usar la función `options`, de forma que de ahora en más **no ejecute el comando**:
 
-* Loops con errores: un while que es infinito, un for que tiene mal puesto el rango, ...
+
+```r
+options(encoding = "utf-8")  # No me ejecuten!
+```
+
+
+Este cambio se debe a que hemos detectado que esta elección trae más problemas que soluciones.
+
+Si usted ha ejecutado todos los pasos anteriores correctamente, al usar el comando `ls()` verá que `"evaluar"` figura en su sesión y además en la consola debería ver lo siguiente:
+
+    Archivo de código fuente cargado correctamente
+
+    Chequeo de encoding:
+      Los siguientes caracteres deben ser vocales con tilde:
+        á - é - í - ó - ú
+      Si *no se ven correctamente* corra el siguiente comando:
+        source('evaluar.R', encoding = 'UTF-8')
+    
+    Para comprobar la fecha de su archivo datos ejecute:
+    >> fecha.datos()
+
+Usted trabajará modificando los contenidos de los archivos de los ejercicios con RStudio (u otro programa de su preferencia) según las consignas que se describen a continuación. Luego de terminar cada ejercicio y **guardando el archivo** correspondiente en el disco duro, usted podrá verificar rápidamente si su respuesta es correcta ejecutando el comando:
+
+
+```r
+evaluar()
+```
+
+
+y además podrá en todo momento verificar su puntaje con la función `verNotas()`. Tenga siempre en cuenta que, a **menos que sea indicado** por la letra del ejercicio, las soluciones deben ser genéricas y por lo tanto deben servir aún si se modifican los datos originales (i.e.: no use valores fijos si no comandos). Usualmente se utilizan valores generados de forma aleatoria para las correcciones automáticas. Los objetos que son evaluados en la corrección automática estarán indicados con un asterísco en las instrucciones de cada script. Nótese además que en los archivos **se indica claramente en dónde se inicia y dónde finaliza su código** y que debe respetar esta organización para que la corrección de los ejercicios funcione bien.
+
+#### NOTA:
+se agregó la función `fecha.datos` para facilitar el acceso al a información de (1) cuál es la versión que usted tiene en su PC y (2) cómo encontrar la fecha de la última versión.
+
+
+### Al finalizar
+
+Una vez terminados y guardados los archivos de los ejercicios del repartido, usted deberá ejecutar `evaluar()` y seleccionar la última opción ("Todos") y luego subir el archivo ”datos” (sin extensión), incluido en la carpeta ”rep-X”, a la sección de entregas de la portada del curso en la plataforma EVA. Este archivo se podrá reemplazar con uno más nuevo, en caso de que desee corregir algún error; en caso de querer que el archivo sea corregido antes de la fecha de entrega, puede cambiarle el nombre a "datos-finalizado", pero en ese caso la nota no se cambiará de ahí en adelante.
+
+
+### Código de Honor
+
+Si bien animamos a que trabaje en equipos y que haya un intercambio fluido en los foros del curso, es fundamental que las respuestas a los cuestionarios y ejercicios de programación sean fruto del trabajo individual. En particular, consideramos necesario que no utilice el código creado por sus compañeros, si no que debe programar sus propias instrucciones, ya que de lo contrario supone un sabotaje a su propio proceso de aprendizaje. Esto implica también evitar, en la medida de lo posible, exponer el código propio a sus colegas. Como profesores estamos comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y explicaciones adecuadas a fin de que pueda encontrar su propio camino para resolver los ejercicios.
+
+En casos de planteos de dudas a través del foro, en los que considere que es imposible expresar un problema sin exponer su própio código, entonces es aceptable hacerlo. De todas formas en estos casos es preferible que envíe su código por correo electrónico directamente a un profesor, explicando la problemática.
 
 - - -
 
@@ -43,11 +115,11 @@ datos
 
 ```
 ##      [,1] [,2] [,3] [,4] [,5]
-## [1,]   45   45   43   37   42
-## [2,]   35   54   44   40   43
-## [3,]   44   53   43   35   46
-## [4,]   47   40   36   37   55
-## [5,]   41   53   52   45   44
+## [1,]   41   46   39   32   50
+## [2,]   55   41   44   43   44
+## [3,]   40   46   43   38   47
+## [4,]   47   47   41   50   41
+## [5,]   47   47   43   51   49
 ```
 
 
@@ -61,7 +133,7 @@ out
 ```
 
 ```
-## [1] 0 1 2 2 2
+## [1] 2 1 2 3 4
 ```
 
 
@@ -170,7 +242,10 @@ plot(Z, xlab = "n", ylab = expression(Z[n]), type = "o", pch = 19, ylim = c(0.5,
 
 Como proyecto del gobierno municipal local, usted va a simular el trayecto de un ómnibus a través de su recorrido. El objetivo es obtener una simulación razonablemente fiel a los datos observados para esa línea. Se supone que dicho gobierno va a utilizar los datos generados y complementarlo con análisis matemáticos rigurosos, a fin de diseñar un sistema de transporte óptimo que tenga un buen balance entre el costo de flota y eficiencia de transporte.
 
-### 3.a Modelo básico
+#### Nota:
+en este ejercicio, particularmente en las partes c y d, puede facilitar mucho la tarea hacer un diagrama de flujo sencillo antes de empezar a escribir código.
+
+### 3.a Poniendo límites
 
 Usted ya ha hecho un modelo que, si bien es muy crudo aún, tiene los componentes básicos necesarios. El código es el siguiente:
 
@@ -182,7 +257,7 @@ maximo <- 60
 pasajeros <- rpois(1, 10)
 registro <- numeric(paradas)
 registro[1] <- pasajeros
-for (i in 1:paradas) {
+for (i in 2:paradas) {
     # Bajan:
     pasajeros <- pasajeros - rpois(1, 2)
     
@@ -203,231 +278,107 @@ Como puede ver en el gráfico generado (fig. 2), la cantidad de pasajeros sobrep
 
 El objetivo de este ejercicio tiene que ver con este último: **modificar el código de forma tal que se impongan límites a los valores posibles de `pasajeros`**. En particular, siempre que la cantidad de pasajeros sea mayor que el máximo estipulado (siendo que ya subieron y bajaron los pasajeros correspondientes a ese turno), debe corregirse el valor de `pasajeros`, dejándolo en el `maximo`. El caso análogo debe ocurrir si `pasajeros` toma valor negativo, cambiándolo por 0.
 
+(En la figura 3 se muestra una simulación en la que se cumplen estas condiciones.)
+
 ### 3.b ¿Cuántos se quedan afuera?
 
 Uno de los principales objetivos del gobierno municipal es el de saber cuántos pasajeros quedan sin poder subir al bus en cada parada. Para esto es necesario registrar, en su simulación, el número de pasajeros que sobrepasan el límite máximo de la capacidad del vehículo.
 
-Usted decide crear un vector numérico, el cual tendrá tantos valores como paradas hay en el recorrido y registrará para cada una el la cantidad de personas que no han podido subir al vehículo. Dicho vector será `nosuben` y deberá tener la longitud correcta *antes* de iniciar el loop.
+Usted decide crear un vector numérico, el cual tendrá tantos valores como paradas hay en el recorrido y registrará para cada una el la cantidad de personas que no han podido subir al vehículo. Dicho vector será `nosuben` y deberá tener la longitud correcta *antes* de iniciar el loop. La figura 3 muestra la progresión del número de pasajeros (negro) y personas que no pueden subir (verde) a través de una simulación.
+
+Note que el vector `nosuben` no puede tener valores negativos, su valor mínimo será 0.
 
 
 ![Simulación con límites y el vector nosuben en verde](figure/fig3.png) 
 
 
-La siguiente imagen se obtuvo haciendo la simulación, ejecutando previamente ``set.seed(11)`` y luego el comando gráfico:
-
-
-```r
-plot(registro, xlab = "Parada", ylab = "No. de pasajeros")
-```
-
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9.png) 
-
-
 ### 3.c Heterogeneidad
 
-1. La cantidad de pasajeros que bajan o suben siempre se obtiene con la función `rpois(1, lambda)`, siendo `lambda` un número entero cualquiera. El sistema de corrección del ejercicio espera que usted use siempre líneas como estas para simular subidas o bajadas de pasajeros:
+El modelo creado no está nada mal, pero desde las oficinas de la municipalidad llegan reportes de que la cantidad de personas que suben y bajan varía mucho según la altura del recorrido en la que se encuentre el bus. Luego de mirar cuidadosamente los datos, usted concluye que:
 
-Sugerencias: (1) la función ``sample`` puede ser útil para simular la subida de pasajeros. (2) Tanto en este como en los siguientes ejercicios, en caso de no estar seguro/a de cómo proceder, puede facilitar mucho la tarea hacer un diagrama de flujo sencillo antes de empezar a escribir código.
+1. La cantidad de pasajeros que suben aumenta mucho en la la mitad del recorrido. Usted considera razonable decretar que a partir de la parada 15 y hasta la parada 35, el número promedio de gente que sube es de 8, en lugar de 3 como en el resto del recorrido. En otras palabras, en ese tramo, la cantida de pasajeros que deberá subir será `rpois(1, 8)`, mentras que en el resto del recorrido serán `rpois(1, 3)`.
+
+2. Con la gente que baja el patrón es diferente: aumenta bastante la bajada sobre todo en la segunda mitad del trayecto. En particular, a partir de la parada 33 usted considera razonable determinar que bajan 5 personas en promedio por parada. En otras palabras, antes de la parada 33 bajarán `rpois(1, 2)` por turno, luego serán `rpois(1, 5)`.
+
+#### Nota: 
+el sistema de corrección del ejercicio espera que usted use **siempre** líneas como estas para simular subidas o bajadas de pasajeros:
+
 
 ```r
 # Usando lambdas 2 y 3 como ejemplos:
-pasajeros <- pasajeros - rpois(1, 2)
-pasajeros <- pasajeros + rpois(1, 3)
+pasajeros <- pasajeros - rpois(1, 2)  # Bajan
+pasajeros <- pasajeros + rpois(1, 3)  # Suben
 ```
 
 
-### 3.d Extremos
-- - -
+(Aquí figuran 2 y 3 como promedio, pero en cada caso usted deberá cambiar el valor según lo que dice la letra.)
 
-### b. Cambio de loop
-
-Modifique el código de la parte anterior de forma tal que haga lo mismo, pero utilizando un loop ``while``.
-
-Sugerencias: (1) agrege manualmente una variable (p.ej.: ``i``) que sirva para indexar los distintos objetos y recuerde actualizarla en la linea correcta del código y (2) usar un ``if`` posterior al loop puede ser útil para sustituir los ceros del final por 44 en el vector registro (aunque no es de ninguna manera el único método).
-
-Nota: el gráfico que se dió en la parte anterior tamibén aplica para este ejercicio. 
-
-### (``*``) c. Función ``bus``
-
-Modifique el código reparado en la parte **a** para crear una función llamada ``bus`` que ejecute la misma simulación, en la que el número de paradas y capacidad máxima del bus sean los argumentos de la misma. El nombre de estos argumentos son a su elección.
-
-Como salida la función debe devolver simplemente el vector ``registro``.
-
-Nota: recuerde que esta función debe trabajar correctamente para cualquier elección del número de paradas y máximo de pasajeros. En el siguiente ejemplo se muestra un caso que puede servir de referencia:
+![La subida y bajada de pasajeros varía; las líneas verticales muestran los cambios en subidas (rojo) y bajadas (azul)](figure/fig4.png) 
 
 
+### 3.d Extra: extremos
 
+Estando ya bastante conforme con la performance de su modelo, usted se da cuenta de un detalle: nadie, o como mucho una cantidad insignificante de personas, toma un ómnibus para recorrer menos de 5 paradas. Por esta razón decide modificar nuevamente su código para dar cuenta de este detalle. Las modificaciones son las siguientes:
 
+1. Si el bus se encuentra en una parada *anterior* a la quinta, nadie se bajará.
 
-```r
-set.seed(11)
-# Nro. de paradas = 40 Máximo de pasajeros = 80
-x <- bus(40, 80)
-```
+2. Si el bus se encuentra en una parada *posterior* a la 45, nadie se subirá.
 
-```
-## Parada 1 hay 1 pasajeros
-## Parada 2 hay 1 pasajeros
-## Parada 3 hay 4 pasajeros
-## Parada 4 hay 4 pasajeros
-## Parada 5 hay 4 pasajeros
-## Parada 6 hay 10 pasajeros
-## Parada 7 hay 10 pasajeros
-## Parada 8 hay 12 pasajeros
-## Parada 9 hay 18 pasajeros
-## Parada 10 hay 18 pasajeros
-## Parada 11 hay 19 pasajeros
-## Parada 12 hay 22 pasajeros
-## Parada 13 hay 28 pasajeros
-## Parada 14 hay 33 pasajeros
-## Parada 15 hay 38 pasajeros
-## Parada 16 hay 42 pasajeros
-## Parada 17 hay 45 pasajeros
-## Parada 18 hay 47 pasajeros
-## Parada 19 hay 48 pasajeros
-## Parada 20 hay 51 pasajeros
-## Parada 21 hay 52 pasajeros
-## Parada 22 hay 56 pasajeros
-## Parada 23 hay 58 pasajeros
-## Parada 24 hay 60 pasajeros
-## Parada 25 hay 60 pasajeros
-## Parada 26 hay 63 pasajeros
-## Parada 27 hay 65 pasajeros
-## Parada 28 hay 65 pasajeros
-## Parada 29 hay 65 pasajeros
-## Parada 30 hay 67 pasajeros
-## Parada 31 hay 70 pasajeros
-## Parada 32 hay 72 pasajeros
-## Parada 33 hay 74 pasajeros
-## Parada 34 hay 75 pasajeros
-## Bus lleno!
-```
-
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12.png) 
-
-
-- - -
-
-### d. Gente que también baja
-
-Hacer una variante del código (de cualquiera de las partes anteriores) en la que además de subir personas, a partir de la parada 10 se bajen entre 1 y 5 pasajeros por parada. Tanto la subida y la bajada deben ejecutarse **antes** de determinar si se alcanzó el máximo estipulado de pasajeros y por lo tanto si debe dejar de detenerse el bus en las paradas.
-
-Sugerencia: puede ser muy útil hacer un diagrama de flujo sencillo para planificar el código antes de escribirlo.
-
-El siguiente es un ejemplo del resultado de aplicar los cambios que se piden en la función ``bus``:
-
-* Cambiar parte d del útimo parcial: si el bus tiene el máximo de pasajeros no sube a más nadie y si tiene el mínimo (0) no baja nadie.
-
-#### Base:
-suben rpois(1, 3) en cada parada
-bajan rpois(1, 2) "
-
-#### a. Límites:
-no pueden haber más de `maximo` pasajeros
-no pueden haber menos de `0` pasajeros
-
-#### b. Heterogeneidad:
-entre las paradas 15 y 40 (inclusive) se sube mucho más gente: rpois(1, 8)
-a partir de la parada 33 se bajan muchos más: rpois(1, 5)
-
-#### c. Los extremos:
-nadie se baja antes de la parada 5
-nadie se sube a partir de la parada 45 (inclusive)
-
-#### d. Gente que no sube:
-Cantidad de gente que quiere subir pero no puede porque el bus está lleno.
-
+La figura 5 muestra un ejemplo hecho incluyendo estas dos modificaciones. Como ya se ha mencionado anteriormente, es muy recomendable utilizar diagramas de flujo (como el mostrado en la lección 6.1) para entender la dinámica y poder crear el código de forma más ordenada y eficiente.
 
 
 ```
-## Parada 1 hay 12 pasajeros
-## Parada 2 hay 14 pasajeros
-## Parada 3 hay 15 pasajeros
-## Parada 4 hay 17 pasajeros
-## Parada 5 hay 19 pasajeros
-## Parada 6 hay 19 pasajeros
-## Parada 7 hay 18 pasajeros
-## Parada 8 hay 21 pasajeros
-## Parada 9 hay 21 pasajeros
-## Parada 10 hay 22 pasajeros
-## Parada 11 hay 23 pasajeros
-## Parada 12 hay 23 pasajeros
-## Parada 13 hay 21 pasajeros
-## Parada 14 hay 20 pasajeros
-## Parada 15 hay 22 pasajeros
-## Parada 16 hay 30 pasajeros
-## Parada 17 hay 33 pasajeros
-## Parada 18 hay 37 pasajeros
-## Parada 19 hay 44 pasajeros
-## Parada 20 hay 49 pasajeros
+## Parada 2 hay 19 pasajeros
+## Parada 3 hay 21 pasajeros
+## Parada 4 hay 23 pasajeros
+## Parada 5 hay 27 pasajeros
+## Parada 6 hay 25 pasajeros
+## Parada 7 hay 28 pasajeros
+## Parada 8 hay 29 pasajeros
+## Parada 9 hay 30 pasajeros
+## Parada 10 hay 27 pasajeros
+## Parada 11 hay 26 pasajeros
+## Parada 12 hay 31 pasajeros
+## Parada 13 hay 29 pasajeros
+## Parada 14 hay 32 pasajeros
+## Parada 15 hay 35 pasajeros
+## Parada 16 hay 41 pasajeros
+## Parada 17 hay 46 pasajeros
+## Parada 18 hay 55 pasajeros
+## Parada 19 hay 60 pasajeros
+## Parada 20 hay 60 pasajeros
 ## Parada 21 hay 60 pasajeros
 ## Parada 22 hay 60 pasajeros
 ## Parada 23 hay 60 pasajeros
 ## Parada 24 hay 60 pasajeros
 ## Parada 25 hay 60 pasajeros
 ## Parada 26 hay 60 pasajeros
-## Parada 27 hay 60 pasajeros
+## Parada 27 hay 58 pasajeros
 ## Parada 28 hay 60 pasajeros
 ## Parada 29 hay 60 pasajeros
 ## Parada 30 hay 60 pasajeros
 ## Parada 31 hay 60 pasajeros
 ## Parada 32 hay 60 pasajeros
-## Parada 33 hay 60 pasajeros
+## Parada 33 hay 59 pasajeros
 ## Parada 34 hay 60 pasajeros
 ## Parada 35 hay 60 pasajeros
-## Parada 36 hay 58 pasajeros
-## Parada 37 hay 59 pasajeros
-## Parada 38 hay 56 pasajeros
-## Parada 39 hay 57 pasajeros
-## Parada 40 hay 58 pasajeros
-## Parada 41 hay 55 pasajeros
-## Parada 42 hay 57 pasajeros
-## Parada 43 hay 55 pasajeros
-## Parada 44 hay 53 pasajeros
-## Parada 45 hay 49 pasajeros
-## Parada 46 hay 38 pasajeros
-## Parada 47 hay 35 pasajeros
-## Parada 48 hay 30 pasajeros
-## Parada 49 hay 28 pasajeros
-## Parada 50 hay 27 pasajeros
+## Parada 36 hay 55 pasajeros
+## Parada 37 hay 50 pasajeros
+## Parada 38 hay 50 pasajeros
+## Parada 39 hay 43 pasajeros
+## Parada 40 hay 39 pasajeros
+## Parada 41 hay 44 pasajeros
+## Parada 42 hay 40 pasajeros
+## Parada 43 hay 35 pasajeros
+## Parada 44 hay 30 pasajeros
+## Parada 45 hay 31 pasajeros
+## Parada 46 hay 28 pasajeros
+## Parada 47 hay 22 pasajeros
+## Parada 48 hay 14 pasajeros
+## Parada 49 hay 11 pasajeros
+## Parada 50 hay 9 pasajeros
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
-
-
-
-```r
-set.seed(11)
-x <- bus(30, 60)
-```
-
-```
-## Parada 1 hay 1 pasajeros
-## Parada 2 hay 1 pasajeros
-## Parada 3 hay 4 pasajeros
-## Parada 4 hay 4 pasajeros
-## Parada 5 hay 4 pasajeros
-## Parada 6 hay 10 pasajeros
-## Parada 7 hay 10 pasajeros
-## Parada 8 hay 12 pasajeros
-## Parada 9 hay 18 pasajeros
-## Parada 10 hay 18 pasajeros
-## Parada 11 hay 19 pasajeros
-## Parada 12 hay 22 pasajeros
-## Parada 13 hay 28 pasajeros
-## Parada 14 hay 33 pasajeros
-## Parada 15 hay 38 pasajeros
-## Parada 16 hay 42 pasajeros
-## Parada 17 hay 45 pasajeros
-## Parada 18 hay 47 pasajeros
-## Parada 19 hay 48 pasajeros
-## Parada 20 hay 51 pasajeros
-## Parada 21 hay 52 pasajeros
-## Parada 22 hay 56 pasajeros
-## Parada 23 hay 58 pasajeros
-## Bus lleno!
-```
-
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
+![Modelo final; líneas grises indican los extremos](figure/fig5.png) 
 
 

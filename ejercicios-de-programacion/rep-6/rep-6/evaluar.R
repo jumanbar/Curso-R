@@ -1,13 +1,4 @@
 
-# if (tolower(getOption("encoding")) != "utf-8") {
-#   msjenc <- c("\n¡El encoding actual no es UTF-8!\n",
-#               "lo cual es un problema con tildes y enies,",
-#               "ajuste su configuracion con el comando:\n",
-#               "   options(encoding = 'utf-8')\n")
-#   msjenc <- paste(msjenc, "\n", sep = "")
-#   stop(msjenc, call. = FALSE) 
-# }
-
 evaluar <- function(e) {
   #
   arc <- dir()
@@ -130,13 +121,6 @@ evaluar <- function(e) {
 verNotas <- function()
   print.data.frame(read.csv2('notas.csv'), row.names=FALSE, right=FALSE)
 
-fecha.datos <- function() {
-  load("datos")
-  cat("La fecha de su archivo datos es:\n  ", rep.date, "\n")
-  cat("Link para ver fecha de la útima versión:\n  ", url.fecha, "\n")
-  cat("Link para descargar la útima versión:\n  ", url.datos, "\n")
-}
-
 cat("\nArchivo de código fuente cargado correctamente\n\n")
 
 cat("Chequeo de encoding:\n",
@@ -144,4 +128,13 @@ cat("Chequeo de encoding:\n",
     "    á - é - í - ó - ú\n",
     "  Si *no se ven correctamente* corra el siguiente comando:\n",
     "    source('evaluar.R', encoding = 'UTF-8')\n\n", sep = "")
+fecha.datos <- function() {
+  load("datos")
+  cat("La fecha de su archivo datos es:\n  ", rep.date, "\n")
+  cat("Link para ver fecha de la útima versión:\n  ", url.fecha, "\n")
+  cat("Link para descargar la útima versión:\n  ", url.datos, "\n")
+}
+
+cat("Para comprobar la fecha de su archivo datos ejecute:\n>>",
+    "fecha.datos()\n")
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.6.20)  23 JUN 2013 02:39
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.6.20)  25 JUN 2013 20:06
 entering extended mode
  %&-line parsing enabled.
 **INSTRUCCIONES.tex
@@ -343,6 +343,10 @@ Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \FV@StepNumber=\count102
 \FV@OutFile=\write3
 )
+(/usr/share/texmf-texlive/tex/latex/tools/enumerate.sty
+Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
+\@enLab=\toks23
+)
 (/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -454,7 +458,7 @@ Package pdftexcmds Info: \pdf@ifprimitive is available.
 \Fld@menulength=\count105
 \Field@Width=\dimen115
 \Fld@charsize=\dimen116
-\Field@toks=\toks23
+\Field@toks=\toks24
 Package hyperref Info: Hyper figures OFF on input line 4377.
 Package hyperref Info: Link nesting OFF on input line 4382.
 Package hyperref Info: Hyper index ON on input line 4385.
@@ -475,26 +479,26 @@ Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
 File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
 \Fld@listcount=\count109
 )
-Package hyperref Info: Option `breaklinks' set `true' on input line 57.
+Package hyperref Info: Option `breaklinks' set `true' on input line 64.
  (./INSTRUCCIONES.aux)
 \openout1 = `INSTRUCCIONES.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 71.
+LaTeX Font Info:    ... okay on input line 71.
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count110
@@ -502,13 +506,13 @@ LaTeX Font Info:    ... okay on input line 64.
 \scratchbox=\box29
 \nofMPsegments=\count111
 \nofMParguments=\count112
-\everyMPshowfont=\toks24
+\everyMPshowfont=\toks25
 \MPscratchCnt=\count113
 \MPscratchDim=\dimen118
 \MPnumerator=\count114
-\everyMPtoPDFconversion=\toks25
+\everyMPtoPDFconversion=\toks26
 )
-Package hyperref Info: Link coloring ON on input line 64.
+Package hyperref Info: Link coloring ON on input line 71.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
@@ -517,8 +521,8 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count115
 )
-LaTeX Info: Redefining \ref on input line 64.
-LaTeX Info: Redefining \pageref on input line 64.
+LaTeX Info: Redefining \ref on input line 71.
+LaTeX Info: Redefining \pageref on input line 71.
 
 (./INSTRUCCIONES.out) (./INSTRUCCIONES.out)
 \@outlinefile=\write4
@@ -528,76 +532,80 @@ LaTeX Info: Redefining \pageref on input line 64.
 
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 68.
+(hyperref)                than one, level fixed on input line 75.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 74.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 82.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 91.
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 74.
-LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 106.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 91.
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for U+msa on input line 165.
+Underfull \hbox (badness 1248) in paragraph at lines 173--184
+\OT1/cmr/m/n/10 y adem^^Sas podr^^Sa en todo mo-mento ver-i-ficar su pun-taje c
+on la funci^^Son
+ []
 
-(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+[2] [3] [4]
+LaTeX Font Info:    Try loading font information for U+msa on input line 303.
+ (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 165.
+LaTeX Font Info:    Try loading font information for U+msb on input line 303.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) [2]
-LaTeX Font Info:    Try loading font information for OML+cmtt on input line 206
+)
+LaTeX Font Info:    Try loading font information for OML+cmtt on input line 344
 .
-LaTeX Font Info:    No file OMLcmtt.fd. on input line 206.
+LaTeX Font Info:    No file OMLcmtt.fd. on input line 344.
 
 
 LaTeX Font Warning: Font shape `OML/cmtt/m/n' undefined
 (Font)              using `OML/cmm/m/it' instead
-(Font)              for symbol `textless' on input line 206.
+(Font)              for symbol `textless' on input line 344.
 
-[3] <figure/unnamed-chunk-7.png, id=89, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-7.png Graphic file (type png)
-
-<use figure/unnamed-chunk-7.png> [4 <./figure/unnamed-chunk-7.png>]
-LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 299
+[5] <figure/fig1.png, id=108, 505.89pt x 505.89pt>
+File: figure/fig1.png Graphic file (type png)
+ <use figure/fig1.png>
+[6] [7 <./figure/fig1.png>]
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 442
 .
-
-(/usr/share/texmf/tex/latex/R/tex/latex/omscmtt.fd
+ (/usr/share/texmf/tex/latex/R/tex/latex/omscmtt.fd
 File: omscmtt.fd 
 )
 LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 299.
- [5]
-<figure/unnamed-chunk-10.png, id=104, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-10.png Graphic file (type png)
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 442.
+<figure/fig2.png, id=121, 505.89pt x 505.89pt>
+File: figure/fig2.png Graphic file (type png)
+ <use figure/fig2.png> [8]
+[9 <./figure/fig2.png>] <figure/fig3.png, id=133, 505.89pt x 505.89pt>
+File: figure/fig3.png Graphic file (type png)
 
-<use figure/unnamed-chunk-10.png> [6] [7 <./figure/unnamed-chunk-10.png>]
-<figure/unnamed-chunk-12.png, id=116, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-12.png Graphic file (type png)
+<use figure/fig3.png> [10] [11 <./figure/fig3.png>]
+<figure/fig4.png, id=145, 505.89pt x 505.89pt>
+File: figure/fig4.png Graphic file (type png)
+ <use figure/fig4.png> [12]
+[13 <./figure/fig4.png>] <figure/fig5.png, id=161, 505.89pt x 505.89pt>
+File: figure/fig5.png Graphic file (type png)
 
-<use figure/unnamed-chunk-12.png> [8] [9 <./figure/unnamed-chunk-12.png>]
-[10] <figure/unnamed-chunk-14.png, id=131, 505.89pt x 505.89pt>
-File: figure/unnamed-chunk-14.png Graphic file (type png)
-
-<use figure/unnamed-chunk-14.png> [11 <./figure/unnamed-chunk-14.png>]
-(./INSTRUCCIONES.aux)
+<use figure/fig5.png> [14] [15 <./figure/fig5.png>] (./INSTRUCCIONES.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 7033 strings out of 495061
- 93379 string characters out of 1182621
- 162661 words of memory out of 3000000
- 10058 multiletter control sequences out of 15000+50000
+ 7071 strings out of 495061
+ 93632 string characters out of 1182621
+ 162057 words of memory out of 3000000
+ 10079 multiletter control sequences out of 15000+50000
  7539 words of font info for 30 fonts, out of 3000000 for 9000
  48 hyphenation exceptions out of 8191
- 38i,6n,39p,432b,453s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,6n,37p,432b,431s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts
@@ -609,9 +617,9 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb>
-Output written on INSTRUCCIONES.pdf (11 pages, 192365 bytes).
+Output written on INSTRUCCIONES.pdf (15 pages, 244552 bytes).
 PDF statistics:
- 185 PDF objects out of 1000 (max. 8388607)
- 32 named destinations out of 1000 (max. 500000)
- 141 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 223 PDF objects out of 1000 (max. 8388607)
+ 45 named destinations out of 1000 (max. 500000)
+ 162 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,4 +1,4 @@
-# Rep. VI - ej. 3.c
+# Rep. VI - ej. 3.d
 
 # Instrucciones:
 # Completar el código (dentro de los límites indicados) para que la simulación
@@ -6,10 +6,9 @@
 
 # Objetivos:
 # Utilizar sentencias condicionales de forma que se cumplan:
-# - Bajadas: si el bus ya llegó a la parada 33, bajan rpois(1, 5) personas por
-#            parada, de lo contrario son rpois(1, 2).
-# - Subidas: si el bus está entre la parada 15 y la 35, suben rpois(1, 8)
-#            personas por parada, de lo contrario son rpois(1, 3).j:w
+# - Bajadas: sólo pueden haber bajadas si el bus se encuentra de la quinta
+#            en adelante.
+# - Subidas: no pueden haber subidas luego de pasar la parada 45.
 
 paradas <- 50
 maximo  <- 60
@@ -38,6 +37,10 @@ for (i in 2:paradas) {
 }
 plot(registro, type = "o", pch = 19, xlab='Parada', 
      ylab='No. de pasajeros', ylim = c(0, max(registro)))
+points(nosuben, type = "o", pch = 19, col = 3)
 abline(h = c(0, maximo), lty = 3)
+abline(v = c(14.5, 35.5, 32.5), lty = 3, col = c(2, 2, 4))
 
-
+source("correctores.R")
+debug(cor3.d)
+cor3.d()

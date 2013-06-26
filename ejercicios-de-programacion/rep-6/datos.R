@@ -23,7 +23,9 @@ aux <- c("../evaluar.R", "datos", "INSTRUCCIONES.pdf")
 # Es importante que un guión separe el número del nombre en sí...
 # Formato:
 # [1-N].[a-z]-[palabra en minúscula, sólo letras].R
-corregir <- c("1.a-loop-for.R", "1.b-extra-apply.R")
+corregir <- c("1.a-loop-for.R", "1.b-extra-apply.R", "2.a-zenon-recargado.R", 
+              "2.b-guardar-valores.R", "3.a-limites.R", "3.b-no-suben.R", 
+              "3.c-extra-heterogeneidad.R", "3.d-extremos.R")
 corregir <- sort(corregir)
 guardar  <- c(guardar, "corregir", "aux")
 

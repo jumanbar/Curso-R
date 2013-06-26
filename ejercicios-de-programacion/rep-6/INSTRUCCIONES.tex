@@ -33,6 +33,13 @@
 \newcommand{\RegionMarkerTok}[1]{{#1}}
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
 \newcommand{\NormalTok}[1]{{#1}}
+% Redefine labelwidth for lists; otherwise, the enumerate package will cause
+% markers to extend beyond the left margin.
+\makeatletter\AtBeginDocument{%
+  \renewcommand{\@listi}
+    {\setlength{\labelwidth}{4em}}
+}\makeatother
+\usepackage{enumerate}
 \usepackage{graphicx}
 % We will generate all images so they have a width \maxwidth. This means
 % that they will get their normal width if they fit onto the page, but
@@ -67,22 +74,152 @@
 
 \subsubsection{{[}IMSER 2013{]}}
 
-De otros años:
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\subsection{Archivos incluidos:}
+
+El archivo con los ejercicios del práctico debe bajarse y descomprimirse
+en disco duro, creando la carpeta \textbf{\texttt{rep-X}} (nota: no debe
+dentro de ningún disco, partición o carpeta protegida a la escritura,
+como puede ser un disco duro externo de backup). Usted deberá abrir el
+RStudio y seleccionar dicha carpeta como su directorio de trabajo con
+\texttt{setwd} o en RStudio la combinación \textbf{Ctrl + Shift + K}. En
+esta carpeta se encuentran algunos archivos que usted deberá modificar:
 
 \begin{itemize}
 \item
-  Cambiar parte d del útimo parcial: si el bus tiene el máximo de
-  pasajeros no sube a más nadie y si tiene el mínimo (0) no baja nadie.
+  \textbf{\texttt{1.a-loop-for.R}}
 \item
-  Crecimiento exponencial \ldots{}?
+  \textbf{\texttt{1.b-extra-apply.R}}
 \item
-  Caminata del borracho?
+  \textbf{\texttt{2.a-zenon-recargado.R}}
 \item
-  Símil función preg?
+  \textbf{\texttt{2.b-guardar-valores.R}}
 \item
-  Loops con errores: un while que es infinito, un for que tiene mal
-  puesto el rango, \ldots{}
+  \textbf{\texttt{3.a-limites.R}}
+\item
+  \textbf{\texttt{3.b-no-suben.R}}
+\item
+  \textbf{\texttt{3.c-extra-heterogeneidad.R}}
+\item
+  \textbf{\texttt{3.d-extremos.R}}
 \end{itemize}
+Adicionalmente los siguientes archivos son necesarios, pero \textbf{no
+deben ser modificados} para que el método de calificación automático
+funcione correctamente:
+
+\begin{itemize}
+\item
+  \texttt{datos}
+\item
+  \texttt{evaluar.R}
+\item
+  \texttt{INSTRUCCIONES.pdf}
+\end{itemize}
+\subsection{Mecanismo de corrección:}
+
+Nota: más recomendaciones \textbf{importantes} se hacen en el documento
+\href{http://goo.gl/P5Wnq}{Dinámica de los repartidos}.
+
+Lo primero que debe hacer es cargar el archivo evaluar.R con la función
+\texttt{source} y la codificación de caracteres ``UTF-8'' (lo cual
+afecta a la función \texttt{evaluar} en particular), de la siguiente
+manera:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source}\NormalTok{(}\StringTok{"evaluar.R"}\NormalTok{, }\DataTypeTok{encoding =} \StringTok{"UTF-8"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+Nótese que hemos dejado de usar la función \texttt{options}, de forma
+que de ahora en más \textbf{no ejecute el comando}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{options}\NormalTok{(}\DataTypeTok{encoding =} \StringTok{"utf-8"}\NormalTok{)  }\CommentTok{# No me ejecuten!}
+\end{Highlighting}
+\end{Shaded}
+Este cambio se debe a que hemos detectado que esta elección trae más
+problemas que soluciones.
+
+Si usted ha ejecutado todos los pasos anteriores correctamente, al usar
+el comando \texttt{ls()} verá que \texttt{"evaluar"} figura en su sesión
+y además en la consola debería ver lo siguiente:
+
+\begin{verbatim}
+Archivo de código fuente cargado correctamente
+
+Chequeo de encoding:
+  Los siguientes caracteres deben ser vocales con tilde:
+    á - é - í - ó - ú
+  Si *no se ven correctamente* corra el siguiente comando:
+    source('evaluar.R', encoding = 'UTF-8')
+
+Para comprobar la fecha de su archivo datos ejecute:
+>> fecha.datos()
+\end{verbatim}
+Usted trabajará modificando los contenidos de los archivos de los
+ejercicios con RStudio (u otro programa de su preferencia) según las
+consignas que se describen a continuación. Luego de terminar cada
+ejercicio y \textbf{guardando el archivo} correspondiente en el disco
+duro, usted podrá verificar rápidamente si su respuesta es correcta
+ejecutando el comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{evaluar}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+y además podrá en todo momento verificar su puntaje con la función
+\texttt{verNotas()}. Tenga siempre en cuenta que, a \textbf{menos que
+sea indicado} por la letra del ejercicio, las soluciones deben ser
+genéricas y por lo tanto deben servir aún si se modifican los datos
+originales (i.e.: no use valores fijos si no comandos). Usualmente se
+utilizan valores generados de forma aleatoria para las correcciones
+automáticas. Los objetos que son evaluados en la corrección automática
+estarán indicados con un asterísco en las instrucciones de cada script.
+Nótese además que en los archivos \textbf{se indica claramente en dónde
+se inicia y dónde finaliza su código} y que debe respetar esta
+organización para que la corrección de los ejercicios funcione bien.
+
+\paragraph{NOTA:}
+
+se agregó la función \texttt{fecha.datos} para facilitar el acceso al a
+información de (1) cuál es la versión que usted tiene en su PC y (2)
+cómo encontrar la fecha de la última versión.
+
+\subsubsection{Al finalizar}
+
+Una vez terminados y guardados los archivos de los ejercicios del
+repartido, usted deberá ejecutar \texttt{evaluar()} y seleccionar la
+última opción (``Todos'') y luego subir el archivo ''datos'' (sin
+extensión), incluido en la carpeta ''rep-X'', a la sección de entregas
+de la portada del curso en la plataforma EVA. Este archivo se podrá
+reemplazar con uno más nuevo, en caso de que desee corregir algún error;
+en caso de querer que el archivo sea corregido antes de la fecha de
+entrega, puede cambiarle el nombre a ``datos-finalizado'', pero en ese
+caso la nota no se cambiará de ahí en adelante.
+
+\subsubsection{Código de Honor}
+
+Si bien animamos a que trabaje en equipos y que haya un intercambio
+fluido en los foros del curso, es fundamental que las respuestas a los
+cuestionarios y ejercicios de programación sean fruto del trabajo
+individual. En particular, consideramos necesario que no utilice el
+código creado por sus compañeros, si no que debe programar sus propias
+instrucciones, ya que de lo contrario supone un sabotaje a su propio
+proceso de aprendizaje. Esto implica también evitar, en la medida de lo
+posible, exponer el código propio a sus colegas. Como profesores estamos
+comprometidos a dar nuestro mayor esfuerzo para dar las herramientas y
+explicaciones adecuadas a fin de que pueda encontrar su propio camino
+para resolver los ejercicios.
+
+En casos de planteos de dudas a través del foro, en los que considere
+que es imposible expresar un problema sin exponer su própio código,
+entonces es aceptable hacerlo. De todas formas en estos casos es
+preferible que envíe su código por correo electrónico directamente a un
+profesor, explicando la problemática.
+
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
 \subsection{1. Conteos por fila}
@@ -114,16 +251,17 @@ valores mayores a 45 por filas. Como un mini ejemplo, si su matriz
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{datos <- datos[}\DecValTok{1}\NormalTok{:}\DecValTok{5}\NormalTok{, }\DecValTok{1}\NormalTok{:}\DecValTok{5}\NormalTok{]}
+\NormalTok{datos[}\KeywordTok{sample}\NormalTok{(}\DecValTok{25}\NormalTok{, }\DecValTok{1}\NormalTok{)] <- }\DecValTok{46}  \CommentTok{# Alguno > 45 al menos}
 \NormalTok{datos}
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
 ##      [,1] [,2] [,3] [,4] [,5]
-## [1,]   33   35   47   48   41
-## [2,]   49   34   43   56   52
-## [3,]   38   53   54   30   44
-## [4,]   50   51   31   31   38
-## [5,]   34   47   44   44   44
+## [1,]   41   46   39   32   50
+## [2,]   55   41   44   43   44
+## [3,]   40   46   43   38   47
+## [4,]   47   47   41   50   41
+## [5,]   47   47   43   51   49
 \end{verbatim}
 Entonces el vector \texttt{out} será así:
 
@@ -133,7 +271,7 @@ Entonces el vector \texttt{out} será así:
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
-## [1] 2 3 2 2 1
+## [1] 2 1 2 3 4
 \end{verbatim}
 (Este es un ejemplo creado con números al azar, por supuesto.)
 
@@ -157,7 +295,7 @@ lograr el mismo vector \texttt{out} que en el ejercicio 1.a.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\subsection{2. todavía no se bien que}
+\subsection{2. Una vez más, Zenón}
 
 \subsubsection{2.a Zenón recargado}
 
@@ -203,7 +341,8 @@ ejecución, tal como el procedimiento de encontrar el \texttt{n}
 correcto.
 
 La siguiente es la salida en la consola para el caso de
-\texttt{epsilon \textless{}- 5e-2}:
+\texttt{epsilon \textless{}- 5e-2} y empezando con
+\texttt{n \textless{}- 1} (aunque no lo muestre en la salida):
 
 \begin{verbatim}
 ## n = 2 - Zn = 0.75 
@@ -213,14 +352,22 @@ La siguiente es la salida en la consola para el caso de
 \end{verbatim}
 \textbf{Recuerde que}: \textbf{1.} en cada iteración \texttt{n} debe
 aumentar en una unidad, \textbf{2.} el script debe funcionar igual
-debien para cualquier valor de \texttt{epsilon} elegido y \textbf{3.}
-debe utilizar el código indicado anteriormente para obtener \texttt{Zn}
-o la corrección automática tendrá problemas con el redondeo de los
-valores.
+debien para cualquier valor de \texttt{epsilon} elegido y \textbf{3.} es
+lo mejor utilizar el código indicado anteriormente para obtener
+\texttt{Zn} o la corrección automática tendrá problemas con el redondeo
+de los valores.
 
 \subsubsection{2.b Guardar los valores}
 
-Puede usar for o while, da lo mismo
+Luego de hacer la parte 2.a, usted decide que es buena idea tener toda
+la secuencia de valores de \texttt{Zn} que se van obteniendo en un único
+vector numérico, al cual llamará \texttt{Z}. Para esto es necesario
+modificar tanto la preparación como las instrucciones del loop, como
+recordará de las lecciones de la unidad 6.
+
+La siguiente es la salida en la consola para el caso de
+\texttt{epsilon \textless{}- 5e-2} y empezando con
+\texttt{n \textless{}- 1} (aunque no lo muestre en la salida):
 
 \begin{verbatim}
 ## n = 2 - Zn = 0.75 
@@ -236,242 +383,247 @@ Puede usar for o while, da lo mismo
 \end{verbatim}
 \begin{figure}[htbp]
 \centering
-\includegraphics{figure/unnamed-chunk-7.png}
-\caption{Serie de Zenón, con n = 5}
+\includegraphics{figure/fig1.png}
+\caption{Serie de Zenón, con n (final) = 5}
 \end{figure}
 
-Nota: en el ejemplo de
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\section{Parcial II}
-
-\paragraph{Curso IMSER 2012}
-
-\subsection{Instrucciones:}
-
-En el archivo
-``\href{http://eva.universidad.edu.uy/file.php/1454/ejercicios\_de\_programacion/parcial-II.R}{parcial-II.R}''
-ud. tiene un script en el cual deberá guardar todos los comandos del
-ejercicio, siguiendo la demarcación que se muestra en el mismo.
-
-Nota: los ejercicios del parcial son dependientes de los anteriores en
-el sentido de que utilizan objetos creados, pero no implica que no se
-puedan tratar de resolver independientemente.
-
-Los ejercicios con (\texttt{*}) presentan un puntaje de 1.5, mientras
-que los que no tienen (\texttt{*}) equivalen a 1 punto.
-
-Una vez terminado el parcial usted deberá subir a la
-\href{http://eva.universidad.edu.uy/mod/assignment/view.php?id=102998}{página
-del EVA} el archivo ``parcial-II.R'' con su código.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\subsection{Letra}
-
-Para simular la cantidad de pasajeros de un ómnibus urbano se ha creado
-el código que aparece sobre el final del ejercicio (y que también se
-encuentra en el script parcial-II.R). El criterio es el siguiente: el
-bus recorre 25 paradas, empezando el trayecto sin pasajeros. En cada
-parada se subirá una cantidad aleatoria de entre 0 a 6 personas (siendo
-todas las cantidades equiprobables), pero debido a que existe un máximo
-estipulado de 44 pasajeros, a partir del momento en que se alcanza ese
-valor el vehículo deja de subir gente.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\subsubsection{(\texttt{*}) a. Código incompleto}
-
-Completar el código: las líneas en blanco que se encuentran dentro de
-los límites del código indican en dónde debe cambiarse. \textbf{El resto
-de las líneas están correctas}.
-
-Código fuente:
+\textbf{Recuerde que}: \textbf{1.} en cada iteración \texttt{n} debe
+aumentar en una unidad, \textbf{2.} el script debe funcionar igual
+debien para cualquier valor de \texttt{epsilon} elegido y \textbf{3.} es
+lo mejor utilizar el código indicado a continuación para obtener
+\texttt{Zn} o la corrección automática tendrá problemas con el redondeo
+de los valores.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{# Preparación:}
-\NormalTok{paradas <- }\DecValTok{25}
-\NormalTok{pasajeros <- }\DecValTok{0}
-\NormalTok{## <<}
-\NormalTok{registro[}\DecValTok{1}\NormalTok{] <- pasajeros}
-\NormalTok{for (i in }\DecValTok{1}\NormalTok{:paradas) \{}
-    \NormalTok{## << A ver si no se llenó:}
-    \NormalTok{if (pasajeros >= }\DecValTok{44}\NormalTok{) }
-        \NormalTok{\{}
-            \CommentTok{# Ajuste por si llega a 44 antes de terminar:}
-            \NormalTok{registro[i:paradas] <- }\DecValTok{44}
-            \KeywordTok{cat}\NormalTok{(}\StringTok{"Bus lleno!}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)  }\CommentTok{# Mensaje de aviso...}
-            \NormalTok{break}
-        \NormalTok{\}  }\CommentTok{# <- este no estaba}
-    \NormalTok{## << Si no se corta el loop, se agrega un nuevo registro:}
-    \NormalTok{registro[i] <- pasajeros}
-    \CommentTok{# Para ir viendo cuánto hay:}
-    \KeywordTok{cat}\NormalTok{(}\StringTok{"Parada"}\NormalTok{, i, }\StringTok{"hay"}\NormalTok{, pasajeros, }\StringTok{"pasajeros}\CharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-\NormalTok{\}}
-\KeywordTok{plot}\NormalTok{(registro, }\DataTypeTok{xlab =} \StringTok{"Parada"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"No. de pasajeros"}\NormalTok{)}
+\NormalTok{n <- }\DecValTok{20}  \CommentTok{# El n puede ser cualquiera en verdad...}
+\NormalTok{Zn <- }\KeywordTok{sum}\NormalTok{(}\DecValTok{1}\NormalTok{/(}\DecValTok{2}\NormalTok{^(}\DecValTok{1}\NormalTok{:n)))}
 \end{Highlighting}
 \end{Shaded}
-Sugerencias: (1) la función \texttt{sample} puede ser útil para simular
-la subida de pasajeros. (2) Tanto en este como en los siguientes
-ejercicios, en caso de no estar seguro/a de cómo proceder, puede
-facilitar mucho la tarea hacer un diagrama de flujo sencillo antes de
-empezar a escribir código.
-
-La siguiente imagen se obtuvo haciendo la simulación, ejecutando
-previamente \texttt{set.seed(11)} y luego el comando gráfico:
+La figura 1 se obtuvo con el siguiente código:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{plot}\NormalTok{(registro, }\DataTypeTok{xlab =} \StringTok{"Parada"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"No. de pasajeros"}\NormalTok{)}
+\KeywordTok{plot}\NormalTok{(Z, }\DataTypeTok{xlab =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{ylab =} \KeywordTok{expression}\NormalTok{(Z[n]), }\DataTypeTok{type =} \StringTok{"o"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{, }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\FloatTok{0.5}\NormalTok{, }
+    \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\subsection{3. Línea urbana}
+
+Como proyecto del gobierno municipal local, usted va a simular el
+trayecto de un ómnibus a través de su recorrido. El objetivo es obtener
+una simulación razonablemente fiel a los datos observados para esa
+línea. Se supone que dicho gobierno va a utilizar los datos generados y
+complementarlo con análisis matemáticos rigurosos, a fin de diseñar un
+sistema de transporte óptimo que tenga un buen balance entre el costo de
+flota y eficiencia de transporte.
+
+\paragraph{Nota:}
+
+en este ejercicio, particularmente en las partes c y d, puede facilitar
+mucho la tarea hacer un diagrama de flujo sencillo antes de empezar a
+escribir código.
+
+\subsubsection{3.a Poniendo límites}
+
+Usted ya ha hecho un modelo que, si bien es muy crudo aún, tiene los
+componentes básicos necesarios. El código es el siguiente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\NormalTok{paradas <- }\DecValTok{50}
+\NormalTok{maximo <- }\DecValTok{60}
+\NormalTok{pasajeros <- }\KeywordTok{rpois}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{)}
+\NormalTok{registro <- }\KeywordTok{numeric}\NormalTok{(paradas)}
+\NormalTok{registro[}\DecValTok{1}\NormalTok{] <- pasajeros}
+\NormalTok{for (i in }\DecValTok{2}\NormalTok{:paradas) \{}
+    \CommentTok{# Bajan:}
+    \NormalTok{pasajeros <- pasajeros - }\KeywordTok{rpois}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+
+    \CommentTok{# Suben:}
+    \NormalTok{pasajeros <- pasajeros + }\KeywordTok{rpois}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)}
+
+    \NormalTok{registro[i] <- pasajeros  }\CommentTok{# Actualiza registro}
+\NormalTok{\}}
+\KeywordTok{plot}\NormalTok{(registro, }\DataTypeTok{type =} \StringTok{"o"}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"Parada"}\NormalTok{, }\DataTypeTok{ylab =} \StringTok{"No. de pasajeros"}\NormalTok{, }
+    \DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\KeywordTok{max}\NormalTok{(registro)))}
+\KeywordTok{abline}\NormalTok{(}\DataTypeTok{h =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, maximo), }\DataTypeTok{lty =} \DecValTok{3}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 \begin{figure}[htbp]
 \centering
-\includegraphics{figure/unnamed-chunk-10.png}
-\caption{plot of chunk unnamed-chunk-10}
+\includegraphics{figure/fig2.png}
+\caption{Modelo `crudo'; las líneas indican los límites que debería
+tener el nro. de pasajeros}
 \end{figure}
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
+Como puede ver en el gráfico generado (fig. 2), la cantidad de pasajeros
+sobrepasa en ocasiones al menos uno de los límites posibles para un bus
+real (en este caso, el máximo es 60 y el mínimo es 0, naturalmente).
 
-\subsubsection{b. Cambio de loop}
+El objetivo de este ejercicio tiene que ver con este último:
+\textbf{modificar el código de forma tal que se impongan límites a los
+valores posibles de \texttt{pasajeros}}. En particular, siempre que la
+cantidad de pasajeros sea mayor que el máximo estipulado (siendo que ya
+subieron y bajaron los pasajeros correspondientes a ese turno), debe
+corregirse el valor de \texttt{pasajeros}, dejándolo en el
+\texttt{maximo}. El caso análogo debe ocurrir si \texttt{pasajeros} toma
+valor negativo, cambiándolo por 0.
 
-Modifique el código de la parte anterior de forma tal que haga lo mismo,
-pero utilizando un loop \texttt{while}.
+(En la figura 3 se muestra una simulación en la que se cumplen estas
+condiciones.)
 
-Sugerencias: (1) agrege manualmente una variable (p.ej.: \texttt{i}) que
-sirva para indexar los distintos objetos y recuerde actualizarla en la
-linea correcta del código y (2) usar un \texttt{if} posterior al loop
-puede ser útil para sustituir los ceros del final por 44 en el vector
-registro (aunque no es de ninguna manera el único método).
+\subsubsection{3.b ¿Cuántos se quedan afuera?}
 
-Nota: el gráfico que se dió en la parte anterior tamibén aplica para
-este ejercicio.
+Uno de los principales objetivos del gobierno municipal es el de saber
+cuántos pasajeros quedan sin poder subir al bus en cada parada. Para
+esto es necesario registrar, en su simulación, el número de pasajeros
+que sobrepasan el límite máximo de la capacidad del vehículo.
 
-\subsubsection{(\texttt{*}) c. Función \texttt{bus}}
+Usted decide crear un vector numérico, el cual tendrá tantos valores
+como paradas hay en el recorrido y registrará para cada una el la
+cantidad de personas que no han podido subir al vehículo. Dicho vector
+será \texttt{nosuben} y deberá tener la longitud correcta \emph{antes}
+de iniciar el loop. La figura 3 muestra la progresión del número de
+pasajeros (negro) y personas que no pueden subir (verde) a través de una
+simulación.
 
-Modifique el código reparado en la parte \textbf{a} para crear una
-función llamada \texttt{bus} que ejecute la misma simulación, en la que
-el número de paradas y capacidad máxima del bus sean los argumentos de
-la misma. El nombre de estos argumentos son a su elección.
+Note que el vector \texttt{nosuben} no puede tener valores negativos, su
+valor mínimo será 0.
 
-Como salida la función debe devolver simplemente el vector
-\texttt{registro}.
+\begin{figure}[htbp]
+\centering
+\includegraphics{figure/fig3.png}
+\caption{Simulación con límites y el vector nosuben en verde}
+\end{figure}
 
-Nota: recuerde que esta función debe trabajar correctamente para
-cualquier elección del número de paradas y máximo de pasajeros. En el
-siguiente ejemplo se muestra un caso que puede servir de referencia:
+\subsubsection{3.c Heterogeneidad}
+
+El modelo creado no está nada mal, pero desde las oficinas de la
+municipalidad llegan reportes de que la cantidad de personas que suben y
+bajan varía mucho según la altura del recorrido en la que se encuentre
+el bus. Luego de mirar cuidadosamente los datos, usted concluye que:
+
+\begin{enumerate}[1.]
+\item
+  La cantidad de pasajeros que suben aumenta mucho en la la mitad del
+  recorrido. Usted considera razonable decretar que a partir de la
+  parada 15 y hasta la parada 35, el número promedio de gente que sube
+  es de 8, en lugar de 3 como en el resto del recorrido. En otras
+  palabras, en ese tramo, la cantida de pasajeros que deberá subir será
+  \texttt{rpois(1, 8)}, mentras que en el resto del recorrido serán
+  \texttt{rpois(1, 3)}.
+\item
+  Con la gente que baja el patrón es diferente: aumenta bastante la
+  bajada sobre todo en la segunda mitad del trayecto. En particular, a
+  partir de la parada 33 usted considera razonable determinar que bajan
+  5 personas en promedio por parada. En otras palabras, antes de la
+  parada 33 bajarán \texttt{rpois(1, 2)} por turno, luego serán
+  \texttt{rpois(1, 5)}.
+\end{enumerate}
+\paragraph{Nota:}
+
+el sistema de corrección del ejercicio espera que usted use
+\textbf{siempre} líneas como estas para simular subidas o bajadas de
+pasajeros:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{11}\NormalTok{)}
-\CommentTok{# Nro. de paradas = 40 Máximo de pasajeros = 80}
-\NormalTok{x <- }\KeywordTok{bus}\NormalTok{(}\DecValTok{40}\NormalTok{, }\DecValTok{80}\NormalTok{)}
+\CommentTok{# Usando lambdas 2 y 3 como ejemplos:}
+\NormalTok{pasajeros <- pasajeros - }\KeywordTok{rpois}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{)  }\CommentTok{# Bajan}
+\NormalTok{pasajeros <- pasajeros + }\KeywordTok{rpois}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{)  }\CommentTok{# Suben}
 \end{Highlighting}
 \end{Shaded}
+(Aquí figuran 2 y 3 como promedio, pero en cada caso usted deberá
+cambiar el valor según lo que dice la letra.)
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{figure/fig4.png}
+\caption{La subida y bajada de pasajeros varía; las líneas verticales
+muestran los cambios en subidas (rojo) y bajadas (azul)}
+\end{figure}
+
+\subsubsection{3.d Extra: extremos}
+
+Estando ya bastante conforme con la performance de su modelo, usted se
+da cuenta de un detalle: nadie, o como mucho una cantidad insignificante
+de personas, toma un ómnibus para recorrer menos de 5 paradas. Por esta
+razón decide modificar nuevamente su código para dar cuenta de este
+detalle. Las modificaciones son las siguientes:
+
+\begin{enumerate}[1.]
+\item
+  Si el bus se encuentra en una parada \emph{anterior} a la quinta,
+  nadie se bajará.
+\item
+  Si el bus se encuentra en una parada \emph{posterior} a la 45, nadie
+  se subirá.
+\end{enumerate}
+La figura 5 muestra un ejemplo hecho incluyendo estas dos
+modificaciones. Como ya se ha mencionado anteriormente, es muy
+recomendable utilizar diagramas de flujo (como el mostrado en la lección
+6.1) para entender la dinámica y poder crear el código de forma más
+ordenada y eficiente.
+
 \begin{verbatim}
-## Parada 1 hay 1 pasajeros
-## Parada 2 hay 1 pasajeros
-## Parada 3 hay 4 pasajeros
-## Parada 4 hay 4 pasajeros
-## Parada 5 hay 4 pasajeros
-## Parada 6 hay 10 pasajeros
-## Parada 7 hay 10 pasajeros
-## Parada 8 hay 12 pasajeros
-## Parada 9 hay 18 pasajeros
-## Parada 10 hay 18 pasajeros
-## Parada 11 hay 19 pasajeros
-## Parada 12 hay 22 pasajeros
-## Parada 13 hay 28 pasajeros
-## Parada 14 hay 33 pasajeros
-## Parada 15 hay 38 pasajeros
-## Parada 16 hay 42 pasajeros
-## Parada 17 hay 45 pasajeros
-## Parada 18 hay 47 pasajeros
-## Parada 19 hay 48 pasajeros
-## Parada 20 hay 51 pasajeros
-## Parada 21 hay 52 pasajeros
-## Parada 22 hay 56 pasajeros
-## Parada 23 hay 58 pasajeros
+## Parada 2 hay 19 pasajeros
+## Parada 3 hay 21 pasajeros
+## Parada 4 hay 23 pasajeros
+## Parada 5 hay 27 pasajeros
+## Parada 6 hay 25 pasajeros
+## Parada 7 hay 28 pasajeros
+## Parada 8 hay 29 pasajeros
+## Parada 9 hay 30 pasajeros
+## Parada 10 hay 27 pasajeros
+## Parada 11 hay 26 pasajeros
+## Parada 12 hay 31 pasajeros
+## Parada 13 hay 29 pasajeros
+## Parada 14 hay 32 pasajeros
+## Parada 15 hay 35 pasajeros
+## Parada 16 hay 41 pasajeros
+## Parada 17 hay 46 pasajeros
+## Parada 18 hay 55 pasajeros
+## Parada 19 hay 60 pasajeros
+## Parada 20 hay 60 pasajeros
+## Parada 21 hay 60 pasajeros
+## Parada 22 hay 60 pasajeros
+## Parada 23 hay 60 pasajeros
 ## Parada 24 hay 60 pasajeros
 ## Parada 25 hay 60 pasajeros
-## Parada 26 hay 63 pasajeros
-## Parada 27 hay 65 pasajeros
-## Parada 28 hay 65 pasajeros
-## Parada 29 hay 65 pasajeros
-## Parada 30 hay 67 pasajeros
-## Parada 31 hay 70 pasajeros
-## Parada 32 hay 72 pasajeros
-## Parada 33 hay 74 pasajeros
-## Parada 34 hay 75 pasajeros
-## Bus lleno!
+## Parada 26 hay 60 pasajeros
+## Parada 27 hay 58 pasajeros
+## Parada 28 hay 60 pasajeros
+## Parada 29 hay 60 pasajeros
+## Parada 30 hay 60 pasajeros
+## Parada 31 hay 60 pasajeros
+## Parada 32 hay 60 pasajeros
+## Parada 33 hay 59 pasajeros
+## Parada 34 hay 60 pasajeros
+## Parada 35 hay 60 pasajeros
+## Parada 36 hay 55 pasajeros
+## Parada 37 hay 50 pasajeros
+## Parada 38 hay 50 pasajeros
+## Parada 39 hay 43 pasajeros
+## Parada 40 hay 39 pasajeros
+## Parada 41 hay 44 pasajeros
+## Parada 42 hay 40 pasajeros
+## Parada 43 hay 35 pasajeros
+## Parada 44 hay 30 pasajeros
+## Parada 45 hay 31 pasajeros
+## Parada 46 hay 28 pasajeros
+## Parada 47 hay 22 pasajeros
+## Parada 48 hay 14 pasajeros
+## Parada 49 hay 11 pasajeros
+## Parada 50 hay 9 pasajeros
 \end{verbatim}
 \begin{figure}[htbp]
 \centering
-\includegraphics{figure/unnamed-chunk-12.png}
-\caption{plot of chunk unnamed-chunk-12}
-\end{figure}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\subsubsection{d. Gente que también baja}
-
-Hacer una variante del código (de cualquiera de las partes anteriores)
-en la que además de subir personas, a partir de la parada 10 se bajen
-entre 1 y 5 pasajeros por parada. Tanto la subida y la bajada deben
-ejecutarse \textbf{antes} de determinar si se alcanzó el máximo
-estipulado de pasajeros y por lo tanto si debe dejar de detenerse el bus
-en las paradas.
-
-Sugerencia: puede ser muy útil hacer un diagrama de flujo sencillo para
-planificar el código antes de escribirlo.
-
-El siguiente es un ejemplo del resultado de aplicar los cambios que se
-piden en la función \texttt{bus}:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{set.seed}\NormalTok{(}\DecValTok{11}\NormalTok{)}
-\NormalTok{x <- }\KeywordTok{bus}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DecValTok{60}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-\begin{verbatim}
-## Parada 1 hay 1 pasajeros
-## Parada 2 hay 1 pasajeros
-## Parada 3 hay 4 pasajeros
-## Parada 4 hay 4 pasajeros
-## Parada 5 hay 4 pasajeros
-## Parada 6 hay 10 pasajeros
-## Parada 7 hay 10 pasajeros
-## Parada 8 hay 12 pasajeros
-## Parada 9 hay 18 pasajeros
-## Parada 10 hay 17 pasajeros
-## Parada 11 hay 15 pasajeros
-## Parada 12 hay 16 pasajeros
-## Parada 13 hay 17 pasajeros
-## Parada 14 hay 18 pasajeros
-## Parada 15 hay 19 pasajeros
-## Parada 16 hay 21 pasajeros
-## Parada 17 hay 22 pasajeros
-## Parada 18 hay 23 pasajeros
-## Parada 19 hay 22 pasajeros
-## Parada 20 hay 21 pasajeros
-## Parada 21 hay 20 pasajeros
-## Parada 22 hay 16 pasajeros
-## Parada 23 hay 18 pasajeros
-## Parada 24 hay 16 pasajeros
-## Parada 25 hay 14 pasajeros
-## Parada 26 hay 12 pasajeros
-## Parada 27 hay 14 pasajeros
-## Parada 28 hay 16 pasajeros
-## Parada 29 hay 13 pasajeros
-## Parada 30 hay 15 pasajeros
-\end{verbatim}
-\begin{figure}[htbp]
-\centering
-\includegraphics{figure/unnamed-chunk-14.png}
-\caption{plot of chunk unnamed-chunk-14}
+\includegraphics{figure/fig5.png}
+\caption{Modelo final; líneas grises indican los extremos}
 \end{figure}
 
 \end{document}

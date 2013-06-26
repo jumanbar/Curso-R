@@ -326,11 +326,8 @@ cor3.b <- function() {
 }
 
 cor3.c <- function() {
-  src("../auxiliares.R")
-  arch <- cut.script("tmp.R")
-  cat("TMP.R!!!!!!!!!!\n")
-  #   load("datos")
-  #   arch <- cut.script("3.c-heterogeneidad.R")
+  load("datos")
+  arch <- cut.script("3.c-extra-heterogeneidad.R")
 
   if (length(arch) == 0)
     stop("su código parece vacío, ¿guardo los cambios que hizo?", call. = FALSE)
@@ -339,6 +336,7 @@ cor3.c <- function() {
 
   arch <- gsub(" ", "", arch)
   pois <- paste0(c("- ", "- ", "+ ", "+ "), "rpois(1, ", c(2, 5, 3, 8), ")")
+  pois2 <- gsub(" ", "", pois)
   where <- c(bpoco = grep("-rpois\\(1\\,2\\)", arch),
              bmucho = grep("-rpois\\(1\\,5\\)", arch),
              spoco = grep("+rpois\\(1\\,3\\)", arch),
@@ -367,10 +365,8 @@ cor3.c <- function() {
 
   ies <- c(sample(6:13, 1), 15, sample(16:32, 1), 33, 35, sample(37:50, 1))
   nfilas <- paste0("i=", ies)
-  expsub <- pois[c(3, 4, 4, 4, 4, 3)]
-  expsub <- gsub(" ", "", expsub)
-  expbaj <- pois[c(1, 1, 1, 2, 2, 2)]
-  expbaj <- gsub(" ", "", expbaj)
+  expsub <- pois2[c(3, 4, 4, 4, 4, 3)]
+  expbaj <- pois2[c(1, 1, 1, 2, 2, 2)]
   expobs <- character(length(ies))
   tabla <- data.frame(Bajan = expbaj, Bajan.Obs. = expobs,
                       Suben = expsub, Suben.Obs. = expobs,
@@ -390,15 +386,13 @@ cor3.c <- function() {
       #       if (k == 6 && j > 2) browser()
       if (sumar) {
         if (j <= 2) {
-          tabla[k, 2] <- pois[names(sumar) == nombres]
+          tabla[k, 2] <- pois2[names(sumar) == nombres]
         } else {
-          tabla[k, 4] <- pois[names(sumar) == nombres]
+          tabla[k, 4] <- pois2[names(sumar) == nombres]
         }
       }
     }
   }
-  tabla[,4] <- gsub(" ", "", tabla[,4])
-  tabla[,2] <- gsub(" ", "", tabla[,2])
   tA <- tabla[c(1, 3)]
   tB <- tabla[c(2, 4)]
   if (!all(tA == tB)) {
@@ -418,11 +412,7 @@ cor3.c <- function() {
   cat(">> nuevo maximo para la correccion: ", maximo, "\n")
   cat(">> cantidad de pasajeros antes del código: ", pasajeros, "\n")
 
-  #   arch <- readLines("tmp.R", encoding = "UTF-8")
-  #   arch <- cut.script("tmp.R")
-  arch <- cut.script("3.c-heterogeneidad.R")
-  #   pline <- grep("plot", arch)
-  #   arch <- arch[2:pline - 1]
+  arch <- cut.script("3.c-extra-heterogeneidad.R")
 
   for (k in 1:length(ies)) {
     i <- ies[k]
@@ -442,6 +432,56 @@ cor3.c <- function() {
   }
   cat("cálculos de pasajeros ... OK\n")
       
+  TRUE
+}
+
+cor3.d <- function() {
+  load("datos")
+  arch <- cut.script("3.d-extremos.R")
+
+  arch <- gsub(" ", "", arch)
+  pois <- paste0(c("- ", "- ", "+ ", "+ "), "rpois(1, ", c(2, 5, 3, 8), ")")
+  pois2 <- gsub(" ", "", pois)
+  where <- c(bpoco = grep("-rpois\\(1\\,2\\)", arch),
+             bmucho = grep("-rpois\\(1\\,5\\)", arch),
+             spoco = grep("+rpois\\(1\\,3\\)", arch),
+             smucho = grep("+rpois\\(1\\,8\\)", arch))
+
+  arch[where[grepl("b", names(where))]] <- "bajan <-TRUE"
+  arch[where[grepl("s", names(where))]] <- "suben <-TRUE"
+
+  pasajeros <- 50
+  maximo  <- 100
+  nosuben <- numeric(100)
+  ies <- c(1:4, 46:50)
+  for (k in 1:length(ies)) {
+    i <- ies[k]
+    bajan <- FALSE
+    suben <- FALSE
+    eval(parse(text = arch))
+    if (i < 5) {
+      if (bajan)
+        stop("para i = ", i, " < 5 su código permite bajar personas del bus", call. = FALSE)
+    } else {
+      if (suben)
+        stop("para i = ", i, " > 45 su código permite subir personas al bus", call. = FALSE)
+    }
+  }
+  cat("¿suben, bajan? ... OK\n")
+
+  i <- 5
+  bajan <- FALSE
+  eval(parse(text = arch))
+  if (!bajan)
+    stop("para i = ", i, " su código no permite bajar personas del bus", call. = FALSE)
+  cat("si i = 5 ... OK\n")
+
+  suben <- FALSE
+  eval(parse(text = arch))
+  if (!suben)
+    stop("para i = ", i, " su código no permite subir personas al bus", call. = FALSE)
+  cat("si i = 45 ... OK\n")
+
   TRUE
 }
 
