@@ -115,11 +115,11 @@ datos
 
 ```
 ##      [,1] [,2] [,3] [,4] [,5]
-## [1,]   59   63   43   29   42
-## [2,]   36   48   43   40   50
-## [3,]   34   53   52   42   52
-## [4,]   47   49   38   46   50
-## [5,]   53   39   54   43   44
+## [1,]   42   37   44   39   49
+## [2,]   47   46   42   52   46
+## [3,]   53   42   41   47   44
+## [4,]   33   38   44   37   35
+## [5,]   46   49   29   38   35
 ```
 
 
@@ -133,7 +133,7 @@ out
 ```
 
 ```
-## [1] 2 2 3 4 2
+## [1] 1 4 2 0 2
 ```
 
 
@@ -315,59 +315,6 @@ Estando ya bastante conforme con la performance de su modelo, usted se da cuenta
 2. Si el bus se encuentra en una parada *posterior* a la 45, nadie se subirá.
 
 La figura 5 muestra un ejemplo hecho incluyendo estas dos modificaciones. Como ya se ha mencionado anteriormente, es muy recomendable utilizar diagramas de flujo (como el mostrado en la lección 6.1) para entender la dinámica y poder crear el código de forma más ordenada y eficiente.
-
-
-```
-## Parada 2 hay 19 pasajeros
-## Parada 3 hay 21 pasajeros
-## Parada 4 hay 23 pasajeros
-## Parada 5 hay 27 pasajeros
-## Parada 6 hay 25 pasajeros
-## Parada 7 hay 28 pasajeros
-## Parada 8 hay 29 pasajeros
-## Parada 9 hay 30 pasajeros
-## Parada 10 hay 27 pasajeros
-## Parada 11 hay 26 pasajeros
-## Parada 12 hay 31 pasajeros
-## Parada 13 hay 29 pasajeros
-## Parada 14 hay 32 pasajeros
-## Parada 15 hay 35 pasajeros
-## Parada 16 hay 41 pasajeros
-## Parada 17 hay 46 pasajeros
-## Parada 18 hay 55 pasajeros
-## Parada 19 hay 60 pasajeros
-## Parada 20 hay 60 pasajeros
-## Parada 21 hay 60 pasajeros
-## Parada 22 hay 60 pasajeros
-## Parada 23 hay 60 pasajeros
-## Parada 24 hay 60 pasajeros
-## Parada 25 hay 60 pasajeros
-## Parada 26 hay 60 pasajeros
-## Parada 27 hay 58 pasajeros
-## Parada 28 hay 60 pasajeros
-## Parada 29 hay 60 pasajeros
-## Parada 30 hay 60 pasajeros
-## Parada 31 hay 60 pasajeros
-## Parada 32 hay 60 pasajeros
-## Parada 33 hay 59 pasajeros
-## Parada 34 hay 60 pasajeros
-## Parada 35 hay 60 pasajeros
-## Parada 36 hay 55 pasajeros
-## Parada 37 hay 50 pasajeros
-## Parada 38 hay 50 pasajeros
-## Parada 39 hay 43 pasajeros
-## Parada 40 hay 39 pasajeros
-## Parada 41 hay 44 pasajeros
-## Parada 42 hay 40 pasajeros
-## Parada 43 hay 35 pasajeros
-## Parada 44 hay 30 pasajeros
-## Parada 45 hay 31 pasajeros
-## Parada 46 hay 28 pasajeros
-## Parada 47 hay 22 pasajeros
-## Parada 48 hay 14 pasajeros
-## Parada 49 hay 11 pasajeros
-## Parada 50 hay 9 pasajeros
-```
 
 ![Modelo final; líneas grises indican los extremos](figure/fig5.png) 
 

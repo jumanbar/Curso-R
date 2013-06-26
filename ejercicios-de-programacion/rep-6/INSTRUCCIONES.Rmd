@@ -363,7 +363,7 @@ for (i in 2:paradas) {
   if (pasajeros < 0)
     pasajeros <- 0
   registro[i] <- pasajeros
-  cat('Parada', i, 'hay', pasajeros, 'pasajeros\n')
+  #   cat('Parada', i, 'hay', pasajeros, 'pasajeros\n')
 }
 plot(registro, type = "o", pch = 19, xlab='Parada', ylab='No. de pasajeros', ylim = c(0, max(registro)))
 points(nosuben, type = "o", pch = 19, col = 3)

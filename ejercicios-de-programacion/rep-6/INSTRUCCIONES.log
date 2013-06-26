@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.6.20)  25 JUN 2013 20:27
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.6.20)  25 JUN 2013 20:34
 entering extended mode
  %&-line parsing enabled.
 **INSTRUCCIONES.tex
@@ -589,23 +589,23 @@ File: figure/fig3.png Graphic file (type png)
 <use figure/fig3.png> [10] [11 <./figure/fig3.png>]
 <figure/fig4.png, id=146, 505.89pt x 505.89pt>
 File: figure/fig4.png Graphic file (type png)
- <use figure/fig4.png> [12 <./figure/fig4.png>] [13] <figure/fig5.png, id=161, 
-505.89pt x 505.89pt>
+ <use figure/fig4.png> [12 <./figure/fig4.png>] <figure/fig5.png, id=154, 505.8
+9pt x 505.89pt>
 File: figure/fig5.png Graphic file (type png)
 
-<use figure/fig5.png> [14] [15 <./figure/fig5.png>] (./INSTRUCCIONES.aux)
+<use figure/fig5.png> [13] [14 <./figure/fig5.png>] (./INSTRUCCIONES.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 7071 strings out of 495061
- 93632 string characters out of 1182621
+ 7070 strings out of 495061
+ 93625 string characters out of 1182621
  162057 words of memory out of 3000000
  10079 multiletter control sequences out of 15000+50000
  7539 words of font info for 30 fonts, out of 3000000 for 9000
  48 hyphenation exceptions out of 8191
- 38i,6n,37p,432b,425s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,6n,37p,432b,363s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-te
 xlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fonts
@@ -617,9 +617,9 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-tex
 live/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-texlive/fonts/t
 ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb>
-Output written on INSTRUCCIONES.pdf (15 pages, 243847 bytes).
+Output written on INSTRUCCIONES.pdf (14 pages, 242943 bytes).
 PDF statistics:
- 223 PDF objects out of 1000 (max. 8388607)
- 45 named destinations out of 1000 (max. 500000)
+ 219 PDF objects out of 1000 (max. 8388607)
+ 44 named destinations out of 1000 (max. 500000)
  162 words of extra memory for PDF output out of 10000 (max. 10000000)
 
