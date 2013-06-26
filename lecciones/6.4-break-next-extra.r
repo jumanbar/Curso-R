@@ -31,8 +31,8 @@ for (i in 1:10) {
 # hasta que el usuario de una orden de finalización. Una forma de determinar
 # la finalización es usando un "break". Usando uno de los ejemplos de la
 # lección de "while", la serie que tiende a cero:
-# f( n ) = f(n - 1) / n
-# f( 0 ) = 5
+# f(n) = f(n - 1) / n
+# f(0) = 5
 # Se puede expresar así con "repeat":
 f <- 5 # Valor inicial
 n <- 0
@@ -41,7 +41,7 @@ repeat {
   # comienza en 0
   f <- f / n # f depende del valor del f anterior el cual se relaciona con n
   print(f)
-  if(f <= 0.001) # en este caso el límite se lo da el comado if
+  if (f <= 0.001) # en este caso el límite se lo da el comado if
     break
 }
 
@@ -49,7 +49,7 @@ repeat {
 # mencionada:
 f <- 5 # Valor inicial
 n <- 0
-while(f > 0.001) { # en este caso el límite lo hace por defecto el comando
+while (f > 0.001) { # en este caso el límite lo hace por defecto el comando
                    # while
   n <- n + 1
   f <- f / n
