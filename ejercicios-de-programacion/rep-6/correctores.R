@@ -263,7 +263,7 @@ cor3.a <- function() {
   if (length(arch) == 0)
     stop("su código parece vacío, ¿guardo los cambios que hizo?", call. = FALSE)
   cat("código en archivo ... OK\n")
-  parsed <- eval(text = arch)
+  parsed <- eval(parse(text = arch))
 
   maximo <- sample(40:100, 1)
   cat(">> nuevo maximo para la correccion: ", maximo, "\n")
@@ -296,7 +296,7 @@ cor3.b <- function() {
   if (length(arch) == 0)
     stop("su código parece vacío, ¿guardo los cambios que hizo?", call. = FALSE)
   cat("código en archivo ... OK\n")
-  parsed <- eval(text = arch)
+  parsed <- eval(parse(text = arch))
 
   aaa <- gsub(" ", "", arch)
   if (!any(grepl("nosuben\\[", aaa)))
