@@ -276,7 +276,7 @@ cor3.a <- function() {
   eval(parsed)
   if (pasajeros != maximo) {
     warning("3.a: ¡verifique los signos de *ambos* condicionales por las dudas!", call. = FALSE)
-    stop("el número de pasajeros es distinto al máximo cuando se sobrecarga el bus", call. = FALSE)
+    stop("el número de pasajeros es distinto 'maximo' (", maximo,") cuando se sobrecarga el bus", call. = FALSE)
   }
   cat("¿pasajeros != maximo? ... OK\n")
 
@@ -315,7 +315,7 @@ cor3.b <- function() {
   eval(parsed)
 
   if (pasajeros != maximo) {
-    stop("el número de pasajeros es distinto al máximo cuando se sobrecarga el bus", call. = FALSE)
+    stop("el número de pasajeros es distinto 'maximo' (", maximo,") cuando se sobrecarga el bus", call. = FALSE)
   }
   cat("¿pasajeros != maximo? ... OK\n")
 

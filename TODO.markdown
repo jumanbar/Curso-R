@@ -1,13 +1,11 @@
 Lista de ideas y/o apuntes generales de cosas a mejorar
 =======================================================
 
-* Ídem con la función `reload` del rep III.
+* De ahora en más **pueden** modificar el código fuera de los límites, pero avisamos que para la corrección **todo lo que está afuera se descarta**.
 
 * Mejorar lecciones extras en general.
 
-* Capaz que sacar puntaje negativo a respuestas incorrectas de cuestionarios?.
-
-* Leer preguntas de foro que puedan ayudar a mejorar los cuestionarios.
+* Proponer contribuciones de estudiantes.
 
 (Tal vez:
 * Agregar el uso de "nombres de usuario/emails" en la función `evaluar`. Ej:
