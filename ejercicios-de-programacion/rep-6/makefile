@@ -2,7 +2,7 @@ NREP=6
 
 all: rep-$(NREP).zip
 
-clean: INSTRUCCIONES.Rmd datos.R
+clean: INSTRUCCIONES.Rmd datos.R correctores.R
 	rm -rf rep-$(NREP).zip *~ *.swp *.swo
 
 INSTRUCCIONES.pdf: INSTRUCCIONES.Rmd
@@ -18,7 +18,7 @@ INSTRUCCIONES.pdf: INSTRUCCIONES.Rmd
 	wait
 	rm -rf figure
 
-rep-$(NREP).zip: INSTRUCCIONES.pdf datos.R
+rep-$(NREP).zip: INSTRUCCIONES.pdf datos.R correctores.R
 	R --vanilla --slave < datos.R
 	wait
 	zip -r rep-$(NREP).zip rep-$(NREP)
