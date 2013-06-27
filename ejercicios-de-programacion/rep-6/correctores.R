@@ -160,11 +160,14 @@ cor2.a <- function() {
 
   Zbackup <- Zn
   Zn <- - sample(1:9, 1)
-  #   ab <- "1 - Zn >= epsilon"
-  aa <- strsplit(whlin, "\\(")[[1]][2]
-  ab <- strsplit(aa, "\\)")[[1]][1]
-  ab <- gsub("epsilon", 1 - Zn, ab)
-  geq <- eval(parse(text = ab)) # si TRUE, está bien, si no está mal
+  cars <- strsplit(whlin, "")[[1]]
+  pare <- which(cars == "(")[1]
+  cars <- cars[- (1:pare)]
+  pare <- which(cars == ")")
+  cars <- cars[- (pare[length(pare)]:length(cars))]
+  cars <- paste0(cars, collapse= "")
+  cars <- gsub("epsilon", 1 - Zn, cars)
+  geq <- eval(parse(text = cars)) # si TRUE, está bien, si no está mal
 
   if (!geq) {
     warning("2.a: recuerde que la condición lógica necesaria para el loop while debe ser ",
@@ -303,10 +306,9 @@ cor3.b <- function() {
     warning("3.b: ¡El vector 'nosuben' parece no estar indizado!", call. = FALSE)
 
   maximo  <- sample(40:100, 1)
+  cat(">> nuevo maximo para la correccion: ", maximo, "\n")
   i <- sample(40:100, 1)
   nosuben <- numeric(100)
-  cat(">> nuevo maximo para la correccion: ", maximo, "\n")
-
   suben <- rpois(1, 20) + 3
   pasajeros <- maximo + suben
   cat(">> cantidad de pasajeros antes del código: ", pasajeros, "\n")
