@@ -257,11 +257,11 @@ valores mayores a 45 por filas. Como un mini ejemplo, si su matriz
 \end{Shaded}
 \begin{verbatim}
 ##      [,1] [,2] [,3] [,4] [,5]
-## [1,]   46   40   48   36   56
-## [2,]   48   36   35   45   35
-## [3,]   41   38   43   48   41
-## [4,]   53   50   38   47   43
-## [5,]   39   47   37   47   55
+## [1,]   40   43   41   38   40
+## [2,]   37   37   30   45   42
+## [3,]   36   48   48   47   39
+## [4,]   42   52   44   43   47
+## [5,]   46   41   52   38   54
 \end{verbatim}
 Entonces el vector \texttt{out} será así:
 
@@ -271,7 +271,7 @@ Entonces el vector \texttt{out} será así:
 \end{Highlighting}
 \end{Shaded}
 \begin{verbatim}
-## [1] 3 1 1 3 3
+## [1] 0 0 3 2 3
 \end{verbatim}
 (Este es un ejemplo creado con números al azar, por supuesto.)
 
@@ -335,7 +335,8 @@ principio) el más adecuado para esta tarea, pues no sabemos de antemano
 cual va a ser el \texttt{n} ``correcto''. Además recuerde que el loop
 \texttt{while} necesita que se cumpla una condición para continuar su
 ejecución, tal como el procedimiento de encontrar el \texttt{n}
-correcto.
+correcto. \textbf{Nota}: no es trivial el orden en el que actualiza los
+objetos \texttt{n} y \texttt{Zn}.
 
 La siguiente es la salida en la consola para el caso de
 \texttt{epsilon \textless{}- 5e-2} y empezando con
@@ -347,13 +348,19 @@ La siguiente es la salida en la consola para el caso de
 ## n = 4 - Zn = 0.9375 
 ## n = 5 - Zn = 0.9688
 \end{verbatim}
-\textbf{Recuerde que}: \textbf{1.} en cada iteración \texttt{n} debe
-aumentar en una unidad, \textbf{2.} el script debe funcionar igual de
-bien para cualquier valor de \texttt{epsilon} elegido y \textbf{3.} es
-lo mejor utilizar el código indicado anteriormente para obtener
-\texttt{Zn} o la corrección automática tendrá problemas con el redondeo
-de los valores.
+\textbf{Recuerde que}:
 
+\begin{enumerate}[1.]
+\item
+  en cada iteración \texttt{n} debe aumentar en una unidad,
+\item
+  el script debe funcionar igual de bien para cualquier valor de
+  \texttt{epsilon} elegido y
+\item
+  es lo mejor utilizar el código indicado anteriormente para obtener
+  \texttt{Zn} o la corrección automática tendrá problemas con el
+  redondeo de los valores.
+\end{enumerate}
 \subsubsection{2.b Guardar los valores}
 
 Luego de hacer la parte 2.a, usted decide que es buena idea guardar los

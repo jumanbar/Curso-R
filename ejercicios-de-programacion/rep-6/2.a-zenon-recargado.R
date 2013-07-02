@@ -22,7 +22,8 @@
 epsilon <- 1e-6
 
 # Recuerde que sólo se usarán las líneas que vienen a continuación en la
-# corrección.
+# corrección y que debe considerar cuidadosamente el orden en el cual 
+# actualiza los objetos n y Zn dentro del loop.
 
 #===== Su código comienza aquí: =====#
 

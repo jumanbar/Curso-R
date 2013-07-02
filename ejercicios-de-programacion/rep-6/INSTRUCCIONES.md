@@ -115,11 +115,11 @@ datos
 
 ```
 ##      [,1] [,2] [,3] [,4] [,5]
-## [1,]   46   40   48   36   56
-## [2,]   48   36   35   45   35
-## [3,]   41   38   43   48   41
-## [4,]   53   50   38   47   43
-## [5,]   39   47   37   47   55
+## [1,]   40   43   41   38   40
+## [2,]   37   37   30   45   42
+## [3,]   36   48   48   47   39
+## [4,]   42   52   44   43   47
+## [5,]   46   41   52   38   54
 ```
 
 
@@ -133,7 +133,7 @@ out
 ```
 
 ```
-## [1] 3 1 1 3 3
+## [1] 0 0 3 2 3
 ```
 
 
@@ -173,7 +173,7 @@ Zn <- sum(1/(2^(1:n)))
 
 En ocasión de aquel primer repartido, el objetivo era encontrar el mínimo `n` que cumpliera la desigualdad $1 - Z_n < \varepsilon$, siendo $\varepsilon = 10 ^ {-6}$. El único método con que contaba en ese momento era manualmente cambiar el valor de `n` aumentando en una unidad, ejecutar el código y determinar manualmente si cumplía tal condición (para repetir el proceso en caso de que de no hacerlo). Sin embargo con las **estructuras de control** es posible ver que se pueden automatizar estos procedimientos, e incluso generalizarlo para cualquier $\varepsilon$. Este es el objetivo de este ejercicio.
 
-Para esto usted deberá usar el loop `while`, ya que es (en principio) el más adecuado para esta tarea, pues no sabemos de antemano cual va a ser el `n` "correcto". Además recuerde que el loop `while` necesita que se cumpla una condición para continuar su ejecución, tal como el procedimiento de encontrar el `n` correcto.
+Para esto usted deberá usar el loop `while`, ya que es (en principio) el más adecuado para esta tarea, pues no sabemos de antemano cual va a ser el `n` "correcto". Además recuerde que el loop `while` necesita que se cumpla una condición para continuar su ejecución, tal como el procedimiento de encontrar el `n` correcto. **Nota**: no es trivial el orden en el que actualiza los objetos `n` y `Zn`.
 
 La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2` y empezando con `n <- 1` (aunque no lo muestre en la salida): 
 
@@ -186,7 +186,11 @@ La siguiente es la salida en la consola para el caso de `epsilon <- 5e-2` y empe
 ```
 
 
-**Recuerde que**: **1.** en cada iteración `n` debe aumentar en una unidad, **2.** el script debe funcionar igual de bien para cualquier valor de `epsilon` elegido y **3.** es lo mejor utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
+**Recuerde que**: 
+
+1. en cada iteración `n` debe aumentar en una unidad, 
+2. el script debe funcionar igual de bien para cualquier valor de `epsilon` elegido y 
+3. es lo mejor utilizar el código indicado anteriormente para obtener `Zn` o la corrección automática tendrá problemas con el redondeo de los valores. 
 
 ### 2.b Guardar los valores
 
