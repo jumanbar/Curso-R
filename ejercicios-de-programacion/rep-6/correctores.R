@@ -32,11 +32,20 @@ cor1.a <- function() {
   # Estas no se si voy a usarlas aún, pero tengo que acordarme de
   # agregar un if para asegurar que la llave de apertura esté en la
   # fline...
-  aa <- gsub(" ", "", arch[fline])
-  ab <- strsplit(aa, split = "in")[[1]][2]
-  ac <- strsplit(ab, split = ")\\{")[[1]][1]
-  rango <- eval(parse(text = ac))
+  #   aa <- gsub(" ", "", arch[fline])
+  #   ab <- strsplit(aa, split = "in")[[1]][2]
+  #   ac <- strsplit(ab, split = ")\\{")[[1]][1]
 
+  rango <- gsub(" ", "", arch[fline])
+  rango <- strsplit(rango, "")[[1]]
+  pare  <- which(rango == "(")[1]
+  rango <- rango[- (1:pare)]
+  pare  <- which(rango == ")")
+  rango <- rango[- (pare[length(pare)]:length(rango))]
+  rango <- paste0(rango, collapse= "")
+  rango <- strsplit(rango, "in")[[1]][2]
+  rango <- eval(parse(text = rango))
+  
   if (length(rango) != nrow(datos))
     stop(mkmsj("el número de iteraciones de su loop es distinto a la cantidad de filas de la matriz", 
                length(rango), nrow(datos)), call. = FALSE)
@@ -88,8 +97,8 @@ cor1.b <- function() {
 
 cor2.a <- function() {
   load("datos")
-  arch <- cut.script("2.a-zenon-recargado.R")
-  arch <- arch[!grepl("cat\\(", arch)]
+  arch  <- cut.script("2.a-zenon-recargado.R")
+  arch  <- arch[!grepl("cat\\(", arch)]
   whlog <- grepl("\\bwhile\\b", arch)
   whnum <- grep("\\bwhile\\b", arch)
   whlin <- arch[whlog]
@@ -167,7 +176,7 @@ cor2.a <- function() {
   cars <- cars[- (pare[length(pare)]:length(cars))]
   cars <- paste0(cars, collapse= "")
   cars <- gsub("epsilon", 1 - Zn, cars)
-  geq <- eval(parse(text = cars)) # si TRUE, está bien, si no está mal
+  geq  <- eval(parse(text = cars)) # si TRUE, está bien, si no está mal
 
   if (!geq) {
     warning("2.a: recuerde que la condición lógica necesaria para el loop while debe ser ",
