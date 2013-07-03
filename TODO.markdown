@@ -76,6 +76,10 @@ Lista de ideas y/o apuntes generales de cosas a mejorar
 
 * Nuevo ejercicio: 2.d "gráficos personalizados". Ver los archivos tmp.Rmd y 2.d-plot.edu.R
 
+### Unidad 6
+
+* Ejercicio 2.a del repartido... ver http://imser2013.ribbot.com/posts/51d334917b0a57000200067b
+
 Para el final del curso
 -----------------------
 
