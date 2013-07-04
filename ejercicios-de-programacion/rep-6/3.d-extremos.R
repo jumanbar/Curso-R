@@ -41,6 +41,3 @@ points(nosuben, type = "o", pch = 19, col = 3)
 abline(h = c(0, maximo), lty = 3)
 abline(v = c(14.5, 35.5, 32.5), lty = 3, col = c(2, 2, 4))
 
-source("correctores.R")
-debug(cor3.d)
-cor3.d()
