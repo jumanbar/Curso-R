@@ -388,7 +388,6 @@ cor3.c <- function() {
     i <- ies[k]
     for (h in 1:length(where))
       assign(names(where)[h], FALSE)
-
     eval(parse(text = arch))
     names(objs) <- whcat
     for (j in 1:4) {
@@ -396,7 +395,8 @@ cor3.c <- function() {
       if (sum(sumar) > 1)
         stop("para i = ", i, " la expresión '", pois[j], "' se ejecutó más de una vez", call. = FALSE)
       #       if (k == 6 && j > 2) browser()
-      if (sumar) {
+      #       if (length(sumar) > 1) browser()
+      if (any(sumar)) {
         if (j <= 2) {
           tabla[k, 2] <- pois2[names(sumar) == nombres]
         } else {
