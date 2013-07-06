@@ -346,6 +346,9 @@ cor3.c <- function() {
   cat("código en archivo ... OK\n")
   parsed <- parse(text = arch)
 
+  maximo <- 1e5
+  pasajeros <- rpois(1, 100)
+
   arch <- gsub(" ", "", arch)
   pois <- paste0(c("- ", "- ", "+ ", "+ "), "rpois(1, ", c(2, 5, 3, 8), ")")
   pois2 <- gsub(" ", "", pois)
