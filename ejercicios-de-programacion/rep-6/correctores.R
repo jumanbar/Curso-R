@@ -277,7 +277,7 @@ cor3.a <- function() {
   cat("código en archivo ... OK\n")
   parsed <- parse(text = arch)
 
-  maximo <- sample(40:100, 1)
+  maximo <- sample(100:200, 1)
   cat(">> nuevo maximo para la correccion: ", maximo, "\n")
 
   registro <- numeric(1e3)
@@ -285,7 +285,7 @@ cor3.a <- function() {
   cat(">> cantidad de pasajeros antes del código: ", pasajeros, "\n")
   eval(parsed)
   if (pasajeros != maximo) {
-    warning("3.a, sugerencia: ¡verifique los signos de *ambos* condicionales por las dudas!", call. = FALSE)
+    #     warning("3.a, sugerencia: ¡verifique los signos de *ambos* condicionales por las dudas!", call. = FALSE)
     stop("el número de pasajeros es distinto al 'maximo' (", maximo,") cuando se sobrecarga el bus", call. = FALSE)
   }
   cat("¿pasajeros != maximo? ... OK\n")
@@ -294,7 +294,7 @@ cor3.a <- function() {
   cat(">> cantidad de pasajeros antes del código: ", pasajeros, "\n")
   eval(parsed)
   if (pasajeros < 0) {
-    warning("3.a: ¡verifique los signos de *ambos* condicionales por las dudas!", call. = FALSE)
+    #     warning("3.a, sugerencia: ¡verifique los signos de *ambos* condicionales por las dudas!", call. = FALSE)
     stop("el número de pasajeros distinto a 0 cuando se vacía el bus", call. = FALSE)
   }
   cat("¿pasajeros != 0? ... OK\n")
