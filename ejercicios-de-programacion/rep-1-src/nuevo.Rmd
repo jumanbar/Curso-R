@@ -23,8 +23,51 @@
 
 - "Los cuestionarios me parecieron un poco rebuscados o detallistas en aspectos que a mi entender no son relevantes, siendo más un control de lectura excesivamente atento que un control del aprendizaje de los puntos relevantes, pero no sé si hay otra forma de hacerlo ;)"
 
--  
+- Errores en videos son "simpáticos" y ayudan a perderle miedo a los errores. Es útil ver como Juan los encara. Se puede agregar un ejercicio que sea simplemente solucionar un error. Un comando al que le falta una coma puede funcionar. También un caso de mayúscula/minúscula. O lenght en lugar de length.
 
+- En el repartido 1: ejercicios sencillos, del tipo de rellenar código, porque empezar a hacer código de cero es muy difícil.
+
+- Redacción de los repartidos se hacía complicada de entender.
+
+- Agregar más ejercicios con solución a la vista (sin sistema de corrección) para ayudar a practicar más.
+
+- Podría andar bien un ejercicio que se corrija con "peer-review".
+
+- Implementar comunicación por chats.
+
+- Cambiar el orden: 1 2 5 6 3 4 ("... las unidades 5 y 6 deberian estar antes que la 3 y la 4!! Me explico:  R no deja de ser un lenguaje de programacion orientado a objetos. Creo que resulta mas intuitivo ver 1ero los tipos de objetos que hay (unidad 2), luego los ""metodos o funciones"" que permiten la interaccion entre esos objetos (unidad 5), luego la relacion logica entre esos objetos (unidad 6) y por ultimo, ver como se ven esos objetos graficamente (unidad 4) o como puedo hacer para importar datos de otro lado o exportarlos para usarlos despues (unidad 3)").
+
+- Explicar las penalizaciones en el repartido 1.
+
+- Uso del tab y cómo esto afecta el uso de nombres de objetos en R: nombres largos pero informativos.
+
+- Agregar una sección de AYUDA: para que si tienen problemas con un punto en particular vayan ahí; con secciones dedicadas a cuestionarios, repartidos, etc... (ej: indicar cómo es la dinámica de enviar/guardar cuestionarios; explicar cómo es la dinámica de la función evaluar y las actualizaciones del archivo datos). También estaría bien un FAQ con hipervínculos a estas ayudas.
+
+### 0. Interfaz de RStudio
+
+
+
+### 0. Creación de un proyecto en RStudio
+
+Para organizar los archivos provistos por el curso, se creará un directorio/carpeta en donde se guardarán estas lecciones así como el resto de documentos y datos. 
+
+Este directorio contenerá además un proyecto de Rstudio. Un proyecto de RStudio es simplemente una forma de recordar nuestro conjunto selecto de archivos cada vez que estamos trabajando en un tema particular. Cuando abrimos RStudio en el proyecto X, vamos a tener abiertas las mismas pestañas que teníamos la última vez que trabajamos en X. Para crear el directorio y el proyecto al mismo tiempo en RStudio se puede utilizar el menú ``Project >> New Project...``, y luego se elije la opción *New Directory* (Fig. 1) y se crea el directorio **CursoR** (aunque usted puede elegir el nombre que más le guste). Al hacer esto el RStudio crea la carpeta y dentro de la misma un archivo llamado **CursoR.Rproj**, el cual se puede usar para abrir RStudio con el proyecto cargado (con *doble click*). RStudio abrirá por defecto con este proyecto cargado cada vez, a menos que este sea cerrado en la última sesión previa (``Project >> Close Project``).
+
+![NewProject](imagenes/NewProject.png "Fig. 1: menú de creación de un nueo proyecto en RStudio")
+
+#### Codificación
+
+Codificación refiere a la forma en que una computadora traduce secuencias de bits en caracteres normales (letras). Debido a contingencias históricas de la informática, hay muchas formas de establecer la codificación de un archivo.
+
+Debido a que los scripts están codificados a través del formato UTF-8, lo recomendable es indicarle al RStudio que esta es la codificación que se va a utilizar por defecto. Esta es la codificación más común entre programadores y es transversal al lenguaje de programación. 
+
+Utilizando la codificación correcta, se evitará encontrarse con palabras sin sentido como “programaciÃ³n” o “mÃ¡s” en los comentarios de los scripts (en lugar de "programación" o "más"). Bajo el menú ``Tools >> Options...`` se puede modificar la codificación por defecto, como lo indica la Figura 2.
+
+![Encoding](imagenes/NewProject.png "Fig. 1: menú de creación de un nueo proyecto en RStudio")
+
+También puede ver archivos individuales con determinada codificación, con el menú ``File >> Reopen with Encoding...``. Cuidado que esto no equivale a cambiarle la codificación al archivo; para eso está la opción ``File >> Save with Encoding...``.
+
+Una opción intermedia es configurar cada proyecto para que use una codificación diferente. Esto se puede hacer en el menú ``Project >> Project options...``.
 
 ### 1. Directorio de trabajo
 
