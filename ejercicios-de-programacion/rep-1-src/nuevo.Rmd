@@ -111,18 +111,22 @@ En general preferimos la segunda opción. Escribir los comandos en el editor nos
 
 A continuación, escriba nuestro comando, primero en la consola, dando enter al final para que se ejecute, y luego en el Source (editor de texto):
 
-    mi.objeto <- 4
+```{r}
+mi.objeto <- 4
+```
 
 Nota: ponga los espacios en blanco también; no afectan al comando, pero facilitan la lectura.
 
 Debido a que usted le dió enter al comando en la consola, ahora en su sesión existe un objeto llamado `mi.objeto`. Puede ver una lista de los objetos que existen en el panel de arriba-derecha, bajo la pestaña "Workspace" (área de trabajo). 
 También puede ver una lista de objetos existentes con el comando `ls`: escriba en la consola
 
-    ls()
+```{r}
+ls()
+```
 
-Ahora veamos como terminar de usar la "opción 2". Como se dijo antes, preferimos usar el editor para escribir nuestros comandos, ya que nos permite repetirlos fácilmente. En RStudio se pueden ejecutar directamente los comandos escritos en el editor de texto plano. Hay que ubicar al cursor en la línea que nos interesa y apretar las teclas Ctrl + Enter (en simultáneo). Haga la prueba con la línea `mi.objeto <- 4`.
+Ahora veamos como terminar de usar la "opción 2". Como se dijo antes, preferimos usar el editor para escribir nuestros comandos, ya que nos permite repetirlos fácilmente. En RStudio se pueden ejecutar directamente los comandos escritos en el editor de texto plano. Hay que ubicar al cursor en la línea que nos interesa y apretar las teclas Ctrl+Enter (en simultáneo). Haga la prueba con la línea `mi.objeto <- 4`.
 
-Al usar Ctrl + Enter podemos ver que aparece la misma línea en la consola y se ve así:
+Al usar Ctrl+Enter podemos ver que aparece la misma línea en la consola y se ve así:
 
     > mi.objeto <- 4
     >
@@ -171,9 +175,86 @@ Pasaremos ahora a hacer cosas más elaboradas ...
 
 Si no lo hizo antes, agregue al principio del script el comando que sirve para elegir el directorio de trabajo. Si usted usó los botones de RStudio (o la combinación Ctrl+Shift+k) de todas formas el comando aparece en la historia de comandos (arriba-derecha). Si no lo encuentra, use la lupa o buscador, que aparece en la pestaña History y escriba `setwd`, para filtrar la historia. Si selecciona con el ratón dicho comando, con el botón "To Source" puede enviar este comando al editor de texto; recuerde ubicarlo al principio del mismo, en la línea 1. Y recuerde que tampoco puede usarse un camino relativo aquí (más adelante se explica por qué).
 
-### 
 
 De aquí en más agarrar algún ejercicio del repartido 1 y hacerlo paso a paso
+
+### Algunas manipulaciones simples
+
+Todas las funciones usan paréntesis para ser ejecutadas. Los usuarios más avanzados de R saben que esto no es cierto en última instancia, pero para nosotros este será un paradigma. Por ejemplo, la función `length` sirve para saber la cantidad de elementos de un vector cualquiera, por ejemplo:
+
+```{r}
+x <- 1:4 # Aquí estoy creando el vector x
+length(x)
+```
+
+Escriba este ejemplo. Luego de ejecutar esto, en la consola se debería ver impresa la salida de `length(x)`, que es el valor 4. El uso de paréntesis sirve en R para delimitar el conjunto de lo que son "las entradas" de una función. Nótese que otros lenguajes de programación no usan este esquema, aunque sí la mayoría. Por otro lado, ya vimos que la salida aquí es 4 y luego de que se imprime en la consola "se pierde". Como usuarios podemos guardar este valor en un objeto, tal como se mostrara en la lección 1.2. Por ejemplo:
+
+```{r}
+y <- length(x)
+```
+
+Haciendo este último comando se guarda la salida de `length(x)` en un nuevo objeto, `y`. La "flecha" hacia la izquierda, `<-` es el operador que normalmente se usa para hacer asignaciones (hay al menos cuatro formas de hacer asignaciones).
+
+Ahora es usted quien debe usar una función y guardar el resultado en un nuevo objeto, siguiendo la misma sintaxis que en el ejemplo anterior. La función será `mean` (para calcular promedios) y la entrada será el vector `x` tal como se definió arriba. El resultado deberá ser asignado a un nuevo objeto llamado `promedio`.
+
+Si usted hizo todo bien, entonces en el panel 3 (arriba-derecha) de RStudio, bajo la pesatña *Workspace*, encontrará al objeto `promedio` en la lista de objetos presentes y su valor será 2.5. También puede ejecutar:
+
+```{r}
+exists("promedio") # TRUE = VERDADERO
+```
+
+En todo momento puede usar la consola para inspeccionar el objeto, con sólo escribir el nombre (escriba y de enter):
+
+```{r}
+promedio
+```
+
+Otra función sumamente útil es la de concatenación: `c`. Sirve para "armar" o "pegar" elementos y así crear un vector. Ejecute el siguiente ejemplo:
+
+```{r}
+mi.vector <- c(x, promedio, 14)
+```
+
+El resultado es un nuevo vector llamado `mi.vector`, con 6 elementos (vea la salida de `length(mi.vector)` para confirmarlo. Escriba ahora el comando necesario para crear un vector llamado `mi.otro.vector`, el cual tendrá la secuencia de valores 45, -76, 3, 4, 5, 6, 0.333.
+
+Muy bien, hasta ahora hemos visto como crear vectores y hacer asignaciones. Veamos ahora la forma de modificarlos. Supongamos que queremos cambiar el último valor de `mi.vector`; el nuevo valor será 0. Una forma fácil de hacerlo es así:
+
+```{r}
+mi.vector[6] <- 0
+```
+
+Aquí estamos utilizando los corchetes o paréntesis rectos para *modificar* un vector. En verdad no es más que un caso particular de la operación de asignación. Los paréntesis rectos sirven para indicar la ubicación de **el o los** elemento(s) que quiero cambiar.
+
+Llamémosle a esta la "solución 1" de nuestro problema. Veamos ahora otra solución, más interesante. Supongamos que no sabemos de antemano cuántos elementos tiene `mi.vector`, ¿cómo podemos asegurarnos de modificar el último valor, sin importar la longitud del vector?.
+
+La respuesta es simple, ¿acaso no vimos una función que nos dice exactamente la cantidad de elementos de un vector? Así es, con la función `length` podemos obtener la ubicación correcta en la que hay que cambiar el vector. Por lo tanto, la "solución 2" podría ser esta:
+
+
+```{r}
+mi.vector[length(mi.vector)] <- 0
+```
+
+¿Puede entender lo que se hizo aquí?
+
+El comando `length(mi.vector)` devuelve la longitud de `mi.vector` (i.e.: la ubicación que queremos modificar); ese valor es "enviado a los corchetes" para definir correctamente el valor que hay que modificar. Esto es lo que podríamos llamar una *composición de funciones* (para quienes quieran profundizar, las dos funciones involucradas son `length` y `[<-`; la página de ayuda de la segunda es accesible con el comando `?"[<-"`).
+
+Podríamos extendernos y encontrar una "solución 3" si dividimos la tarea en dos pasos:
+
+```{r}
+ubicacion <- length(mi.vector)
+mi.vector[ubicacion] <- 0
+```
+
+Esta solución tiene sentido si vamos a volver a utilizar el objeto `ubicacion` en el futuro. Separar también puede lograr que una secuencia de comandos sea más fácil de leer; en el curso solemos hacer este tipo de separaciones, pero es una estrategia que responde a razones pedagógicas y no a que sea necesariamente la mejor opción del punto de vista práctico.
+
+Lo importante a destacar de las soluciones 2 y 3 es que son *genéricas*: no importa qué tan grande o chico sea el vector `mi.vector`, siempre será una solución correcta. Lo opuesto a una solución genérica es una solución específica
+
+
+
+
+
+
+
 
 ### Ejemplo: polinomios
 
@@ -214,7 +295,15 @@ A veces ocurre que R no encuentra una función (u otro tipo de objeto, como pued
     > fractions
     Error: object 'fractions' not found
 
-(Nótese que aquí se usa el término genérico "objects", en lugar de "function" como en el ejemplo anterior; R determinó que lenght debió ser una función, ya que a continuación de dicha palabra venía la apertura de un paréntesis.)
+(Nótese que aquí se usa el término genérico "object", en lugar de "function" como en el ejemplo anterior; R determinó que lenght debió ser una función, ya que a continuación de dicha palabra seguía la apertura de un paréntesis.)
+
+```{r}
+Mean(5:7, na.rm = TRUE)
+round(8.564432, 3)
+```
+
+
+
 
 ### Entregar un repartido con retraso:
 
