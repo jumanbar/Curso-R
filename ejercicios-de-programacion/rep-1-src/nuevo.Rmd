@@ -1,9 +1,34 @@
 
 ## Tutorial tentativo:
 
+## APUNTES DE LA ENCUESTA DE EVALUACIÓN 2013
+
+- Hacer un esquema en papel para luego "traducir a R" (dice mencionar esto en un video, pero creo que en un primer repartido tutorial puede ir).
+
+- Ejercicios cuyo único objetivo sea buscar en la ayuda algo.
+
+- Mencionar que los traductores que hay en la web pueden ayudar bastante con el tema de entender la documentación en inglés.
+
+- Dinámicas de tutorías internas en el curso: los que van más rápido pueden ayudar a los otros capaz. 
+
+- Explicar como instalar R en ubuntu!
+
+- Cuestionarios con preguntas relativas al video, no a R en sí.
+
+- Muy abrumadora la cantidad de info que se manda de golpe al principio; meter lo importante que hay que saber dentro del repartido 1. Indicar claramente lo que son lecturas "extras".
+
+- "difícil comprensión (al principio) de qué es lo que hay que hacer para seguir el curso"; Para aprobar el curso hay que HACER CUESTIONARIOS Y ENTREGAR LOS REPARTIDOS.
+
+- Más notas para complementar los contenidos de videos.
+
+- "Los cuestionarios me parecieron un poco rebuscados o detallistas en aspectos que a mi entender no son relevantes, siendo más un control de lectura excesivamente atento que un control del aprendizaje de los puntos relevantes, pero no sé si hay otra forma de hacerlo ;)"
+
+-  
+
+
 ### 1. Directorio de trabajo
 
-Lo primero que debe hacer es elegir el directorio de trabajo en el que va a trabajar. Para el curso recomendamos crear una carpeta llamada "CursoR", aunque puede llamarse como usted quiera. Si aún no la creó puede crearla directamente con R, con el comando:
+Lo primero que debe hacer es elegir el directorio en el que va a trabajar. Para el curso recomendamos crear una carpeta llamada "CursoR", aunque puede llamarse como usted quiera. Si aún no la creó puede crearla directamente con R, con el comando:
 
     dir.create("CursoR")
 
