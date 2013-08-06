@@ -45,41 +45,47 @@
 
 ### 0. Interfaz de RStudio
 
+La interfaz de RStudio está dividida en 4 regiones, a las que en este curso llamaremos "paneles". En la figura 1 se muestra la distribución de los paneles y los nombres que usaremos a lo largo del repartido y el curso.
 
+**Nota**: si es la primera vez que abre RStudio probablemente esté ausente el panel 1 (el editor de texto plano). Para ver dicho panel use el menú ``File >> New... >> R script`` (o la combinación de teclas: Ctrl+Shift+N).
 
-### 0. Creación de un proyecto en RStudio
+![RStudio](imagenes/RStudio.png "Figura 1: interfaz de RStudio, mostrando los 4 paneles y sus funciones.")
+
+Muchas veces se pueden usar combinaciones de teclas, también llamados "atajos", para realizar acciones en RStudio, y suelen ser muy prácticas. Aquí vamos a mencionar algunas, como en el último párrafo. Por lo tanto es necesario que usted entienda la notación que estándar para estos atajos. Por ejemplo: Ctrl+Shift+K refiere a la acción de presionar **al mismo tiempo** las teclas Ctrl ("control"), Shift y la letra *k*. A su vez Ctrl++ implica apretar las teclas Ctrl y + al mismo tiempo.
+
+#### 0.1 Creación de un proyecto en RStudio
 
 Para organizar los archivos provistos por el curso, se creará un directorio/carpeta en donde se guardarán estas lecciones así como el resto de documentos y datos. 
 
-Este directorio contenerá además un proyecto de Rstudio. Un proyecto de RStudio es simplemente una forma de recordar nuestro conjunto selecto de archivos cada vez que estamos trabajando en un tema particular. Cuando abrimos RStudio en el proyecto X, vamos a tener abiertas las mismas pestañas que teníamos la última vez que trabajamos en X. Para crear el directorio y el proyecto al mismo tiempo en RStudio se puede utilizar el menú ``Project >> New Project...``, y luego se elije la opción *New Directory* (Fig. 1) y se crea el directorio **CursoR** (aunque usted puede elegir el nombre que más le guste). Al hacer esto el RStudio crea la carpeta y dentro de la misma un archivo llamado **CursoR.Rproj**, el cual se puede usar para abrir RStudio con el proyecto cargado (con *doble click*). RStudio abrirá por defecto con este proyecto cargado cada vez, a menos que este sea cerrado en la última sesión previa (``Project >> Close Project``).
+Este directorio contenerá además un proyecto de Rstudio. Un proyecto de RStudio es simplemente una forma de recordar nuestro conjunto selecto de archivos cada vez que estamos trabajando en un tema particular. Cuando abrimos RStudio en el proyecto X, vamos a tener abiertas las mismas pestañas que teníamos la última vez que trabajamos en X. Para crear el directorio y el proyecto al mismo tiempo en RStudio se puede utilizar el menú ``Project >> New Project...``, y luego se elije la opción *New Directory* (Fig. 2) y se crea el directorio **CursoR** (aunque usted puede elegir el nombre que más le guste). Al hacer esto el RStudio crea la carpeta y dentro de la misma un archivo llamado **CursoR.Rproj**, el cual se puede usar para abrir RStudio con el proyecto cargado (con *doble click*). RStudio abrirá por defecto con este proyecto cargado cada vez, a menos que este sea cerrado en la última sesión previa (``Project >> Close Project``).
 
-![NewProject](imagenes/NewProject.png "Fig. 1: menú de creación de un nueo proyecto en RStudio")
+![NewProject](imagenes/NewProject.png "Figura 2: menú de creación de un nueo proyecto en RStudio.")
 
-#### Codificación
+#### 0.2 Codificación
 
 Codificación refiere a la forma en que una computadora traduce secuencias de bits en caracteres normales (letras). Debido a contingencias históricas de la informática, hay muchas formas de establecer la codificación de un archivo.
 
-Debido a que los scripts están codificados a través del formato UTF-8, lo recomendable es indicarle al RStudio que esta es la codificación que se va a utilizar por defecto. Esta es la codificación más común entre programadores y es transversal al lenguaje de programación. 
+Debido a que los scripts están codificados a través del formato UTF-8, lo recomendable es indicarle al RStudio que esta es la codificación que se va a utilizar por defecto. Esta es la codificación más común entre programadores, independientemente del lenguaje de programación. 
 
-Utilizando la codificación correcta, se evitará encontrarse con palabras sin sentido como “programaciÃ³n” o “mÃ¡s” en los comentarios de los scripts (en lugar de "programación" o "más"). Bajo el menú ``Tools >> Options...`` se puede modificar la codificación por defecto, como lo indica la Figura 2.
+Utilizando la codificación correcta, se evitará encontrarse con palabras sin sentido como “programaciÃ³n” o “mÃ¡s” en los comentarios de los scripts (en lugar de "programación" o "más"). Bajo el menú ``Tools >> Options...`` se puede modificar la codificación por defecto, como lo indica la Figura 3.
 
-![Encoding](imagenes/NewProject.png "Fig. 1: menú de creación de un nueo proyecto en RStudio")
+![Encoding](imagenes/UTF-8.png "Figura 3: elección de la codificación por defecto para RStudio.")
 
 También puede ver archivos individuales con determinada codificación, con el menú ``File >> Reopen with Encoding...``. Cuidado que esto no equivale a cambiarle la codificación al archivo; para eso está la opción ``File >> Save with Encoding...``.
 
-Una opción intermedia es configurar cada proyecto para que use una codificación diferente. Esto se puede hacer en el menú ``Project >> Project options...``.
+Una opción intermedia es configurar cada proyecto para que use una codificación diferente. Esto se puede hacer en el menú ``Project >> Project options...``. De todas formas, recomendamos mantener siempre la misma codificación, en particular UTF-8.
 
 ### 1. Directorio de trabajo
 
-Lo primero que debe hacer es elegir el directorio en el que va a trabajar. Para el curso recomendamos crear una carpeta llamada "CursoR", aunque puede llamarse como usted quiera. Si aún no la creó puede crearla directamente con R, con el comando:
+Lo primero que debe hacer es elegir el directorio en el que va a trabajar. Para el curso ya recomendamos crear una carpeta llamada "CursoR", aunque puede llamarse como usted quiera. Si aún no la creó puede crearla directamente con R, con el comando:
 
     dir.create("CursoR")
 
-Escriba o copie y pegue esto en la consola de R que se encuentra en RStudio (panel de abajo-izquierda, o izquierda simplemente; bajo el nombre de "Console"). De enter. Esto va a crear una carpeta llamada CursoR dentro del directorio de trabajo actual. Puede confirmar de dos formas que la carpeta efectivamente fue creada: 1. con el navegador de archivos normal de su sistema operativo o 2. con el comando `dir`:
+Escriba o copie y pegue esto en la consola de R que se encuentra en RStudio (panel 2, de abajo-izquierda, bajo el nombre de "Console"). De enter. Esto va a crear una carpeta llamada CursoR dentro del directorio de trabajo actual. Puede confirmar de dos formas que la carpeta efectivamente fue creada: 1. con el navegador de archivos normal de su sistema operativo o 2. con el comando `dir`:
 
     dir()
 
-Escribiendo esto en la consola (y dando enter) vemos una lista de nombres de achivos y carpetas. Allí se debería incluir "CursoR" si hicimos todo bien hasta el momento.
+Escribiendo esto en la consola (y dando enter) vemos una lista de nombres de achivos y carpetas (entre comillas). Allí se debería incluir "CursoR" si hicimos todo bien hasta el momento.
 
 Como recordará de la lección 1.4, usted puede saber cuál es la carpeta de trabajo actual con la función `getwd`. De todas formas lo que nos interesa es "ubicarnos" en la carpeta CursoR, así que vamos a usar `setwd` para hacerlo:
 
@@ -87,7 +93,7 @@ Como recordará de la lección 1.4, usted puede saber cuál es la carpeta de tra
 
 Nótese que aquí usamos el camino relativo para ubicarnos. Es útil de momento, pero no siempre es lo ideal.
 
-Podríamos haber hecho lo mismo con los botones de RStudio: ``Session >> Set Working Directory >> Choose Directory`` (o la combinación de teclas Ctrl + Shift + k). Nótese que el comando `setwd("camino absoluto")` aparece igualmente en la consola (abajo-izquierda) y además también aparece en la historia de comandos. Dicha historia se encuentra en el panel de arriba-derecha, en la pestaña "History". Esta historia es muy útil si queremos buscar y recuperar algún comando ejecutado hace un tiempo (aunque no es infinita).
+Podríamos haber hecho lo mismo con los botones de RStudio: ``Session >> Set Working Directory >> Choose Directory`` (o la combinación de teclas Ctrl+Shift+k). Nótese que el comando `setwd("camino absoluto")` aparece igualmente en la consola (abajo-izquierda) y además también aparece en la historia de comandos. Dicha historia se encuentra en el panel de arriba-derecha, en la pestaña "History". Esta historia es muy útil si queremos buscar y recuperar algún comando ejecutado hace un tiempo (aunque no es infinita).
 
 ### 2. El command prompt
 
@@ -97,9 +103,9 @@ Nuestro primer comando (no escribir aún), será este:
 
 Pero, ¿dónde vamos a escribirlo? 
 
-- Opción 1: la consola de RStudio. Sólo hay que dar enter al terminar de escribirlo. No hace falta que el cursor esté al final de la sentencia para dar el enter.
+- Opción 1: la consola de RStudio. Sólo hay que dar *enter* al terminar de escribirlo. No hace falta que el cursor esté al final de la sentencia para dar el enter.
 
-- Opción 2: en el editor de texto plano de RStudio (arriba-izquierda). Primero debe iniciar un archivo nuevo: vaya a ``File >> New >> R Script`` (Ctrl + Shift + N), recién entonces será visible este panel. En RStudio este panel se llama "Source" (en inglés, fuente); es el "código fuente" con el que trabajamos en un momento dado. Como aún no guardamos el archivo, este figura bajo el nombre "Untitled1" (Sin título 1).
+- Opción 2: en el editor de texto plano de RStudio (arriba-izquierda). Primero debe iniciar un archivo nuevo: vaya a ``File >> New >> R Script`` (Ctrl+Shift+N), recién entonces será visible este panel. En RStudio este panel se llama "Source" (en inglés, fuente); es el "código fuente" con el que trabajamos en un momento dado. Como aún no guardamos el archivo, este figura bajo el nombre "Untitled1" (Sin título 1).
     
 En general preferimos la segunda opción. Escribir los comandos en el editor nos permite guardar todo lo que hacemos, de forma que se puede repetir en el futuro con facilidad.
 
@@ -163,7 +169,9 @@ También tiene la opción de interrumpir el comando y volver al command prompt n
 
 Pasaremos ahora a hacer cosas más elaboradas ...
 
-Si no lo hizo antes, agregue al principio del script el comando que sirve para elegir el directorio de trabajo. Si usted usó los botones de RStudio (o la combinación Ctrl + Shift + k) de todas formas el comando aparece en la historia de comandos (arriba-derecha). Si no lo encuentra, use la lupa o buscador, que aparece en la pestaña History y escriba `setwd`, para filtrar la historia. Si selecciona con el ratón dicho comando, con el botón "To Source" puede enviar este comando al editor de texto; recuerde ubicarlo al principio del mismo, en la línea 1. Y recuerde que tampoco puede usarse un camino relativo aquí (más adelante se explica por qué).
+Si no lo hizo antes, agregue al principio del script el comando que sirve para elegir el directorio de trabajo. Si usted usó los botones de RStudio (o la combinación Ctrl+Shift+k) de todas formas el comando aparece en la historia de comandos (arriba-derecha). Si no lo encuentra, use la lupa o buscador, que aparece en la pestaña History y escriba `setwd`, para filtrar la historia. Si selecciona con el ratón dicho comando, con el botón "To Source" puede enviar este comando al editor de texto; recuerde ubicarlo al principio del mismo, en la línea 1. Y recuerde que tampoco puede usarse un camino relativo aquí (más adelante se explica por qué).
+
+### 
 
 De aquí en más agarrar algún ejercicio del repartido 1 y hacerlo paso a paso
 
@@ -190,6 +198,23 @@ Cómo saber si está actualizado. Cómo bajarlo. Qué hacer si windows lo transf
 ### Errores.
 
 A no tener miedo de cometerlos. Hasta los más experimentados vivimos cometiendo errores, incluso los más tontos (pero por suerte, con menos frecuencia). No es cometer o no errores lo que te hace un buen programador. Un buen progamador se define por su capacidad de anticiparse a lo que necesita y a cómo obtenerlo; es quien puede visualizar cómo interactúan las distintas piezas del sistema que él mismo está diseñando. Es en gran medida, un diseñador/arquitecto.
+
+Hagamos un error a propósito. En muchos casos, esta es una técnica muy efectiva de saber si nuestro código funciona. Escriba en la consola lo siguiente:
+
+```{r}
+lenght(1:6)
+```
+
+(Recordará de la lección 1.2 que 1:6 es simplemente la secuencia de números 1, 2, 3 ... 6.)
+
+Este comando genera un error y el siguiente mensaje: `Error: could not find function "lenght"` (Error: no se encontró la función "lenght"). Se trata de un error clásico. Este mensaje indica que R buscó entre todas las funciones existentes en su repertorio y no encontró la función llamada "lenght". La enorme mayoría de las veces estos mensajes se deben a que hay un error de escritura; en este caso la h está mal ubicada: es length y no lenght.
+
+A veces ocurre que R no encuentra una función (u otro tipo de objeto, como puede ser un vector o una matriz), debido a que usted no ha cargado el paquete correcto. Por ejemplo, la función `fractions` se encuentra en el paquete "MASS", el cual si bien se instala con R, no está cargado automáticamente en su sesión de trabajo. Si quisiéramos ver el código de la función R nos va a dar un mensaje de error:
+
+    > fractions
+    Error: object 'fractions' not found
+
+(Nótese que aquí se usa el término genérico "objects", en lugar de "function" como en el ejemplo anterior; R determinó que lenght debió ser una función, ya que a continuación de dicha palabra venía la apertura de un paréntesis.)
 
 ### Entregar un repartido con retraso:
 
