@@ -13,6 +13,7 @@ ejercicios-de-programacion/*/cache
 *.Rproj.user
 *.sw*
 *.vim
+*.xcf
 Rplots.pdf
 Curso-R.Rproj
 apuntes.*

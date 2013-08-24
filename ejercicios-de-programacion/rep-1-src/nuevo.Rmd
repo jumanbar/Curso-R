@@ -45,25 +45,25 @@
 
 ### 0. Interfaz de RStudio
 
-La interfaz de RStudio está dividida en 4 regiones, a las que en este curso llamaremos "paneles". En la figura 1 se muestra la distribución de los paneles y los nombres que usaremos a lo largo del repartido y el curso.
+La interfaz de RStudio está dividida en 4 regiones, a las que en este curso llamaremos *paneles*. En la figura 1 se muestra la distribución de los paneles y los nombres que usaremos a lo largo del repartido y el curso.
 
-**Nota**: si es la primera vez que abre RStudio probablemente esté ausente el panel 1 (el editor de texto plano). Para ver dicho panel use el menú ``File >> New... >> R script`` (o la combinación de teclas: Ctrl+Shift+N).
+**Nota**: si es la primera vez que abre RStudio probablemente esté ausente el panel 1 (el editor de texto plano), ya que no hay ningún archivo abierto. Para ver dicho panel use el menú ``File >> New... >> R script`` (o la combinación de teclas: Ctrl+Shift+N).
 
 ![RStudio](imagenes/RStudio.png "Figura 1: interfaz de RStudio, mostrando los 4 paneles y sus funciones.")
 
-Muchas veces se pueden usar combinaciones de teclas, también llamados "atajos", para ejecutar acciones en RStudio, y suelen ser muy prácticas. Esto hace conveniente y necesario que usted entienda la notación que estándar para estos atajos. Por ejemplo: Ctrl+Shift+K refiere a la acción de presionar **al mismo tiempo** las teclas Ctrl ("control"), Shift y la letra *k*. A su vez Ctrl++ implica apretar las teclas Ctrl y + al mismo tiempo. Si usa esta combinación como ejemplo notará que RStudio se "recarga" con un aumento generalizado en el tamaño de las letras. Puede volver al tamaño original con Ctrl+-.
+Al igual que en este último ejemplo, muchas veces vamos a mencionar combinaciones de teclas, también llamados "shortcuts" , atajos, para ejecutar acciones en RStudio. Estos suelen ser muy prácticos. Por lo tanto es conveniente y necesario que usted entienda la notación estándar para estos atajos. Por ejemplo: Ctrl+Shift+K refiere a la acción de presionar **al mismo tiempo** las teclas Ctrl ("Control"), Shift y la letra *k*. A su vez Ctrl++ implica apretar las teclas Ctrl y + al mismo tiempo. Si usa esta combinación como ejemplo notará que RStudio se "recarga" con un aumento generalizado en el tamaño de las letras. Puede volver al tamaño original con Ctrl+-.
 
 #### 0.1 Creación de un proyecto en RStudio
 
 Para organizar los archivos provistos por el curso, se creará un directorio/carpeta en donde se guardarán estas lecciones así como el resto de documentos y datos. 
 
-Este directorio contenerá además un proyecto de RStudio. Un proyecto de RStudio es simplemente una forma de recordar nuestro conjunto selecto de archivos cada vez que estamos trabajando en un tema particular. Cuando abrimos RStudio en el proyecto "X", vamos a tener abiertas las mismas pestañas que teníamos la última vez que trabajamos en X. Para crear el directorio y el proyecto al mismo tiempo en RStudio se puede utilizar el menú ``Project >> New Project...``, y luego se elije la opción *New Directory* (Fig. 2) y se crea el directorio **CursoR** (aunque usted puede elegir el nombre que más le guste). Al hacer esto el RStudio crea la carpeta y dentro de la misma un archivo llamado **CursoR.Rproj**, el cual se puede usar para abrir RStudio con el proyecto cargado (con *doble click*). RStudio abrirá por defecto con este proyecto cargado cada vez, a menos que este sea cerrado en la última sesión previa (``Project >> Close Project``).
+Este directorio contenerá además un proyecto de RStudio. Un proyecto de RStudio es simplemente una forma de recordar nuestro conjunto selecto de archivos cada vez que estamos trabajando en un tema particular. Cuando abrimos RStudio en el proyecto "X", vamos a tener abiertas las mismas pestañas que teníamos la última vez que trabajamos en X. Para crear el directorio y el proyecto al mismo tiempo en RStudio se puede utilizar el menú ``Project >> New Project...``, luego se elije la opción *New Directory* (Fig. 2) y se crea el directorio **CursoR** (aunque usted puede elegir el nombre que más le guste). Al hacer esto el RStudio crea la carpeta y dentro de la misma un archivo llamado **CursoR.Rproj**, el cual se puede usar para abrir RStudio con el proyecto cargado (con *doble click*). RStudio abrirá por defecto con este proyecto cargado cada vez, a menos que este sea cerrado en la sesión previa (``Project >> Close Project``).
 
 ![NewProject](imagenes/NewProject.png "Figura 2: menú de creación de un nueo proyecto en RStudio.")
 
 #### 0.2 Codificación
 
-El término "codificación" refiere a la forma en que una computadora traduce secuencias de bits, almacenados en el disco duro o la memoria, en caracteres normales (letras). Debido a contingencias históricas de la informática, hay muchas formas de establecer la codificación de un archivo. En verdad hay un subconjunto de caracteres que son codificados de igual manera en cualquier situación: los llamados caracteres ASCII. Este conjunto no incluye tildes, la letra eñe y otras particularidades (en general, nada que no se encuentre en el idioma inglés).
+El término "codificación" refiere a la forma en que una computadora traduce secuencias de bits, almacenados en el disco duro o la memoria, en caracteres normales (letras, números y otros símbolos). Debido a contingencias históricas de la informática, hay muchas formas de establecer la codificación de un archivo. En verdad hay un subconjunto de caracteres que son codificados de igual manera en cualquier situación: los llamados caracteres ASCII. Este conjunto no incluye tildes, la letra eñe y otras particularidades (en general, nada que no se encuentre en el idioma inglés).
 
 Debido a que los scripts están codificados a través del formato UTF-8, lo recomendable es indicarle al RStudio que esta es la codificación que se va a utilizar por defecto. Esta es la más común entre programadores, independientemente del lenguaje de programación. 
 
@@ -73,7 +73,7 @@ Utilizando la codificación correcta, se evitará encontrarse con palabras sin s
 
 También puede ver archivos individuales con cualquier codificación a elección, con el menú ``File >> Reopen with Encoding...``. Cuidado que esto *no equivale a cambiarle la codificación al archivo*; para eso está la opción ``File >> Save with Encoding...``.
 
-Una opción intermedia es configurar cada proyecto una codificación diferente. Esto se puede hacer en el menú ``Project >> Project options...``. De todas formas, recomendamos mantener siempre la misma codificación, en particular UTF-8.
+Una opción intermedia es configurar cada proyecto una codificación diferente. Esto se puede hacer en el menú ``Project >> Project options...``. De todas formas, recomendamos mantener siempre la misma codificación, en particular, UTF-8.
 
 ### 1. Directorio de trabajo
 
@@ -91,9 +91,11 @@ Como recordará de la lección 1.4, usted puede saber cuál es la carpeta de tra
 
     setwd("CursoR")
 
-Nótese que aquí usamos el camino relativo para ubicarnos. Es útil de momento, pero no siempre es lo ideal.
+Nótese que aquí usamos el camino relativo para ubicarnos. Es útil de momento, pero no siempre es lo ideal. También es posible que este comando no sea el apropiado, si usted no ha creado la carpeta "CursoR" en el directorio de trabajo actual (en Windows, ese directorio es la carpeta "Mis Documents"; en sistemas Unix y Mac OS es `/home/user/`), o si el nombre de la carpeta creada no es "CursoR". En cualquiera de estos casos R no podrá realizar la operación y se lo hará saber con un mensaje de error impreso en la consola (abajo-izquierda). Por ejemplo:
 
-Podríamos haber hecho lo mismo con los botones de RStudio: ``Session >> Set Working Directory >> Choose Directory`` (o el atajo Ctrl+Shift+K). Nótese que el comando `setwd("camino absoluto")` aparece igualmente en la consola (abajo-izquierda) y además también aparece en la historia de comandos. Dicha historia se encuentra en el panel de arriba-derecha, en la pestaña "History". Esta historia es muy útil si queremos buscar y recuperar algún comando ejecutado hace un tiempo (aunque no es infinita).
+    Error in setwd("CursoR") : cannot change working directory
+
+Podríamos haber hecho lo mismo con los botones de RStudio: ``Session >> Set Working Directory >> Choose Directory`` (o el atajo Ctrl+Shift+K). Nótese que el comando `setwd("camino absoluto")` aparece igualmente en la consola y además también aparece en la historia de comandos. Dicha historia se encuentra en el panel de arriba-derecha, en la pestaña "History". Esta historia es muy útil si queremos buscar y recuperar algún comando ejecutado hace un tiempo (aunque no es infinita).
 
 ### 2. Consola vs. editor de texto plano
 
@@ -105,27 +107,27 @@ Pero, ¿dónde vamos a escribirlo? Las dos opciones que veremos son válidas, au
 
 - Opción 1: la consola de RStudio. Sólo hay que dar *enter* al terminar de escribirlo. No hace falta que el cursor esté al final de la sentencia para dar el enter.
 
-- Opción 2: en el editor de texto plano de RStudio (arriba-izquierda). Primero debe iniciar un archivo nuevo: vaya a ``File >> New >> R Script`` (Ctrl+Shift+N), recién entonces será visible este panel. En RStudio este panel se llama "Source" (en inglés, fuente); es el "código fuente" con el que trabajamos en un momento dado. Como aún no guardamos el archivo, este figura bajo el nombre "Untitled1" (Sin título 1).
+- Opción 2: en el editor de texto plano de RStudio (arriba-izquierda). Primero debe iniciar un archivo nuevo (si es que no lo hizo antes): vaya a ``File >> New >> R Script`` (Ctrl+Shift+N), recién entonces será visible este panel. En RStudio este panel se le llama "Source" (en inglés, fuente); es el "código fuente" con el que trabajamos en un momento dado. Como aún no guardamos el archivo, este figura bajo el nombre "Untitled1" (Sin título 1).
     
-En general preferimos la segunda opción. Escribir los comandos en el editor nos permite guardar todo lo que hacemos, de forma que se puede repetir en el futuro con facilidad.
+En general preferimos la segunda opción. Escribir los comandos en el editor nos permite guardar todo lo que hacemos, de forma que se puede repetir en el futuro con facilidad. Es cierto que aún si se escribe en la consola los comandos se guardan en el historial (accesible en el panel de arriba a la derecha, o con el comando `history()`), sin embargo es fácil ver que usar el editor de texto es generalmente más prolijo y ordenado.
 
-A continuación, escriba nuestro comando en la consola y presione enter:
+Sin embargo empezaremos con la opción 1, a fin de ser más ilustrativos. A continuación, escriba nuestro comando en la consola y presione enter:
 
 ```{r}
 mi.objeto <- 4
 ```
 Nota: ponga los espacios en blanco también; no afectan al comando, pero facilitan la lectura.
 
-Debido a que usted le dió enter al comando en la consola, ahora en su sesión existe un objeto llamado `mi.objeto`. Puede ver una lista de los objetos que existen en el panel de arriba-derecha, bajo la pestaña "Workspace" (área de trabajo). Usaremos los términos *sesión* y *área de trabajo* de forma más o menos equivalente.
+Debido a que usted le dió enter al comando en la consola, en su sesión existe un objeto llamado `mi.objeto`. Puede ver una lista de los objetos que existen en el panel de arriba a la derecha, bajo la pestaña "Workspace" (área de trabajo). Usaremos los términos *sesión*, *workspace* y *área de trabajo* de forma más o menos equivalente.
 También puede ver una lista de objetos existentes con el comando `ls`: escriba en la consola
 
 ```{r, eval = FALSE}
 ls()
 ```
 
-Ahora veamos como terminar de usar la "opción 2". Como se dijo antes, preferimos usar el editor para escribir nuestros comandos, ya que nos permite repetirlos fácilmente. En RStudio se pueden ejecutar directamente los comandos escritos en el editor de texto plano. Hay que ubicar al cursor en la línea que nos interesa y apretar las teclas Ctrl+Enter (en simultáneo). Haga la prueba con la línea `mi.objeto <- 4` que usted deberá escribir en el editor de texto plano.
+Ahora veamos como usar la "opción 2". Como se dijo antes, preferimos usar el editor para escribir nuestros comandos, ya que nos permite repetirlos y organizarlos fácilmente. En RStudio se pueden ejecutar directamente los comandos escritos en el editor de texto plano. Hay que ubicar al cursor en la línea que nos interesa y ejecutar el atajo Ctrl+Enter. 
 
-Al usar Ctrl+Enter podemos ver que aparece la misma línea en la consola y se ve así:
+Escriba la línea `mi.objeto <- 4` en el editor y use el atajo mencionado para que se ejecute. Si lo hizo correctamente usted puede ver que aparece la misma línea en la consola y se ve así:
 
     > mi.objeto <- 4
     >
@@ -134,7 +136,7 @@ Al usar Ctrl+Enter podemos ver que aparece la misma línea en la consola y se ve
 
 Al ver la última salida en la consola tenemos la información necesaria para saber que el comando ya fue ejecutado, ¿cómo? gracias a la existencia del "command prompt", el signo de `>` que aparece al principio de cada línea en la consola.
 
-El command prompt solo que aparece en la última línea es un indicador de que R ya terminó de ejecutar todo lo que se le pidió anteriormente. Es una forma de decir "estoy listo para recibir órdenes". Considere ahora las diferencias entre encontrar esto en la consola:
+El solitario command prompt que aparece en la última línea es un indicador de que R ya terminó de ejecutar todo lo que se le pidió anteriormente. Es una forma de decir "estoy listo para recibir órdenes". Considere ahora las diferencias entre encontrar esto en la consola:
 
     > mi.objeto <- 4
 
@@ -145,7 +147,7 @@ y esto:
 
 En el primer caso el comando `mi.objeto <- 4` aún no se ejecutó, mientras que en el segundo sí. ¿Ve la diferencia?
 
-Un error de principiante muy común es el de copiar líneas de comando incluyendo el/los command prompt al principio. Al tratar de ejecutar estas líneas surge un error que difícilmente pueda comprender el usuario, ya que suele ser un principiante. Es buena idea ver un ejemplo de este error: en el editor, agregue un command propt al principio de nuestro comando, de forma que quede así: "`> mi.objeto <- 4`" (sin las comillas). Ahora envíe esta línea a la consola (ponga el cursor en esa línea y aprete Ctrl + Enter). Vea el mensaje de error que devuelve R:
+Un error de principiante muy común es el de copiar líneas de comando incluyendo el/los command prompt al principio. Al tratar de ejecutar estas líneas surge un error que difícilmente pueda comprender el usuario, ya que suele ser un principiante. Es buena idea ver un ejemplo de este error: en el editor, agregue un command propt al principio de nuestro comando, de forma que quede así: "`> mi.objeto <- 4`" (sin las comillas). Ahora envíe esta línea a la consola (ponga el cursor en esa línea y aprete Ctrl+Enter). Vea el mensaje de error que devuelve R:
 
     > > mi.objeto <- 4
     Error: unexpected '>' in ">"
@@ -154,7 +156,7 @@ Nota: puede que el mensaje esté en español en su PC, dependiendo del idioma en
 
 El command prompt es entonces una indicación útil, pero también molesta. Muchas veces en libros o páginas web se muestran comandos de R que empiezan con el command prompt, lo cual es muy desconsiderado, ya que el usuario debe encargarse de borrar manualmente cada uno antes de poder reproducir los ejemplos.
 
-El command prompt tiene otra variante, el signo de `+`. El significado es diferente, indica que los comandos anteriores no están completos. Por ejemplo, si escribo `mi.objeto <-` va a faltar algo. Haga el ejemplo vaya al editor y borre el 4 al final de nuestro comando, luego envíelo a la consola de R. Puede ver que en la misma aparece lo siguiente:
+El command prompt tiene otra variante, el signo de `+`. El significado es diferente, indica que los comandos anteriores no están completos. Por ejemplo, si escribo solamente `mi.objeto <-` va a faltar algo. Haga el ejemplo: vaya al editor y borre el 4 al final de nuestro comando, luego envíelo a la consola de R con el atajo Ctrl+Enter. Puede ver que en la misma aparece lo siguiente:
 
     > mi.objeto <-
     +
@@ -172,12 +174,17 @@ También tiene la opción de interrumpir el comando y volver al command prompt n
 
     >
 
+Nota: en una terminal de Linux, en lugar de Esc se debe usar la combinación *Ctrl+C*; este es el estándar de Unix.
+
 Pasaremos ahora a hacer cosas más elaboradas ...
 
-Si no lo hizo antes, agregue al principio del script el comando que sirve para elegir el directorio de trabajo. Si usted usó los botones de RStudio (o la combinación Ctrl+Shift+k) de todas formas el comando aparece en la historia de comandos (arriba-derecha). Si no lo encuentra, use la lupa o buscador, que aparece en la pestaña History y escriba `setwd`, para filtrar la historia. Si selecciona con el ratón dicho comando, con el botón "To Source" puede enviar este comando al editor de texto; recuerde ubicarlo al principio del mismo, en la línea 1. Y recuerde que tampoco puede usarse un camino relativo aquí (más adelante se explica por qué).
+Si no lo hizo antes, agregue al principio del script el comando que sirve para elegir el directorio de trabajo. Si usted usó los botones de RStudio (o la combinación Ctrl+Shift+K) de todas formas el comando aparece en la historia de comandos (arriba-derecha). Si no lo encuentra, use la lupa o buscador, que aparece en la pestaña History y escriba `setwd`, para filtrar la historia. Si selecciona con el ratón dicho comando, con el botón "To Source" puede enviar este comando al editor de texto; recuerde ubicarlo al principio del mismo (i.e.: en la línea 1). Y recuerde que tampoco puede usarse un camino relativo aquí (más adelante se explica por qué).
+
 
 
 De aquí en más agarrar algún ejercicio del repartido 1 y hacerlo paso a paso
+
+
 
 ### Algunas manipulaciones simples
 
@@ -188,13 +195,17 @@ x <- 3:6
 length(x)
 ```
 
+Nótese que el vector `x` es la secuencia de números enteros 3, 4, 5, y 6.
+
 Escriba este ejemplo. Luego de ejecutar esto, en la consola debería mostrar impresa la salida de `length(x)`, que es el valor 4. El uso de paréntesis sirve en R para delimitar el conjunto de lo que son "las entradas" de una función (aquí hay una sola entrada: el vector `x`). Nótese que otros lenguajes de programación no usan este esquema, aunque sí la mayoría. Por otro lado, ya vimos que la salida aquí es 4 y luego de que se imprime en la consola "se pierde". Como usuarios podemos guardar este valor en un objeto, tal como se mostrara en la lección 1.2. Por ejemplo:
 
 ```{r}
 y <- length(x)
 ```
 
-Este comando guarda la salida de `length(x)` en un nuevo objeto, `y`. La "flecha" hacia la izquierda, `<-` es el operador que normalmente se usa para hacer asignaciones (hay al menos cuatro formas de hacer asignaciones). Haga usted un ensayo con la función `mean` (para calcular promedios). La entrada será otra vez el vector `x` y la salida un objeto llamado `promedio` *E*.
+Este comando guarda la salida de `length(x)` en un nuevo objeto, `y`. La "flecha" hacia la izquierda, `<-` es el operador que normalmente se usa para hacer asignaciones (hay al menos cuatro formas de hacer asignaciones). 
+
+Haga usted un ensayo con la función `mean` (para calcular promedios). La entrada será otra vez el vector `x` y la salida un objeto llamado `promedio` *E*.
 
 Si usted hizo todo bien, entonces en el panel 3 (arriba-derecha) de RStudio, bajo la pesataña *Workspace*, encontrará al objeto `promedio` en la lista de objetos presentes y su valor será 2.5. También puede ejecutar:
 
@@ -217,7 +228,9 @@ Otra función sumamente útil es la de concatenación: `c`. Sirve para "armar" o
 mi.vector <- c(x, promedio, 14)
 ```
 
-El resultado es un nuevo vector llamado `mi.vector`, con 6 elementos (vea la salida de `length(mi.vector)` para confirmarlo). Escriba ahora el comando necesario para crear un vector llamado `mi.otro.vector`, el cual tendrá la secuencia de valores 45, -76, 3, 4, 5, 6, 0.333 *E*.
+El resultado es un nuevo vector llamado `mi.vector`, con 6 elementos (vea la salida de `length(mi.vector)` para confirmarlo). 
+
+Escriba ahora el comando necesario para crear un vector llamado `mi.otro.vector`, el cual tendrá la secuencia de valores 45, -76, 3, 4, 5, 6, 0.333 *E*.
 
 En R hay tres funciones de concatenación: `c`, `rbind` y `cbind`. Acabamos de ver la primera, las otras 2 servián cuando trabajemos con matrices o data.frames. 
 
@@ -229,7 +242,7 @@ Hasta ahora hemos visto como crear vectores y hacer asignaciones. Veamos ahora l
 mi.vector[6] <- 0
 ```
 
-Aquí estamos utilizando los corchetes o paréntesis rectos para *modificar* un vector. En verdad no es más que un caso particular de la operación de asignación. Los paréntesis rectos sirven para indicar la ubicación de **el o los** elemento(s) que quiero cambiar.
+Aquí estamos utilizando los corchetes o paréntesis rectos para *modificar* un vector. En verdad no es más que un caso particular de la operación de asignación. Los paréntesis rectos sirven para indicar la ubicación de _**el o los**_ elemento(s) que quiero cambiar.
 
 Se podrían modificar *varios* elementos de `mi.vector` al mismo tiempo también. En lugar de poner un único valor entre corchetes, se puede poner un *vector* con las posiciones que quiere modificar. Por ejemplo, cambiar los valores `mi.vector[1]` y `mi.vector[4]` por -1 se puede hacer con el comando:
 
@@ -237,9 +250,9 @@ Se podrían modificar *varios* elementos de `mi.vector` al mismo tiempo también
 mi.vector[c(1, 4)] <- -1
 ```
 
-Nótese que se usa la concatenación `c` para primer formar el vector y luego ponerlo entre los corchetes. Si en cambio escribiéramos `mi.vector[1, 4]` estaríamos cometiendo un error que usted entenderá en la segunda unidad.
+Nótese que se usa la concatenación `c` para primer formar el vector y luego ponerlo entre los corchetes. Si en cambio escribiéramos `mi.vector[1, 4]` estaríamos cometiendo un error que usted entenderá cuando aprenda más sobre matrices y data.frames. 
 
-Modifique las posiciones 2 y 3 de `mi.vector`, sustituyéndolos por 100 y 101 respectivamente *E*. Esta es una situación diferente a los ejemplos anteriores, ya que hay 2 valores reemplazantes. Para hacerlo correctamente *en un sólo paso* tendrá que usar la función `c` del lado derecho de la "flecha" de asignación.
+Modifique las posiciones 2 y 3 de `mi.vector`, sustituyéndolos por 100 y 104 respectivamente *en un sólo paso* (hacerlo en 2 pasos es trivial y para nada elegante) *E*. Esta es una situación diferente a los ejemplos anteriores, ya que hay 2 valores reemplazantes. Para hacerlo correctamente tendrá que usar la función `c` del lado derecho de la "flecha" de asignación.
 
 ### Extrayendo valores
 
@@ -267,20 +280,25 @@ mi.vector[c(4:6, 1:3)]
 
 Cambia de lugar las dos mitades del vector original. Busque usted la forma de obtener un vector con los valores de `mi.vector` en orden inverso *E*.
 
-Como nota final, usted debe saber que la extracción de valores funciona de forma similar con otros tipos de objetos, como matrices, data.frames o listas. Los detalles vendrán en otras unidades del curso.
+Como nota final, usted debe saber que la extracción o modificación de valores funciona de forma similar con otros tipos de objetos, como matrices, data.frames o listas. Los detalles vendrán en otras unidades del curso.
 
-### Ejemplo: polinomios
+### Funciones & operadores
 
-Como se traduce la ecuación de un polinomio a R. Cuál es la gracia de sustituir x por un valor y viceversa.
+Explicar la diferencia, pero mostrar que el límite es arbitrario y difuso. La razón para diferenciarlo es que es práctico (como separar frutas de verduras). Explicar el orden de precedencia. Poner ejercicios en los que hay que traducir una expresión matemática a código. (polinomios, sumatorias, integrales...).
+
+Se puede mencionar que las ecuaciones en matemática siguen el mismo principio de preferir la solución genérica, aunque hay distintas graduaciones de genérico/específico... (ejemplo con polinomios...).
 
 Repartidos
 ----------
 
-Los repartidos del curso tienen un sistema de corrección autónoma, de forma que el estudiante no depende de la supervisión de los profesores para saber si sus ejercicios están correctos. Cada repartido se compone de un archivo zip que usted debe descomprimir dentro de la carpeta del curso. Para usar como ejemplo en este repartido, descargue de la web el archivo [rep-1.zip](www.linkaca.com/rep-1.zip). 
+Los repartidos del curso tienen un sistema de corrección autónoma, de forma que el estudiante no depende de la supervisión de los profesores para saber si sus ejercicios están correctos. Cada repartido se compone de un archivo zip que usted debe descomprimir dentro de la carpeta del curso. Para usar como ejemplo en este repartido, descargue de la web el archivo [rep-1.zip](www.PONERLINKACA!!!!.com/rep-1.zip). 
 
 ### Soluciones "genéricas"
 
-recordar el ejemplo inicial ...
+Nota: si usted no tiene el vector `mi.vector` en su sesión de trabajo en este momento, repita los pasos para volver a tenerlo y recuerde que debe tener 6 elementos (o alternativamente, construya un nuevo `mi.vector` cualquiera con 6 valores).
+
+En una parte anterior del repartido nos dedicamos a modificar el último valor de `mi.vector`, ejecutando el comando:
+
 ```{r}
 mi.vector[6] <- 0
 ```
@@ -296,7 +314,7 @@ mi.vector[length(mi.vector)] <- 0
 
 ¿Puede entender lo que se hizo aquí?
 
-El comando `length(mi.vector)` devuelve la longitud de `mi.vector` (i.e.: la ubicación que queremos modificar); ese valor es "enviado a los corchetes" para definir correctamente el valor que hay que modificar. Esto es lo que podríamos llamar una *composición de funciones* (para quienes quieran profundizar, las dos funciones involucradas son `length` y `[<-`; la página de ayuda de la segunda es accesible con el comando `?"[<-"`).
+El comando `length(mi.vector)` devuelve la longitud de `mi.vector` (i.e.: la ubicación que queremos modificar); ese valor es enviado a "los corchetes" para definir correctamente el valor que hay que modificar. Esto es lo que podríamos llamar una *composición de funciones* (para quienes quieran profundizar, las dos funciones involucradas son `length` y `[<-`; la página de ayuda de la segunda es accesible con el comando `?"[<-"`).
 
 Podríamos extendernos y encontrar una "solución 3" si dividimos la tarea en dos pasos:
 
@@ -307,15 +325,11 @@ mi.vector[ubicacion] <- 0
 
 Esta solución tiene sentido si vamos a volver a utilizar el objeto `ubicacion` en el futuro. Separar también puede lograr que una secuencia de comandos sea más fácil de leer; en el curso solemos hacer este tipo de separaciones, pero es una estrategia que responde a razones pedagógicas y no a que sea necesariamente la mejor opción del punto de vista práctico.
 
-Lo importante a destacar de las soluciones 2 y 3 es que son *genéricas*: no importa qué tan grande o chico sea el vector `mi.vector`, siempre será una solución correcta. Lo opuesto a una solución genérica es una solución específica
+Lo importante a destacar de las soluciones 2 y 3 es que son *genéricas*: no importa qué tan grande o chico sea el vector `mi.vector`, siempre será una solución correcta. Lo opuesto a una solución genérica es una solución *específica*, como la solución 1.
 
+La utilidad de la programación reside en gran medida en encontrar soluciones genéricas a problemas prácticos, de forma que un mismo código pueda ser aplicable a una variedad de situaciones. Por esto el énfasis en el curso es el de encontrar siempre la solución más genérica posible.
 
-
-### Resolviendo un ejercicio de repartido
-
-### X Soluciones genéricas
-
-La filosofía nuestra es de que el codigo sea reusable/reciclable.
+**Ejercicio**: anteriormente se le pidió el código necesario para obtener los valores de `mi.vector` pero en orden invertido. Ahora debe encontrar una solución genérica para el mismo problema. En otras palabras, considere que `mi.vector` puede tener una longitud cualquiera mayor o igual a 2 *E*.
 
 ### Usando la función evaluar
 
