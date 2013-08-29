@@ -48,6 +48,8 @@ evaluar <- function(e) {
     s <- menu(c(paste('Ej. (', ejnum, "): ", corregir, sep=""), 'Todos'),
               title="Elija el archivo que desea corregir:")
   }
+  if (s == 0)
+    return(NULL)
   msj <- vector("list", nej)
   if (s > nej) {
     for (i in 1:nej) {
@@ -96,11 +98,12 @@ evaluar <- function(e) {
     cat("Se generaron los siguientes mensajes de error:\n")
     for (i in 1:sum(hasmsj)) {
       cat('\n* Al corregir el ej. ', msjEjNum[i], ', archivo ', msjArch[i], ':\n', sep='')
-      msj.i <- paste("| ", msj[hasmsj][[i]])
+      #       msj.i <- paste("| ", msj[hasmsj][[i]])
+      msj.i <- msj[hasmsj][[i]]
       cat(msj.i, sep='')
     }
   }
-  cat('\n==============================\n')
+  cat('==============================\n')
 
   cat('\nTotal hasta ahora:', sum(bien), 'de', oblg, 'ejercicios; NOTA:', round(notaActual), '% \n\n')
   
@@ -121,7 +124,7 @@ evaluar <- function(e) {
 verNotas <- function()
   print.data.frame(read.csv2('notas.csv'), row.names=FALSE, right=FALSE)
 
-cat("\nArchivo de código fuente cargado correctamente\n\n")
+cat("\nFunciones cargadas correctamente: evaluar, verNotas y fecha.datos\n\n")
 
 cat("Chequeo de encoding:\n",
     "  Los siguientes caracteres deben ser vocales con tilde:\n",

@@ -181,7 +181,7 @@ mkmsj <- function(msj.base = "", obs, esp) {
     msj.base <- paste(msj.base, ",\n", sep="")
   mensaje <- c(msj.base,
                "la diferencia observada es la siguiente:\n\n", 
-               paste("  ", output, "\n", sep = ""), "\n")
+               paste("  ", output, "\n", sep = ""))
   mensaje
 }
 objetos <- c(objetos, "mkmsj")
@@ -221,7 +221,7 @@ mkmsj.v <- function(msj.base = "", vec.obs, vec.esp, tol = 1e-8) {
     msj.base <- paste(msj.base, ",\n", sep="")
   mensaje <- c(msj.base,
                "las diferencias observadas son las siguientes:\n\n", 
-               paste("  ", output, "\n", sep = ""), "\n")
+               paste("  ", output, "\n", sep = ""))
   if (c1)
     mensaje <- c(mensaje, "(se muestran sólo las primeras 10 diferencias)\n")
   mensaje
@@ -258,7 +258,7 @@ mkmsj.m <- function(msj.base = "", m.obs, m.esp, tol = 1e-8) {
     msj.base <- paste(msj.base, ",\n", sep="")
   mensaje <- c(msj.base,
                "las diferencias observadas son las siguientes:\n\n", 
-               paste("  ", output, "\n", sep = ""), "\n")
+               paste("  ", output, "\n", sep = ""))
   if (c1)
     mensaje <- c(mensaje, "(se muestran sólo las primeras 10 diferencias)\n")
   mensaje
@@ -308,7 +308,7 @@ mkmsj.df <- function(msj.base = "", df.obs, df.esp, tol = 1e-8) {
     msj.base <- paste(msj.base, ",\n", sep="")
   mensaje <- c(msj.base,
                "las diferencias observadas son las siguientes:\n\n", 
-               paste("  ", output, "\n", sep = ""), "\n")
+               paste("  ", output, "\n", sep = ""))
   if (c1)
     mensaje <- c(mensaje, "(se muestran sólo las primeras 10 diferencias)\n")
   mensaje

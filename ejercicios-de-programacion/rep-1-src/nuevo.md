@@ -124,17 +124,21 @@ En general preferimos la segunda opción. Escribir los comandos en el editor nos
 
 Sin embargo empezaremos con la opción 1, a fin de ser más ilustrativos. A continuación, escriba nuestro comando en la consola y presione enter:
 
-```{r}
+
+```r
 mi.objeto <- 4
 ```
+
 Nota: ponga los espacios en blanco también; no afectan al comando, pero facilitan la lectura.
 
 Debido a que usted le dió enter al comando en la consola, en su sesión existe un objeto llamado `mi.objeto`. Puede ver una lista de los objetos que existen en el panel de arriba a la derecha, bajo la pestaña "Workspace" (área de trabajo). Usaremos los términos *sesión*, *workspace* y *área de trabajo* de forma más o menos equivalente.
 También puede ver una lista de objetos existentes con el comando `ls`: escriba en la consola
 
-```{r, eval = FALSE}
+
+```r
 ls()
 ```
+
 
 Ahora veamos como usar la "opción 2". Como se dijo antes, preferimos usar el editor para escribir nuestros comandos, ya que nos permite repetirlos y organizarlos fácilmente. En RStudio se pueden ejecutar directamente los comandos escritos en el editor de texto plano. Hay que ubicar al cursor en la línea que nos interesa y ejecutar el atajo Ctrl+Enter. 
 
@@ -208,9 +212,15 @@ Haga un errores a propósito. En muchos casos, esta es una técnica muy efectiva
 
 Veamos un ejemplo. Escriba en la consola lo siguiente:
 
-```{r}
+
+```r
 lenght(1:6)
 ```
+
+```
+## Error: could not find function "lenght"
+```
+
 
 (Más adelante se explica el significado de `1:6`.)
 
@@ -229,11 +239,13 @@ A veces ocurre que R no encuentra una función u otro tipo de objeto, como puede
 
 Lea los mensajes de error generados con los siguientes comandos y plantée una hipótesis de qué es lo que está mal (no intente resolverlos si le toma mucho tiempo, mejor vea las respuestas y entienda la solución):
 
-```{r, eval = FALSE}
+
+```r
 Mean(5:7, na.rm = TRUE)
 round(8.564432 3)
 head(bigcity)
 ```
+
 
 En la página del curso puede encontrar un texto adaptado de [Patric Burns](www.PONERLINKACÁ!!!!.com) con el que se basó...kkkkkkkkkkk
 
@@ -248,39 +260,50 @@ Todas las funciones usan paréntesis luego del nombre de la mismas para ser ejec
 
 Los paréntesis indican la región en donde el usuario ingresa los *argumentos* de la función, las entradas de la misma. Por ejemplo, la función `length` sirve para saber la cantidad de elementos de un vector cualquiera, entonces:
 
-```{r}
+
+```r
 x <- 3:6
 length(x)
 ```
+
+```
+## [1] 4
+```
+
 
 Nótese que el vector `x` es la secuencia de números enteros 3, 4, 5, y 6.
 
 Escriba este ejemplo. Luego de ejecutar el comando, en la consola debería mostrar impresa la salida de `length(x)`, que es el valor 4. Como dijimos, los paréntesis delimitan el conjunto de lo que son "las entradas" de una función. Aquí hay una sola entrada: el vector `x`. Hay varios lenguajes de programación no usan este esquema, pero no son la mayoría. Por otro lado, ya vimos que la salida aquí es 4 y que luego de ser impresa en la consola "se pierde". Como usuarios podemos guardar este valor en un objeto, tal como se mostrara en la lección 1.2. Por ejemplo:
 
-```{r, eval = FALSE}
+
+```r
 y <- length(x)
 ```
+
 
 Este comando guarda la salida de `length(x)` en un nuevo objeto, `y`. La "flecha" hacia la izquierda, `<-` es el operador que normalmente se usa para hacer asignaciones (hay al menos seis formas de hacer asignaciones, pero en general sólo usaremos la flecha a la izquierda). 
 
 Haga usted un ensayo con la función `mean` (para calcular promedios). La entrada será otra vez el vector `x` y la salida un objeto llamado `promedio` *E*.
 
-```{r, echo = FALSE}
-promedio <- mean(x)
-```
+
+
 
 Si usted hizo todo bien, entonces en el panel 3 (arriba-derecha) de RStudio, bajo la pesataña *Workspace*, encontrará al objeto `promedio` en la lista de objetos presentes y su valor será 2.5. También puede ejecutar:
 
-```{r, eval = FALSE}
-exists("promedio") 
+
+```r
+exists("promedio")
 ```
+
 (Si el resultado es `TRUE` entonces `promedio` "existe".)
 
 En todo momento puede usar la consola para inspeccionar el objeto, con sólo escribir el nombre (escriba y de enter):
 
-```{r, eval = FALSE}
+
+```r
 promedio
 ```
+
 
 ### Secuencias de números
 
@@ -299,15 +322,27 @@ Usando `:` genere las siguientes secuencias de números *E*:
 
 Pero además del operador `:`, existe la función `seq`, que sirve cuando la secuencia (regular) no es de números *enteros*, o la distancia entre consecutivos es distinta de 1. Por ejemplo, la secuencia 0, 0.2, 0.4, 0.6, 0.8 y 1 se puede crear así:
 
-```{r}
+
+```r
 seq(0, 1, by = 0.2)
 ```
 
+```
+## [1] 0.0 0.2 0.4 0.6 0.8 1.0
+```
+
+
 Nótese que entre paréntesis está: el inicio, el final y la distancia entre los valores consecutivos (indicado por "`by =`", pero no se fije en esto por ahora). Es importante destacar que los tres argumentos (así se llaman) están separados por *comas*. Alternativamente, se puede crear una secuencia indicando el inicio, el final y la cantidad de valores del vector de salida:
 
-```{r}
+
+```r
 seq(0, 1, length = 11)
 ```
+
+```
+##  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0
+```
+
 
 Usando `seq` genere las siguientes secuencias de números *E*:
 
@@ -322,9 +357,11 @@ Usando `seq` genere las siguientes secuencias de números *E*:
 
 Otra función sumamente útil es la de concatenación: `c`. Sirve para "armar" o "pegar" elementos y así crear un vector. Ejecute el siguiente ejemplo:
 
-```{r}
+
+```r
 mi.vector <- c(x, promedio, 14)
 ```
+
 
 El resultado es un nuevo vector llamado `mi.vector`, con 6 elementos (vea la salida de `length(mi.vector)` para confirmarlo). 
 
@@ -336,17 +373,21 @@ En R hay tres funciones de concatenación: `c`, `rbind` y `cbind`. Acabamos de v
 
 Hasta ahora hemos visto como crear vectores y hacer asignaciones. Veamos ahora la forma de modificarlos. Supongamos que queremos cambiar el último valor de `mi.vector`; el nuevo valor será 0. Una forma fácil de hacerlo es así:
 
-```{r}
+
+```r
 mi.vector[6] <- 0
 ```
+
 
 Aquí estamos utilizando los corchetes o paréntesis rectos para *modificar* un vector. En verdad no es más que un caso particular de la operación de asignación. Los paréntesis rectos sirven para indicar la ubicación de _**el o los**_ elemento(s) que quiero cambiar.
 
 Se podrían modificar *varios* elementos de `mi.vector` al mismo tiempo también. En lugar de poner un único valor entre corchetes, se puede poner un *vector* con las posiciones que quiere modificar. Por ejemplo, cambiar los valores `mi.vector[1]` y `mi.vector[4]` por -1 se puede hacer con el comando:
 
-```{r}
+
+```r
 mi.vector[c(1, 4)] <- -1
 ```
+
 
 Nótese que se usa la concatenación `c` para primero formar el vector y luego ponerlo entre los corchetes. Si en cambio escribiéramos `mi.vector[1, 4]` estaríamos cometiendo un error (que usted entenderá cuando aprenda más sobre matrices y data.frames). 
 
@@ -356,25 +397,35 @@ Modifique las posiciones 2 y 3 de `mi.vector`, sustituyéndolos por 100 y 104 re
 
 Los corchetes también sirven para extraer valores. Ejecute el siguiente comando a modo de ejemplo:
 
-```{r, eval = FALSE}
+
+```r
 mi.vector[c(2, 5)]
 ```
 
+
 En la consola debería ver los valores 4.0 y 4.5. Al igual que antes, esta salida se puede guardar en un objeto nuevo:
 
-```{r}
+
+```r
 u <- mi.vector[c(3, 4, 5)]
 # O también
 u <- mi.vector[3:5]
 ```
 
+
 Nota: muchas veces quienes aprenden R escriben expresiones como `c(3:5)`, lo cual es un uso innecesario de `c`. Alcanza con poner `3:5` para hacer lo mismo.
 
 Este método de extraer valores puede ser muy útil para reordenar un vector. Por ejemplo el siguiente comando:
 
-```{r}
+
+```r
 mi.vector[c(4:6, 1:3)]
 ```
+
+```
+## [1] -1.0  4.5  0.0 -1.0  4.0  5.0
+```
+
 
 Cambia de lugar las dos mitades del vector original. Busque usted la forma de obtener un vector con los valores de `mi.vector` en orden inverso *E*.
 
@@ -406,21 +457,25 @@ En el caso de los operadores, existe una convención respecto al orden temporal 
 
 Su tarea es encontrar las soluciones numéricas a los problemas que se plantean, traduciendo correctamente las expresiones matemáticas a expresiones en lenguaje R. Es posible que usted necesite consultar la ayuda para hacer el ejercicio. Si no sabe exactamente cuál es el nombre de la función que quiere consultar, use `help.search`, con cualquiera de sus dos modalidades (ver lección 1.3). Por ejemplo, si quiere averiguar sobre integrales, puede ejecutar:
 
-```{r, eval = FALSE}
+
+```r
 help.search("integral")
 # o alternativamente:
-??integral
+`?`(`?`(integral))
 ```
+
 
 (Como siempre, se pueden ejecutar en la consola o desde el editor de texto de RStudio, con el atajo Ctrl+Enter.)
 
 Si en cambio usted ya sabe bien a qué página quiere ir, como por ejemplo la ayuda de `integrate`, puede usar la función `help`, que también tiene dos modalidades:
 
-```{r, eval = FALSE}
+
+```r
 # o alternativamente:
 help("integrate")
-?integrate
+`?`(integrate)
 ```
+
 
 Estos ejercicios son simples pero con dificultad muy variada, no se espera que usted los pueda hacer todos la primera vez. Recuerde que las respuestas están a la vista; no es la idea que usted se detenga demasiado tiempo en estos ejercicios.
 
@@ -472,17 +527,21 @@ A continuación se explica todo esto con algunos ejemplos.
 
 Anteriormente quisimos cambiar el último valor de `mi.vector`. Para eso corrimos este comando:
 
-```{r}
+
+```r
 mi.vector[6] <- 0
 ```
+
 
 Llamémosle a esta la "solución 1" de nuestro problema. Esta solución es perfecta si `mi.vector` tiene 6 elementos. ¿Qué pasa si no sabemos de antemano esta información?
 
 Ya vimos que la función `length` sirve justamente para averiguarlo. Por lo tanto debe haber una manera de usarla para no depender de ese conocimiento. ¿Puede imaginar esta alternativa? Lo invito a que lo intente. De todas formas, una solución es la siguiente:
 
-```{r}
+
+```r
 mi.vector[length(mi.vector)] <- 0
 ```
+
 
 Es importante que entienda lo que se hizo aquí.
 
@@ -490,10 +549,12 @@ El comando `length(mi.vector)` devuelve la longitud de `mi.vector` (i.e.: la ubi
 
 Podríamos extendernos y encontrar una "solución 3" si dividimos la tarea en dos pasos:
 
-```{r}
+
+```r
 ubicacion <- length(mi.vector)
 mi.vector[ubicacion] <- 0
 ```
+
 
 Esta solución tiene sentido si vamos a volver a utilizar el objeto `ubicacion` en el futuro. Separar los pasos también puede lograr que una secuencia de comandos sea más fácil de leer; en el curso solemos hacer este tipo de separaciones, pero es una estrategia que responde a razones pedagógicas y no a que sea necesariamente la mejor opción del punto de vista práctico.
 
@@ -524,8 +585,9 @@ En cada archivo de ejercicio hay unas líneas dedicadas a los objetivos del mism
 
 Siguiendo con las líneas del archivo, puede ver también que la región en la que usted debe trabajar está claramente delimitada:
 
-```{r, eval = FALSE}
-#===== Su código comienza aquí: =====#
+
+```r
+# ===== Su código comienza aquí: =====#
 
 x_mean <- 0
 
@@ -533,8 +595,9 @@ s <- 0
 
 out <- 0
 
-#====== Aquí finaliza su código =====#
+# ====== Aquí finaliza su código =====#
 ```
+
 
 Es decir, usted puede escribir lo que quiera entre medio de las dos líneas de comentario copiadas aquí. También puede aumentar o disminuir la cantidad de líneas que hay entre medio, sin límites. Esto implica que el reverso es cierto: evite escribir comandos afuera de esta región. 
 
@@ -544,9 +607,11 @@ Ahora usted empezará a editar el archivo 1-varianza.R para ir logrando los obje
 
 Nótese que en la línea 2 hay un comando necesario para crear un vector `x` aleatorio. Este comando se puede correr individualmente (por ejemplo, con el atajo Ctrl+Enter) o junto con todo el archivo:
 
-```{r, eval = FALSE}
+
+```r
 source("1-varianza.R")
 ```
+
 
 (O en RStudio: Ctrl+Shift+S; note como al hacer este atajo aparece en la consola el comando correspondiente con el camino absoluto al archivo.)
 
@@ -554,23 +619,29 @@ Una vez que tenemos creado `x` podemos empezar a jugar con el archivo para busca
 
 Lo primero que resolveremos será el objeto `x_mean`. Tenemos que modificar el código para que dicho objeto sea la media aritmética de el vector `x`. En las instrucciones del script se indica que usted debe usar la ayuda de R para encontrar la función que necesita. Esto se va a repetir varias veces a lo largo del curso. De todas formas ya hemos mencionado que la función `mean` es la que precisamos para la tarea. Lo que debe hacer entonces es modificar la línea
 
-```{r, eval = FALSE}
+
+```r
 x_mean <- 0
 ```
 
+
 sustituyendo el 0 por `mean(x)`:
 
-```{r, eval = FALSE}
+
+```r
 x_mean <- mean(x)
 ```
+
 
 Ahora bien, como `x_mean` es uno de los objetivos del ejercicio, podemos verificar si lo hemos hecho bien o no. Para eso voy a introducir la función `evaluar`, que es el eje central del mecanismo de corrección automática. Lo primero es guardar los cambios en el archivo (Ctrl+S).
 
 Ahora corra el archivo evaluar.R con el comando:
 
-```{r, eval = FALSE}
+
+```r
 source("evaluar.R", encoding = "UTF-8")
 ```
+
 
 (Nota: si usted trabaja en Mac OS o Linux, puede omitir el argumento `encoding = "UTF-8"`.)
 
@@ -591,9 +662,11 @@ La primer parte del mensaje se explica sola, lo último, referente al "archivo d
 
 El resultado que nos importa es que ahora está cargada la función `evaluar`, necesaria para el sistema de corrección automático. Para usarla, basta con correr:
 
-```{r, eval = FALSE}
+
+```r
 evaluar()
 ```
+
 
 Tras esta acción se imprimirá en la consola un menú con el cual usted puede elegir cuál ejercicio desea corregir. En este caso será el 1:
 
@@ -649,10 +722,12 @@ Empecemos por las cinco primeras líneas:
 
 Esta información es necesaria si desea reproducir el ejemplo usado en la corrección. En primer lugar se indica que se usa una "semilla", con el comando `set.seed(444)`. Esto sirve para poder reproducir el ejemplo exactamente, a pesar de que se usan generadores de números aleatorios como `rnorm` y `sample`. Luego se muestra el comando usado para generar el nuevo `x` (el mismo que en el archivo de ejercicio). En definitiva, usted puede reproducir exactamente los mismos pasos que el mecanismo de corrección con los comandos:
 
-```{r, eval = FALSE}
+
+```r
 set.seed(444)
 x <- rnorm(sample(10, 20, 1))
 ```
+
 
 Por último, la preparación culmina con una indicación de las propiedades básicas de `x`. Note que estas primeras líneas comienzan con `>>`, para evitar confusiones con comandos que haya ejecutado usted anteriormente.
 
@@ -672,9 +747,11 @@ $$
 
 Por lo tanto el iésimo elemento de `s` debe ser $(x_i - \overline{x}) ^ 2$, lo cual se traduce al siguiente código:
 
-```{r, eval = FALSE}
-s <- (x - x_mean) ^ 2
+
+```r
+s <- (x - x_mean)^2
 ```
+
 
 Modifique el archivo para que calcule `s` con este comando. Luego vuelva a ejecutar `evaluar(1)` para ver la salida en la consola. Debería encontrar las líneas "`longitud de s ... OK`" y "`valores de s ... OK`" al principio de la salida impresa.
 
@@ -683,9 +760,11 @@ ahora sólo queda obtener el valor de `out` correcto. Esta tarea queda como ejer
 
 Si hizo el ejercicio anterior, es posible que la corrección devuelva mensajes de *advertencia* además de mensajes de error. Veamos lo que ocurre si usamos el siguiente código para calcular `out`:
 
-```{r, eval = FALSE}
-out <- sum(s) / length(x) - 1
+
+```r
+out <- sum(s)/length(x) - 1
 ```
+
 
 Luego de guardar el archivo y ejecutar `evaluar(1)` se debería imprimir estos mensajes de error y de advertencia:
 

@@ -44,15 +44,6 @@ points(0.5, 0.5, pch=19)
 
 #===== Su código comienza aquí: =====#
 
-<<<<<<< HEAD
-cat.ad <-
-cat.op <-
-dst <-
-i <-
-j <-
-A <- 
-B <-
-=======
 cat.ad <- 0
 
 cat.op <- 0
@@ -66,7 +57,6 @@ j <- 0
 A <- c(0, 0)
 
 B <- c(0, 0)
->>>>>>> 4f6436beb9425ba5660b645c943006d5e34eb7ac
 
 #====== Aquí finaliza su código =====#
 
