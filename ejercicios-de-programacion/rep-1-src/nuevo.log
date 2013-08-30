@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.6.20)  28 AUG 2013 16:51
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.6.20)  29 AUG 2013 13:09
 entering extended mode
  %&-line parsing enabled.
 **nuevo.tex
@@ -596,41 +596,42 @@ a ex-pre-siones en
  []
 
 [16] [17] [18] [19] [20] [21] [22] [23] [24] [25]
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 1439
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 1472
 .
 
 (/usr/share/texmf-texlive/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 1439.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 1472.
 
  [26] [27]
 <imagenes/reddit-suscripcion.png, id=269, 621.80821pt x 480.1304pt>
 File: imagenes/reddit-suscripcion.png Graphic file (type png)
 
-<use imagenes/reddit-suscripcion.png> [28 <./imagenes/reddit-suscripcion.png>]
-Overfull \hbox (31.74696pt too wide) in paragraph at lines 1587--1587
+<use imagenes/reddit-suscripcion.png> [28] [29 <./imagenes/reddit-suscripcion.p
+ng>]
+Overfull \hbox (31.74696pt too wide) in paragraph at lines 1626--1626
  []    \OT1/cmtt/m/n/10 Esto ser^^S^^Pa c^^Sodigo y se ver^^S^^Pa diferente lue
 go de enviar el post.[] 
  []
 
-<imagenes/reddit-post.png, id=279, 623.95485pt x 489.43248pt>
+<imagenes/reddit-post.png, id=285, 623.95485pt x 489.43248pt>
 File: imagenes/reddit-post.png Graphic file (type png)
 
 <use imagenes/reddit-post.png>
-<imagenes/reddit-post2.png, id=280, 623.95485pt x 475.12158pt>
+<imagenes/reddit-post2.png, id=286, 623.95485pt x 475.12158pt>
 File: imagenes/reddit-post2.png Graphic file (type png)
 
-<use imagenes/reddit-post2.png> [29] [30 <./imagenes/reddit-post.png (PNG copy)
->] [31 <./imagenes/reddit-post2.png>] (./nuevo.aux)
+<use imagenes/reddit-post2.png> [30] [31 <./imagenes/reddit-post.png (PNG copy)
+>] [32 <./imagenes/reddit-post2.png>] (./nuevo.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 7121 strings out of 495061
- 94162 string characters out of 1182621
+ 7125 strings out of 495061
+ 94198 string characters out of 1182621
  161999 words of memory out of 3000000
  10096 multiletter control sequences out of 15000+50000
  7293 words of font info for 29 fonts, out of 3000000 for 9000
@@ -647,9 +648,9 @@ share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texmf-t
 exlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/font
 s/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/pub
 lic/amsfonts/cm/cmtt10.pfb>
-Output written on nuevo.pdf (31 pages, 864502 bytes).
+Output written on nuevo.pdf (32 pages, 867182 bytes).
 PDF statistics:
- 361 PDF objects out of 1000 (max. 8388607)
- 97 named destinations out of 1000 (max. 500000)
+ 368 PDF objects out of 1000 (max. 8388607)
+ 101 named destinations out of 1000 (max. 500000)
  223 words of extra memory for PDF output out of 10000 (max. 10000000)
 

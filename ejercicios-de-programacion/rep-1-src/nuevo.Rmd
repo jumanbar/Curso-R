@@ -143,7 +143,7 @@ Escriba la línea `mi.objeto <- 4` en el editor y use el atajo mencionado para q
     > mi.objeto <- 4
     >
 
-### 1.5 El command promp
+### 1.5 El command prompt
 
 Al ver la última salida en la consola tenemos la información necesaria para saber que el comando ya fue ejecutado, ¿cómo? gracias a la existencia del "command prompt", el signo de `>` que aparece al principio de cada línea en la consola.
 
@@ -400,11 +400,11 @@ En el caso de los operadores, existe una convención respecto al orden temporal 
 
 ¿Debo sumar 4 al producto de $2 \cdot 9$ o multiplicar por 9 la adición de $4 + 2$? Los resultados serán distintos según cuál es el operador que se ejecute primero. Por convención es la multiplicación la que se ejecutará primero (puede hacer la prueba en R). En caso de duda, siempre puede usar paréntesis para asegurarse una ejecución correcta; ej.: `4 + (2 * 9)`. En este caso es bastante intuitiva la solución a la pregunta, pero en otros no tanto. Para esto tenemos una tabla que puede consultar cuando quiera, que indica el *orden de precedencia* de los operadores. Puede seguir [este link](https://www.dropbox.com/s/7a3q3xgax777zdq/2.0.1-orden-de-precedencia.pdf) para ver dicha tabla.
 
-#### Ejercicio: funciones matemáticas
+#### Ejercicio ():
 
 *E*
 
-Su tarea es encontrar las soluciones numéricas a los problemas que se plantean, traduciendo correctamente las expresiones matemáticas a expresiones en lenguaje R. Es posible que usted necesite consultar la ayuda para hacer el ejercicio. Si no sabe exactamente cuál es el nombre de la función que quiere consultar, use `help.search`, con cualquiera de sus dos modalidades (ver lección 1.3). Por ejemplo, si quiere averiguar sobre integrales, puede ejecutar:
+su tarea es encontrar las soluciones numéricas a los problemas que se plantean, traduciendo correctamente las expresiones matemáticas a expresiones en lenguaje R. Es posible que usted necesite consultar la ayuda para hacer el ejercicio. Si no sabe exactamente cuál es el nombre de la función que quiere consultar, use `help.search`, con cualquiera de sus dos modalidades (ver lección 1.3). Por ejemplo, si quiere averiguar sobre integrales, puede ejecutar:
 
 ```{r, eval = FALSE}
 help.search("integral")
@@ -425,6 +425,9 @@ help("integrate")
 Estos ejercicios son simples pero con dificultad muy variada, no se espera que usted los pueda hacer todos la primera vez. Recuerde que las respuestas están a la vista; no es la idea que usted se detenga demasiado tiempo en estos ejercicios.
 
 De todas formas, **es importante** que usted entienda las soluciones. Si no lo puede hacer por cuenta propia, consulte en el foro del curso, alguien puede haber hecho la pregunta anteriormente o puede ser usted quien la formule por primera vez. Tenga en cuenta que en este repartido se incluye un apartado con ejemplos de cómo usar el foro correctamente.
+
+0. Encuentre la(s) función necesaria para calcular logaritmos. Vaya a la página de ayuda de la función correspondiente y encuentre cuál es el nombre del argumento usado para determinar la base del logaritmo.
+   Calcule los siguientes logaritmos: $log_3 8$
 
 1. Calcule los valores que toma el siguiente polinomio para los valores de $x$: -1, 1.5 y 4 
 
@@ -595,12 +598,14 @@ El resultado que nos importa es que ahora está cargada la función `evaluar`, n
 evaluar()
 ```
 
-Tras esta acción se imprimirá en la consola un menú con el cual usted puede elegir cuál ejercicio desea corregir. En este caso será el 1:
+Tras esta acción se imprimirá en la consola un menú para elegir cuál ejercicio desea corregir. En este caso será el 1:
 
     Elija el archivo que desea corregir: 
 
     1: Ej. (1): 1-varianza.R
-    2: Todos
+    2: Ej. (2): 2-zenon.R
+    3: Ej. (3): 3-extra-dist.R
+    4: Todos
 
     Selection: 1
 
@@ -667,7 +672,7 @@ Por último el mensaje le muestra la nota acumulada hasta el momento. Más adela
 Vayamos entonces al problema del objeto `s`. En las instrucciones del archivo 1-varianza.R se indica claramente que 1) `s` es un vector y que 2) es la entrada de la función `sum`, que sabemos será usada. Específicamente, el vector `s` debe tener todos los términos de la sumatoria necesaria para calcular la varianza de `x`. Sabemos que la fórmula de la varianza es:
 
 $$
-\sigma ^ 2 = \frac{1}{n - 1} \cdot \sum_{i=1}^{i=n} (x_i - \overline{x}) ^ 2 
+  \sigma ^ 2 = \frac{1}{n - 1} \cdot \sum_{i=1}^{i=n} (x_i - \overline{x}) ^ 2 
 $$
 
 Por lo tanto el iésimo elemento de `s` debe ser $(x_i - \overline{x}) ^ 2$, lo cual se traduce al siguiente código:
@@ -680,6 +685,16 @@ Modifique el archivo para que calcule `s` con este comando. Luego vuelva a ejecu
 
 #### Ejercicio ():
 ahora sólo queda obtener el valor de `out` correcto. Esta tarea queda como ejercicio para usted (de todas formas también tiene la solución disponible). *E*.
+
+### Recomendación general:
+
+Muchas veces es buena idea usar un esquema, un dibujo, o cualquier representación válida, antes de empezar a escribir código. Los problemas de programación se pueden separar a groso modo en dos componentes: el problema en sí y la forma de traducirlo a código. Por esto es recomendable tratar de resolver el problema de base primero, en el lenguaje que le resulte más cómodo, ya sea un diagrama de flujo, un texto u otro medio. Posteriormente sólo quedará traducir su solución al lenguaje de R.
+
+Esto no es un proceso estrictamente secuencial, ya que muchas veces una parte de su esquema no tiene una traducción "literal" a código y por lo tanto requiere de una revisión del enfoque. Es decir, se convierte en un subproblema anidado en el problema principal. Para que los subproblemas no se vuelvan un obstáculo, vuelve a ser importante tener un esquema general, que servirá de mapa para no perdernos en un laberinto de pequeños problemitas. 
+
+Esta es una recomendación válida para los ejercicios del curso (que esperamos sinceramente que no sean tan intrincados), pero es más válida aún para la práctica de programar en general.
+
+### Mensajes de advertencia
 
 Si hizo el ejercicio anterior, es posible que la corrección devuelva mensajes de *advertencia* además de mensajes de error. Veamos lo que ocurre si usamos el siguiente código para calcular `out`:
 
@@ -701,7 +716,9 @@ Luego de guardar el archivo y ejecutar `evaluar(1)` se debería imprimir estos m
 
 (Los valores exactos no van a ser los mismos, ya que siempre se usa un nuevo `x` generado aleatoriamente.)
 
-La intención de los dos tipos de mensajes es distinta. Los mensajes de error son siempre objetivos; simplemente indican que no se resolvió correctamente el problema. Usualmente se muestra el valor esperado y el valor obtenido con el código del archivo de ejercicio. Por otro lado, los mensajes de advertencia, cuando los hay, buscan dar una pista de cuál puede ser el problema. Estos mensajes son fruto de la experiencia que como profesores hemos tenido, la cual nos permite muchas veces adelantarnos, a grandes rasgos, a los errores que muchos estudiantes van a cometer. No siempre habrá un mensaje de advertencia oportuno para su error específico. De todas formas, lo importante es que usted sepa **aprovechar** estos mensajes, ya que pueden ser de gran utilidad.
+La intención de los dos tipos de mensajes es distinta. Los mensajes de error son siempre objetivos; simplemente indican que no se resolvió correctamente el problema. Usualmente se muestra el valor esperado y el valor obtenido con el código del archivo de ejercicio. 
+
+Por otro lado, los mensajes de advertencia, cuando los hay, buscan dar una pista de cuál puede ser el problema. Estos mensajes son fruto de la experiencia que como profesores hemos tenido, la cual nos permite muchas veces adelantarnos, a grandes rasgos, a los errores que muchos estudiantes van a cometer. No siempre habrá un mensaje de advertencia oportuno para su error específico, ya que la capacidad de predicción siempre es limitada. De todas formas, lo importante es que usted sepa **aprovechar** estos mensajes, ya que pueden ser de gran utilidad.
 
 #### Ejercicio ():
 resuelva por su propia cuenta el ejercicio 2 del repartido: "Paradoja de Zenón". Tenga en cuenta que el ejercicio pide un `n` específico, pero el resto del código debe ser genérico (en función del `n` hallado).
@@ -717,10 +734,10 @@ Como ya vimos, al evaluar cualquier ejercicio con la función `evaluar` se impri
     3           1  3-extra-dist.R
     Total (%) 100  --       
 
-Como puede ver, esto imprime una tabla con un resumen de su situación en el repartido. Las notas siempre se expresan en porcentaje. Notará que en este caso se da un 100%, a pesar de que el ejercicio 2 no está completado. Esto se debe a que hay un ejercicio *extra* ya hecho. Los ejercicios extras son problemas más difíciles en general, que sirven para que el estudiante interesado profundice algún aspecto del curso o simplemente para aumentar la nota total del repartido. Si usted hace *todos* los ejercicios, regulares y extras, entonces tendrá una nota mayor a 100%. Esta nota lo favorecerá al hacer el promedio de repartidos, al final del curso. Sin embargo ese promedio no podrá superar el 100%.
+Se trata de una tabla con un resumen de su situación en el repartido. Las notas siempre se expresan en porcentaje. Notará que en este caso se da un 100%, a pesar de que el ejercicio 2 no está completado. Esto se debe a que hay un ejercicio *extra* ya hecho. Los ejercicios extras son problemas más difíciles en general, que sirven para que el estudiante interesado profundice algún aspecto del curso, o simplemente para aumentar la nota total del repartido. Si usted hace *todos* los ejercicios, regulares y extras, entonces tendrá una nota mayor a 100%. Esta nota lo favorecerá al hacer el promedio de repartidos, al final del curso. Sin embargo ese promedio no podrá superar el 100%.
 
 #### Entregas con retraso:
-en el curso es posible entregar con retraso los ejercicios de los repartidos, pero con un costo en el puntaje. Por ejemplo, si usted entrega al día siguiente de la fecha límite, tendrá un 5% de amonestación. Cada día extra es otro 5%. Por ejemplo, si en la página del curso se indica que usted entregó con 4 días y 12 horas de retraso, entonces el porcentaje de penalización total es de $5 \cdot 5 = 25$. Siguiendo el ejemplo anterior, tendría una nota de 75% para el repartido. 
+en el curso es posible entregar con retraso los ejercicios de los repartidos, pero con un costo en el puntaje. Por ejemplo, si usted entrega al día siguiente de la fecha límite, tendrá un 5% de amonestación. Cada día extra es otro 5%: si en la página del curso se indica que usted entregó con 4 días y 12 horas de retraso, entonces el porcentaje de penalización total es de $5 \cdot 5 = 25$. Siguiendo el ejemplo anterior, tendría una nota de 75% para el repartido. 
 
 La fórmula general es, para D días y H horas de retraso (H > 0):
 
@@ -730,7 +747,9 @@ $$
 
 (Cambia a $P = D \cdot 5$ si H = 0.)
 
-Las notas de cada repartido se almacenan en el archivo "datos" que se encuentra en la carpeta del repartido. Cada vez que se corre la función `evaluar` dicho archivo se actualiza con sus notas (por esta razón, la carpeta del repartido no puede estar bloqueada a escritura).
+Las notas se almacenan en el archivo "datos" que se encuentra en la carpeta del repartido. Cada vez que se corre la función `evaluar` dicho archivo se actualiza con sus notas (por esta razón, la carpeta del repartido no puede estar bloqueada a escritura). Nótese que si usted no usa la función `evaluar` para todos los ejercicios, aún si los resolvió bien su nota no lo reflejará.
+
+Para entregar el repartido usted debe cargar en la página del curso el archivo datos de su carpeta. Este será revisado posteriormente por los profesores.
 
 Este no es el único uso del archivo datos. Verá a continuación por qué es central para el mecanismo de corrección.
 
@@ -738,9 +757,9 @@ Este no es el único uso del archivo datos. Verá a continuación por qué es ce
 
 Además de las notas del estudiante, el archivo datos contiene las funciones que usa `evaluar` para corregir los ejercicios de cada repartido. Cada repartido tiene un archivo datos diferente.
 
-Estas funciones siempre se están perfeccionando, debido a que se descubren desperfectos o se mejoran ciertos aspectos, como el uso de mensajes de error o advertencia más informativos. Lamentablemente no siempre se pueden hacer pruebas completas del funcionamiento de dichas funciones. Esto se debe a que es muy difícil predecir todas las formas en que un estudiante puede intentar resolver un ejercicio, o incluso los malentendidos respecto a la interacción con R/RStudio que pueden tener.
+Estas funciones siempre se están perfeccionando, debido a que se descubren desperfectos o se mejoran ciertos aspectos, como el uso de mensajes de error o advertencia más informativos. Lamentablemente no siempre se pueden hacer pruebas completas del funcionamiento de dichas funciones. Esto se debe a que es muy difícil predecir todas las formas en que un estudiante puede intentar resolver un ejercicio.
 
-Por esto es importante mantener actualizado el archivo datos. Para esto se creó la función `fecha.datos`. Cada vez que usted corre `source("evaluar.R")` se carga en su sesión de trabajo dicha función. Veamos un ejemplo:
+Por esto es importante mantener actualizado el archivo datos. Con este objetivo se creó la función `fecha.datos`. Esta se carga en su sesión cada vez que usted corre `source("evaluar.R", encoding = "UTF-8")`. Veamos un ejemplo:
 
     > fecha.datos()
     La fecha de su archivo datos es:
@@ -752,13 +771,13 @@ Por esto es importante mantener actualizado el archivo datos. Para esto se creó
 
 Como puede ver, en la consola se imprime información relevante. Por un lado, se indica la fecha de creación del archivo datos que usted tiene en su carpeta. Por otro, se le da dos links: uno para verificar que la fecha de su archivo coincide con la de la última versión disponible y otro para descargar está última.
 
-Nota: muchas veces en Windows, al descargar un nuevo archivo datos, ocurre que se le agrega la extensión .txt. Esto es un comportamiento poco deseable, pero no es un problema. Cada vez que usted corre `evaluar` R verifica si datos tiene alguna extensión y en caso de que así sea, se borra.
+Nota: muchas veces en Windows, al descargar un nuevo archivo datos, ocurre que el sistema le agrega la extensión .txt. Esto es un comportamiento poco deseable, pero no es un problema. Cada vez que usted corre `evaluar` R verifica si datos tiene alguna extensión y en caso de que así sea, se borra (alternativamente, puede usar este comando en R: `file.rename("datos.txt", "datos")`).
 
 
 Uso del foro
 ------------
 
-Para el curso es muy importante la comunicación fluida a través de la web. Para eso se utiliza un foro, alojado en [reddit.com](reddit.com/r/imser). También puede enviar correos electrónicos a [cursosr@gmai.com](mailto:cursosr@gmail.com) o simplemente conectarse por chat. De todas formas es mucho más provechoso para todos plantear las dudas en el foro, ya que varios estudiantes pueden compartir una duda y por lo tanto beneficiarse por la respuesta recibida. Por esta razón, siempre se va a insistir en el uso por parte de los profesores.
+Para el curso es muy importante la comunicación fluida a través de la web. Para eso se utiliza un foro, alojado en [reddit.com](reddit.com/r/imser). También puede enviar correos electrónicos a [cursosr@gmail.com](mailto:cursosr@gmail.com) o simplemente conectarse por chat. De todas formas es mucho más provechoso para todos plantear las dudas en el foro, ya que varios estudiantes pueden compartir una duda y por lo tanto beneficiarse por la respuesta recibida. Por esta razón, siempre se va a insistir en el uso por parte de los profesores.
 
 ### Sobre reddit.com
 
