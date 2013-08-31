@@ -1,6 +1,8 @@
 Lista de ideas y/o apuntes generales de cosas a mejorar
 =======================================================
 
+* Cambiar INSTRUCCIONES por letra en todos los repartidos menos en el 1 (newrep1)
+
 * De ahora en más **pueden** modificar el código fuera de los límites, pero avisamos que para la corrección **todo lo que está afuera se descarta**.
 
 (Tal vez:

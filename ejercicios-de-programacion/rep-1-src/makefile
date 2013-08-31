@@ -1,21 +1,21 @@
 
 all: rep-?.zip
 
-clean: INSTRUCCIONES.Rmd datos.R
+clean: letra.Rmd datos.R
 	rm -rf rep-?.zip *~ *.swp *.swo .RData .Rhistory
 
-INSTRUCCIONES.pdf: INSTRUCCIONES.Rmd
+letra.pdf: letra.Rmd
 	R --vanilla --slave < make.R
 	wait
-	pandoc -o INSTRUCCIONES.tex -s INSTRUCCIONES.md
+	pandoc -o letra.tex -s letra.md
 	wait
-	pdflatex INSTRUCCIONES.tex
+	pdflatex letra.tex
 	wait
 	rm -f NA
 	wait
 	rm -rf figure
 
-rep-1.zip: INSTRUCCIONES.pdf datos.R
+rep-1.zip: letra.pdf datos.R
 	R --vanilla --slave < datos.R
 	wait
 	zip -r rep-?.zip rep-?

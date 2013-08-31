@@ -1,4 +1,4 @@
-## Errores:
+#1# Errores:
 # 1. En este caso hay un error en el nombre de la 
 #    función: la función mean se escribe con minúsculas:
 mean(5:7, na.rm = TRUE)
@@ -19,10 +19,10 @@ round(8.5644323)
 library(boot)
 head(bigcity)
 
-# Uso de una función:
+#2# Uso de la función mean:
 promedio <- mean(x)
 
-## Secuencias de números enteros:
+#3# Secuencias de números enteros:
 # 1.
 10:10000
 # 2.
@@ -32,7 +32,7 @@ promedio <- mean(x)
 # 4.
 6:-8
 
-## Secuencias de números (seq):
+#4# Secuencias de números (seq):
 # 1.
 seq(2, 110, by = 2)
 # 2.
@@ -40,38 +40,50 @@ seq(1, 110, by = 2)
 # 3.
 seq(9, 0, length = 101)
 
-# Concatenación
+#5# Concatenación
 mi.otro.vector <- c(45, -76, 3, 4, 5, 6, 0.333)
 # o 
 mi.otro.vector <- c(45, -76, 3:6, 0.333)
 
-# Modificación de un vector
+#6# Modificación de un vector
 mi.vector[2:3] <- c(100, 104)
 # o
 mi.vector[c(2, 3)] <- c(100, 104)
 
-# Vector invertido
+#7# Vector invertido
 mi.vector[6:1]
 
-## Matemática
-# Algunas páginas de ayuda para matemática son: `Arithmetics`, `MathFun` y `log`, o `groupGeneric` para ver un vistazo general. 
-# 1.
+#8# Matemática
+
+# a.
+# Para acceder a la ayuda:
+?log
+# o
+help("log")
+# El argumento se llama "base"
+log(8, 3)
+log(13, 5)
+log(1.5, 10) # o log10(1.5)
+log(7)       # o log(7, exp(1))
+log(6, 2)    # o log2(6)
+
+# b.
 x <- c(-1, 1.5, 4)
 5 * x ^ 3 - 2 * x ^ 2 + 11
 
-# 2. 
+# c. 
 x <- .5
 h <- cos(x) ** 2 + sin(x) ** 2
 # esto es equivalente a escribir:
 h <- cos(x) ^ 2 + sin(x) ^ 2
 
-# 3.
+# d.
 a <- 1:100
 D <- a * sqrt(2)
 # o alternativamente:
 D <- a * 2 ^ (1 / 2)
 
-# 4.
+# e.
 n <- 1
 i <- 0:n
 sum(1 / factorial(i))
@@ -84,19 +96,21 @@ n <- 10
 i <- 0:n
 sum(1 / factorial(i))
 
-# 5.
+# f.
 integral(log, 0, 20)
 
-# Solución genérica
+#9# Solución genérica
 mi.vector[length(mi.vector):1]
 
-# 1-varianza.R
+#10# 1-varianza.R
 out <- sum(s) / (length(x) - 1)
 
-# Paradoja de Zenón:
+#11# 2-zenon.R:
 n <- 20
 e <- 1:n
 s <- 1 / (2 ** e)
 out <- sum(s2)
+
+#ejercicio extra del repartido#
 
 
