@@ -1,46 +1,35 @@
-# Generación de los puntos en el plano:
-# Con un generador de valores aleatorios (función "runif") se crean las
-# coordenadas de todos los puntos:
-coorx <- runif(20)
-coory <- runif(20)
+# El siguiente código genera de forma aleatoria las coordenadas de los
+# arbustos:
+arb.x <- runif(20)
+arb.y <- runif(20)
 
-# Nota: si pusieramos estos vectores como columnas en una planilla
-# de cálculo tendríamos una matriz con las coordenadas de todos
-# los puntos.
+# Puede visualizar el mapa, junto con el panal de coordenadas (0.431, 0.587), 
+# con los comandos:
+plot(arb.x, arb.y, xlim = 0:1, ylim = 0:1)
+points(0.431, 0.587, pch=19)
 
-# Cada vez que se corran estas dos líneas se van a generar nuevos puntos, por
-# lo que no es recomendable volver a hacer. Una forma de evitar que esto pase es
-# agregando numerales ("#") al comienzo de las líneas para evitar su ejecución al
-# usar source(dist.R).
-
-# Se pueden graficar los puntos con este comando:
-plot(coorx, coory)
-
-# junto con el punto central:
-points(0.5, 0.5, pch=19)
+# Nota: si prefiere "apagar" estas líneas de código, agregue un # al inicio 
+#       de las mismas.
 
 # Instrucciones:
 # Para lograr el objetivo, debe seguir los siguentes pasos:
-# 1. Determinar los lados de los triángulos rectángulos imaginarios (cat.ad y cat.op)
-#    cuyas hipotenusas son son los segmentos entre el central y los demás puntos (AB)
-#    en la figura 1).
-# 2. Con la función hipot determinar el ancho de estas hipotenusas que son las 
-#    distancias del centro a los demás puntos (dst), partiendo de los catetos hallados.
-# 3. Con la función which o sus derivadas encontrar las posiciones del mínimo (i)
-#    y el máximo (j) dentro del vector de distancias.
-# 4. Utilizar estas posiciones para extraer las coordenadas correspondientes a
-#    los puntos más cercano (A) y lejano (B) del central.
+# 1. Determinar los catetos de los triángulos rectángulos imaginarios (cat.ad 
+#    y cat.op).
+# 2. Con la fórmula de la hipotenusa hallar las distancias del panal a los 
+#    arbustos (dst).
+# 3. Con la función which.xxx encontrar las posiciones del mínimo (i) y el 
+#    máximo (j) dentro del vector dst.
+# 4. Utilizar estas posiciones para extraer las coordenadas correspondientes a 
+#    los arbustos más cercano (arb.cerca) y lejano (arb.lejos) del panal.
 
-# Lista de objetos a obtener:
+# Objetivos:
 # cat.ad y cat.op: los "catetos" de todos los triángulos rectángulos formados con 
 #                  el central y los demás puntos.
-# dst: distancias entre (0.5, 0.5) y todos los demás puntos.
-# i: posición de dst en el que se encuentra el mínimo de distancia
-# j: posición de dst en el que se encuentra el máximo de distancia
-# A: coordenadas del punto más cercano (vector de dos valores)
-# B: coordenadas del punto más lejano  (vector de dos valores)
-
-# Nota: use ?c para entender los últimos pasos, en caso de que sea necesario.
+# dst*: un vector con distancias entre el panal (0.431, 0.587) y todos los arbustos.
+# i*: posición de dst en el que se encuentra el mínimo de distancia
+# j*: posición de dst en el que se encuentra el máximo de distancia
+# arb.cerca*: coordenadas del punto más cercano (vector de dos valores)
+# arb.lejos*: coordenadas del punto más lejano  (vector de dos valores)
 
 #===== Su código comienza aquí: =====#
 
@@ -54,16 +43,9 @@ i <- 0
 
 j <- 0
 
-A <- c(0, 0)
+arb.cerca <- c(0, 0)
 
-B <- c(0, 0)
+arb.lejos <- c(0, 0)
 
 #====== Aquí finaliza su código =====#
-
-# Utilice las siguientes líneas para confirmar que el código
-# hace la tarea correctamente:
-plot(coorx, coory)
-points(0.5, 0.5, pch=19)
-points(coorx[i], coory[i], pch=19, col='red')
-points(coorx[j], coory[j], pch=19, col='darkgreen')
 

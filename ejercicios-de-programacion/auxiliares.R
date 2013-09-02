@@ -187,7 +187,7 @@ mkmsj <- function(msj.base = "", obs, esp) {
 objetos <- c(objetos, "mkmsj")
 
 
-mkmsj.v <- function(msj.base = "", vec.obs, vec.esp, tol = 1e-8) {
+mkmsj.v <- function(msj.base = "", vec.obs, vec.esp, tol = .Machine$double.eps ^ 0.5) {
   # msj.base: mensaje indicando en qué objeto está el error,
   #           ej.: El vector XXX no coincide con lo esperado
   #           nota: se agrega una coma y un \n al final.

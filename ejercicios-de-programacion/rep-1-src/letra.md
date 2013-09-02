@@ -8,23 +8,23 @@ Ejercicios de programación I: Introducción
 Archivos incluidos
 ------------------
 
-```{r, echo = FALSE}
-load("datos")
-```
+
+
 
 Archivos de ejercicios:
 
-```{r, echo = FALSE}
-cat(corregir, sep = ", ")
-cat("\n")
+
 ```
+## 1-varianza.R, 2-zenon.R, 3-extra-dist.R
+```
+
 Archivos complementarios (¡no modificar!):
 
-```{r, echo = FALSE}
-aux[1] <- "evaluar.R"
-cat(aux, sep = ", ")
-cat("\n")
+
 ```
+## evaluar.R, datos, letra.pdf, plotTriang.R
+```
+
 - - -
 
 (1) Cálculo de la varianza de una muestra
@@ -34,10 +34,16 @@ cat("\n")
 
 Crear el código necesario para calcular sumatorias en R u otros lenguajes no es intiutivo cuando no se tiene experiencia en programación. En R la función `sum` sirve para este propósito. Si tenemos un vector `s` con una cantidad arbitraria de elementos, entonces la suma de todos ellos se realiza con el comando `sum(s)`. Por ejemplo:
 
-```{r}
+
+```r
 s <- 1:100
 sum(s)
 ```
+
+```
+## [1] 5050
+```
+
 
 > Nota: el vector `s` es simplemente la secuencia de los números enteros del 1 al 100. El operador `:` es uno de las más usados en R.
 
@@ -53,10 +59,16 @@ En donde $\overline{x}$ denota el valor promedio de la muestra de datos, calcula
 
 Un ejemplo concreto de vectorización es el siguiente:
 
-```{r}
+
+```r
 v <- 1:5
 v * 2
 ```
+
+```
+## [1]  2  4  6  8 10
+```
+
 
 Como puede ver, en la segunda línea se aplica la operación de multiplicación a todo el vector `v`, en lugar de ir elemento por elemento. En lenguajes de programación de *bajo nivel* (i.e.: menor abstracción respecto a los detalles de la computadora) no es posible vectorizar así, por lo que es necesario usar *loops* para hacer este tipo de operaciones. Veremos los loops en la unidad "Estructuras de control".
 
@@ -66,10 +78,12 @@ En el archivo "1-varianza.R" usted deberá escribir los pasos necesarios para ca
 
 Si su solución es correcta, lo cual implica que es genérica, entonces el valor de `out` obtenido coincidirá con la salida de la función `var`. Puede correr las siguientes líneas varias veces para determinar si esto es así:
 
-```{r eval=FALSE}
+
+```r
 source("1-varianza.R")
 out == var(x)
 ```
+
 
 Esto producirá un `TRUE` o un `FALSE` en caso de que `out` esté bien o mal calculado, respectivamente.
 
@@ -99,23 +113,26 @@ En este ejercicio, usted deberá completar el código del archivo "2-zenon.R". E
 
 A continuación sólo queda encontrar el $n$ exacto tal que $1 - Z_n < \varepsilon$. El $\varepsilon$ elegido es $10^{-6}$, lo que en R se puede escribir `1e-6`. Cambie el valor de `n`, aumentando de a una unidad por vez, hasta encontrar el valor para el que $1 - Z_n < 10^{-6}$. El siguiente código le permitirá confirmar si se cumple la condición:
 
-```{r eval=FALSE}
+
+```r
 source("2-zenon.R")
-1 - Zn < 1e-06 
+1 - Zn < 1e-06
 ```
+
 
 > Nota: como habrá notado, en este ejercicio y *a diferencia de la mayoría de los casos* de este curso, la respuesta para el valor de `n` no es general, si no que debe ser un número entero específico.
 
 Habiendo creado correctamente el vector `s`, puede visualizar la convergencia de la serie usando el comando:
 
-```{r eval=TRUE, echo=FALSE}
-n <- 10; z <- 2
-s <- 1 / (z ** (1:n))
-out <- sum(s)
+
+
+
+```r
+plot(cumsum(s), type = "o", xlab = "n", ylab = expression(Z[n]))
 ```
-```{r eval=TRUE, fig.width = 3.8, fig.height=3.8, fig.cap="serie de Zenón"}
-plot(cumsum(s), type="o", xlab="n", ylab=expression(Z[n]))
-```
+
+![serie de Zenón](figure/unnamed-chunk-9.png) 
+
 
 - - -
 
@@ -138,10 +155,8 @@ $$
   d_{AB} = \sqrt{(x_B - x_A) ^ 2 + (y_B - y_A) ^ 2}
 $$
 
-```{r echo=FALSE, fig.width=7, fig.height=7, fig.cap = "triángulo ABC"}
-source("plotTriang.R")
-plotTriang(FALSE)
-```
+![triángulo ABC](figure/unnamed-chunk-10.png) 
+
 
 > **Figura 2:** Los puntos A, B y C de coordenadas $(x_A, y_A)$, $(x_B, y_B)$ y $(x_B, y_A)$ pueden formar un triángulo rectángulo como muestra la figura, cuyos catetos tienen los valores indicados entre paréntesis. Por lo tanto, la distancia entre A y B es la hipotenusa del triángulo y se puede hallar con la fórmula de Pitágoras.  
 Nota: puede reproducir este gráfico con la función `plotTriang` contenida en el script "plotTriang.R"; además lo invitamos a que examine dicho código si le interesa entender cómo se crea tal figura.
@@ -164,28 +179,17 @@ Para esto son muy útiles las funciones `which`. Acuda a la ayuda de R y aprenda
 
 Finalmente sólo queda crear los vectores `arb.cerca` y `arb.lejos`, con las coordenadas de los arbustos. Para esto debe extraer las coordenadas apropiadas de los vectores `arb.x` y `arb.y`, usando los corchetes, para luego concatenarlas con la función `c`.
 
-```{r echo=FALSE, fig.width=7, fig.height=7, fig.cap="arbustos frutales (círculos abiertos) y un panal (círculo cerrado). Los puntos son generados con valores aleatorios, siguiendo los mismos comandos que se encuentran en el archivo del ejercicio. El arbusto más cercano al panal está marcado en verde y el más lejano en rojo."}
-set.seed(11)
-coorx <- runif(20)
-coory <- runif(20)
-puntos <- cbind(coorx, coory)
-plot(puntos, xlim = 0:1, ylim = 0:1, xlab = "X", ylab = "Y", cex = 1.5)
-points(0.431, 0.587, pch=19, cex = 1.5)
-ca <- 0.431 - coorx
-co <- 0.587 - coory
-h <- sqrt(ca ** 2 + co ** 2)
-i <- which.min(h)
-j <- which.max(h)
-points(coorx[i], coory[i], pch=19, col="darkgreen", cex = 1.5)
-points(coorx[j], coory[j], pch=19, col="red", cex = 1.5)
-```
+![arbustos frutales (círculos abiertos) y un panal (círculo cerrado). Los puntos son generados con valores aleatorios, siguiendo los mismos comandos que se encuentran en el archivo del ejercicio. El arbusto más cercano al panal está marcado en verde y el más lejano en rojo.](figure/unnamed-chunk-11.png) 
+
 
 Para comprobar que su resultado es correcto, puede utilizar el siguiente código:
 
-```{r eval=FALSE}
+
+```r
 plot(arb.x, arb.y, xlim = 0:1, ylim = 0:1)
-points(0.431, 0.587, pch=19)
-points(arb.x[i], arb.y[i], pch=19, col='darkgreen')
-points(arb.x[j], arb.y[j], pch=19, col='red')
+points(0.431, 0.587, pch = 19)
+points(arb.x[i], arb.y[i], pch = 19, col = "darkgreen")
+points(arb.x[j], arb.y[j], pch = 19, col = "red")
 ```
+
 

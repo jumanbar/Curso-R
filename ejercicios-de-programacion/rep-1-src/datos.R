@@ -18,7 +18,7 @@ if (!file.exists(rdir))
 unlink(file.path(rdir, dir(rdir)), recursive = TRUE)
 
 ### ARCHIVOS AUXILIARES:
-aux <- c("../evaluar.R", "datos", "letra.pdf")
+aux <- c("../evaluar.R", "datos", "letra.pdf", "plotTriang.R")
 
 ### SCRIPTS DE EJERCICIOS:
 # Es importante que un guión separe el número del nombre en sí...

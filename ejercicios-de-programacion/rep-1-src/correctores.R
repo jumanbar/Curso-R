@@ -6,8 +6,7 @@ cor1 <- function() {
   parsed <- parse(text = arch)
 
   # Generación de datos
-  #   semilla <- sample(1000, 1)
-  semilla <- 444
+  semilla <- sample(1000, 1)
   cat(">> Iniciando una nueva semilla:\n")
   cat(">> set.seed(", semilla,") ...\n", sep = "")
   set.seed(semilla)
@@ -102,4 +101,65 @@ cor2 <- function() {
   TRUE
 }
 
-cor3 <- function() TRUE
+cor3 <- function() {
+  # Cargar datos y script
+  load('datos')
+  arch <- cut.script("3-extra-dist.R")
+  parsed <- parse(text = arch)
+
+  # Generación de datos
+  # Generación de datos
+  semilla <- sample(1000, 1)
+  cat(">> Iniciando una nueva semilla:\n")
+  cat(">> set.seed(", semilla,") ...\n", sep = "")
+  set.seed(semilla)
+  cat(">> Creando nuevos vector arb.x y arb.y para la corrección:\n")
+  cat(">> arb.x <- runif(20, 5, 10)\n")
+  cat(">> arb.y <- runif(20, 5, 10)\n")
+  arb.x <- runif (20, 5, 10)
+  arb.y <- runif (20, 5, 10)
+
+  # Evaluación de objetos: dst, i, j, A, B
+  eval(parsed)
+  ca2  <- arb.x - 0.431 
+  co2  <- arb.y - 0.587
+  dst2 <- sqrt(ca2 ** 2 + co2 ** 2)
+  ii   <- which.min(dst2)
+  jj   <- which.max(dst2)
+  arb.cerca2 <- c(arb.x[ii], arb.y[ii])
+  arb.lejos2 <- c(arb.x[jj], arb.y[jj])
+  tol  <- .Machine$double.eps ^ 0.5
+
+  if (any(abs(dst - dst2) > tol))
+    stop(mkmsj.v("los valores del dst obtenido no son los esperados", dst, dst2), call. = FALSE)
+  cat("valores de dst ... OK\n")
+
+  if (i == jj)
+    warning("  ¿Tal vez i y j son iguales?", call. = FALSE)
+  if (i != ii)
+    stop(mkmsj("el valor de i obtenido no es el esperado", i, ii), call. = FALSE)
+  cat("valor de i ... OK\n")
+
+  if (j == ii)
+    warning("  ¿Tal vez i y j son iguales?", call. = FALSE)
+  if (j != jj)
+    stop(mkmsj("el valor de j obtenido no es el esperado", j, jj), call. = FALSE)
+  cat("valor de j ... OK\n")
+
+  if (any(abs(arb.cerca - arb.cerca2) > tol)) {
+    if (all(arb.cerca == arb.lejos2))
+      warning("ej. 3: su punto arb.cerca es el más lejano, en lugar del más cercano", call. = FALSE)
+    stop(mkmsj.v("los valores del vector arb.cerca obtenido no son los esperados", arb.cerca, arb.cerca2), call. = FALSE)
+  }
+  cat("valores de arb.cerca ... OK\n")
+
+  if (any(abs(arb.lejos - arb.lejos2) > tol)) {
+    if (all(arb.lejos == arb.cerca2))
+      warning("ej. 3: su punto arb.lejos es el más cercano, en lugar del más lejano", call. = FALSE)
+    stop(mkmsj.v("los valores del vector arb.lejos obtenido no son los esperados", arb.lejos, arb.lejos2), call. = FALSE)
+  }
+  cat("valores de arb.lejos ... OK\n")
+
+  TRUE
+}
+

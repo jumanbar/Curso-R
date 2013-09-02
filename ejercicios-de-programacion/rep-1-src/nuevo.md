@@ -437,7 +437,7 @@ mi.vector[c(4:6, 1:3)]
 ```
 
 ```
-## [1] -1.0000  0.7989  0.0000 -1.0000 -0.4869 -0.2107
+## [1] -1.0  4.5  0.0 -1.0  4.0  5.0
 ```
 
 
@@ -633,6 +633,21 @@ Puede escribir código por fuera de este espacio, pero tenga en cuenta que:
 1. Esas líneas van a ser descartadas en el proceso de corrección.
 
 2. No es buena idea modificar el código que ya viene en el archivo original.
+
+Por último, muchas veces hemos visto estudiantes escribir en el archivo de ejercicio, dentro o fuera de la zona de trabajo, líneas como estas:
+
+
+```r
+source("1-varianza.R")
+# o
+source("evaluar.R")
+```
+
+
+Esto genera un error al usar las funciones `source` o `evaluar` y por lo tanto impide hacer la corrección. El problema es simple: siempre que tengamos el comando `source("archivo.R")` dentro de "archivo.R" y se ejecute dicho comando, se va a generar una espiral infinita en la que `source` se ejecuta a sí mismo una y otra vez.
+
+En definitiva, **no incluya comandos como estos** en los archivos de ejercicios.
+
 
 ### 3.3 Usando la función evaluar
 
@@ -1163,9 +1178,17 @@ g.  Integral:
     n <- 20
     e <- 1:n
     s <- 1 / (2 ** e)
-    out <- sum(s2)
+    Zn <- sum(s2)
 
 - - -
 
-### Ejercicio extra del repartido
+### 13) 3-extra-dist.R
+
+    cat.ad <- arb.x - 0.431
+    cat.op <- arb.y - 0.587
+    dst <- sqrt(cat.ad ^ 2 + cat.op ^ 2)
+    i <- which.min(dst)
+    j <- which.max(dst)
+    arb.cerca <- c(arb.x[i], arb.y[i])
+    arb.lejos <- c(arb.x[j], arb.y[j])
 

@@ -1,0 +1,376 @@
+\documentclass[]{article}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifxetex
+  \usepackage{fontspec,xltxtra,xunicode}
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\else
+  \ifluatex
+    \usepackage{fontspec}
+    \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \else
+    \usepackage[utf8]{inputenc}
+  \fi
+\fi
+\usepackage{color}
+\usepackage{fancyvrb}
+\DefineShortVerb[commandchars=\\\{\}]{\|}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\newenvironment{Shaded}{}{}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+\newcommand{\RegionMarkerTok}[1]{{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+\newcommand{\NormalTok}[1]{{#1}}
+\usepackage{graphicx}
+% We will generate all images so they have a width \maxwidth. This means
+% that they will get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+\else\Gin@nat@width\fi}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+\renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=\maxwidth]{#1}}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex,
+              colorlinks=true,
+              linkcolor=blue]{hyperref}
+\else
+  \usepackage[unicode=true,
+              colorlinks=true,
+              linkcolor=blue]{hyperref}
+\fi
+\hypersetup{breaklinks=true, pdfborder={0 0 0}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+
+
+\begin{document}
+
+\section{Ejercicios de programación I: Introducción}
+
+\subsubsection{{[}IMSER 2013{]}}
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\subsection{Archivos incluidos}
+
+Archivos de ejercicios:
+
+\begin{verbatim}
+## 1-varianza.R, 2-zenon.R, 3-extra-dist.R
+\end{verbatim}
+Archivos complementarios (¡no modificar!):
+
+\begin{verbatim}
+## evaluar.R, datos, letra.pdf, plotTriang.R
+\end{verbatim}
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\subsection{(1) Cálculo de la varianza de una muestra}
+
+\subsubsection{Preámbulo: sumatorias}
+
+Crear el código necesario para calcular sumatorias en R u otros
+lenguajes no es intiutivo cuando no se tiene experiencia en
+programación. En R la función \texttt{sum} sirve para este propósito. Si
+tenemos un vector \texttt{s} con una cantidad arbitraria de elementos,
+entonces la suma de todos ellos se realiza con el comando
+\texttt{sum(s)}. Por ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s <- }\DecValTok{1}\NormalTok{:}\DecValTok{100}
+\KeywordTok{sum}\NormalTok{(s)}
+\end{Highlighting}
+\end{Shaded}
+\begin{verbatim}
+## [1] 5050
+\end{verbatim}
+\begin{quote}
+Nota: el vector \texttt{s} es simplemente la secuencia de los números
+enteros del 1 al 100. El operador \texttt{:} es uno de las más usados en
+R.
+
+\end{quote}
+Habrá notado que se hizo el cálculo en dos partes: (1) Crear el vector
+\texttt{s}, el cual contiene todos los términos de la sumatoria y (2)
+ejecutar la función \texttt{sum}. Esta separación es recomendable cuando
+queremos hacer sumatorias más sofisticadas, a fin de mantener el código
+más simple.
+
+Un ejemplo es la fórmula para calcular la varianza no sesgada de una
+muestra de \texttt{n} datos:
+
+\[
+  \sigma ^ 2 = \frac{1}{n - 1} \cdot \sum_{i=1}^{i=n} (x_i - \overline{x}) ^ 2 
+\]
+
+En donde $\overline{x}$ denota el valor promedio de la muestra de datos,
+calculado como $\frac{1}{n} \cdot \sum_i x_i$. Si quisiéramos usar un
+vector \texttt{s} para calcular esta sumatoria, entonces el iésimo
+elemento de este (i.e.: \texttt{s{[}i{]}}) será obtenido con la fórmula
+$(x_i - \overline{x}) ^ 2$. Por suerte en R no hace falta calcular los
+\texttt{s{[}i{]}} uno por uno, ya que es posible \emph{vectorizar}:
+realizar operaciones matemáticas sobre vectores como si se trataran de
+valóres únicos.
+
+Un ejemplo concreto de vectorización es el siguiente:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v <- }\DecValTok{1}\NormalTok{:}\DecValTok{5}
+\NormalTok{v * }\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+\begin{verbatim}
+## [1]  2  4  6  8 10
+\end{verbatim}
+Como puede ver, en la segunda línea se aplica la operación de
+multiplicación a todo el vector \texttt{v}, en lugar de ir elemento por
+elemento. En lenguajes de programación de \emph{bajo nivel} (i.e.: menor
+abstracción respecto a los detalles de la computadora) no es posible
+vectorizar así, por lo que es necesario usar \emph{loops} para hacer
+este tipo de operaciones. Veremos los loops en la unidad ``Estructuras
+de control''.
+
+\subsubsection{Tarea}
+
+En el archivo ``1-varianza.R'' usted deberá escribir los pasos
+necesarios para calcular la varianza del vector de ejemplo \texttt{x}
+que se muestra en el archivo (siga las instrucciones incluidas en los
+comentarios).
+
+Si su solución es correcta, lo cual implica que es genérica, entonces el
+valor de \texttt{out} obtenido coincidirá con la salida de la función
+\texttt{var}. Puede correr las siguientes líneas varias veces para
+determinar si esto es así:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source}\NormalTok{(}\StringTok{"1-varianza.R"}\NormalTok{)}
+\NormalTok{out == }\KeywordTok{var}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+Esto producirá un \texttt{TRUE} o un \texttt{FALSE} en caso de que
+\texttt{out} esté bien o mal calculado, respectivamente.
+
+\subsection{(2) Paradoja de Zenón}
+
+Según la clásica
+\href{https://es.wikipedia.org/wiki/Paradojas\_de\_Zen\%C3\%B3n\#La\_dicotom.C3.ADa}{paradoja
+de la dicotomía} de \href{http://xkcd.com/1153/}{Zenón} es imposible
+caminar de un punto A a un punto B, debido a que primero debemos
+movernos la mitad del camino, posteriormente avanzar la mitad de la
+mitad del camino y así ad infinitum, sin llegar jamás a B. Esto se
+traduce en avanzar primero 1/2 de camino, luego 1/4, 1/8, 1/16 y así
+sucesivamente. Entonces, tras $n$ pasos de este tipo se alcanza una
+fracción de camino equivalente a:
+
+\[
+  Z_n = \sum_{i=1}^{i=n} \frac{1}{2 ^ i} \;=\;
+  \frac{1}{2 ^ 1} + \frac{1}{2 ^ 2} + \frac{1}{2 ^ 3} + ... + \frac{1}{2 ^ n} \;=\;
+  \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + ... + \frac{1}{2 ^ n}
+\]
+
+(Nótese que el primer valor de $i$ es 1 y no 0.)
+
+Si es cierta el enunciado de Zenón, entonces no importa que tan grande
+sea $n$, esta sumatoria siempre será menor a 1, a pesar ser este el
+límite de la misma cuando $n \to \infty$. Podemos verificar
+numéricamente esta afirmación usando R: si elegimos un valor
+$\varepsilon$ arbitrariamente pequeño, entonces podemos encontrar un $n$
+lo bastante grande para que $1 - Z_n < \varepsilon$.
+
+En este ejercicio, usted deberá completar el código del archivo
+``2-zenon.R''. En primera instancia, usted debería preocuparse de que el
+código sirva para cualcular la sumatoria $Z_n$, dado un \texttt{n}
+cualquiera. Como referencia, considere que los $Z_n$ para
+$n = 3, 4, 5, 6, 7, 8$ deberían ser:
+
+\begin{verbatim}
+0.875
+0.9375
+0.96875
+0.984375
+0.9921875
+0.9960938
+\end{verbatim}
+A continuación sólo queda encontrar el $n$ exacto tal que
+$1 - Z_n < \varepsilon$. El $\varepsilon$ elegido es $10^{-6}$, lo que
+en R se puede escribir \texttt{1e-6}. Cambie el valor de \texttt{n},
+aumentando de a una unidad por vez, hasta encontrar el valor para el que
+$1 - Z_n < 10^{-6}$. El siguiente código le permitirá confirmar si se
+cumple la condición:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{source}\NormalTok{(}\StringTok{"2-zenon.R"}\NormalTok{)}
+\DecValTok{1} \NormalTok{- Zn < }\FloatTok{1e-06}
+\end{Highlighting}
+\end{Shaded}
+\begin{quote}
+Nota: como habrá notado, en este ejercicio y \emph{a diferencia de la
+mayoría de los casos} de este curso, la respuesta para el valor de
+\texttt{n} no es general, si no que debe ser un número entero
+específico.
+
+\end{quote}
+Habiendo creado correctamente el vector \texttt{s}, puede visualizar la
+convergencia de la serie usando el comando:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{cumsum}\NormalTok{(s), }\DataTypeTok{type =} \StringTok{"o"}\NormalTok{, }\DataTypeTok{xlab =} \StringTok{"n"}\NormalTok{, }\DataTypeTok{ylab =} \KeywordTok{expression}\NormalTok{(Z[n]))}
+\end{Highlighting}
+\end{Shaded}
+\begin{figure}[htbp]
+\centering
+\includegraphics{figure/unnamed-chunk-9.png}
+\caption{serie de Zenón}
+\end{figure}
+
+\begin{center}\rule{3in}{0.4pt}\end{center}
+
+\subsection{(3) Extra: Distancias entre puntos}
+
+\subsubsection{Preámbulo: distancia euclidiana}
+
+La definición de distancia euclidiana se basa en el teorema de
+pitágoras. Para dos puntos en un espacio bidimensional (un plano) la
+distancia entre ambos se puede calcular a través de las coordenadas
+cartesianas de los mismos. El teoréma de pitágoras sirve para calcular
+la hipotenusa $h$ de un triángulo rectánculo, con la fórmula:
+
+\[
+  h = \sqrt{C_{ad} ^ 2 + C_{op} ^ 2}
+\]
+
+Aquí $C_{ad}$ y $C_{op}$ son los catetos \emph{adyacente} y
+\emph{opuesto} del triángulo (la magnitud de los dos lados menores del
+triángulo rectángulo; el orden no importa realmente).
+
+Siguiendo la Figura 2, para calcular la distancia entre A y B, $d_{AB}$,
+esta fórmula se traduce en:
+
+\[
+  d_{AB} = \sqrt{(x_B - x_A) ^ 2 + (y_B - y_A) ^ 2}
+\]
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{figure/unnamed-chunk-10.png}
+\caption{triángulo ABC}
+\end{figure}
+
+\begin{quote}
+\textbf{Figura 2:} Los puntos A, B y C de coordenadas $(x_A, y_A)$,
+$(x_B, y_B)$ y $(x_B, y_A)$ pueden formar un triángulo rectángulo como
+muestra la figura, cuyos catetos tienen los valores indicados entre
+paréntesis. Por lo tanto, la distancia entre A y B es la hipotenusa del
+triángulo y se puede hallar con la fórmula de Pitágoras.\\Nota: puede
+reproducir este gráfico con la función \texttt{plotTriang} contenida en
+el script ``plotTriang.R''; además lo invitamos a que examine dicho
+código si le interesa entender cómo se crea tal figura.
+
+\end{quote}
+Como práctica previa al ejercicio, calcule la distancia entre los puntos
+A y B, de coordenadas (1, 6) y (5, 2) (es aproximadamente 8.94).
+
+\subsubsection{Tarea}
+
+La Figura 3 muestra un mapa de arbustos frutales (puntos en blanco), que
+se encuentran florecidos durante buena parte del año. El punto central
+(negro) es un panal de abejas que utilizan estos arbustos para alimentar
+a sus larvas. El objetivo de este ejercicio es encontrar dos arbustos,
+el más cercano y el más lejano respecto al panal, siguiendo un vuelo
+directo panal-arbusto.
+
+Como ya puede adivinar, para esto usaremos el teorema de pitágoras, ya
+que necesitamos saber las distancias panal-arbusto para todos los
+puntos. Las coordenadas de los arbustos son generadas de forma
+aleatoria, con un vector para las X (longitud) y otro para las Y
+(latitud). Dichos vectores son \texttt{arb.x} y \texttt{arb.y}
+respectivamente.
+
+Para aplicar la idea de la Figura 2, debemos primero determinar cuáles
+son los puntos y los triángulos asociados que nos interesan. De hecho,
+siguiendo la analogía de la figura, el punto C es irrelevante, ya que
+nos alcanza con las medidas de los catetos, las cuales se pueden obtener
+a partir de las coordenadas de A y B. En este caso ``A'' es siempre el
+mismo: el panal, de coordenadas (0.431, 0.587). El resto de los puntos
+son los arbustos. Dado que tenemos las coordenadas de todos, podemos
+hallar los catetos de los triángulos, siguiendo el esquema de la Figura
+2. Esto no es más que una resta de coordenadas. Recuerde que no tiene
+que hacerlo de a uno por vez, ya que en R es posible \emph{vectorizar}
+operaciones.
+
+\begin{quote}
+Nota: en el script se espera (o mejor dicho, recomienda) que usted
+construya los vectores \texttt{cat.ad} y \texttt{cat.op}, cuyos valores
+serán los de los catetos adyacentes y opuestos respectivamente. En
+verdad no importa si los adyacentes son los catetos horizontales o
+verticales (lo mismo para los opuestos), porque no afecta al cálculo de
+las distancias. Tampoco afecta el orden en que resta las coordenadas, ya
+que los resultados se elevan al cuadrado al calcular la hipotenusa.
+
+\end{quote}
+Usando este conocimiento entonces se pueden calcular las distancias, que
+no son otra cosa que las hipotenusas de triángulos imaginarios. Estas
+distancias se encontrarán en el vector \texttt{dst}. Una vez obtenido
+\texttt{dst}, es necesario encontrar los valores máximo y mínimo. Pero
+no necesitamos los valores en si, tenemos que sabér en qué posición,
+dentro del vector \texttt{dst}, estos se encuentran.
+
+Para esto son muy útiles las funciones \texttt{which}. Acuda a la ayuda
+de R y aprenda sobre las funciones \texttt{which}, \texttt{which.max}, y
+\texttt{which.min}. Básicamente, devuelven las posiciones de un vector
+(u otro objeto, como una matriz) que cumplen con una condición
+particular. Utilizando \texttt{which.min} y \texttt{which.max} el script
+debe crear los objetos \texttt{i} y \texttt{j} respectivamente (o si
+quiere puede usar \texttt{which}, pero es más complicado).
+
+Finalmente sólo queda crear los vectores \texttt{arb.cerca} y
+\texttt{arb.lejos}, con las coordenadas de los arbustos. Para esto debe
+extraer las coordenadas apropiadas de los vectores \texttt{arb.x} y
+\texttt{arb.y}, usando los corchetes, para luego concatenarlas con la
+función \texttt{c}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{figure/unnamed-chunk-11.png}
+\caption{arbustos frutales (círculos abiertos) y un panal (círculo
+cerrado). Los puntos son generados con valores aleatorios, siguiendo los
+mismos comandos que se encuentran en el archivo del ejercicio. El
+arbusto más cercano al panal está marcado en verde y el más lejano en
+rojo.}
+\end{figure}
+
+Para comprobar que su resultado es correcto, puede utilizar el siguiente
+código:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{plot}\NormalTok{(arb.x, arb.y, }\DataTypeTok{xlim =} \DecValTok{0}\NormalTok{:}\DecValTok{1}\NormalTok{, }\DataTypeTok{ylim =} \DecValTok{0}\NormalTok{:}\DecValTok{1}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(}\FloatTok{0.431}\NormalTok{, }\FloatTok{0.587}\NormalTok{, }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(arb.x[i], arb.y[i], }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{, }\DataTypeTok{col =} \StringTok{"darkgreen"}\NormalTok{)}
+\KeywordTok{points}\NormalTok{(arb.x[j], arb.y[j], }\DataTypeTok{pch =} \DecValTok{19}\NormalTok{, }\DataTypeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}
