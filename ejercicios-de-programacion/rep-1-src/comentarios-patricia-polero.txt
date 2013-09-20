@@ -1,0 +1,26 @@
+Pag 3:
+
+Donde dice "Se puede utilizar el menú Project >> New project......luego se elije la opción New Directory"
+En mi R Studio, dice opciones diferentes. Igual se entiende lo que tengo que seleccionar pero como vi que en otras situaciones ustedes siempre aclaran las distintas posibilidades, capás que estaría bueno aclarar que capás el menú dice algo diferente. Yo tengo que seleccionar Project >> Create project....y luego en la ventana que se abre, New project.
+Pag 4:
+En el segundo párrafo dice: "Debido a que los scripts están codificados....."
+Yo pondría que **los scripts del curso** estarán siempre codificados......" 
+También, me parece que esta sección 1.2 sobre codificación podría ir más al final del repartido. Me parece que es un poco complicada de entender para quien por primera vez ve lo que es una codificación y un script y en realidad no es algo tan importante para poder seguir el curso de R pero quien recién empieza en curso no lo sabe y tal vez se detenga mucho en esta parte y como recién empieza el repartido, creo que esta parte se puede hacer un poco pesada.
+
+Además, en esta página, la última frase termina diciendo: "....con el comando dir:"
+luego viene una foto y luego la orden como debe escribirse correctamente: dir().
+Me parece que la orden debería quedar en seguida de la frase. 
+Pag 9:
+Al final del primer párrafo dice. "......## para distinguirla de los comandos." Creo que acá habría que agregar que se usa # para que la línea no se ejecute o al menos decir que más adelante se va a hablar de ese símbolo.
+
+Pag 11:
+En el ejercicio (1) dice: "lea los mensajes de error generados....." Yo agregaría "al ejecutar cada una de las siguientes líneas" O algo que indique que hay que correr una línea y leer el mensaje y no las 3 líneas juntas.
+Pag 18:
+En la parte a. dice: "Encuentre la(s) función" Debería decir funcion(es)
+
+Pag 19:
+
+En el segundo renglón luego del subtítulo (3) Repartidos dice: "El objetivo de esto es lograr que estudiante" Debería ser que "el estudiante".
+Por último, la "Recomendación general" de la página 27 creo que estaría bueno ponerla más al inicio del repartido.
+
+
