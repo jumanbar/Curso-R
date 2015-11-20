@@ -8,26 +8,27 @@
 # "formula", los cuales tienen una sintaxis muy particular, hecha para facilitar 
 # la interacción entre el usuario y la función de R que hace el análisis. 
 # Sin embargo no es del todo intuitiva al principio dicha sintaxis, así que es 
-# necesario estar familiarizado con la misma antes de proseguir con esta lección. 
-# Por esta razón lo más lógico y recomendable es leer la lección correspondiente
-# antes de proseguir con esta lección.
+# necesario estar familiarizado para aprovechar bien esta lección. 
+# Por esta razón lo más lógico y recomendable es leer la lección de fórmulas
+# antes de continuar.
 
 # Lo mismo vale también para la lección dedicada a factores. Los factores son
 # una representación de datos categóricos, los cuales tienen una notable
 # facilidad para ser confundidos con vectores de clase "character".
 # En particular las columnas de data.frames que uno puede pensar que son del
 # tipo "character" son muchas veces "factor". A veces esta diferencia no importa
-# mucho, pero a veces es fundamental no hacer esta confusión.
+# mucho, pero en otras es fundamental no hacer esta confusión.
 #==============================================================================#
 
 
 # La regresión lineal es un modelo estadístico que relaciona funcionalmente dos 
 # variables de forma lineal (una recta o, en su versión generalizada, un plano o
-# un hyperplano). Su versión más simple contiene una variable Y o de respuesta y
-# una variable X o explicativa (a veces llamadas también dependiente e 
+# un hyperplano). El caso más simple contiene una variable Y, de respuesta, y
+# una variable X, explicativa (a veces llamadas también dependiente e 
 # independiente)
 # A TENER EN CUENTA: Que exista una relación funcional significativa entre ambas 
-# variables no implica una causalidad, pero la puede sugerir.
+# variables no implica una causalidad, pero la puede sugerir 
+# (http://es.xkcd.com/strips/correlacion/).
 
 # El modelo estadístico lineal simple se puede escribir como (no correr):
 Y = a + b*X + e 
