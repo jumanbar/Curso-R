@@ -1,5 +1,5 @@
-(1.3) Extra: Errores y afines
-=============================
+(1.3.b) Extra: Errores y afines
+===============================
 
 (adaptado de la página de [Patric Burns](http://www.burns-stat.com/))
 
