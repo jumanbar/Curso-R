@@ -180,8 +180,8 @@ Ver también
 
 [Más sobre el uso de la ayuda](https://github.com/jumanbar/Curso-R/blob/master/lecciones/1.3.a-extra-uso-de-la-ayuda.R)
 
-[Sobre errores y otras yerbas](https://github.com/jumanbar/Curso-R/blob/master/lecciones/1.3-extra-errores-y-afines.markdown)
+[Sobre errores y otras yerbas](https://github.com/jumanbar/Curso-R/blob/master/lecciones/1.3.b-extra-errores-y-afines.markdown)
 
-[Los manuales de R](https://github.com/jumanbar/Curso-R/blob/master/lecciones/1.3-extra-manuales.markdown)
+[Los manuales de R](https://github.com/jumanbar/Curso-R/blob/master/lecciones/1.3.c-extra-manuales.markdown)
 
 
