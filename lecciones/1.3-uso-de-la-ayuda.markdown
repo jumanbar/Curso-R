@@ -1,6 +1,8 @@
 (1.4) Uso de la ayuda
 =====================
 
+Videos del curso: [Parte I](https://www.youtube.com/watch?v=PK_jzZhEj1c&index=9&list=PL41C5vgvqV_PA-e634Q4wn5MKbubqv6P9) y [Parte II](https://www.youtube.com/watch?v=PK_jzZhEj1c&index=9&list=PL41C5vgvqV_PA-e634Q4wn5MKbubqv6P9).
+
 Documentación
 -------------
 
@@ -10,9 +12,10 @@ En cualquier instalación de R existe una muy buena documentación a la que se p
 
 La función `help` sirve para abrir una página de ayuda en particular. Esto implica que el usuario debe saber de antemano el nombre exacto de la página de ayuda. Las páginas de ayuda en general tienen nombres de funciones (como `mean` o `plot`) o datasets (como `iris`), pero a veces se trata de grupos de funciones similares, agrupadas bajo un mismo nombre. Este es el caso de la página "Normal", relacionada con 4 funciones relativas a la distribución normal o gaussina. Para acceder a esta página los siguientes comandos son equivalentes:
 
-    help(Normal)
-
-    ?Normal
+```r
+help(Normal)
+?Normal
+```
 
 Una vez que se abre este documento, podemos ver que tiene una estructura bien definida. Esta estructura es estándar y es casi siempre la misma para toda función de R. Veamos de que se tratan las distintas secciones.
 
@@ -34,21 +37,27 @@ Cuando hablamos de argumentos, nos referimos a variables (objetos) que son las e
 
 Por ejemplo, es perfectamente correcto ejecutar la función `rnorm` de la siguiente manera:
 
-    rnorm(10, 3)
+```r
+rnorm(10, 3)
+```
 
 En este caso `n = 10` y `mean = 3`, mientras que `sd` toma su valor por defecto, 1. Debido a que `n` no tiene valor por defecto, el siguiente comando no puede ser aceptado por R
 
-    > rnorm(mean = 3)
-    Error in rnorm(mean = 3) : argument "n" is missing, with no default
+```r
+> rnorm(mean = 3)
+Error in rnorm(mean = 3) : argument "n" is missing, with no default
+```
 
 debido a que es necesario que el usuario indique el valor de `n`.
 
 #### Arguments
 
-En esta sección se da una descripción detallada de cómo deben ser y qué siginifican los distintos argumentos de las funciones. Aquí es particularmente importante determinar la *clase* de cada arguemnto. El concepto de clase de un objeto de R lo veremos en la próxima unidad, pero por el momento es útil saber que se trata de distintas categorías, como lo son los números de las palabras (cualquier cosa delimitada por comillas), como pueden ser los siguientes objetos:
+En esta sección se da una descripción detallada de cómo deben ser y qué siginifican los distintos argumentos de las funciones. Aquí es particularmente importante determinar la *clase* de cada arguemnto. El concepto de clase de un objeto de R lo veremos en la próxima unidad, pero por el momento es útil saber que se trata de distintas categorías, como lo son los números de las cadenas (ie: cadenas de caractéres; cualquier cosa delimitada por comillas), como pueden ser los siguientes objetos:
 
-    numero <- 114
-    palabra <- "No hay problema!"
+```r
+numero <- 114
+cadena <- "No hay problema!"
+```
 
 #### Details
 
@@ -74,8 +83,10 @@ Esta es una sección muy simple pero sorprendentemente útil, ya que muestra lin
 
 Esta es una sección con el potencial de ser muy útil. Se trata de uno o varios ejemplos escritos en código R para correr en la consola. Se puede copiar y pegar por supuesto, pero también existe el comando `example`, el cual ejecuta estos mismos comandos. Por ejemplo:
 
-    example(Normal) # Ejemplo de la ayuda en la distribución Normal
-    example("mean") # Función mean: ejemplos
+```r
+example(Normal) # Ejemplo de la ayuda en la distribución Normal
+example("mean") # Función mean: ejemplos
+```
 
 Nótese que se pueden usar comillas o no para nombrar a la función en cuestión (o página de ayuda para ser más precisos).
 
@@ -85,15 +96,18 @@ Se han criticado varios de estos ejemplos por utilizar casos demasiado complicad
 
 Cuando no tenemos certeza acerca de la existencia de una función o dataset en particular, podemos hacer búsquedas difusas utilizando la funcion `help.search`. Por ejemplo, si el tema que nos interesa es series de tiempo, entonces podemos usar la palabra clave "series":
 
-    help.search("serues")
-
-    ??serues
+```r
+help.search("serues")
+??serues
+```
 
 Nuevamente, estos dos comandos son idénticos. Nótese que escribí mal la palabra clave a propósito, a fin de mostrar que a pesar de esto R logra hacer una búsqueda útil. Dicha búsqueda aparece en una página con una lista. Cada entrada sigue el formato genérico:
 
-> "paquete::función  Breve descripción"
+    > "paquete::función  Breve descripción"
+
 o
-> "paquete::dataset  Breve descripción"
+
+    > "paquete::dataset  Breve descripción"
 
 Por ejemplo, la primer función que aparece con la búsqueda de ejmplo en mi computadora es "tsboot", la cual pertenece al paquete "boot" y cuya descripción breve es "Bootstrapping of Time Series".
 
@@ -108,7 +122,9 @@ El uso de la internet es sin duda una ruta muy provechosa para acceder a informa
 
 Para empezar, en las páginas del R-project se encuentran muchos recursos útiles, tales como paquetes, la lista de correos, archivos, páginas de ayuda, viñetas y vista de tareas. De hecho, R viene con una función especial para buscar entre dichos archivos: `RSiteSearch`. Por ejemplo, si nos interesa buscar funciones o paquetes útiles para hacer análisis de componentes principales, puedo ejecutar:
 
-    RSiteSearch("principal components analysis")
+```r
+RSiteSearch("principal components analysis")
+```
 
 Esto abre una página en el buscador, que de hecho usa un [motor de búsqueda de R](http://search.r-project.org) al que se puede acceder por la web directamente también.
 
