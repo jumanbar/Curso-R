@@ -1,7 +1,7 @@
 (1.4) Uso de la ayuda
 =====================
 
-Videos del curso: [Parte I](https://www.youtube.com/watch?v=PK_jzZhEj1c&index=9&list=PL41C5vgvqV_PA-e634Q4wn5MKbubqv6P9) y [Parte II](https://www.youtube.com/watch?v=PK_jzZhEj1c&index=9&list=PL41C5vgvqV_PA-e634Q4wn5MKbubqv6P9).
+Videos del curso: [Parte I](https://www.youtube.com/watch?v=PK_jzZhEj1c&index=9&list=PL41C5vgvqV_PA-e634Q4wn5MKbubqv6P9) y [Parte II](https://www.youtube.com/watch?v=MqjAl30id5E&index=10&list=PL41C5vgvqV_PA-e634Q4wn5MKbubqv6P9).
 
 Documentación
 -------------
