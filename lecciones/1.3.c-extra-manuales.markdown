@@ -1,5 +1,5 @@
-(1.3) Extra: manuales
-=====================
+(1.3.c) Extra: manuales
+=======================
 
 Como dijimos antes, la ayuda de R es una herramienta indispensable para la comprensión e interpretación de funciones y análisis estadísticos.
 
