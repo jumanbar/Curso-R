@@ -17,8 +17,10 @@ Se dice que hay un error de sintaxis, si el usuario ingresó un comando que R no
 
 Veamos por ejemplo el siguiente comando erróneo y el mensaje resultante:
 
-    > plot(sort(rnorm(100)), pch=19 col='orange')
-    Error: unexpected symbol in "plot(sort(rnorm(100)), pch=19 col"
+```r
+> plot(sort(rnorm(100)), pch=19 col='orange')
+Error: unexpected symbol in "plot(sort(rnorm(100)), pch=19 col"
+```
 
 Como puede verse, la falta de una coma (aquí: `pch=19, col=`) genera este mensaje. La forma en que R nos lo informa es diciendo que hay un "símbolo inesperado", en este caso, la palabra `col`. Aquí lo que ocurrió es que R no pudo seguir interpretando el comando en el momento en que apareció `col`, ya que las opciones posibles eran otras (un paréntesis cerrando, una coma). Entonces cada vez que nos falta una coma (o un paréntesis, llave o corchete) va a dar un mensaje de este estilo y hacemos bien en recordarlo.
 
@@ -34,24 +36,30 @@ Los errores de "objetos no encontrados" pueden tener una de varias causas:
 
 Ejemplo (caso 3):
 
-    > plot(sort(rnorm(100)), pch=19, col=orange)
-    Error in plot.xy(xy, type, ...) : object 'orange' not found
+```r
+> plot(sort(rnorm(100)), pch=19, col=orange)
+Error in plot.xy(xy, type, ...) : object 'orange' not found
+```
 
 Otros errores
 -------------
 
 Hay otras innumerables formas de cometer errores. Entonces, a veces es necesario hacer trabajos detectivescos para ver dónde están; piénselo como un desafío que necesita resolverse, no se frustre. Nos parece que debería ser una práctica extendida escribir en la consola:
 
-    > traceback()
+```r
+> traceback()
+```
 
 cada vez que se obtiene un error.
 
 Los resultados pueden no significar mucho para usted en este momento, pero lo van a hacer en algún momento. Traceback indica qué funciones se estaban ejecutando en el momento del error, dando una pista acerca de qué está mal. Por ejemplo, siguiendo con el caso anterior:
 
-    > traceback()
-    3: plot.xy(xy, type, ...)
-    2: plot.default(sort(rnorm(100)), pch = 19, col = orange)
-    1: plot(sort(rnorm(100)), pch = 19, col = orange)
+```r
+> traceback()
+3: plot.xy(xy, type, ...)
+2: plot.default(sort(rnorm(100)), pch = 19, col = orange)
+1: plot(sort(rnorm(100)), pch = 19, col = orange)
+```
 
 El nombre de las funciones mencionadas aquí es anecdótico (`plot`, `plot.default`, `plot.xy`), pero es bueno saber cómo interpretarlo: en el momento de ocurrencia del error la función 3 (`plot.xy`) estaba corriendo y había sido llamada a su vez por la función 2 (`plot.default`), la que a su vez fue llamada por nuestro comando original (la función 1, `plot`).
 
