@@ -2,6 +2,9 @@
 (1.4) Scripts & Directorio de trabajo
 =====================================
 
+Videos del curso: [Parte I](https://www.youtube.com/watch?v=Y-M16ncK-o8&index=11&list=PL41C5vgvqV_PA-e634Q4wn5MKbubqv6P9) y
+[Parte II](https://www.youtube.com/watch?v=RR790JtvkH8&index=12&list=PL41C5vgvqV_PA-e634Q4wn5MKbubqv6P9).
+
 Scripts en R
 ------------
 
@@ -29,15 +32,21 @@ En [este enlace](http://eva.universidad.edu.uy/file.php/1454/R/histograma.R) se 
 
 Nota: esta página se puede abrir desde R también con el comando:
 
-    browseURL('http://eva.universidad.edu.uy/file.php/1454/histograma.R')
+```r
+browseURL('http://eva.universidad.edu.uy/file.php/1454/histograma.R')
+```
 
 El archivo se puede guardar en el disco duro en el directorio en que R trabaja por defecto (`Mis Documentos` en la mayoría de las máquinas con Windows; en R se puede saber cuál es el directorio de trabajo actual con el comando:
 
-    getwd()
+```r
+getwd()
+```
 
 Una vez guardado, la función `source` se utiliza para ejecutar todos los comandos contenidos en el archivo:
 
-    source(“histograma.R”)
+```r
+source(“histograma.R”)
+```
 
 Es necesario siempre usar comillas para indicar nombres de archivos como en este caso. Tanto las comillas dobles (") como las simples (') sirven.
 
@@ -97,11 +106,15 @@ ________
 
 Como vimos antes, para ejecutar el comando
 
-    source('histograma.R')
+```r
+source('histograma.R')
+```
 
 Es necesario que el archivo con el código fuente `histograma.R` se encuentre en el directorio de trabajo actual. Una forma de confirmar que este archivo está en dicha carpeta, es con el comando:
 
-    dir()
+```r
+dir()
+```
 
 En caso de que el código fuente se encuentre en otra carpeta, podemos utilizar el **camino absoluto** o el **camino relativo** para acceder al mismo. Supongamos que `histograma.R` se encuentra en la carpeta `dir_A`, mientras que nuestra sesión de R está corriendo en el directorio `dir_trabajo`. Entonces para ejecutar `source` los caminos absoluto y relativo son respectivamente:
 
